@@ -1,0 +1,338 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+  <link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet">
+  <style>
+    #touramag {
+      margin-top: 120px;
+      font-size:500%;
+    }
+    
+    h1 {
+      margin-top: 100px;
+    }
+    
+    h2 {
+      font-size: 24px;
+    }
+    
+    p, ul, ol {
+      max-width: 600px;
+    }
+    
+    .intro {
+      font-size: 150%;
+      line-height: 1.6em;
+    }
+    
+    .intro + h1 {
+      margin-top: 70px;
+    }
+    
+    .logos {
+      margin-top: 50px;
+    }
+    
+    .logos a {
+      text-decoration: none;
+    }
+    
+    form {
+      margin: 20px 0;
+    }
+    
+    label {
+      font-family: Georgia;
+      font-weight:normal;
+      display: block;
+    }
+    
+    footer {
+      margin:50px 0;
+    }
+    
+    footer p {
+      font-size: 80%;
+    }
+    
+    pre {
+      padding:20px;
+      background-color:#fffea9;
+      border-bottom:1px solid #eeed98;
+      border-right:1px solid #eeed98;
+      max-width: 600px;
+      color: #000;
+    }
+  </style>
+  
+  <!-- end CSS-->
+
+  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body>
+
+  <div id="container">
+    <header>
+
+    </header>
+    <div id="main" role="main">
+
+<h1 id="touramag">Toura::MAG</h1>
+
+<p class="intro">MAG is a developer tool for creating content-rich mobile applications. Powered by HTML5, CSS3, and JavaScript &mdash; and wrapped in PhoneGap goodness &mdash; MAG gives you the ability to rapidly transform your content and data into responsive mobile experiences. <strong>Sign&nbsp;up&nbsp;for&nbsp;the&nbsp;alpha.</strong></p>
+
+<form>
+  <input type="text" name="email" placeholder="enter your email address">
+  <br>
+  <input type="submit" value="Let me in!">
+</form>
+
+<h2>A solid starter kit &hellip;</h2>
+
+<p>MAG lets you spin up a full-featured app in minutes using built-in themes, layouts, and functionality. Even the simplest apps come loaded with functionality, including over-the-air data updates; offline data and media persistence; offline search and bookmarking; and Facebook, Twitter, and e-mail integration.</p>
+
+<h2>&hellip; and a full-featured mobile stack</h2>
+
+<p>MAG&#8217;s real power, though, lies in the ways you can customize your applications using the web technologies you already know. Under the hood, MAG gives you a powerful, tested framework for designing your own layouts, developing your own features and functionality, and then deploying that functionality to multiple devices and across multiple applications.</p>
+
+<p class="logos"><a href="http://www.w3.org/html/logo/">
+<img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-device-multimedia-semantics-storage.png" width="261" height="64" alt="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage" title="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage">
+</a> <a href="http://phonegap.com"><img src="img/phonegap.png" height="75"> </a></p>
+
+<h2>Open technologies, open source</h2>
+<p>MAG is built on open technology by people who believe in open technology. During the alpha, we&#8217;ll be working toward releasing MAG under an MIT/BSD license.</p>
+
+
+<h1 id="toolchain">The MAG Toolchain</h1>
+<p>MAG smooths over the bumps that web developers often encounter when they apply web technologies to a native platform. It splits the app development process into a few simple steps.</p>
+
+<h2 id="scaffold">Scaffold</h2>
+
+<p>Create the structure for a new application takes just a moment:</p>
+
+<pre><code>$ toura_mag scaffold capitoljs
+</code></pre>
+
+<h2 id="configure">Configure</h2>
+
+<p>A YAML file gives MAG basic configuration information, including settings for the base theme:</p>
+
+<pre><code>name: Capitol JS
+
+theme:
+  name: default
+  settings:
+    font-scheme:        'light'
+    link-color:         '#ff0000'
+    background-color:   '#000000'
+    child-nav-color:    '#ffffff'
+
+os:
+  - ios
+
+type:
+  - phone
+  - tablet
+</code></pre>
+
+<h2 id="construct">Construct</h2>
+
+<p>Specify the structure of your application via the sitemap:</p>
+
+<pre><code>- home
+  - schedule
+  - speakers
+  - points-of-interest
+  - twitter
+- about
+</code></pre>
+
+<p>Write a Markdown file for each page in the sitemap; include metadata about the page in the YAML frontmatter:</p>
+
+<pre><code>---
+title: Speakers
+template: Images
+images:
+  - pamela-fox.png
+  - alex-sexton.png
+  - brendan-eich.png
+  - alex-russell.png
+  - nicholas-zakas.png
+  - jed-schmidt.png
+  - mike-taylor.png
+  - douglas-crockford.png
+  - rebecca-murphey.png
+  - joe-mccann.png
+  - ben-combee.png
+  - mikeal-rogers.png
+---
+
+CapitolJS is bringing together 12 of the top minds in the JS community to
+provide you with the most exciting presentations and discussions. 
+Presentations will be geared toward every day application and use so you will 
+leave CapitolJS ready to write amazing JS. They have been out in the field and 
+seen the action and now they have come back to prepare you, agent, for the 
+world of JS.
+</code></pre>
+
+<h2 id="customize">Customize</h2>
+
+<p>Define your own templates using a simple YAML syntax:</p>
+
+<pre><code>Twitter:
+  screens:
+    -
+      name: index
+      regions:
+        -
+          size: fixed
+          scrollable: false
+          components:
+            - PageNav
+        -
+          size: flex
+          scrollable: true
+          components:
+            - custom:Twitter
+</code></pre>
+
+<p>Register a custom component with the MAG framework:</p>
+
+<pre><code>var userTweets = function(settings) {
+      return dojo.string.substitute(
+        'http://twitter.com/status/user_timeline/' +
+        '${username}.json?count=${count}',
+        settings
+      );
+    },
+
+    tweetURL = function(settings) {
+      return dojo.string.substitute(
+        'http://twitter.com/capitoljs/status/${id_str}',
+        settings
+      );
+    };
+
+toura.customComponent('Twitter', {
+  templateString: '%ul.component.twitter',
+  tweetTemplate : Haml(dojo.cache('client.components', 'Twitter/Tweet.haml')),
+
+  init : function() {
+    var data = this.node.data[0].json;
+
+    dojo.io.script.get({
+      url : userTweets(data),
+      load : dojo.hitch(this, '_onLoad'),
+      handleAs: 'json',
+      callbackParamName : 'callback'
+    });
+  },
+
+  _onLoad : function(tweets) {
+    this.domNode.innerHTML = dojo.map(tweets, function(tweet) {
+      tweet.link = tweetURL(tweet);
+      tweet.text = tweet.text.replace(/@(\S+)/, "&lt;a href='http://twitter.com/#!/$1'&gt;@$1&lt;/a&gt;");
+      return this.tweetTemplate(tweet);
+    }, this).join('');
+
+    this.region.refreshScroller();
+  }
+});
+</code></pre>
+
+<h2 id="develop">Develop</h2>
+
+<p>For rapid iteration, run your app in a desktop WebKit browser and get access to your standard development tools:</p>
+
+<pre><code>$ toura_mag serve ~/projects/capitoljs
+</code></pre>
+
+<h2 id="test">Test</h2>
+
+<p>Generate test builds that you can run in a simulator or on a properly provisioned device:</p>
+
+<pre><code>$ toura_mag test ~/projects/capitoljs
+</code></pre>
+
+<h2 id="deploy">Deploy</h2>
+
+<p>Run a simple command to create binaries for the various form factors and operating systems your app supports:</p>
+
+<pre><code>$ toura_mag deploy ~/projects/capitoljs
+</code></pre>
+
+
+<h1>Sign up for the alpha</h1>
+
+<p>We&#8217;re looking for developers who want to influence the tools we&#8217;ll be open-sourcing. Is that you?</p>
+
+<form>
+  <input type="text" name="email" placeholder="enter your email address">
+  <br>
+  <input type="submit" value="Let me in!">
+</form>
+
+
+
+
+
+    </div>
+    <footer>
+      <p>MAG is a product of <a href="http://toura.com">Toura Mobile</a> with assistance from <a href="http://bocoup.com">Bocoup</a>.</p>
+    </footer>
+  </div> <!--! end of #container -->
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+
+  <script>
+  $(function() { 
+  });
+  </script>
+
+
+  <!-- Change UA-XXXXX-X to be your site's ID -->
+  <script>
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+  </script>
+
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+
+</body>
+</html>
