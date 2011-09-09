@@ -77,6 +77,11 @@
       max-width: 600px;
       color: #000;
     }
+
+    p.signup-error {
+      color: red;
+      font-style: italic;
+    }
   </style>
 
   <!-- end CSS-->
@@ -95,11 +100,20 @@
 
     <p class="intro">MAG is a developer tool for creating content-rich mobile applications. Powered by HTML5, CSS3, and JavaScript &mdash; and wrapped in PhoneGap goodness &mdash; MAG gives you the ability to rapidly transform your content and data into responsive mobile experiences. <strong>Sign&nbsp;up&nbsp;for&nbsp;the&nbsp;alpha.</strong></p>
 
-    <form>
-      <input type="text" name="email" placeholder="enter your email address">
-      <br>
-      <input type="submit" value="Let me in!">
+    <!-- THX SLEX -->
+    <iframe id="gformFrame" name="gformFrame" src="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq" style="width:1px;height:1px;margin:0;padding:0;position:absolute;top:-100px;"></iframe>
+
+    <form id="signup-form" method="POST" target="gformFrame" action="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq">
+      <label for="entry_0">Your Name</label>
+      <input type="text" name="entry.0.single" value="" class="ss-q-short" id="entry_0">
+
+      <label for="entry_1">Your Email</label>
+      <input type="text" name="entry.1.single" value="" class="ss-q-short" id="entry_1">
+
+      <br/>
+      <input type="submit" name="submit" value="Submit">
     </form>
+    <!-- -->
 
     <h2>A solid starter kit &hellip;</h2>
 
@@ -284,12 +298,6 @@ mag.customComponent('Twitter', {
 
     <p>We&#8217;re looking for developers who want to influence the tools we&#8217;ll be open-sourcing. Is that you?</p>
 
-    <form>
-      <input type="text" name="email" placeholder="enter your email address">
-      <br>
-      <input type="submit" value="Let me in!">
-    </form>
-
   </div>
 
   <footer>
@@ -302,8 +310,34 @@ mag.customComponent('Twitter', {
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
 
 <script>
+(function($){
+
 $(function() {
+  $('#signup-form').submit(function() {
+    var n = $('#entry_0').val(),
+        e = $('#entry_1').val(),
+        $this = $(this);
+
+    $('p.signup-error').remove();
+
+    if ($.trim(n) && $.trim(e)) {
+      $this.fadeTo(100, 0.5);
+
+      setTimeout(function(){
+        $this.slideUp(100, function() {
+          $this.replaceWith('<p class="thanks">Thanks for signing up -- we&rsquo;ll be in touch!</p>');
+        });
+      }, 500);
+
+      return true;
+    }
+
+    $this.before('<p class="signup-error">Please fill out both fields</p>');
+    return false;
+  });
 });
+
+}(jQuery));
 </script>
 
 
