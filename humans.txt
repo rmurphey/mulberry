@@ -3,13 +3,14 @@
 
 
 /* TEAM */
-  Lead JS Dev: Rebecca Murphey
+  App Dev Lead: Rebecca Murphey
   Site: http://rebeccamurphey.com, http://toura.com
   Twitter: @rmurphey
   Location: Durham, NC
 
-/* THANKS */
-  Names (& URL):
+  UI Dev Lead: Dan Imal
+  Ruby/Ops: Daniel Kim
+  Project Lead: Matt Rogish
 
 /* SITE */
   Standards: HTML5, CSS3

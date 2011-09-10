@@ -173,7 +173,11 @@ type:
 - about
 </code></pre>
 
-    <p>Write a Markdown file for each page in the sitemap; include metadata about the page in the YAML frontmatter:</p>
+<p>Create your pages &hellip;</p>
+
+<pre><code>$ mag create_page speakers</code></pre>
+
+<p>&hellip; then write your content and metadata using YAML and Markdown:</p>
 
 <pre><code>---
 title: Speakers
@@ -198,76 +202,34 @@ CapitolJS is bringing together 12 of the top minds in the JS community to provid
 
     <h2 id="customize">Customize</h2>
 
-    <p>Define your own templates using a simple YAML syntax:</p>
+    <p>You can define your own page layouts in YAML and take advantage of built-in components &hellip;</p>
 
-<pre><code>Twitter:
+<pre><code>AudioWithImages:
+  type: node
   screens:
-    -
-      name: index
-      regions:
-        -
-          size: fixed
-          scrollable: false
-          components:
-            - PageNav
-        -
-          size: flex
-          scrollable: true
-          components:
-            - custom:Twitter
+  - name: index
+    layoutName: default
+    backgroundImage: true
+    regions:
+    - size: fixed
+      components:
+      - PageNav
+    - size: flex
+      components:
+      - ImageGallery
+    - scrollable: true
+      components:
+      - BodyText
+      - ChildNodes
 </code></pre>
 
-    <p>Register a custom component with the MAG framework:</p>
+    <p>&hellip; or create your own components to integrate with the framework:</p>
 
-<pre><code>var userTweets = function(settings) {
-      return mag.tmpl(
-        'http://twitter.com/status/user_timeline/' +
-        '${username}.json?count=${count}',
-        settings
-      );
-    },
+<pre><code>$ mag create_component Twitter</code></pre>
 
-    tweetURL = function(settings) {
-      return mag.tmpl(
-        'http://twitter.com/capitoljs/status/${id_str}',
-        settings
-      );
-    };
-
-mag.customComponent('Twitter', {
-  componentTemplate : dojo.cache(
-    'client.components',
-    'Twitter/Twitter.haml'
-  ),
-
-  tweetTemplate : dojo.cache(
-    'client.components',
-    'Twitter/Tweet.haml'
-  ),
-
+<pre><code>toura.component('Twitter', {
   init : function() {
-    var data = this.node.data[0].json;
-
-    $.ajax(userTweets(data), {
-      dataType : 'jsonp',
-      success : $.proxy(this, '_onLoad')
-    });
-  },
-
-  _onLoad : function(tweets) {
-    var tpl = mag.haml(this.tweetTemplate),
-        html = $.map(tweets, function(tweet) {
-          tweet.link = tweetURL(tweet);
-          tweet.text = tweet.text.replace(
-            /@(\S+)/,
-            "&lt;a href='http://twitter.com/#!/$1'&gt;@$1&lt;/a&gt;"
-          );
-          return tpl(tweet);
-        }).join('');
-
-    this.$domNode.html(html);
-
-    this.region.refreshScroller();
+    // ...
   }
 });
 </code></pre>
@@ -276,27 +238,20 @@ mag.customComponent('Twitter', {
 
     <p>For rapid iteration, run your app in a desktop WebKit browser and get access to your standard development tools:</p>
 
-<pre><code>$ mag serve ~/projects/capitoljs
-</code></pre>
+<pre><code>$ mag serve</code></pre>
 
     <h2 id="test">Test</h2>
 
-    <p>Generate test builds that you can run in a simulator or on a properly provisioned device:</p>
+    <p>Generate test device builds, and enjoy hosted remote debugging using weinre: </p>
 
-<pre><code>$ mag test ~/projects/capitoljs
-</code></pre>
+<pre><code>$ mag test</code></pre>
 
     <h2 id="deploy">Deploy</h2>
 
     <p>Run a simple command to create binaries for the various form factors and operating systems your app supports:</p>
 
-<pre><code>$ mag deploy ~/projects/capitoljs
+<pre><code>$ mag deploy
 </code></pre>
-
-
-    <h1>Sign up for the alpha</h1>
-
-    <p>We&#8217;re looking for developers who want to influence the tools we&#8217;ll be open-sourcing. Is that you?</p>
 
   </div>
 
