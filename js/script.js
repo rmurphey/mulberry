@@ -54,7 +54,7 @@ $(function() {
     scrolling = false;
   }
 
-  positionSignup();
+  setTimeout(positionSignup, 500);
 });
 
 }(jQuery));
