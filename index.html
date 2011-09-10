@@ -16,73 +16,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet">
-  <style>
-    #touramag {
-      margin-top: 120px;
-      font-size:500%;
-    }
-
-    h1 {
-      margin-top: 100px;
-    }
-
-    h2 {
-      font-size: 24px;
-    }
-
-    p, ul, ol {
-      max-width: 600px;
-    }
-
-    .intro {
-      font-size: 150%;
-      line-height: 1.6em;
-    }
-
-    .intro + h1 {
-      margin-top: 70px;
-    }
-
-    .logos {
-      margin-top: 50px;
-    }
-
-    .logos a {
-      text-decoration: none;
-    }
-
-    form {
-      margin: 20px 0;
-    }
-
-    label {
-      font-family: Georgia;
-      font-weight:normal;
-      display: block;
-    }
-
-    footer {
-      margin:50px 0;
-    }
-
-    footer p {
-      font-size: 80%;
-    }
-
-    pre {
-      padding:20px;
-      background-color:#fffea9;
-      border-bottom:1px solid #eeed98;
-      border-right:1px solid #eeed98;
-      max-width: 600px;
-      color: #000;
-    }
-
-    p.signup-error {
-      color: red;
-      font-style: italic;
-    }
-  </style>
+  <link href="css/style.css" rel="stylesheet">
 
   <!-- end CSS-->
 
@@ -98,30 +32,44 @@
 
   <div id="main" role="main">
 
-    <p class="intro">MAG is a developer tool for creating content-rich mobile applications. Powered by HTML5, CSS3, and JavaScript &mdash; and wrapped in PhoneGap goodness &mdash; MAG gives you the ability to rapidly transform your content and data into responsive mobile experiences. <strong>Sign&nbsp;up&nbsp;for&nbsp;the&nbsp;alpha.</strong></p>
+    <p class="intro">MAG helps web developers rapidly create content-rich
+    native mobile applications. Powered by HTML5, CSS3, and JavaScript and
+    wrapped in PhoneGap goodness, MAG transforms your content and data into
+    a responsive, cross-platform mobile experience.</p>
 
-    <!-- THX SLEX -->
-    <iframe id="gformFrame" name="gformFrame" src="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq" style="width:1px;height:1px;margin:0;padding:0;position:absolute;top:-100px;"></iframe>
+    <h2>A Solid Starter Kit with Plenty of Room to Grow</h2>
+    <ul>
+      <li>Create a basic app in the time it takes to write and organize your content.</li>
+      <li>Remix built-in components such as image galleries, video players,
+      maps, Facebook and Twitter sharing, and more.</li>
+      <li>Tweak the built-in theme to personalize your app, or go
+      all-out and customize the CSS from scratch.</li>
+      <li>Use your JavaScript and HTML5 skills to integrate your own
+      functionality into the platform.</li>
+    </ul>
 
-    <form id="signup-form" method="POST" target="gformFrame" action="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq">
-      <label for="entry_0">Your Name</label>
-      <input type="text" name="entry.0.single" value="" class="ss-q-short" id="entry_0">
+    <p><a href="#toolchain">Learn more about the MAG toolchain</a></p>
 
-      <label for="entry_1">Your Email</label>
-      <input type="text" name="entry.1.single" value="" class="ss-q-short" id="entry_1">
+    <div id="signup">
+      <h2>Get In On the Alpha</h2>
 
-      <br/>
-      <input type="submit" name="submit" value="Submit">
-    </form>
-    <!-- -->
+      <!-- THX SLEX -->
+      <iframe id="gformFrame" name="gformFrame"
+      src="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq"
+      style="width:1px;height:1px;margin:0;padding:0;position:absolute;top:-1000px;right:1000px"></iframe>
 
-    <h2>A solid starter kit &hellip;</h2>
+      <form id="signup-form" method="POST" target="gformFrame" action="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq">
+        <label for="entry_0">Your Name</label>
+        <input type="text" name="entry.0.single" value="" class="ss-q-short" id="entry_0">
 
-    <p>MAG lets you spin up a full-featured app in minutes using built-in themes, layouts, and functionality. Even the simplest apps come loaded with functionality, including over-the-air data updates; offline data and media persistence; offline search and bookmarking; and Facebook, Twitter, and e-mail integration.</p>
+        <label for="entry_1">Your Email</label>
+        <input type="text" name="entry.1.single" value="" class="ss-q-short" id="entry_1">
 
-    <h2>&hellip; and a full-featured mobile stack</h2>
-
-    <p>MAG&#8217;s real power, though, lies in the ways you can customize your applications using the web technologies you already know. Under the hood, MAG gives you a powerful, tested framework for designing your own layouts, developing your own features and functionality, and then deploying that functionality to multiple devices and across multiple applications.</p>
+        <br/>
+        <input type="submit" name="submit" value="Let me in!">
+      </form>
+      <!-- -->
+    </div>
 
     <p class="logos"><a href="http://www.w3.org/html/logo/">
     <img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-device-multimedia-semantics-storage.png" width="261" height="64" alt="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage" title="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage">
@@ -263,37 +211,8 @@ CapitolJS is bringing together 12 of the top minds in the JS community to provid
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
-
-<script>
-(function($){
-
-$(function() {
-  $('#signup-form').submit(function() {
-    var n = $('#entry_0').val(),
-        e = $('#entry_1').val(),
-        $this = $(this);
-
-    $('p.signup-error').remove();
-
-    if ($.trim(n) && $.trim(e)) {
-      $this.fadeTo(100, 0.5);
-
-      setTimeout(function(){
-        $this.slideUp(100, function() {
-          $this.replaceWith('<p class="thanks">Thanks for signing up -- we&rsquo;ll be in touch!</p>');
-        });
-      }, 500);
-
-      return true;
-    }
-
-    $this.before('<p class="signup-error">Please fill out both fields</p>');
-    return false;
-  });
-});
-
-}(jQuery));
-</script>
+<script src="js/plugins.js"></script>
+<script src="js/script.js"></script>
 
 
 <!-- Change UA-XXXXX-X to be your site's ID -->
