@@ -43,7 +43,7 @@ $(function() {
   function positionSignup() {
     var winScrollTop = w.scrollTop();
 
-    if (w.width() > 600) {
+    if (w.width() > 800) {
       if (winScrollTop > 140) {
         signup.animate({ top : winScrollTop + 20 }, 500, 'easeInCubic');
       } else {

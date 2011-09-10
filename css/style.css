@@ -297,6 +297,14 @@ body {
   margin:0 100px;
 }
 
+a {
+  color: #c12252;
+}
+
+a:visited {
+  color: #a00030;
+}
+
 #touramag {
   margin-top: 120px;
   font-size:500%;
@@ -357,6 +365,8 @@ pre {
   border-right:1px solid #eeed98;
   max-width: 600px;
   color: #000;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
 }
 
 p.signup-error {
@@ -369,8 +379,8 @@ p.signup-error {
   background-color:#c12552;
   color: #fff;
   max-width: 600px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
 }
 
 #signup * {
@@ -391,13 +401,13 @@ p.signup-error {
   margin: 0 0 10px 0;
 }
 
-@media screen and (min-width:600px) {
+@media screen and (min-width:800px) {
   #signup {
     position: absolute;
     top: 140px;
     right: 100px;
     margin-left: 20px;
-    min-width: 240px;
+    min-width: 220px;
     max-width: 30%;
   }
 }
