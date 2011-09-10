@@ -87,6 +87,8 @@
 
 <pre><code>$ mag scaffold capitoljs</code></pre>
 
+    <p class="img"><img src="img/scaffold.png" title="Scaffolded directory structure"></p>
+
     <h2 id="configure">Configure</h2>
 
     <p>A YAML file gives MAG basic configuration information, including settings for the base theme:</p>
@@ -110,6 +112,8 @@ type:
 </code></pre>
 
 <h2 id="construct">Construct</h2>
+
+<p class="img"><img src="img/page-montage.png" title="A simple page using an existing template"></p>
 
 <p>Specify the structure of your application via the sitemap:</p>
 
@@ -173,6 +177,8 @@ CapitolJS is bringing together 12 of the top minds in the JS community to provid
 
     <p>&hellip; or create your own components to integrate with the framework:</p>
 
+<p class="img"><img src="img/twitter-page.png" title="A custom page using a custom component"></p>
+
 <pre><code>$ mag create_component Twitter</code></pre>
 
 <pre><code>toura.component('Twitter', {
@@ -184,15 +190,27 @@ CapitolJS is bringing together 12 of the top minds in the JS community to provid
 
     <h2 id="develop">Develop</h2>
 
-    <p>For rapid iteration, run your app in a desktop WebKit browser and get access to your standard development tools:</p>
+    <p class="img"><img src="img/develop.png" title="A custom page using a custom component"></p>
+
+    <p>For rapid iteration, MAG includes a server that simulates the device
+    experience. You can run your app in a desktop WebKit browser and get access
+    to your standard development tools:</p>
 
 <pre><code>$ mag serve</code></pre>
 
     <h2 id="test">Test</h2>
 
-    <p>Generate test device builds, and enjoy hosted remote debugging using weinre: </p>
+    <p>Nothing matches the knowledge you gain by testing your application on
+    device. MAG provides a one-liner to generate simulator and device* builds
+    for iOS and Android, including integration with weinre on debug.phonegap.com: </p>
 
 <pre><code>$ mag test</code></pre>
+
+    <p class="img"><img src="img/debug.png" title="Debug tools on device"></p>
+
+    <p><small>* You must have an Apple developer certificate and have a
+    properly provisioned device in order for device builds to work on
+    iOS.</small></pre>
 
     <h2 id="deploy">Deploy</h2>
 

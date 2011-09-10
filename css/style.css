@@ -298,6 +298,7 @@ body {
 }
 
 a {
+  cursor: pointer;
   color: #c12252;
 }
 
@@ -327,7 +328,6 @@ ul, ol {
 }
 
 .intro {
-  font-size: 120%;
   line-height: 1.6em;
   margin: 20px 0;
 }
@@ -372,6 +372,10 @@ pre {
 p.signup-error {
   color: red;
   font-style: italic;
+}
+
+p.img {
+  text-align: center;
 }
 
 #signup {
