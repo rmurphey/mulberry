@@ -24,37 +24,6 @@ $(function() {
     return false;
   });
 
-  var scrolling = false,
-      signup = $('#signup'),
-      scrollingTimeout;
-
-  var w = $(window).scroll(handleScroll);
-
-  function handleScroll(e) {
-    if (scrolling) {
-      clearTimeout(scrollingTimeout);
-      scrollingTimeout = setTimeout(positionSignup, 100);
-      return;
-    }
-
-    scrolling = true;
-  }
-
-  function positionSignup() {
-    var winScrollTop = w.scrollTop();
-
-    if (w.width() > 800) {
-      if (winScrollTop > 140) {
-        signup.animate({ top : winScrollTop + 20 }, 500, 'easeInCubic');
-      } else {
-        signup.animate({ top : 140 }, 500, 'easeInCubic');
-      }
-    }
-
-    scrolling = false;
-  }
-
-  setTimeout(positionSignup, 500);
 });
 
 }(jQuery));
