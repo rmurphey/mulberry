@@ -104,8 +104,10 @@
 
     <h2 id="configure">Configure</h2>
 
-    <p>A YAML file gives MAG basic configuration information, including settings for the base theme:</p>
+    <p>A <a href="http://yaml.org/">YAML</a> file gives MAG basic configuration
+    information, including settings for the base theme:</p>
 
+<p class="filename">config.yml</p>
 <pre><code>name: Capitol JS
 
 theme:
@@ -122,6 +124,8 @@ os:
 type:
   - phone
   - tablet
+
+jquery: true
 </code></pre>
 
 <h2 id="construct">Construct</h2>
@@ -130,11 +134,14 @@ type:
 
 <p>Specify the structure of your application via the sitemap:</p>
 
-<pre><code>- home
-  - schedule
+<p class="filename">sitemap.yml</p>
+<pre><code>- home:
   - speakers
+  - schedule
   - points-of-interest
   - twitter
+  - feed
+  - sponsors
 - about
 </code></pre>
 
@@ -145,6 +152,7 @@ type:
 <p>&hellip; then organize your content and metadata using YAML, Markdown, and
 your filesystem:</p>
 
+<p class="filename">pages/speakers.md</p>
 <pre><code>---
 title: Speakers
 template: Images
@@ -162,8 +170,15 @@ images:
   - ben-combee.png
   - mikeal-rogers.png
 ---
-
 </code></pre>
+
+<p class="filename">assets/images/captions/alex-sexton.md</p>
+<pre><code>---
+name: Alex Sexton
+---
+## [Alex Sexton](http://alexsexton.com/)
+
+Alex Sexton is a Labs Engineer at Bazaarvoice in Austin, TX. He is the creator of yepnope.js and is a developer on the Modernizr core team. He is the current organizer of TXJS, a co-host on the yayQuery podcast as well as a volunteer bug-triager for the jQuery project. He has a passion for third party applications and application structure, so naturally he likes working on large third-party apps. He tweets at @slexaxton and blogs at http://alexsexton.com/ </code></pre>
 
 <p class="img"><img src="img/images.png" title="The images directory"></p>
 
@@ -171,6 +186,7 @@ images:
 
     <p>You can define your own page layouts in YAML and take advantage of built-in components &hellip;</p>
 
+<p class="filename">templates.yml</p>
 <pre><code>AudioWithImages:
   type: node
   screens:
@@ -196,12 +212,48 @@ images:
 
 <pre><code>$ mag create_component Twitter</code></pre>
 
-<pre><code>toura.component('Twitter', {
+<p class="filename">javascript/components/Twitter.js</p>
+<pre><code>mag.component('Twitter', {
+  componentTemplate : dojo.cache('client.components', 'Twitter/Twitter.haml'),
+  tweetTemplate : dojo.cache('client.components', 'Twitter/Tweet.haml'),
+
   init : function() {
-    // ...
+    var data = this.node.data[0].json;
+
+    $.ajax(userTweets(data), {
+      dataType : 'jsonp',
+      success : $.proxy(this, '_onLoad')
+    });
+  },
+
+  _onLoad : function(tweets) {
+    var tpl = mag.haml(this.tweetTemplate),
+        html = $.map(tweets, function(tweet) {
+          tweet.link = tweetURL(tweet);
+          tweet.text = tweet.text.replace(
+            /@(\S+)/,
+            "&lt;a href='http://twitter.com/#!/$1'&gt;@$1&lt;/a&gt;"
+          );
+          return tpl(tweet);
+        }).join('');
+
+    this.$domNode.html(html);
+
+    this.region.refreshScroller();
   }
 });
 </code></pre>
+
+    <p>MAG&rsquo;s customization opportunities go far beyond components. MAG
+    provides a robust JavaScript framework for building your applications,
+    including a powerful router, clear patterns for specifying interactions between
+    components, and low-level components that you can mix in with your own code to
+    rapidly build more complex functionality.</p>
+
+    <p>MAG&rsquo;s JavaScript framework is built on top of the powerful <a
+    href="http://dojotoolkit.org">Dojo Toolkit</a>, but no knowledge of Dojo is
+    required, and <a href="http://jquery.com">jQuery</a> is included in the
+    default configuration.</p>
 
     <h2 id="develop">Develop</h2>
 
@@ -223,9 +275,9 @@ images:
 
     <p class="img"><img src="img/debug.png" title="Debug tools on device"></p>
 
-    <p><small>* You must have an Apple developer certificate and have a
+    <p><small>* <em>You must have an Apple developer certificate and have a
     properly provisioned device in order for device builds to work on
-    iOS.</small></pre>
+    iOS.</em></small></pre>
 
     <h2 id="deploy">Deploy</h2>
 

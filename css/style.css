@@ -316,6 +316,7 @@ h1 {
 }
 
 h2 {
+  margin:60px 0 10px 0;
   font-size: 24px;
 }
 
@@ -376,6 +377,25 @@ p.signup-error {
 
 p.img {
   text-align: center;
+}
+
+p.filename {
+  margin: 30px 0 0 0;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #ccc;
+  font-size: 90%;
+}
+
+p.filename + pre {
+  margin-top: 5px;
+}
+
+pre + p {
+  margin-top: 30px;
+}
+
+p.small {
+  font-size: 90%;
 }
 
 #signup {
