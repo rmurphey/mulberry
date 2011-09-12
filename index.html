@@ -9,7 +9,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>MAG</title>
+  <title>Mulberry</title>
   <meta name="description" content="A developer tool for creating content-rich mobile applications">
   <meta name="author" content="Toura Mobile">
 
@@ -27,16 +27,17 @@
 
 <div id="container">
   <header>
-    <h1 id="touramag">Toura::MAG</h1>
+    <h1 id="mulberry">mulberry</h1>
   </header>
 
   <div id="main" role="main">
 
     <h2>From zero to app in minutes</h2>
-    <p class="intro">MAG helps web developers rapidly create content-rich
-    native mobile applications. Powered by HTML5, CSS3, and JavaScript and
-    wrapped in PhoneGap goodness, MAG transforms your content and data into
-    a responsive, cross-platform mobile experience.</p>
+
+    <p>Mulberry helps web developers rapidly create content-rich native mobile
+    applications. Powered by HTML5, CSS3, and JavaScript and built on top of
+    PhoneGap, Mulberry transforms your content and data into a responsive,
+    native, cross-platform mobile experience.</p>
 
     <ul>
       <li>Create a basic app in the time it takes to write and organize your content.</li>
@@ -48,7 +49,7 @@
       functionality into the platform.</li>
     </ul>
 
-    <p><a href="#toolchain">Learn more about the MAG toolchain</a></p>
+    <p><a href="#toolchain">The Mulberry toolchain</a></p>
 
     <div id="signup">
       <h2>Get in on the alpha</h2>
@@ -76,12 +77,14 @@
     <img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-device-multimedia-semantics-storage.png" width="261" height="64" alt="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage" title="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage">
     </a> <a href="http://phonegap.com"><img src="img/phonegap.png" height="75"> </a></p>
 
-    <h2>Open technologies, open source</h2>
-    <p>MAG is built on open technology by people who believe in open technology. During the alpha, we&#8217;ll be working toward releasing MAG under an MIT/BSD license.</p>
+    <h2>Open technologies, open source</h2> <p>Mulberry is built on open
+    technology by people who believe in open technology. During the alpha,
+    we&#8217;ll be working toward releasing Mulberry under an open-source
+    license.</p>
 
-    <h1 id="toolchain">The MAG toolchain</h1>
+    <h1 id="toolchain">The Mulberry toolchain</h1>
 
-    <p>MAG smooths over the bumps that web developers often encounter when they
+    <p>Mulberry smooths over the bumps that web developers often encounter when they
     apply web technologies to a native platform. It handles things like:</p>
 
     <ul>
@@ -98,13 +101,13 @@
 
     <p>Creating the structure for a new application takes just a moment:</p>
 
-<pre><code>$ mag scaffold capitoljs</code></pre>
+<pre><code>$ mulberry scaffold capitoljs</code></pre>
 
     <p class="img"><img src="img/scaffold.png" title="Scaffolded directory structure"></p>
 
     <h2 id="configure">Configure</h2>
 
-    <p>A <a href="http://yaml.org/">YAML</a> file gives MAG basic configuration
+    <p>A <a href="http://yaml.org/">YAML</a> file gives Mulberry basic configuration
     information, including settings for the base theme:</p>
 
 <p class="filename">config.yml</p>
@@ -147,7 +150,7 @@ jquery: true
 
 <p>Create your pages &hellip;</p>
 
-<pre><code>$ mag create_page speakers</code></pre>
+<pre><code>$ mulberry create_page speakers</code></pre>
 
 <p>&hellip; then organize your content and metadata using YAML, Markdown, and
 your filesystem:</p>
@@ -210,10 +213,10 @@ Alex Sexton is a Labs Engineer at Bazaarvoice in Austin, TX. He is the creator o
 
 <p class="img"><img src="img/twitter-page.png" title="A custom page using a custom component"></p>
 
-<pre><code>$ mag create_component Twitter</code></pre>
+<pre><code>$ mulberry create_component Twitter</code></pre>
 
 <p class="filename">javascript/components/Twitter.js</p>
-<pre><code>mag.component('Twitter', {
+<pre><code>mulberry.component('Twitter', {
   componentTemplate : dojo.cache('client.components', 'Twitter/Twitter.haml'),
   tweetTemplate : dojo.cache('client.components', 'Twitter/Tweet.haml'),
 
@@ -227,7 +230,7 @@ Alex Sexton is a Labs Engineer at Bazaarvoice in Austin, TX. He is the creator o
   },
 
   _onLoad : function(tweets) {
-    var tpl = mag.haml(this.tweetTemplate),
+    var tpl = mulberry.haml(this.tweetTemplate),
         html = $.map(tweets, function(tweet) {
           tweet.link = tweetURL(tweet);
           tweet.text = tweet.text.replace(
@@ -244,13 +247,13 @@ Alex Sexton is a Labs Engineer at Bazaarvoice in Austin, TX. He is the creator o
 });
 </code></pre>
 
-    <p>MAG&rsquo;s customization opportunities go far beyond components. MAG
+    <p>Mulberry&rsquo;s customization opportunities go far beyond components. Mulberry
     provides a robust JavaScript framework for building your applications,
     including a powerful router, clear patterns for specifying interactions between
     components, and low-level components that you can mix in with your own code to
     rapidly build more complex functionality.</p>
 
-    <p>MAG&rsquo;s JavaScript framework is built on top of the powerful <a
+    <p>Mulberry&rsquo;s JavaScript framework is built on top of the powerful <a
     href="http://dojotoolkit.org">Dojo Toolkit</a>, but no knowledge of Dojo is
     required, and <a href="http://jquery.com">jQuery</a> is included in the
     default configuration.</p>
@@ -259,19 +262,19 @@ Alex Sexton is a Labs Engineer at Bazaarvoice in Austin, TX. He is the creator o
 
     <p class="img"><img src="img/develop.png" title="Developing on a local server"></p>
 
-    <p>For rapid iteration, MAG includes a server that simulates the device
+    <p>For rapid iteration, Mulberry includes a server that simulates the device
     experience. You can run your app in a desktop WebKit browser and get access
     to your standard development tools:</p>
 
-<pre><code>$ mag serve</code></pre>
+<pre><code>$ mulberry serve</code></pre>
 
     <h2 id="test">Test</h2>
 
     <p>Nothing matches the knowledge you gain by testing your application on
-    device. MAG provides a one-liner to generate simulator and device* builds
+    device. Mulberry provides a one-liner to generate simulator and device* builds
     for iOS and Android, including integration with weinre on debug.phonegap.com: </p>
 
-<pre><code>$ mag test</code></pre>
+<pre><code>$ mulberry test</code></pre>
 
     <p class="img"><img src="img/debug.png" title="Debug tools on device"></p>
 
@@ -283,13 +286,13 @@ Alex Sexton is a Labs Engineer at Bazaarvoice in Austin, TX. He is the creator o
 
     <p>Run a simple command to create binaries for the various form factors and operating systems your app supports:</p>
 
-<pre><code>$ mag deploy
+<pre><code>$ mulberry deploy
 </code></pre>
 
   </div>
 
   <footer>
-    <p>MAG is a product of <a href="http://toura.com">Toura Mobile</a>.</p>
+    <p>Mulberry is a product of <a href="http://toura.com">Toura Mobile</a>.</p>
   </footer>
 </div> <!--! end of #container -->
 
