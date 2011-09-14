@@ -1,7 +1,26 @@
 
+body {
+  font-family: Lucida Grande, Arial, "sans serif";
+  color: #444444;
+}
+
+p {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+li {
+  font-size: 13px;
+  line-height: 21px;
+}
+
 a {
   cursor: pointer;
   color: #c12252;
+
+  &.img {
+    text-decoration: none;
+  }
 }
 
 a:visited {
@@ -15,31 +34,6 @@ h1 {
 h2 {
   margin: 60px 0 10px 0;
   font-size: 24px;
-}
-
-p, ul, ol {
-  max-width: 600px;
-}
-
-ul, ol {
-  margin: 20px 0;
-}
-
-.intro {
-  line-height: 1.6em;
-  margin: 20px 0;
-}
-
-.logos {
-  margin-top: 50px;
-}
-
-.logos a {
-  text-decoration: none;
-}
-
-p.img {
-  text-align: center;
 }
 
 p.filename {

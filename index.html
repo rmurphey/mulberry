@@ -50,265 +50,266 @@
     </div>
   </header>
 
-    <div id="main" role="main">
+  <div id="main" role="main">
 
-      <h2>From zero to app in minutes</h2>
+    <h2>From zero to app in minutes</h2>
 
-      <p>Mulberry helps web developers rapidly create content-rich native mobile
-      applications. Powered by HTML5, CSS3, and JavaScript and built on top of
-      PhoneGap, Mulberry transforms your content and data into a responsive,
-      native, cross-platform mobile experience.</p>
+    <p>Mulberry helps web developers rapidly create content-rich native mobile
+    applications. Powered by HTML5, CSS3, and JavaScript and built on top of
+    PhoneGap, Mulberry transforms your content and data into a responsive,
+    native, cross-platform mobile experience.</p>
 
-      <ul>
-        <li>Create a basic app in the time it takes to write and organize your content.</li>
-        <li>Remix built-in components such as image galleries, video players,
-        maps, Facebook and Twitter sharing, and more.</li>
-        <li>Tweak the built-in theme to personalize your app, or go
-        all-out and customize the CSS from scratch.</li>
-        <li>Use your JavaScript and HTML5 skills to integrate your own
-        functionality into the platform.</li>
-      </ul>
+    <ul>
+      <li>Create a basic app in the time it takes to write and organize your content.</li>
+      <li>Remix built-in components such as image galleries, video players,
+      maps, Facebook and Twitter sharing, and more.</li>
+      <li>Tweak the built-in theme to personalize your app, or go
+      all-out and customize the CSS from scratch.</li>
+      <li>Use your JavaScript and HTML5 skills to integrate your own
+      functionality into the platform.</li>
+    </ul>
 
-      <p>
-        <a href="#toolchain">The Mulberry toolchain</a>
-      </p>
+    <p>
+      <a href="#toolchain">The Mulberry toolchain</a>
+    </p>
 
 
-      <p class="logos">
-        <a href="http://www.w3.org/html/logo/"> <img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-device-multimedia-semantics-storage.png" width="261" height="64" alt="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage" title="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage"> </a>
-        <a href="http://phonegap.com"><img src="img/phonegap.png" height="75"> </a>
-      </p>
+    <p class="logos">
+      <a href="http://www.w3.org/html/logo/"> <img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-device-multimedia-semantics-storage.png" width="261" height="64" alt="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage" title="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage"> </a>
+      <a href="http://phonegap.com"><img src="img/phonegap.png" height="75"> </a>
+    </p>
 
-      <h2>Open technologies, open source</h2> <p>Mulberry is built on open
-      technology by people who believe in open technology. During the alpha,
-      we&#8217;ll be working toward releasing Mulberry under an open-source
-      license.</p>
+    <h2>Open technologies, open source</h2> <p>Mulberry is built on open
+    technology by people who believe in open technology. During the alpha,
+    we&#8217;ll be working toward releasing Mulberry under an open-source
+    license.</p>
 
-      <h1 id="toolchain">The Mulberry toolchain</h1>
+    <h1 id="toolchain">The Mulberry toolchain</h1>
 
-      <p>Mulberry smooths over the bumps that web developers often encounter when they
-      apply web technologies to a native platform. It handles things like:</p>
+    <p>Mulberry smooths over the bumps that web developers often encounter when they
+    apply web technologies to a native platform. It handles things like:</p>
 
-      <ul>
-        <li>Over-the-air data updates</li>
-        <li>Data persistence</li>
-        <li>Full offline functionality</li>
-        <li>Application architecture &amp; organization</li>
-        <li>Differences in PhoneGap features across platforms</li>
-      </ul>
+    <ul>
+      <li>Over-the-air data updates</li>
+      <li>Data persistence</li>
+      <li>Full offline functionality</li>
+      <li>Application architecture &amp; organization</li>
+      <li>Differences in PhoneGap features across platforms</li>
+    </ul>
 
-      <p>It separates the app development process into a few simple steps:</p>
+    <p>It separates the app development process into a few simple steps:</p>
 
-      <h2 id="scaffold">Scaffold</h2>
+    <h2 id="scaffold">Scaffold</h2>
 
-      <p>Creating the structure for a new application takes just a moment:</p>
+    <p>Creating the structure for a new application takes just a moment:</p>
 
-    <pre class="brush: bash">$ mulberry scaffold capitoljs</pre>
+  <pre class="brush: bash">$ mulberry scaffold capitoljs</pre>
 
-      <p class="img"><img src="img/scaffold.png" title="Scaffolded directory structure"></p>
+    <p class="img"><img src="img/scaffold.png" title="Scaffolded directory structure"></p>
 
-      <h2 id="configure">Configure</h2>
+    <h2 id="configure">Configure</h2>
 
-      <p>A <a href="http://yaml.org/">YAML</a> file gives Mulberry basic configuration
-      information, including settings for the base theme:</p>
+    <p>A <a href="http://yaml.org/">YAML</a> file gives Mulberry basic configuration
+    information, including settings for the base theme:</p>
 
-      <p class="filename">config.yml</p>
-      <pre class="brush: yaml">name: Capitol JS
+    <p class="filename">config.yml</p>
+    <pre class="brush: yaml">name: Capitol JS
 
-  theme:
-    name: default
-    settings:
-      font-scheme:        'light'
-      link-color:         '#ff0000'
-      background-color:   '#000000'
-      child-nav-color:    '#ffffff'
+theme:
+  name: default
+  settings:
+    font-scheme:        'light'
+    link-color:         '#ff0000'
+    background-color:   '#000000'
+    child-nav-color:    '#ffffff'
 
-  os:
-    - ios
+os:
+  - ios
 
-  type:
-    - phone
-    - tablet
+type:
+  - phone
+  - tablet
 
-  jquery: true
-  </pre>
+jquery: true
+</pre>
 
-  <h2 id="construct">Construct</h2>
+<h2 id="construct">Construct</h2>
 
-  <p class="img"><img src="img/page-montage.png" title="A simple page using an existing template"></p>
+<p class="img"><img src="img/page-montage.png" title="A simple page using an existing template"></p>
 
-  <p>Specify the structure of your application via the sitemap:</p>
+<p>Specify the structure of your application via the sitemap:</p>
 
-  <p class="filename">sitemap.yml</p>
-  <pre class="brush: yaml">- home:
-    - speakers
-    - schedule
-    - points-of-interest
-    - twitter
-    - feed
-    - sponsors
-  - about
-  </pre>
+<p class="filename">sitemap.yml</p>
+<pre class="brush: yaml">- home:
+  - speakers
+  - schedule
+  - points-of-interest
+  - twitter
+  - feed
+  - sponsors
+- about
+</pre>
 
-  <p>Create your pages &hellip;</p>
+<p>Create your pages &hellip;</p>
 
-  <pre class="brush: bash">$ mulberry create_page speakers</pre>
+<pre class="brush: bash">$ mulberry create_page speakers</pre>
 
-  <p>&hellip; then organize your content and metadata using YAML, Markdown, and
-  your filesystem:</p>
+<p>&hellip; then organize your content and metadata using YAML, Markdown, and
+your filesystem:</p>
 
-  <p class="filename">pages/speakers.md</p>
-  <pre class="brush: yaml">---
-  title: Speakers
-  template: Images
-  images:
-    - pamela-fox.png
-    - alex-sexton.png
-    - brendan-eich.png
-    - alex-russell.png
-    - nicholas-zakas.png
-    - jed-schmidt.png
-    - mike-taylor.png
-    - douglas-crockford.png
-    - rebecca-murphey.png
-    - joe-mccann.png
-    - ben-combee.png
-    - mikeal-rogers.png
-  ---
-  </pre>
+<p class="filename">pages/speakers.md</p>
+<pre class="brush: yaml">---
+title: Speakers
+template: Images
+images:
+  - pamela-fox.png
+  - alex-sexton.png
+  - brendan-eich.png
+  - alex-russell.png
+  - nicholas-zakas.png
+  - jed-schmidt.png
+  - mike-taylor.png
+  - douglas-crockford.png
+  - rebecca-murphey.png
+  - joe-mccann.png
+  - ben-combee.png
+  - mikeal-rogers.png
+---
+</pre>
 
-  <p class="filename">assets/images/captions/alex-sexton.md</p>
-  <pre class="brush: yaml">---
-  name: Alex Sexton
-  ---
-  ## [Alex Sexton](http://alexsexton.com/)
+<p class="filename">assets/images/captions/alex-sexton.md</p>
+<pre class="brush: yaml">---
+name: Alex Sexton
+---
+## [Alex Sexton](http://alexsexton.com/)
 
-  Alex Sexton is a Labs Engineer at Bazaarvoice in Austin, TX. He is the creator
-  of yepnope.js and is a developer on the Modernizr core team. He is the current
-  organizer of TXJS, a co-host on the yayQuery podcast as well as a volunteer
-  bug-triager for the jQuery project. He has a passion for third party
-  applications and application structure, so naturally he likes working on large
-  third-party apps. He tweets at @slexaxton and blogs at http://alexsexton.com/
-  </pre>
+Alex Sexton is a Labs Engineer at Bazaarvoice in Austin, TX. He is the creator
+of yepnope.js and is a developer on the Modernizr core team. He is the current
+organizer of TXJS, a co-host on the yayQuery podcast as well as a volunteer
+bug-triager for the jQuery project. He has a passion for third party
+applications and application structure, so naturally he likes working on large
+third-party apps. He tweets at @slexaxton and blogs at http://alexsexton.com/
+</pre>
 
-  <p class="img"><img src="img/images.png" title="The images directory"></p>
+<p class="img"><img src="img/images.png" title="The images directory"></p>
 
-      <h2 id="customize">Customize</h2>
+    <h2 id="customize">Customize</h2>
 
-      <p>You can define your own page layouts in YAML and take advantage of built-in components &hellip;</p>
+    <p>You can define your own page layouts in YAML and take advantage of built-in components &hellip;</p>
 
-  <p class="filename">templates.yml</p>
-  <pre class="brush: yaml">AudioWithImages:
-    type: node
-    screens:
-    - name: index
-      layoutName: default
-      backgroundImage: true
-      regions:
-      - size: fixed
-        components:
-        - PageNav
-      - size: flex
-        components:
-        - ImageGallery
-      - scrollable: true
-        components:
-        - BodyText
-        - ChildNodes
-  </pre>
+<p class="filename">templates.yml</p>
+<pre class="brush: yaml">AudioWithImages:
+  type: node
+  screens:
+  - name: index
+    layoutName: default
+    backgroundImage: true
+    regions:
+    - size: fixed
+      components:
+      - PageNav
+    - size: flex
+      components:
+      - ImageGallery
+    - scrollable: true
+      components:
+      - BodyText
+      - ChildNodes
+</pre>
 
-      <p>&hellip; or create your own components to integrate with the framework:</p>
+    <p>&hellip; or create your own components to integrate with the framework:</p>
 
-  <p class="img"><img src="img/twitter-page.png" title="A custom page using a custom component"></p>
+<p class="img"><img src="img/twitter-page.png" title="A custom page using a custom component"></p>
 
-  <pre class="brush: bash">$ mulberry create_component Twitter</pre>
+<pre class="brush: bash">$ mulberry create_component Twitter</pre>
 
-  <p class="filename">javascript/components/Twitter.js</p>
-  <pre class="brush: javascript">mulberry.component('Twitter', {
-    componentTemplate : dojo.cache('client.components', 'Twitter/Twitter.haml'),
-    tweetTemplate : dojo.cache('client.components', 'Twitter/Tweet.haml'),
+<p class="filename">javascript/components/Twitter.js</p>
+<pre class="brush: javascript">mulberry.component('Twitter', {
+  componentTemplate : dojo.cache('client.components', 'Twitter/Twitter.haml'),
+  tweetTemplate : dojo.cache('client.components', 'Twitter/Tweet.haml'),
 
-    init : function() {
-      var data = this.node.data[0].json;
+  init : function() {
+    var data = this.node.data[0].json;
 
-      $.ajax(userTweets(data), {
-        dataType : 'jsonp',
-        success : $.proxy(this, '_onLoad')
-      });
-    },
+    $.ajax(userTweets(data), {
+      dataType : 'jsonp',
+      success : $.proxy(this, '_onLoad')
+    });
+  },
 
-    _onLoad : function(tweets) {
-      var tpl = mulberry.haml(this.tweetTemplate),
-          html = $.map(tweets, function(tweet) {
-            tweet.link = tweetURL(tweet);
-            tweet.text = tweet.text.replace(
-              /@(\S+)/,
-              "&lt;a href='http://twitter.com/#!/$1'&gt;@$1&lt;/a&gt;"
-            );
-            return tpl(tweet);
-          }).join('');
+  _onLoad : function(tweets) {
+    var tpl = mulberry.haml(this.tweetTemplate),
+        html = $.map(tweets, function(tweet) {
+          tweet.link = tweetURL(tweet);
+          tweet.text = tweet.text.replace(
+            /@(\S+)/,
+            "&lt;a href='http://twitter.com/#!/$1'&gt;@$1&lt;/a&gt;"
+          );
+          return tpl(tweet);
+        }).join('');
 
-      this.$domNode.html(html);
+    this.$domNode.html(html);
 
-      this.region.refreshScroller();
-    }
-  });
-  </pre>
+    this.region.refreshScroller();
+  }
+});
+</pre>
 
-      <p>Mulberry&rsquo;s customization opportunities go far beyond components. Mulberry
-      provides a robust JavaScript framework for building your applications,
-      including a powerful router, clear patterns for specifying interactions between
-      components, and low-level components that you can mix in with your own code to
-      rapidly build more complex functionality.</p>
+    <p>Mulberry&rsquo;s customization opportunities go far beyond components. Mulberry
+    provides a robust JavaScript framework for building your applications,
+    including a powerful router, clear patterns for specifying interactions between
+    components, and low-level components that you can mix in with your own code to
+    rapidly build more complex functionality.</p>
 
-      <p>Mulberry&rsquo;s JavaScript framework is built on top of the powerful <a
-      href="http://dojotoolkit.org">Dojo Toolkit</a>, but no knowledge of Dojo is
-      required, and <a href="http://jquery.com">jQuery</a> is included in the
-      default configuration.</p>
+    <p>Mulberry&rsquo;s JavaScript framework is built on top of the powerful <a
+    href="http://dojotoolkit.org">Dojo Toolkit</a>, but no knowledge of Dojo is
+    required, and <a href="http://jquery.com">jQuery</a> is included in the
+    default configuration.</p>
 
-      <h2 id="develop">Develop</h2>
+    <h2 id="develop">Develop</h2>
 
-      <p class="img"><img src="img/develop.png" title="Developing on a local server"></p>
+    <p class="img"><img src="img/develop.png" title="Developing on a local server"></p>
 
-      <p>For rapid iteration, Mulberry includes a server that simulates the device
-      experience. You can run your app in a desktop WebKit browser and get access
-      to your standard development tools:</p>
+    <p>For rapid iteration, Mulberry includes a server that simulates the device
+    experience. You can run your app in a desktop WebKit browser and get access
+    to your standard development tools:</p>
 
-  <pre class="brush: bash">$ mulberry serve</pre>
+<pre class="brush: bash">$ mulberry serve</pre>
 
-      <h2 id="test">Test</h2>
+    <h2 id="test">Test</h2>
 
-      <p>Nothing matches the knowledge you gain by testing your application on
-      device. Mulberry provides a one-liner to generate simulator and device* builds
-      for iOS and Android, including integration with weinre on debug.phonegap.com: </p>
+    <p>Nothing matches the knowledge you gain by testing your application on
+    device. Mulberry provides a one-liner to generate simulator and device* builds
+    for iOS and Android, including integration with weinre on debug.phonegap.com: </p>
 
-  <pre class="brush: bash">$ mulberry test</pre>
+<pre class="brush: bash">$ mulberry test</pre>
 
-      <p class="img"><img src="img/debug.png" title="Debug tools on device"></p>
+    <p class="img"><img src="img/debug.png" title="Debug tools on device"></p>
 
-      <p><small>* <em>You must have an Apple developer certificate and have a
-      properly provisioned device in order for device builds to work on
-      iOS.</em></small></pre>
+    <p><small>* <em>You must have an Apple developer certificate and have a
+    properly provisioned device in order for device builds to work on
+    iOS.</em></small></pre>
 
-      <h2 id="deploy">Deploy</h2>
+    <h2 id="deploy">Deploy</h2>
 
-      <p>Run a simple command to create binaries for the various form factors and operating systems your app supports:</p>
+    <p>Run a simple command to create binaries for the various form factors and operating systems your app supports:</p>
 
-  <pre class="brush: bash">$ mulberry deploy
-  </pre>
+<pre class="brush: bash">$ mulberry deploy
+</pre>
 
-    </div>
+  </div>
 
-    <footer>
-      <p>Mulberry is a product of <a href="http://toura.com">Toura Mobile</a>.</p>
-    </footer>
+  <footer>
+    <p>Mulberry is a product of <a href="http://toura.com">Toura Mobile</a>.</p>
+  </footer>
+
+
 
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
-
 
   <!-- Change UA-XXXXX-X to be your site's ID -->
   <script>
