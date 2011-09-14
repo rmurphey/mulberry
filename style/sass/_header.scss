@@ -3,6 +3,7 @@
   height: 285px;
   text-indent: -9999px;
   margin: 0;
+  @include center-column;
 }
 
 #signup {
@@ -11,9 +12,13 @@
   color: #fff;
   font-family: Helvetica;
 
-  form {
-    width: $page-width;
-    margin: 0 auto;
+  .get-in {
+    width: 200px;
+    float: left;
+  }
+
+  .inner {
+    @include center-column;
   }
 
   h2 {
