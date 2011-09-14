@@ -1,3 +1,8 @@
+#container > header {
+  background: url(../../img/header-logo.png) no-repeat;
+  height: 285px;
+  text-indent: -9999px;
+}
 
 a {
   cursor: pointer;
@@ -62,13 +67,3 @@ p.small {
 }
 
 
-@media screen and (min-width:800px) {
-  #signup {
-    position: absolute;
-    top: 140px;
-    right: 100px;
-    margin-left: 20px;
-    min-width: 220px;
-    max-width: 30%;
-  }
-}

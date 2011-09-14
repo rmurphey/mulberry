@@ -1,11 +1,15 @@
 
+#container > header {
+  background: url(../../img/header-logo.png) no-repeat;
+  height: 285px;
+  text-indent: -9999px;
+}
+
 #signup {
   padding: 20px;
-  background-color:#c12552;
+  background-color: #ff9600;
   color: #fff;
   max-width: 600px;
-  -moz-border-radius: 12px;
-  -webkit-border-radius: 12px;
 }
 
 #signup * {
