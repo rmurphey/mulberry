@@ -13,7 +13,7 @@
 
   <title>Mulberry</title>
 
-  <link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet">
+  <!--<link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet">-->
   <link href="style/css/screen.css" rel="stylesheet">
   <link href="vendor/syntaxhighlighter/styles/shCore.css" rel="stylesheet">
   <link href="vendor/syntaxhighlighter/styles/shThemeEmacs.css" rel="stylesheet">
@@ -22,11 +22,30 @@
 </head>
 
 <body>
+  <header>
+    <h1 id=logo>mulberry</h1>
 
-  <div id="container">
-    <header>
-      <h1>mulberry</h1>
-    </header>
+    <div id="signup">
+      <h2>Get in on the alpha</h2>
+      <p><em>We won&rsquo;t sell your email, promise.</em></p>
+
+      <!-- THX SLEX -->
+      <iframe id="gformFrame" name="gformFrame"
+      src="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq"
+      style="width:1px;height:1px;margin:0;padding:0;position:absolute;top:-1000px;right:1000px"></iframe>
+
+      <form id="signup-form" method="POST" target="gformFrame" action="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq">
+        <label for="entry_0">Your Name</label>
+        <input type="text" name="entry.0.single" value="" class="ss-q-short" id="entry_0" placeholder="Name">
+
+        <label for="entry_1">Your Email</label>
+        <input type="text" name="entry.1.single" value="" class="ss-q-short" id="entry_1" placeholder="Email">
+
+        <br/>
+        <input type="submit" name="submit" value="Let me in!">
+      </form>
+    </div>
+  </header>
 
     <div id="main" role="main">
 
@@ -51,27 +70,6 @@
         <a href="#toolchain">The Mulberry toolchain</a>
       </p>
 
-      <div id="signup">
-        <h2>Get in on the alpha</h2>
-        <p><em>We won&rsquo;t sell your email, promise.</em></p>
-
-        <!-- THX SLEX -->
-        <iframe id="gformFrame" name="gformFrame"
-        src="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq"
-        style="width:1px;height:1px;margin:0;padding:0;position:absolute;top:-1000px;right:1000px"></iframe>
-
-        <form id="signup-form" method="POST" target="gformFrame" action="https://spreadsheets.google.com/spreadsheet/formResponse?formkey=dExjZDlIem9WdTM3ejBGb3N3R1RhSHc6MQ&embedded=true&ifq">
-          <label for="entry_0">Your Name</label>
-          <input type="text" name="entry.0.single" value="" class="ss-q-short" id="entry_0">
-
-          <label for="entry_1">Your Email</label>
-          <input type="text" name="entry.1.single" value="" class="ss-q-short" id="entry_1">
-
-          <br/>
-          <input type="submit" name="submit" value="Let me in!">
-        </form>
-        <!-- -->
-      </div>
 
       <p class="logos">
         <a href="http://www.w3.org/html/logo/"> <img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-device-multimedia-semantics-storage.png" width="261" height="64" alt="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage" title="HTML5 Powered with CSS3 / Styling, Device Access, Multimedia, Semantics, and Offline &amp; Storage"> </a>
@@ -301,7 +299,6 @@
     <footer>
       <p>Mulberry is a product of <a href="http://toura.com">Toura Mobile</a>.</p>
     </footer>
-  </div> <!--! end of #container -->
 
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>

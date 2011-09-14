@@ -1,42 +1,45 @@
-
-#container > header {
-  background: url(../../img/header-logo.png) no-repeat;
+#logo {
+  background: url(../../img/header-logo.png) no-repeat bottom left;
   height: 285px;
   text-indent: -9999px;
-}
-
-#signup {
-  padding: 20px;
-  background-color: #ff9600;
-  color: #fff;
-  max-width: 600px;
-}
-
-#signup * {
-  font-family: Helvetica;
-}
-
-#signup h2 {
-  color: #fff;
   margin: 0;
 }
 
-#signup p {
-  font-size:90%;
-  margin: 5px 0;
+#signup {
+  padding: 20px 0;
+  background-color: #ff9600;
+  color: #fff;
+  font-family: Helvetica;
+
+  form {
+    width: $page-width;
+    margin: 0 auto;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    font-size: 90%;
+    margin: 5px 0;
+  }
+
+  label {
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    display: none;
+  }
+
+  input[type="text"] {
+    margin: 0 0 10px 0;
+  }
+
+  p.signup-error {
+    color: red;
+  }
 }
 
-#signup label {
-  font-weight: bold;
-  margin: 0 0 5px 0;
-}
 
-#signup input[type="text"] {
-  margin: 0 0 10px 0;
-}
 
-p.signup-error {
-  color: red;
-  font-style: italic;
-}
 
