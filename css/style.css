@@ -362,10 +362,10 @@ footer p {
 pre {
   padding:20px;
   background-color:#fffea9;
-  border-bottom:1px solid #eeed98;
-  border-right:1px solid #eeed98;
   max-width: 600px;
   color: #000;
+  border-bottom:1px solid #eeed98;
+  border-right:1px solid #eeed98;
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
 }
@@ -386,7 +386,7 @@ p.filename {
   font-size: 90%;
 }
 
-p.filename + pre {
+p.filename + div {
   margin-top: 5px;
 }
 
@@ -428,6 +428,20 @@ p.small {
 
 #signup input[type="text"] {
   margin: 0 0 10px 0;
+}
+
+#main .syntaxhighlighter {
+  max-width: 600px;
+  border-bottom:1px solid #eeed98;
+  border-right:1px solid #eeed98;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  padding: 15px;
+  font-size: 18px !important;
+}
+
+#main .syntaxhighlighter table .line {
+  padding-bottom: 3px !important;
 }
 
 @media screen and (min-width:800px) {
