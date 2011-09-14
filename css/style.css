@@ -359,17 +359,6 @@ footer p {
   font-size: 80%;
 }
 
-pre {
-  padding:20px;
-  background-color:#fffea9;
-  max-width: 600px;
-  color: #000;
-  border-bottom:1px solid #eeed98;
-  border-right:1px solid #eeed98;
-  -moz-border-radius: 12px;
-  -webkit-border-radius: 12px;
-}
-
 p.signup-error {
   color: red;
   font-style: italic;
@@ -432,11 +421,9 @@ p.small {
 
 #main .syntaxhighlighter {
   max-width: 600px;
-  border-bottom:1px solid #eeed98;
-  border-right:1px solid #eeed98;
   -moz-border-radius: 12px;
   -webkit-border-radius: 12px;
-  padding: 15px;
+  padding: 15px 15px 12px;
   font-size: 18px !important;
 }
 
