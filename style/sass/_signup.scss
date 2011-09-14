@@ -1,0 +1,38 @@
+
+#signup {
+  padding: 20px;
+  background-color:#c12552;
+  color: #fff;
+  max-width: 600px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+}
+
+#signup * {
+  font-family: Helvetica;
+}
+
+#signup h2 {
+  color: #fff;
+  margin: 0;
+}
+
+#signup p {
+  font-size:90%;
+  margin: 5px 0;
+}
+
+#signup label {
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+
+#signup input[type="text"] {
+  margin: 0 0 10px 0;
+}
+
+p.signup-error {
+  color: red;
+  font-style: italic;
+}
+
