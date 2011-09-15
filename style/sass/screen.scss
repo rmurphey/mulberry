@@ -10,6 +10,23 @@ $page-width: 700px;
 @mixin center-column {
   max-width: $page-width;
   margin: 0 auto;
+
+  @media screen and (max-device-width: 480px) {
+    & {
+      padding: 0 10px;
+    }
+  }
+
+}
+
+@media screen and (max-device-width: 480px) {
+
+  #logo {
+    background: url(../../img/header-logo.png) left 20px no-repeat;
+    background-size: contain;
+
+    height: 85px;
+  }
 }
 
 @import "h5bp";

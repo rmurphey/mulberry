@@ -2,6 +2,14 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@media screen and (max-device-width: 480px) {
+  /* line 24, ../sass/screen.scss */
+  #logo {
+    background: url(../../img/header-logo.png) left 20px no-repeat;
+    background-size: contain;
+    height: 85px;
+  }
+}
 /*
  * HTML5 ✰ Boilerplate
  *
@@ -633,6 +641,12 @@ p.small {
   max-width: 700px;
   margin: 0 auto;
 }
+@media screen and (max-device-width: 480px) {
+  /* line 15, ../sass/screen.scss */
+  #main {
+    padding: 0 10px;
+  }
+}
 
 /* line 1, ../sass/_header.scss */
 header {
@@ -647,6 +661,12 @@ header {
   margin: 0;
   max-width: 700px;
   margin: 0 auto;
+}
+@media screen and (max-device-width: 480px) {
+  /* line 15, ../sass/screen.scss */
+  #logo {
+    padding: 0 10px;
+  }
 }
 
 @media screen and (max-device-width: 480px) {
@@ -680,6 +700,12 @@ header {
 #signup .inner {
   max-width: 700px;
   margin: 0 auto;
+}
+@media screen and (max-device-width: 480px) {
+  /* line 15, ../sass/screen.scss */
+  #signup .inner {
+    padding: 0 10px;
+  }
 }
 /* line 57, ../sass/_header.scss */
 #signup h2 {
