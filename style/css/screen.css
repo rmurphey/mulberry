@@ -649,7 +649,15 @@ header {
   margin: 0 auto;
 }
 
-/* line 16, ../sass/_header.scss */
+@media screen and (max-device-width: 480px) {
+  /* line 17, ../sass/_header.scss */
+  #logo {
+    background: url(../../img/header-logo.png) left 20px no-repeat;
+    background-size: contain;
+    height: 85px;
+  }
+}
+/* line 25, ../sass/_header.scss */
 #signup {
   padding: 20px 0;
   background-color: #ff9600;
@@ -657,36 +665,36 @@ header {
   font-family: Helvetica;
   position: relative;
 }
-/* line 33, ../sass/_header.scss */
+/* line 42, ../sass/_header.scss */
 #signup .get-in {
   width: 200px;
   float: left;
   position: relative;
   top: 4px;
 }
-/* line 39, ../sass/_header.scss */
+/* line 48, ../sass/_header.scss */
 #signup .get-in h2 {
   font-size: 19px;
 }
-/* line 44, ../sass/_header.scss */
+/* line 53, ../sass/_header.scss */
 #signup .inner {
   max-width: 700px;
   margin: 0 auto;
 }
-/* line 48, ../sass/_header.scss */
+/* line 57, ../sass/_header.scss */
 #signup h2 {
   margin: 0;
 }
-/* line 52, ../sass/_header.scss */
+/* line 61, ../sass/_header.scss */
 #signup label {
   display: none;
 }
-/* line 56, ../sass/_header.scss */
+/* line 65, ../sass/_header.scss */
 #signup input {
   font-size: 14px;
   margin-left: 20px;
 }
-/* line 61, ../sass/_header.scss */
+/* line 70, ../sass/_header.scss */
 #signup input[type="text"] {
   color: #0076a3;
   -webkit-box-shadow: 0 1px 2px #ccc inset;
@@ -697,11 +705,11 @@ header {
   -moz-border-radius: 2px;
   max-width: 140px;
 }
-/* line 71, ../sass/_header.scss */
+/* line 80, ../sass/_header.scss */
 #signup input[type="text"]::-webkit-input-placeholder {
   color: #009bd6;
 }
-/* line 76, ../sass/_header.scss */
+/* line 85, ../sass/_header.scss */
 #signup input[type="submit"] {
   border: none;
   padding: 5px 20px;
@@ -712,7 +720,7 @@ header {
   border: 1px solid #0076a3;
   font-weight: bold;
 }
-/* line 87, ../sass/_header.scss */
+/* line 96, ../sass/_header.scss */
 #signup .thanks {
   font-size: 18px;
 }
