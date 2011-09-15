@@ -13,13 +13,13 @@ $(function() {
       $this.fadeTo(100, 0.5);
 
       $this.replaceWith('<p class="thanks">Thanks for signing up -- we&rsquo;ll be in touch!</p>');
-
+      $('.error-msg .inner').fadeOut();
       return true;
     }
 
-    $signup.find('.extra-info')
+    $('.error-msg .inner')
       .text('Please fill out both fields')
-      .addClass('.error');
+      .fadeIn();
 
     return false;
   });

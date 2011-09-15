@@ -756,12 +756,31 @@ header {
   margin-left: 220px;
 }
 
+/* line 97, ../sass/_header.scss */
+.error-msg {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+/* line 102, ../sass/_header.scss */
+.error-msg .inner {
+  display: none;
+  background-color: #d11318;
+  width: 300px;
+  margin: 0 auto;
+  color: #fff;
+  padding: 8px 10px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+}
+
 @media screen and (max-device-width: 480px) {
-  /* line 98, ../sass/_header.scss */
+  /* line 118, ../sass/_header.scss */
   .signup h2 {
     margin: 0 0 10px 0 !important;
   }
-  /* line 102, ../sass/_header.scss */
+  /* line 122, ../sass/_header.scss */
   .signup input {
     display: block !important;
     margin: 0 0 10px 0 !important;

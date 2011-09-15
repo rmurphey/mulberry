@@ -91,6 +91,26 @@ header {
     padding-top: 4px;
     margin-left: 220px;
   }
+
+}
+
+.error-msg {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  .inner {
+    display: none;
+    background-color: #d11318;
+    width: 300px;
+    margin: 0 auto;
+    color: #fff;
+    padding: 8px 10px;
+    font-size: 15px;
+    text-align: center;
+
+    border-radius: 0 0 5px 5px;
+  }
 }
 
 @media screen and (max-device-width: 480px) {
