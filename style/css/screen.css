@@ -780,13 +780,21 @@ header {
   text-align: center;
   border-radius: 0 0 5px 5px;
 }
+/* line 120, ../sass/_header.scss */
+footer .error-msg {
+  top: -30px;
+}
+/* line 122, ../sass/_header.scss */
+footer .error-msg .inner {
+  border-radius: 5px 5px 0 0 !important;
+}
 
 @media screen and (max-device-width: 480px) {
-  /* line 123, ../sass/_header.scss */
+  /* line 130, ../sass/_header.scss */
   .signup h2 {
     margin: 0 0 10px 0 !important;
   }
-  /* line 127, ../sass/_header.scss */
+  /* line 134, ../sass/_header.scss */
   .signup input {
     display: block !important;
     margin: 0 0 10px 0 !important;
@@ -830,14 +838,15 @@ header {
 
 /* line 1, ../sass/_footer.scss */
 footer {
+  position: relative;
   margin-top: 80px;
 }
-/* line 3, ../sass/_footer.scss */
+/* line 4, ../sass/_footer.scss */
 footer .copyright {
   margin: 30px 0 0 0;
   font-size: 12px;
 }
-/* line 7, ../sass/_footer.scss */
+/* line 8, ../sass/_footer.scss */
 footer .copyright a {
   color: #0076a3;
 }

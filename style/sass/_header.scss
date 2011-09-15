@@ -116,6 +116,13 @@ header {
 
     border-radius: 0 0 5px 5px;
   }
+
+  footer & {
+    top: -30px;
+    .inner {
+      border-radius: 5px 5px 0 0 !important;
+    }
+  }
 }
 
 @media screen and (max-device-width: 480px) {
