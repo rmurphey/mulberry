@@ -1,12 +1,13 @@
 (function($){
 
 $(function() {
-  $('#signup-form').submit(function() {
+  $('form.signup-form').submit(function() {
     var n = $('#entry_0').val(),
         e = $('#entry_1').val(),
-        $this = $(this);
+        $this = $(this),
+        $signup = $this.closest('.signup');
 
-    $('p.signup-error').remove();
+    $('.error').empty().removeClass('error');
 
     if ($.trim(n) && $.trim(e)) {
       $this.fadeTo(100, 0.5);
@@ -14,10 +15,12 @@ $(function() {
       $this.replaceWith('<p class="thanks">Thanks for signing up -- we&rsquo;ll be in touch!</p>');
 
       return true;
-      return false;
     }
 
-    $('#signup .extra-info').text('Please fill out both fields');
+    $signup.find('.extra-info')
+      .text('Please fill out both fields')
+      .addClass('.error');
+
     return false;
   });
 

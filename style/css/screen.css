@@ -678,7 +678,7 @@ header {
   }
 }
 /* line 25, ../sass/_header.scss */
-#signup {
+.signup {
   padding: 20px 0;
   background-color: #ff9600;
   color: #fff;
@@ -686,42 +686,42 @@ header {
   position: relative;
 }
 /* line 32, ../sass/_header.scss */
-#signup .get-in {
+.signup .get-in {
   width: 200px;
   float: left;
   position: relative;
   top: 4px;
 }
 /* line 38, ../sass/_header.scss */
-#signup .get-in h2 {
+.signup .get-in h2 {
   font-size: 19px;
 }
 /* line 43, ../sass/_header.scss */
-#signup .inner {
+.signup .inner {
   max-width: 700px;
   margin: 0 auto;
 }
 @media screen and (max-device-width: 480px) {
   /* line 15, ../sass/screen.scss */
-  #signup .inner {
+  .signup .inner {
     padding: 0 10px;
   }
 }
 /* line 47, ../sass/_header.scss */
-#signup h2 {
+.signup h2 {
   margin: 0;
 }
 /* line 51, ../sass/_header.scss */
-#signup label {
+.signup label {
   display: none;
 }
 /* line 55, ../sass/_header.scss */
-#signup input {
+.signup input {
   font-size: 14px;
   margin-left: 20px;
 }
 /* line 60, ../sass/_header.scss */
-#signup input[type="text"] {
+.signup input[type="text"] {
   color: #0076a3;
   -webkit-box-shadow: 0 1px 2px #ccc inset;
   -moz-box-shadow: 0 1px 2px #ccc inset;
@@ -732,11 +732,11 @@ header {
   max-width: 140px;
 }
 /* line 70, ../sass/_header.scss */
-#signup input[type="text"]::-webkit-input-placeholder {
+.signup input[type="text"]::-webkit-input-placeholder {
   color: #009bd6;
 }
 /* line 75, ../sass/_header.scss */
-#signup input[type="submit"] {
+.signup input[type="submit"] {
   border: none;
   padding: 5px 20px;
   -webkit-border-radius: 4px;
@@ -747,22 +747,22 @@ header {
   font-weight: bold;
 }
 /* line 86, ../sass/_header.scss */
-#signup .thanks {
+.signup .thanks {
   font-size: 18px;
 }
 /* line 90, ../sass/_header.scss */
-#signup .extra-info {
+.signup .extra-info {
   padding-top: 4px;
   margin-left: 220px;
 }
 
 @media screen and (max-device-width: 480px) {
   /* line 98, ../sass/_header.scss */
-  #signup h2 {
+  .signup h2 {
     margin: 0 0 10px 0 !important;
   }
   /* line 102, ../sass/_header.scss */
-  #signup input {
+  .signup input {
     display: block !important;
     margin: 0 0 10px 0 !important;
   }
