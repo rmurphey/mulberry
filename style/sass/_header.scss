@@ -22,7 +22,7 @@ header {
 }
 
 
-#signup {
+.signup {
   padding: 20px 0;
   background-color: #ff9600;
   color: #fff;
@@ -94,7 +94,7 @@ header {
 }
 
 @media screen and (max-device-width: 480px) {
-  #signup {
+  .signup {
     h2 {
       margin: 0 0 10px 0 !important;
     }
@@ -105,5 +105,3 @@ header {
     }
   }
 }
-
-
