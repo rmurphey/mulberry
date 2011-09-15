@@ -674,20 +674,15 @@ p.small {
   margin: 0;
 }
 /* line 39, ../sass/_header.scss */
-#signup p {
-  font-size: 90%;
-  margin: 5px 0;
-}
-/* line 44, ../sass/_header.scss */
 #signup label {
   display: none;
 }
-/* line 48, ../sass/_header.scss */
+/* line 43, ../sass/_header.scss */
 #signup input {
   font-size: 14px;
   margin-left: 20px;
 }
-/* line 53, ../sass/_header.scss */
+/* line 48, ../sass/_header.scss */
 #signup input[type="text"] {
   color: #0076a3;
   -webkit-box-shadow: 0 1px 2px #ccc inset;
@@ -695,11 +690,11 @@ p.small {
   padding: 4px 7px;
   -webkit-border-radius: 2px;
 }
-/* line 60, ../sass/_header.scss */
+/* line 55, ../sass/_header.scss */
 #signup input[type="text"]::-webkit-input-placeholder {
   color: #009bd6;
 }
-/* line 65, ../sass/_header.scss */
+/* line 60, ../sass/_header.scss */
 #signup input[type="submit"] {
   border: none;
   padding: 5px 20px;
@@ -709,7 +704,7 @@ p.small {
   border: 1px solid #0076a3;
   font-weight: bold;
 }
-/* line 77, ../sass/_header.scss */
+/* line 72, ../sass/_header.scss */
 #signup .thanks {
   font-size: 18px;
 }
@@ -740,10 +735,10 @@ p.small {
 
 /* line 1, ../sass/_footer.scss */
 footer {
-  margin: 50px 0;
+  margin-top: 80px;
 }
-
-/* line 5, ../sass/_footer.scss */
-footer p {
-  font-size: 80%;
+/* line 3, ../sass/_footer.scss */
+footer .copyright {
+  margin: 30px 0 0 0;
+  font-size: 12px;
 }
