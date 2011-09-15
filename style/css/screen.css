@@ -3,7 +3,7 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 @media screen and (max-device-width: 480px) {
-  /* line 24, ../sass/screen.scss */
+  /* line 23, ../sass/screen.scss */
   #logo {
     background: url(../../img/header-logo.png) left 20px no-repeat;
     background-size: contain;
@@ -670,14 +670,14 @@ header {
 }
 
 @media screen and (max-device-width: 480px) {
-  /* line 17, ../sass/_header.scss */
+  /* line 16, ../sass/_header.scss */
   #logo {
     background: url(../../img/header-logo.png) left 20px no-repeat;
     background-size: contain;
     height: 85px;
   }
 }
-/* line 26, ../sass/_header.scss */
+/* line 25, ../sass/_header.scss */
 #signup {
   padding: 20px 0;
   background-color: #ff9600;
@@ -685,18 +685,18 @@ header {
   font-family: Helvetica;
   position: relative;
 }
-/* line 43, ../sass/_header.scss */
+/* line 32, ../sass/_header.scss */
 #signup .get-in {
   width: 200px;
   float: left;
   position: relative;
   top: 4px;
 }
-/* line 49, ../sass/_header.scss */
+/* line 38, ../sass/_header.scss */
 #signup .get-in h2 {
   font-size: 19px;
 }
-/* line 54, ../sass/_header.scss */
+/* line 43, ../sass/_header.scss */
 #signup .inner {
   max-width: 700px;
   margin: 0 auto;
@@ -707,20 +707,20 @@ header {
     padding: 0 10px;
   }
 }
-/* line 58, ../sass/_header.scss */
+/* line 47, ../sass/_header.scss */
 #signup h2 {
   margin: 0;
 }
-/* line 62, ../sass/_header.scss */
+/* line 51, ../sass/_header.scss */
 #signup label {
   display: none;
 }
-/* line 66, ../sass/_header.scss */
+/* line 55, ../sass/_header.scss */
 #signup input {
   font-size: 14px;
   margin-left: 20px;
 }
-/* line 71, ../sass/_header.scss */
+/* line 60, ../sass/_header.scss */
 #signup input[type="text"] {
   color: #0076a3;
   -webkit-box-shadow: 0 1px 2px #ccc inset;
@@ -731,11 +731,11 @@ header {
   -moz-border-radius: 2px;
   max-width: 140px;
 }
-/* line 81, ../sass/_header.scss */
+/* line 70, ../sass/_header.scss */
 #signup input[type="text"]::-webkit-input-placeholder {
   color: #009bd6;
 }
-/* line 86, ../sass/_header.scss */
+/* line 75, ../sass/_header.scss */
 #signup input[type="submit"] {
   border: none;
   padding: 5px 20px;
@@ -746,17 +746,22 @@ header {
   border: 1px solid #0076a3;
   font-weight: bold;
 }
-/* line 97, ../sass/_header.scss */
+/* line 86, ../sass/_header.scss */
 #signup .thanks {
   font-size: 18px;
 }
+/* line 90, ../sass/_header.scss */
+#signup .extra-info {
+  padding-top: 4px;
+  margin-left: 220px;
+}
 
 @media screen and (max-device-width: 480px) {
-  /* line 105, ../sass/_header.scss */
+  /* line 98, ../sass/_header.scss */
   #signup h2 {
     margin: 0 0 10px 0 !important;
   }
-  /* line 109, ../sass/_header.scss */
+  /* line 102, ../sass/_header.scss */
   #signup input {
     display: block !important;
     margin: 0 0 10px 0 !important;

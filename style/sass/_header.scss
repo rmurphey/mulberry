@@ -13,7 +13,6 @@ header {
 }
 
 @media screen and (max-device-width: 480px) {
-
   #logo {
     background: url(../../img/header-logo.png) left 20px no-repeat;
     background-size: contain;
@@ -29,16 +28,6 @@ header {
   color: #fff;
   font-family: Helvetica;
   position: relative;
-
-//  &:before {
-//    position: absolute;
-//    content: "";
-//    height: 285px;
-//    width: 400px;
-//    top: -285px;
-//    right: 0;
-//    background: url(../../img/devices-transparent.png) right 160px no-repeat ;
-//  }
 
   .get-in {
     width: 200px;
@@ -98,6 +87,10 @@ header {
     font-size: 18px;
   }
 
+  .extra-info {
+    padding-top: 4px;
+    margin-left: 220px;
+  }
 }
 
 @media screen and (max-device-width: 480px) {

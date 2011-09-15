@@ -20,11 +20,9 @@ $page-width: 700px;
 }
 
 @media screen and (max-device-width: 480px) {
-
   #logo {
     background: url(../../img/header-logo.png) left 20px no-repeat;
     background-size: contain;
-
     height: 85px;
   }
 }
