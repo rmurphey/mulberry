@@ -61,9 +61,12 @@ header {
   input[type="text"] {
     color: $blue;
     -webkit-box-shadow: 0 1px 2px #ccc inset;
+    -moz-box-shadow: 0 1px 2px #ccc inset;
     border: none;
     padding: 4px 7px;
     -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    max-width: 140px;
 
     &::-webkit-input-placeholder {
       color: lighten($blue, 10%);
@@ -74,8 +77,7 @@ header {
     border: none;
     padding: 5px 20px;
     -webkit-border-radius: 4px;
-//    background-color: lighten($blue, 10%);
-//    color: #fff;
+    -moz-border-radius: 4px;
     background-color: #fff;
     color: $blue;
     border: 1px solid $blue;
@@ -86,8 +88,6 @@ header {
     font-size: 18px;
   }
 
-  .extra-info {
-  }
 }
 
 

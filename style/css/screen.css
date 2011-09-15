@@ -690,25 +690,29 @@ header {
 #signup input[type="text"] {
   color: #0076a3;
   -webkit-box-shadow: 0 1px 2px #ccc inset;
+  -moz-box-shadow: 0 1px 2px #ccc inset;
   border: none;
   padding: 4px 7px;
   -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  max-width: 140px;
 }
-/* line 68, ../sass/_header.scss */
+/* line 71, ../sass/_header.scss */
 #signup input[type="text"]::-webkit-input-placeholder {
   color: #009bd6;
 }
-/* line 73, ../sass/_header.scss */
+/* line 76, ../sass/_header.scss */
 #signup input[type="submit"] {
   border: none;
   padding: 5px 20px;
   -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   background-color: #fff;
   color: #0076a3;
   border: 1px solid #0076a3;
   font-weight: bold;
 }
-/* line 85, ../sass/_header.scss */
+/* line 87, ../sass/_header.scss */
 #signup .thanks {
   font-size: 18px;
 }
