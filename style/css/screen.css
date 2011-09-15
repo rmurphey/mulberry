@@ -714,6 +714,17 @@ p.small {
   font-size: 18px;
 }
 
+/* line 2, ../sass/_main.scss */
+#main h1 {
+  margin: 40px 0 0 0;
+  border-top: 1px solid #ccc;
+  padding-top: 40px;
+}
+/* line 8, ../sass/_main.scss */
+#main h2 {
+  color: #0076a3;
+}
+
 /* line 1, ../sass/_syntax-highlighter.scss */
 #main .syntaxhighlighter {
   -moz-border-radius: 12px;
