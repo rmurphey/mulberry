@@ -630,7 +630,7 @@ p.small {
 
 /* line 58, ../sass/_style.scss */
 #main {
-  width: 700px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -645,7 +645,7 @@ header {
   height: 285px;
   text-indent: -9999px;
   margin: 0;
-  width: 700px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -670,7 +670,7 @@ header {
 }
 /* line 44, ../sass/_header.scss */
 #signup .inner {
-  width: 700px;
+  max-width: 700px;
   margin: 0 auto;
 }
 /* line 48, ../sass/_header.scss */

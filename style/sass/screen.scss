@@ -5,11 +5,10 @@
 
 $header-color: #ff9600;
 $blue: #0076a3;
+$page-width: 700px;
 
 @mixin center-column {
-  $page-width: 700px;
-
-  width: $page-width;
+  max-width: $page-width;
   margin: 0 auto;
 }
 
