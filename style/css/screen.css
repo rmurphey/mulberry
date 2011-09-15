@@ -780,6 +780,12 @@ header {
   font-size: 30px;
 }
 /* line 15, ../sass/_main.scss */
+#main p.img {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+/* line 21, ../sass/_main.scss */
 #main .filename + div {
   margin-bottom: 50px;
 }
