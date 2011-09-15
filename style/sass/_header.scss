@@ -1,5 +1,10 @@
 #logo {
-  background: url(../../img/header-logo.png) no-repeat bottom left;
+  background: {
+    image: url(../../img/header-logo.png);
+    position: left 120px;
+    repeat: no-repeat;
+  }
+
   height: 285px;
   text-indent: -9999px;
   margin: 0;
