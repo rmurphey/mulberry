@@ -713,11 +713,6 @@ p.small {
 #signup .thanks {
   font-size: 18px;
 }
-/* line 81, ../sass/_header.scss */
-#signup .signup-error {
-  font-size: 18px;
-  color: red;
-}
 
 /* line 1, ../sass/_syntax-highlighter.scss */
 #main .syntaxhighlighter {
