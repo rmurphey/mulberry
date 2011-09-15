@@ -801,3 +801,7 @@ footer .copyright {
   margin: 30px 0 0 0;
   font-size: 12px;
 }
+/* line 7, ../sass/_footer.scss */
+footer .copyright a {
+  color: #0076a3;
+}
