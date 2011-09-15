@@ -92,6 +92,11 @@ header {
     margin-left: 220px;
   }
 
+  @media screen and (max-device-width: 480px) {
+    .extra-info {
+      margin: 0 !important;
+    }
+  }
 }
 
 .error-msg {
