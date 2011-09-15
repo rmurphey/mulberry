@@ -15,6 +15,12 @@
   .get-in {
     width: 200px;
     float: left;
+    position: relative;
+    top: 4px;
+
+    h2 {
+      font-size: 19px;
+    }
   }
 
   .inner {
@@ -31,16 +37,44 @@
   }
 
   label {
-    font-weight: bold;
-    margin: 0 0 5px 0;
     display: none;
   }
 
-  input[type="text"] {
-    margin: 0 0 10px 0;
+  input {
+    font-size: 14px;
+    margin-left: 20px;
   }
 
-  p.signup-error {
+  input[type="text"] {
+    color: $blue;
+    -webkit-box-shadow: 0 1px 2px #ccc inset;
+    border: none;
+    padding: 4px 7px;
+    -webkit-border-radius: 2px;
+
+    &::-webkit-input-placeholder {
+      color: lighten($blue, 10%);
+    }
+  }
+
+  input[type="submit"] {
+    border: none;
+    padding: 5px 20px;
+    -webkit-border-radius: 4px;
+//    background-color: lighten($blue, 10%);
+//    color: #fff;
+    background-color: #fff;
+    color: $blue;
+    border: 1px solid $blue;
+    font-weight: bold;
+  }
+
+  .thanks {
+    font-size: 18px;
+  }
+
+  .signup-error {
+    font-size: 18px;
     color: red;
   }
 }
