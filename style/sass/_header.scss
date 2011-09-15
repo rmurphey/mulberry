@@ -1,14 +1,16 @@
+header {
+  position: relative;
+}
+
 #logo {
-  background: {
-    image: url(../../img/header-logo.png);
-    position: left 120px;
-    repeat: no-repeat;
-  }
+  background: url(../../img/header-logo.png) left 120px no-repeat,
+  url(../../img/devices-transparent.png) right 160px no-repeat ;
 
   height: 285px;
   text-indent: -9999px;
   margin: 0;
   @include center-column;
+
 }
 
 #signup {
@@ -16,6 +18,17 @@
   background-color: #ff9600;
   color: #fff;
   font-family: Helvetica;
+  position: relative;
+
+//  &:before {
+//    position: absolute;
+//    content: "";
+//    height: 285px;
+//    width: 400px;
+//    top: -285px;
+//    right: 0;
+//    background: url(../../img/devices-transparent.png) right 160px no-repeat ;
+//  }
 
   .get-in {
     width: 200px;

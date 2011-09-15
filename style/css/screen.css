@@ -635,10 +635,13 @@ p.small {
 }
 
 /* line 1, ../sass/_header.scss */
+header {
+  position: relative;
+}
+
+/* line 5, ../sass/_header.scss */
 #logo {
-  background-image: url(../../img/header-logo.png);
-  background-position: left 120px;
-  background-repeat: no-repeat;
+  background: url(../../img/header-logo.png) left 120px no-repeat, url(../../img/devices-transparent.png) right 160px no-repeat;
   height: 285px;
   text-indent: -9999px;
   margin: 0;
@@ -646,43 +649,44 @@ p.small {
   margin: 0 auto;
 }
 
-/* line 14, ../sass/_header.scss */
+/* line 16, ../sass/_header.scss */
 #signup {
   padding: 20px 0;
   background-color: #ff9600;
   color: #fff;
   font-family: Helvetica;
+  position: relative;
 }
-/* line 20, ../sass/_header.scss */
+/* line 33, ../sass/_header.scss */
 #signup .get-in {
   width: 200px;
   float: left;
   position: relative;
   top: 4px;
 }
-/* line 26, ../sass/_header.scss */
+/* line 39, ../sass/_header.scss */
 #signup .get-in h2 {
   font-size: 19px;
 }
-/* line 31, ../sass/_header.scss */
+/* line 44, ../sass/_header.scss */
 #signup .inner {
   width: 700px;
   margin: 0 auto;
 }
-/* line 35, ../sass/_header.scss */
+/* line 48, ../sass/_header.scss */
 #signup h2 {
   margin: 0;
 }
-/* line 39, ../sass/_header.scss */
+/* line 52, ../sass/_header.scss */
 #signup label {
   display: none;
 }
-/* line 43, ../sass/_header.scss */
+/* line 56, ../sass/_header.scss */
 #signup input {
   font-size: 14px;
   margin-left: 20px;
 }
-/* line 48, ../sass/_header.scss */
+/* line 61, ../sass/_header.scss */
 #signup input[type="text"] {
   color: #0076a3;
   -webkit-box-shadow: 0 1px 2px #ccc inset;
@@ -690,11 +694,11 @@ p.small {
   padding: 4px 7px;
   -webkit-border-radius: 2px;
 }
-/* line 55, ../sass/_header.scss */
+/* line 68, ../sass/_header.scss */
 #signup input[type="text"]::-webkit-input-placeholder {
   color: #009bd6;
 }
-/* line 60, ../sass/_header.scss */
+/* line 73, ../sass/_header.scss */
 #signup input[type="submit"] {
   border: none;
   padding: 5px 20px;
@@ -704,7 +708,7 @@ p.small {
   border: 1px solid #0076a3;
   font-weight: bold;
 }
-/* line 72, ../sass/_header.scss */
+/* line 85, ../sass/_header.scss */
 #signup .thanks {
   font-size: 18px;
 }
