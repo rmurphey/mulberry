@@ -722,10 +722,16 @@ header {
   margin: 40px 0 0 0;
   border-top: 1px solid #ccc;
   padding-top: 40px;
+  font-size: 40px;
 }
-/* line 8, ../sass/_main.scss */
+/* line 9, ../sass/_main.scss */
 #main h2 {
   color: #0076a3;
+  font-size: 30px;
+}
+/* line 15, ../sass/_main.scss */
+#main .filename + div {
+  margin-bottom: 50px;
 }
 
 /* line 1, ../sass/_syntax-highlighter.scss */
