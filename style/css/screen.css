@@ -828,12 +828,8 @@ footer .error-msg .inner {
   padding-top: 40px;
   border-top: 1px solid #ccc;
 }
-/* line 32, ../sass/_main.scss */
-#main #tour iframe {
-  display: none;
-}
-/* line 36, ../sass/_main.scss */
-#main #tour div {
+/* line 31, ../sass/_main.scss */
+#main #tour {
   text-align: center;
 }
 

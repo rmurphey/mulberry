@@ -34,12 +34,6 @@ $(function() {
     return false;
 
   });
-
-  $('#tour a').click(function(e) {
-    $('#tour iframe').show();
-    $(this).remove();
-  });
-
 });
 
 }(jQuery));
