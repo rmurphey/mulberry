@@ -21,4 +21,20 @@
    .filename + div {
     margin-bottom: 50px;
   }
+
+  #twitter {
+    margin: 40px 0 0 0;
+    padding-top: 40px;
+    border-top: 1px solid #ccc;
+  }
+
+  #tour {
+    iframe {
+      display: none;
+    }
+
+    div {
+      text-align:center;
+    }
+  }
 }

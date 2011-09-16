@@ -822,6 +822,20 @@ footer .error-msg .inner {
 #main .filename + div {
   margin-bottom: 50px;
 }
+/* line 25, ../sass/_main.scss */
+#main #twitter {
+  margin: 40px 0 0 0;
+  padding-top: 40px;
+  border-top: 1px solid #ccc;
+}
+/* line 32, ../sass/_main.scss */
+#main #tour iframe {
+  display: none;
+}
+/* line 36, ../sass/_main.scss */
+#main #tour div {
+  text-align: center;
+}
 
 /* line 1, ../sass/_syntax-highlighter.scss */
 #main .syntaxhighlighter {
