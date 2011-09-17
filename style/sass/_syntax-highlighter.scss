@@ -8,3 +8,7 @@
 #main .syntaxhighlighter table .line {
   padding-bottom: 3px !important;
 }
+
+#main .syntaxhighlighter > * {
+  font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important;
+}
