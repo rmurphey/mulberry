@@ -251,16 +251,19 @@ third-party apps. He tweets at @slexaxton and blogs at http://alexsexton.com/
         tpl = mulberry.haml(this.tweetTemplate),
         html = $.map(tweets, function(tweet) {
           tweet.link = 'http://twitter.com/capitoljs/status/' + tweet.id_str;
+
           tweet.created_at = dojo.date.locale.format(
             new Date(tweet.created_at), {
               datePattern : 'EEE',
               timePattern : 'h:m a'
             }
           );
+
           tweet.text = tweet.text.replace(
             /@(\S+)/g,
             "&lt;a href='http://twitter.com/#!/$1'>@$1&lt;/a>"
           );
+
           return tpl(tweet);
         }).join('');
 
