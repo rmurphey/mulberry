@@ -263,3 +263,6 @@ supports. Run the following from the root of your project:
 - The Google Maps tagline is not being displayed on Google Maps pages; this may
   cause Apple to reject an app that uses Google Maps. A fix is coming very soon.
 - Document how to create additional themes.
+- Integrate existing tests into this repo.
+- There is currently no support for remote assets. Android video will not work
+  while this limitation is in place. This issue will be addressed soon.
