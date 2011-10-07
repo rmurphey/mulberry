@@ -6,11 +6,11 @@ your app, and a framework for adding custom functionality and CSS.
 
 ## Install
 
-1. Clone this repository to a location of your choosing.
+- Clone this repository to a location of your choosing.
 
     git clone git@github.com:Toura/mulberry.git
 
-2. Add the full path to `mulberry/bin` to your path by editing your profile and
+- Add the full path to `mulberry/bin` to your path by editing your profile and
    adding the following:
 
     export PATH=$PATH:/full/path/to/mulberry/bin
@@ -20,17 +20,17 @@ your app, and a framework for adding custom functionality and CSS.
 
     export PATH=$PATH:/Users/yourusername/projects/toura_mulberry/mulberry/bin
 
-3. Install bundler if it is not already installed (note that you will need to
+- Install bundler if it is not already installed (note that you will need to
    have [rubygems](http://docs.rubygems.org/read/chapter/3) installed; it is
    installed by default on OSX):
 
     gem install bundler
 
-4. From the root directory of the repository, run the following command:
+- From the root directory of the repository, run the following command:
 
     bundle install
 
-5. You're done! You should now be able to run mulberry from any directory.
+- You're done! You should now be able to run mulberry from any directory.
 
 
 ## Setup
@@ -79,9 +79,9 @@ Mulberry already contains the compiled results.
 
 To build and run apps on iOS Simulator, you must:
 
-1. Own an Intel Mac running OSX Snow Leopard or Lion
+- Own an Intel Mac running OSX Snow Leopard or Lion
 
-2. Download Xcode 4.1 or greater (preferably 4.2) from the
+- Download Xcode 4.1 or greater (preferably 4.2) from the
    [Mac App Store](http://itunes.apple.com/us/app/xcode/id448457090?mt=12)
 
 
@@ -92,28 +92,28 @@ In order to submit your apps to the Apple iOS App Store, you must
 
 To build and run apps on Android Simulator, you must:
 
-1. Install Java SE 1.6 or above (running java -version should output "Java(TM) SE Runtime Environment")
+- Install Java SE 1.6 or above (running java -version should output "Java(TM) SE Runtime Environment")
 
-2. Ensure the `JAVA_HOME` environment variable is pointing to the Java directory
+- Ensure the `JAVA_HOME` environment variable is pointing to the Java directory
 
-3. Download [Android SDK package](http://developer.android.com/sdk/index.html) for your platform
+- Download [Android SDK package](http://developer.android.com/sdk/index.html) for your platform
 
-4. On OSX, extract it to `/Developer/SDKs/android-sdk-mac_x86/`. If you do not
+- On OSX, extract it to `/Developer/SDKs/android-sdk-mac_x86/`. If you do not
    place it in this directory, Mulberry _should_ detect the location of it, but
    this is the preferred location.
 
-5. Edit your shell's loading files (`.bashrc` or `.bash\_profile` for bash and
+- Edit your shell's loading files (`.bashrc` or `.bash\_profile` for bash and
    `.zshrc` for zsh) and add a line similar to:
 
 	  export PATH=$PATH:/Developer/SDKs/android-sdk-mac_x86/tools:/Developer/SDKs/android-sdk-mac_x86/platform-tools
 
-6. Open a new teminal and run the SDK manager:
+- Open a new teminal and run the SDK manager:
 
 	  android
 
-7. Click "Available packages"
+- Click "Available packages"
 
-8. Expand "Android Repository"
+- Expand "Android Repository"
 
   You should install:
 
@@ -131,7 +131,7 @@ To build and run apps on Android Simulator, you must:
 
   Keep doing this until you've installed everything.
 
-9. You do not need, but may choose, to install the Samples and Documentation.
+- You do not need, but may choose, to install the Samples and Documentation.
 It's pretty useless and just takes up space.
 
 
@@ -139,15 +139,15 @@ It's pretty useless and just takes up space.
 
 Run the SDK manager by running `android` on the command line.
 
-1. On the "Virtual Devices" section click the "New..." button
+- On the "Virtual Devices" section click the "New..." button
 
-2. Name the device
+- Name the device
 
-3. Select the Google APIs - API Level 8 (to test 2.2) as the target
+- Select the Google APIs - API Level 8 (to test 2.2) as the target
 
-4. Make the SD card size 64 MB
+- Make the SD card size 64 MB
 
-5. Click "Create AVD"
+- Click "Create AVD"
 
 Now you can run the device by running `emulator @your-device-name -partition-size 128`
 
