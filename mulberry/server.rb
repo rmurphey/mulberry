@@ -36,7 +36,7 @@ module Mulberry
     # Settings
     #####################
 
-    # disable :logging
+    enable :logging
 
     set :raise_errors => true
     set :root, file_path('.')
@@ -49,11 +49,16 @@ module Mulberry
     # Tours
     #####################
     get '/' do
+      redirect "/ios/phone/"
+    end
+
+    get "/:os/:type/" do
       haml @index_template, :locals => {
         :body_onload        => "readyFn()",
         :include_jquery     => @app.config['jQuery'] || @app.config['jquery'],
         :include_dev_config => true,
-        :device_type        => params[:device_type] || 'phone'
+        :device_type        => params[:type] || 'phone',
+        :device_os          => params[:os] || 'ios'
       }
     end
 
@@ -64,7 +69,7 @@ module Mulberry
     #####################
     # CSS
     #####################
-    get '/css/base.css' do
+    get '/:os/:type/css/base.css' do
       content_type 'text/css'
       @helper.create_css
     end
@@ -74,7 +79,7 @@ module Mulberry
     #####################
 
     # dojo files have to come from the built js
-    get '/javascript/dojo/*' do
+    get '/:os/:type/javascript/dojo/*' do
       content_type 'text/javascript'
       send_file file_path(
         "javascript",
@@ -84,7 +89,7 @@ module Mulberry
       )
     end
 
-    get '/javascript/dijit/*' do
+    get '/:os/:type/javascript/dijit/*' do
       content_type 'text/javascript'
       send_file file_path(
         "javascript",
@@ -95,7 +100,7 @@ module Mulberry
     end
 
     # nls (i18n) files have to come from the built js
-    get '/javascript/toura/nls/*' do
+    get '/:os/:type/javascript/toura/nls/*' do
       content_type 'text/javascript'
       nls_file = file_path(
         "javascript",
@@ -112,11 +117,12 @@ module Mulberry
       end
     end
 
-    get '/javascript/toura/app/TouraConfig.js' do
+    get '/:os/:type/javascript/toura/app/TouraConfig.js' do
       content_type 'text/javascript'
-      device_type = params[:device_type] || 'phone'
+      device_type = params[:type] || 'phone'
+      os = params[:os] || 'ios'
 
-      TouraAPP::App.create_config 'ios', device_type,
+      TouraAPP::App.create_config os, device_type,
         {
           "id" => @app.id,
           "build" => Time.now.to_i,
@@ -126,7 +132,7 @@ module Mulberry
         }
     end
 
-    get '/javascript/toura/app/DevConfig.js' do
+    get '/:os/:type/javascript/toura/app/DevConfig.js' do
       content_type 'text/javascript'
 
       dev_config = file_path(
@@ -143,7 +149,7 @@ module Mulberry
       end
     end
 
-    get '/javascript/client/*' do
+    get '/:os/:type/javascript/client/*' do
       content_type 'text/javascript'
       send_file File.join(
         @source_dir,
@@ -152,7 +158,7 @@ module Mulberry
       )
     end
 
-    get '/javascript/*' do
+    get '/:os/:type/javascript/*' do
       content_type 'text/javascript'
       send_file file_path(
         "javascript",
@@ -163,7 +169,7 @@ module Mulberry
     #####################
     # Data
     #####################
-    get '/data/*' do
+    get '/:os/:type/data/*' do
       content_type "text/javascript"
 
       case params[:splat].first
@@ -177,11 +183,11 @@ module Mulberry
     #####################
     # Media
     #####################
-    get '/media/manifest.js' do
+    get '/:os/:type/media/manifest.js' do
       "toura.app.manifest = {};"
     end
 
-    get '/media/*' do
+    get '/:os/:type/media/*' do
       send_file File.join(
         @source_dir,
         "assets",
@@ -192,7 +198,7 @@ module Mulberry
     #####################
     # Resources
     #####################
-    get '/*' do
+    get '/:os/:type/*' do
       send_file file_path(
         "www",
         params[:splat].first
