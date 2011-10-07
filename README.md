@@ -9,7 +9,8 @@ your app, and a framework for adding custom functionality and CSS.
 ## Support
 
 Please email us at mulberry@toura.com, find us on IRC (irc.freenode.net) channel
-\#touramulberry or visit our helpdesk at https://mulberry.tenderapp.com
+\#touramulberry or visit our helpdesk at https://mulberry.tenderapp.com. You can also
+follow us [@touradev](http://twitter.com/touradev).
 
 
 ## Install
