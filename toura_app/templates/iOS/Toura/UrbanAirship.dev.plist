@@ -5,8 +5,8 @@
 	<key>UrbanAirshipHost</key>
 	<string>https://go.urbanairship.com/</string>
 	<key>UrbanAirshipKey</key>
-	<string>E_Bd3qobTZyekdHgvmMKFw</string>
+	<string>PutTheKeyForYourAppHere</string>
 	<key>UrbanAirshipSecret</key>
-	<string>LOSkJAUvSa2q2UcHlBakpQ</string>
+	<string>PutTheSecretForYourAppHere</string>
 </dict>
 </plist>
