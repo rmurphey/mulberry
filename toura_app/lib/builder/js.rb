@@ -180,6 +180,7 @@ module Builder
     end
 
     def dojo_build
+      puts "Building the JavaScript -- this can take a while, be patient!"
       system %{./build.sh profileFile=#{PROFILE_FILE} releaseDir=#{@location} #{'> /dev/null' if !@build.settings[:verbose]}}
     end
   end
