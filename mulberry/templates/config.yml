@@ -25,8 +25,8 @@
 # Enter your application name here (required!)
 name:
 
-# Specify your theme and provide any settings it requires;
-# you can do more detailed styling via custom CSS
+# Presently there is only one theme, the default theme. We need to document how
+# to create additional themes.
 theme:
   name: default
   settings:

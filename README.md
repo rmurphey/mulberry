@@ -242,6 +242,7 @@ supports. Run the following from the root of your project:
 
 # TODOs
 
+- The repo should include a demo application. One is forthcoming.
 - Presently, it's not straightforward to change the icons that the application
   uses in the default theme.
 - Many built-in page templates use a legacy system for specifying the layout of
@@ -252,3 +253,7 @@ supports. Run the following from the root of your project:
 - Capabilities will only work with built-in components. This will be addressed
   for the beta or sooner.
 - The command line tool should use OptionParser.
+- Flurry and UrbanAirship integration should be documented.
+- The Google Maps tagline is not being displayed on Google Maps pages; this may
+  cause Apple to reject an app that uses Google Maps. A fix is coming very soon.
+- Document how to create additional themes.
