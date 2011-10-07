@@ -26,11 +26,12 @@ module Mulberry
 
     def project_settings
       {
-        :id       => @config['name'].gsub(/'/, "\\\\'"),
-        :version  => Time.now.to_i,
-        :name     => @name,
-        :bundle   => @build_dir,
-        :jquery   => @config['jquery']
+        :id           => @config['name'].gsub(/'/, "\\\\'"),
+        :version      => Time.now.to_i,
+        :name         => @name,
+        :bundle       => @build_dir,
+        :jquery       => @config['jquery'],
+        :config_dir   => @source_dir
       }
     end
 
