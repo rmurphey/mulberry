@@ -1,0 +1,16 @@
+Twitter:
+  screens:
+    - name: index
+      layoutName: twitter
+      regions:
+        -
+          size: fixed
+          scrollable: false
+          components:
+            - PageNav
+        -
+          size: flex
+          scrollable: true
+          components:
+            - PageHeaderImage
+            - custom:Twitter

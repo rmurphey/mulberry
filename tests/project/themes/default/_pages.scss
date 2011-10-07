@@ -1,0 +1,89 @@
+@mixin watermark {
+  background-image: url(../media/images/watermark.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+}
+
+a:link, a:active, a:visited {
+  color: $user-link-color;
+}
+
+h2 {
+  font-family: 'Cabin' !important;
+}
+
+.screen.home-1 {
+  background: url('../media/images/capitoljs-header.png') no-repeat;
+  -webkit-background-size: contain;
+
+  background-color: #353535;
+  > .row > .row:first-child {
+    margin-top: 119px;
+  }
+}
+
+.page-node-schedule {
+  @include watermark;
+
+  .body-text {
+    padding: 0 !important;
+  }
+
+  table {
+    thead tr {
+      background-color: #ffcc00 !important;
+      font-size: 18px;
+
+      th {
+        padding: 9px 0;
+        text-shadow: 1px -1px 0 rgba(255, 255, 255, .5);
+      }
+    }
+
+    tr:nth-child(odd) {
+      background-color: rgba(0,0,0, .04);
+    }
+
+    td {
+      padding: 5px 5px;
+      line-height: 1.2em;
+      font-size: 90%;
+    }
+  }
+}
+
+.page-node-speakers {
+  .body {
+    @include watermark;
+  }
+
+  .top {
+//    background: none !important;
+  }
+}
+
+.screen.twitter,
+.screen.default {
+  @include watermark;
+}
+
+
+.page-node-sponsors {
+  .screen {
+    @include watermark;
+  }
+
+  .sponsor {
+    margin: 10px 0 20px 0;
+    padding: 20px 0 0 0;
+    border-top: 1px solid #ccc;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    .logo {
+      margin: 0 20px 0 0;
+    }
+  }
+}

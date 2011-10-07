@@ -1,0 +1,47 @@
+.component.twitter {
+  a {
+    color: $user-link-color;
+    font-weight: bold;
+  }
+
+  li {
+    line-height: 1.4em;
+    padding: 10px;
+
+    p + p {
+      margin: 5px 0 0 0;
+    }
+
+    .date {
+      font-size: 70%;
+    }
+
+    &:nth-child(odd) {
+      background-color: rgba(0,0,0, .04);
+    }
+  }
+}
+
+.component.body-text {
+  li {
+    list-style-type: square !important;
+    padding-bottom: 0;
+  }
+}
+
+.component.image-caption {
+  padding: 7px 11px !important;
+  margin: 0 0 20px 0;
+  font-size: 80%;
+}
+
+.component.search-results {
+  @include light-color-scheme;
+}
+
+.component.app-nav {
+  background: url(../media/images/home-footer.png) no-repeat !important;
+  -webkit-background-size: cover;
+  -webkit-box-shadow: none !important;
+}
+
