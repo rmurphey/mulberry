@@ -60,7 +60,6 @@ module Builder
         "buildscripts"
       )
 
-      @repo_version = `git show --oneline`.split(' ').first
       @location = File.join(TouraAPP.root, 'javascript')
 
       get_dojo
@@ -167,7 +166,7 @@ module Builder
     end
 
     def build_version
-      "toura-#{@build_type}-#{TouraAPP.version}-#{@repo_version}"
+      "toura-#{@build_type}-#{TouraAPP.version}"
     end
 
     def prep_dir
@@ -177,17 +176,7 @@ module Builder
     end
 
     def build_required
-      if @build.settings[:force_js_build]
-        return true
-      end
-
-      dojo_js = File.join(@location, @build_type, 'dojo', 'dojo.js')
-
-      if File.exists?(dojo_js)
-        !(File.read(dojo_js).match(build_version))
-      else
-        true
-      end
+      true
     end
 
     def dojo_build
