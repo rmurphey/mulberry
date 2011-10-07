@@ -4,6 +4,12 @@ Mulberry takes content from your filesystem and turns it into a working mobile a
 on Android and iOS. It also provides a local development server for testing
 your app, and a framework for adding custom functionality and CSS.
 
+## Support
+
+Please email us at mulberry@toura.com, find us on IRC (irc.freenode.net) channel
+\#touramulberry or visit our helpdesk at https://mulberry.tenderapp.com
+
+
 ## Install
 
 - Clone this repository to a location of your choosing.
