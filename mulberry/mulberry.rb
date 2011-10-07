@@ -46,7 +46,7 @@ module Mulberry
       @js_dir           = File.join(@source_dir, 'javascript')
 
       @config           = read_config
-      @name             = @config['name']
+      @name             = @config['name'].gsub(/'/, "\\\\'")
 
       @helper           = Mulberry::BuildHelper.new(self)
 
