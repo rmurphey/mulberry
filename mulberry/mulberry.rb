@@ -13,6 +13,9 @@ require 'mulberry/build_helper'
 require 'toura_app/lib/builder'
 
 module Mulberry
+  class ConfigError < RuntimeError
+  end
+
   VERSION   = '0.0.1a'
   CONFIG    = 'config.yml'
 
@@ -46,11 +49,12 @@ module Mulberry
       @js_dir           = File.join(@source_dir, 'javascript')
 
       @config           = read_config
+
+      raise ConfigError, "You must provide a name for your app" unless @config['name']
+
       @name             = @config['name'].gsub(/'/, "\\\\'")
 
       @helper           = Mulberry::BuildHelper.new(self)
-
-      raise "You must provide a name for your app" unless @name
 
       @config['id']   ||= @name
       @id               = @config['id']

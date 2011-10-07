@@ -91,8 +91,12 @@ module Mulberry
     end
 
     def serve(dir)
-      app = Mulberry::App.new(dir)
-      app.serve
+      begin
+        app = Mulberry::App.new(dir)
+        app.serve
+      rescue ConfigError => ce
+        puts "Configuration error: #{ce}"
+      end
     end
 
     def deploy(dir)
