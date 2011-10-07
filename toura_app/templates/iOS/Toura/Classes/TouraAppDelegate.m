@@ -40,7 +40,7 @@
 {
 	//NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 
-	[ FlurryAPI startSession:@"PG7ZGFPK6BIL6SWWQB6K" ];
+	[ FlurryAPI startSession:@"" ];
 
     // ******** NOTE: modified the following block from the default app delegate as it assumes
     // your app will never receive push notifications
