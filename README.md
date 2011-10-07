@@ -222,7 +222,7 @@ For more on creating pages, see the Creating Pages and Assets documentation.
 ## Customize
 
 Mulberry allows extensive customization of your application. See the documentation
-in the `docs` directory for details.
+in the repository [Wiki](https://github.com/toura/mulberry/wiki) for details.
 
 ## Develop
 

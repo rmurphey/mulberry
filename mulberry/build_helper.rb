@@ -26,7 +26,7 @@ module Mulberry
 
     def project_settings
       {
-        :id       => @config['name'],
+        :id       => @config['name'].gsub(/'/, "\\\\'"),
         :version  => Time.now.to_i,
         :name     => @name,
         :bundle   => @build_dir,
@@ -36,7 +36,7 @@ module Mulberry
 
     def config_settings
       {
-        'id'          => @config['name']
+        'id' => @config['name'].gsub(/'/, "\\\\'")
       }
     end
 
