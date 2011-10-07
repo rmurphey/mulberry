@@ -39,7 +39,7 @@ module Mulberry
         if dir_is_app?(dir)
           content_type = action.gsub('create_', '')
           filename = args[1] || "untitled-#{content_type}"
-          raise "Asset name cannot contain non-word characters" unless !filename.match(/\W/)
+          raise "Asset name cannot contain spaces" unless !filename.match(/\s/)
           file = Mulberry::ContentCreator.new(content_type, dir, filename)
         else
           puts "You must run this command from inside a valid mulberry app."
@@ -54,7 +54,7 @@ module Mulberry
         if dir_is_app?(dir)
           code_type = action.gsub('create_', '')
           filename = args[1] || "Untitled"
-          raise "Component name cannot contain non-word characters" unless !filename.match(/\W/)
+          raise "Component name cannot contain spaces" unless !filename.match(/\s/)
           file = Mulberry::ComponentCreator.new(code_type, dir, filename)
         else
           puts "You must run this command from inside a valid mulberry app."
@@ -69,7 +69,7 @@ module Mulberry
         if dir_is_app?(dir)
           code_type = action.gsub('create_', '')
           filename = args[1] || "Untitled"
-          raise "Template name cannot contain non-word characters" unless !filename.match(/\W/)
+          raise "Template name cannot contain spaces" unless !filename.match(/\s/)
           file = Mulberry::TemplateCreator.new(code_type, dir, filename)
         else
           puts "You must run this command from inside a valid mulberry app."
