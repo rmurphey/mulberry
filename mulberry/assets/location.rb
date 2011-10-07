@@ -14,7 +14,7 @@ module Mulberry
 
       public
       def reference
-        ref = { :pin => { '_reference' => id } }
+        ref = { :google_map_pin => { '_reference' => id } }
 
         data = load_data
 
