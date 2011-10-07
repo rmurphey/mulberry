@@ -10,12 +10,12 @@ module Mulberry
     def initialize
       super
 
-      @app = settings.app
-      @helper = @app.helper
+      @mulberry_app = settings.app
+      @helper = @mulberry_app.helper
 
       @index_template = 'index.html'.to_sym
       @iframe_template = 'iframe.html'.to_sym
-      @source_dir = app.source_dir
+      @source_dir = @mulberry_app.source_dir
       @js_build_name = 'dev'
     end
 
@@ -55,7 +55,7 @@ module Mulberry
     get "/:os/:type/" do
       haml @index_template, :locals => {
         :body_onload        => "readyFn()",
-        :include_jquery     => @app.config['jQuery'] || @app.config['jquery'],
+        :include_jquery     => @mulberry_app.config['jQuery'] || @mulberry_app.config['jquery'],
         :include_dev_config => true,
         :device_type        => params[:type] || 'phone',
         :device_os          => params[:os] || 'ios'
@@ -124,7 +124,7 @@ module Mulberry
 
       TouraAPP::App.create_config os, device_type,
         {
-          "id" => @app.id,
+          "id" => @mulberry_app.id,
           "build" => Time.now.to_i,
           "force_local" => true,
           "skip_version_check" => true,
