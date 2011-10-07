@@ -147,7 +147,7 @@ module Mulberry
         :tour             =>  self,
         :tmp_dir          =>  tmp_dir,
         :log_level        =>  -1,
-        :force_js_build   =>  !!settings[:test],
+        :force_js_build   =>  true,
         :build_helper     =>  @helper
       }
 
