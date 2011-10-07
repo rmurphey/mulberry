@@ -1,3 +1,4 @@
+gem 'sass', '=3.1.4'
 require 'sass'
 
 module Builder
