@@ -62,7 +62,7 @@ module Mulberry
       }
     end
 
-    get '/develop.html' do
+    get '/:os/:type/develop.html' do
       haml @iframe_template
     end
 
