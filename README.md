@@ -13,7 +13,7 @@ your app, and a framework for adding custom functionality and CSS.
 - Add the full path to `mulberry/bin` to your path by editing your profile and
   adding the following:
 
-    `export PATH=$PATH:/full/path/to/mulberry/mulberry/bin
+    export PATH=$PATH:/full/path/to/mulberry/mulberry/bin
 
 For example, if you cloned the repository to `~/projects/mulberry`, you
 would add the following to your `.profile` file.
