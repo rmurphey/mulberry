@@ -26,7 +26,7 @@ would add the following to your `.profile` file.
 
     `gem install bundler`
 
-- From the root directory of the repository, run the following command:
+- From the *root directory of the repository*, run the following command:
 
     `bundle install`
 
@@ -165,7 +165,7 @@ Start the emulator, then type:
 ## Scaffold
 
 Mulberry lets you quickly create the basic structure for an application at the
-location you specify.
+location you specify. Do not run this from within the Mulberry repo!
 
     mulberry scaffold myapp
 
