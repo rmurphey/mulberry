@@ -1,0 +1,6 @@
+.component {
+  &.hidden,
+  .hidden {
+    display: none !important;
+  }
+}

@@ -1,0 +1,11 @@
+# This profile is for generating builds suitable for previewing apps in a
+# browser environment
+
+build_type: MAP
+device_type: browser
+device_os:
+
+build:
+    javascript:
+      - dojo
+      - toura

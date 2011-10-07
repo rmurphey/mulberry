@@ -1,0 +1,7 @@
+name: # display name
+lat: # latitude (decimal)
+lon: # longitude (decimal)
+address: # display address (optional)
+website: # optional
+phone_number: # optional
+caption: # optional

@@ -1,0 +1,31 @@
+%li.page.videos-1
+  .screen.index
+    .header{ dojoAttachPoint : 'pageNav' }
+
+    .body
+      .top
+        .content{ dojoAttachPoint : 'videoPlayer' }
+
+      .bottom
+        :if phone
+          %div{ dojoType : 'toura.ui.Scrollable' }
+            %div
+              .video-list{ dojoAttachPoint : 'videoList' }
+              .child-nodes{ dojoAttachPoint : 'childNodes' }
+              .body-text{ dojoAttachPoint : 'videoCaption' }
+              .body-text{ dojoAttachPoint : 'bodyText' }
+
+        :if tablet
+          .col-1
+            %div{ dojoType : 'toura.ui.Scrollable' }
+              %div
+                .body-text{ dojoAttachPoint : 'videoCaption' }
+                .body-text{ dojoAttachPoint : 'bodyText' }
+
+
+          .col-2
+            %div{ dojoType : 'toura.ui.Scrollable' }
+              %div
+                .video-list{ dojoAttachPoint : 'videoList' }
+                .child-nodes{ dojoAttachPoint : 'childNodes' }
+

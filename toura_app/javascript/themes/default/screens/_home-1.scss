@@ -1,0 +1,19 @@
+.screen.home-1 {
+  -webkit-background-size: cover;
+
+  .tablet & {
+    .screen {
+      height: 100%;
+    }
+
+    .body-text {
+      padding: 0 20px 0 20px;
+    }
+  }
+
+  .phone & {
+    .body-text {
+      padding: 0 10px 10px 10px;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+// util for printing sass variables to browser
+@mixin debug($val) {
+  body > :first-child:before {
+    content: '#{$val}';
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 10px;
+    font-size: 20px;
+  }
+}
+
+// the debug tools bar at the bottom of the screen
+div.debug-tools {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+
+  .buttons {
+    float: right;
+  }
+
+  .button {
+    float: left;
+    padding: 2px 8px ;
+    line-height: 2em;
+    background-color: #005998;
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    text-shadow: rgba(0,0,0, .3) 1px 1px ;
+    $radius: 10px;
+    border-right: 1px inset rgba(0,0,0, .2);
+
+    &:first-child {
+      -webkit-border-radius: $radius 0 0 0;
+    }
+
+  }
+}
+
+div.debug-message {
+  padding: 10px;
+  background-color: green;
+  color: #fff;
+  display: -webkit-box;
+  font-size:80%;
+
+  div {
+    display: block;
+    -webkit-box-flex: 1;
+  }
+
+  .close {
+    cursor: pointer;
+    padding: 0 12px;
+  }
+}

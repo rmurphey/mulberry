@@ -1,0 +1,9 @@
+Hotspots:
+  type: node
+  screens:
+  - regions:
+    - size: fixed
+      components:
+      - PageNav
+    - components:
+      - Hotspots

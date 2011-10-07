@@ -1,0 +1,13 @@
+NodeGallery:
+  type: node
+  screens:
+  - name: index
+    regions:
+    - size: fixed
+      components:
+      - PageNav
+    - size: fixed
+      components:
+        - DropDownText
+    - components:
+      - NodeGallery

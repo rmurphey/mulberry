@@ -1,0 +1,37 @@
+%nav.component.page-nav
+  .top
+    :if tablet
+      %ul
+        %li.back
+          %a{ dojoType : 'toura.components.buttons.BackButton', dojoAttachPoint : 'backButton' }
+        %li.home
+          %a{ dojoType : 'toura.components.buttons.HomeButton', dojoAttachPoint : 'homeButton' }
+
+      %h1
+        %span{ dojoAttachPoint : 'titleElement' }= title
+
+      %ul
+        :if shareable
+          %li.more
+            %a{ dojoType : 'toura.components.buttons.MoreDrawerButton', dojoAttachPoint : 'moreDrawerButton' }
+
+        %li.search
+          %a{ href : searchUrl }
+
+    :if phone
+      .back
+        %a{ dojoType : 'toura.components.buttons.BackButton', dojoAttachPoint : 'backButton' }
+
+      %h1
+        %span{ dojoAttachPoint : 'titleElement' }= title
+
+      :if shareable
+        .more
+          %a{ dojoType : 'toura.components.buttons.MoreDrawerButton', dojoAttachPoint : 'moreDrawerButton' }
+
+      :if !shareable
+        .home
+          %a{ dojoType : 'toura.components.buttons.BackButton', dojoAttachPoint : 'backButton' }
+
+  :if shareable
+    %div{ dojoType : 'toura.components.MoreDrawer', dojoAttachPoint : 'moreDrawer' }

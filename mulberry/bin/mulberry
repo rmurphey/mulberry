@@ -1,0 +1,116 @@
+#!/usr/bin/env ruby
+$: << File.expand_path('../..', __FILE__)
+
+require 'mulberry'
+require 'content_creator'
+require 'component_creator'
+require 'template_creator'
+
+module Mulberry
+  class CLI
+    def run(args)
+      if !args[0]
+        puts "mulberry must be called with an action."
+        return
+      end
+
+      action = args[0]
+
+      if [ 'scaffold', 'serve', 'deploy', 'test', 'data' ].include? action
+        dir = (args[1] && File.expand_path(args[1])) || Dir.pwd
+
+        if action == 'scaffold' || dir_is_app?(dir)
+          self.send(action, dir)
+        else
+          puts "You must specify a valid app."
+        end
+
+        return
+      end
+
+      if [
+        'create_page',
+        'create_feed',
+        'create_data',
+        'create_location'
+      ].include? action
+        dir = Dir.pwd
+
+        if dir_is_app?(dir)
+          content_type = action.gsub('create_', '')
+          filename = args[1] || "untitled-#{content_type}"
+          raise "Asset name cannot contain non-word characters" unless !filename.match(/\W/)
+          file = Mulberry::ContentCreator.new(content_type, dir, filename)
+        else
+          puts "You must run this command from inside a valid mulberry app."
+        end
+
+        return
+      end
+
+      if [ 'create_component' ].include? action
+        dir = Dir.pwd
+
+        if dir_is_app?(dir)
+          code_type = action.gsub('create_', '')
+          filename = args[1] || "Untitled"
+          raise "Component name cannot contain non-word characters" unless !filename.match(/\W/)
+          file = Mulberry::ComponentCreator.new(code_type, dir, filename)
+        else
+          puts "You must run this command from inside a valid mulberry app."
+        end
+
+        return
+      end
+
+      if [ 'create_template' ].include? action
+        dir = Dir.pwd
+
+        if dir_is_app?(dir)
+          code_type = action.gsub('create_', '')
+          filename = args[1] || "Untitled"
+          raise "Template name cannot contain non-word characters" unless !filename.match(/\W/)
+          file = Mulberry::TemplateCreator.new(code_type, dir, filename)
+        else
+          puts "You must run this command from inside a valid mulberry app."
+        end
+
+        return
+      end
+
+      puts "Don't know how to do #{action}"
+    end
+
+    private
+    def dir_is_app?(dir)
+      File.exists?(dir) && File.exists?(File.join(dir, 'config.yml'))
+    end
+
+    def scaffold(dir)
+      Mulberry::App.scaffold(dir)
+    end
+
+    def serve(dir)
+      app = Mulberry::App.new(dir)
+      app.serve
+    end
+
+    def deploy(dir)
+      app = Mulberry::App.new(dir)
+      app.generate
+    end
+
+    def test(dir)
+      app = Mulberry::App.new(dir)
+      app.generate(:test => true)
+    end
+
+    def data(dir)
+      app = Mulberry::App.new(dir)
+      d = JSON.pretty_generate(Mulberry::Data.new(app).generate)
+      puts d
+    end
+  end
+end
+
+Mulberry::CLI.new.run(ARGV)

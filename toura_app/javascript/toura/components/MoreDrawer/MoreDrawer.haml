@@ -1,0 +1,21 @@
+.component.more-drawer
+  :if phone
+    %section
+      %menu
+        =helpers.homeButton
+        =helpers.fontSizeButton
+        =helpers.searchButton
+
+    %section
+      %menu
+        =helpers.favoriteButton
+        =helpers.sharingButtons
+
+  :if tablet
+    %section
+      %menu
+        =helpers.fontSizeButton
+        =helpers.favoriteButton
+        =helpers.sharingButtons
+
+  %section{ dojoAttachPoint : 'shareSection' }

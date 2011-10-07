@@ -1,0 +1,6 @@
+.component.asset-list
+  %ul{ dojoAttachPoint : 'list' }
+    :each a in assets
+      %li{ id : 'asset-' + a.id, data-id : a.id }
+        %a{ href : '#' }= a.name
+

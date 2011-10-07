@@ -1,0 +1,9 @@
+%li{ data-index : index }
+  %div
+    :if image
+      .image{ style: 'background: url(' + image.url + ')' }
+
+    %h2= title
+    %p.summary= displayText
+    %p.date= pubDate
+

@@ -1,0 +1,17 @@
+.component.detail-title {
+  z-index: 1;
+
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+
+  .close {
+    @include button('../icons/light/btn-page-nav-close.png', 32px, 32px);
+    padding-left: 12px;
+
+    &:active {
+      @include button('../icons/dark/btn-page-nav-close.png', 32px, 32px);
+    }
+  }
+
+}

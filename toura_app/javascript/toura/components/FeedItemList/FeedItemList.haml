@@ -1,0 +1,10 @@
+.component.feed-item-list
+  %header
+    .updated
+      %span Last Updated:
+      %span{ dojoAttachPoint : 'lastUpdated' }
+    .refresh{ dojoAttachPoint : 'refreshButton' }= i18n_feedRefresh
+    .spinner
+
+  %ol{ dojoAttachPoint : 'feedItemList' }
+

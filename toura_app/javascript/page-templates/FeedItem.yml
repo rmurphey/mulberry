@@ -1,0 +1,18 @@
+FeedItem:
+  type: detail
+  capabilities:
+  - name: PageNav_FeedTitle
+    components:
+    - index:PageNav
+    - index:FeedItemDetail
+  screens:
+  - name: index
+    layoutName: feed-item
+    backgroundImage: true
+    regions:
+    - size: fixed
+      components:
+      - PageNav
+    - components:
+      - FeedItemDetail
+      scrollable: true

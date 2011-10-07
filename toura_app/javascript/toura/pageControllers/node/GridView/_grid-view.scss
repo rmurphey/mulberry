@@ -1,0 +1,18 @@
+.page.grid-view {
+  .index {
+    @include stack-container;
+
+    .body {
+      @include pane(1);
+      @include stack-container;
+
+      .bottom {
+        @include pane(1);
+
+        .body-text {
+          padding: 9px 9px 0 9px;
+        }
+      }
+    }
+  }
+}

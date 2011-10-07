@@ -1,0 +1,8 @@
+.component.video-player
+  :if !useHtml5Player
+    .fake-video
+      .play-button{ dojoAttachPoint : 'playButton' }
+      %img.poster{ src : poster, dojoAttachPoint : "videoPlaceholder" }
+
+  :if useHtml5Player
+    .overlay{ dojoAttachPoint : 'overlay' }

@@ -1,0 +1,10 @@
+.page {
+  height: 100%;
+  width: 100%;
+  -webkit-box-flex: 1;
+
+  background-size: cover;
+  background-position-y: 100%;
+  background-position-x: center;
+  background-color: $user-background-color;
+}

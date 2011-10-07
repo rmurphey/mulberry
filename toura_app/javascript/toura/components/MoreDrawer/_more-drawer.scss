@@ -1,0 +1,57 @@
+
+.component.more-drawer {
+  width: 100%;
+  position: absolute;
+
+  right: 0;
+  z-index: -1;
+
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+
+  .phone & {
+    -webkit-transform: translate3d(0, 40px, 0);
+    left: 0;
+
+    &.hidden {
+      display: block !important;
+      -webkit-transform: translate3d(0,-120px, 0);
+    }
+
+  }
+
+  .tablet & {
+    -webkit-transform: translate3d(0,60px, 0);
+    right: 70px;
+    width: 325px;
+
+    li.font-size {
+      border-right: 1px solid #777;
+    }
+
+    &.hidden {
+      display: block !important;
+      -webkit-transform: translate3d(0,-62px, 0);
+    }
+  }
+
+  menu {
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+
+    li {
+      -webkit-box-flex: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-box-align: center;
+
+      a, input{
+        display: block;
+        text-indent: -9999px;
+        width: 40px;
+        height: 40px;
+      }
+
+    }
+  }
+}

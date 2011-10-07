@@ -1,0 +1,13 @@
+# Swap to chrome
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.server_boot_timeout = 50
+
+Evergreen.configure do |config|
+  config.driver = :selenium
+  config.public_dir = 'javascript'
+  config.spec_dir = 'spec/javascripts'
+  config.template_dir = 'spec/templates'
+end

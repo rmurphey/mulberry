@@ -1,0 +1,4 @@
+.component.audio-player
+  :if !useHtml5Player
+    %form
+      %input{ type : 'button', class : 'play', dojoAttachPoint : 'controller' }

@@ -1,0 +1,11 @@
+# This profile is for generating builds suitable for developing against
+# multiple apps in a browser environment
+
+build_type: dev
+device_type: browser
+development: true
+
+build:
+    javascript:
+      - dojo
+      - toura

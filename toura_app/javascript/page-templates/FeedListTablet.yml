@@ -1,0 +1,26 @@
+FeedListTablet:
+  type: node
+  capabilities:
+  - name: FeedItemList_FeedItemDetail
+    components:
+    - index:FeedItemList
+    - index:FeedItemDetail
+  screens:
+  - name: index
+    backgroundImage: false
+    layoutName: feed-list
+    regions:
+    - size: fixed
+      components:
+      - PageNav
+    - regions:
+      - size: fixed
+        backgroundImage: true
+        scrollable: true
+        components:
+        - ColumnHeaderImage
+        - FeedItemList
+      - scrollable: true
+        components:
+        - FeedItemDetail
+      containerType: column

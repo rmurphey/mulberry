@@ -1,0 +1,14 @@
+.layout-box {
+  display: -webkit-box;
+  background-position: center center;
+  -webkit-background-size: cover;
+
+  &.hidden {
+    display: none !important;
+  }
+
+  &.row-container {
+    -webkit-box-orient: vertical;
+  }
+
+}

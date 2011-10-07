@@ -1,0 +1,12 @@
+.component.zoomable-image-gallery
+  .content
+    .image-nav.prev{ dojoAttachPoint : 'prevButton' }
+
+    %ol{ dojoAttachPoint : 'imageList' }
+      :each img in images
+        %li.image
+          .wrapper{ dojoType : 'toura.ui.BackgroundImage', imageUrl : img.url, imageHeight : img.height, imageWidth : img.width }
+
+    .image-nav.next{ dojoAttachPoint : 'nextButton' }
+
+    .caption{ dojoType : 'toura.components.ImageCaption', dojoAttachPoint : 'caption' }

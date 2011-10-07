@@ -1,0 +1,44 @@
+!!! 5
+- # these are the locals that this partial accepts:
+- #   :body_onload - value for onload attribute of body element
+- #   :include_phonegap - include phonegap js
+- #   :include_dev_config - include DevConfig.js
+- device_type ||= 'phone'
+- body_onload ||= ''
+%html(lang="en" class="no-js")
+  %head
+    %meta(charset="utf-8")
+    %title Toura App
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0")
+    %meta(name="apple-mobile-web-app-capable" content="yes")
+    %meta(name="apple-mobile-web-app-status-bar-style" content="black")
+
+    %link(href="css/base.css?device_type=#{device_type}" type="text/css" rel="stylesheet")
+
+  %body(onload=body_onload)
+    #splash
+      .spinner
+
+    - if defined? include_phonegap and include_phonegap # device only
+      %script(src="phonegap.js")
+
+    - if defined? include_jquery and include_jquery
+      %script(src="javascript/vendor/jquery.js")
+
+    %script(src="javascript/dojo/dojo.js")
+    %script(src="javascript/toura/app/TouraConfig.js?device_type=#{device_type}")
+
+    - if defined? include_dev_config and include_dev_config # dev
+      %script(src="javascript/toura/app/DevConfig.js")
+
+    %script(src="javascript/toura/nls/base_ROOT.js")
+    %script(src="javascript/toura/nls/base_en.js")
+    %script(src="javascript/toura/nls/base_en-us.js")
+    %script(src="javascript/vendor/haml.js")
+    %script(src="javascript/toura/base.js")
+    %script(src="javascript/client/base.js")
+
+    - if defined? disable_back_button and disable_back_button
+      :javascript
+        toura.features = toura.features || {};
+        toura.features.disableBackButton = true;

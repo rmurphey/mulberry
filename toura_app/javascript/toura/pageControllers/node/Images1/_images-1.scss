@@ -1,0 +1,77 @@
+.images-1 {
+  .content {
+    @include pullout;
+  }
+
+  .tablet & .body-text {
+    padding: 10px;
+  }
+
+  .phone & .image-caption {
+    padding: 20px 10px;
+
+    &.empty {
+      padding-bottom: 0;
+    }
+  }
+
+  .screen.index {
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    // TODO: get rid of this
+    .content {
+      @include pullout;
+    }
+
+    .body {
+      -webkit-box-flex: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+
+      /* regions */
+      .top {
+        -webkit-box-flex: 1;
+
+        .ios & {
+          background: transparent url(../icons/bg-inner-shadow.png) no-repeat;
+          background-size: cover;
+          background-position-y: 100%;
+        }
+      }
+
+      .bottom {
+        -webkit-box-flex: 1;
+      }
+    }
+
+  }
+
+  .tablet & .screen.index {
+   .bottom {
+      display: -webkit-box;
+      -webkit-box-orient: horizontal;
+    }
+
+    .col-1 {
+      -webkit-box-flex: 1;
+
+      .body-text .body-text {
+        padding: 10px 20px 0 10px;
+      }
+    }
+
+    .col-2 {
+      -webkit-box-flex: 1;
+    }
+  }
+
+  .phone & .screen.index {
+    .body-text {
+      padding: 0 10px;
+    }
+  }
+
+}

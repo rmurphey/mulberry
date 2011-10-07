@@ -1,0 +1,76 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  -webkit-user-select: none;
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout: none;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+}
+
+// TODO: reduce this
+html, body, object, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, cite, code, dfn, ins, q, sub, sup, var, dl, dt, dd, fieldset, form, label, legend, caption, menu {
+	font-size: 100%;
+}
+
+p, h1, h2, h3, h4, h5, h6, blockquote {
+	margin: 0;
+	padding: 0;
+}
+
+// Reset for HTML5 elements. Probably overkill. Kill 'em all, sort 'em out later.
+article, aside, datalist, details, figcaption, figure, footer, header, hgroup, nav, output, progress, section, source, summary, video {
+  display: block;
+}
+
+body, div, ol, ul, li, nav, section, menu {
+  position: relative; // so we can use position: absolute within the element
+                      // override as necessary
+  overflow: hidden;
+}
+
+fieldset {
+	border: 0;
+}
+
+ol, ul, menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 0;
+}
+
+tbody, tfoot, thead, tr, th, td {
+	vertical-align: top;
+}
+
+a {
+  text-decoration: none;
+	outline: 0;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+

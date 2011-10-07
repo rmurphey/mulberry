@@ -1,0 +1,68 @@
+@mixin stack-container {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+@mixin column-container {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+
+@mixin pane($proportion: 1) {
+  -webkit-box-flex: $proportion;
+}
+
+@mixin pullout {
+  // Pull it out of normal flow, so its contents don't affect the size of the box
+  position: absolute;
+
+  // Stretch the box to fill the entire area of the parent
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  // Make sure content doesn't stretch the box
+  overflow: hidden;
+}
+
+@mixin resizable-font {
+  line-height: 1.35em;
+
+  .font-size-small & {
+    font-size: 75%;
+  }
+
+  .font-size-large & {
+    font-size: 150%;
+  }
+}
+
+@mixin button($img-url, $img-width, $img-height, $color:transparent, $el-width: $img-width, $el-height: $img-height) {
+  display: block;
+  text-indent: -9999px;
+  background: $color url($img-url) no-repeat center center;
+  -webkit-background-size: $img-width $img-height;
+  width: $el-width;
+  height: $el-height;
+}
+
+@mixin spinner($path:'../icons/spinner.png', $speed: 1s) {
+  background: url($path) no-repeat center center;
+  -webkit-background-size: contain;
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: $speed;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+@mixin content-padding {
+  .phone & {
+    padding: 8px;
+  }
+
+  .tablet & {
+    padding: 12px;
+  }
+}

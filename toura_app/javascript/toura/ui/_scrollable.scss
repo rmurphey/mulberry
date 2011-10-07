@@ -1,0 +1,7 @@
+.scrollable  {
+  @include pullout;
+
+  > * {
+    -webkit-transform:translateZ(0);
+  }
+}

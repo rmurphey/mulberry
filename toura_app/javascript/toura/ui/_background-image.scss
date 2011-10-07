@@ -1,0 +1,7 @@
+@mixin background-image($resize-method: contain, $position-x: center, $position-y: center)  {
+  background-repeat: no-repeat;
+  -webkit-background-size: $resize-method;
+  background-position-x: $position-x;
+  background-position-y: $position-y;
+}
+

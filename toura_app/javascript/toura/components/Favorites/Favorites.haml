@@ -1,0 +1,24 @@
+.component.favorites
+  %ul{ dojoAttachPoint : 'favoritesList' }
+    :if favorites.length
+
+      :each fav in favorites
+        %li{ class : fav.type }
+
+          %a{ href : fav.model.url }
+            :if fav.img
+              .img{ dojoType : 'toura.ui.BackgroundImage', imageUrl : fav.img, imageHeight : '50px', imageWidth : '67px', resizeMethod : 'cover', loadOnInit : true }
+
+            :if !fav.img
+              .img.default
+
+            .text
+              %h2= fav.name
+
+              :if fav.displayText
+                %p= fav.displayText
+
+          .delete{ dojoType : 'toura.components.buttons.DeleteButton', objId : fav.id, dojoAttachEvent : 'onDelete: _deleteFavorite' }
+
+    :if !favorites.length
+      %li= i18n_noFavorites

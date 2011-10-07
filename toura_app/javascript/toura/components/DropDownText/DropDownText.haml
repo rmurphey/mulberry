@@ -1,0 +1,10 @@
+.component.drop-down-text
+  .open-wrapper{ dojoAttachPoint : 'openButton' }
+    .button.open
+      %span=i18n_instructions
+
+  .text-wrapper{ dojoAttachPoint : 'textWrapper' }
+    .body-text-container{ dojoAttachPoint : 'bodyTextContainer' }= bodyText
+    .button.close{ dojoAttachPoint : 'closeButton' }
+      %span=i18n_close
+

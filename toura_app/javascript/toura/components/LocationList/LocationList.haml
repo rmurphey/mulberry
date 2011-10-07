@@ -1,0 +1,18 @@
+%ul.component.location-list
+  :each location in locations
+    %li
+      .address
+        %p= location.name
+
+        :if location.address
+          %p= location.address
+
+      %a.directions{ target : '_blank', href : location.directionsUrl }= i18n_directions
+
+      :if location.phoneNumber
+        %a.phone-number{ href : location.phoneUrl }
+          %span.label= i18n_phone
+          %span= location.phoneNumber
+
+      :if location.website
+          %a.website{ href : location.website }= i18n_website

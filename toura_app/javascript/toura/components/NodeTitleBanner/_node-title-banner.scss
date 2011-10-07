@@ -1,0 +1,10 @@
+.component.node-title-banner {
+  .image {
+    background-position: center center;
+    -webkit-background-size: contain;
+  }
+
+  header {
+    @include pane;
+  }
+}

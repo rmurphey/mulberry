@@ -1,0 +1,15 @@
+%form.component.social-message
+  :if requireAuth
+    %fieldset.auth
+      %input{ type : 'text', name : 'username', placeholder : 'username', dojoAttachPoint : 'username', autocapitalize : 'off', autocorrect : 'off' }
+      %input{ type : 'password', name : 'password', placeholder : 'password', dojoAttachPoint : 'password' }
+
+
+  %textarea{ dojoAttachPoint : 'message', name : 'msg', autocorrect : 'off' }= messageText
+
+  :if maxLength
+    .count{ dojoAttachPoint : 'count' }= availLength
+
+  %fieldset.buttons
+    %input.highlight{ type : 'submit', dojoAttachPoint : 'submitBtn', value : i18n_submitLabel }
+    %input{ type : 'reset', dojoAttachPoint : 'cancelBtn', value : i18n_cancelLabel }

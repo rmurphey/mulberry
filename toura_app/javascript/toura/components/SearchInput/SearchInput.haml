@@ -1,0 +1,5 @@
+.component.search-input
+  %a.back{ dojoType : 'toura.components.buttons.BackButton' }
+  %form.search{ dojoAttachPoint : 'searchForm' }
+    %input{ type : 'search', name : 'query', placeholder : i18n_placeholderText, autocorrect : 'off', dojoAttachPoint : 'queryInput' }
+    %input{ type : 'submit', value : 'Search', dojoAttachPoint : 'searchButton' }

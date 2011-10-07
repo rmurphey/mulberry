@@ -1,0 +1,30 @@
+LocationList:
+  type: node
+  capabilities:
+  - name: ImageGalleryDetail
+    components:
+    - index:ImageGallery
+    - detail:ZoomableImageGallery
+    - detail:DetailTitle
+  screens:
+  - name: index
+    layoutName: location-list
+    regions:
+    - size: fixed
+      components:
+      - PageNav
+    - scrollable: true
+      components:
+      - NodeTitleBanner
+      - ImageGallery
+      - BodyText
+      - LocationList
+  - name: detail
+    regions:
+    - layout: overlay
+      size: fixed
+      components:
+      - DetailTitle
+    - components:
+      - ZoomableImageGallery
+

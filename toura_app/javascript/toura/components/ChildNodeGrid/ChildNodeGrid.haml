@@ -1,0 +1,9 @@
+%ul.component.child-node-grid
+  :each c in children
+    %li
+      %a{ href : c.url }
+        :if tablet
+          .image{ dojoType : 'toura.ui.BackgroundImage', imageUrl : c.featuredImage.large.url, imageWidth : 370, imageHeight : 277, loadOnInit: true }
+        :if phone
+          .image{ dojoType : 'toura.ui.BackgroundImage', imageUrl : c.featuredImage.small.url, imageWidth : 145, imageHeight : 109, loadOnInit: true }
+        %h3= c.name

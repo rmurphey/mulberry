@@ -1,0 +1,22 @@
+Home1Tablet:
+  type: node
+  screens:
+  - name: index
+    backgroundImage: true
+    layoutName: home-1
+    regions:
+    - regions:
+      - components: []
+      - regions:
+        - components:
+          - BodyText
+          scrollable: true
+        - components:
+          - ChildNodes
+          scrollable: true
+        containerType: column
+    - size: fixed
+      components:
+      - AppNav
+
+
