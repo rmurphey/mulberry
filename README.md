@@ -8,27 +8,27 @@ your app, and a framework for adding custom functionality and CSS.
 
 - Clone this repository to a location of your choosing.
 
-    git clone git@github.com:Toura/mulberry.git
+    `git clone git@github.com:Toura/mulberry.git`
 
 - Add the full path to `mulberry/bin` to your path by editing your profile and
-   adding the following:
+  adding the following:
 
-    export PATH=$PATH:/full/path/to/mulberry/bin
+    `export PATH=$PATH:/full/path/to/mulberry/mulberry/bin
 
-   For example, if you cloned the repository to `~/projects/toura_mulberry`, you
-   would add the following to your `.profile` file.
+For example, if you cloned the repository to `~/projects/mulberry`, you
+would add the following to your `.profile` file.
 
-    export PATH=$PATH:/Users/yourusername/projects/toura_mulberry/mulberry/bin
+    export PATH=$PATH:/Users/yourusername/projects/mulberry/mulberry/bin
 
 - Install bundler if it is not already installed (note that you will need to
    have [rubygems](http://docs.rubygems.org/read/chapter/3) installed; it is
    installed by default on OSX):
 
-    gem install bundler
+    `gem install bundler`
 
 - From the root directory of the repository, run the following command:
 
-    bundle install
+    `bundle install`
 
 - You're done! You should now be able to run mulberry from any directory.
 
@@ -105,11 +105,11 @@ To build and run apps on Android Simulator, you must:
 - Edit your shell's loading files (`.bashrc` or `.bash\_profile` for bash and
    `.zshrc` for zsh) and add a line similar to:
 
-	  export PATH=$PATH:/Developer/SDKs/android-sdk-mac_x86/tools:/Developer/SDKs/android-sdk-mac_x86/platform-tools
+	  `export PATH=$PATH:/Developer/SDKs/android-sdk-mac_x86/tools:/Developer/SDKs/android-sdk-mac_x86/platform-tools`
 
 - Open a new teminal and run the SDK manager:
 
-	  android
+	  `android`
 
 - Click "Available packages"
 
@@ -242,6 +242,7 @@ supports. Run the following from the root of your project:
 
 # TODOs
 
+- The repo should include a demo application. One is forthcoming.
 - Presently, it's not straightforward to change the icons that the application
   uses in the default theme.
 - Many built-in page templates use a legacy system for specifying the layout of
@@ -252,3 +253,7 @@ supports. Run the following from the root of your project:
 - Capabilities will only work with built-in components. This will be addressed
   for the beta or sooner.
 - The command line tool should use OptionParser.
+- Flurry and UrbanAirship integration should be documented.
+- The Google Maps tagline is not being displayed on Google Maps pages; this may
+  cause Apple to reject an app that uses Google Maps. A fix is coming very soon.
+- Document how to create additional themes.
