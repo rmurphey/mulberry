@@ -76,7 +76,7 @@ module Mulberry
           [
             :image, :video, :audio, :google_map_pin
           ].each do |asset_type|
-            asset_group = asset_type.to_s.pluralize.to_sym
+            asset_group = "#{asset_type.to_s}s".to_sym
             if !item[asset_group].is_a? Array
               next
             end
