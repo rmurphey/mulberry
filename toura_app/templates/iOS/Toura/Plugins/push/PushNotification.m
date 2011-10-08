@@ -103,7 +103,7 @@
 
 - (void)isEnabled:(NSMutableArray *)arguments withDict:(NSMutableDictionary *)options {
     UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-    NSString *jsStatement = [NSString stringWithFormat:@"navigator.pushNotification.isEnabled = %d;", type != UIRemoteNotificationTypeNone];
+    NSString *jsStatement = [NSString stringWithFormat:@"window.plugins.pushNotification.isEnabled = %d;", type != UIRemoteNotificationTypeNone];
     NSLog(@"JSStatement %@",jsStatement);
 }
 
