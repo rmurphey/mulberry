@@ -12,7 +12,7 @@ dojo.declare('toura.models._StorableAsset', [], {
 
     var assetType = store.getValue(item, 'type'),
         subtypes = assetType === 'image' ?
-          [ 'featured_small', 'featured', 'gallery', 'original' ] : false;
+          [ 'featuredSmall', 'featured', 'gallery', 'original' ] : false;
 
     if (subtypes) {
       dojo.forEach(subtypes, function(subtype) {

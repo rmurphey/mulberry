@@ -30,7 +30,7 @@ dojo.declare('toura.models.Feed', [], {
         identity : item.feed._reference,
         onItem : function(item) {
           dojo.mixin(this, {
-            feedUrl : store.getValue(item, 'feed_url'),
+            feedUrl : store.getValue(item, 'feedUrl'),
             id : store.getValue(item, 'id'),
             name : store.getValue(item, 'name')
           });
@@ -39,7 +39,7 @@ dojo.declare('toura.models.Feed', [], {
       });
     } else {
       dojo.mixin(this, {
-        feedUrl : store.getValue(item, 'feed_url'),
+        feedUrl : store.getValue(item, 'feedUrl'),
         id : store.getValue(item, 'id'),
         name : store.getValue(item, 'name')
       });

@@ -48,34 +48,34 @@ dojo.declare('toura.models.Node', [], {
       name : store.getValue(item, 'name'),
 
       headerImage : {
-        phone : getAssets('phone_header_image', toura.models.HeaderImage)[0],
-        tablet : getAssets('tablet_header_image', toura.models.HeaderImage)[0]
+        phone : getAssets('phoneHeaderImage', toura.models.HeaderImage)[0],
+        tablet : getAssets('tabletHeaderImage', toura.models.HeaderImage)[0]
       },
 
       backgroundImage : {
-        phone : getAssets('phone_background_image', toura.models.BackgroundImage)[0],
-        tablet : getAssets('tablet_background_image', toura.models.BackgroundImage)[0]
+        phone : getAssets('phoneBackgroundImage', toura.models.BackgroundImage)[0],
+        tablet : getAssets('tabletBackgroundImage', toura.models.BackgroundImage)[0]
       },
 
-      featuredImage : getAssets('featured_image', toura.models.FeaturedImage)[0],
+      featuredImage : getAssets('featuredImage', toura.models.FeaturedImage)[0],
 
       children : store.getValues(item, 'children'),
-      bodyText : store.getValue(item, 'body_text'),
+      bodyText : store.getValue(item, 'bodyText'),
 
       images : getAssets('images', toura.models.Image),
       audios : getAssets('audios', toura.models.Audio),
       videos : getAssets('videos', toura.models.Video),
 
-      data : getAssets('data_assets', toura.models.Data),
+      data : getAssets('dataAssets', toura.models.Data),
 
-      staticMapImages : getAssets('image_map_images', toura.models.Image),
+      staticMapImages : getAssets('imageMapImages', toura.models.Image),
 
-      googleMapPins : getAssets('google_map_pins', toura.models.GoogleMapPin),
+      googleMapPins : getAssets('googleMapPins', toura.models.GoogleMapPin),
 
       feeds : getAssets('feeds', toura.models.Feed),
 
-      pageController : store.getValue(item, 'page_controller'),
-      sharingURL : store.getValue(item, 'sharing_url'),
+      pageController : store.getValue(item, 'pageController'),
+      sharingURL : store.getValue(item, 'sharingUrl'),
 
       parent : store.getValue(item, 'parent')
     });

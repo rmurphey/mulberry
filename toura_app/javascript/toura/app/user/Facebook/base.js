@@ -19,7 +19,7 @@ dojo.declare('toura.app.user.Facebook.base', [], {
       toura.app.Phonegap.present ? this.device.os : 'browser'
     ]);
 
-    var key = toura.app.Config.get('app').facebook_api_key;
+    var key = toura.app.Config.get('app').facebookApiKey;
 
     if (key) {
       this.init(key);

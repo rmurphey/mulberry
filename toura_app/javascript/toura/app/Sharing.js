@@ -13,7 +13,7 @@ toura.app.Sharing = {
     console.log('toura.app.Sharing::getMessage', arguments);
 
     var app = toura.app.Config.get('app'),
-        defaultTmpl = app.sharing_text || toura.sharingText || "${sharingURL}",
+        defaultTmpl = app.sharingText || toura.sharingText || "${sharingURL}",
         consumed = 0,
         ret;
 
@@ -21,8 +21,8 @@ toura.app.Sharing = {
     obj = obj || { "name" : app.name };
 
     // use default sharing url if one isn't present on the object
-    console.log('app sharing URL is ' + app.sharing_url);
-    obj.sharingURL = obj.sharingURL || app.sharing_url || toura.sharingURL;
+    console.log('app sharing URL is ' + app.sharingUrl);
+    obj.sharingURL = obj.sharingURL || app.sharingUrl || toura.sharingURL;
 
     if (!obj.sharingURL) {
       console.error('No sharing URL defined for object or app. This will end badly.');
