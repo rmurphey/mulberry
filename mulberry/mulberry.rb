@@ -20,14 +20,11 @@ module Mulberry
   CONFIG    = 'config.yml'
 
   DEFAULTS  = {
-    # TODO: it is terrible that these use different
-    # case styles, but presently that's what
-    # APP expects, so, it is what it is.
     'locale'            =>  'en-US',
     'homeNodeId'        =>  'node-home',
     'aboutNodeId'       =>  'node-about',
-    'sharing_url'       =>  'http://toura.com',
-    'sharing_text'      =>  '${name}',
+    'sharingUrl'        =>  'http://toura.com',
+    'sharingText'       =>  '${name}',
     'aboutEnabled'      =>  true
   }
 

@@ -14,7 +14,7 @@ module Mulberry
 
       public
       def reference
-        ref = { :google_map_pin => { '_reference' => id } }
+        ref = { :googleMapPin => { '_reference' => id } }
 
         data = load_data
 
@@ -38,7 +38,7 @@ module Mulberry
           :lon            =>  data['lon'],
           :lat            =>  data['lat'],
           :website        =>  data['website'],
-          :phone_number   =>  data['phone_number']
+          :phoneNumber    =>  data['phone_number']
         }
       end
     end

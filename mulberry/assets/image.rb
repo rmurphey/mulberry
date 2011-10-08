@@ -31,7 +31,7 @@ module Mulberry
           :name       =>  @asset_name
         }
 
-        [ :featured, :featured_small, :gallery, :original ].each do |image_type|
+        [ :featured, :featuredSmall, :gallery, :original ].each do |image_type|
           override = "#{@asset_name}-#{image_type}.#{@filename.split('.').last}"
           item_data[image_type] = {
             :filename => File.exists?(File.join(@dir, override)) ? override : @filename

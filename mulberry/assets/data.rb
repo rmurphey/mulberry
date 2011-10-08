@@ -14,7 +14,7 @@ module Mulberry
 
       public
       def reference
-        { :data_asset => { '_reference' => id } }
+        { :dataAsset => { '_reference' => id } }
       end
 
       def item

@@ -24,7 +24,7 @@ module Mulberry
           :type       =>  self.asset_type,
           :id         =>  id,
           :name       =>  @asset_name,
-          :feed_url   =>  data['feed_url']
+          :feedUrl   =>  data['feed_url']
         }
       end
     end

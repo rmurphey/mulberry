@@ -23,8 +23,8 @@ module Mulberry
       }
 
       DATA_NAME_MAP = {
-        'locations'   => :google_map_pins,
-        'data'        => :data_assets
+        'locations'   => :googleMapPins,
+        'data'        => :dataAssets
       }
 
       def initialize(node, app_items)
@@ -65,14 +65,14 @@ module Mulberry
           :type               => ASSET_TYPE,
           :id                 => "#{ASSET_TYPE}-#{node}",
           :name               => config['title'],
-          :page_controller    => config['template'],
-          :body_text          => body_text.reference
+          :pageController     => config['template'],
+          :bodyText           => body_text.reference
         }
 
         if config['header_image']
           header_image = Mulberry::Asset::HeaderImage.new(config['header_image'], @assets_dir)
-          page_data[:phone_header_image] = header_image.reference
-          page_data[:tablet_header_image] = header_image.reference
+          page_data[:phoneHeaderImage] = header_image.reference
+          page_data[:tabletHeaderImage] = header_image.reference
           @app_items << header_image.item
         end
 

@@ -1,4 +1,5 @@
 require 'mulberry/page'
+require 'active_support/inflector'
 
 module Mulberry
   class Data
@@ -69,23 +70,20 @@ module Mulberry
               :type       => 'node',
               :node       => item[:id]
             }
-          else
-            puts "no body text for #{item}"
           end
 
-          [
-            :image, :video, :audio, 'google-map-pin'.to_sym
-          ].each do |asset_type|
-            asset_group = "#{asset_type.to_s}s".to_sym
+          [ :image, :video, :audio, 'google-map-pin'.to_sym ].each do |asset_type|
+            asset_group = asset_type.to_s.underscore.camelize(:lower).pluralize.to_sym
             if !item[asset_group].is_a? Array
               next
             end
 
             item[asset_group].each do |a|
+              p a
               if a[:caption]
                 text_asset = find_caption a
                 text_asset[:contexts] << context_makers[asset_type].call(
-                  a[asset_type]['_reference'],
+                  a[asset_type.to_s.underscore.camelize(:lower).to_sym]['_reference'],
                   item[:id]
                 )
               end
