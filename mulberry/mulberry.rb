@@ -61,17 +61,16 @@ module Mulberry
       read_config
     end
 
-    def self.scaffold(app_name)
+    def self.scaffold(app_name, silent = false)
       raise "You must provide an app name" unless app_name
 
       mulberry_base = File.dirname(__FILE__)
-      puts File.read File.join(mulberry_base, 'LICENSE.txt')
+      puts File.read File.join(mulberry_base, 'LICENSE.txt') unless silent
 
       base = File.expand_path(app_name)
 
       if File.exists? base
-        puts "Can't create #{base} -- it already exists"
-        return
+        raise "Can't create #{base} -- it already exists"
       end
 
       FileUtils.mkdir base
@@ -110,6 +109,13 @@ module Mulberry
         FileUtils.cp(File.join(mulberry_base, 'templates', tmpl), base)
       end
 
+      original_config = File.read File.join(base, 'config.yml')
+      original_config.gsub!(/^name:.?$/, "name: #{app_name}")
+
+      File.open(File.join(base, 'config.yml'), 'w') do |f|
+        f.write original_config
+      end
+
       [ 'home.md', 'about.md' ].each do |page|
         FileUtils.cp(
           File.join(mulberry_base, 'templates', 'pages', page),
@@ -119,7 +125,7 @@ module Mulberry
 
       FileUtils.cp_r(File.join(mulberry_base, 'themes'), base)
 
-      puts "Scaffolded an app at #{base}"
+      puts "Scaffolded an app at #{base}" unless silent
     end
 
     def serve

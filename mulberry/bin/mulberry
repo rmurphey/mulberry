@@ -25,10 +25,14 @@ module Mulberry
           dir ||= Dir.pwd
         end
 
-        if action == 'scaffold' || dir_is_app?(dir)
-          self.send(action, dir)
-        else
-          puts "You must specify a valid app."
+        begin
+          if action == 'scaffold' || dir_is_app?(dir)
+            self.send(action, dir)
+          else
+            raise "You must specify a valid app."
+          end
+        rescue RuntimeError => e
+          puts e
         end
 
         return

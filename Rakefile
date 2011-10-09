@@ -9,8 +9,7 @@ end
 require 'rake'
 
 task :spec do
-  require File.expand_path('../spec/spec_helper.rb', __FILE__)
-  %x{rspec spec}
+  exec %{rspec --color --format doc spec}
 end
 
 task :default => :spec
