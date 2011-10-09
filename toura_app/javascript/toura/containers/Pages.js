@@ -13,6 +13,8 @@ dojo.declare('toura.containers.Pages', [ toura._View ], {
       this._onAnimationEnd();
       this._cleanupOldPage();
     });
+
+    this.inherited(arguments);
   },
 
   _setNavDirectionAttr : function(dir) {
