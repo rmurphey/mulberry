@@ -235,8 +235,7 @@ dojo.declare('toura._View', [ dijit._Widget, dijit._Templated, toura._Nls ], {
    **/
   toggle : function(domNode) {
     if (domNode) {
-      var isHidden = dojo.hasClass(domNode, 'hidden');
-      dojo[ isHidden ? 'removeClass' : 'addClass' ](domNode, 'hidden');
+      dojo.toggleClass(domNode, 'hidden');
       return;
     }
 
