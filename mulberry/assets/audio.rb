@@ -5,11 +5,11 @@ module Mulberry
     class Audio < Mulberry::Asset::Base
       protected
       def asset_type_dir
-        'videos'
+        'audios'
       end
 
       def asset_type
-        'video'
+        'audio'
       end
 
       public
