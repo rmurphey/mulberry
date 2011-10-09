@@ -62,6 +62,8 @@ module Mulberry
     end
 
     def self.scaffold(app_name)
+      raise "You must provide an app name" unless app_name
+
       mulberry_base = File.dirname(__FILE__)
       puts File.read File.join(mulberry_base, 'LICENSE.txt')
 

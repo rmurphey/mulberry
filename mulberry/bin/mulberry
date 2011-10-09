@@ -17,7 +17,13 @@ module Mulberry
       action = args[0]
 
       if [ 'scaffold', 'serve', 'deploy', 'test', 'data' ].include? action
-        dir = (args[1] && File.expand_path(args[1])) || Dir.pwd
+        dir = (args[1] && File.expand_path(args[1]))
+
+        if !dir && action == 'scaffold'
+          raise "You must specify an app name" unless dir
+        else
+          dir = Dir.pwd
+        end
 
         if action == 'scaffold' || dir_is_app?(dir)
           self.send(action, dir)
