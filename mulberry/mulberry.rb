@@ -2,6 +2,7 @@ $: << File.expand_path('../', __FILE__)
 $: << File.expand_path('../..', __FILE__)
 
 require 'rubygems'
+require 'bundler/setup'
 require 'yaml'
 require 'json'
 require 'fileutils'
@@ -9,7 +10,6 @@ require 'fileutils'
 require 'mulberry/data'
 require 'mulberry/server'
 require 'mulberry/build_helper'
-
 require 'toura_app/lib/builder'
 
 module Mulberry
