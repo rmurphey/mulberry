@@ -13,7 +13,7 @@ dojo.declare('toura.app.user.Favorites', [], {
   constructor : function() {
     this._init();
 
-    this.subscrptions = [
+    this.subscriptions = [
       dojo.subscribe('/favorite/add', this, '_addFavorite'),
       dojo.subscribe('/favorite/remove', this, '_removeFavorite'),
       dojo.subscribe('/favorites/clear', this, '_empty'),
