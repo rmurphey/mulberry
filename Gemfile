@@ -9,3 +9,4 @@ gem 'kramdown'
 gem 'rspec'
 gem 'evergreen'
 gem 'active_support'
+gem 'jshintrb', :git => 'git://github.com/Toura/jshintrb.git', :require => false
