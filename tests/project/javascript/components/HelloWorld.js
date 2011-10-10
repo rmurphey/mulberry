@@ -7,9 +7,9 @@ mulberry.component('HelloWorld', {
     this.connect(this.page, 'init', '_init');
   },
 
-  _init : function(str) {
-    if (dojo.isString(str)) {
-      this.domNode.innerHTML = "Hello, " + str;
+  _init : function(params) {
+    if (params.str) {
+      this.domNode.innerHTML = "Hello, " + params.str;
     }
   }
 });

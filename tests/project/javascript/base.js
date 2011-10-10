@@ -7,12 +7,11 @@ dojo.subscribe('/routes/loaded', function() {
   toura.app.Router.registerRoute(
     '/node/node-dynamic/:str',
     function(params) {
-      var str = params.str,
-          node = toura.app.Data.getModel('node-dynamic'),
+      var node = toura.app.Data.getModel('node-dynamic'),
           page = toura.app.PageFactory.createPage('node', node);
 
       toura.app.UI.showPage(page);
-      page.init(str);
+      page.init(params);
     }
   );
 });
