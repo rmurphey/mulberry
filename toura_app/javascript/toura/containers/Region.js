@@ -73,6 +73,7 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
 
         var c = this.adopt(klass, {
           baseObj : this.baseObj,
+          page : this.page,
           node : this.baseObj,
           device : this.device,
           screen : this.screen,

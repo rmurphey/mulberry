@@ -35,6 +35,7 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
 
     dojo.forEach(this.templateConfig.screens, function(screen) {
       var scr = this.adopt(toura.containers.Screen, {
+        page : this,
         config : screen,
         baseObj : this.baseObj,
         device : this.device,
