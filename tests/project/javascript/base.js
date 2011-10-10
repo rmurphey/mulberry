@@ -3,7 +3,7 @@ dojo.provide('client.base');
 dojo.require('client.components.Twitter');
 dojo.require('client.components.HelloWorld')
 
-dojo.subscribe('/app/started', function() {
+dojo.subscribe('/routes/loaded', function() {
   toura.app.Router.registerRoute(
     '/node/node-dynamic/:str',
     function(params) {
