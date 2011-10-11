@@ -11,7 +11,7 @@ namespace :evergreen  do
   task :run => :generate_stuff do
     if not File.exists?(File.join(TouraAPP::root, 'javascript', 'dev'))
       puts "Building app dev files"
-      `cd ..; rake builder:app_dev`
+      `rake builder:app_dev`
     end
 
     Kernel.exit(1) unless Evergreen::Cli.execute(["run"])

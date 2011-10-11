@@ -1,4 +1,4 @@
-require "toura_app/application"
+require "application"
 require "builder/task_base.rb"
 
 module Builder
