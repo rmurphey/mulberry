@@ -177,11 +177,7 @@ module Builder
     end
 
     def build_required
-      if @build.settings[:force_js_build]
-        true
-      else
-        !File.exists? File.join(@location, @build_type, 'dojo', 'dojo.js')
-      end
+      true
     end
 
     def dojo_build
