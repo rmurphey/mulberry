@@ -17,6 +17,7 @@ dojo.declare('toura.containers.Screen', [ toura.containers._LayoutBox ], {
     if (this.config.regions) {
       this.regions = dojo.map(this.config.regions, function(region) {
         return this.adopt(toura.containers.Region, {
+          page : this.page,
           config : region,
           baseObj : this.baseObj,
           device : this.device,

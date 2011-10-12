@@ -187,7 +187,9 @@ toura.component = function(name, proto) {
 
     startup : function() {
       this.inherited(arguments);
-      proto.init.call(this);
+      if (proto.init) {
+        proto.init.call(this);
+      }
     }
   });
 

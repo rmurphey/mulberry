@@ -116,7 +116,8 @@ module Builder
 
         # Download specified Dojo version and extract it to the js dir
         @build.log("Downloading and extracting Dojo. JavaScript goodness is a few minutes away.", 'info')
-        system %{curl --insecure -o - #{dojo} | tar -C #{File.join(TouraAPP.root, "javascript")} -xzf -}
+        dojo_installed = system %{curl --insecure -o - #{dojo} | tar -C #{File.join(TouraAPP.root, "javascript")} -xzf -}
+        raise "Fatal error: Failed to install Dojo." unless dojo_installed
       end
 
       @build.log("Dojo is installed. It's all good.", 'info')
@@ -176,11 +177,7 @@ module Builder
     end
 
     def build_required
-      if @build.settings[:force_js_build]
-        true
-      else
-        !File.exists? File.join(@location, @build_type, 'dojo', 'dojo.js')
-      end
+      true
     end
 
     def dojo_build

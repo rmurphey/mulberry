@@ -9,17 +9,14 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
   templateConfig : {},
   templateString : dojo.cache('toura.pageControllers', 'Configurable/Configurable.haml'),
 
-  screens : {},
-
   postMixInProperties : function() {
     this.inherited(arguments);
-    console.log('BASE OBJ', this.baseObj);
     this.baseObj.shareable = this.baseObj.type === 'node';
-    console.log('TEMPLATE CONFIG', this.templateConfig);
   },
 
   postCreate : function() {
     this.inherited(arguments);
+    this.screens = {};
 
     if (!this.baseObj) {
       throw "Configurable page controller requires a base object";
@@ -35,6 +32,7 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
 
     dojo.forEach(this.templateConfig.screens, function(screen) {
       var scr = this.adopt(toura.containers.Screen, {
+        page : this,
         config : screen,
         baseObj : this.baseObj,
         device : this.device,
