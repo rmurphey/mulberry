@@ -45,11 +45,7 @@
   -webkit-box-shadow: none !important;
 }
 
-.component.persistentcomponent {
+.component.persistent-component {
   padding: 10px;
   background-color: #fff;
-
-  &.hidden {
-    display: none;
-  }
 }

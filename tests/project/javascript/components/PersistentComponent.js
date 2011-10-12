@@ -5,7 +5,6 @@ mulberry.component('PersistentComponent', {
 
   init : function() {
     this.subscribe('/header/update', '_updateHeader');
-    console.log('SUBSCRIBED');
   },
 
   _updateHeader : function(val) {
