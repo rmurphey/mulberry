@@ -45,3 +45,11 @@
   -webkit-box-shadow: none !important;
 }
 
+.component.persistentcomponent {
+  padding: 10px;
+  background-color: #fff;
+
+  &.hidden {
+    display: none;
+  }
+}
