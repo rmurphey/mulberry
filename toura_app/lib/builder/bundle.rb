@@ -248,7 +248,22 @@ module Builder
         FileUtils.rm_r(target) if File.exists?(target)
         FileUtils.mkdir_p(permastore)
         FileUtils.cp_r(@project_dir, permastore)
-        @location = permastore
+
+        if @target['build_type'] == 'mulberry'
+          @location = File.join(permastore, 'android')
+          FileUtils.cd @location
+
+          if File.exists? File.join(@location, 'keystore')
+            system %{ant release}
+            @build.log("You can install to your device as follows:\n\nadb install -r #{@location}/bin/*release.apk\n", 'info')
+          else
+            system %{ant debug}
+            @build.log("You can install to your device as follows:\n\nadb install -r #{@location}/bin/*debug.apk\n\n", 'info')
+            @build.log("To create a releasable APK, make sure your project includes a keystore file\n\n", 'info')
+          end
+        else
+          @location = permastore
+        end
       end
     end
 
