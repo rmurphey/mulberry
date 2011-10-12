@@ -51,7 +51,11 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
         return null;
       }
 
-      return new toura.capabilities[C]({ page : this, components : components });
+      return new toura.capabilities[C]({
+        page : this,
+        baseObj : this.baseObj,
+        components : components
+      });
     }, this);
 
     if (this.screens.detail) {
@@ -59,7 +63,9 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
     }
 
     this.addClass('page-' + this.baseObj.id);
+    this.addClass(this.templateName);
   },
+
 
   showScreen : function (screenName) {
     dojo.forIn(this.screens, function(name, screen) {

@@ -1,14 +1,13 @@
 .page.google-map-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 
   .index {
-    height: 100%;
-    width: 100%;
+    -webkit-box-flex: 1;
     display: -webkit-box;
     -webkit-box-orient: vertical;
 
     > .body {
-      height: 100%;
-      width: 100%;
       -webkit-box-flex: 1;
       display: -webkit-box;
       -webkit-box-orient: vertical;

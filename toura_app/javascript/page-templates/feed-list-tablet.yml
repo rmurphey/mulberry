@@ -1,4 +1,4 @@
-FeedListTablet:
+feed-list-tablet:
   type: node
   capabilities:
   - name: FeedItemList_FeedItemDetail
@@ -8,7 +8,6 @@ FeedListTablet:
   screens:
   - name: index
     backgroundImage: false
-    layoutName: feed-list
     regions:
     - size: fixed
       components:

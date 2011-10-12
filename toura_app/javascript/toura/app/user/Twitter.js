@@ -12,8 +12,8 @@ dojo.declare('toura.app.user.Twitter', [], {
 
   constructor: function() {
     var config = {
-      customerKey : toura.app.Config.get('app').twitter_customer_key,
-      customerSecret : toura.app.Config.get('app').twitter_customer_secret
+      customerKey : toura.app.Config.get('app').twitterCustomerKey,
+      customerSecret : toura.app.Config.get('app').twitterCustomerSecret
     };
 
     if (config.customerKey && config.customerSecret) {

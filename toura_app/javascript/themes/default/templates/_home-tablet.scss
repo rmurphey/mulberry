@@ -1,0 +1,15 @@
+.page.home-tablet {
+  .screen.index {
+    -webkit-background-size: cover;
+
+    .tablet & {
+      .screen {
+        height: 100%;
+      }
+
+      .body-text {
+        padding: 0 20px 0 20px;
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-FeedListPhone:
+feed-list-phone:
   type: node
   capabilities:
   - name: FeedItemList_FeedItemPage

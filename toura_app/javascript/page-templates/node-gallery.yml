@@ -1,14 +1,13 @@
-default:
+node-gallery:
   type: node
   screens:
   - name: index
-    backgroundImage: true
     regions:
     - size: fixed
       components:
       - PageNav
-    - scrollable: true
+    - size: fixed
       components:
-      - PageHeaderImage
-      - BodyText
-      - ChildNodes
+        - DropDownText
+    - components:
+      - NodeGallery

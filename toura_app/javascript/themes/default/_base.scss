@@ -1,6 +1,5 @@
 @import 'helpers/mixins';
 @import 'helpers/colors';
-
 @import 'helpers/forms';
 
 body {
@@ -9,9 +8,6 @@ body {
 }
 
 @import 'components/base';
+@import 'templates/base';
 
-@import 'screens/location-list';
-@import 'screens/feed-list';
-@import 'screens/default';
-@import 'screens/home-1';
 

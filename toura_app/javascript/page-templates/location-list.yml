@@ -1,4 +1,4 @@
-LocationList:
+location-list:
   type: node
   capabilities:
   - name: ImageGalleryDetail
@@ -8,7 +8,6 @@ LocationList:
     - detail:DetailTitle
   screens:
   - name: index
-    layoutName: location-list
     regions:
     - size: fixed
       components:

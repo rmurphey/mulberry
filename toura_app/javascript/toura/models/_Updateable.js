@@ -89,7 +89,7 @@ dojo.declare('toura.models._Updateable', [], {
 
   _onUpdate : function(remoteData) {
     if (remoteData) {
-      if (remoteData.app_version && this._isAppVersionCompatible(remoteData.app_version)) {
+      if (remoteData.appVersion && this._isAppVersionCompatible(remoteData.appVersion)) {
         // if there was remote data, we need to store it
         dojo.when(this._store(remoteData), dojo.hitch(this, function() {
           // once we've stored it, we have a chance to run a hook
@@ -129,14 +129,14 @@ dojo.declare('toura.models._Updateable', [], {
         var appMajorVersion = this._parseMajorVersion(toura.app.Config.get('appVersion'));
 
         if (remoteVersionData) {
-          remoteVersionData.app_version = remoteVersionData.app_version || "2.0";
+          remoteVersionData.appVersion = remoteVersionData.appVersion || "2.0";
         }
 
         // check that app and remote major versions are compatible and that
         // remote version is newer than the local version
         if (
            remoteVersionData &&
-           this._isAppVersionCompatible(remoteVersionData.app_version) &&
+           this._isAppVersionCompatible(remoteVersionData.appVersion) &&
            (remoteVersionData.version > localVersion)
         ) {
 

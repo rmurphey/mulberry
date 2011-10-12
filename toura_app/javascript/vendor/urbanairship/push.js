@@ -1,6 +1,6 @@
-dojo.provide('vendor.urbanairship.PushNotification');
+dojo.provide('vendor.urbanairship.push');
 
-(function() {
+vendor.urbanairship.push = function() {
   var PushNotification = function() {
 
   }
@@ -20,13 +20,12 @@ dojo.provide('vendor.urbanairship.PushNotification');
       PhoneGap.exec(null, null, "PushNotification", "log", [{"msg":message}]);
   };
 
-
   PhoneGap.addConstructor(function()
   {
-  	if(!window.plugins)
-  	{
-  		window.plugins = {};
-  	}
-  	window.plugins.pushNotification = new PushNotification();
+    if(!window.plugins)
+    {
+      window.plugins = {};
+    }
+    window.plugins.pushNotification = new PushNotification();
   });
-})();
+};
