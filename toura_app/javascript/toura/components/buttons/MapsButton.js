@@ -17,6 +17,6 @@ dojo.declare('toura.components.buttons.MapsButton', [ toura.components.buttons._
 dojo.mixin(toura.components.buttons.MapsButton, {
   isAvailable : function() {
     var appConfig = toura.app.Config.get('app');
-    return appConfig.mapsEnabled && !!appConfig.mapsNodeId;
+    return appConfig.mapsEnabled && !!appConfig.mapNodeId;
   }
 });

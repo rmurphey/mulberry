@@ -1,4 +1,5 @@
-ImageGallery:
+images-and-text-phone:
+  type: node
   capabilities:
   - name: ImageGallery_ImageCaption
     components:
@@ -13,24 +14,21 @@ ImageGallery:
     components:
     - index:ImageGallery
     - index:ImageCaption
-  type: node
+
   screens:
     - name: index
+      backgroundImage: true
       regions:
       - size: fixed
         components:
         - PageNav
       - components:
         - ImageGallery
-      - containerType: column
-        regions:
-        - components:
-          - BodyText
-          - ChildNodes
-          scrollable: true
-        - components:
-          - ImageCaption
-          scrollable: true
+      - scrollable: true
+        components:
+        - ChildNodes
+        - ImageCaption
+        - BodyText
     - name: detail
       regions:
       - layout: overlay
@@ -39,5 +37,3 @@ ImageGallery:
         - DetailTitle
       - components:
         - ZoomableImageGallery
-
-

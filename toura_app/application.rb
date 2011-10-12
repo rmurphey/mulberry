@@ -32,7 +32,7 @@ class TouraAPP
   end
 
   def self.version
-    '2.10.2'
+    '3.0'
   end
 
   class App

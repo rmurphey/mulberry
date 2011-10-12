@@ -12,13 +12,8 @@ dojo.require('toura.pageControllers.search.Search');
 dojo.require('toura.pageControllers.favorites.Favorites');
 dojo.require('toura.pageControllers.node.Audios1');
 dojo.require('toura.pageControllers.node.GoogleMap1');
-dojo.require('toura.pageControllers.node.GridView');
-dojo.require('toura.pageControllers.node.Home2');
-dojo.require('toura.pageControllers.node.Images1');
 dojo.require('toura.pageControllers.node.Images2');
-dojo.require('toura.pageControllers.node.StaticMapImages1');
 dojo.require('toura.pageControllers.node.Videos1');
-dojo.require('toura.pageControllers.node.GridView');
 dojo.require('toura.pageControllers.Configurable');
 
 dojo.declare('toura.app.PageFactory', [], {
@@ -33,20 +28,36 @@ dojo.declare('toura.app.PageFactory', [], {
     'Images'            : 'Images1',
     'FullScreenImages'  : 'Images2',
     'LocationsMap'      : 'GoogleMap1',
-    'Feed'              : 'FeedList'
+    'Feed'              : 'FeedList',
+    'Default'           : 'default',
+    'FeedItem'          : 'feed-item',
+    'NodeGallery'       : 'node-gallery',
+    'LocationList'      : 'location-list',
+    'Hotspots'          : 'hotspots',
+    'GridView'          : 'grid-view'
   },
+
 
   /**
    * Provide a way to override controller names based on device info.
    */
   _overrides : {
     'FeedList' : function(device) {
-      return device.type === 'tablet' ? 'FeedListTablet' : 'FeedListPhone';
+      return 'feed-list-' + device.type;
+    },
+
+    'Images1' : function(device) {
+      return 'images-and-text-' + device.type;
     },
 
     'Home1' : function(device) {
-      return device.type === 'tablet' ? 'Home1Tablet' : 'Home1Phone';
+      return 'home-' + device.type;
+    },
+
+    'Home2' : function(device) {
+      return 'home-with-header-' + device.type;
     }
+
   },
 
   pages : {
@@ -55,14 +66,14 @@ dojo.declare('toura.app.PageFactory', [], {
         throw new Error('toura.app.PageFactory::pages::node requires a node');
       }
 
-      var controllerName = node.pageController || 'Default',
+      var controllerName = node.pageController || 'default',
           config, Controller;
 
       // allow setting different page controllers per device
       if (node.pageController && dojo.isObject(node.pageController)) {
-        controllerName = node.pageController[this.device.type] || 'Default';
+        controllerName = node.pageController[this.device.type] || 'default';
       } else {
-        controllerName = node.pageController || 'Default';
+        controllerName = node.pageController || 'default';
       }
 
       // translate new template names to legacy names
@@ -97,7 +108,8 @@ dojo.declare('toura.app.PageFactory', [], {
       return new Controller({
         baseObj : node,
         device : this.device,
-        templateConfig : config
+        templateConfig : config,
+        templateName : controllerName
       });
     },
 
@@ -111,7 +123,7 @@ dojo.declare('toura.app.PageFactory', [], {
 
     "feedItem" : function(feedItem) {
       var Controller = toura.pageControllers.Configurable,
-          templateConfig = toura.templates.FeedItem;
+          templateConfig = toura.templates['feed-item'];
 
       return new Controller({
         baseObj : feedItem,

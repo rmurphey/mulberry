@@ -136,16 +136,15 @@ dojo.declare('toura.capabilities._Capability', [ ], {
    */
   _doConnects : function() {
     dojo.forEach(this.connects, function(c) {
-      this._connect.apply(this, c);
+      this.connect.apply(this, c);
     }, this);
   },
 
   /**
-   * @private
    * Registers a connection with the capability's page, allowing for automatic
    * connection teardown when the page is destroyed.
    */
-  _connect : function(obj, method, fn) {
+  connect : function(obj, method, fn) {
     if (dojo.isString(obj)) { obj = this[obj]; }
     this.page.connect(obj, method, dojo.hitch(this, fn));
   }

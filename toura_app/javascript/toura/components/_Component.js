@@ -6,10 +6,6 @@ dojo.require('toura.Utilities');
 dojo.declare('toura.components._Component', [ toura._View ], {
   handleClicks : false,
 
-  constructor : function() {
-    console.log('Creating ' + this.declaredClass);
-  },
-
   /**
    * This is a stub for implementation by components that inherit from
    * _Component.
@@ -96,8 +92,6 @@ dojo.declare('toura.components._Component', [ toura._View ], {
   },
 
   postCreate : function() {
-    console.log('Starting ' + this.declaredClass + ' postcreate');
-
     this.inherited(arguments);
 
     if (this.isHidden) {
@@ -119,17 +113,11 @@ dojo.declare('toura.components._Component', [ toura._View ], {
     this.adjustMarkup();
     this.setupConnections();
     this.setupSubscriptions();
-
-    console.log('Finished ' + this.declaredClass + ' postcreate');
   },
 
   startup : function() {
-    console.log('Started ' + this.declaredClass + ' startup');
-
     this.inherited(arguments);
     this.resizeElements();
-
-    console.log('Finished ' + this.declaredClass + ' startup');
   },
 
   destroy : function() {

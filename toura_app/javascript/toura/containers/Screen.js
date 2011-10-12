@@ -10,6 +10,9 @@ dojo.declare('toura.containers.Screen', [ toura.containers._LayoutBox ], {
   postCreate : function() {
     this.inherited(arguments);
 
+    this.addClass(this.config.name);
+
+    // TODO: remove this
     if (this.config.layoutName) {
       this.addClass(this.config.layoutName);
     }

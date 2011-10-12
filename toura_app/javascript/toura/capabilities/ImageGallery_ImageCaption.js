@@ -13,7 +13,7 @@ dojo.declare('toura.capabilities.ImageGallery_ImageCaption', [ toura.capabilitie
   ],
 
   _setCaption : function(imageIndex) {
-    var image = this.node.images[imageIndex];
+    var image = this.baseObj.images[imageIndex];
     this.imageCaption.set('content', image && image.caption || '');
   }
 });

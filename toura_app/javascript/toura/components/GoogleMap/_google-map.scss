@@ -1,12 +1,14 @@
 .component.google-map {
-  height: 100%;
+  -webkit-box-flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 
   div {
     overflow: visible;
   }
 
   .map {
-    height: 100%;
+    -webkit-box-flex: 1;
   }
 
 }

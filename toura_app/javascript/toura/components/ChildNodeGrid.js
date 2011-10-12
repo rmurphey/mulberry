@@ -7,6 +7,7 @@ dojo.declare('toura.components.ChildNodeGrid', [ toura.components._Component ], 
   widgetsInTemplate : true,
 
   prepareData : function() {
+    this.node.populateChildren();
     // TODO: MAP should enforce this restraint
     this.children = dojo.filter(this.node.children || [], function(child) {
       return child.featuredImage !== undefined;

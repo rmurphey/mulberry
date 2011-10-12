@@ -1,13 +1,13 @@
-NodeGallery:
+grid-view:
   type: node
   screens:
   - name: index
+    backgroundImage: true
     regions:
     - size: fixed
       components:
       - PageNav
-    - size: fixed
+    - scrollable: true
       components:
-        - DropDownText
-    - components:
-      - NodeGallery
+      - BodyText
+      - ChildNodeGrid
