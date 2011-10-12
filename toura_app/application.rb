@@ -54,11 +54,7 @@ class TouraAPP
     end
 
     def self.deploy_client_customizations_dir
-      File.join(self.deploy_mulberry_dir, 'javascript', 'client_customizations')
-    end
-
-    def self.deploy_mulberry_dir
-      File.join(TouraAPP.deploy_root, 'vendor', 'mulberry')
+      File.join(TouraAPP.deploy_root, 'javascript', 'client_customizations')
     end
 
     def self.dojo_version
