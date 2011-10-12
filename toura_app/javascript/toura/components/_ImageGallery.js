@@ -65,10 +65,10 @@ dojo.declare('toura.components._ImageGallery', [], {
         moved = true;
       }));
 
-      c.push(dojo.connect(this.imageList, events.end, function() {
+      c.push(dojo.connect(this.imageList, events.end, function(e) {
         dojo.forEach(c, dojo.disconnect);
         if ((new Date().getTime() - start > toura.app.UI.touchMoveDebounce) && moved) { return; }
-        handle();
+        handle(e);
       }));
     });
   }

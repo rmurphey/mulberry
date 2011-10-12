@@ -31,7 +31,25 @@ dojo.declare('toura.components.NodeGallery', [ toura.components._Component, tour
   },
 
   _handleClick : function(e) {
-    var child = this.children[this.currentImageIndex];
+    var child = this.children[this.currentImageIndex],
+        params = {
+          x : e.offsetX,
+          y : e.offsetY
+        },
+        img = this.images[this.currentImageIndex],
+        multiplier,
+        nodeHeight = this.domNode.clientHeight,
+        nodeWidth = this.domNode.clientWidth;
+
+    if (img.height > nodeHeight) {
+      params.y += (img.height - nodeHeight) / 2
+    }
+
+    multiplier = img.original.width / nodeWidth;
+    params.x = Math.floor(params.x * multiplier);
+    params.y = Math.floor(params.y * multiplier);
+
+    toura.app.UI.click = params;
     toura.app.Router.go(child.url);
   },
 

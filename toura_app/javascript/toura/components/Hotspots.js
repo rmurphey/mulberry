@@ -71,18 +71,39 @@ dojo.declare('toura.components.Hotspots', [ toura.components._Component ], {
     }, this);
 
     if (foundSpot) {
+      toura.app.UI.click = { x : x, y : y };
       toura.app.Router.go(toura.app.URL.node(foundSpot.node_id));
     }
   },
 
   startup : function() {
+    var params = dojo.mixin({}, toura.app.UI.click),
+        nodeHeight = this.domNode.clientHeight,
+        nodeWidth = this.domNode.clientWidth,
+        newX = 0, newY = 0,
+        x, y;
+
+    toura.app.UI.click = false;
+
     this.inherited(arguments);
     this.scroller.refresh();
 
-    this.scroller.scrollTo(
-      -(this.image.width - toura.app.UI.viewport.width) / 2,
-      -(this.image.height - toura.app.UI.viewport.height) / 2,
-      0
-    );
+    if (params) {
+      x = +params.x;
+      y = +params.y;
+    } else {
+      x = this.image.width / 2;
+      y = this.image.height / 2;
+    }
+
+    if (x > nodeWidth / 2) {
+      newX = nodeWidth > nodeHeight ? x : Math.floor(x - (nodeWidth / 2));
+    }
+
+    if (y > nodeHeight / 2) {
+      newY = y;
+    }
+
+    this.scroller.scrollTo(newX * -1, newY * -1, 0);
   }
 });

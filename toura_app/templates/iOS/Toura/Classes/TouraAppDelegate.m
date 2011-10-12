@@ -81,6 +81,9 @@
  */
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView
 {
+	// Disable phone number detection
+	[theWebView setDataDetectorTypes: UIDataDetectorTypeLink & UIDataDetectorTypeAddress];
+
 	// only valid if Toura-Info.plist specifies a protocol to handle
 	if (self.invokeString) {
 		// this is passed before the deviceready event is fired, so you can access it in js when you receive deviceready

@@ -13,12 +13,14 @@ dojo.declare('toura.capabilities.Page_Images', [ toura.capabilities._Capability 
   ],
 
   _setup : function(pageState) {
+    if (!pageState) { return; }
+
     var imageId = pageState.assetId,
         index, image;
 
     if (!imageId) { return; }
 
-    image = dojo.filter(this.node.images, function(image, idx) {
+    image = dojo.filter(this.baseObj.images, function(image, idx) {
       if (image.id === imageId) {
         index = idx;
         return image;
@@ -28,7 +30,9 @@ dojo.declare('toura.capabilities.Page_Images', [ toura.capabilities._Capability 
     if (!image) { return; }
 
     if (this.imageGallery) {
-      this.imageGallery.scrollToIndex(index);
+      this.connect(this.imageGallery, 'startup', function() {
+        this.imageGallery.scrollToIndex(index);
+      });
     }
 
     if (this.imageCaption) {

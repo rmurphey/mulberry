@@ -1,4 +1,4 @@
-FeedItem:
+feed-item:
   type: detail
   capabilities:
   - name: PageNav_FeedTitle
@@ -7,7 +7,6 @@ FeedItem:
     - index:FeedItemDetail
   screens:
   - name: index
-    layoutName: feed-item
     backgroundImage: true
     regions:
     - size: fixed

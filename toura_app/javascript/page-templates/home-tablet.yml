@@ -1,9 +1,8 @@
-Home1Tablet:
+home-tablet:
   type: node
   screens:
   - name: index
     backgroundImage: true
-    layoutName: home-1
     regions:
     - regions:
       - components: []
