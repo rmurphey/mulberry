@@ -164,15 +164,10 @@ module Builder
         :releaseName =>     @build_type.to_s
       }
 
-      if (@build.build_helper.respond_to? 'source_dir') && (@required_layers.include? 'client')
+      if custom_js_source = @build.build_helper.custom_js_dir
         @client_dir = File.join(TouraAPP.root, 'javascript', 'client_tmp')
         FileUtils.rm_rf @client_dir if File.exists? @client_dir
-
-        FileUtils.cp_r(
-          File.join(@build.build_helper.source_dir, 'javascript'),
-          @client_dir
-        )
-
+        FileUtils.cp_r(custom_js_source, @client_dir)
         profile[:prefixes] << [ 'client', '../../client_tmp' ]
       end
 

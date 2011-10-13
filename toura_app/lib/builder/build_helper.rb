@@ -20,6 +20,10 @@ module Builder
       raise "Must implement app_id(device_os, device_type)"
     end
 
+    def custom_js_source
+      false
+    end
+
     private
     def padded_id
       # id's in iOS must be at least 2 characters :/
