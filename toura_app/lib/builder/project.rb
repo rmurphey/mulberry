@@ -85,7 +85,7 @@ module Builder
 
         android_dir = File.join(@task.location, 'android')
         new_java_dir = File.join(android_dir, 'src', app_id.split('.'))
-        keystore = File.join(project_settings[:config_dir], 'keystore')
+        keystore = File.join(project_settings[:config_dir], 'android', 'keystore')
 
         FileUtils.mv(
           File.join(android_dir, 'src', 'com', 'toura', 'www'),

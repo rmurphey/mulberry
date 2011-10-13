@@ -24,4 +24,5 @@ javascript/device
 javascript/dev
 javascript/MAP
 javascript/MAG
-config/builds
+config/builds/android/*
+config/builds/ios/*
