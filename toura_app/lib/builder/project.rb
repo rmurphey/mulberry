@@ -134,13 +134,12 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         }
 
         assets_dir = File.join(android_dir, 'assets')
+        FileUtils.mkdir assets_dir
 
         FileUtils.cp(
-          File.join(assets_dir, "airshipconfig.#{dev ? "dev" : "dummy"}.properties"),
+          File.join(project_settings[:config_dir], 'android', "airshipconfig#{dev ? ".dev" : ""}.properties"),
           File.join(assets_dir, "airshipconfig.properties")
         )
-
-        FileUtils.rm(Dir.glob(File.join(assets_dir, "airshipconfig.*.properties")))
 
         www = File.join(android_dir, 'assets', 'www')
         FileUtils.mkdir_p www unless File.exists? www
