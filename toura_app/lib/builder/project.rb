@@ -136,8 +136,12 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         assets_dir = File.join(android_dir, 'assets')
         FileUtils.mkdir assets_dir
 
+        airshipconfig_file = File.join(project_settings[:config_dir], 'android', "airshipconfig#{dev ? ".dev" : ""}.properties")
+        unless File.exists? airshipconfig_file
+          airshipconfig_file = File.join(TouraAPP.root, 'config', 'builds', 'examples', 'android', "airshipconfig.properties")
+        end
         FileUtils.cp(
-          File.join(project_settings[:config_dir], 'android', "airshipconfig#{dev ? ".dev" : ""}.properties"),
+          airshipconfig_file,
           File.join(assets_dir, "airshipconfig.properties")
         )
 
@@ -206,8 +210,12 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
           #{plist_file}
         }
 
+        urban_airship_plist_file = File.join(project_settings[:config_dir], 'ios', "UrbanAirship#{dev ? ".dev" : ""}.plist")
+        unless File.exists? urban_airship_plist_file
+          urban_airship_plist_file = File.join(TouraAPP.root, 'config', 'builds', 'examples', 'ios', "UrbanAirship.plist")
+        end
         FileUtils.cp(
-          File.join(project_settings[:config_dir], 'ios', "UrbanAirship#{dev ? ".dev" : ""}.plist"),
+          urban_airship_plist_file,
           File.join(project_toura_dir, "UrbanAirship.plist")
         )
       end
