@@ -52,7 +52,7 @@ public class TouraMainActivity extends DroidGap {
   @Override
   public void onStart() {
     super.onStart();
-    FlurryAgent.onStartSession(this, "");
+    FlurryAgent.onStartSession(this, "FAKE_KEY");
   }
 
   /*
