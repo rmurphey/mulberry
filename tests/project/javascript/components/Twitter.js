@@ -24,7 +24,7 @@ mulberry.component('Twitter', {
           tweet.created_at = dojo.date.locale.format(
             new Date(tweet.created_at), {
               datePattern : 'EEE',
-              timePattern : 'h:m a'
+              timePattern : 'h:mm a'
             }
           );
 
