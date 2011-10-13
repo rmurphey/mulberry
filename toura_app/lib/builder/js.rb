@@ -89,7 +89,7 @@ module Builder
 
         File.delete PROFILE_FILE
       ensure
-        if @client_dir && File.exists? @client_dir
+        if @client_dir && (File.exists? @client_dir)
           FileUtils.rm_rf @client_dir
         end
 
