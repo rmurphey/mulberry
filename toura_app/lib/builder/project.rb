@@ -211,7 +211,6 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
           File.join(project_settings[:config_dir], 'ios', "UrbanAirship#{dev ? ".dev" : ""}.plist"),
           File.join(project_toura_dir, "UrbanAirship.plist")
         )
-        FileUtils.rm(Dir.glob(File.join(project_toura_dir, "UrbanAirship.*.plist")))
       end
     end
   end
