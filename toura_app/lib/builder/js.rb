@@ -61,6 +61,7 @@ module Builder
       )
 
       @location = File.join(TouraAPP.root, 'javascript')
+      @client_dir = nil
 
       get_dojo
     end
@@ -88,6 +89,10 @@ module Builder
 
         File.delete PROFILE_FILE
       ensure
+        if @client_dir && File.exists? @client_dir
+          FileUtils.rm_rf @client_dir
+        end
+
         Dir.chdir pwd
       end
 
@@ -160,7 +165,15 @@ module Builder
       }
 
       if (@build.build_helper.respond_to? 'source_dir') && (@required_layers.include? 'client')
-        profile[:prefixes] << [ 'client', File.join(@build.build_helper.source_dir, 'javascript') ]
+        @client_dir = File.join(TouraAPP.root, 'javascript', 'client_tmp')
+        FileUtils.rm_rf @client_dir if File.exists? @client_dir
+
+        FileUtils.cp_r(
+          File.join(@build.build_helper.source_dir, 'javascript'),
+          @client_dir
+        )
+
+        profile[:prefixes] << [ 'client', '../../client_tmp' ]
       end
 
       profile
