@@ -21,7 +21,7 @@ module Builder
     end
 
     def custom_js_source
-      false
+      nil
     end
 
     private
