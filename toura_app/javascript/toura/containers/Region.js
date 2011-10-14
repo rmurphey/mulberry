@@ -67,8 +67,8 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
           this.baseObj.id === toura.app.Config.get('app').homeNodeId
         ) { return; }
 
-        var klass = componentName.match('custom:') ?
-                    client.components[componentName.replace('custom:', '')] :
+        var klass = componentName.match(/^custom\./) ?
+                    client.components[componentName.replace(/^custom\./, '')] :
                     toura.components[componentName];
 
         var c = this.adopt(klass, {

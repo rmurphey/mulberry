@@ -33,7 +33,10 @@ dojo.declare('toura.containers.Screen', [ toura.containers._LayoutBox ], {
   },
 
   registerComponent : function(c) {
-    this.components[c.declaredClass.replace('toura.components.','')] = c;
+    var componentName = c.declaredClass
+                          .replace('toura.components.', '')
+                          .replace('client.components.', 'custom.');
+    this.components[componentName] = c;
   },
 
   getComponent : function(n) {
