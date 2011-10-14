@@ -15,6 +15,7 @@ module Mulberry
       end
 
       action = args[0]
+      filenames = args.slice(1, args.length - 1)
 
       if [ 'scaffold', 'serve', 'deploy', 'test', 'data' ].include? action
         dir = (args[1] && File.expand_path(args[1]))
@@ -38,57 +39,37 @@ module Mulberry
         return
       end
 
-      if [
-        'create_page',
-        'create_feed',
-        'create_data',
-        'create_location'
-      ].include? action
+      if action.match /^create_.+/
         dir = Dir.pwd
+        raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(dir)
 
-        if dir_is_app?(dir)
-          content_type = action.gsub('create_', '')
-          filename = args[1] || "untitled-#{content_type}"
-          raise "Asset name cannot contain spaces" unless !filename.match(/\s/)
-          file = Mulberry::ContentCreator.new(content_type, dir, filename)
-        else
-          puts "You must run this command from inside a valid mulberry app."
-        end
+        default_filename = lambda { |type| "untitled-#{type.to_s}" }
+        default_creator = Mulberry::ContentCreator
 
-        return
+        commands = {
+          :page       => {},
+          :feed       => {},
+          :data       => {},
+          :location   => {},
+
+          :component  => {
+            :default  =>  'UntitledComponent',
+            :creator  =>  Mulberry::ComponentCreator
+          },
+
+          :template   => {
+            :default  =>  'UntitledTemplate',
+            :creator  =>  Mulberry::TemplateCreator
+          }
+        }
+
+        content_type = action.gsub('create_', '').to_sym
+        raise "Don't know how to do #{action}" unless commands[content_type]
+        command = commands[content_type]
+
+        filenames ||= [ command[:default] || default_filename.call(content_type) ]
+        filenames.each { |f| (command[:creator] || default_creator).new(content_type.to_s, dir, f) }
       end
-
-      if [ 'create_component' ].include? action
-        dir = Dir.pwd
-
-        if dir_is_app?(dir)
-          code_type = action.gsub('create_', '')
-          filename = args[1] || "Untitled"
-          raise "Component name cannot contain spaces" unless !filename.match(/\s/)
-          file = Mulberry::ComponentCreator.new(code_type, dir, filename)
-        else
-          puts "You must run this command from inside a valid mulberry app."
-        end
-
-        return
-      end
-
-      if [ 'create_template' ].include? action
-        dir = Dir.pwd
-
-        if dir_is_app?(dir)
-          code_type = action.gsub('create_', '')
-          filename = args[1] || "Untitled"
-          raise "Template name cannot contain spaces" unless !filename.match(/\s/)
-          file = Mulberry::TemplateCreator.new(code_type, dir, filename)
-        else
-          puts "You must run this command from inside a valid mulberry app."
-        end
-
-        return
-      end
-
-      puts "Don't know how to do #{action}"
     end
 
     private
