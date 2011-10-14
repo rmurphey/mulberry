@@ -79,7 +79,8 @@ module Mulberry
         if !children.empty?
           page_data[:children] = []
           children.each do |child|
-            page_data[:children] << { '_reference' => "#{ASSET_TYPE}-#{child}" }
+            child_name = child.is_a?(Hash) ? child.keys.first : child
+            page_data[:children] << { '_reference' => "#{ASSET_TYPE}-#{child_name}" }
           end
         end
 
