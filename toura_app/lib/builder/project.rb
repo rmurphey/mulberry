@@ -216,10 +216,11 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         )
 
         plist_file = File.join(project_toura_dir, 'Toura-Info.plist')
-
+        flurry_api_key = project_settings[:flurry_api_key] || 'NO_FLURRY_KEY_AVAILABLE' # must be non-blank value 
         plist_result = %x{#{sed} -e 's/${PRODUCT_NAME}/#{project_settings[:name]}/' \
           -e 's/com.toura.app2/#{app_id}/' \
           -e 's/${BUNDLE_VERSION}/#{TouraAPP.version}/' \
+          -e 's/${FLURRY_API_KEY}/#{flurry_api_key}/' \
           #{plist_file}
         }
 

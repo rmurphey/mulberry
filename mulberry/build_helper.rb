@@ -32,6 +32,7 @@ module Mulberry
         :bundle               => @build_dir,
         :jquery               => @config['jquery'],
         :config_dir           => @source_dir,
+        :flurry_api_key       => @config['flurry_api_key'],        
         :urban_airship_config => @config['urban_airship'] 
       }
     end

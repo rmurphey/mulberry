@@ -39,8 +39,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	//NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-
-	[ FlurryAPI startSession:@"" ];
+  
+   NSBundle* mainBundle = [NSBundle mainBundle];
+   NSString* flurryApiKey = [mainBundle objectForInfoDictionaryKey:@"FlurryApiKey"];
+   [ FlurryAPI startSession:flurryApiKey ];
 
     // ******** NOTE: modified the following block from the default app delegate as it assumes
     // your app will never receive push notifications
