@@ -136,7 +136,6 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         assets_dir = File.join(android_dir, 'assets')
 
         ua_config = project_settings[:urban_airship_config]
-        require 'ruby-debug'; debugger
         if ua_config
           airshipconfig_file = File.join(assets_dir, "airshipconfig.properties")
           if dev
