@@ -134,16 +134,30 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         }
 
         assets_dir = File.join(android_dir, 'assets')
-        FileUtils.mkdir assets_dir
 
-        airshipconfig_file = File.join(project_settings[:config_dir], 'android', "airshipconfig#{dev ? ".dev" : ""}.properties")
-        unless File.exists? airshipconfig_file
-          airshipconfig_file = File.join(TouraAPP.root, 'config', 'builds', 'examples', 'android', "airshipconfig.properties")
+        ua_config = project_settings[:urban_airship_config]
+        require 'ruby-debug'; debugger
+        if ua_config
+          airshipconfig_file = File.join(assets_dir, "airshipconfig.properties")
+          if dev
+            debug = true
+            in_production = false
+            credential_key_prefix = 'development'
+            credentials = ua_config['development']
+          else
+            debug = false
+            in_production = true
+            credential_key_prefix = 'production'
+            credentials = ua_config[production]
+          end
+          %x{#{sed} -e 's/${#{credential_key_prefix}AppKey}/#{credentials['app_key']}/' \
+            -e 's/${#{credential_key_prefix}AppSecret}/#{credentials['app_secret']}/' \
+            -e 's/${debug}/#{debug}/' -e 's/${inProduction}/#{in_production}/' \
+            -e 's/${transport}/#{ua_config['android']['transport']}/' \
+            -e 's/${c2dmSender}/#{ua_config['android']['c2dm_sender']}/' \
+            #{airshipconfig_file}
+          }
         end
-        FileUtils.cp(
-          airshipconfig_file,
-          File.join(assets_dir, "airshipconfig.properties")
-        )
 
         www = File.join(android_dir, 'assets', 'www')
         FileUtils.mkdir_p www unless File.exists? www
@@ -210,14 +224,16 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
           #{plist_file}
         }
 
-        urban_airship_plist_file = File.join(project_settings[:config_dir], 'ios', "UrbanAirship#{dev ? ".dev" : ""}.plist")
-        unless File.exists? urban_airship_plist_file
-          urban_airship_plist_file = File.join(TouraAPP.root, 'config', 'builds', 'examples', 'ios', "UrbanAirship.plist")
+        ua_config = project_settings[:urban_airship_config]
+        if ua_config
+          credentials = dev ? ua_config['development'] : ua_config['production']
+          plist_file = File.join(project_toura_dir, 'UrbanAirship.plist')
+          plist_result = %x{#{sed} -e 's/${UrbanAirshipKey}/#{credentials['app_key']}/' \
+            -e 's/${UrbanAirshipSecret}/#{credentials['app_secret']}/' \
+            #{plist_file}
+          }
         end
-        FileUtils.cp(
-          urban_airship_plist_file,
-          File.join(project_toura_dir, "UrbanAirship.plist")
-        )
+        
       end
     end
   end

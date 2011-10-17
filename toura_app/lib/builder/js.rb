@@ -177,7 +177,8 @@ module Builder
     end
 
     def build_required
-      true
+      # true
+      false
     end
 
     def dojo_build
