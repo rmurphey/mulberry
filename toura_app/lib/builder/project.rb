@@ -135,6 +135,14 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
 
         assets_dir = File.join(android_dir, 'assets')
 
+        touraconfig_file = File.join(assets_dir, 'touraconfig.properties')
+        if project_settings[:flurry_config]
+          flurry_api_key = project_settings[:flurry_config]['android']['api_key']
+        else 
+          flurry_api_key = 'NO_FLURRY_KEY_AVAILABLE' # must be non-blank value
+        end
+        %x{#{sed} -e 's/${flurryApiKey}/#{flurry_api_key}/' #{touraconfig_file}}
+
         ua_config = project_settings[:urban_airship_config]
         if ua_config
           airshipconfig_file = File.join(assets_dir, "airshipconfig.properties")
@@ -216,8 +224,13 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         )
 
         plist_file = File.join(project_toura_dir, 'Toura-Info.plist')
-        flurry_api_key = project_settings[:flurry_api_key] || 'NO_FLURRY_KEY_AVAILABLE' # must be non-blank value 
-        plist_result = %x{#{sed} -e 's/${PRODUCT_NAME}/#{project_settings[:name]}/' \
+        if project_settings[:flurry_config]
+          flurry_api_key = project_settings[:flurry_config]['ios']['api_key']
+        else 
+          flurry_api_key = 'NO_FLURRY_KEY_AVAILABLE' # must be non-blank value
+        end
+        product_name = project_settings[:name] || "The App With No Name"
+        plist_result = %x{#{sed} -e 's/${PRODUCT_NAME}/#{product_name}/' \
           -e 's/com.toura.app2/#{app_id}/' \
           -e 's/${BUNDLE_VERSION}/#{TouraAPP.version}/' \
           -e 's/${FLURRY_API_KEY}/#{flurry_api_key}/' \

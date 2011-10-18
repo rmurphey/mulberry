@@ -1,8 +1,13 @@
 package com.toura.www;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
+import java.util.Properties;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -52,7 +57,18 @@ public class TouraMainActivity extends DroidGap {
   @Override
   public void onStart() {
     super.onStart();
-    FlurryAgent.onStartSession(this, "");
+    Resources resources = this.getResources();
+    AssetManager assetManager = resources.getAssets();
+
+    try {
+        InputStream inputStream = assetManager.open("touraconfig.properties");
+        Properties properties = new Properties();
+        properties.load(inputStream);
+        FlurryAgent.onStartSession(this, properties.getProperty("flurryApiKey"));
+    } catch (IOException e) {
+        System.err.println("Failed to open touraconfig.properties file");
+        e.printStackTrace();
+    }
   }
 
   /*
@@ -101,4 +117,3 @@ public class TouraMainActivity extends DroidGap {
     return "toura.app.Notifications.notify({alert:'" + message.replace("'", "\\'") + "'});";
   }
 }
-
