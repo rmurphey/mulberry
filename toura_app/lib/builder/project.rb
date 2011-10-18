@@ -155,7 +155,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
             debug = false
             in_production = true
             credential_key_prefix = 'production'
-            credentials = ua_config[production]
+            credentials = ua_config['production']
           end
           %x{#{sed} -e 's/${#{credential_key_prefix}AppKey}/#{credentials['app_key']}/' \
             -e 's/${#{credential_key_prefix}AppSecret}/#{credentials['app_secret']}/' \
