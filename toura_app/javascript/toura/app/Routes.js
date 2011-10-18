@@ -75,7 +75,7 @@ toura.app.Routes = function() {
     {
       route : '/maps',
       handler : function(params, route) {
-        return nodeRoute(route, app.mapsNodeId);
+        return nodeRoute(route, app.mapNodeId);
       }
     },
 

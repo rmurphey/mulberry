@@ -23,7 +23,7 @@ module Mulberry
 
         {
           :type       =>  self.asset_type,
-          :data_type  =>  data_type,
+          :dataType   =>  data_type,
           :id         =>  id,
           :name       =>  @asset_name,
           :value      =>  JSON.generate(data)

@@ -1,7 +1,7 @@
 dojo.provide('toura.capabilities.AudioList_AudioPlayer');
 
 dojo.declare('toura.capabilities.AudioList_AudioPlayer', [ toura.capabilities._Capability ], {
-  components : {
+  requirements : {
     audioList : 'AudioList',
     audioPlayer : 'AudioPlayer'
   },

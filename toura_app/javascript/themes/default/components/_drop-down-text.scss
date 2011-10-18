@@ -27,7 +27,7 @@
   .button {
     width: 100px;
     margin: 0 auto;
-    background-color: transparentize($chrome-color-base, .2);
+    background-color: $chrome-color-base;
     -webkit-border-radius: 0 0 8px 8px;
     text-align: center;
     padding: 5px;
@@ -80,7 +80,7 @@
     @include hide-fade;
 
     .body-text-container {
-      background-color: transparentize($chrome-color-base, .2);
+      background-color: $chrome-color-base;
     }
 
     p {

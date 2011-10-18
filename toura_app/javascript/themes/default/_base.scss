@@ -10,4 +10,13 @@ body {
 @import 'components/base';
 @import 'templates/base';
 
+// KLUDGE: workaround for bug in ios where :last-child styles in captions are
+// not applied until after scroller moves, which changes the height and breaks
+// the scroller.
+.component.body-text:not(.image-caption) {
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
 

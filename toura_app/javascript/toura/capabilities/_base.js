@@ -6,4 +6,7 @@ dojo.require('toura.capabilities.ImageGalleryDetail');
 dojo.require('toura.capabilities.FeedItemList_FeedItemPage');
 dojo.require('toura.capabilities.FeedItemList_FeedItemDetail');
 dojo.require('toura.capabilities.PageNav_FeedTitle');
+dojo.require('toura.capabilities.Page_Audios');
+dojo.require('toura.capabilities.AudioList_AudioPlayer');
+dojo.require('toura.capabilities.AudioList_AudioCaption');
 

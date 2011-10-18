@@ -101,9 +101,14 @@ In order to submit your apps to the Apple iOS App Store, you must
 
 To build and run apps on Android Simulator, you must:
 
-- Install Java SE 1.6 or above (running java -version should output "Java(TM) SE Runtime Environment")
+- Install Java SE 1.6 or above (running java -version should output "Java(TM) SE Runtime Environment").
+
+- Make sure you have installed the Java compiler, too (javac -version should return 1.6.x)
 
 - Ensure the `JAVA_HOME` environment variable is pointing to the Java directory
+
+- You may have to install Apache ant (`which ant`). We develop with ant 1.8.x (ant -version)
+   http://ant.apache.org
 
 - Download [Android SDK package](http://developer.android.com/sdk/index.html) for your platform
 

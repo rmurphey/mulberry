@@ -56,6 +56,10 @@ dojo.declare('toura.app.PageFactory', [], {
 
     'Home2' : function(device) {
       return 'home-with-header-' + device.type;
+    },
+
+    'Audios1' : function(device) {
+      return 'audio-with-images-' + device.type;
     }
 
   },

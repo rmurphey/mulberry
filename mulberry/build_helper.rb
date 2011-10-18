@@ -146,6 +146,10 @@ module Mulberry
       @config['app_id'][device_os][device_type]
     end
 
+    def custom_js_source
+      File.join(@source_dir, 'javascript')
+    end
+
     private
     def padded_id
       project_settings[:id].gsub(/\W/, '');
