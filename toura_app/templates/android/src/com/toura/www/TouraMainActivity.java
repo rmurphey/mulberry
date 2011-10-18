@@ -59,15 +59,21 @@ public class TouraMainActivity extends DroidGap {
     super.onStart();
     Resources resources = this.getResources();
     AssetManager assetManager = resources.getAssets();
-
+    InputStream inputStream = null;
     try {
-        InputStream inputStream = assetManager.open("touraconfig.properties");
+        inputStream = assetManager.open("touraconfig.properties");
         Properties properties = new Properties();
         properties.load(inputStream);
         FlurryAgent.onStartSession(this, properties.getProperty("flurryApiKey"));
     } catch (IOException e) {
         System.err.println("Failed to open touraconfig.properties file");
         e.printStackTrace();
+    } finally {
+      if (inputStream != null) {
+        try {
+          inputStream.close();
+        } catch (IOException e) {}
+      }
     }
   }
 
