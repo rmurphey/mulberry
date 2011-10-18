@@ -14,8 +14,8 @@ module Mulberry
         return
       end
 
-      action = args[0]
-      filenames = args.slice(1, args.length - 1)
+      action = args.shift
+      filenames = args
 
       if [ 'scaffold', 'serve', 'deploy', 'test', 'data' ].include? action
         dir = (args[1] && File.expand_path(args[1]))
@@ -42,8 +42,8 @@ module Mulberry
       if action.match /^create_.+/
         dir = Dir.pwd
         raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(dir)
+        raise "You must specify a file to create." unless filenames.first
 
-        default_filename = lambda { |type| "untitled-#{type.to_s}" }
         default_creator = Mulberry::ContentCreator
 
         commands = {
@@ -53,12 +53,10 @@ module Mulberry
           :location   => {},
 
           :component  => {
-            :default  =>  'UntitledComponent',
             :creator  =>  Mulberry::ComponentCreator
           },
 
           :template   => {
-            :default  =>  'UntitledTemplate',
             :creator  =>  Mulberry::TemplateCreator
           }
         }
@@ -67,7 +65,6 @@ module Mulberry
         raise "Don't know how to do #{action}" unless commands[content_type]
         command = commands[content_type]
 
-        filenames ||= [ command[:default] || default_filename.call(content_type) ]
         filenames.each { |f| (command[:creator] || default_creator).new(content_type.to_s, dir, f) }
       end
     end
