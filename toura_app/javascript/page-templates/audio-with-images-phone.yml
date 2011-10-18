@@ -1,0 +1,59 @@
+audio-with-images-phone:
+  type: node
+  capabilities:
+  - name: ImageGallery_ImageCaption
+    components:
+    - index:ImageGallery
+    - index:ImageCaption
+  - name: ImageGalleryDetail
+    components:
+    - index:ImageGallery
+    - detail:ZoomableImageGallery
+    - detail:DetailTitle
+  - name: Page_Images
+    components:
+    - index:ImageGallery
+    - index:ImageCaption
+  - name: Page_Audios
+    components:
+    - index:AudioList
+  - name: AudioList_AudioPlayer
+    components:
+    - index:AudioPlayer
+    - index:AudioList
+  - name: AudioList_AudioCaption
+    components:
+    - index:AudioList
+    - index:AudioCaption
+
+  screens:
+    - name: index
+      backgroundImage: true
+      regions:
+      - size: fixed
+        components:
+        - PageNav
+      - components:
+        - ImageGallery
+      - size: fixed
+        components:
+        - AudioPlayer
+      -
+        regions:
+        - components:
+          - AudioList
+          - ChildNodes
+          - AudioCaption
+          - BodyText
+          scrollable: true
+
+    - name: detail
+      regions:
+      - layout: overlay
+        size: fixed
+        components:
+        - DetailTitle
+      - components:
+        - ZoomableImageGallery
+
+

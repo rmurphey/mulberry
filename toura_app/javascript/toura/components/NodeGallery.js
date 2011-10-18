@@ -30,22 +30,30 @@ dojo.declare('toura.components.NodeGallery', [ toura.components._Component, tour
     this.inherited(arguments);
   },
 
-  _handleClick : function(e) {
+  setupConnections : function() {
+    this.connect(this.clickNode, 'click', '_handle');
+  },
+
+  _handle : function(e) {
     var child = this.children[this.currentImageIndex],
+
         params = {
           x : e.offsetX,
           y : e.offsetY
         },
+
         img = this.images[this.currentImageIndex],
         multiplier,
         nodeHeight = this.domNode.clientHeight,
-        nodeWidth = this.domNode.clientWidth;
+        nodeWidth = this.domNode.clientWidth,
+        resizeRatio = nodeWidth / img.width;
 
-    if (img.height > nodeHeight) {
-      params.y += (img.height - nodeHeight) / 2
+    if ((img.height * resizeRatio) > nodeHeight) {
+      params.y += ((img.height * resizeRatio) - nodeHeight) / 2;
     }
 
     multiplier = img.original.width / nodeWidth;
+
     params.x = Math.floor(params.x * multiplier);
     params.y = Math.floor(params.y * multiplier);
 

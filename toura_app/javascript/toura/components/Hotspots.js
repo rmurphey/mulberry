@@ -77,33 +77,40 @@ dojo.declare('toura.components.Hotspots', [ toura.components._Component ], {
   },
 
   startup : function() {
-    var params = dojo.mixin({}, toura.app.UI.click),
-        nodeHeight = this.domNode.clientHeight,
+    this.inherited(arguments);
+
+    var nodeHeight = this.domNode.clientHeight,
         nodeWidth = this.domNode.clientWidth,
         newX = 0, newY = 0,
-        x, y;
+        center = {},
+        params;
+
+    this.scroller.refresh();
+
+    if (toura.app.UI.click) {
+      params = toura.app.UI.click;
+      center.x = +params.x;
+      center.y = +params.y;
+    } else {
+      center.x = this.image.width / 2;
+      center.y = this.image.height / 2;
+    }
 
     toura.app.UI.click = false;
 
-    this.inherited(arguments);
-    this.scroller.refresh();
-
-    if (params) {
-      x = +params.x;
-      y = +params.y;
+    if (center.x > nodeWidth / 2) {
+      center.x = center.x - (nodeWidth / 2);
     } else {
-      x = this.image.width / 2;
-      y = this.image.height / 2;
+      center.x = 0;
     }
 
-    if (x > nodeWidth / 2) {
-      newX = nodeWidth > nodeHeight ? x : Math.floor(x - (nodeWidth / 2));
+    if (center.y > nodeHeight / 2) {
+      center.y = center.y - (nodeHeight / 2);
+    } else {
+      center.y = 0;
     }
 
-    if (y > nodeHeight / 2) {
-      newY = y;
-    }
 
-    this.scroller.scrollTo(newX * -1, newY * -1, 0);
+    this.scroller.scrollTo(center.x * -1, center.y * -1, 0);
   }
 });

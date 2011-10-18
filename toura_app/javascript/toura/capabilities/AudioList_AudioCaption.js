@@ -1,7 +1,7 @@
 dojo.provide('toura.capabilities.AudioList_AudioCaption');
 
 dojo.declare('toura.capabilities.AudioList_AudioCaption', [ toura.capabilities._Capability ], {
-  components : {
+  requirements : {
     audioList : 'AudioList',
     audioCaption : 'AudioCaption'
   },
@@ -11,7 +11,7 @@ dojo.declare('toura.capabilities.AudioList_AudioCaption', [ toura.capabilities._
   ],
 
   _setCaption : function(audioId) {
-    var audio = this.node.getAssetById('audio', audioId);
+    var audio = this.baseObj.getAssetById('audio', audioId);
     if (!audio) { return; }
     this.audioCaption.set('content', audio.caption || '');
   }

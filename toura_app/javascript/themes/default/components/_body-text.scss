@@ -33,13 +33,8 @@
   }
 
   p {
-    padding-bottom: .9em;
-
-    &:last-child {
-      padding-bottom: 0;
-    }
+    margin: 0 0 .9em 0;
   }
-
 
   blockquote {
     @extend p;
