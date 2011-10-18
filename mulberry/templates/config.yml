@@ -66,3 +66,23 @@ app_id:
   ios:
     phone: com.toura.app2.fake.phone
     tablet: com.toura.app2.fake.tablet
+
+# Enter your Urban Airship account details here
+urban_airship:
+  development:
+    app_key: dev_app_key
+    app_secret: dev_app_secret
+  production:
+    app_key: prod_app_key
+    app_secret: prod_app_secret
+  android:
+     transport: c2dm
+     c2dm_sender: c2dmsender@mail.com
+
+# Enter your flurry api keys here
+flurry:
+ ios:
+   api_key: flurry_ios_api_key
+ android:
+   api_key: flurry_ios_api_key
+  
