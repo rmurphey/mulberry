@@ -75,15 +75,6 @@ need a fresh one, you can simply run:
 
     rake serve
 
-### Building the app to test on device
-
-    # run from toura_app root
-    rake builder:dev:android
-    rake builder:dev:iphone
-    rake builder:dev:ipad
-
-You can optionally pass `TOUR_ID=<tour_id>` to any of these tasks.
-
 ## Weinre
 
 Weinre is a web inspector that works on a remote mobile device. See
