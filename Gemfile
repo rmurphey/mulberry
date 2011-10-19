@@ -11,5 +11,5 @@ gem 'evergreen'
 gem 'i18n' # activesupport dependency but need to specify manually: https://github.com/rails/rails/pull/235
 gem 'activesupport', '~> 3.0.9'
 gem 'jshintrb', :git => 'git://github.com/Toura/jshintrb.git', :require => false
-gem 'linecache', '0.43', :require => false
-gem 'ruby-debug', :require => false
+gem 'linecache', '0.43', :platforms => :ruby_18, :require => false
+gem 'ruby-debug', :platforms => :ruby_18, :require => false
