@@ -93,7 +93,7 @@ describe("configurable page controller", function() {
       }
     });
 
-    expect(spy).toHaveBeenCalledWith({ page : c });
+    expect(spy).toHaveBeenCalled();
   });
 
 

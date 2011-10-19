@@ -46,7 +46,7 @@ describe("capabilities", function() {
     c.foo = function() {};
     c.bar = function() { flag = true; };
 
-    c._connect(c, 'foo', 'bar');
+    c.connect(c, 'foo', 'bar');
     c.foo();
 
     expect(spy).toHaveBeenCalled();

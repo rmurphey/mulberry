@@ -29,23 +29,23 @@ describe("app nav component", function() {
     });
   });
 
-  describe("maps button", function() {
-    it("should show the maps button if maps are enabled and there is a maps node", function() {
+  describe("map button", function() {
+    it("should show the map button if map node is enabled and there is a map node", function() {
       toura.app.Config.set('app', {
         mapsEnabled : true,
-        mapsNodeId : 'node-1'
+        mapNodeId : 'node-1'
       });
 
       var comp = new toura.components.AppNav().placeAt(t);
 
-      var maps = dojo.query('a[href="' + url.maps() + '"]', t);
-      expect(maps.length).toBe(1);
+      var map = dojo.query('a[href="' + url.maps() + '"]', t);
+      expect(map.length).toBe(1);
     });
 
-    it("should not show the maps button if maps are not enabled", function() {
+    it("should not show the map button if map node is not enabled", function() {
       toura.app.Config.set('app', {
         mapsEnabled : false,
-        mapsNodeId : 'node-1'
+        mapNodeId : 'node-1'
       });
 
       var comp = new toura.components.AppNav().placeAt(t);

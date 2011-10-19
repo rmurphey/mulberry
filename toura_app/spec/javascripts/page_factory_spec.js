@@ -8,7 +8,7 @@ describe("page factory", function() {
 
     toura.templates = {
       "user defined template" : "success",
-      "Default" : "Default",
+      "default" : "default",
       "Home1" : function() { }
     };
   });
@@ -38,7 +38,7 @@ describe("page factory", function() {
     f.createPage("node", node);
 
     expect(spy).toHaveBeenCalled();
-    expect(spy.mostRecentCall.args[0].templateConfig).toBe('Default');
+    expect(spy.mostRecentCall.args[0].templateConfig).toBe('default');
   });
 
   it("should throw an error when trying to create a asset without required data", function() {

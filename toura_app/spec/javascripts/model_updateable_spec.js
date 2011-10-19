@@ -39,14 +39,14 @@ describe("Updateable", function() {
     appMajorVersion = toura.app.Config.get('appVersion').split('.')[0] * 1;
 
     newerRemoteData = dojo.mixin({}, toura.data.local);
-    newerRemoteData.app_version = appMajorVersion + ".0";
+    newerRemoteData.appVersion = appMajorVersion + ".0";
     newerRemoteData.version = toura.data.local.version + 1;
     newerRemoteData.items = [ { id : 'new' } ];
 
     ajaxMocks = {
       'bundle' : toura.data.local,
       'remote' : newerRemoteData,
-      'version' : { version : newerRemoteData.version }
+      'version' : { version : newerRemoteData.version, appVersion: appMajorVersion + ".0" }
     };
 
     config = {
@@ -229,7 +229,7 @@ describe("Updateable", function() {
 
       describe("and there is newer data", function() {
         beforeEach(function() {
-          ajaxMocks.version = { version : toura.data.local.version + 100 };
+          ajaxMocks.version.version  = toura.data.local.version + 100;
         });
 
         describe("and the remote app version is the same", function() {
@@ -238,22 +238,21 @@ describe("Updateable", function() {
 
         describe("and the remote app version is smaller", function() {
           beforeEach(function() {
-            ajaxMocks.version.app_version =  (appMajorVersion-1) + ".0";
+            ajaxMocks.version.appVersion =  (appMajorVersion-1) + ".0";
           });
           itShouldNotLoadTheRemoteData();
         });
 
-
         describe("and the remote app version is greater", function() {
           beforeEach(function() {
-            ajaxMocks.version.app_version =  (appMajorVersion+1) + ".0";
+            ajaxMocks.version.appVersion =  (appMajorVersion+1) + ".0";
           });
           itShouldNotLoadTheRemoteData();
         });
 
         describe("and the data has a newer app version", function() {
           beforeEach(function() {
-            ajaxMocks.remote.app_version = (appMajorVersion+1) + ".0";
+            ajaxMocks.remote.appVersion = (appMajorVersion+1) + ".0";
           });
 
           it("should not store the remote data", function() {

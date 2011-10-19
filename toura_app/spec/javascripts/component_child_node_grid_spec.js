@@ -24,7 +24,8 @@ describe("child node grid component", function() {
     t = dojo.byId('test');
 
     node = {
-      children : [ ]
+      children : [ ],
+      populateChildren : function() {}
     };
   });
 
