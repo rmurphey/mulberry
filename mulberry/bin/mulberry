@@ -18,7 +18,7 @@ module Mulberry
       filenames = args
 
       if [ 'scaffold', 'serve', 'deploy', 'test', 'data' ].include? action
-        dir = (args[1] && File.expand_path(args[1]))
+        dir = (args[0] && File.expand_path(args[0]))
 
         if !dir && action == 'scaffold'
           raise "You must specify an app name" unless dir
