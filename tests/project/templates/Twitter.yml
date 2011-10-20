@@ -13,4 +13,4 @@ Twitter:
           scrollable: true
           components:
             - PageHeaderImage
-            - custom:Twitter
+            - custom.Twitter
