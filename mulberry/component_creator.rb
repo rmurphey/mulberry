@@ -23,7 +23,7 @@ module Mulberry
       end
 
       File.open(File.join(js_dir, 'base.js'), 'a') do |f|
-        f.write "dojo.require('client.components.#{filename}')"
+        f.write "dojo.require('client.components.#{filename}');\n"
       end
 
       puts "Created component at #{File.join(component_dir, "#{filename}.js")}"
