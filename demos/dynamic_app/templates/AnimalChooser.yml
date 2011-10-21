@@ -1,0 +1,20 @@
+AnimalChooser:
+  capabilities:
+  - name: AnimalVoting
+    components:
+      - index:custom.AnimalChooser
+      - index:custom.AnimalFavorites
+  screens:
+  - name: index
+    regions:
+      -
+        size: fixed
+        scrollable: false
+        components:
+          - PageNav
+      -
+        size: flex
+        scrollable: true
+        components:
+          - custom.AnimalChooser
+          - custom.AnimalFavorites

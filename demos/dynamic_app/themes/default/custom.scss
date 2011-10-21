@@ -1,0 +1,19 @@
+/* override theme defaults in this file */
+.component.login {
+  h1 {
+    margin: 0 0 10px 0;
+  }
+
+  padding: 10px;
+
+  input {
+    display: block;
+    margin: 0 0 10px 0;
+  }
+}
+
+.component.animalchooser {
+  .hidden {
+    display: none;
+  }
+}

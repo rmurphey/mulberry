@@ -1,0 +1,7 @@
+Login:
+  screens:
+    - name: index
+      regions:
+        - size: flex
+          components:
+            - custom.Login
