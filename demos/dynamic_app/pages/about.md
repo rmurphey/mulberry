@@ -1,5 +1,0 @@
----
-title: About
-template: Default
----
-
