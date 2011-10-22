@@ -2,6 +2,7 @@ dojo.provide('toura.app.Routes');
 
 toura.app.Routes = function() {
   var app = toura.app.Config.get('app'),
+      factory = toura.app.PageFactory,
       routes;
 
   function nodeRoute(route, nodeId, pageState) {
@@ -23,7 +24,7 @@ toura.app.Routes = function() {
       // it's not for the requested node ... in all of these
       // cases, we need the page factory to spin up a page
       try {
-        pf = toura.app.PageFactory.createPage('node', nodeModel);
+        pf = factory.createPage(nodeModel);
       } catch(e) {
         console.log(e);
         toura.app.Router.back();
@@ -101,7 +102,9 @@ toura.app.Routes = function() {
             term = params.splat && params.splat[0].split('/')[0];
 
         if (!page || !page.type || page.type !== 'search') {
-          page = toura.app.PageFactory.createPage('search');
+          page = factory.createPage({
+            pageController : 'search'
+          });
           toura.app.UI.showPage(page);
         }
 
@@ -116,7 +119,10 @@ toura.app.Routes = function() {
       handler : function(params) {
         var feed = toura.app.Data.getModel(params.feedId, 'feed'),
             feedItem = feed.getItem(params.itemIndex),
-            page = toura.app.PageFactory.createPage('feedItem', feedItem);
+            page = factory.createPage({
+              pageController : 'feedItem',
+              feedItem : feedItem
+            });
 
         toura.app.UI.showPage(page, feedItem);
       }
@@ -127,7 +133,11 @@ toura.app.Routes = function() {
     routes.push({
       route : '/debug/:query',
       handler : function(params, route) {
-        var page = toura.app.PageFactory.createPage('debug', params.query);
+        var page = factory.createPage({
+          pageController : 'debug',
+          query : params.query
+        });
+
         toura.app.UI.showPage(page);
       }
     });
@@ -137,7 +147,10 @@ toura.app.Routes = function() {
     routes.push({
       route : '/favorites',
       handler : function() {
-        var page = toura.app.PageFactory.createPage('favorites');
+        var page = factory.createPage({
+          pageController : 'favorites'
+        });
+
         toura.app.UI.showPage(page);
       }
     });

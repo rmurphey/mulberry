@@ -1,6 +1,8 @@
 dojo.provide('client.Routes');
 
 dojo.subscribe('/routes/loaded', function() {
+  var factory = toura.app.PageFactory;
+
   var routes = [
     {
       route : '/login',
@@ -10,7 +12,7 @@ dojo.subscribe('/routes/loaded', function() {
           return;
         }
 
-        var p = toura.app.PageFactory.createPage('node', { pageController : 'Login' });
+        var p = factory.createPage({ pageController : 'Login' });
         toura.app.UI.showPage(p);
       },
       isDefault : true
@@ -19,7 +21,7 @@ dojo.subscribe('/routes/loaded', function() {
     {
       route : '/animals',
       handler : function(params) {
-        var p = toura.app.PageFactory.createPage('node', {
+        var p = factory.createPage({
           pageController : 'AnimalChooser',
           name : 'Choose your favorite animal'
         });
@@ -38,7 +40,7 @@ dojo.subscribe('/routes/loaded', function() {
       route : '/animal/:animalName',
       handler : function(params) {
         var animalName = params.animalName,
-            p = toura.app.PageFactory.createPage('node', {
+            p = factory.createPage({
               pageController : 'AnimalVotes',
               name : 'Votes for ' + animalName,
             });
@@ -55,5 +57,3 @@ dojo.subscribe('/routes/loaded', function() {
     toura.app.Router.registerRoute(r.route, r.handler, !!r.isDefault);
   });
 });
-
-
