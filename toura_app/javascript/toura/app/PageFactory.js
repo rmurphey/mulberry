@@ -109,25 +109,23 @@ dojo.declare('toura.app.PageFactory', [], {
     }
 
     // translate new template names to legacy names
+    // TODO: this can go away once we don't have to support legacy names
     if (this._translations[controllerName]) {
       controllerName = this._translations[controllerName];
     }
 
     // allow overriding template name based on device info
+    // TODO: this can go away once MAP sends per-device controller names
     if (this._overrides[controllerName]) {
       controllerName = this._overrides[controllerName](this.device);
     }
 
     // use configurable page controller if a config is defined for the
     // controller name; otherwise look for a legacy page controller
+    // TODO: this can go away once we eliminate support for legacy names
     config = toura.templates && toura.templates[controllerName];
 
-    if (config) {
-      Controller = toura.pageControllers.Configurable;
-      console.log('using configurable controller');
-    } else {
-      Controller = toura.pageControllers.node[controllerName];
-    }
+    Controller = config ? toura.pageControllers.Configurable : toura.pageControllers.node[controllerName];
 
     // if we don't have a controller by now, we have problems
     if (!Controller) {
