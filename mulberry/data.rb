@@ -35,7 +35,8 @@ module Mulberry
 
     private
     def read_sitemap
-      sitemap = YAML.load_file(File.join(@source_dir, SITEMAP)) || []
+      f = File.join(@source_dir, SITEMAP)
+      sitemap = (File.exists?(f) && YAML.load_file(f)) || []
       sitemap.each { |node| Mulberry::Asset::Page.new(node, self) }
     end
 
