@@ -60,7 +60,6 @@ dojo.declare('toura.app.PageFactory', [], {
     'Audios1' : function(device) {
       return 'audio-with-images-' + device.type;
     }
-
   },
 
   pages : {
@@ -93,10 +92,6 @@ dojo.declare('toura.app.PageFactory', [], {
       throw new Error('toura.app.PageFactory::createPage requires an object');
     }
 
-    if (this.pages[obj.pageController]) {
-      return this.pages[obj.pageController].call(this, obj);
-    }
-
     var controllerName = obj.pageController || 'default',
         config, Controller;
 
@@ -105,6 +100,12 @@ dojo.declare('toura.app.PageFactory', [], {
       controllerName = obj.pageController[this.device.type] || 'default';
     } else {
       controllerName = obj.pageController || 'default';
+    }
+
+    // handle special cases like search, favorites, feed item, debug
+    // TODO: this can go away once those pages are converted to configurables
+    if (this.pages[controllerName]) {
+      return this.pages[controllerName].call(this, obj);
     }
 
     // translate new template names to legacy names
