@@ -12,7 +12,6 @@ dojo.require('toura.pageControllers.search.Search');
 dojo.require('toura.pageControllers.favorites.Favorites');
 dojo.require('toura.pageControllers.node.Audios1');
 dojo.require('toura.pageControllers.node.GoogleMap1');
-dojo.require('toura.pageControllers.node.Images2');
 dojo.require('toura.pageControllers.node.Videos1');
 dojo.require('toura.pageControllers.Configurable');
 
@@ -26,7 +25,6 @@ dojo.declare('toura.app.PageFactory', [], {
     'Audios'            : 'Audios1',
     'Videos'            : 'Videos1',
     'Images'            : 'Images1',
-    'FullScreenImages'  : 'Images2',
     'LocationsMap'      : 'GoogleMap1',
     'Feed'              : 'FeedList',
     'Default'           : 'default',
@@ -34,8 +32,11 @@ dojo.declare('toura.app.PageFactory', [], {
     'NodeGallery'       : 'node-gallery',
     'LocationList'      : 'location-list',
     'Hotspots'          : 'hotspots',
+    'FullScreenImages'  : 'full-screen-images',
+    'Images2'           : 'full-screen-images',
     'GridView'          : 'grid-view'
   },
+
 
   /**
    * Provide a way to override controller names based on device info.

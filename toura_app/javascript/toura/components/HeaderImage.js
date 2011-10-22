@@ -51,6 +51,7 @@ dojo.declare('toura.components.HeaderImage', [ toura.components._Component ], {
   },
 
   _resizeImage : function() {
+    if (!this.imageNode) { return; }
     dojo.attr(this.imageNode, this._calculateDimensions());
   },
 
@@ -59,8 +60,8 @@ dojo.declare('toura.components.HeaderImage', [ toura.components._Component ], {
         img = this.image;
 
     return {
-      width : w,
-      height : Math.ceil(img.height * (w / img.width))
+      width : img ? w : 0,
+      height : img ? Math.ceil(img.height * (w / img.width)) : 0
     };
   },
 

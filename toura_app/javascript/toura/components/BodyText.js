@@ -9,6 +9,12 @@ dojo.declare('toura.components.BodyText', [ toura.components._Component ], {
     this.bodyText = this.bodyText || this._getBodyText();
   },
 
+  adjustMarkup : function() {
+    if (!dojo.trim(this.bodyText)) {
+      this.addClass('empty');
+    }
+  },
+
   _getBodyText : function() {
     if (!this.node) { return ''; }
     return this.node.bodyText ? this.node.bodyText.body : '';

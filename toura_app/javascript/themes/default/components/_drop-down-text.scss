@@ -25,12 +25,19 @@
   }
 
   .button {
-    width: 100px;
     margin: 0 auto;
     background-color: $chrome-color-base;
     -webkit-border-radius: 0 0 8px 8px;
     text-align: center;
     padding: 5px;
+
+    .phone & {
+      width: 100px;
+    }
+
+    .tablet & {
+      width: 130px;
+    }
 
     span {
       .phone & {
