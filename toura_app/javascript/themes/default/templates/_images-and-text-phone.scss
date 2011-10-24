@@ -4,7 +4,7 @@
       @include background-shadow;
     }
 
-    .body-text {
+    .body-text:not(.empty) {
       padding: 10px;
     }
   }

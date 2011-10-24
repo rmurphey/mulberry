@@ -85,8 +85,6 @@ dojo.declare('toura.components.Hotspots', [ toura.components._Component ], {
         center = {},
         params;
 
-    this.scroller.refresh();
-
     if (toura.app.UI.click) {
       params = toura.app.UI.click;
       center.x = +params.x;
@@ -110,7 +108,7 @@ dojo.declare('toura.components.Hotspots', [ toura.components._Component ], {
       center.y = 0;
     }
 
-
-    this.scroller.scrollTo(center.x * -1, center.y * -1, 0);
+    this.scroller.refresh();
+    this.scroller.scrollTo(center.x * -1, center.y * -1, '0ms');
   }
 });

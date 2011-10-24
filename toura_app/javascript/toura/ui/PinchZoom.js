@@ -2,7 +2,7 @@ dojo.provide('toura.ui.PinchZoom');
 
 dojo.require('vendor.iscroll');
 
-dojo.declare('toura.ui.PinchZoom', [], {
+dojo.declare('toura.ui.PinchZoom', null, {
   zoomMax : 3,
 
   _makeScroller : function(listItem) {

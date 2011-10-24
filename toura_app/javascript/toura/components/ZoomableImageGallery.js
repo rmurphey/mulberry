@@ -2,6 +2,7 @@ dojo.provide('toura.components.ZoomableImageGallery');
 
 dojo.require('toura.components._ImageGallery');
 dojo.require('toura.components.ImageCaption');
+dojo.require('toura.ui.PinchZoom');
 
 dojo.declare('toura.components.ZoomableImageGallery', [ toura.components._Component, toura.components._ImageGallery, toura.ui.PinchZoom ], {
   templateString : dojo.cache('toura.components', 'ZoomableImageGallery/ZoomableImageGallery.haml'),
@@ -91,14 +92,10 @@ dojo.declare('toura.components.ZoomableImageGallery', [ toura.components._Compon
     this[isLast ? 'hide' : 'show'](this.nextButton);
   },
 
-  _makeScroller : function(image) {
-    if (this.scroller) { this.scroller.destroy(); }
-    this.scroller = new iScroll(image, { zoom : toura.app.Has.iScrollZoom() });
-  },
-
   _setCaptionAttr : function(caption) {
     this.caption.set('content', caption);
-    if (!caption) { this.caption.hide(); }
+
+    this.caption[caption ? 'show' : 'hide']();
   }
 });
 

@@ -10,6 +10,12 @@ dojo.declare('toura.components.ChildNodes', [ toura.components._Component ], {
     this.children = this.node.children || [];
   },
 
+  adjustMarkup : function() {
+    if (!this.children.length) {
+      this.addClass('empty');
+    }
+  },
+
   _clickHandler : function(t, e) {
     dojo.addClass(t, 'tapped');
   }
