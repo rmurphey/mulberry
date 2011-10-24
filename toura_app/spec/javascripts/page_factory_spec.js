@@ -20,7 +20,7 @@ describe("page factory", function() {
 
     var spy = spyOn(toura.pageControllers, 'Configurable');
 
-    f.createPage("node", node);
+    f.createPage(node);
 
     expect(spy).toHaveBeenCalled();
     expect(spy.mostRecentCall.args[0].baseObj).toBe(node);
