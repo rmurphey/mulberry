@@ -77,6 +77,7 @@ module Builder
       end
 
       pwd = Dir.pwd
+
       begin
         Dir.chdir @buildscripts_dir
 
@@ -188,7 +189,11 @@ module Builder
     end
 
     def build_required
-      true
+      if (@target['development'])
+        !File.exists?(File.join(@location, @build_type, 'dojo', 'dojo.js'))
+      else
+        true
+      end
     end
 
     def dojo_build

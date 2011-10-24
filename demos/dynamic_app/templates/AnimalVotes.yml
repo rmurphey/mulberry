@@ -1,7 +1,6 @@
-Twitter:
+AnimalVotes:
   screens:
     - name: index
-      layoutName: twitter
       regions:
         -
           size: fixed
@@ -12,5 +11,4 @@ Twitter:
           size: flex
           scrollable: true
           components:
-            - PageHeaderImage
-            - custom:Twitter
+            - custom.AnimalVotes

@@ -37,7 +37,6 @@ dojo.declare('toura.app.PageFactory', [], {
     'GridView'          : 'grid-view'
   },
 
-
   /**
    * Provide a way to override controller names based on device info.
    */
@@ -61,62 +60,9 @@ dojo.declare('toura.app.PageFactory', [], {
     'Audios1' : function(device) {
       return 'audio-with-images-' + device.type;
     }
-
   },
 
   pages : {
-    "node" : function(node) {
-      if (!node) {
-        throw new Error('toura.app.PageFactory::pages::node requires a node');
-      }
-
-      var controllerName = node.pageController || 'default',
-          config, Controller;
-
-      // allow setting different page controllers per device
-      if (node.pageController && dojo.isObject(node.pageController)) {
-        controllerName = node.pageController[this.device.type] || 'default';
-      } else {
-        controllerName = node.pageController || 'default';
-      }
-
-      // translate new template names to legacy names
-      if (this._translations[controllerName]) {
-        controllerName = this._translations[controllerName];
-      }
-
-      // allow overriding template name based on device info
-      if (this._overrides[controllerName]) {
-        controllerName = this._overrides[controllerName](this.device);
-      }
-
-      // use configurable page controller if a config is defined for the
-      // controller name; otherwise look for a legacy page controller
-      config = toura.templates && toura.templates[controllerName];
-
-      if (config) {
-        Controller = toura.pageControllers.Configurable;
-        console.log('using configurable controller');
-      } else {
-        Controller = toura.pageControllers.node[controllerName];
-      }
-
-      // if we don't have a controller by now, we have problems
-      if (!Controller) {
-        console.error('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
-        throw('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
-      }
-
-      toura.log('Creating ' + controllerName);
-
-      return new Controller({
-        baseObj : node,
-        device : this.device,
-        templateConfig : config,
-        templateName : controllerName
-      });
-    },
-
     "search" : function() {
       return new toura.pageControllers.search.Search({ device : this.device });
     },
@@ -136,23 +82,66 @@ dojo.declare('toura.app.PageFactory', [], {
       });
     },
 
-    "debug" : function(query) {
-      return new toura.pageControllers.Debug({ device : this.device, query : query });
+    "debug" : function(obj) {
+      return new toura.pageControllers.Debug({ device : this.device, query : obj.query });
     }
   },
 
-  createPage : function(type, obj) {
-    if (!type) {
-      throw new Error('toura.app.PageFactory::createPage must be called with a type');
+  createPage : function(obj) {
+    if (!obj) {
+      throw new Error('toura.app.PageFactory::createPage requires an object');
     }
 
-    if (!this.pages[type]) {
-      throw new Error('toura.app.PageFactory::createPage: No handler for type ' + type);
+    var controllerName = obj.pageController || 'default',
+        config, Controller;
+
+    // allow setting different page controllers per device
+    if (obj.pageController && dojo.isObject(obj.pageController)) {
+      controllerName = obj.pageController[this.device.type] || 'default';
+    } else {
+      controllerName = obj.pageController || 'default';
     }
 
-    return this.pages[type].apply(this, [ obj ]);
+    // handle special cases like search, favorites, feed item, debug
+    // TODO: this can go away once those pages are converted to configurables
+    if (this.pages[controllerName]) {
+      return this.pages[controllerName].call(this, obj);
+    }
+
+    // translate new template names to legacy names
+    // TODO: this can go away once we don't have to support legacy names
+    if (this._translations[controllerName]) {
+      controllerName = this._translations[controllerName];
+    }
+
+    // allow overriding template name based on device info
+    // TODO: this can go away once MAP sends per-device controller names
+    if (this._overrides[controllerName]) {
+      controllerName = this._overrides[controllerName](this.device);
+    }
+
+    // use configurable page controller if a config is defined for the
+    // controller name; otherwise look for a legacy page controller
+    // TODO: this can go away once we eliminate support for legacy names
+    config = toura.templates && toura.templates[controllerName];
+
+    Controller = config ? toura.pageControllers.Configurable : toura.pageControllers.node[controllerName];
+
+    // if we don't have a controller by now, we have problems
+    if (!Controller) {
+      console.error('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
+      throw('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
+    }
+
+    toura.log('Creating ' + controllerName);
+
+    return new Controller({
+      baseObj : obj,
+      device : this.device,
+      templateConfig : config,
+      templateName : controllerName
+    });
   }
-
 });
 
 dojo.subscribe('/app/ready', function() {
