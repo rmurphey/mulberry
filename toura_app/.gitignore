@@ -6,6 +6,7 @@ javascript/toura/system/*
 javascript/data-fixtures/media-*
 javascript/data-fixtures/TouraConfig.js.*
 javascript/dojo-release-*
+javascript/fake
 log/*.log
 tmp
 templates/iOS/Toura/Toura-Info.plist
