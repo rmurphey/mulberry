@@ -257,3 +257,29 @@ supports. Run the following from the root of your project:
 # TODOs
 
 See the github issues list https://github.com/Toura/mulberry/issues/
+
+# Testing
+
+We have Evergreen setup to run Jasmine tests using Chrome. You must download
+chromedriver for your platform and place it somewhere in your path:
+
+    which chromedriver
+    http://code.google.com/p/chromium/downloads/list
+
+Then run:
+
+    cd toura_app
+    rake evergreen:run
+
+To repeatedly run a single test, do `rake evergreen:serve` and you can click into
+a spec and repeatedly run it without having to rerun the entire suite.
+
+You can also run the ruby specs; at the moment, these are in two separate
+places. From the root of the repo:
+
+    rspec spec
+    cd toura_app
+    rspec spec
+
+These will be centralized soon.
+
