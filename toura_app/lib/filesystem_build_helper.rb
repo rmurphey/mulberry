@@ -1,6 +1,9 @@
 require 'toura_app/application'
 require 'builder/build_helper'
 
+# WARNING: This file is for internal Toura development needs and it will go
+# away eventually.
+
 module Builder
   class FilesystemBuildHelper
     include BuildHelper
