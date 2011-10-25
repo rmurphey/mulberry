@@ -1,7 +1,7 @@
 require 'jshintrb'
 
-desc "Run JSLint on app code"
-task :jslint do
+desc "Run JSHint on app code"
+task :jshint do
   jsl = JSLint.new(:undef => false,
                    :strict => false,
                    :nomen => false,
@@ -10,12 +10,11 @@ task :jslint do
                    :regexp => false,
                    :plusplus => false,
                    :linter => 'jshint')
+
   found_errors = false
 
   files = (
     Dir[File.join(TouraAPP.root, 'javascript/toura/**/*.js')] +
-    Dir[File.join(TouraAPP.root, 'www/data/tour.json')] +
-    Dir[File.join(TouraAPP.root, 'features/fixtures/**/*.json')] +
     Dir[File.join(TouraAPP.root, 'spec/javascripts/**/*.js')]
   ).flatten
 
@@ -31,9 +30,10 @@ task :jslint do
   end
 
   if found_errors
-    raise "JSLint Errors Found"
+    raise "JSHint Errors Found"
   else
-    puts "JSLinty-fresh!"
+    puts "JSHinty-fresh!"
   end
-
 end
+
+

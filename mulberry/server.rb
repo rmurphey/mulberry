@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra/base'
 
-require 'toura_app/lib/builder/css_maker'
+require 'lib/builder/css_maker'
 require 'toura_app/application'
 
 module Mulberry
