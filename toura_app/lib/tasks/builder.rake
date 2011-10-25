@@ -38,8 +38,7 @@ namespace :builder do
       :device_type => type,
       :device_os => os,
       :build_helper => build_helper,
-      :log_level => -1,
-      :logger => Rails.logger
+      :log_level => -1
     })
 
     b.build
