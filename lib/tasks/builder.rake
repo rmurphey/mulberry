@@ -1,7 +1,6 @@
 require 'lib/builder'
 
 namespace :builder do
-    
   desc "Generates the build required for APP browser development"
   task :app_dev do
     b = Builder::Build.new({
@@ -14,5 +13,4 @@ namespace :builder do
 
     puts "App dev build is complete"
   end
-
 end

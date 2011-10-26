@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'lib/builder/css_maker.rb'
 
+# WARNING: This file is for Toura internal use and will be removed.
+
 class TouraAPPServer < Sinatra::Base
 
   def initialize

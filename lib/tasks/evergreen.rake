@@ -1,10 +1,4 @@
-# Tasks for the test environment
 require 'evergreen'
-
-task :spec do
-  Rake::Task['evergreen:run'].invoke
-  Rake::Task['jslint'].invoke
-end
 
 namespace :evergreen  do
   desc "Run jasmine specs via evergreen"
@@ -32,8 +26,6 @@ namespace :evergreen  do
       f.write TouraAPP::App.create_config('ios', 'phone')
     end
   end
-
 end
 
-desc "By default, run evergreen JS tests"
-task :default => "evergreen:run"
+

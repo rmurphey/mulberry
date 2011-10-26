@@ -1,5 +1,5 @@
-require 'toura_app/lib/builder/build_helper'
-require 'toura_app/lib/builder/css_maker'
+require 'lib/builder/build_helper'
+require 'lib/builder/css_maker'
 
 module Mulberry
   class BuildHelper
@@ -32,8 +32,8 @@ module Mulberry
         :bundle               => @build_dir,
         :jquery               => @config['jquery'],
         :config_dir           => @source_dir,
-        :flurry_config        => @config['flurry'],        
-        :urban_airship_config => @config['urban_airship'] 
+        :flurry_config        => @config['flurry'],
+        :urban_airship_config => @config['urban_airship']
       }
     end
 
