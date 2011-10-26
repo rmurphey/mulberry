@@ -1,4 +1,4 @@
-require "application"
+require "toura_app/application"
 require "builder/task_base.rb"
 require "json"
 

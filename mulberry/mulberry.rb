@@ -10,7 +10,7 @@ require 'fileutils'
 require 'mulberry/data'
 require 'mulberry/server'
 require 'mulberry/build_helper'
-require 'toura_app/lib/builder'
+require 'lib/builder'
 
 module Mulberry
   class ConfigError < RuntimeError

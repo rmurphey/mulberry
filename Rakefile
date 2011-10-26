@@ -1,15 +1,14 @@
 require 'rubygems'
 
 begin
-  require 'bundler'
+  require 'bundler/setup'
 rescue LoadError
   raise 'ERROR: You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-require 'rake'
+$: << File.expand_path('../', __FILE__)
+$: << File.expand_path('../..', __FILE__)
 
-task :spec do
-  exec %{rspec --color --format doc spec}
-end
+require 'toura_app/application'
 
-task :default => :spec
+Dir.glob('lib/tasks/**/*.rake').each{|f| load f }

@@ -2,7 +2,6 @@ require 'lib/builder'
 require 'lib/filesystem_build_helper'
 
 namespace :builder do
-
   desc "Generates the build required for APP browser development"
   task :app_dev do
     b = Builder::Build.new({
@@ -63,5 +62,4 @@ namespace :builder do
       Rake::Task['builder:device_dev'].invoke('tablet', 'ios')
     end
   end
-
 end
