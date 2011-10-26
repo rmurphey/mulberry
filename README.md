@@ -181,25 +181,19 @@ See the github issues list https://github.com/Toura/mulberry/issues/
 
 # Testing
 
-We have Evergreen setup to run Jasmine tests using Chrome. You must download
-chromedriver for your platform and place it somewhere in your path:
+To run the tests, do the following from the root of the repository:
 
-    which chromedriver
-    http://code.google.com/p/chromium/downloads/list
+    rake spec           # run the ruby tests
+    rake evergreen:run  # run the javascript tests
+    rake jshint         # run jshint on the js code and js tests
 
-Then run:
+You can repeatedly run a single Jasmine test, do `rake evergreen:serve`.
+You can click into a spec and repeatedly run it without having to rerun the
+entire suite.
 
-    cd toura_app
-    rake evergreen:run
+## Installing chromedriver
 
-To repeatedly run a single test, do `rake evergreen:serve` and you can click into
-a spec and repeatedly run it without having to rerun the entire suite.
+You will need chromedriver in order to run the JavaScript tests. You can
+[download chromedriver](http://code.google.com/p/chromium/downloads/list)
+if you do not already have it installed; make sure you install it somewhere in your $PATH.
 
-You can also run the ruby specs; at the moment, these are in two separate
-places. From the root of the repo:
-
-    rspec spec
-    cd toura_app
-    rspec spec
-
-These will be centralized soon.
