@@ -28,7 +28,7 @@ module Builder
         :version      =>  @db_version,
         :name         =>  @name,
         :bundle       =>  TouraAPP::Build.root,
-        :config_dir   =>  File.join(Rails.root, 'config', 'builds')
+        :config_dir   =>  File.join(TouraAPP::Build.root, 'config', 'builds')
       }
     end
 
