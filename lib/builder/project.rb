@@ -58,7 +58,7 @@ module Builder
 
     private
     def self.sed
-      is_mac = !`which defaults`.empty?
+      is_mac = RUBY_PLATFORM =~ /darwin/
       is_mac ? %{sed -i '' } : %{sed -i""}
     end
 

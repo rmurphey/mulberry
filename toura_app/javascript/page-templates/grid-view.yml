@@ -9,7 +9,7 @@ grid-view:
       - PageNav
     - size: fixed
       components:
-      - HeaderImage
+      - PageHeaderImage
     - scrollable: true
       components:
       - BodyText
