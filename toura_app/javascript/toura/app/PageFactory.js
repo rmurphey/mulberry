@@ -60,7 +60,12 @@ dojo.declare('toura.app.PageFactory', [], {
 
     'Audios1' : function(device) {
       return 'audio-with-images-' + device.type;
+    },
+
+    'GoogleMap1' : function(device) {
+      return 'google-map-' + device.type;
     }
+
   },
 
   pages : {

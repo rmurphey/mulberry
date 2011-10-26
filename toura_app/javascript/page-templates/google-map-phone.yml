@@ -1,0 +1,24 @@
+google-map-phone:
+  type: node
+  capabilities:
+  - name: Page_GoogleMapPhone
+    components:
+    - index:GoogleMap
+    - index:PinInfo
+
+  screens:
+  - name: index
+    backgroundImage: false
+    regions:
+    - size: fixed
+      components:
+      - PageNav
+    - components:
+      - GoogleMap
+
+  - name: detail
+    backgroundImage: false
+    regions:
+    - components:
+      - PinInfo
+

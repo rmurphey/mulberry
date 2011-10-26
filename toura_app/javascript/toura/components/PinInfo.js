@@ -54,9 +54,18 @@ dojo.declare('toura.components.PinInfo', [ toura.components._Component ], {
       this.detailTitle.set('screenTitle', pin.name);
     }
 
-    if (this.scroller) {
-      this.scroller.refreshScroller();
+    // TODO: this should not be necessary, but without it, the .bottom div ends
+    // up with no height, and so the caption/address info isn't visible
+    if (this.phone) {
+      var scrollerSection = this.query('.bottom section')[0];
+
+      this.query('.bottom').style({
+        height : scrollerSection.clientHeight + 'px'
+      });
     }
+
+    dojo.publish('/content/update');
+
   },
 
   _setPhoneNumberAttr : function(phone) {
