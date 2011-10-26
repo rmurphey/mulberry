@@ -312,6 +312,13 @@ module Builder
         toura_dir
       )
 
+      if @target['development']
+        FileUtils.cp_r(
+          File.join(built, 'toura', 'base.js.uncompressed.js'),
+          toura_dir
+        )
+      end
+
       FileUtils.cp_r(
         File.join(built, 'vendor', 'haml.js'),
         vendor_dir
@@ -331,6 +338,10 @@ module Builder
 
       if File.exists? client_base
         FileUtils.cp_r(client_base, client_dir)
+
+        if @target['development']
+          FileUtils.cp_r("#{client_base}.uncompressed.js", client_dir)
+        end
       end
     end
 
