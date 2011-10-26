@@ -4,6 +4,7 @@ dojo.require('toura._View');
 dojo.require('toura.ui.BackgroundImage');
 
 dojo.declare('toura.pageControllers._Page', [ toura._View, toura.ui.BackgroundImage ], {
+  'class' : 'page',
   widgetsInTemplate : true,
 
   init : function(pageState) {
