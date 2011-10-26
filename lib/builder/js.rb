@@ -69,7 +69,7 @@ module Builder
 
     public
     def build
-      if !build_required
+      if !build_required && !@build.settings[:force_js_build]
         return true
       end
 
