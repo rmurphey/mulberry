@@ -72,12 +72,12 @@ dojo.declare('toura.app.PageFactory', [], {
       return new toura.pageControllers.favorites.Favorites({ device : this.device });
     },
 
-    "feedItem" : function(feedItem) {
+    "feedItem" : function(obj) {
       var Controller = toura.pageControllers.Configurable,
           templateConfig = toura.templates['feed-item'];
 
       return new Controller({
-        baseObj : feedItem,
+        baseObj : obj.feedItem,
         device : this.device,
         templateConfig : templateConfig
       });
