@@ -9,12 +9,7 @@ dojo.declare('toura.containers.Pages', [ toura._View ], {
   direction : 'next',
 
   postCreate : function() {
-    this.connect(this.domNode, 'webkitAnimationEnd', function() {
-      this._onAnimationEnd();
-      this._cleanupOldPage();
-    });
-
-    this.inherited(arguments);
+    this.connect(this.domNode, 'webkitAnimationEnd', '_onAnimationEnd');
   },
 
   _setNavDirectionAttr : function(dir) {
@@ -28,31 +23,44 @@ dojo.declare('toura.containers.Pages', [ toura._View ], {
         next = this.direction === 'next';
 
     this.direction = 'next'; // reset
+    this.currentPage = newPage;
 
-    if (this.oldPage) {
+    if (n.children.length) {
       toura.animating = true;
       this.addClass('pre-slide');
       newPage.placeAt(n, next ? 'last' : 'first');
-
-      this.pageToDestroy = this.oldPage;
       this.addClass(next ? 'slide-left' : 'slide-right');
     } else {
       newPage.placeAt(n, 'last');
       this._onAnimationEnd();
     }
 
-    this.oldPage = newPage;
+    setTimeout(function() {
+      // sometimes webkitAnimationEnd doesn't fire :/
+      if (this.animating) {
+        this._onAnimationEnd();
+      }
+    }, 600);
   },
 
   _cleanupOldPage : function() {
-    if (this.pageToDestroy && this.pageToDestroy.destroy) {
-      this.pageToDestroy.destroy();
-    }
+    var pages = document.querySelectorAll('ol.page-container > li');
+
+    dojo.forEach(pages, function(page) {
+      if (this.currentPage.domNode !== page) {
+        dojo.destroy(page);
+
+        var widget = dijit.byNode(page);
+
+        if (widget) { widget.destroy(); }
+      }
+    }, this);
 
     this.removeClass(['slide-left', 'slide-right', 'pre-slide']);
   },
 
   _onAnimationEnd : function() {
+    this._cleanupOldPage();
     toura.animating = false;
     dojo.publish('/page/transition/end');
   }
