@@ -145,7 +145,8 @@ class TouraAPPServer < Sinatra::Base
         "id"                  =>  params[:tour_id],
         "build"               =>  Time.now.to_i,
         "force_streaming"     =>  false,
-        "skip_version_check"  =>  false
+        "skip_version_check"  =>  false,
+        "debug"               =>  true
       }
   end
 
