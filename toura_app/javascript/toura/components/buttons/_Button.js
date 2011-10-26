@@ -16,8 +16,9 @@ dojo.declare('toura.components.buttons._Button', [ toura.components._Component ]
   },
 
   _handleClick : function(e) {
+    e.preventDefault();
+
     if (this.preventWhenAnimating && toura.animating) {
-      e.preventDefault();
       return;
     }
 
@@ -27,7 +28,6 @@ dojo.declare('toura.components.buttons._Button', [ toura.components._Component ]
   onClick : function(e) {
     if (this.url && this.url !== '#') {
       toura.app.Router.go(this.url);
-      e.preventDefault();
     }
   }
 });

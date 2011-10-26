@@ -83,6 +83,7 @@ dojo.declare('toura.components._MediaPlayer', [ toura.components._Component ], {
 
     var c = dojo.connect(player, 'loadstart', this, function() {
       dojo.disconnect(c);
+      c = false;
       if (!domNode) { return; }
       doIt();
     });
