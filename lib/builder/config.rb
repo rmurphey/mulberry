@@ -27,7 +27,11 @@ module Builder
         @build.log("Using default device types", 'warning')
       end
 
-      TouraAPP::App.create_config(@target['device_os'], @target['device_type'], @build.build_helper.config_settings)
+      settings = @build.build_helper.config_settings.merge({
+        'debug' => !!@target['development']
+      })
+
+      TouraAPP::App.create_config(@target['device_os'], @target['device_type'], settings)
     end
 
   end

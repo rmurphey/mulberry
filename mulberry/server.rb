@@ -128,7 +128,7 @@ module Mulberry
           "build" => Time.now.to_i,
           "force_local" => true,
           "skip_version_check" => true,
-          'debug' => true
+          "debug" => true
         }
     end
 
