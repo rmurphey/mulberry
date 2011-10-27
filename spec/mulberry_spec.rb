@@ -52,6 +52,7 @@ describe Mulberry::App do
 
     it "should put the app name in the config" do
       File.read(File.join('testapp', 'config.yml')).should match 'testapp'
+      File.read(File.join('testapp', 'config.yml')).should_not match "#{Dir.pwd}/testapp"
     end
   end
 

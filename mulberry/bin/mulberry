@@ -75,6 +75,7 @@ module Mulberry
     end
 
     def scaffold(dir)
+      dir.gsub!(Dir.pwd + "/", "")
       Mulberry::App.scaffold(dir)
     end
 
