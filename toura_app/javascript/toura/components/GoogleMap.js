@@ -64,7 +64,7 @@ dojo.require('toura.app.URL');
 
       var bounds = new google.maps.LatLngBounds();
 
-      this.markers = dojo.map(this.pins, function (pin) {
+      this.markers = dojo.map(this.pins || [], function (pin) {
         var position = new google.maps.LatLng(pin.lat, pin.lon),
             marker = new google.maps.Marker({
               map: this.map,
@@ -112,6 +112,10 @@ dojo.require('toura.app.URL');
 
     onShowInfo : function(pin) {
       // stub
+    },
+
+    _setCenterAttr : function(center) {
+      this.map.setCenter(new google.maps.LatLng(center.lat, center.lng));
     },
 
     _setPinAttr : function(pinId) {
