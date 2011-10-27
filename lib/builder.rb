@@ -24,7 +24,7 @@ module Builder
     attr_accessor :tmp_dir, :logger
     attr_reader   :settings, :target, :completed_steps, :build_helper
 
-    ROOT = "#{File.expand_path(File.dirname(__FILE__))}/.."
+    ROOT = File.expand_path(File.dirname(__FILE__))
 
     STEPS = {
       :gather => {
