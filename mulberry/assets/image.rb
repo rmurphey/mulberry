@@ -27,7 +27,7 @@ module Mulberry
         item_data = {
           :type       =>  self.asset_type,
           :id         =>  id,
-          :streamed   =>  false,
+          :streamed   =>  @url ? true : false,
           :name       =>  @asset_name
         }
 
@@ -36,6 +36,7 @@ module Mulberry
           item_data[image_type] = {
             :filename => File.exists?(File.join(@dir, override)) ? override : @filename
           }
+          item_data[image_type][:url] = @url if @url
         end
 
         item_data

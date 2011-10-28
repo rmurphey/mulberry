@@ -10,8 +10,9 @@ module Mulberry
           @asset_name = asset['name']
           @filename   = asset['filename']
         else
-          @filename   = asset
-          @asset_name = asset.split('.').first
+          @filename   = File.basename(URI.parse(asset).path)
+          @asset_name = @filename.split('.').first
+          @url        = asset if asset.match /^http/
         end
 
         @dir          = dirname(parent_assets_dir)
