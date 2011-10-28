@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <string name="app_name">www</string>
-  <string name="go">Snap</string>
-  <string name="pushNotificationPermLabel">Push Notification Permissions for www</string>
-  <string name="pushNotificationPermDescription">Allow subscription to push notifications from www</string>  
-</resources>
