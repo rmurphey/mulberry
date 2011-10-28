@@ -15,7 +15,7 @@ module Mulberry
       code_filename = File.join(code_dir, "#{filename}.js")
 
       if File.exists? code_filename
-        raise "The file #{component_filename} already exists"
+        raise "The file #{code_filename} already exists"
       end
 
       FileUtils.mkdir_p(code_dir) unless File.exists?(code_dir)
