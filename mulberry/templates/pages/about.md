@@ -1,5 +1,7 @@
 ---
 title: About
-template: default
+template:
+  phone: default
+  tablet: default
 ---
 
