@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.toura.app2_fake" android:versionName="3.0.4" android:versionCode="1319727285">
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:resizeable="true"
+        android:anyDensity="true"
+        />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <!-- REQUIRED for C2DM  -->
+    <!-- Only this application can receive the messages and registration result -->
+    <permission android:name="com.toura.app2_fake.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="com.toura.app2_fake.permission.C2D_MESSAGE" />
+
+    <!-- This app has permission to register and receive message -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:name=".TouraApplication">
+        <activity android:name=".TouraMainActivity" android:screenOrientation="portrait"
+            android:label="@string/app_name" android:configChanges="orientation|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.phonegap.DroidGap" android:label="@string/app_name">
+            <intent-filter>
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="com.urbanairship.CoreReceiver">
+            <!-- REQUIRED IntentFilter - For Helium and Hybrid -->
+            <intent-filter>
+              <action android:name="android.intent.action.BOOT_COMPLETED" />
+              <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+            </intent-filter>
+        </receiver>
+
+        <!-- REQUIRED for C2DM and Hybrid -->
+        <receiver android:name="com.urbanairship.push.c2dm.C2DMPushReceiver"
+                android:permission="com.google.android.c2dm.permission.SEND">
+          <!-- Receive the actual message -->
+          <intent-filter>
+              <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+              <category android:name="com.toura.app2_fake" />
+          </intent-filter>
+          <!-- Receive the registration id -->
+          <intent-filter>
+              <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+              <category android:name="com.toura.app2_fake" />
+          </intent-filter>
+        </receiver>
+
+        <!-- The 'android:process' parameter is optional. Set it to a value starting
+            with a colon (:) to make it run in a separate,
+            private process -->
+        <service android:name="com.urbanairship.push.PushService"
+            android:process=":com.urbanairship.push.process"/>
+
+        <receiver android:name="com.toura.app2_fake.push.IntentReceiver" />
+
+    </application>
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="8" />
+
+</manifest>

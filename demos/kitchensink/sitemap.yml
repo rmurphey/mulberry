@@ -1,0 +1,12 @@
+- home:
+  - audio_list
+  - image_gallery 
+  - fullscreen_images
+  - feed_list
+  - locations
+  - location_map
+  - videos
+  - grid:
+    - grid_child_one
+    - grid_child_two
+- about
