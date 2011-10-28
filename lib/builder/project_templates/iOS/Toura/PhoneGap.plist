@@ -18,7 +18,7 @@
 	<true/>
 	<key>ExternalHosts</key>
 	<array>
-		<string>data.flurry.com</string>
+		<string>*</string>
 	</array>
 	<key>Plugins</key>
 	<dict>
