@@ -80,7 +80,7 @@ describe("toura.components.Favorites", function() {
       deleteBtn = c._supportingWidgets[0];
       deleteBtn.deleting = true;
       click = getEventHandlers(deleteBtn, 'touchstart', deleteBtn.domNode)[0];
-      click();
+      click(fakeEventObj);
 
       expect(spy).toHaveBeenCalledWith(deleteBtn.objId);
       expect(c.favoritesList.childNodes.length).toEqual(num -1);
