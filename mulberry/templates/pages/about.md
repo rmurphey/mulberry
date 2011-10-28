@@ -1,5 +1,5 @@
 ---
 title: About
-template: Default
+template: default
 ---
 
