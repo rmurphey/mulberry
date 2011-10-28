@@ -6,3 +6,12 @@ toura_app/javascript/dev/*
 toura_app/javascript/client_customizations
 toura_app/javascript/client_tmp/*
 chromedriver.log
+lib/builder/project_templates/iOS/Toura/Toura-Info.plist
+lib/builder/project_templates/iOS/Toura/UrbanAirship.plist
+lib/builder/project_templates/iOS/build/*
+lib/builder/project_templates/iOS/Toura-iPad.xcodeproj/*.pbxuser
+lib/builder/project_templates/iOS/Toura-iPad.xcodeproj/*.mode1v3
+lib/builder/project_templates/iOS/Toura.xcodeproj/*.pbxuser
+lib/builder/project_templates/iOS/Toura.xcodeproj/*.mode1v3
+lib/builder/project_templates/iOS/*.xcodeproj/project.xcworkspace/
+lib/builder/project_templates/iOS/*.xcodeproj/xcuserdata/

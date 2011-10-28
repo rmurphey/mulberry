@@ -1,6 +1,6 @@
 ---
 title: # required!
-template:
+template: default
 
 # these should optionally point at an image in the images dir
 header_image:

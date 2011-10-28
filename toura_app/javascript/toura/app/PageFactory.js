@@ -21,22 +21,9 @@ dojo.declare('toura.app.PageFactory', [], {
   },
 
   _translations : {
-    'Home'              : 'Home1',
-    'Audios'            : 'Audios1',
-    'Videos'            : 'Videos1',
-    'Images'            : 'Images1',
-    'LocationsMap'      : 'GoogleMap1',
-    'Feed'              : 'FeedList',
-    'Default'           : 'default',
-    'FeedItem'          : 'feed-item',
-    'NodeGallery'       : 'node-gallery',
-    'LocationList'      : 'location-list',
-    'Hotspots'          : 'hotspots',
-    'FullScreenImages'  : 'full-screen-images',
-    'Images2'           : 'full-screen-images',
-    'GridView'          : 'grid-view'
+    'videos'            : 'Videos1',
+    'locations-map'     : 'GoogleMap1'
   },
-
 
   /**
    * Provide a way to override controller names based on device info.
@@ -89,9 +76,64 @@ dojo.declare('toura.app.PageFactory', [], {
   },
 
   createPage : function(obj) {
-    if (!obj) {
-      throw new Error('toura.app.PageFactory::createPage requires an object');
-    }
+    /*
+     * createPage receives an object that it will use to create a page. It
+     * looks at the object for a pageController property, and uses that
+     * pageController property to determine how to set up the page controller
+     * for the page. The process for determining this is a bit convoluted for
+     * the time being, in order to support some legacy systems. Here's how it
+     * works:
+     *
+     * First, we determine the name of the controller we're going to use:
+     *
+     *    1. If the object does not have a pageController property, then the
+     *    controllerName is set to 'default'
+     *
+     *    2. If the object has a pageController property and the property's
+     *    value is an object, then it is assumed the object has a 'phone' and
+     *    a 'tablet' property; the controllerName is set to the value that
+     *    corresponds with the device type.
+     *
+     * Next, we check the PageFactory's 'pages' object to determine whether the
+     * specified controllerName should receive special handling.
+     *
+     *    1. If there is an entry in the pages object that corresponds with the
+     *    controllerName, we expect that entry to point to a function. We call
+     *    that function, passing it the object that was passed to createPage,
+     *    and return its result. In this case, the createPage method is
+     *    complete.
+     *
+     *    2. If there is not an entry in the pages object that corresponds with
+     *    the controllerName, the createPage method continues.
+     *
+     * Next, we translate "new" controller names into legacy controller names.
+     * We do this by inspecting the PageFactory's '_translations' object; if it
+     * has an entry that corresponds with the controllerName, we use that
+     * entry's value as the new controllerName. (This is necessary for
+     * controllers that have not been converted to the new "configurable"
+     * system. When all controllers have been converted to the new system, the
+     * _translations object can go away.)
+     *
+     * Finally, we handle the case where MAP (Toura's internal CMS) is using
+     * old controller names (such as Home1, Images1, etc.). We do this by
+     * inspecting the PageFactory's '_overrides' object; if it has an entry
+     * that corresponds with the controllerName, we assume that entry points to
+     * a function. We run the function, passing the device object as an
+     * argument, and use the return value as the new controllerName.
+     *
+     * At this point, we have a reliable controllerName. We look to see if
+     * there is an entry in the toura.templates object for the controllerName.
+     * If there is, we use the Configurable page controller; if not, we look
+     * for a legacy page controller with that name. (This is necessary until
+     * all *node* page controllers have been converted to the new system.)
+     *
+     * Once we have determined the proper page controller to use, we create an
+     * instance of that controller, passing it the data it will need in order
+     * to create the page. We return the controller instance, and createPage is
+     * complete.
+     */
+
+    if (!obj) { throw new Error('toura.app.PageFactory::createPage requires an object'); }
 
     var controllerName = obj.pageController || 'default',
         config, Controller;

@@ -16,7 +16,9 @@ dojo.declare('toura.components.buttons._Button', [ toura.components._Component ]
   },
 
   _handleClick : function(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
 
     if (this.preventWhenAnimating && toura.animating) {
       return;
