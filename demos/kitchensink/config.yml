@@ -1,0 +1,88 @@
+# Copyright (c) 2011 Toura, LLC.	All Rights Reserved.  website: http://toura.com
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is furnished to do
+# so, subject to the following conditions:
+#
+# 1.	The above  copyright notice and this permission notice shall be included in
+#     all copies or substantial portions of the Software and any sublicense shall
+#     be subject to and include all of the terms of this license.
+#
+# 2.	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,  EXPRESS OR
+#     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF ANY INTELLECTUAL
+#     PROPERTY. IN NO EVENT SHALL TOURA, THE AUTHORS OR COPYRIGHT HOLDERS OR
+#     THEIR RESPECTIVE SUCCESSORS OR ASSIGNS, BE LIABLE FOR ANY CLAIM, DAMAGES
+#     OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+#     ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE INCLUDING, WITHOUT
+#     LIMITATION ANY MODIFICATION, COPYING, DISTRIBUTION, SALE OTHER USE OF OR
+#     DEALINGS IN THE SOFTWARE. THERE ARE NO IMPLIED RIGHTS GRANTED HEREBY AND
+#     ANY RIGHTS NOT EXPRESSLY GRANTED ARE HEREBY RESERVED BY TOURA, LLC.
+
+# Enter your application name here (required!)
+name: mulberry_kitchensink
+
+# Presently there is only one theme, the default theme. We need to document how
+# to create additional themes.
+theme:
+  name: default
+  settings:
+    font-scheme:        'dark'
+    link-color:         '#0000ff'
+    background-color:   '#fff'
+    child-nav-color:    '#fff'
+
+os:
+  # Specify the operating systems to target
+  - ios
+  - android
+
+type:
+  # Specify the form factors to target;
+  # note that Android currently only supports phones
+  - tablet
+  - phone
+
+# Dojo is included by default, but if you want access
+# to jQuery functionality, set this to true
+jquery: true
+
+# enter your facebook api key here in order to enable facebook features
+facebook_api_key:
+
+# your twitter api key must be authorized for xauth for twitter features
+# to work. see https://dev.twitter.com/docs/oauth/xauth
+twitter_customer_key:
+twitter_customer_secret:
+
+# You must replace these with your own app id
+# for each targeted os/device type
+app_id:
+  android:
+    phone: com.toura.app2_fake
+  ios:
+    phone: com.toura.app2.fake.phone
+    tablet: com.toura.app2.fake.tablet
+
+# Enter your Urban Airship account details here
+urban_airship:
+  development:
+    app_key: dev_app_key
+    app_secret: dev_app_secret
+  production:
+    app_key: prod_app_key
+    app_secret: prod_app_secret
+  android:
+     transport: c2dm
+     c2dm_sender: c2dmsender@mail.com
+
+# Enter your flurry api keys here
+flurry:
+ ios:
+   api_key: flurry_ios_api_key
+ android:
+   api_key: flurry_ios_api_key
+  
