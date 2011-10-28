@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		64230A82143A04F4003BF27A /* PushNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 64230A81143A04F4003BF27A /* PushNotification.m */; };
+		6425D574141038A100CACA49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D573141038A100CACA49 /* Foundation.framework */; };
+		6425D576141038A100CACA49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D575141038A100CACA49 /* UIKit.framework */; };
+		6425D578141038A100CACA49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D577141038A100CACA49 /* CoreGraphics.framework */; };
+		6425D57A141038A100CACA49 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D579141038A100CACA49 /* AddressBook.framework */; };
+		6425D57C141038A100CACA49 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D57B141038A100CACA49 /* AddressBookUI.framework */; };
+		6425D57E141038A100CACA49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D57D141038A100CACA49 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		6425D580141038A100CACA49 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D57F141038A100CACA49 /* AVFoundation.framework */; };
+		6425D582141038A100CACA49 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D581141038A100CACA49 /* CoreLocation.framework */; };
+		6425D584141038A100CACA49 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D583141038A100CACA49 /* MediaPlayer.framework */; };
+		6425D586141038A100CACA49 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D585141038A100CACA49 /* QuartzCore.framework */; };
+		6425D588141038A100CACA49 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D587141038A100CACA49 /* SystemConfiguration.framework */; };
+		6425D58A141038A100CACA49 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D589141038A100CACA49 /* MobileCoreServices.framework */; };
+		6425D58C141038A100CACA49 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D58B141038A100CACA49 /* CoreMedia.framework */; };
+		6425D5EE141038DF00CACA49 /* FlurryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6425D5C3141038DF00CACA49 /* FlurryCommand.m */; };
+		6425D5EF141038DF00CACA49 /* TouraAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6425D5C5141038DF00CACA49 /* TouraAppDelegate.m */; };
+		6425D5F0141038DF00CACA49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5C6141038DF00CACA49 /* InfoPlist.strings */; };
+		6425D5F1141038DF00CACA49 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D5CB141038DF00CACA49 /* libFlurry.a */; };
+		6425D5F2141038DF00CACA49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6425D5CC141038DF00CACA49 /* main.m */; };
+		6425D5F3141038DF00CACA49 /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5CD141038DF00CACA49 /* PhoneGap.plist */; };
+		6425D5F4141038DF00CACA49 /* ChildBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5CF141038DF00CACA49 /* ChildBrowser.bundle */; };
+		6425D5F5141038DF00CACA49 /* ChildBrowserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6425D5D1141038DF00CACA49 /* ChildBrowserCommand.m */; };
+		6425D5F6141038DF00CACA49 /* ChildBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6425D5D3141038DF00CACA49 /* ChildBrowserViewController.m */; };
+		6425D5F7141038DF00CACA49 /* ChildBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5D4141038DF00CACA49 /* ChildBrowserViewController.xib */; };
+		6425D5F8141038DF00CACA49 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5D5141038DF00CACA49 /* README */; };
+		6425D5FD141038DF00CACA49 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5DD141038DF00CACA49 /* Localizable.strings */; };
+		6425D5FE141038DF00CACA49 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5E1141038DF00CACA49 /* icon-72.png */; };
+		6425D5FF141038DF00CACA49 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5E2141038DF00CACA49 /* icon.png */; };
+		6425D601141038DF00CACA49 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5E5141038DF00CACA49 /* Default-Landscape.png */; };
+		6425D602141038DF00CACA49 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5E6141038DF00CACA49 /* Default-Portrait.png */; };
+		6425D603141038DF00CACA49 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6425D5E7141038DF00CACA49 /* Default.png */; };
+		6425D60B1410391500CACA49 /* PhoneGap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425D60A1410391500CACA49 /* PhoneGap.framework */; };
+		6425D61114103A1300CACA49 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 6425D61014103A1300CACA49 /* www */; };
+		6425D61B14103CBB00CACA49 /* Toura-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6425D61914103CBB00CACA49 /* Toura-Info.plist */; };
+		6425D61C14103CBB00CACA49 /* UrbanAirship.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6425D61A14103CBB00CACA49 /* UrbanAirship.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		64230A80143A04F4003BF27A /* PushNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotification.h; sourceTree = "<group>"; };
+		64230A81143A04F4003BF27A /* PushNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotification.m; sourceTree = "<group>"; };
+		6425D56F141038A100CACA49 /* Toura-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Toura-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6425D573141038A100CACA49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6425D575141038A100CACA49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6425D577141038A100CACA49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6425D579141038A100CACA49 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		6425D57B141038A100CACA49 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		6425D57D141038A100CACA49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6425D57F141038A100CACA49 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6425D581141038A100CACA49 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6425D583141038A100CACA49 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		6425D585141038A100CACA49 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6425D587141038A100CACA49 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6425D589141038A100CACA49 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6425D58B141038A100CACA49 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		6425D5C2141038DF00CACA49 /* FlurryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryCommand.h; sourceTree = "<group>"; };
+		6425D5C3141038DF00CACA49 /* FlurryCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryCommand.m; sourceTree = "<group>"; };
+		6425D5C4141038DF00CACA49 /* TouraAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouraAppDelegate.h; sourceTree = "<group>"; };
+		6425D5C5141038DF00CACA49 /* TouraAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouraAppDelegate.m; sourceTree = "<group>"; };
+		6425D5C7141038DF00CACA49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6425D5C9141038DF00CACA49 /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		6425D5CA141038DF00CACA49 /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAPI.h; sourceTree = "<group>"; };
+		6425D5CB141038DF00CACA49 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		6425D5CC141038DF00CACA49 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6425D5CD141038DF00CACA49 /* PhoneGap.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PhoneGap.plist; sourceTree = "<group>"; };
+		6425D5CF141038DF00CACA49 /* ChildBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChildBrowser.bundle; sourceTree = "<group>"; };
+		6425D5D0141038DF00CACA49 /* ChildBrowserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildBrowserCommand.h; sourceTree = "<group>"; };
+		6425D5D1141038DF00CACA49 /* ChildBrowserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildBrowserCommand.m; sourceTree = "<group>"; };
+		6425D5D2141038DF00CACA49 /* ChildBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildBrowserViewController.h; sourceTree = "<group>"; };
+		6425D5D3141038DF00CACA49 /* ChildBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildBrowserViewController.m; sourceTree = "<group>"; };
+		6425D5D4141038DF00CACA49 /* ChildBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChildBrowserViewController.xib; sourceTree = "<group>"; };
+		6425D5D5141038DF00CACA49 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		6425D5DE141038DF00CACA49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6425D5DF141038DF00CACA49 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6425D5E1141038DF00CACA49 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
+		6425D5E2141038DF00CACA49 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		6425D5E5141038DF00CACA49 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
+		6425D5E6141038DF00CACA49 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
+		6425D5E7141038DF00CACA49 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		6425D5EB141038DF00CACA49 /* Toura-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toura-Prefix.pch"; sourceTree = "<group>"; };
+		6425D60A1410391500CACA49 /* PhoneGap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhoneGap.framework; path = ../../../../../../../Shared/PhoneGap/Frameworks/PhoneGap.framework; sourceTree = "<group>"; };
+		6425D61014103A1300CACA49 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		6425D61914103CBB00CACA49 /* Toura-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Toura-Info.plist"; sourceTree = "<group>"; };
+		6425D61A14103CBB00CACA49 /* UrbanAirship.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = UrbanAirship.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6425D569141038A100CACA49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6425D60B1410391500CACA49 /* PhoneGap.framework in Frameworks */,
+				6425D574141038A100CACA49 /* Foundation.framework in Frameworks */,
+				6425D576141038A100CACA49 /* UIKit.framework in Frameworks */,
+				6425D578141038A100CACA49 /* CoreGraphics.framework in Frameworks */,
+				6425D57A141038A100CACA49 /* AddressBook.framework in Frameworks */,
+				6425D57C141038A100CACA49 /* AddressBookUI.framework in Frameworks */,
+				6425D57E141038A100CACA49 /* AudioToolbox.framework in Frameworks */,
+				6425D580141038A100CACA49 /* AVFoundation.framework in Frameworks */,
+				6425D582141038A100CACA49 /* CoreLocation.framework in Frameworks */,
+				6425D584141038A100CACA49 /* MediaPlayer.framework in Frameworks */,
+				6425D586141038A100CACA49 /* QuartzCore.framework in Frameworks */,
+				6425D588141038A100CACA49 /* SystemConfiguration.framework in Frameworks */,
+				6425D58A141038A100CACA49 /* MobileCoreServices.framework in Frameworks */,
+				6425D58C141038A100CACA49 /* CoreMedia.framework in Frameworks */,
+				6425D5F1141038DF00CACA49 /* libFlurry.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6425D56C141038A100CACA49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		64230A7F143A04F4003BF27A /* push */ = {
+			isa = PBXGroup;
+			children = (
+				64230A80143A04F4003BF27A /* PushNotification.h */,
+				64230A81143A04F4003BF27A /* PushNotification.m */,
+			);
+			path = push;
+			sourceTree = "<group>";
+		};
+		6425D561141038A100CACA49 = {
+			isa = PBXGroup;
+			children = (
+				6425D61014103A1300CACA49 /* www */,
+				6425D60A1410391500CACA49 /* PhoneGap.framework */,
+				6425D5C0141038DF00CACA49 /* Toura */,
+				6425D572141038A100CACA49 /* Frameworks */,
+				6425D570141038A100CACA49 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6425D570141038A100CACA49 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6425D56F141038A100CACA49 /* Toura-iPad.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6425D572141038A100CACA49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6425D573141038A100CACA49 /* Foundation.framework */,
+				6425D575141038A100CACA49 /* UIKit.framework */,
+				6425D577141038A100CACA49 /* CoreGraphics.framework */,
+				6425D579141038A100CACA49 /* AddressBook.framework */,
+				6425D57B141038A100CACA49 /* AddressBookUI.framework */,
+				6425D57D141038A100CACA49 /* AudioToolbox.framework */,
+				6425D57F141038A100CACA49 /* AVFoundation.framework */,
+				6425D581141038A100CACA49 /* CoreLocation.framework */,
+				6425D583141038A100CACA49 /* MediaPlayer.framework */,
+				6425D585141038A100CACA49 /* QuartzCore.framework */,
+				6425D587141038A100CACA49 /* SystemConfiguration.framework */,
+				6425D589141038A100CACA49 /* MobileCoreServices.framework */,
+				6425D58B141038A100CACA49 /* CoreMedia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6425D5C0141038DF00CACA49 /* Toura */ = {
+			isa = PBXGroup;
+			children = (
+				6425D5CE141038DF00CACA49 /* Plugins */,
+				6425D5C8141038DF00CACA49 /* FlurryLib */,
+				6425D5C1141038DF00CACA49 /* Classes */,
+				6425D61814103BC600CACA49 /* Supporting Files */,
+				6425D5DB141038DF00CACA49 /* Resources */,
+			);
+			path = Toura;
+			sourceTree = "<group>";
+		};
+		6425D5C1141038DF00CACA49 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6425D5C2141038DF00CACA49 /* FlurryCommand.h */,
+				6425D5C3141038DF00CACA49 /* FlurryCommand.m */,
+				6425D5C4141038DF00CACA49 /* TouraAppDelegate.h */,
+				6425D5C5141038DF00CACA49 /* TouraAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6425D5C8141038DF00CACA49 /* FlurryLib */ = {
+			isa = PBXGroup;
+			children = (
+				6425D5C9141038DF00CACA49 /* FlurryAdDelegate.h */,
+				6425D5CA141038DF00CACA49 /* FlurryAPI.h */,
+				6425D5CB141038DF00CACA49 /* libFlurry.a */,
+			);
+			path = FlurryLib;
+			sourceTree = "<group>";
+		};
+		6425D5CE141038DF00CACA49 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				64230A7F143A04F4003BF27A /* push */,
+				6425D5CF141038DF00CACA49 /* ChildBrowser.bundle */,
+				6425D5D0141038DF00CACA49 /* ChildBrowserCommand.h */,
+				6425D5D1141038DF00CACA49 /* ChildBrowserCommand.m */,
+				6425D5D2141038DF00CACA49 /* ChildBrowserViewController.h */,
+				6425D5D3141038DF00CACA49 /* ChildBrowserViewController.m */,
+				6425D5D4141038DF00CACA49 /* ChildBrowserViewController.xib */,
+				6425D5D5141038DF00CACA49 /* README */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		6425D5DB141038DF00CACA49 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6425D5DD141038DF00CACA49 /* Localizable.strings */,
+				6425D5E0141038DF00CACA49 /* icons */,
+				6425D5E4141038DF00CACA49 /* splash */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6425D5E0141038DF00CACA49 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				6425D5E1141038DF00CACA49 /* icon-72.png */,
+				6425D5E2141038DF00CACA49 /* icon.png */,
+			);
+			path = icons;
+			sourceTree = "<group>";
+		};
+		6425D5E4141038DF00CACA49 /* splash */ = {
+			isa = PBXGroup;
+			children = (
+				6425D5E5141038DF00CACA49 /* Default-Landscape.png */,
+				6425D5E6141038DF00CACA49 /* Default-Portrait.png */,
+				6425D5E7141038DF00CACA49 /* Default.png */,
+			);
+			path = splash;
+			sourceTree = "<group>";
+		};
+		6425D61814103BC600CACA49 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6425D61914103CBB00CACA49 /* Toura-Info.plist */,
+				6425D61A14103CBB00CACA49 /* UrbanAirship.plist */,
+				6425D5C6141038DF00CACA49 /* InfoPlist.strings */,
+				6425D5CD141038DF00CACA49 /* PhoneGap.plist */,
+				6425D5CC141038DF00CACA49 /* main.m */,
+				6425D5EB141038DF00CACA49 /* Toura-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6425D56E141038A100CACA49 /* Toura-iPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6425D5B9141038A200CACA49 /* Build configuration list for PBXNativeTarget "Toura-iPad" */;
+			buildPhases = (
+				6425D568141038A100CACA49 /* Sources */,
+				6425D569141038A100CACA49 /* Frameworks */,
+				6425D56A141038A100CACA49 /* Resources */,
+				6425D56B141038A100CACA49 /* Sources */,
+				6425D56C141038A100CACA49 /* Frameworks */,
+				6425D56D141038A100CACA49 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Toura-iPad";
+			productName = "Toura-iPad";
+			productReference = 6425D56F141038A100CACA49 /* Toura-iPad.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6425D563141038A100CACA49 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 6425D566141038A100CACA49 /* Build configuration list for PBXProject "Toura-iPad" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				es,
+			);
+			mainGroup = 6425D561141038A100CACA49;
+			productRefGroup = 6425D570141038A100CACA49 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6425D56E141038A100CACA49 /* Toura-iPad */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6425D56A141038A100CACA49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6425D5F0141038DF00CACA49 /* InfoPlist.strings in Resources */,
+				6425D5F3141038DF00CACA49 /* PhoneGap.plist in Resources */,
+				6425D5F4141038DF00CACA49 /* ChildBrowser.bundle in Resources */,
+				6425D5F7141038DF00CACA49 /* ChildBrowserViewController.xib in Resources */,
+				6425D5F8141038DF00CACA49 /* README in Resources */,
+				6425D5FD141038DF00CACA49 /* Localizable.strings in Resources */,
+				6425D5FE141038DF00CACA49 /* icon-72.png in Resources */,
+				6425D5FF141038DF00CACA49 /* icon.png in Resources */,
+				6425D601141038DF00CACA49 /* Default-Landscape.png in Resources */,
+				6425D602141038DF00CACA49 /* Default-Portrait.png in Resources */,
+				6425D603141038DF00CACA49 /* Default.png in Resources */,
+				6425D61114103A1300CACA49 /* www in Resources */,
+				6425D61B14103CBB00CACA49 /* Toura-Info.plist in Resources */,
+				6425D61C14103CBB00CACA49 /* UrbanAirship.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6425D56D141038A100CACA49 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "\n\t\t\t\t\t\t\t\tif [ ! -d \"$PROJECT_DIR/www\" ] ; then\n\t\t\t\t\t\t\t\t\tcp -R /Users/Shared/PhoneGap/Frameworks/PhoneGap.framework/www \"$PROJECT_DIR\"\n\t\t\t\t\t\t\t\tfi\n\t\t\t\t\t\t\t\t# detect www folder reference in project, if missing, print warning\n\t\t\t\t\t\t\t\tgrep \"{isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = \\\"<group>\\\"; };\" \"$PROJECT_DIR/$PROJECT_NAME.xcodeproj/project.pbxproj\"\n\t\t\t\t\t\t\t\trc=$? \n\t\t\t\t\t\t\t\tif [ $rc != 0 ] ; then\n\t\t\t\t\t\t\t\techo -e \"warning: Missing - Add $PROJECT_DIR/www as a folder reference in your project. Just drag and drop the folder into your project, in Xcode 4.\" 1>&2\n\t\t\t\t\t\t\t\tfi\t\t\t\t\t\t\t";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6425D568141038A100CACA49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6425D5EE141038DF00CACA49 /* FlurryCommand.m in Sources */,
+				6425D5EF141038DF00CACA49 /* TouraAppDelegate.m in Sources */,
+				6425D5F2141038DF00CACA49 /* main.m in Sources */,
+				6425D5F5141038DF00CACA49 /* ChildBrowserCommand.m in Sources */,
+				6425D5F6141038DF00CACA49 /* ChildBrowserViewController.m in Sources */,
+				64230A82143A04F4003BF27A /* PushNotification.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6425D56B141038A100CACA49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6425D5C6141038DF00CACA49 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6425D5C7141038DF00CACA49 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6425D5DD141038DF00CACA49 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6425D5DE141038DF00CACA49 /* en */,
+				6425D5DF141038DF00CACA49 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6425D5B7141038A200CACA49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		6425D5B8141038A200CACA49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6425D5BA141038A200CACA49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = /Users/Shared/PhoneGap/Frameworks;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Toura/Toura-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "Toura/Toura-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Toura/FlurryLib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6425D5BB141038A200CACA49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = /Users/Shared/PhoneGap/Frameworks;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Toura/Toura-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "Toura/Toura-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Toura/FlurryLib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6425D566141038A100CACA49 /* Build configuration list for PBXProject "Toura-iPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6425D5B7141038A200CACA49 /* Debug */,
+				6425D5B8141038A200CACA49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6425D5B9141038A200CACA49 /* Build configuration list for PBXNativeTarget "Toura-iPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6425D5BA141038A200CACA49 /* Debug */,
+				6425D5BB141038A200CACA49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6425D563141038A100CACA49 /* Project object */;
+}
