@@ -4,7 +4,8 @@ toura.capability('Twitter', {
   requirements : {
     latestTweet   : 'custom.LatestTweet',
     map           : 'GoogleMap',
-    userList      : 'custom.UserList'
+    userList      : 'custom.UserList',
+    userInfo      : 'custom.UserInfo'
   },
 
   connects : [
@@ -17,10 +18,14 @@ toura.capability('Twitter', {
 
     this.users = this.baseObj.getData('users').users;
 
+    var user = this.users[0];
+
     this.latestTweet.set('loading', true);
 
-    this.twitter.get(this.users[0].twitter)
+    this.twitter.getLatest(user.twitter)
       .then(dojo.hitch(this.latestTweet, 'set', 'tweet'));
+
+    this.userInfo.set('user', user);
   },
 
   _onMapBuilt : function() {
@@ -28,7 +33,7 @@ toura.capability('Twitter', {
   },
 
   _onUserSelect : function(username) {
-    this.twitter.get(username).then(
+    this.twitter.getLatest(username).then(
       dojo.hitch(this.latestTweet, 'set', 'tweet')
     );
 

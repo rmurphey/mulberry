@@ -1,21 +1,40 @@
 dojo.provide('client.data.Twitter');
 
 dojo.declare('client.data.Twitter', null, {
-  get : function(username) {
-    var url = 'http://twitter.com/status/user_timeline/${username}.json?count=10';
+  getLatest : function(username) {
+    return this._get(username, 1).then(dojo.hitch(this, '_getLatest'));
+  },
+
+  getAll : function(username) {
+    return this._get(username, 10).then(dojo.hitch(this, '_getAll'));
+  },
+
+  _get : function(username, count) {
+    var url = 'http://twitter.com/status/user_timeline/${username}.json?count=' + (count || 10);
 
     return dojo.io.script.get({
       url : toura.tmpl(url, { username : username }),
       callbackParamName : 'callback'
-    }).then(dojo.hitch(this, '_onLoad'));
+    });
   },
 
-  _onLoad : function(data) {
-    var latest = data[0];
-
-    return {
-      text : latest.text,
-      date : dojo.date.locale.format(new Date(latest.created_at))
+  _getLatest : function(data) {
+    if (!data) {
+      console.log('no data');
+      return;
     }
+
+    return this._formatTweet(data[0]);
+  },
+
+  _getAll : function(data) {
+    return dojo.map(data, this._formatTweet);
+  },
+
+  _formatTweet : function(tweet) {
+    return {
+      text : tweet.text,
+      date : dojo.date.locale.format(new Date(tweet.created_at))
+    };
   }
 });

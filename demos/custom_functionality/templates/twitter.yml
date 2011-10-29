@@ -4,6 +4,7 @@ twitter:
       components:
       - index:GoogleMap
       - index:custom.UserList
+      - index:custom.UserInfo
       - index:custom.LatestTweet
   screens:
     - name: index
@@ -15,5 +16,9 @@ twitter:
           regions:
             - components:
               - custom.UserList
-            - components:
-              - GoogleMap
+            - containerType: row
+              regions:
+              - components:
+                - custom.UserInfo
+              - components:
+                - GoogleMap
