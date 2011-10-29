@@ -26,6 +26,11 @@ dojo.declare('toura.containers._LayoutBox', [ toura._View, toura.ui.BackgroundIm
       'size-' + this.config.size,
       'layout-' + this.config.layout
     ];
+
+    if (this.config.className) {
+      classNames.push(this.config.className);
+    }
+
     this.addClass(classNames);
 
     if (this.config.backgroundImage && this.backgroundImage) {
