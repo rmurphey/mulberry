@@ -1,0 +1,13 @@
+twitter:
+  screens:
+    - name: index
+      regions:
+        - size: fixed
+          components:
+            - custom.LatestTweet
+        - containerType: column
+          regions:
+            - components:
+              - custom.UserList
+            - components:
+              - custom.UserInfo
