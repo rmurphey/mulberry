@@ -30,6 +30,11 @@
       font-size: 120%;
       background-color: #eaeaea;
       margin: 0 0 5px 0;
+
+      &.selected {
+        background-color: red;
+        color: #fff;
+      }
     }
   }
 
@@ -41,6 +46,24 @@
       font-weight: bold;
       font-size: 120%;
       margin: 0 0 5px 0;
+    }
+  }
+}
+
+.page.user {
+  .component.tweets {
+    li {
+      padding: 10px;
+
+      &:nth-child(odd) {
+        background-color: #eaeaea;
+      }
+
+      .date {
+        margin: 5px 0 0 0;
+        font-size: 80%;
+        color: #666;
+      }
     }
   }
 }
