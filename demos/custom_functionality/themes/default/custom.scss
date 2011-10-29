@@ -1,2 +1,46 @@
 /* override theme defaults in this file */
 
+.page.twitter {
+  .component.latest-tweet {
+    padding: 10px;
+    margin-bottom: 30px;
+
+    p.tweet {
+      font-family: Georgia, serif;
+      font-size: 150%;
+      margin: 0 0 15px 0;
+    }
+
+    p.date {
+      font-size: 80%;
+      color: #6a6a6a;
+    }
+  }
+
+  .component.google-map {
+    height: 500px;
+  }
+
+  .component.user-list {
+    padding: 10px;
+    -webkit-box-flex: 1;
+
+    li {
+      padding: 10px;
+      font-size: 120%;
+      background-color: #eaeaea;
+      margin: 0 0 5px 0;
+    }
+  }
+
+  .component.user-info {
+    padding: 10px;
+    -webkit-box-flex: 1;
+
+    h1 {
+      font-weight: bold;
+      font-size: 120%;
+      margin: 0 0 5px 0;
+    }
+  }
+}

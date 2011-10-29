@@ -12,13 +12,12 @@ twitter:
         - size: fixed
           components:
             - custom.LatestTweet
+        - size: fixed
+          components:
+            - GoogleMap
         - containerType: column
           regions:
             - components:
               - custom.UserList
-            - containerType: row
-              regions:
-              - components:
-                - custom.UserInfo
-              - components:
-                - GoogleMap
+            - components:
+              - custom.UserInfo
