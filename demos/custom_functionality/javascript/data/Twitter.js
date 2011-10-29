@@ -19,11 +19,7 @@ dojo.declare('client.data.Twitter', null, {
   },
 
   _getLatest : function(data) {
-    if (!data) {
-      console.log('no data');
-      return;
-    }
-
+    if (!data || !data.length) { return; }
     return this._formatTweet(data[0]);
   },
 
