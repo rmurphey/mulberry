@@ -9,5 +9,8 @@ mulberry.component('LatestTweet', {
 
   init : function() {
 
+  },
+
+  _setTweetAttr : function(tweet) {
   }
 });

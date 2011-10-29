@@ -1,4 +1,10 @@
 twitter:
+  capabilities:
+    - name: Twitter
+      components:
+      - index:GoogleMap
+      - index:custom.UserList
+      - index:custom.LatestTweet
   screens:
     - name: index
       regions:
@@ -10,4 +16,4 @@ twitter:
             - components:
               - custom.UserList
             - components:
-              - custom.UserInfo
+              - GoogleMap

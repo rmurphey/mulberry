@@ -4,9 +4,7 @@ mulberry.component('UserList', {
   componentTemplate : dojo.cache('client.components', 'UserList/UserList.haml'),
 
   prep : function() {
-    this.users = dojo.filter(this.baseObj.data, function(d) {
-      return d.type == 'users'
-    })[0].json.users;
+    this.users = this.baseObj.getData('users').users;
   },
 
   init : function() {
@@ -15,9 +13,7 @@ mulberry.component('UserList', {
 
   _handleClick : function(e) {
     var target = e.target;
-
     if (target.nodeName.toLowerCase() !== 'li') { return; }
-
     this.onSelect(dojo.attr(target, 'data-twitter-username'));
   },
 
