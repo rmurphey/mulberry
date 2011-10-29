@@ -15,6 +15,8 @@ mulberry.component('UserList', {
     var target = e.target;
     if (target.nodeName.toLowerCase() !== 'li') { return; }
     this.onSelect(dojo.attr(target, 'data-twitter-username'));
+    this.query('.selected').removeClass('selected');
+    dojo.addClass(target, 'selected');
   },
 
   onSelect : function(username) {
