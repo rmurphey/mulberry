@@ -33,14 +33,15 @@ toura.capability('Twitter', {
   },
 
   _onUserSelect : function(username) {
-    this.twitter.getLatest(username).then(
-      dojo.hitch(this.latestTweet, 'set', 'tweet')
-    );
-
     var user = dojo.filter(this.users, function(u) {
       return u.twitter === username
     })[0];
 
+    this.twitter.getLatest(username).then(
+      dojo.hitch(this.latestTweet, 'set', 'tweet')
+    );
+
     this.userInfo.set('user', user);
+    this.map.set('center', user.location);
   }
 });
