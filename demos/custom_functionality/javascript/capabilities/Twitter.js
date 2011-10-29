@@ -14,7 +14,13 @@ toura.capability('Twitter', {
 
   init : function() {
     this.twitter = new client.data.Twitter();
+
     this.users = this.baseObj.getData('users').users;
+
+    this.latestTweet.set('loading', true);
+
+    this.twitter.get(this.users[0].twitter)
+      .then(dojo.hitch(this.latestTweet, 'set', 'tweet'));
   },
 
   _onMapBuilt : function() {
