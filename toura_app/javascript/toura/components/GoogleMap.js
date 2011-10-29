@@ -88,12 +88,15 @@ dojo.require('toura.app.URL');
       if (this.pins.length > 1) {
         this.map.fitBounds(bounds);
       } else {
-        this.map.setCenter(new google.maps.LatLng(this.pins[0].lat, this.pins[0].lon));
-        this.map.setZoom(15);
+        if (this.pins[0]) {
+          this.map.setCenter(new google.maps.LatLng(this.pins[0].lat, this.pins[0].lon));
+          this.map.setZoom(15);
+        }
       }
 
       this.isBuilt = true;
       this._doQueue();
+      this.onMapBuilt();
     },
 
     _showInfo : function (/** google.maps.Marker */ marker, /** toura.models.GoogleMapPin */ pin) {
@@ -114,8 +117,14 @@ dojo.require('toura.app.URL');
       // stub
     },
 
+    onMapBuilt : function() {
+      // stub
+    },
+
     _setCenterAttr : function(center) {
-      this.map.setCenter(new google.maps.LatLng(center.lat, center.lng));
+      var center = new google.maps.LatLng(center.lat, center.lng);
+      this.map.setCenter(center);
+      this.map.setZoom(15);
     },
 
     _setPinAttr : function(pinId) {
