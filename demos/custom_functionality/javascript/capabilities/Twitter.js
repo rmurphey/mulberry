@@ -14,18 +14,12 @@ toura.capability('Twitter', {
   ],
 
   init : function() {
+    this.users = this.baseObj.getData('users').users;
     this.twitter = new client.data.Twitter();
 
-    this.users = this.baseObj.getData('users').users;
-
     var user = this.users[0];
-
-    this.latestTweet.set('loading', true);
-
-    this.twitter.getLatest(user.twitter)
-      .then(dojo.hitch(this.latestTweet, 'set', 'tweet'));
-
     this.userInfo.set('user', user);
+    this._loadUser(user);
   },
 
   _onMapBuilt : function() {
@@ -37,11 +31,16 @@ toura.capability('Twitter', {
       return u.twitter === username
     })[0];
 
-    this.twitter.getLatest(username).then(
-      dojo.hitch(this.latestTweet, 'set', 'tweet')
-    );
-
-    this.userInfo.set('user', user);
+    this._loadUser(user);
     this.map.set('center', user.location);
+  },
+
+  _loadUser : function(user) {
+    var req = this.twitter.getLatest(user.twitter);
+    req.then(dojo.hitch(this.latestTweet, 'set', 'tweet'));
+    req.then(dojo.hitch(this, function(tweet) {
+      user.bio = tweet.bio;
+      this.userInfo.set('user', user);
+    }));
   }
 });

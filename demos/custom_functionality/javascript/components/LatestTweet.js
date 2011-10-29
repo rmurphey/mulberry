@@ -7,13 +7,10 @@ mulberry.component('LatestTweet', {
     this.user = this.baseObj.getData('users').users[0];
   },
 
-  _setLoadingAttr : function(isLoading) {
-    dojo.toggleClass(this.domNode, 'loading', isLoading);
-  },
-
   _setTweetAttr : function(tweet) {
+    tweet = tweet || {};
     this.set('loading', false);
-    this.dateNode.innerHTML = tweet.date;
-    this.tweetNode.innerHTML = tweet.text;
+    this.dateNode.innerHTML = tweet.date || '';
+    this.tweetNode.innerHTML = tweet.text || 'error';
   }
 });

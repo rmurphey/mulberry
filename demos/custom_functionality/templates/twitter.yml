@@ -17,7 +17,11 @@ twitter:
             - GoogleMap
         - containerType: column
           regions:
-            - components:
+            - className: user-list
+              size: fixed
+              components:
               - custom.UserList
-            - components:
+            - className: user-info
+              size: flex
+              components:
               - custom.UserInfo

@@ -2,6 +2,7 @@ dojo.provide('client.data.Twitter');
 
 dojo.declare('client.data.Twitter', null, {
   getLatest : function(username) {
+    console.log('GETTING LATEST', username);
     return this._get(username, 1).then(dojo.hitch(this, '_getLatest'));
   },
 
@@ -19,7 +20,8 @@ dojo.declare('client.data.Twitter', null, {
   },
 
   _getLatest : function(data) {
-    if (!data || !data.length) { return; }
+    console.log('DATA', data);
+    if (!data || !data.length) { return false; }
     return this._formatTweet(data[0]);
   },
 
@@ -30,7 +32,8 @@ dojo.declare('client.data.Twitter', null, {
   _formatTweet : function(tweet) {
     return {
       text : tweet.text,
-      date : dojo.date.locale.format(new Date(tweet.created_at))
+      date : dojo.date.locale.format(new Date(tweet.created_at)),
+      bio : tweet.user.description
     };
   }
 });
