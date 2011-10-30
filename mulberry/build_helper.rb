@@ -95,7 +95,7 @@ module Mulberry
       templates = {}
 
       Dir.entries(templates_dir).each do |t|
-        if t.match('.yml$')
+        if t.match(/.yml$/)
           template_data = YAML.load_file File.join(@source_dir, 'templates', t)
           templates.merge!(template_data) if template_data
         end
