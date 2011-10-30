@@ -4,10 +4,7 @@ mulberry.component('UserList', {
   componentTemplate : dojo.cache('client.components', 'UserList/UserList.haml'),
 
   prep : function() {
-    this.users = dojo.map(this.baseObj.getData('users').users, function(u) {
-      u.imgSrc = toura.app.URL.storedAsset('image', u.image)
-      return u;
-    });
+    this.users = this.baseObj.getData('users').users;
   },
 
   init : function() {
