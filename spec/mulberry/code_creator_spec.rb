@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'mulberry/code_creator'
 
 describe Mulberry::CodeCreator do
   before :each do
@@ -44,6 +45,11 @@ describe Mulberry::CodeCreator do
       File.exists?(t).should be_true
       File.read(t).should match '.component.foobarbaz'
     end
+
+    it "should require the component in the base.js" do
+      js = File.join(@tmpdir, 'javascript', 'base.js')
+      File.read(js).should == "dojo.require('client.components.FooBarBaz');\n"
+    end
   end
 
   describe "capability creation" do
@@ -55,6 +61,11 @@ describe Mulberry::CodeCreator do
       c = File.join(@tmpdir, 'javascript', 'capabilities', 'BizBopBim.js')
       File.exists?(c).should be_true
       File.read(c).should match 'client.capabilities.BizBopBim'
+    end
+
+    it "should require the capability in the base.js" do
+      js = File.join(@tmpdir, 'javascript', 'base.js')
+      File.read(js).should == "dojo.require('client.capabilities.BizBopBim');\n"
     end
   end
 end
