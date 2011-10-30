@@ -1,8 +1,7 @@
 dojo.provide('client.data.Twitter');
 
-dojo.declare('client.data.Twitter', null, {
+mulberry.datasource('Twitter', {
   getLatest : function(username) {
-    console.log('GETTING LATEST', username);
     return this._get(username, 1).then(dojo.hitch(this, '_getLatest'));
   },
 
