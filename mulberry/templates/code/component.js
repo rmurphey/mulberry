@@ -1,7 +1,7 @@
-dojo.provide('client.components.{{component_name}}');
+dojo.provide('client.components.{{name}}');
 
-mulberry.component('{{component_name}}', {
-  componentTemplate : dojo.cache('client.components', '{{component_name}}/{{component_name}}.haml'),
+mulberry.component('{{name}}', {
+  componentTemplate : dojo.cache('client.components', '{{name}}/{{name}}.haml'),
 
   prep : function() {
 
