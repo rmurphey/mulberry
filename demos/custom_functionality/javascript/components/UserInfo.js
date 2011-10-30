@@ -6,6 +6,6 @@ mulberry.component('UserInfo', {
   _setUserAttr : function(user) {
     this.nameNode.innerHTML = user.name;
     this.twitterLinkNode.href = '#/twitter/' + user.twitter;
-    this.bioNode.innerHTML = user.bio;
+    this.bioNode.innerHTML = user.bio || '';
   }
 });
