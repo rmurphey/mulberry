@@ -6,6 +6,8 @@ module Mulberry
         'capability'  =>  'capabilities'
       }
 
+      raise "Don't know how to create code type #{code_type}" unless dirnames[code_type]
+
       code_templates_dir = File.expand_path('../templates/code', __FILE__)
       template = File.read(File.join(code_templates_dir, "#{code_type}.js"))
 
@@ -33,20 +35,17 @@ module Mulberry
       puts "Created #{code_type} at #{code_filename}"
 
       # handle any special needs for the requested type of code
-      case code_type
-        when 'component'
-          # create the resource dir for the component
-          component_resource_dir = File.join(code_dir, filename)
-          FileUtils.mkdir_p(component_resource_dir) unless File.exists? component_resource_dir
+      if code_type === 'component'
+        # create the resource dir for the component
+        component_resource_dir = File.join(code_dir, filename)
+        FileUtils.mkdir_p(component_resource_dir) unless File.exists? component_resource_dir
 
-          # create the basic haml template for the component
-          File.open(File.join(component_resource_dir, "#{filename}.haml"), 'w') do |f|
-            f.write ".component.#{filename.downcase} (This is the #{filename} component)\n"
-          end
+        # create the basic haml template for the component
+        File.open(File.join(component_resource_dir, "#{filename}.haml"), 'w') do |f|
+          f.write ".component.#{filename.downcase} (This is the #{filename} component)\n"
+        end
 
-          puts "Template is at #{File.join(component_resource_dir, "#{filename}.haml")}"
-        else
-          # no need to do anything
+        puts "Template is at #{File.join(component_resource_dir, "#{filename}.haml")}"
       end
     end
   end
