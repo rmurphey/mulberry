@@ -1,6 +1,6 @@
 dojo.provide('client.capabilities.{{name}}');
 
-toura.capability('{{name}}', {
+mulberry.capability('{{name}}', {
   requirements : {
   },
 

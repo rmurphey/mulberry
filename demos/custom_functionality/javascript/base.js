@@ -7,15 +7,15 @@ dojo.require('client.data.Twitter');
 
 dojo.subscribe('/routes/loaded', function() {
 
-  toura.app.Router.registerRoute('/twitter/:username', function(params) {
+  mulberry.app.Router.registerRoute('/twitter/:username', function(params) {
     var twitter = new client.data.Twitter(),
-        page = toura.app.PageFactory.createPage({
+        page = mulberry.app.PageFactory.createPage({
           pageController : 'user',
           tweets : twitter.getAll(params.username),
           name : params.username
         });
 
-    toura.app.UI.showPage(page);
+    mulberry.app.UI.showPage(page);
   });
 
 });

@@ -1,6 +1,6 @@
 dojo.provide('client.capabilities.Twitter');
 
-toura.capability('Twitter', {
+mulberry.capability('Twitter', {
   requirements : {
     latestTweet   : 'custom.LatestTweet',
     map           : 'GoogleMap',

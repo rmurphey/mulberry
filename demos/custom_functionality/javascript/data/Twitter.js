@@ -14,13 +14,12 @@ dojo.declare('client.data.Twitter', null, {
     var url = 'http://twitter.com/status/user_timeline/${username}.json?count=' + (count || 10);
 
     return dojo.io.script.get({
-      url : toura.tmpl(url, { username : username }),
+      url : mulberry.tmpl(url, { username : username }),
       callbackParamName : 'callback'
     });
   },
 
   _getLatest : function(data) {
-    console.log('DATA', data);
     if (!data || !data.length) { return false; }
     return this._formatTweet(data[0]);
   },
