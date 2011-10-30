@@ -3,7 +3,8 @@ module Mulberry
     def initialize(code_type, destination_dir, filename)
       dirnames = {
         'component'   =>  'components',
-        'capability'  =>  'capabilities'
+        'capability'  =>  'capabilities',
+        'datasource'  =>  'data'
       }
 
       raise "Don't know how to create code type #{code_type}" unless dirnames[code_type]

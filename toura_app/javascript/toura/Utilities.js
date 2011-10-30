@@ -59,3 +59,7 @@ toura.populate = function(targetNode, tpl, data) {
   console.log('populating', arguments);
   targetNode.innerHTML = dojo.map(data, tpl).join('');
 };
+
+toura.datasource = function(name, proto) {
+  dojo.declare('client.data.' + name, null, proto);
+};
