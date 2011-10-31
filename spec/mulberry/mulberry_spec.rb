@@ -83,5 +83,9 @@ describe Mulberry::App do
       @app.data[:items].select { |item| item[:id] == 'text-asset-home' }.length.should equal 1
       @app.data[:items].select { |item| item[:id] == 'node-home' }.length.should equal 1
     end
+
+    it "should support featured images" do
+      puts @app.data[:items][0]
+    end
   end
 end
