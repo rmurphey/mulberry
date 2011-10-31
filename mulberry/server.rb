@@ -126,7 +126,6 @@ module Mulberry
         {
           "id" => @mulberry_app.id,
           "build" => Time.now.to_i,
-          "force_local" => false,
           "skip_version_check" => true,
           "debug" => true
         }
