@@ -12,12 +12,10 @@ module Mulberry
       end
 
       def item
-        item_data = {
-          :type       =>  self.asset_type,
-          :id         =>  id,
-          :streamed   =>  @url ? true : false,
-          :name       =>  @asset_name
-        }
+        item_data = base_item.merge(
+          {
+            :streamed   =>  @url ? true : false
+          })
 
         [ :featured, :featuredSmall, :gallery, :original ].each do |image_type|
           override = "#{@asset_name}-#{image_type}.#{@filename.split('.').last}"

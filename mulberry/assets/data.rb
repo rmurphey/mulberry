@@ -14,14 +14,11 @@ module Mulberry
       def item
         data = load_data
         data_type = (data.is_a? Hash) ? data['type'] : nil
-
-        {
-          :type       =>  self.asset_type,
-          :dataType   =>  data_type,
-          :id         =>  id,
-          :name       =>  @asset_name,
-          :value      =>  JSON.generate(data)
-        }
+        base_item.merge(
+          {
+            :dataType   =>  data_type,
+            :value      =>  JSON.generate(data)
+          })
       end
     end
   end

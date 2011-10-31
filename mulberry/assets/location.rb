@@ -13,17 +13,15 @@ module Mulberry
 
       def item
         data = load_data
-
-        {
-          :type           =>  self.asset_type,
-          :id             =>  id,
-          :name           =>  data['name'],
-          :address        =>  data['address'],
-          :lon            =>  data['lon'],
-          :lat            =>  data['lat'],
-          :website        =>  data['website'],
-          :phoneNumber    =>  data['phone_number']
-        }
+        base_item.merge(
+          {
+            :name           =>  data['name'],
+            :address        =>  data['address'],
+            :lon            =>  data['lon'],
+            :lat            =>  data['lat'],
+            :website        =>  data['website'],
+            :phoneNumber    =>  data['phone_number']
+          })
       end
     end
   end

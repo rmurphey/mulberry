@@ -12,13 +12,10 @@ module Mulberry
       end
 
       def item
-        {
-          :type       =>  self.asset_type,
-          :id         =>  id,
-          :streamed   =>  false,
-          :name       =>  @asset_name,
-          :filename   =>  @filename,
-        }
+        base_item.merge(
+          {
+            :streamed   =>  false,
+          })
 
         # TODO: poster
       end

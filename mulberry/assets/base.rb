@@ -55,6 +55,16 @@ module Mulberry
         File.join(parent_assets_dir, asset_type_dir)
       end
 
+      protected
+      def base_item
+        {
+          :type       =>  self.asset_type,
+          :id         =>  id,
+          :name       =>  @asset_name,
+          :filename   =>  @filename
+        }
+      end
+
       public
       def reference
         ref = { asset_type.camelcase(:lower).to_sym => { '_reference' => id } }
