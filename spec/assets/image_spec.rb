@@ -1,6 +1,5 @@
 require 'spec/spec_helper'
 require 'assets/base_spec'
-require 'tmpdir'
 require 'fakefs/spec_helpers'
 
 describe Mulberry::Asset::Image do
