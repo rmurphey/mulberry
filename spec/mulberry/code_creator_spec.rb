@@ -43,7 +43,7 @@ describe Mulberry::CodeCreator do
     it "should create the component template" do
       t = File.join(@tmpdir, 'javascript', 'components', 'FooBarBaz', 'FooBarBaz.haml')
       File.exists?(t).should be_true
-      File.read(t).should match '.component.foobarbaz'
+      File.read(t).should match '.component.foo-bar-baz'
     end
 
     it "should require the component in the base.js" do
