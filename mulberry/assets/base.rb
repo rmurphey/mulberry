@@ -3,6 +3,7 @@ require 'yaml'
 module Mulberry
   module Asset
     class Base
+      attr_accessor :asset_name, :dir
       def initialize(asset=nil, parent_assets_dir=nil)
         self.asset = asset
         self.parent_assets_dir = parent_assets_dir
@@ -54,6 +55,13 @@ module Mulberry
         File.join(parent_assets_dir, asset_type_dir)
       end
 
+      public
+      def reference
+        ref = { asset_type.camelcase(:lower).to_sym => { '_reference' => id } }
+        ref.merge!({ :caption => { '_reference' => @caption.id } }) unless caption.nil?
+        ref
+      end
+
       def load_data
         if File.exists? (@asset_file)
           if @filename.match(/\.yml$/) || @filename.match(/\.yaml$/)
@@ -66,13 +74,6 @@ module Mulberry
 
           File.read(@asset_file)
         end
-      end
-
-      public
-      def reference
-        ref = { asset_type.camelcase(:lower).to_sym => { '_reference' => id } }
-        ref.merge!({ :caption => { '_reference' => @caption.id } }) unless caption.nil?
-        ref
       end
 
       def item
