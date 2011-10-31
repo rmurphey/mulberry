@@ -73,7 +73,7 @@ module Mulberry
       end
 
       def load_data
-        if File.exists? (@asset_file)
+        if File.exists?(@asset_file)
           if @filename.match(/\.yml$/) || @filename.match(/\.yaml$/)
             return YAML.load_file(@asset_file)
           end
