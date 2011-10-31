@@ -3,7 +3,6 @@ require 'mulberry/assets/base'
 module Mulberry
   module Asset
     class Location < Mulberry::Asset::Base
-      protected
       def asset_type_dir
         'locations'
       end
@@ -12,7 +11,6 @@ module Mulberry
         'google-map-pin'
       end
 
-      public
       def item
         data = load_data
 

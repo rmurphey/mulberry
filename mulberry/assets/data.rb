@@ -3,7 +3,6 @@ require 'mulberry/assets/base'
 module Mulberry
   module Asset
     class Data < Mulberry::Asset::Base
-      protected
       def asset_type_dir
         'data'
       end
@@ -12,7 +11,6 @@ module Mulberry
         'data-asset'
       end
 
-      public
       def item
         data = load_data
         data_type = (data.is_a? Hash) ? data['type'] : nil

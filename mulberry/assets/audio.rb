@@ -3,7 +3,6 @@ require 'mulberry/assets/base'
 module Mulberry
   module Asset
     class Audio < Mulberry::Asset::Base
-      protected
       def asset_type_dir
         'audios'
       end
@@ -12,7 +11,6 @@ module Mulberry
         'audio'
       end
 
-      public
       def item
         {
           :type       =>  self.asset_type,

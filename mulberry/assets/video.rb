@@ -3,7 +3,6 @@ require 'mulberry/assets/base'
 module Mulberry
   module Asset
     class Video < Mulberry::Asset::Base
-      protected
       def asset_type_dir
         'videos'
       end
@@ -12,7 +11,6 @@ module Mulberry
         'video'
       end
 
-      public
       def item
         {
           :type       =>  self.asset_type,

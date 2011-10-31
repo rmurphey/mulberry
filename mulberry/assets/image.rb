@@ -3,7 +3,6 @@ require 'mulberry/assets/base'
 module Mulberry
   module Asset
     class Image < Mulberry::Asset::Base
-      protected
       def asset_type_dir
         'images'
       end
@@ -12,7 +11,6 @@ module Mulberry
         'image'
       end
 
-      public
       def item
         item_data = {
           :type       =>  self.asset_type,
