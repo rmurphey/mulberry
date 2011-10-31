@@ -1,0 +1,26 @@
+type: users
+users:
+  - name: Paul Irish
+    twitter: paul_irish
+    location:
+      lat: 37.7749295
+      lng: -122.4194155
+    image: https://twimg0-a.akamaihd.net/profile_images/1326877605/greenavatar_crop_normal.jpg
+  - name: Alex Sexton
+    twitter: SlexAxton
+    location:
+      lat: 30.267153
+      lng: -97.7430608
+    image: https://twimg0-a.akamaihd.net/profile_images/1384837213/SlexAxtonAvatar_normal.jpg
+  - name: Adam Sontag
+    twitter: ajpiano
+    location:
+      lat: 40.7143528
+      lng: -74.0059731
+    image: https://twimg0-a.akamaihd.net/profile_images/1396366703/twitpic_pool_normal.png
+  - name: Rebecca Murphey
+    twitter: rmurphey
+    location:
+      lat: 35.9940329
+      lng: -78.898619
+    image: https://twimg0-a.akamaihd.net/profile_images/1447727594/IMG_8534_normal.jpg

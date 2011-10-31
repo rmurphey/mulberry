@@ -34,6 +34,7 @@ dojo.declare('toura.models.Node', [], {
     }
 
     this.store = store;
+    this._dataCache = {};
 
     var getAssets = function(assetKey, Model) {
       return dojo.map(
@@ -154,6 +155,18 @@ dojo.declare('toura.models.Node', [], {
       return new toura.models.Node(this.store, c);
     }, this);
     this.childrenPopulated = true;
+  },
+
+  getData : function(type) {
+    if (!this._dataCache[type]) {
+      var matches = dojo.filter(this.data, function(d) {
+        return d.type === type;
+      });
+
+      this._dataCache[type] = !matches.length ? false : matches[0].json;
+    }
+
+    return this._dataCache[type];
   }
 });
 

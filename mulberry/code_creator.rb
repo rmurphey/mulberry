@@ -1,9 +1,12 @@
+require 'active_support/inflector'
+
 module Mulberry
   class CodeCreator
     def initialize(code_type, destination_dir, filename)
       dirnames = {
         'component'   =>  'components',
-        'capability'  =>  'capabilities'
+        'capability'  =>  'capabilities',
+        'datasource'  =>  'data'
       }
 
       raise "Don't know how to create code type #{code_type}" unless dirnames[code_type]
@@ -42,7 +45,7 @@ module Mulberry
 
         # create the basic haml template for the component
         File.open(File.join(component_resource_dir, "#{filename}.haml"), 'w') do |f|
-          f.write ".component.#{filename.downcase} (This is the #{filename} component)\n"
+          f.write ".component.#{filename.underscore.dasherize.downcase} (This is the #{filename} component)\n"
         end
 
         puts "Template is at #{File.join(component_resource_dir, "#{filename}.haml")}"

@@ -78,7 +78,10 @@ describe Mulberry::App do
     end
 
     it "should generate the data for the app" do
-      @app.data.should match 'toura.data.local ='
+      @app.data.should have_key :items
+      @app.data.should have_key :app
+      @app.data[:items].select { |item| item[:id] == 'text-asset-home' }.length.should equal 1
+      @app.data[:items].select { |item| item[:id] == 'node-home' }.length.should equal 1
     end
   end
 end

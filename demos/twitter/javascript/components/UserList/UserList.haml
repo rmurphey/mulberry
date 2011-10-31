@@ -1,0 +1,5 @@
+%ul.component.user-list
+  :each user in users
+    %li{ data-twitter-username : user.twitter }
+      %img{ src : user.image, height : 40, width : 40 }
+      %span= user.name

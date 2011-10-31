@@ -1,0 +1,18 @@
+- home:
+  - audio_list:
+    - single_image_gallery
+    - generic_child_page
+  - image_gallery:
+    - single_image_gallery
+    - generic_child_page
+  - fullscreen_images
+  - feed_list
+  - locations
+  - location_map
+  - videos:
+    - single_image_gallery
+    - generic_child_page
+  - grid:
+    - grid_child_one
+    - grid_child_two
+- about
