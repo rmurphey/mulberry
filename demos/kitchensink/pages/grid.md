@@ -1,5 +1,7 @@
 ---
 title: Grid
-template: grid-view
+template: 
+  phone: grid-view
+  tablet: grid-view
 ---
 

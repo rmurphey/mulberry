@@ -1,6 +1,8 @@
 ---
 title: Grid Child Two
-template: default
+template: 
+  phone: default
+  tablet: default
 
 featured_small: cooper_holga.jpg
 ---

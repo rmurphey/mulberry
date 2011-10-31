@@ -1,6 +1,8 @@
 ---
 title: Grid Child One
-template: default
+template: 
+  phone: default
+  tablet: default
 
 images:
   - cooper_beach.jpg
