@@ -9,7 +9,7 @@ FactoryGirl.define do
     parent_assets_dir Dir.mktmpdir
   end
 
-  factory :video_remote, :parent => :image do
+  factory :video_remote, :parent => :video do
     asset "http://mulberry.com/foo.mp4"
   end
 
