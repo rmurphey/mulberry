@@ -183,7 +183,7 @@ module Mulberry
     end
 
     def data
-      @helper.create_data
+      @helper.data
     end
 
     private
