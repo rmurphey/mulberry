@@ -1,8 +1,8 @@
-require 'mulberry/assets/base'
+require 'mulberry/assets/media_asset'
 
 module Mulberry
   module Asset
-    class Video < Mulberry::Asset::Base
+    class Video < Mulberry::Asset::MediaAsset
       def asset_type_dir
         'videos'
       end
@@ -12,11 +12,7 @@ module Mulberry
       end
 
       def item
-        base_item.merge(
-          {
-            :streamed   =>  false,
-          })
-
+        media_asset_item
         # TODO: poster
       end
     end

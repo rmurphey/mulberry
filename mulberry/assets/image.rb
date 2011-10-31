@@ -1,8 +1,8 @@
-require 'mulberry/assets/base'
+require 'mulberry/assets/media_asset'
 
 module Mulberry
   module Asset
-    class Image < Mulberry::Asset::Base
+    class Image < Mulberry::Asset::MediaAsset
       def asset_type_dir
         'images'
       end
@@ -12,10 +12,7 @@ module Mulberry
       end
 
       def item
-        item_data = base_item.merge(
-          {
-            :streamed   =>  @url ? true : false
-          })
+        item_data = media_asset_item
 
         [ :featured, :featuredSmall, :gallery, :original ].each do |image_type|
           override = "#{@asset_name}-#{image_type}.#{@filename.split('.').last}"

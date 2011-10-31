@@ -1,21 +1,14 @@
-require 'mulberry/assets/base'
+require 'mulberry/assets/media_asset'
 
 module Mulberry
   module Asset
-    class Audio < Mulberry::Asset::Base
+    class Audio < Mulberry::Asset::MediaAsset
       def asset_type_dir
         'audios'
       end
 
       def asset_type
         'audio'
-      end
-
-      def item
-        base_item.merge(
-          {
-            :streamed   =>  false,
-          })
       end
     end
   end
