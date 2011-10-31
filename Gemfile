@@ -13,3 +13,5 @@ gem 'activesupport', '~> 3.0.9'
 gem 'jshintrb', :git => 'git://github.com/Toura/jshintrb.git', :require => false
 gem 'linecache', '0.43', :platforms => :ruby_18, :require => false
 gem 'ruby-debug', :platforms => :ruby_18, :require => false
+gem 'fakefs', :require => false
+gem 'factory_girl', :require => false

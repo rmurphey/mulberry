@@ -1,9 +1,8 @@
-require 'mulberry/assets/base'
+require 'mulberry/assets/media_asset'
 
 module Mulberry
   module Asset
-    class Image < Mulberry::Asset::Base
-      protected
+    class Image < Mulberry::Asset::MediaAsset
       def asset_type_dir
         'images'
       end
@@ -12,30 +11,15 @@ module Mulberry
         'image'
       end
 
-      public
-      def reference
-        ref = { :image => { '_reference' => id } }
-
-        if !@caption.nil?
-          ref[:caption] = { '_reference' => @caption.id }
-        end
-
-        ref
-      end
-
       def item
-        item_data = {
-          :type       =>  self.asset_type,
-          :id         =>  id,
-          :streamed   =>  false,
-          :name       =>  @asset_name
-        }
+        item_data = media_asset_item
 
         [ :featured, :featuredSmall, :gallery, :original ].each do |image_type|
           override = "#{@asset_name}-#{image_type}.#{@filename.split('.').last}"
           item_data[image_type] = {
             :filename => File.exists?(File.join(@dir, override)) ? override : @filename
           }
+          item_data[image_type][:url] = @url if @url
         end
 
         item_data
