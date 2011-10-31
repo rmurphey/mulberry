@@ -176,15 +176,13 @@ See the github issues list https://github.com/Toura/mulberry/issues/
 
 # Running the tests
 
-To run the tests, do the following from the root of the repository:
+To run the tests, simply run `rake` from the root of the repository. You can
+also run individual suites:
 
-    rake spec           # run the ruby tests
-    rake evergreen:run  # run the javascript tests
-    rake jshint         # run jshint on the js code and js tests
-
-You can repeatedly run a single Jasmine test; run `rake evergreen:serve` to
-start up the Evergreen server and open a browser window with the tests. You can
-click on a spec and run it repeatedly by reloading the page.
+    rake spec             # run the ruby tests
+    rake evergreen:run    # run the javascript tests
+    rake evergreen:serve  # serve the javascript tests for manual testing
+    rake jshint           # run jshint on the js code and js tests
 
 ## Installing chromedriver
 
