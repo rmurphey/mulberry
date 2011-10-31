@@ -13,16 +13,6 @@ module Mulberry
       end
 
       public
-      def reference
-        ref = { :image => { '_reference' => id } }
-
-        if !@caption.nil?
-          ref[:caption] = { '_reference' => @caption.id }
-        end
-
-        ref
-      end
-
       def item
         item_data = {
           :type       =>  self.asset_type,

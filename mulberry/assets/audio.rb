@@ -13,16 +13,6 @@ module Mulberry
       end
 
       public
-      def reference
-        ref = { :audio => { '_reference' => id } }
-
-        if !@caption.nil?
-          ref[:caption] = { '_reference' => @caption.id }
-        end
-
-        ref
-      end
-
       def item
         {
           :type       =>  self.asset_type,

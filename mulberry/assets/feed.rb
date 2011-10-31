@@ -13,10 +13,6 @@ module Mulberry
       end
 
       public
-      def reference
-        { :feed => { '_reference' => id } }
-      end
-
       def item
         data = load_data
 

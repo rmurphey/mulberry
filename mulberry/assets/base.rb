@@ -43,20 +43,32 @@ module Mulberry
       end
 
       def load_data
-        if @filename.match(/\.yml$/) || @filename.match(/\.yaml$/)
-          return YAML.load_file(@asset_file)
-        end
+        if File.exists? (@asset_file)
+          if @filename.match(/\.yml$/) || @filename.match(/\.yaml$/)
+            return YAML.load_file(@asset_file)
+          end
 
-        if @filename.match(/\.json$/) || @filename.match(/\.js$/)
-          return JSON.parse(File.read(@asset_file))
-        end
+          if @filename.match(/\.json$/) || @filename.match(/\.js$/)
+            return JSON.parse(File.read(@asset_file))
+          end
 
-        File.read(@asset_file)
+          File.read(@asset_file)
+        end
       end
 
       public
       def reference
-        raise "reference method not implemented"
+        ref = { asset_type.camelcase(:lower).to_sym => { '_reference' => id } }
+
+        data = load_data
+
+        if @caption.nil? && data && data['caption']
+          @caption = Mulberry::Asset::Text.new(data['caption'], data['name'] || @asset_name)
+        end
+
+        ref.merge!({ :caption => { '_reference' => @caption.id } }) unless @caption.nil?
+
+        ref
       end
 
       def item

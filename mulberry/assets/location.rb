@@ -13,20 +13,6 @@ module Mulberry
       end
 
       public
-      def reference
-        ref = { :googleMapPin => { '_reference' => id } }
-
-        data = load_data
-
-        if @caption.nil? && data['caption']
-          @caption = Mulberry::Asset::Text.new(data['caption'], data['name'] || @asset_name)
-        end
-
-        ref.merge!({ :caption => { '_reference' => @caption.id } }) unless @caption.nil?
-
-        ref
-      end
-
       def item
         data = load_data
 

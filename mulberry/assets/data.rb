@@ -13,10 +13,6 @@ module Mulberry
       end
 
       public
-      def reference
-        { :dataAsset => { '_reference' => id } }
-      end
-
       def item
         data = load_data
         data_type = (data.is_a? Hash) ? data['type'] : nil
