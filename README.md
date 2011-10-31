@@ -4,14 +4,11 @@ Mulberry takes content from your filesystem and turns it into a working mobile a
 on Android and iOS. It also provides a local development server for testing
 your app, and a framework for adding custom functionality and CSS.
 
-**Please be sure to check the Issues** -- there are some known broken things.
-
 ## Support
 
-Please email us at mulberry@toura.com, find us on IRC (irc.freenode.net) channel
-\#touramulberry or visit our helpdesk at https://mulberry.tenderapp.com. You can also
-follow us [@touradev](http://twitter.com/touradev).
-
+- [Google Group](https://groups.google.com/forum/#!forum/toura-mulberry)
+- #touramulberry on irc.freenode.net: A live chat room with Mulberry users and
+  developers. Use your own IRC client or [use Freenode's webchat](http://webchat.freenode.net/)
 
 ## Install
 
@@ -177,7 +174,7 @@ Start the emulator, then type:
 
 See the github issues list https://github.com/Toura/mulberry/issues/
 
-# Testing
+# Running the tests
 
 To run the tests, do the following from the root of the repository:
 
@@ -185,9 +182,9 @@ To run the tests, do the following from the root of the repository:
     rake evergreen:run  # run the javascript tests
     rake jshint         # run jshint on the js code and js tests
 
-You can repeatedly run a single Jasmine test, do `rake evergreen:serve`.
-You can click into a spec and repeatedly run it without having to rerun the
-entire suite.
+You can repeatedly run a single Jasmine test; run `rake evergreen:serve` to
+start up the Evergreen server and open a browser window with the tests. You can
+click on a spec and run it repeatedly by reloading the page.
 
 ## Installing chromedriver
 
