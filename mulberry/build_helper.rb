@@ -99,7 +99,7 @@ module Mulberry
           template_data = YAML.load_file File.join(@source_dir, 'templates', t)
           templates.merge!(template_data) if template_data
         end
-      end
+      end unless !File.exists?(templates_dir)
 
       templates
     end
