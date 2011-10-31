@@ -1,5 +1,5 @@
 require 'spec/spec_helper'
-require 'assets/base_spec'
+require 'assets/base_shared'
 require 'fakefs/spec_helpers'
 
 describe Mulberry::Asset::Location do

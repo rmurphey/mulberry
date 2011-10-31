@@ -3,13 +3,13 @@ require 'assets/base_shared'
 require 'assets/media_asset_shared'
 require 'fakefs/spec_helpers'
 
-describe Mulberry::Asset::Image do
+describe Mulberry::Asset::Audio do
 
   describe 'base behavior' do
     include FakeFS::SpecHelpers
 
     before :each do
-      @asset = Factory.build :image
+      @asset = Factory.build :audio
     end
 
     it_should_behave_like "all assets"
@@ -19,7 +19,7 @@ describe Mulberry::Asset::Image do
     include FakeFS::SpecHelpers
 
     before :each do
-      @remote_asset = Factory.build :image_remote
+      @remote_asset = Factory.build :audio_remote
     end
 
     it_should_behave_like "all media assets"

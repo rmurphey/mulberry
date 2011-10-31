@@ -4,13 +4,13 @@ require 'assets/image'
 include Mulberry::Asset
 
 FactoryGirl.define do
-  factory :image do
-    asset "foo.jpg"
+  factory :video do
+    asset "foo.mp4"
     parent_assets_dir Dir.mktmpdir
   end
 
-  factory :image_remote, :parent => :image do
-    asset "http://mulberry.com/foo.jpg"
+  factory :video_remote, :parent => :image do
+    asset "http://mulberry.com/foo.mp4"
   end
 
 end
