@@ -2,6 +2,7 @@ require 'spec/spec_helper'
 require 'assets/base_shared'
 require 'assets/media_asset_shared'
 require 'fakefs/spec_helpers'
+require 'ruby-debug'
 
 describe Mulberry::Asset::Image do
 
@@ -23,6 +24,23 @@ describe Mulberry::Asset::Image do
     end
 
     it_should_behave_like "all media assets"
+  end
+
+  describe '#item' do
+    include FakeFS::SpecHelpers
+
+    before :each do
+      @remote_image = Factory.build :image_remote
+    end
+
+    it 'should output url in each style' do
+      item = @remote_image.item
+      [ :featured, :featuredSmall, :gallery, :original ].each do |image_type|
+        puts item[image_type][:url]
+        item[image_type][:url].should match /#{@remote_image.asset_name}/
+      end
+    end
+
   end
 
 end
