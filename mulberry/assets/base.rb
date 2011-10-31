@@ -67,7 +67,7 @@ module Mulberry
 
       public
       def reference
-        ref = { asset_type.camelcase(:lower).to_sym => { '_reference' => id } }
+        ref = { asset_type.underscore.camelcase(:lower).to_sym => { '_reference' => id } }
         ref.merge!({ :caption => { '_reference' => @caption.id } }) unless caption.nil?
         ref
       end
