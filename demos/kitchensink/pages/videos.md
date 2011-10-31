@@ -1,6 +1,8 @@
 ---
 title: Videos Page
-template: Videos
+template: 
+  phone: videos
+  tablet: videos
 
 videos:
   - baby_sloth.mp4

@@ -1,6 +1,8 @@
 ---
 title: Locations Page 
-template: LocationList
+template: 
+  phone: location-list
+  tablet: location-list
 
 locations:
   - fullsteam.yml

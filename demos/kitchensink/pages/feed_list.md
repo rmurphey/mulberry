@@ -1,6 +1,8 @@
 ---
 title: Feed List
-template: Feed
+template: 
+  phone: feed-list-phone
+  tablet: feed-list-tablet
 
 feeds:
   - hacker_news.yml

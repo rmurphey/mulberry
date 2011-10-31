@@ -1,5 +1,5 @@
 ---
 title: Grid
-template: GridView
+template: grid-view
 ---
 

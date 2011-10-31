@@ -1,6 +1,8 @@
 ---
 title: Location Map
-template: LocationsMap
+template: 
+  phone: locations-map
+  tablet: locations-map
 
 locations:
   - fullsteam.yml

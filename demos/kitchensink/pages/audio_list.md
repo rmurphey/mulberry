@@ -1,6 +1,8 @@
 ---
 title: Audio List
-template: Audios1
+template:
+  phone: audio-with-images-phone
+  tablet: audio-with-images-tablet
 
 audios:
   - bgoodman-sing-sing-sing.mp3
