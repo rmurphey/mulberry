@@ -122,7 +122,7 @@ dojo.require('toura.app.URL');
     },
 
     _setCenterAttr : function(center) {
-      var center = new google.maps.LatLng(center.lat, center.lng);
+      center = new google.maps.LatLng(center.lat, center.lng);
       this.map.setCenter(center);
       this.map.setZoom(15);
     },
