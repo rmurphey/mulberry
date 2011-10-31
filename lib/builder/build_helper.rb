@@ -4,13 +4,13 @@ module Builder
       base.send(:attr_accessor, :build)
     end
 
-    %w(before_steps after_steps bundle_dir_name zip_name project_settings config_settings).each do |method|
+    %w(before_steps after_steps bundle_dir_name zip_name project_settings config_settings data).each do |method|
       module_eval %Q{
         def #{method}() raise "Must implement ##{method}"; end
       }
     end
 
-    %w(assets css icons load_screens data).each do |method|
+    %w(assets css icons load_screens).each do |method|
       module_eval %Q{
         def #{method}(destination, report) raise "Must implement ##{method}(destination, report)"; end
       }
