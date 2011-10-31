@@ -41,4 +41,16 @@ describe("containers _LayoutBox", function() {
     expect(dojo.hasClass(el, 'size-flex')).toBeTruthy();
     expect(dojo.hasClass(el, 'layout-normal')).toBeTruthy();
   });
+
+  it("should add a class if one is specified in the className property", function() {
+    c = C({
+      config : {
+        className : 'fake'
+      }
+    });
+
+    var el = t.querySelector('.layout-box');
+    expect(dojo.hasClass(el, 'fake')).toBeTruthy();
+  });
+
 });

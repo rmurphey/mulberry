@@ -36,4 +36,4 @@ task :jshint do
   end
 end
 
-
+task :default => :jshint
