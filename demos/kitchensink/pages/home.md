@@ -1,7 +1,7 @@
 ---
 title: Home
 template: 
-  phone: home-tablet
+  phone: home-phone
   tablet: home-tablet
 ---
 
