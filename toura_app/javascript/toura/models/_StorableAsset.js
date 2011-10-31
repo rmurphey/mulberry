@@ -16,13 +16,14 @@ dojo.declare('toura.models._StorableAsset', [], {
 
     if (subtypes) {
       dojo.forEach(subtypes, function(subtype) {
-        var t = this[subtype] = store.getValue(item, subtype);
-        t.url = this._isStreamed(item, subtype) ? t.url : appUrl(assetType, t.filename);
+        var t = this[subtype] = store.getValue(item, subtype),
+            isStreamed = this._isStreamed(item, subtype);
+
+        t.url = (isStreamed && t.url) ? t.url : appUrl(assetType, t.filename);
       }, this);
     } else {
-      this.url = this._isStreamed(item) ?
-        store.getValue(item, 'url') :
-        appUrl(assetType, store.getValue(item, 'filename'));
+      var url = store.getValue(item, 'url');
+      this.url = (this._isStreamed(item) && url) ? url : appUrl(assetType, store.getValue(item, 'filename'));
     }
   },
 
