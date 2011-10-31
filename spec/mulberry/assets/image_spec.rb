@@ -1,6 +1,6 @@
 require 'spec/spec_helper'
-require 'assets/base_shared'
-require 'assets/media_asset_shared'
+require 'mulberry/assets/base_shared'
+require 'mulberry/assets/media_asset_shared'
 require 'fakefs/spec_helpers'
 require 'ruby-debug'
 
