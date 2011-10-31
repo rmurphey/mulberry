@@ -36,7 +36,6 @@ describe Mulberry::Asset::Image do
     it 'should output url in each style' do
       item = @remote_image.item
       [ :featured, :featuredSmall, :gallery, :original ].each do |image_type|
-        puts item[image_type][:url]
         item[image_type][:url].should match /#{@remote_image.asset_name}/
       end
     end
