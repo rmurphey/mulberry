@@ -63,11 +63,9 @@ module Builder
         client_custom :
         File.join(TouraAPP.root, 'javascript', 'data-fixtures', 'tour.js')
 
-      json_data = File.read(data_file)
+      JSON.parse(File.read(data_file)
         .gsub('toura.data.local = ', '')
-        .gsub(/};$/, '}')
-
-      JSON.parse(json_data)
+        .gsub(/};$/, '}'))
     end
 
     def css(destination, report)
