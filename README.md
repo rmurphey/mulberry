@@ -10,7 +10,7 @@ your app, and a framework for adding custom functionality and CSS.
 - #touramulberry on irc.freenode.net: A live chat room with Mulberry users and
   developers. Use your own IRC client or [use Freenode's webchat](http://webchat.freenode.net/)
 
-## Install
+# Installation
 
 - Clone this repository to a location of your choosing.
 
@@ -39,7 +39,7 @@ would add the following to your `.profile` file.
 - You're done! You should now be able to run mulberry from any directory.
 
 
-## Setup
+# Setup
 
 Mulberry currently supports the following mobile platforms:
 
@@ -57,10 +57,12 @@ Mulberry development tools are supported on the following platforms:
 Mulberry development is not supported on Linux, but it might work. Please let
 us know at mulberry@toura.com if you can get it working on a particular Linux distro.
 
-We do not currently support running Mulberry on Windows or any other OS.
+We do not currently support running Mulberry on Windows or any other OS;
+however, some work has been done to get it working on Windows -- additional
+pull requests welcome!
 
 
-### Installing PhoneGap
+## Installing PhoneGap
 
 Mulberry supports PhoneGap 1.0 (we will release 1.1 support as soon as we can).
 Any other version will not work.
@@ -69,19 +71,19 @@ Go to [the PhoneGap download page](http://code.google.com/p/phonegap/downloads/l
 and download the 1.0 release. Extract it to a convenient directory.
 
 
-#### Installing iOS Phonegap Library
+### Installing iOS Phonegap Library
 
 In the extracted phonegap directory, go into iOS, and run the installer.
 The xcode project will call the lib that is installed to your computer.
 
 
-#### Installing Droidgap
+### Installing Droidgap
 
 You do not need to install droidgap as the Android project template included in
 Mulberry already contains the compiled results.
 
 
-### iOS Development
+## iOS Development
 
 To build and run apps on iOS Simulator, you must:
 
@@ -94,7 +96,7 @@ To build and run apps on iOS Simulator, you must:
 In order to submit your apps to the Apple iOS App Store, you must
 [sign up with Apple's iOS Developer Program](http://developer.apple.com/programs/ios/)
 
-### Android Development
+## Android Development
 
 To build and run apps on Android Simulator, you must:
 
@@ -144,7 +146,7 @@ To build and run apps on Android Simulator, you must:
 It's pretty useless and just takes up space.
 
 
-#### Creating an Android Virtual Device
+### Creating an Android Virtual Device
 
 Run the SDK manager by running `android` on the command line.
 
@@ -164,7 +166,7 @@ To rotate the device hit 7 or 9 on your numeric keypad. If you don't have one:
 CTRL-F12 to rotate to landscape, CTRL-F11 to rotate back.
 
 
-#### Installing to your Android Virtual Device
+### Installing to your Android Virtual Device
 
 Start the emulator, then type:
 
