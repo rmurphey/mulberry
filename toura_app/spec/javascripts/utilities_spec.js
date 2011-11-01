@@ -89,6 +89,24 @@ describe("utilities", function() {
         dojo.style(fromEl, 'height')
       );
     });
-
   });
+
+  describe("toura.populate", function() {
+    it("should populate the provided DOM node with the provided template and data", function() {
+      var t = dojo.byId('test'),
+          data = [
+            { myprop : 'foo' },
+            { myprop : 'bar' }
+          ];
+
+      dojo.empty(t);
+
+      toura.populate(t, toura.haml('.mydiv= myprop'), data);
+
+      expect(t.innerHTML).toMatch('foo');
+      expect(t.innerHTML).toMatch('bar');
+      expect(t.querySelectorAll('.mydiv').length).toBe(2);
+    });
+  });
+
 });

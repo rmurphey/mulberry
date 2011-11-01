@@ -1,0 +1,14 @@
+user:
+  screens:
+    - name: index
+      regions:
+        -
+          size: fixed
+          scrollable: false
+          components:
+            - PageNav
+        -
+          size: flex
+          scrollable: true
+          components:
+            - custom.Tweets

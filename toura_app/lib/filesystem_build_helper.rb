@@ -52,7 +52,7 @@ module Builder
       false
     end
 
-    def data(destination, report)
+    def data
       client_custom = File.join(
         TouraAPP::App.client_customizations_dir(@id),
         'data',
@@ -63,7 +63,9 @@ module Builder
         client_custom :
         File.join(TouraAPP.root, 'javascript', 'data-fixtures', 'tour.js')
 
-      File.open(destination, 'w') { |f| f.write File.read(data_file) }
+      JSON.parse(File.read(data_file).
+        gsub('toura.data.local = ', '').
+        gsub(/\};$/, '}'))
     end
 
     def css(destination, report)

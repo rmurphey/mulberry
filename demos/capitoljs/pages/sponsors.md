@@ -1,9 +1,7 @@
 ---
 title: Sponsors
-template: Default
-
+template: default
 ---
-
 
 <div class='sponsor clearfix' id='zappos'>
   <div class='logo'>

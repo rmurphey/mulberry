@@ -2,19 +2,19 @@ require "lib/builder/task_base"
 
 module Builder
   class Project < Builder::TaskBase
-    TEMPLATE_DIR = File.join(TouraAPP.root, 'templates')
-
     attr_reader :location, :target
 
     def build
       raise "Unknown device type" unless !([ 'phone', 'tablet' ].index(@target['device_type']).nil?)
       raise "Unknown device os" unless !([ 'android', 'ios' ].index(@target['device_os']).nil?)
 
+      @template_dir = File.join(Builder::Build.root, 'builder', 'project_templates')
+
       case @target['device_os']
       when 'android'
         if @target['device_type'] == 'phone'
           FileUtils.cp_r(
-            File.join(TEMPLATE_DIR, 'android'),
+            File.join(@template_dir, 'android'),
             @location
           )
           Builder::Project::Android.new(self, @build).build
@@ -27,7 +27,7 @@ module Builder
         # TODO: this logic could suck less and could be DRY'd too
         if @target['device_type'] == 'phone'
           FileUtils.cp_r(
-            File.join(TEMPLATE_DIR, 'iOS'),
+            File.join(@template_dir, 'iOS'),
             File.join(@location, 'iphone')
           )
 
@@ -35,7 +35,7 @@ module Builder
           @dir = 'iphone'
         elsif @target['device_type'] == 'tablet'
           FileUtils.cp_r(
-            File.join(TEMPLATE_DIR, 'iOS'),
+            File.join(@template_dir, 'iOS'),
             File.join(@location, 'ipad')
           )
 
@@ -58,12 +58,12 @@ module Builder
 
     private
     def self.sed
-      is_mac = !`which defaults`.empty?
+      is_mac = RUBY_PLATFORM =~ /darwin/
       is_mac ? %{sed -i '' } : %{sed -i""}
     end
 
     def template_dir
-      TEMPLATE_DIR
+      @template_dir
     end
 
     class Android

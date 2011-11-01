@@ -64,7 +64,7 @@ dojo.require('toura.app.URL');
 
       var bounds = new google.maps.LatLngBounds();
 
-      this.markers = dojo.map(this.pins, function (pin) {
+      this.markers = dojo.map(this.pins || [], function (pin) {
         var position = new google.maps.LatLng(pin.lat, pin.lon),
             marker = new google.maps.Marker({
               map: this.map,
@@ -88,12 +88,15 @@ dojo.require('toura.app.URL');
       if (this.pins.length > 1) {
         this.map.fitBounds(bounds);
       } else {
-        this.map.setCenter(new google.maps.LatLng(this.pins[0].lat, this.pins[0].lon));
-        this.map.setZoom(15);
+        if (this.pins[0]) {
+          this.map.setCenter(new google.maps.LatLng(this.pins[0].lat, this.pins[0].lon));
+          this.map.setZoom(15);
+        }
       }
 
       this.isBuilt = true;
       this._doQueue();
+      this.onMapBuilt();
     },
 
     _showInfo : function (/** google.maps.Marker */ marker, /** toura.models.GoogleMapPin */ pin) {
@@ -112,6 +115,16 @@ dojo.require('toura.app.URL');
 
     onShowInfo : function(pin) {
       // stub
+    },
+
+    onMapBuilt : function() {
+      // stub
+    },
+
+    _setCenterAttr : function(center) {
+      center = new google.maps.LatLng(center.lat, center.lng);
+      this.map.setCenter(center);
+      this.map.setZoom(15);
     },
 
     _setPinAttr : function(pinId) {

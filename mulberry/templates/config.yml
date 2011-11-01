@@ -84,5 +84,4 @@ flurry:
  ios:
    api_key: flurry_ios_api_key
  android:
-   api_key: flurry_ios_api_key
-  
+   api_key: flurry_android_api_key

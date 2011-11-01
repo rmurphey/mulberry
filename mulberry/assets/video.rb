@@ -1,9 +1,8 @@
-require 'mulberry/assets/base'
+require 'mulberry/assets/media_asset'
 
 module Mulberry
   module Asset
-    class Video < Mulberry::Asset::Base
-      protected
+    class Video < Mulberry::Asset::MediaAsset
       def asset_type_dir
         'videos'
       end
@@ -12,26 +11,8 @@ module Mulberry
         'video'
       end
 
-      public
-      def reference
-        ref = { :video => { '_reference' => id } }
-
-        if !@caption.nil?
-          ref[:caption] = { '_reference' => @caption.id }
-        end
-
-        ref
-      end
-
       def item
-        {
-          :type       =>  self.asset_type,
-          :id         =>  id,
-          :streamed   =>  false,
-          :name       =>  @asset_name,
-          :filename   =>  @filename,
-        }
-
+        media_asset_item
         # TODO: poster
       end
     end

@@ -3,7 +3,6 @@ require 'mulberry/assets/base'
 module Mulberry
   module Asset
     class Data < Mulberry::Asset::Base
-      protected
       def asset_type_dir
         'data'
       end
@@ -12,22 +11,14 @@ module Mulberry
         'data-asset'
       end
 
-      public
-      def reference
-        { :dataAsset => { '_reference' => id } }
-      end
-
       def item
         data = load_data
         data_type = (data.is_a? Hash) ? data['type'] : nil
-
-        {
-          :type       =>  self.asset_type,
-          :dataType   =>  data_type,
-          :id         =>  id,
-          :name       =>  @asset_name,
-          :value      =>  JSON.generate(data)
-        }
+        base_item.merge(
+          {
+            :dataType   =>  data_type,
+            :value      =>  JSON.generate(data)
+          })
       end
     end
   end

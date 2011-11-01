@@ -3,7 +3,7 @@ $: << File.expand_path('../..', __FILE__)
 
 require 'mulberry'
 require 'content_creator'
-require 'component_creator'
+require 'code_creator'
 require 'template_creator'
 
 module Mulberry
@@ -53,11 +53,15 @@ module Mulberry
           :location   => {},
 
           :component  => {
-            :creator  =>  Mulberry::ComponentCreator
+            :creator  =>  Mulberry::CodeCreator
           },
 
           :template   => {
             :creator  =>  Mulberry::TemplateCreator
+          },
+
+          :capability => {
+            :creator  =>  Mulberry::CodeCreator
           }
         }
 
@@ -75,6 +79,7 @@ module Mulberry
     end
 
     def scaffold(dir)
+      dir.gsub!(Dir.pwd + "/", "")
       Mulberry::App.scaffold(dir)
     end
 

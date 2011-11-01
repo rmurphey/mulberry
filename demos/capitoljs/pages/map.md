@@ -1,6 +1,6 @@
 ---
 title: Map
-template: GoogleMap1
+template: locations-map
 locations:
   - palomar.yml
   - fathom.yml

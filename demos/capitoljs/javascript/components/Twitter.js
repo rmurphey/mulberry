@@ -5,9 +5,7 @@ mulberry.component('Twitter', {
   tweetTemplate : dojo.cache('client.components', 'Twitter/Tweet.haml'),
 
   init : function() {
-    var data = dojo.filter(this.node.data, function(d) {
-          return d.type === 'twitter'
-        })[0].json;
+    var data = this.baseObj.getData('twitter');
 
     $.ajax('http://search.twitter.com/search.json?q=' + data.term, {
       dataType : 'jsonp',

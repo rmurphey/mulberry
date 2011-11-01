@@ -85,9 +85,8 @@ module Mulberry
       true
     end
 
-    def data(destination, report)
-      File.open(destination, 'w') { |f| f.write create_data }
-      true
+    def data
+      Mulberry::Data.new(@app).generate
     end
 
     def templates
@@ -95,11 +94,11 @@ module Mulberry
       templates = {}
 
       Dir.entries(templates_dir).each do |t|
-        if t.match('.yml')
+        if t.match(/.yml$/)
           template_data = YAML.load_file File.join(@source_dir, 'templates', t)
           templates.merge!(template_data) if template_data
         end
-      end
+      end unless !File.exists?(templates_dir)
 
       templates
     end
@@ -129,11 +128,6 @@ module Mulberry
       rescue Sass::SyntaxError => err
         puts "SASS ERROR: #{err.to_s}"
       end
-    end
-
-    def create_data
-      d = Mulberry::Data.new(@app)
-      "toura.data.local = #{JSON.pretty_generate(d.generate)};"
     end
 
     def html_vars

@@ -126,9 +126,8 @@ module Mulberry
         {
           "id" => @mulberry_app.id,
           "build" => Time.now.to_i,
-          "force_local" => true,
           "skip_version_check" => true,
-          'debug' => true
+          "debug" => true
         }
     end
 
@@ -174,7 +173,7 @@ module Mulberry
 
       case params[:splat].first
       when 'tour.js'
-        @helper.create_data
+        "toura.data.local = #{JSON.pretty_generate(@helper.data)};"
       when 'templates.js'
         TouraAPP::App.generate_page_templates(@helper.templates)
       end

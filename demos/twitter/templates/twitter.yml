@@ -1,0 +1,27 @@
+twitter:
+  capabilities:
+    - name: Twitter
+      components:
+      - index:GoogleMap
+      - index:custom.UserList
+      - index:custom.UserInfo
+      - index:custom.LatestTweet
+  screens:
+    - name: index
+      regions:
+        - size: fixed
+          components:
+            - custom.LatestTweet
+        - size: fixed
+          components:
+            - GoogleMap
+        - containerType: column
+          regions:
+            - className: user-list
+              size: fixed
+              components:
+              - custom.UserList
+            - className: user-info
+              size: flex
+              components:
+              - custom.UserInfo

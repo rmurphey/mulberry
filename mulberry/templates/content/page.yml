@@ -1,6 +1,8 @@
 ---
 title: # required!
 template:
+  phone: default
+  tablet: default
 
 # these should optionally point at an image in the images dir
 header_image:
