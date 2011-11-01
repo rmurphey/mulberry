@@ -23,7 +23,7 @@ module Builder
     def before_steps() end
 
     def project_settings
-      build_root = Mulberry::TouraAPP::Directories.build_root
+      build_root = TouraAPP::Directories.build_root
 
       {
         :id           =>  @id,
@@ -63,7 +63,7 @@ module Builder
 
       data_file = (File.exists?(client_custom)) ?
         client_custom :
-        File.join(Mulberry::TouraAPP::Directories.data_fixtures, 'tour.js')
+        File.join(TouraAPP::Directories.data_fixtures, 'tour.js')
 
       JSON.parse(File.read(data_file).
         gsub('toura.data.local = ', '').
@@ -72,8 +72,8 @@ module Builder
 
     def css(destination, report)
       begin
-        js_dir = Mulberry::TouraAPP::Directories.javascript
-        fixtures_dir = Mulberry::TouraAPP::Directories.data_fixtures
+        js_dir = TouraAPP::Directories.javascript
+        fixtures_dir = TouraAPP::Directories.data_fixtures
 
         custom_dir = File.join(
           TouraAPP::App.client_customizations_dir(@id),

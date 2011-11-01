@@ -69,7 +69,7 @@ class TouraAPPServer < Sinatra::Base
 
     if !File.exists? vars_path
       vars_path = File.join(
-        Mulberry::TouraAPP::Directories.data_fixtures,
+        TouraAPP::Directories.data_fixtures,
         'client_customizations',
         'vars.scss'
       )
@@ -83,7 +83,7 @@ class TouraAPPServer < Sinatra::Base
         :toura_base_path => TouraAPP::App.base_scss,
         :custom_base_path => custom_base_path,
         :load_paths => [
-          Mulberry::TouraAPP::Directories.javascript,
+          TouraAPP::Directories.javascript,
           sass_dir
         ]
       ).render
@@ -139,7 +139,7 @@ class TouraAPPServer < Sinatra::Base
   get '/:os/:device_type/tours/:tour_id/javascript/toura/app/TouraConfig.js' do
     content_type 'text/javascript'
 
-    Mulberry::TouraAPP::Generators.config params[:os], params[:device_type], {
+    TouraAPP::Generators.config params[:os], params[:device_type], {
       "id"                  =>  params[:tour_id],
       "build"               =>  Time.now.to_i,
       "force_streaming"     =>  false,
