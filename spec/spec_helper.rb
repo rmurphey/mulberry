@@ -32,7 +32,7 @@ b = Builder::Build.new({
 b.build
 b.cleanup
 
-Mulberry::Server.set :app => Mulberry::App.new("./demos/kitchensink")
+Mulberry::Server.set :app => Mulberry::App.new("./demos/kitchensink"), :logging => false
 Capybara.app = Mulberry::Server
 
 module CapybaraSpecHelper
