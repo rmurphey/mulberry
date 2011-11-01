@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">test</string>
+  <string name="go">Snap</string>
+  <string name="pushNotificationPermLabel">Push Notification Permissions for test</string>
+  <string name="pushNotificationPermDescription">Allow subscription to push notifications from test</string>  
+</resources>
