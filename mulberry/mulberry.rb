@@ -16,7 +16,7 @@ module Mulberry
   class ConfigError < RuntimeError
   end
 
-  VERSION   = '0.0.1a'
+  VERSION   = '0.1'
   CONFIG    = 'config.yml'
 
   DEFAULTS  = {
