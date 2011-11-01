@@ -64,11 +64,10 @@ pull requests welcome!
 
 ## Installing PhoneGap
 
-Mulberry supports PhoneGap 1.0 (we will release 1.1 support as soon as we can).
-Any other version will not work.
+Mulberry supports PhoneGap 1.1. Any other version will not work.
 
-Go to [the PhoneGap download page](https://github.com/callback/phonegap/zipball/1.0.0)
-and download the 1.0 release. Extract it to a convenient directory.
+Go to [the PhoneGap download page](https://github.com/callback/phonegap/zipball/1.1.0)
+and download the 1.1.0 release. Extract it to a convenient directory.
 
 
 ### Installing iOS Phonegap Library
