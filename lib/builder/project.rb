@@ -128,7 +128,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         system %{#{sed} -e 's/name=\"www\"/name=\"#{safe_name}\"/' \ #{build_file}}
 
         # TODO: figure this out (???)
-        safe_display_name = TouraAPP::Build.escape_quotes_for_system_call(project_settings[:name])
+        safe_display_name = Builder.escape_quotes_for_system_call(project_settings[:name])
 
         # Set the display name
         system %{#{sed} -e 's/www/#{safe_display_name}/' \

@@ -26,7 +26,7 @@ module Builder
 
     private
     def html
-      TouraAPP::App.generate_index_html(template_vars)
+      Mulberry::TouraAPP::Generators.index_html(template_vars)
     end
 
     def build_required

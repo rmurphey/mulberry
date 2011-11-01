@@ -1,8 +1,9 @@
 $: << File.expand_path('..', __FILE__)
 $: << File.expand_path('../..', __FILE__)
 
-require 'tmpdir'
+require "tmpdir"
 
+require "toura_app/application"
 require "builder/icons"
 require "builder/load_screens"
 require "builder/assets"
@@ -20,6 +21,12 @@ require "builder/target"
 require "builder/bundle"
 
 module Builder
+  def self.escape_quotes_for_system_call(s)
+    # These will have single quotes in em, and bash doesn't escape in a string
+    # We need to convert 'This ain't fun' ==> 'This ain'\''t fun'
+    safe_tour_name = s.gsub( "'", "'\\\\''" )
+  end
+
   class Build
     attr_accessor :tmp_dir, :logger
     attr_reader   :settings, :target, :completed_steps, :build_helper

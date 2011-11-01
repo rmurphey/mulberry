@@ -123,7 +123,7 @@ module Mulberry
           :vars => @config['theme']['settings'],
           :toura_base_path => theme_base_path,
           :custom_base_path => (custom_base_path if File.exists? custom_base_path),
-          :load_paths => [ TouraAPP::App.js_dir, custom_dir ]
+          :load_paths => [ Mulberry::TouraAPP::Directories.javascript, custom_dir ]
         ).render
       rescue Sass::SyntaxError => err
         puts "SASS ERROR: #{err.to_s}"
