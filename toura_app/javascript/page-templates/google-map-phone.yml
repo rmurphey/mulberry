@@ -4,7 +4,8 @@ google-map-phone:
   - name: Page_GoogleMapPhone
     components:
     - index:GoogleMap
-    - index:PinInfo
+    - detail:DetailTitle
+    - detail:PinInfo
 
   screens:
   - name: index
@@ -19,6 +20,12 @@ google-map-phone:
   - name: detail
     backgroundImage: false
     regions:
-    - components:
+    -
+      size: fixed
+      components:
+      - DetailTitle
+    -
+      scrollable: true
+      components:
       - PinInfo
 
