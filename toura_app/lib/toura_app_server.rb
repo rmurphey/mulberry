@@ -160,7 +160,7 @@ class TouraAPPServer < Sinatra::Base
   #####################
   get '/:os/:device_type/tours/:tour_id/data/templates.js' do
     content_type "text/javascript"
-    Mulberry::TouraAPP::Generators.page_templates
+    "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates)};"
   end
 
   get '/:os/:device_type/tours/:tour_id/data/*' do

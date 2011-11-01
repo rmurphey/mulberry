@@ -78,8 +78,7 @@ module TouraAPP
       end
 
       base_templates.merge!(app_templates) if app_templates
-
-      "toura.templates = #{JSON.pretty_generate(base_templates)};"
+      base_templates
     end
 
     def self.index_html(params = {})

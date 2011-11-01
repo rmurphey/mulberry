@@ -175,7 +175,7 @@ module Mulberry
       when 'tour.js'
         "toura.data.local = #{JSON.pretty_generate(@helper.data)};"
       when 'templates.js'
-        TouraAPP::Generators.page_templates @helper.templates
+        "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
       end
     end
 
