@@ -101,8 +101,6 @@ To build and run apps on Android Simulator, you must:
 
 - Install Java JDK 1.6 or above. This should install the java compiler (javac -version should return 1.6.x)
 
-- Ensure the `JAVA_HOME` environment variable is pointing to the Java directory
-
 - You may have to install Apache ant (`which ant`). We develop with ant 1.8.x (ant -version)
    http://ant.apache.org
 
