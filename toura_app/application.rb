@@ -28,7 +28,7 @@ module TouraAPP
 
   class Directories
     def self.root
-      @root = File.expand_path(File.dirname(__FILE__))
+      @root ||= File.expand_path(File.dirname(__FILE__))
     end
 
     def self.javascript
@@ -56,7 +56,7 @@ module TouraAPP
 
   class Templates
     def self.root
-      @root = File.join(TouraAPP::Directories.root, 'templates')
+      @root ||= File.join(TouraAPP::Directories.root, 'templates')
     end
 
     def self.index_html
