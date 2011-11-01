@@ -14,6 +14,7 @@ google-map-tablet:
       components:
       - PageNav
     - layout: overlay
+      className: hidden
       components:
       - PinInfo
     - components:
