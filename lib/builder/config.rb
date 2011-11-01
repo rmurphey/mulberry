@@ -31,7 +31,7 @@ module Builder
         'debug' => !!@target['development']
       })
 
-      TouraAPP::App.create_config(@target['device_os'], @target['device_type'], settings)
+      TouraAPP::Generators.config(@target['device_os'], @target['device_type'], settings)
     end
 
   end

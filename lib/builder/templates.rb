@@ -26,7 +26,7 @@ module Builder
         app_templates = @build.build_helper.templates
       end
 
-      Mulberry::TouraAPP::Generators.page_templates(app_templates)
+      TouraAPP::Generators.page_templates(app_templates)
     end
   end
 end

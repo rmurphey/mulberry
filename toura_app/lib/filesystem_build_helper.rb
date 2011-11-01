@@ -56,7 +56,7 @@ module Builder
 
     def data
       client_custom = File.join(
-        TouraAPP::App.client_customizations_dir(@id),
+        TouraAPP::Directories.client_customizations(@id),
         'data',
         'tour.js'
       )

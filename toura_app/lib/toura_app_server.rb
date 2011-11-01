@@ -28,7 +28,7 @@ class TouraAPPServer < Sinatra::Base
   end
 
   def custom_dir(tour_id)
-    TouraAPP::App.client_customizations_dir(tour_id)
+    TouraAPP::Directories.client_customizations(tour_id)
   end
 
   #####################
