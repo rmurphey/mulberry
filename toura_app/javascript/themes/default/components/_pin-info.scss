@@ -3,11 +3,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
 
-  .body {
-    padding: 10px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-flex: 1;
+  padding: 10px;
 
     .directions {
       @include wide-icon-button('../icons/btn-map.png');
@@ -36,5 +32,4 @@
       }
 
     }
-  }
 }

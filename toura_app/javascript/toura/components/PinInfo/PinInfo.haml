@@ -1,25 +1,15 @@
 .component.pin-info
-  .header{ dojoAttachPoint : 'nav' }
 
-  .body
-    %a.directions{ dojoAttachPoint : 'directionsNode', target : '_blank' }= i18n_directions
-    %a.phone-number{ dojoAttachPoint : 'phoneNumberContainerNode' }
-      %span.label= i18n_phone
-      %span{ dojoAttachPoint : 'phoneNumberNode' }
-    %a.website{ dojoAttachPoint : 'websiteContainerNode' }= i18n_website
+  %a.directions{ dojoAttachPoint : 'directionsNode', target : '_blank' }= i18n_directions
+  %a.phone-number{ dojoAttachPoint : 'phoneNumberContainerNode' }
+    %span.label= i18n_phone
+    %span{ dojoAttachPoint : 'phoneNumberNode' }
+  %a.website{ dojoAttachPoint : 'websiteContainerNode' }= i18n_website
 
-    .bottom
-      :if phone
-        %div{ dojoType : 'toura.ui.Scrollable', dojoAttachPoint : 'scroller' }
-          %section
-            %header
-              %h2{ dojoAttachPoint : 'nameNode' }
-              %p{ dojoAttachPoint : 'addressNode' }
-            %div{ dojoAttachPoint : 'captionNode' }
+  .bottom
+    %section
+      %header
+        %h2{ dojoAttachPoint : 'nameNode' }
+        %p{ dojoAttachPoint : 'addressNode' }
+      %div{ dojoAttachPoint : 'captionNode' }
 
-      :if tablet
-        %section
-          %header
-            %h2{ dojoAttachPoint : 'nameNode' }
-            %p{ dojoAttachPoint : 'addressNode' }
-          %div{ dojoAttachPoint : 'captionNode' }
