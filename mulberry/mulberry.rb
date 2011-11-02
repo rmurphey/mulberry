@@ -33,6 +33,10 @@ module Mulberry
     'ios'     =>  [ 'phone', 'tablet' ]
   }
 
+  def self.version
+    VERSION
+  end
+
   class App
     attr_reader         :name,
                         :assets_dir,
