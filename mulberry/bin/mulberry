@@ -41,7 +41,7 @@ module Mulberry
       end
 
       # Be a little more permissive in case someone types --version or -version
-      if action.match /^.*(version|v)$/
+      if action.match /^-{0,2}(version|v)$/
         puts "Mulberry v#{Mulberry::version}"
       end
 
