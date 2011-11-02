@@ -17,6 +17,7 @@ audio-with-images-tablet:
   - name: Page_Audios
     components:
     - index:AudioList
+    - index:AudioPlayer
   - name: AudioList_AudioPlayer
     components:
     - index:AudioPlayer

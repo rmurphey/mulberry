@@ -56,7 +56,7 @@ dojo.declare('toura.capabilities._Capability', [ ], {
     this.involved = this._loadInvolvedComponents();
 
     if (!this._checkRequirements()) {
-      console.error('Did not find required components for capability', this.declaredClass);
+      console.error('Did not find required components for capability', this.declaredClass, 'These are the components I know about', this.involved);
       return;
     }
 
