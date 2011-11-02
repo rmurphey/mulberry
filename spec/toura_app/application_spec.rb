@@ -18,19 +18,15 @@ describe TouraAPP do
     end
   end
 
-  describe "#root" do
-    it "should return the location of the toura_app directory" do
-      dir = TouraAPP.root
-      dir.should match 'toura_app'
-      File.exists?(File.join(dir, 'application.rb')).should be_true
-    end
-  end
-
   describe TouraAPP::Directories do
     it "should point to important directories" do
-      [ :root, :javascript, :page_templates, :data_fixtures, :build_root ].each do |d|
-        res = TouraAPP::Directories.send(d.to_s)
-        res.should match TouraAPP.root
+      root = TouraAPP::Directories.root
+
+      root.should match 'toura_app'
+
+      [ :javascript, :page_templates, :data_fixtures, :build_root ].each do |d|
+        dir = TouraAPP::Directories.send(d.to_s)
+        dir.should match root
       end
     end
   end
@@ -38,7 +34,7 @@ describe TouraAPP do
   describe TouraAPP::Templates do
     describe "#root" do
       it "should return the location of the toura_app templates directory" do
-        TouraAPP::Templates.root.should match TouraAPP.root
+        TouraAPP::Templates.root.should match TouraAPP::Directories.root
       end
     end
 

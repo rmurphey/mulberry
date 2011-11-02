@@ -5,7 +5,7 @@ module Builder
     public
     def build
       FileUtils.cp_r(
-        File.join(TouraAPP.root, 'www', 'icons', '.'),
+        File.join(TouraAPP::Directories.root, 'www', 'icons', '.'),
         File.join(@location, 'icons')
       )
 

@@ -12,10 +12,6 @@ module TouraAPP
     '1.6.0'
   end
 
-  def self.root
-    TouraAPP::Directories.root
-  end
-
   # TODO: get rid of this?
   def self.base_scss
     File.join(TouraAPP::Directories.javascript, 'base.scss')
@@ -23,7 +19,7 @@ module TouraAPP
 
   # TODO: get rid of this?
   def self.vars_scss_template
-    File.join(TouraAPP.root, 'templates', 'vars.scss')
+    File.join(TouraAPP::Directories.root, 'templates', 'vars.scss')
   end
 
   class Directories
@@ -116,5 +112,5 @@ module TouraAPP
 end
 
 # Setup load paths
-$: << TouraAPP.root
-$: << File.join(TouraAPP.root, 'lib')
+$: << TouraAPP::Directories.root
+$: << File.join(TouraAPP::Directories.root, 'lib')
