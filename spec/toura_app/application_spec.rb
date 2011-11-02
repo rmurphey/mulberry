@@ -65,13 +65,8 @@ describe TouraAPP do
         template_obj = TouraAPP::Generators.page_templates
         template_obj.keys.length.should be > 0
 
-        templates = Dir.entries TouraAPP::Directories.page_templates
-
-        templates.select { |t| t.match /\.yml$/ }.each do |t|
-          template_name = YAML.load_file(File.join(
-            TouraAPP::Directories.page_templates, t
-          )).keys.first
-
+        Dir.glob(File.join(TouraAPP::Directories.page_templates, '*.yml')).each do |t|
+          template_name = YAML.load_file(t).keys.first
           template_obj[template_name].should_not be_nil
         end
       end
