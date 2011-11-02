@@ -189,4 +189,4 @@ You will need chromedriver in order to run the JavaScript tests. You can
 [download chromedriver](http://code.google.com/p/chromium/downloads/list)
 if you do not already have it installed; make sure you install it somewhere in your $PATH.
 
-OSX users with [Homebrew](http://mxcl.github.com/homebrew/) installed can just `brew install homebrew`.
+OSX users with [Homebrew](http://mxcl.github.com/homebrew/) installed can just `brew install chromedriver`.
