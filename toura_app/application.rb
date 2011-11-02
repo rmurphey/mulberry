@@ -69,8 +69,8 @@ module TouraAPP
       base_templates = {}
       page_templates_dir = TouraAPP::Directories.page_templates
 
-      Dir.entries(page_templates_dir).each do |t|
-        base_templates.merge! YAML.load_file(File.join(page_templates_dir, t)) unless !t.match /\.yml$/
+      Dir.glob(File.join(page_templates_dir, '*.yml')).each do |t|
+        base_templates.merge! YAML.load_file(t)
       end
 
       base_templates.merge!(app_templates) if app_templates
