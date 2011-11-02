@@ -91,7 +91,7 @@ module TouraAPP
     end
 
     def self.config(os, device_type, binding = {})
-      tmpl = File.read(Mulberry::TouraPP::Templates.config)
+      tmpl = File.read(TouraAPP::Templates.config)
 
       defaults = {
         'id'                  =>  12345,

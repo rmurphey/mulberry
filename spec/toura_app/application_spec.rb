@@ -117,8 +117,10 @@ describe TouraAPP do
 
     describe "#config" do
       it "should return a TouraConfig file" do
-        c = TouraAPP::Generators.config
-        c.should match "dojo.provide('toura.app.TouraConfig');"
+        c = TouraAPP::Generators.config('ios', 'phone')
+        c.should match /dojo\.provide\('toura\.app\.TouraConfig'\);/
+        c.should match "phone"
+        c.should match "ios"
       end
 
       # TODO: how to test the actual contents of this file?
