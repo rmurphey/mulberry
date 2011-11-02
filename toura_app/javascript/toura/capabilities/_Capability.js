@@ -112,7 +112,7 @@ dojo.declare('toura.capabilities._Capability', [ ], {
     var requirementsMet = true;
 
     dojo.forIn(this.requirements, function(propName, requiredComponentName) {
-      requirementsMet = this.involved[requiredComponentName];
+      requirementsMet = requirementsMet && this.involved[requiredComponentName];
     }, this);
 
     return requirementsMet;
