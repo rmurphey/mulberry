@@ -77,7 +77,7 @@ module Mulberry
         end
 
         if config['featured_image']
-          header_image = Mulberry::Asset::Image.new(config['featured_image'], @assets_dir)
+          featured_image = Mulberry::Asset::Image.new(config['featured_image'], @assets_dir)
           page_data[:featuredImage] = featured_image.reference
           @app_items << featured_image.item
         end
