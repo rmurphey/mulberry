@@ -4,17 +4,13 @@ require 'toura_app/application'
 describe TouraAPP do
   describe "#version" do
     it "should return a period-delimited string" do
-      v = TouraAPP.version
-      v.is_a?(String).should be_true
-      v.split('.').length.should be > 1
+      TouraAPP.version.should be_period_delimited_string
     end
   end
 
   describe "#dojo_version" do
     it "should return a period-delimited string" do
-      v = TouraAPP.dojo_version
-      v.is_a?(String).should be_true
-      v.split('.').length.should be > 1
+      TouraAPP.dojo_version.should be_period_delimited_string
     end
   end
 
