@@ -118,10 +118,6 @@ describe Builder::Build do
 
       b.cleanup
     end
-
-    it "should copy project templates into place" do
-      puts "++++++++++++++++++++ #{File.dirname(__FILE__)}"
-    end
   end
 
   describe "build step" do
