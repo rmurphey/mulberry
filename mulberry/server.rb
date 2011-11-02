@@ -25,7 +25,7 @@ module Mulberry
     # Helpers
     #####################
     def self.file_path(*args)
-      File.join(File.dirname(__FILE__), '..', 'toura_app', *args)
+      File.join(TouraAPP::Directories.root, *args)
     end
 
     def file_path(*args)
@@ -122,7 +122,7 @@ module Mulberry
       device_type = params[:type] || 'phone'
       os = params[:os] || 'ios'
 
-      TouraAPP::App.create_config os, device_type,
+      TouraAPP::Generators.config os, device_type,
         {
           "id" => @mulberry_app.id,
           "build" => Time.now.to_i,
@@ -175,7 +175,7 @@ module Mulberry
       when 'tour.js'
         "toura.data.local = #{JSON.pretty_generate(@helper.data)};"
       when 'templates.js'
-        TouraAPP::App.generate_page_templates(@helper.templates)
+        "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
       end
     end
 

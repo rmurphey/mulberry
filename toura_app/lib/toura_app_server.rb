@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'lib/builder/css_maker.rb'
+require 'toura_app/application'
 
 # WARNING: This file is for Toura internal use and will be removed.
 
@@ -27,7 +28,7 @@ class TouraAPPServer < Sinatra::Base
   end
 
   def custom_dir(tour_id)
-    TouraAPP::App.client_customizations_dir(tour_id)
+    TouraAPP::Directories.client_customizations(tour_id)
   end
 
   #####################
@@ -68,9 +69,7 @@ class TouraAPPServer < Sinatra::Base
 
     if !File.exists? vars_path
       vars_path = File.join(
-        TouraAPP.root,
-        'javascript',
-        'data-fixtures',
+        TouraAPP::Directories.data_fixtures,
         'client_customizations',
         'vars.scss'
       )
@@ -84,7 +83,7 @@ class TouraAPPServer < Sinatra::Base
         :toura_base_path => TouraAPP::App.base_scss,
         :custom_base_path => custom_base_path,
         :load_paths => [
-          TouraAPP::App.js_dir,
+          TouraAPP::Directories.javascript,
           sass_dir
         ]
       ).render
@@ -140,14 +139,13 @@ class TouraAPPServer < Sinatra::Base
   get '/:os/:device_type/tours/:tour_id/javascript/toura/app/TouraConfig.js' do
     content_type 'text/javascript'
 
-    TouraAPP::App.create_config params[:os], params[:device_type],
-      {
-        "id"                  =>  params[:tour_id],
-        "build"               =>  Time.now.to_i,
-        "force_streaming"     =>  false,
-        "skip_version_check"  =>  false,
-        "debug"               =>  true
-      }
+    TouraAPP::Generators.config params[:os], params[:device_type], {
+      "id"                  =>  params[:tour_id],
+      "build"               =>  Time.now.to_i,
+      "force_streaming"     =>  false,
+      "skip_version_check"  =>  false,
+      "debug"               =>  true
+    }
   end
 
   get '/:os/:device_type/tours/:tour_id/javascript/*' do
@@ -162,7 +160,7 @@ class TouraAPPServer < Sinatra::Base
   #####################
   get '/:os/:device_type/tours/:tour_id/data/templates.js' do
     content_type "text/javascript"
-    TouraAPP::App.generate_page_templates
+    "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates)};"
   end
 
   get '/:os/:device_type/tours/:tour_id/data/*' do
