@@ -15,7 +15,7 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
     this._placeRegions();
     this._setupScroller();
 
-    this.addClass(this.boxType);
+    this.addClass(this.config.type);
     this.connect(this.screen, 'startup', 'startup');
   },
 
@@ -97,7 +97,6 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
           device : this.device,
           screen : this.screen,
           backgroundImage : this.backgroundImage,
-          boxType : this.config.containerType
         }).placeAt(this.domNode);
       }, this);
     }
