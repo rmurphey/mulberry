@@ -16,6 +16,10 @@ dojo.declare('toura.containers._LayoutBox', [ toura._View, toura.ui.BackgroundIm
   postMixInProperties : function() {
     // use the default config, but override with any settings that get passed in
     this.config = dojo.mixin(dojo.mixin({}, this.defaultConfig), this.config);
+
+    if (this.config.regions && this.config.regions.length) {
+      this.config.containerType = this._determineContainerType(this.config.regions);
+    }
   },
 
   postCreate : function() {
@@ -36,7 +40,20 @@ dojo.declare('toura.containers._LayoutBox', [ toura._View, toura.ui.BackgroundIm
     if (this.config.backgroundImage && this.backgroundImage) {
       this.loadImage();
     }
-  }
+  },
 
+  _determineContainerType : function(regions) {
+    var containerType;
+
+    dojo.forEach(regions, function(region) {
+      if (!containerType || containerType === region.type) {
+        containerType = region.type;
+      } else {
+        console.error('Could not determine containerType for region:', this);
+      }
+    }, this);
+
+    return containerType;
+  }
 });
 

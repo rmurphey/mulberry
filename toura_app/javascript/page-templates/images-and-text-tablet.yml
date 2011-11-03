@@ -19,28 +19,40 @@ images-and-text-tablet:
     - name: index
       backgroundImage: true
       regions:
-      - size: fixed
+
+      - type: row
+        size: fixed
         components:
         - PageNav
-      - components:
+
+      - type: row
+        components:
         - ImageGallery
-      - containerType: column
+
+      - type: row
         regions:
-        - components:
+
+        - type: column
+          scrollable: true
+          components:
           - ChildNodes
           - BodyText
+
+        - type: column
           scrollable: true
-        - components:
+          components:
           - ImageCaption
-          scrollable: true
 
     - name: detail
       regions:
-      - layout: overlay
+      - type: row
+        layout: overlay
         size: fixed
         components:
         - DetailTitle
-      - components:
+
+      - type: row
+        components:
         - ZoomableImageGallery
 
 
