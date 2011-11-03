@@ -40,7 +40,7 @@ module Mulberry
 
     set :raise_errors => true
     set :root, file_path('.')
-    set :public, file_path('www')
+    set :public_folder, file_path('www')
     set :views, file_path('templates')
     set :host, 'localhost'
     set :port, '3001'
