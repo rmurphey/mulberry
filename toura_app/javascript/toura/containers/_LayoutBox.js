@@ -7,7 +7,7 @@ dojo.declare('toura.containers._LayoutBox', [ toura._View, toura.ui.BackgroundIm
   templateString : '<div class=layout-box></div>',
 
   defaultConfig : {
-    containerType : 'row', // row || columns || component
+    containerType : 'component', // row || column || component
     layout : 'normal', // normal | overlay
     size : 'flex', // flex || fixed || full
     scrollable : false
