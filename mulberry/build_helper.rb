@@ -141,7 +141,8 @@ module Mulberry
     end
 
     def custom_js_source
-      File.join(@source_dir, 'javascript')
+      dir = File.join(@source_dir, 'javascript')
+      File.exists?(dir) ? dir : false
     end
 
     private
