@@ -118,7 +118,6 @@ describe Builder::Build do
 
       b.cleanup
     end
-
   end
 
   describe "build step" do
@@ -228,7 +227,6 @@ describe Builder::Build do
     end
 
     describe "bundled builds" do
-
     end
   end
 end

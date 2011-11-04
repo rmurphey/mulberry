@@ -86,13 +86,10 @@ module Builder
         android_dir = File.join(@task.location, 'android')
         new_java_dir = File.join(android_dir, 'src', app_id.split('.'))
         keystore = File.join(project_settings[:config_dir], 'android', 'keystore')
+        proj_files = Dir.glob(File.join(android_dir, 'src', 'com', 'toura', 'www', '*'))
 
         FileUtils.mkdir_p(new_java_dir)
-
-        FileUtils.mv(
-          File.join(android_dir, 'src', 'com', 'toura', 'www'),
-          new_java_dir
-        )
+        FileUtils.mv(proj_files, new_java_dir)
 
         if !dev
           if File.exists? keystore
