@@ -23,7 +23,7 @@ namespace :evergreen  do
 
   task :generate_stuff do
     File.open(File.join(TouraAPP::Directories.javascript, 'toura', 'app', 'TouraConfig.js'), 'w') do |f|
-      f.write TouraAPP::Generators.create_config('ios', 'phone')
+      f.write TouraAPP::Generators.config('ios', 'phone')
     end
   end
 end
