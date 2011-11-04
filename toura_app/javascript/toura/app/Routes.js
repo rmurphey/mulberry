@@ -26,7 +26,7 @@ toura.app.Routes = function() {
       try {
         pf = factory.createPage(nodeModel);
       } catch(e) {
-        console.log(e);
+        console.log("Toura.app.Routes: can't create a page", e, nodeModel);
         toura.app.Router.back();
         return;
       }
