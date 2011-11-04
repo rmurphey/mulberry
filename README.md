@@ -6,6 +6,7 @@ your app, and a framework for adding custom functionality and CSS.
 
 ## Support
 
+- [Documentation](https://github.com/toura/mulberry/wiki)
 - [Google Group](https://groups.google.com/forum/#!forum/toura-mulberry)
 - #touramulberry on irc.freenode.net: A live chat room with Mulberry users and
   developers. Use your own IRC client or [use Freenode's webchat](http://webchat.freenode.net/)
