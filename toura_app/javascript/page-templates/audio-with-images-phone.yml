@@ -17,6 +17,7 @@ audio-with-images-phone:
   - name: Page_Audios
     components:
     - index:AudioList
+    - index:AudioPlayer
   - name: AudioList_AudioPlayer
     components:
     - index:AudioPlayer
@@ -38,12 +39,12 @@ audio-with-images-phone:
       - size: fixed
         components:
         - AudioPlayer
-      -
-        regions:
+      - regions:
         - components:
           - AudioList
           - ChildNodes
           - AudioCaption
+          - ImageCaption
           - BodyText
           scrollable: true
 
