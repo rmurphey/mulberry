@@ -4,7 +4,7 @@ template:
   phone: default
   tablet: default
 
-featured_image: cooper_beach
+featured_image: cooper_beach.jpg
 
 images:
   - cooper_beach.jpg
