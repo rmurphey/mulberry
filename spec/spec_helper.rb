@@ -43,3 +43,9 @@ module CapybaraSpecHelper
     STDIN.getc
   end
 end
+
+DEVICES = [
+  { :type => 'phone', :os => 'ios' },
+  { :type => 'phone', :os => 'android' },
+  { :type => 'tablet', :os => 'ios' }
+]
