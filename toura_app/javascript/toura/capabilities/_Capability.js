@@ -57,6 +57,8 @@ dojo.declare('toura.capabilities._Capability', [ ], {
 
     if (!this._checkRequirements()) {
       console.error('Did not find required components for capability', this.declaredClass);
+      console.error('These are the components I know about', this.involved);
+      throw("Did not find required components for capability", this.declaredClass);
       return;
     }
 
@@ -94,6 +96,10 @@ dojo.declare('toura.capabilities._Capability', [ ], {
           screen = this.page.getScreen(screenName),
           component = screen.getComponent(componentName);
 
+      if (!component) {
+        console.error('Capability', this.declaredClass, 'did not find component for', componentName, 'on the', screenName, 'screen');
+      }
+
       involved[componentName] = component;
     }, this);
 
@@ -112,7 +118,10 @@ dojo.declare('toura.capabilities._Capability', [ ], {
     var requirementsMet = true;
 
     dojo.forIn(this.requirements, function(propName, requiredComponentName) {
-      requirmentsMet = this.involved[requiredComponentName];
+      requirementsMet = requirementsMet && !!this.involved[requiredComponentName];
+      if (!this.involved[requiredComponentName]) {
+        console.log('did not find', requiredComponentName, !!this.involved[requiredComponentName]);
+      }
     }, this);
 
     return requirementsMet;

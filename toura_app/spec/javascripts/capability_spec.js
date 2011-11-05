@@ -13,8 +13,10 @@ describe("capabilities", function() {
       connect : function() {},
       getScreen : function() {
         return {
-          getComponent : function() {
-            return new toura.components.FakeComponent();
+          getComponent : function(name) {
+            if (name == 'FakeComponent') {
+              return new toura.components.FakeComponent();
+            }
           }
         };
       }
@@ -62,6 +64,16 @@ describe("capabilities", function() {
         });
 
     expect(c.foo).toBeDefined();
+  });
+
+  it("should throw an error if a required component is not present", function() {
+    expect(function() {
+      new my.FakeCapability({
+        page : page,
+        requirements : { foo : 'AnotherFakeComponent' },
+        components : [ 'screenName:AnotherFakeComponent' ]
+      });
+    }).toThrow();
   });
 
   it("should create connections based on the connects array", function() {

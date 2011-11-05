@@ -1,72 +1,93 @@
+require 'rubygems'
 require 'haml'
 require 'yaml'
 require 'mustache'
 
-# Project-wide settings in ruby
-class TouraAPP
-  def self.root
-    @root ||= File.expand_path(File.dirname(__FILE__))
-  end
-
-  def self.deploy_root
-    File.dirname(__FILE__)
-  end
-
-  def self.templates_dir
-    "templates"
-  end
-
-  class Test
-    def self.fixtures
-      File.join(TouraAPP.root, 'javascript', 'data-fixtures')
-    end
-
-    def self.app
-      File.join(TouraAPP.root, 'javascript', 'toura', 'app')
-    end
-
-    # Defined in browser_testing_profile js file, so we can't easily interrogate it
-    def self.browser_test
-      File.join(TouraAPP.root, 'javascript', 'browserTesting')
-    end
-  end
-
+module TouraAPP
   def self.version
     '3.0.4'
   end
 
-  class App
-    def self.vars_scss_template
-      File.join(TouraAPP.root, 'templates', 'vars.scss')
+  def self.dojo_version
+    '1.6.0'
+  end
+
+  # TODO: get rid of this?
+  def self.base_scss
+    File.join(TouraAPP::Directories.javascript, 'base.scss')
+  end
+
+  # TODO: get rid of this?
+  def self.vars_scss_template
+    File.join(TouraAPP::Directories.root, 'templates', 'vars.scss')
+  end
+
+  class Directories
+    def self.root
+      @root ||= File.expand_path(File.dirname(__FILE__))
     end
 
-    def self.base_scss
-      File.join(TouraAPP.root, 'javascript', 'base.scss')
+    def self.javascript
+      File.join(self.root, 'javascript')
     end
 
-    def self.js_dir
-      File.join(TouraAPP.root, 'javascript')
+    def self.page_templates
+      File.join(self.javascript, 'page-templates')
     end
 
-    def self.client_customizations_dir(tour_id=nil)
+    def self.data_fixtures
+      File.join(self.javascript, 'data-fixtures')
+    end
+
+    def self.build_root
+      File.join(self.root, 'tmp', 'build')
+    end
+
+    # TODO: remove this?
+    def self.client_customizations(tour_id=nil)
       tour_id = nil if tour_id.respond_to?(:empty?) ? tour_id.empty? : !tour_id
-      File.join(TouraAPP.root, 'javascript', 'client_customizations', (tour_id ? "tour-#{tour_id}" : ''))
+      File.join(self.javascript, 'client_customizations', (tour_id ? "tour-#{tour_id}" : ''))
+    end
+  end
+
+  class Templates
+    def self.root
+      @root ||= File.join(TouraAPP::Directories.root, 'templates')
     end
 
-    def self.deploy_client_customizations_dir
-      File.join(TouraAPP.deploy_root, 'javascript', 'client_customizations')
+    def self.index_html
+      File.join(self.root, 'index.html.haml')
     end
 
-    def self.dojo_version
-      '1.6.0'
+    def self.config
+      File.join(self.root, 'TouraConfig.js.mustache')
+    end
+  end
+
+  class Generators
+    def self.page_templates(app_templates = nil)
+      base_templates = {}
+      page_templates_dir = TouraAPP::Directories.page_templates
+
+      Dir.glob(File.join(page_templates_dir, '*.yml')).each do |t|
+        base_templates.merge! YAML.load_file(t)
+      end
+
+      base_templates.merge!(app_templates) if app_templates
+      base_templates
     end
 
-    def self.page_templates_dir
-      File.join(TouraAPP.root, 'javascript', 'page-templates')
+    def self.index_html(params = {})
+      obj = Object.new
+      tmpl = File.read(TouraAPP::Templates.index_html)
+      haml = Haml::Engine.new(tmpl, :attr_wrapper => '"')
+
+      haml.def_method(obj, :render, *params.keys)
+      obj.render(params)
     end
 
-    def self.create_config(os, device_type, binding={})
-      tmpl = File.read(File.join(TouraAPP.root, 'templates', 'TouraConfig.js.mustache'))
+    def self.config(os, device_type, binding = {})
+      tmpl = File.read(TouraAPP::Templates.config)
 
       defaults = {
         'id'                  =>  12345,
@@ -87,44 +108,9 @@ class TouraAPP
       Mustache.render(tmpl, settings)
     end
 
-    def self.generate_index_html(params = {})
-      obj = Object.new
-      template = File.read(File.join(TouraAPP.root, 'templates', 'index.html.haml'))
-      haml = Haml::Engine.new(template, :attr_wrapper => '"')
-      haml.def_method(obj, :render, *params.keys)
-      obj.render(params)
-    end
-
-    def self.generate_page_templates(build_templates = nil)
-      base_templates = {}
-
-      Dir.entries(TouraAPP::App.page_templates_dir).each do |t|
-        base_templates.merge! YAML.load_file(File.join(TouraAPP::App.page_templates_dir, t)) unless !t.match /\.yml$/
-      end
-
-      base_templates.merge!(build_templates) if build_templates
-
-      "toura.templates = #{JSON.pretty_generate(base_templates)};"
-    end
-  end
-
-  class Build
-    def self.root
-      ENV['BUILD_PATH'] || File.join(TouraAPP.root, 'tmp', 'build')
-    end
-
-    def self.javascript
-      File.join(TouraAPP::Build.root, 'javascript')
-    end
-
-    def self.escape_quotes_for_system_call(s)
-      # These will have single quotes in em, and bash doesn't escape in a string
-      # We need to convert 'This ain't fun' ==> 'This ain'\''t fun'
-      safe_tour_name = s.gsub( "'", "'\\\\''" )
-    end
   end
 end
 
 # Setup load paths
-$: << TouraAPP.root
-$: << File.join(TouraAPP.root, 'lib')
+$: << TouraAPP::Directories.root
+$: << File.join(TouraAPP::Directories.root, 'lib')

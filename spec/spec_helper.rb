@@ -5,6 +5,8 @@ require 'mulberry/mulberry'
 require 'lib/builder'
 require 'factory_girl'
 
+Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
+
 Dir.glob(File.dirname(__FILE__) + "/factories/*").each do |factory|
   begin
     require factory
@@ -41,3 +43,9 @@ module CapybaraSpecHelper
     STDIN.getc
   end
 end
+
+DEVICES = [
+  { :type => 'phone', :os => 'ios' },
+  { :type => 'phone', :os => 'android' },
+  { :type => 'tablet', :os => 'ios' }
+]

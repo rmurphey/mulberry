@@ -6,6 +6,7 @@ your app, and a framework for adding custom functionality and CSS.
 
 ## Support
 
+- [Documentation](https://github.com/toura/mulberry/wiki)
 - [Google Group](https://groups.google.com/forum/#!forum/toura-mulberry)
 - #touramulberry on irc.freenode.net: A live chat room with Mulberry users and
   developers. Use your own IRC client or [use Freenode's webchat](http://webchat.freenode.net/)
@@ -189,3 +190,4 @@ You will need chromedriver in order to run the JavaScript tests. You can
 [download chromedriver](http://code.google.com/p/chromium/downloads/list)
 if you do not already have it installed; make sure you install it somewhere in your $PATH.
 
+OSX users with [Homebrew](http://mxcl.github.com/homebrew/) installed can just `brew install chromedriver`.

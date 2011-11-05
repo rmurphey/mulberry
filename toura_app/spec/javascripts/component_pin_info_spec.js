@@ -63,31 +63,4 @@ describe("pin info component", function() {
     c.set('pin', p);
     expect(dojo.hasClass(c.phoneNumberContainerNode, 'hidden')).toBeTruthy();
   });
-
-  describe("phone behavior", function() {
-    it("should be set up with detail title component", function() {
-      expect(dojo.query('.detail-title', t).length).toBe(0);
-      c = new C({ device : { type : 'phone', os : 'fake' }}).placeAt(t);
-      expect(dojo.query('.detail-title', t).length).toBe(1);
-      expect(c.detailTitle).toBeDefined();
-    });
-
-    it("should update the detail title when a new pin is provided", function() {
-      c = new C({ device : { type : 'phone', os : 'fake' }}).placeAt(t);
-
-      var fs = c.detailTitle.domNode;
-
-      c.set('pin', pin);
-
-      expect(fs.innerHTML).toMatch(pin.name);
-    });
-
-  });
-
-  describe("tablet behavior", function() {
-    it("should not be set up with a detail title component", function() {
-      c = new C({ device : { type : 'tablet', os : 'fake' }}).placeAt(t);
-      expect(dojo.query('.detail-title', t).length).toBe(0);
-    });
-  });
 });

@@ -23,12 +23,14 @@ module Builder
     def before_steps() end
 
     def project_settings
+      build_root = TouraAPP::Directories.build_root
+
       {
         :id           =>  @id,
         :version      =>  @db_version,
         :name         =>  @name,
-        :bundle       =>  TouraAPP::Build.root,
-        :config_dir   =>  File.join(TouraAPP::Build.root, 'config', 'builds')
+        :bundle       =>  build_root,
+        :config_dir   =>  File.join(build_root, 'config', 'builds')
       }
     end
 
@@ -54,14 +56,14 @@ module Builder
 
     def data
       client_custom = File.join(
-        TouraAPP::App.client_customizations_dir(@id),
+        TouraAPP::Directories.client_customizations(@id),
         'data',
         'tour.js'
       )
 
       data_file = (File.exists?(client_custom)) ?
         client_custom :
-        File.join(TouraAPP.root, 'javascript', 'data-fixtures', 'tour.js')
+        File.join(TouraAPP::Directories.data_fixtures, 'tour.js')
 
       JSON.parse(File.read(data_file).
         gsub('toura.data.local = ', '').
@@ -70,6 +72,9 @@ module Builder
 
     def css(destination, report)
       begin
+        js_dir = TouraAPP::Directories.javascript
+        fixtures_dir = TouraAPP::Directories.data_fixtures
+
         custom_dir = File.join(
           TouraAPP::App.client_customizations_dir(@id),
           'sass'
@@ -81,10 +86,10 @@ module Builder
        css = Builder::CSSMaker.new(
           :vars_path => (File.exists? vars_path) ?
             vars_path :
-            File.join(TouraAPP::Test.fixtures, 'client_customizations', 'vars.scss'),
+            File.join(fixtures_dir, 'client_customizations', 'vars.scss'),
           :toura_base_path => TouraAPP::App.base_scss,
           :custom_base_path => (custom_base_path if File.exists? custom_base_path),
-          :load_paths => [ TouraAPP::App.js_dir, custom_dir ]
+          :load_paths => [ js_dir, custom_dir ]
         ).render
         File.open(destination, 'w') { |f| f.write css }
       rescue Sass::SyntaxError => err

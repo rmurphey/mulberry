@@ -1,11 +1,10 @@
-require "toura_app/application"
 require "builder/task_base.rb"
 require "json"
 
 module Builder
   class JavaScript < Builder::TaskBase
     COPYRIGHT_FILE = File.join(
-      TouraAPP.root,
+      TouraAPP::Directories.root,
       "profiles",
       "copyright.txt"
     )
@@ -54,14 +53,13 @@ module Builder
       @required_layers = @target['build']['javascript']
 
       @buildscripts_dir = File.join(
-        TouraAPP.root,
-        "javascript",
-        "dojo-release-#{TouraAPP::App.dojo_version}-src",
+        TouraAPP::Directories.javascript,
+        "dojo-release-#{TouraAPP.dojo_version}-src",
         "util",
         "buildscripts"
       )
 
-      @location = File.join(TouraAPP.root, 'javascript')
+      @location = TouraAPP::Directories.javascript
       @client_dir = nil
 
       get_dojo
@@ -111,19 +109,16 @@ module Builder
 
     private
     def get_dojo
-      ver = TouraAPP::App.dojo_version
+      ver = TouraAPP.dojo_version
       dojo = "http://download.dojotoolkit.org/release-#{ver}/dojo-release-#{ver}-src.tar.gz"
-      dest = File.join(TouraAPP.root, "javascript", "dojo-release-#{ver}-src")
+      dest = File.join(TouraAPP::Directories.javascript, "dojo-release-#{ver}-src")
 
       unless File.exists?(dest)
-        Dir.chdir(File.join(TouraAPP.root, 'javascript'))
-
-        # Remove any older version of Dojo
-        FileUtils.rm_rf(File.join(TouraAPP::Build.javascript, 'dojo-release-*'))
+        Dir.chdir TouraAPP::Directories.javascript
 
         # Download specified Dojo version and extract it to the js dir
         @build.log("Downloading and extracting Dojo. JavaScript goodness is a few minutes away.", 'info')
-        dojo_installed = system %{curl --insecure -o - #{dojo} | tar -C #{File.join(TouraAPP.root, "javascript")} -xzf -}
+        dojo_installed = system %{curl --insecure -o - #{dojo} | tar -C #{TouraAPP::Directories.javascript} -xzf -}
         raise "Fatal error: Failed to install Dojo." unless dojo_installed
       end
 
@@ -169,7 +164,7 @@ module Builder
       if @build.build_helper.respond_to? 'custom_js_source'
         custom_js_source = @build.build_helper.custom_js_source
         if custom_js_source
-          @client_dir = File.join(TouraAPP.root, 'javascript', 'client_tmp')
+          @client_dir = File.join(TouraAPP::Directories.root, 'javascript', 'client_tmp')
           FileUtils.rm_rf @client_dir if File.exists? @client_dir
           FileUtils.cp_r(custom_js_source, @client_dir)
           profile[:prefixes] << [ 'client', '../../client_tmp' ]

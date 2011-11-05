@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 $: << File.expand_path('../..', __FILE__)
+$: << File.expand_path('../../..', __FILE__)
 
 require 'mulberry'
 require 'content_creator'
@@ -9,6 +10,7 @@ require 'template_creator'
 module Mulberry
   class CLI
     def run(args)
+
       if !args[0]
         puts "mulberry must be called with an action."
         return
@@ -37,6 +39,11 @@ module Mulberry
         end
 
         return
+      end
+
+      # Be a little more permissive in case someone types --v, -version, etc.
+      if action.match /^-{0,2}(version|v)$/
+        puts "Mulberry v#{Mulberry::version}"
       end
 
       if action.match /^create_(.+)$/

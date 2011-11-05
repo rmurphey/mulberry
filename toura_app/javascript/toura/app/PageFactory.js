@@ -10,8 +10,6 @@ dojo.require('toura.pageControllers.Debug');
 
 dojo.require('toura.pageControllers.search.Search');
 dojo.require('toura.pageControllers.favorites.Favorites');
-dojo.require('toura.pageControllers.node.Audios1');
-dojo.require('toura.pageControllers.node.GoogleMap1');
 dojo.require('toura.pageControllers.node.Videos1');
 dojo.require('toura.pageControllers.Configurable');
 
@@ -47,7 +45,12 @@ dojo.declare('toura.app.PageFactory', [], {
 
     'Audios1' : function(device) {
       return 'audio-with-images-' + device.type;
+    },
+
+    'GoogleMap1' : function(device) {
+      return 'google-map-' + device.type;
     }
+
   },
 
   pages : {

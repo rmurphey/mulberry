@@ -80,7 +80,6 @@ module Mulberry
             end
 
             item[asset_group].each do |a|
-              p a
               if a[:caption]
                 text_asset = find_caption a
                 text_asset[:contexts] << context_makers[asset_type].call(

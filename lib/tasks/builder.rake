@@ -18,6 +18,7 @@ namespace :builder do
   # WARNING: These tasks are for internal Toura use and will be deleted.
   desc "Generates the build required for APP device development"
   task :device_dev, [ :type, :os ] do |t, args|
+    puts "THIS TASK IS DEPRECATED. Use mulberry test instead unless you REALLY need this task."
     type = args && args[:type] || ENV['TYPE'] || 'phone'
     os = args && args[:os] || ENV['OS'] || 'ios'
     tour_id = ENV['TOUR_ID']
