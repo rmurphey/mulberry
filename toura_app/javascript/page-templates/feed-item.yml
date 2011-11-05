@@ -9,9 +9,11 @@ feed-item:
   - name: index
     backgroundImage: true
     regions:
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - PageNav
-    - components:
-      - FeedItemDetail
+    - type: row
       scrollable: true
+      components:
+      - FeedItemDetail

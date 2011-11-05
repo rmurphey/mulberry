@@ -3,11 +3,14 @@ node-gallery:
   screens:
   - name: index
     regions:
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - PageNav
-    - size: fixed
+    - type: row
+      size: fixed
       components:
         - DropDownText
-    - components:
+    - type: row
+      components:
       - NodeGallery
