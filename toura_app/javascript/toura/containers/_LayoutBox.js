@@ -49,9 +49,13 @@ dojo.declare('toura.containers._LayoutBox', [ toura._View, toura.ui.BackgroundIm
       if (!containerType || containerType === region.type) {
         containerType = region.type;
       } else {
-        console.error('Could not determine containerType for region:', this);
+        console.error('You cannot put columns and rows in the same region:', this);
       }
     }, this);
+
+    if (!containerType) {
+      console.error('Could not determine containerType for region:', this);
+    }
 
     return containerType;
   }

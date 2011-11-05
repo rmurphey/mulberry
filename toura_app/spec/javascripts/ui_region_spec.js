@@ -59,27 +59,17 @@ describe("ui region", function() {
     expect(c.domNode.querySelectorAll(getRootSelector(c)).length).toBe(3);
   });
 
-  it("should add 'row' and 'column' classes to regions depending on what the parent is", function() {
+  it("should add class to regions depending on what the type is", function() {
     c = C({
       config : {
-        containerType : "column",
         regions : [
-          1, 2
+          { type: 'fake'},
+          { type: 'fake'}
         ]
       }
     });
 
-    expect(c.domNode.querySelectorAll('.column').length).toBe(2);
-
-    c = C({
-      config : {
-        containerType : "row",
-        regions : [
-          1, 2
-        ]
-      }
-    });
-
-    expect(c.domNode.querySelectorAll('.row').length).toBe(2);
+    expect(c.domNode.querySelectorAll('.fake').length).toBe(2);
   });
+
 });
