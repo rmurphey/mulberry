@@ -4,13 +4,16 @@ grid-view:
   - name: index
     backgroundImage: true
     regions:
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - PageNav
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - PageHeaderImage
-    - scrollable: true
+    - type: row
+      scrollable: true
       components:
       - BodyText
       - ChildNodeGrid
