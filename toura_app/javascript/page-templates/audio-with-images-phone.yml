@@ -30,30 +30,36 @@ audio-with-images-phone:
     - name: index
       backgroundImage: true
       regions:
-      - size: fixed
+      - type: row
+        size: fixed
         components:
         - PageNav
-      - components:
+      - type: row
+        components:
         - ImageGallery
-      - size: fixed
+      - type: row
+        size: fixed
         components:
         - AudioPlayer
-      -
+      - type: row
         regions:
-        - components:
+        - type: row
+          scrollable: true
+          components:
           - AudioList
           - ChildNodes
           - AudioCaption
           - BodyText
-          scrollable: true
 
     - name: detail
       regions:
-      - layout: overlay
+      - type: row
+        layout: overlay
         size: fixed
         components:
         - DetailTitle
-      - components:
+      - type: row
+        components:
         - ZoomableImageGallery
 
 

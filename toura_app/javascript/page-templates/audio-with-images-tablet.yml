@@ -30,33 +30,40 @@ audio-with-images-tablet:
     - name: index
       backgroundImage: true
       regions:
-      - size: fixed
+      - type: row
+        size: fixed
         components:
         - PageNav
-      - components:
+      - type: row
+        components:
         - ImageGallery
-      - size: fixed
+      - type: row
+        size: fixed
         components:
         - AudioPlayer
-      - containerType: column
+      - type: row
         regions:
-        - components:
+        - type: column
+          scrollable: true
+          components:
           - ChildNodes
           - AudioCaption
           - BodyText
+        - type: column
           scrollable: true
-        - components:
+          components:
           - ImageCaption
           - AudioList
-          scrollable: true
 
     - name: detail
       regions:
-      - layout: overlay
+      - type: row
+        layout: overlay
         size: fixed
         components:
         - DetailTitle
-      - components:
+      - type: row
+        components:
         - ZoomableImageGallery
 
 
