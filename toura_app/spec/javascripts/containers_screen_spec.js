@@ -1,4 +1,4 @@
-describe("ui screen", function() {
+describe("containers screen", function() {
   var c, C, t, flag;
 
   beforeEach(function() {

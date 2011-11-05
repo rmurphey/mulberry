@@ -1,4 +1,4 @@
-describe("ui region", function() {
+describe("containers region", function() {
   var c, C, t, flag;
 
   beforeEach(function() {
