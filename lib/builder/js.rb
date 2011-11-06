@@ -15,7 +15,8 @@ module Builder
       :dev =>             false,
       :MAP =>             false,
       :mulberry =>        true,
-      :device =>          true
+      :device =>          true,
+      :browser =>         false
     }
 
     LAYERS = {

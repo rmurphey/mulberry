@@ -145,20 +145,41 @@ module Mulberry
       Mulberry::Server.run! :app => self
     end
 
-    def generate(settings = {})
-      tmp_dir = File.join(@source_dir, 'tmp')
-      success = false
-      msg = nil
-      b = nil
-
-      base_config = {
+    def device_build(settings = {})
+      build({
         :target           =>  settings[:test] ? 'mulberry_test' : 'mulberry',
         :tour             =>  self,
         :tmp_dir          =>  tmp_dir,
         :log_level        =>  -1,
         :force_js_build   =>  true,
         :build_helper     =>  @helper
-      }
+      })
+    end
+
+    def www_build(settings = {})
+      build({
+        :target           =>  'www',
+        :tour             =>  self,
+        :tmp_dir          =>  tmp_dir,
+        :log_level        =>  -1,
+        :force_js_build   =>  true,
+        :build_helper     =>  @helper
+      })
+    end
+
+    def data
+      @helper.data
+    end
+
+    private
+    def tmp_dir
+      File.join(@source_dir, 'tmp')
+    end
+
+    def build(base_config)
+      success = false
+      msg = nil
+      b = nil
 
       SUPPORTED_DEVICES.each do |os, types|
         types.each do |type|
@@ -186,11 +207,6 @@ module Mulberry
       end
     end
 
-    def data
-      @helper.data
-    end
-
-    private
     def supports_type?(type)
       @config['type'].include? type
     end

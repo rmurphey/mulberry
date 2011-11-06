@@ -10,6 +10,17 @@ module Builder
 
       @template_dir = File.join(Builder::Build.root, 'builder', 'project_templates')
 
+      if @target['build_type'] == 'browser'
+        FileUtils.cp_r(
+          File.join(@template_dir, 'browser'),
+          @location
+        )
+
+        Builder::Project::Browser.new(self, @build).build
+        @dir = 'browser'
+        return true
+      end
+
       case @target['device_os']
       when 'android'
         if @target['device_type'] == 'phone'
@@ -64,6 +75,18 @@ module Builder
 
     def template_dir
       @template_dir
+    end
+
+    class Browser
+      def initialize(task, build)
+        @task = task
+        @build = build
+        @target = task.target
+      end
+
+      def build
+        # noop for now
+      end
     end
 
     class Android

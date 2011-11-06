@@ -360,6 +360,11 @@ module Builder
 
     def position_data
       data_dir = File.join(@www, 'data')
+      dest_file = File.join(data_dir, data_file)
+
+      if !(%w{browser MAP}.include? @target['build_type'])
+        dest_file = "#{dest_file}.jet"
+      end
 
       FileUtils.mkdir_p(data_dir) unless File.exists?(data_dir)
 
