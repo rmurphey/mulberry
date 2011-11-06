@@ -77,48 +77,55 @@ describe("containers _LayoutBox", function() {
     expect(dojo.hasClass(c.domNode, ('.column-container')));
   });
 
-  it("should log an error if it contains a column and a row", function() {
-    spyOn(console, 'error');
-
-    c = C({
-      config : {
-        regions : [
-          { type: 'row'},
-          { type: 'column'}
-        ]
-      }
-    });
-
-    expect(console.error).toHaveBeenCalled();
+  it("should throw an exception if it contains a column and a row", function() {
+    expect(function() {
+      C({
+        config : {
+          regions : [
+            { type: 'row'},
+            { type: 'column'}
+          ]
+        }
+      });
+    }).toThrow();
   });
 
-  it("should log an error if the child regions don't specify their type", function() {
-    spyOn(console, 'error');
-
-    c = C({
-      config : {
-        regions : [
-          { },
-          { }
-        ]
-      }
-    });
-
-    expect(console.error).toHaveBeenCalled();
+  it("should throw an exception if the child regions don't specify their type", function() {
+    expect(function() {
+      C({
+        config : {
+          regions : [
+            { },
+            { }
+          ]
+        }
+      });
+    }).toThrow();
   });
 
-  it("should log an error unless all child regions specify their type", function() {
-    spyOn(console, 'error');
+  it("should throw an exception unless all child regions specify their type", function() {
+    expect(function() {
+      C({
+        config : {
+          regions : [
+            { type : 'row'},
+            { }
+          ]
+        }
+      });
+    }).toThrow();
+  });
 
-    c = C({
-      config : {
-        regions : [
-          { type : 'row'},
-          { }
-        ]
-      }
-    });
-
-    expect(console.error).toHaveBeenCalled();
+  it("should throw an exception for unknown types ", function() {
+    expect(function() {
+      C({
+        config : {
+          regions : [
+            { type : 'fake'},
+            { type : 'fake'}
+          ]
+        }
+      });
+    }).toThrow();
   });
 });
