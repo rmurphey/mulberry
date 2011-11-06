@@ -27,8 +27,7 @@ module Builder
           "dojo.i18n",
           "dojo.string",
           "dojo.data.ItemFileReadStore",
-          "vendor.mustache._base",
-          "toura.views._Nls"
+          "toura._Nls"
         ]
       },
 
