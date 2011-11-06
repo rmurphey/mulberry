@@ -1,4 +1,4 @@
-{
+define({
   // navigation
   "BACK" : "Back",
   "NEXT" : "Next",
@@ -66,4 +66,4 @@
   "FEED_VIEW_ORIGINAL" : "View the original article",
 
   "INSTRUCTIONS" : "Instructions"
-}
+});

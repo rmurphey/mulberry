@@ -6,13 +6,21 @@ namespace :builder do
   task :app_dev do
     b = Builder::Build.new({
       :target => 'app_development',
-      :log_level => -1
+      :log_level => -1,
+      :verbose => true
     })
 
     b.build
     b.cleanup
 
     puts "App dev build is complete"
+  end
+
+  task :clean do
+    FileUtils.rm_rf File.join(TouraAPP::Directories.javascript, "dojo-release-#{TouraAPP.dojo_version}-src")
+    FileUtils.rm_rf File.join(TouraAPP::Directories.javascript, 'dev')
+    FileUtils.rm_rf File.join(TouraAPP::Directories.javascript, 'device')
+    FileUtils.rm_rf File.join(TouraAPP::Directories.root, 'tmp')
   end
 
   # WARNING: These tasks are for internal Toura use and will be deleted.

@@ -83,7 +83,8 @@ module Mulberry
       content_type 'text/javascript'
       send_file file_path(
         "javascript",
-        @js_build_name,
+        # @js_build_name,
+        "dojo-release-1.7.0-src",
         "dojo",
         params[:splat].first
       )
@@ -93,7 +94,8 @@ module Mulberry
       content_type 'text/javascript'
       send_file file_path(
         "javascript",
-        @js_build_name,
+        # @js_build_name,
+        "dojo-release-1.7.0-src",
         "dijit",
         params[:splat].first
       )

@@ -136,7 +136,8 @@ module Mulberry
       b = Builder::Build.new({
         :target => 'app_development',
         :log_level => -1,
-        :force_js_build => false
+        :force_js_build => false,
+        :verbose => true
       })
 
       b.build

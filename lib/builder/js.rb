@@ -154,6 +154,7 @@ module Builder
           [ "dijit",        "../dijit" ],
           [ "toura",        "../../toura" ],
           [ "vendor",       "../../vendor" ],
+          [ "dojox",        "../dojox" ]
         ],
 
         :layers =>          profile_layers,

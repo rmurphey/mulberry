@@ -9,7 +9,7 @@ module TouraAPP
   end
 
   def self.dojo_version
-    '1.6.0'
+    '1.7.0'
   end
 
   # TODO: get rid of this?
