@@ -360,18 +360,14 @@ module Builder
 
     def position_data
       data_dir = File.join(@www, 'data')
-      dest_file = File.join(data_dir, data_file)
-
-      if !(%w{browser MAP}.include? @target['build_type'])
-        dest_file = "#{dest_file}.jet"
-      end
+      is_browser = %w{browser MAP}.include? @target['build_type']
 
       FileUtils.mkdir_p(data_dir) unless File.exists?(data_dir)
 
       @data[:files].each do |data_file|
         FileUtils.cp(
           File.join(@data[:location], data_file),
-          File.join(data_dir, "#{data_file}.jet")
+          File.join(data_dir, "#{data_file}#{is_browser ? '' : '.jet'}")
         )
       end
     end
