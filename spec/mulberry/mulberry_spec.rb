@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Mulberry::App do
   before :each do
     Mulberry::App.scaffold('testapp', true)
+    @app = Mulberry::App.new 'testapp'
   end
 
   after :each do
@@ -57,19 +58,46 @@ describe Mulberry::App do
   end
 
   describe "#initialize" do
-    before :each do
-      @app = Mulberry::App.new 'testapp'
-    end
-
     it "should set the name of the app" do
       @app.name.should == 'testapp'
     end
   end
 
-  describe "#serve" do
+  describe "#generate" do
+    it "should generate the files for testing" do
+
+    end
+
+    it "should generate the files for deployment" do
+
+    end
   end
 
-  describe "#generate" do
+  describe "#www_build" do
+    before :each do
+      @app.www_build
+    end
+
+    it "should build the files for serving as a static site" do
+      [ 'web-ios-phone', 'web-ios-tablet', 'web-android-phone' ].each do |subdir|
+        build_dir = File.join(@app.source_dir, 'builds', subdir, 'www')
+        File.exists?(build_dir).should be_true
+
+        [
+          'index.html',
+          [ 'media', 'manifest.js' ],
+          [ 'css', 'base.css' ],
+          [ 'data', 'tour.js' ],
+          [ 'data', 'templates.js' ],
+          [ 'javascript', 'dojo', 'dojo.js' ],
+          [ 'javascript', 'toura', 'base.js' ],
+          [ 'javascript', 'toura', 'app', 'TouraConfig.js' ],
+          [ 'javascript', 'client', 'base.js' ]
+        ].each do |dir|
+          File.exists?(File.join(build_dir, dir)).should be_true
+        end
+      end
+    end
   end
 
   describe "#data" do

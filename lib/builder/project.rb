@@ -11,13 +11,18 @@ module Builder
       @template_dir = File.join(Builder::Build.root, 'builder', 'project_templates')
 
       if @target['build_type'] == 'browser'
+        subdir = [ 'web', @target['device_os'], @target['device_type'] ].join('-')
+        dest = File.join(@location, subdir)
+        FileUtils.rm_rf dest if File.exists? dest
+        FileUtils.mkdir_p dest
+
         FileUtils.cp_r(
-          File.join(@template_dir, 'browser'),
-          @location
+          File.join(@template_dir, 'browser', 'www'),
+          dest
         )
 
         Builder::Project::Browser.new(self, @build).build
-        @dir = 'browser'
+        @dir = subdir
         return true
       end
 

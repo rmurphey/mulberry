@@ -18,9 +18,13 @@ module Builder
 
       @project_dir   = File.join(@project[:location], @project[:dir])
 
-      @www = @target['device_os'] == 'android' ?
-        File.join(@project_dir, 'assets', 'www') :
-        File.join(@project_dir, 'www')
+      if @target['build_type'] == 'browser'
+        @www = File.join(@project_dir, 'www')
+      else
+        @www = @target['device_os'] == 'android' ?
+          File.join(@project_dir, 'assets', 'www') :
+          File.join(@project_dir, 'www')
+      end
 
       FileUtils.mkdir_p @www unless File.exists? @www
 
