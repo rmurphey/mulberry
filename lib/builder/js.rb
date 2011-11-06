@@ -168,6 +168,7 @@ module Builder
           FileUtils.rm_rf @client_dir if File.exists? @client_dir
           FileUtils.cp_r(custom_js_source, @client_dir)
           profile[:prefixes] << [ 'client', '../../client_tmp' ]
+          profile[:layers] << LAYERS[:client]
         end
       end
 
