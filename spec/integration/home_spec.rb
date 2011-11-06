@@ -15,5 +15,32 @@ describe "Home", :type => :request do
 
     click_link "Audio List"
     page.should have_css ".audio-player audio[src*='media/audios']"
+
+  end
+
+  describe "smoke test" do
+    pages = [
+      "Audio List",
+      "Image Gallery",
+      "Fullscreen Image Gallery",
+      "Feed List",
+      "Locations Page",
+      "Location Map",
+      "Videos Page",
+      "Grid"
+    ]
+
+    it "should display links to its child pages" do
+      visit '/'
+      pages.each { |title| page.should have_content title }
+    end
+
+    it "should allow navigation to each of its child pages" do
+      pages.each do |title|
+        visit '/'
+        click_link title
+        page.should have_content title
+      end
+    end
   end
 end
