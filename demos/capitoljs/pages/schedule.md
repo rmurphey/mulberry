@@ -1,6 +1,6 @@
 ---
 title: Schedule
-template: Default
+template: default
 ---
 
 <table>
