@@ -208,6 +208,22 @@ describe Builder::Build do
       b.cleanup
     end
 
+    it "should not include phonegap in the html if it is a browser build" do
+      b = Builder::Build.new(@config.merge({
+        :target_config => {
+          'build_type' => 'browser',
+          'build' => {
+            'html' => true
+          }
+        }
+      }))
+
+      b.build
+
+      html = b.completed_steps[:build][:html]
+      index_html = File.read(File.join(html[:location], 'index.html'))
+      index_html.should_not match 'phonegap'
+    end
   end
 
   describe "closing" do
