@@ -1,14 +1,38 @@
 require 'spec_helper'
+require 'content_creator'
 
 describe Mulberry::Data do
   before :each do
-    FileUtils.rm_rf 'testapp'
-    Mulberry::App.scaffold('testapp', true)
-    @data = (Mulberry::Data.new Mulberry::App.new('testapp')).generate
+    @source_dir = 'testapp'
+
+    Mulberry::App.scaffold(@source_dir, true)
+
+    sitemap = [
+      {
+        'home' => [
+          'foo',
+          'bar',
+          'baz'
+        ]
+      },
+      'about'
+    ]
+
+    @pages = sitemap.map { |item| item.is_a?(Hash) ? item.flatten : item }.flatten
+
+    File.open File.join(@source_dir, 'sitemap.yml'), 'w' do |f|
+      f.write sitemap.to_yaml
+    end
+
+    @pages.each do |page|
+      Mulberry::ContentCreator.new('page', @source_dir, page)
+    end
+
+    @data = (Mulberry::Data.new Mulberry::App.new(@source_dir)).generate
   end
 
   after :each do
-    FileUtils.rm_rf 'testapp'
+    FileUtils.rm_rf @source_dir
   end
 
   it "should generate a data object" do
@@ -17,12 +41,15 @@ describe Mulberry::Data do
   end
 
   it "should properly place the pages in the data" do
-    @data[:items].select { |item|
-      item[:id] == 'node-home'
-    }.length.should be 1
-
-    @data[:items].select { |item|
-      item[:id] == 'node-about'
-    }.length.should be 1
+    @pages.each do |page|
+      @data[:items].select { |item| item[:id] == "node-#{page}" }.length.should be 1
+    end
   end
+
+  it "should properly assign parents to pages" do
+    @data[:items].select do |item|
+      item[:id] == 'node-foo'
+    end.first[:parent]['_reference'].should == 'node-home'
+  end
+
 end
