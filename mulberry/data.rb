@@ -13,6 +13,10 @@ module Mulberry
       @items      = []
       @item_ids   = []
 
+      @config['facebookApiKey'] = @config['facebook_api_key']
+      @config['twitterCustomerKey'] = @config['twitter_customer_key']
+      @config['twitterCustomerSecret'] = @config['twitter_customer_secret']
+
       read_sitemap
     end
 
