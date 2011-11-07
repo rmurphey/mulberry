@@ -1,6 +1,6 @@
 ## Installation notes on Ubuntu (64-bit 11.04)
 
-Note: Instructions assume you want to put all the necessary files into ~/dev. Change this is you like/need to.
+Note: Instructions assume you want to put all the necessary files into ~/dev. Change this if you like/need to.
 
 ### Install Ruby
 
