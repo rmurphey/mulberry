@@ -46,7 +46,6 @@ module Mulberry
 
     def do_contexts
       text_assets = {}
-      nodes = {}
 
       @items.each do |item|
         if item[:type] == 'text-asset'
