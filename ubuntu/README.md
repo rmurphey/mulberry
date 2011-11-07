@@ -1,10 +1,10 @@
 ## Installation notes on Ubuntu (64-bit 11.04)
 
-Note: Instructions assume you want to put all the necessary files into ~/dev. Change this if you like/need to.
+Note: Instructions assume you want to put all the necessary files into `~/dev.` Change this if you like/need to.
 
 ### Install Ruby
 
-Here are the comamnds needed to install ruby, rails, git. ruby comes with Ubuntu 11.04 but its outdated. This method will install the RVM package manager and let you use ruby 1.9.2.
+Here are the commands needed to install ruby, rails, git. ruby comes with Ubuntu 11.04 but its outdated. This method will install the RVM package manager and let you use ruby 1.9.2.
 
     sudo apt-get update
     sudo apt-get install build-essential git git-core curl
@@ -17,7 +17,8 @@ Here are the comamnds needed to install ruby, rails, git. ruby comes with Ubuntu
     gem install rails
 
 Notes:
-* This is an abridged version of [these instructions](http://ryanbigg.com/2010/12/ubuntu-ruby-rvm-rails-and-you/)
+
+* This is an abridged version of [these instructions](http://ryanbigg.com/2010/12/ubuntu-ruby-rvm-rails-and-you/).
 * The third, fourth and fifth command fetches RVM, and adds it to your .bashrc file so that it is loaded for each teminal session.
 * The assortment of packages in command 6 (`sudo apt-get install loadsofpackages` may differ for your system. Run `rvm requirements` to check.
 
@@ -71,6 +72,7 @@ Follow the normal instructions to run mulberry.
 When you come to test out your application using the `mulberry serve` command, you might find that you can't exit the process using the standard Ctrl-C keyboard combo. This is because of [this problem](http://stackoverflow.com/questions/5891567/cant-stop-webrick-1-3-1-with-ctrl-c-on-ubuntu-11-04).
 
 To workaround, from the terminal type:
+
     Ctrl-C
     Ctrl-Z
     fg
