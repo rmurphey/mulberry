@@ -51,10 +51,6 @@ module Mulberry
         if item[:type] == 'text-asset'
           text_assets[item[:id]] = item
         end
-
-        if item[:type] == 'node'
-          nodes[item[:id]] = item
-        end
       end
 
       context_makers = {}
