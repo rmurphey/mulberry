@@ -19,21 +19,30 @@ images-and-text-phone:
     - name: index
       backgroundImage: true
       regions:
-      - size: fixed
+      - type: row
+        size: fixed
         components:
         - PageNav
-      - components:
+
+      - type: row
+        components:
         - ImageGallery
-      - scrollable: true
+
+      - type: row
+        scrollable: true
         components:
         - ChildNodes
         - ImageCaption
         - BodyText
+
     - name: detail
       regions:
-      - layout: overlay
+      - type: row
+        layout: overlay
         size: fixed
         components:
         - DetailTitle
-      - components:
+
+      - type: row
+        components:
         - ZoomableImageGallery

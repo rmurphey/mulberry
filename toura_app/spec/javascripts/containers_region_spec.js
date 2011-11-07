@@ -1,4 +1,4 @@
-describe("ui region", function() {
+describe("containers region", function() {
   var c, C, t, flag;
 
   beforeEach(function() {
@@ -52,34 +52,28 @@ describe("ui region", function() {
   it("should place child regions if specified", function() {
     c = C({
       config : {
-        regions : [ 1, 2, 3 ]
+        regions : [
+          { type: 'row'},
+          { type: 'row'},
+          { type: 'row'}
+        ]
       }
     });
 
     expect(c.domNode.querySelectorAll(getRootSelector(c)).length).toBe(3);
   });
 
-  it("should add 'row' and 'column' classes to regions depending on what the parent is", function() {
+  it("should add class to regions depending on what the type is", function() {
     c = C({
       config : {
-        containerType : "column",
         regions : [
-          1, 2
-        ]
-      }
-    });
-
-    expect(c.domNode.querySelectorAll('.column').length).toBe(2);
-
-    c = C({
-      config : {
-        containerType : "row",
-        regions : [
-          1, 2
+          { type: 'row'},
+          { type: 'row'}
         ]
       }
     });
 
     expect(c.domNode.querySelectorAll('.row').length).toBe(2);
   });
+
 });

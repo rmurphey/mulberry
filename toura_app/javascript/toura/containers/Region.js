@@ -15,7 +15,12 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
     this._placeRegions();
     this._setupScroller();
 
-    this.addClass(this.boxType);
+    if (this.config.type) {
+      this.addClass(this.config.type);
+    } else {
+      console.error("No type set for region. You should set it to 'row' or 'column'.", this);
+    }
+
     this.connect(this.screen, 'startup', 'startup');
   },
 
@@ -97,7 +102,6 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
           device : this.device,
           screen : this.screen,
           backgroundImage : this.backgroundImage,
-          boxType : this.config.containerType
         }).placeAt(this.domNode);
       }, this);
     }

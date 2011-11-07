@@ -2,8 +2,10 @@ hotspots:
   type: node
   screens:
   - regions:
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - PageNav
-    - components:
+    - type: row
+      components:
       - Hotspots

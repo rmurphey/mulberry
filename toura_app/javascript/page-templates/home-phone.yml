@@ -4,13 +4,17 @@ home-phone:
   - name: index
     backgroundImage: true
     regions:
-    - regions:
-      - components: []
-      - components:
+    - type: row
+      regions:
+      - type: row
+        components: []
+      - type: row
+        scrollable: true
+        components:
         - BodyText
         - ChildNodes
-        scrollable: true
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - AppNav
 

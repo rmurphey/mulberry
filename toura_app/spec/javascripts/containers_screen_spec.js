@@ -1,4 +1,4 @@
-describe("ui screen", function() {
+describe("containers screen", function() {
   var c, C, t, flag;
 
   beforeEach(function() {
@@ -30,7 +30,11 @@ describe("ui screen", function() {
 
     c = C({
       config : {
-        regions : [ 1, 2, 3 ]
+        regions : [
+          { type: 'row'},
+          { type: 'row'},
+          { type: 'row'}
+        ]
       },
       baseObj : 'fake node',
       device : 'fake device'
@@ -40,7 +44,7 @@ describe("ui screen", function() {
 
     var regionArgs = spy.mostRecentCall.args[0];
 
-    expect(regionArgs.config).toBe(3);
+    expect(regionArgs.config).toEqual({ type: 'row'});
     expect(regionArgs.baseObj).toBe('fake node');
     expect(regionArgs.device).toBe('fake device');
     expect(regionArgs.screen).toBe(c);
