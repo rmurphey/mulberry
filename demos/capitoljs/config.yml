@@ -28,7 +28,7 @@ name: CapitolJS
 # Presently there is only one theme, the default theme. We need to document how
 # to create additional themes.
 theme:
-  name: default
+  name: capitoljs
   settings:
     font-scheme:        'dark'
     link-color:         '#c30f00'
