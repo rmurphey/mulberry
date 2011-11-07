@@ -46,7 +46,7 @@ dojo.declare('toura.containers._LayoutBox', [ toura._View, toura.ui.BackgroundIm
     var containerType;
 
     dojo.forEach(regions, function(region) {
-      if (region.type !== 'row' && region.type !== 'column' && region.type !== 'component') {
+      if (!{ row : 1, column : 1, component : 1}[region.type]) {
         throw 'Unknown region type: ' + region.type;
       }
 
