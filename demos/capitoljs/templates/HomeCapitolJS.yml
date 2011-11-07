@@ -1,4 +1,4 @@
-HomeCapitolJS:
+home-capitol-js:
   type: node
   screens:
   - name: index

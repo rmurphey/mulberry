@@ -1,6 +1,9 @@
 ---
 title: Twitter
-template: Twitter
+template:
+  phone: twitter
+  tablet: twitter
+
 data:
   - twitter.yml
 ---
