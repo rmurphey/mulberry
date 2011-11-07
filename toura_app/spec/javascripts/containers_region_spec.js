@@ -52,7 +52,11 @@ describe("containers region", function() {
   it("should place child regions if specified", function() {
     c = C({
       config : {
-        regions : [ 1, 2, 3 ]
+        regions : [
+          { type: 'row'},
+          { type: 'row'},
+          { type: 'row'}
+        ]
       }
     });
 
@@ -63,13 +67,13 @@ describe("containers region", function() {
     c = C({
       config : {
         regions : [
-          { type: 'fake'},
-          { type: 'fake'}
+          { type: 'row'},
+          { type: 'row'}
         ]
       }
     });
 
-    expect(c.domNode.querySelectorAll('.fake').length).toBe(2);
+    expect(c.domNode.querySelectorAll('.row').length).toBe(2);
   });
 
 });
