@@ -12,12 +12,6 @@ toura.app.Phonegap.browser = function(pg, device){
   var os = device.os,
       init = {
         ios : function() {
-          /*global PhoneGap */
-
-          function ChildBrowser() {
-            // Does nothing
-          }
-
           // Callback when the location of the page changes
           // called from native
           ChildBrowser._onLocationChange = function(newLoc) {

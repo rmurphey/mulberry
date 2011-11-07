@@ -9,6 +9,7 @@ toura.app.user.Facebook.ios = {
       // parameters to pass when asking fb for auth
       dojo.objectToQuery({
         client_id : appId,
+        display : 'touch',
         redirect_uri : 'https://www.facebook.com/connect/login_success.html',
         response_type : 'token',
         scope : 'publish_stream,offline_access'
