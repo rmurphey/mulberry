@@ -9,10 +9,12 @@ location-list:
   screens:
   - name: index
     regions:
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - PageNav
-    - scrollable: true
+    - type: row
+      scrollable: true
       components:
       - NodeTitleBanner
       - ImageGallery
@@ -20,10 +22,12 @@ location-list:
       - LocationList
   - name: detail
     regions:
-    - layout: overlay
+    - type: row
+      layout: overlay
       size: fixed
       components:
       - DetailTitle
-    - components:
+    - type: row
+      components:
       - ZoomableImageGallery
 

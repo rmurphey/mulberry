@@ -252,7 +252,7 @@ dojo.declare('toura.app.user._TwitterAPI', null, {
   },
 
   setupUpdate : function(status) {
-    this.path = "http://api.twitter.com/1/statuses/update.json";
+    this.path = "https://api.twitter.com/1/statuses/update.json";
     this.postBody = "status=" + this._encode(status);
 
     if (!this.token || !this.tokenSecret) {

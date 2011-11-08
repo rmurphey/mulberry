@@ -1,5 +1,6 @@
 dojo.provide('toura.app.Phonegap');
 
+dojo.require('toura.app.Phonegap.notification');
 dojo.require('toura.app.Phonegap.device');
 dojo.require('toura.app.Phonegap.network');
 dojo.require('toura.app.Phonegap.analytics');
@@ -25,6 +26,7 @@ dojo.require('toura.app.Phonegap.browser');
      * requires at the top of this file.
      */
     dojo.forEach([
+      'notification',
       'device',
       'network',
       'analytics',
