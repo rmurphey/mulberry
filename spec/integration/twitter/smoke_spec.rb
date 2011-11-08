@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'integration/twitter/spec_helper'
 
 include CapybaraSpecHelper
