@@ -104,7 +104,7 @@ dojo.declare('toura.components.MoreDrawer', [ toura.components._Component ], {
 
     toura.app.Phonegap.network.isReachable().then(dojo.hitch(this, function(isReachable) {
       if (!isReachable) {
-        alert(this.i18n_noNetwork);
+        toura.app.Phonegap.notification.alert(this.i18n_noNetwork);
         return;
       }
 
@@ -143,7 +143,7 @@ dojo.declare('toura.components.MoreDrawer', [ toura.components._Component ], {
             // sharing failed
             function(msg) {
               // TODO: i18n
-              if (msg) { alert(msg); }
+              if (msg) { toura.app.Phonegap.notification.alert(msg); }
             }
           );
       });
@@ -154,7 +154,7 @@ dojo.declare('toura.components.MoreDrawer', [ toura.components._Component ], {
         delete this.socialMessage;
       });
     }), function() {
-      alert(this.i18n_noNetwork);
+      toura.app.Phonegap.notification.alert(this.i18n_noNetwork);
     });
   },
 

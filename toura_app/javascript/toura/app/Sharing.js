@@ -71,7 +71,6 @@ toura.app.Sharing = {
     }
 
     if (this.lastPost[svc] && (this.lastPost[svc] === params.msg)) {
-      console.log('the message is a duplicate');
       dfd.reject('The message is a duplicate.');
       doit = false;
     }
