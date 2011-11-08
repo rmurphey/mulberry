@@ -38,12 +38,10 @@ theme:
 os:
   # Specify the operating systems to target
   - ios
-  - android
 
 type:
   # Specify the form factors to target;
   # note that Android currently only supports phones
-  - tablet
   - phone
 
 # Dojo is included by default, but if you want access
@@ -85,4 +83,4 @@ flurry:
    api_key: flurry_ios_api_key
  android:
    api_key: flurry_ios_api_key
-  
+
