@@ -19,6 +19,7 @@ dojo.declare('toura.components.SocialMessage', [ toura.components._Component ], 
   setupConnections : function() {
     this.connect(this.submitBtn, 'click', '_onSubmit');
     this.connect(this.cancelBtn, 'click', '_onCancel');
+    this.connect(this.message, 'blur', '_onSocialBlur');
 
     dojo.forEach(['keyup', 'change'], dojo.hitch(this, function(e) {
       this.connect(this.message, e, '_resize');
@@ -111,6 +112,15 @@ dojo.declare('toura.components.SocialMessage', [ toura.components._Component ], 
 
   onCancel : function() {
     console.log('toura.components.SocialMessage::onCancel()');
+  },
+
+  _onSocialBlur : function() {
+    window.scrollTo(0,0);
+    this.onSocialBlur();
+  },
+
+  onSocialBlur : function() {
+    console.log('toura.components.SocialMessage::onSocialBlur()');
   },
 
   initializeStrings : function() {
