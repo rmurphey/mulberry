@@ -11,20 +11,24 @@ google-map-phone:
   - name: index
     backgroundImage: false
     regions:
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - PageNav
-    - components:
+
+    - type: row
+      components:
       - GoogleMap
 
   - name: detail
     backgroundImage: false
     regions:
-    -
+    - type: row
       size: fixed
       components:
       - DetailTitle
-    -
+
+    - type: row
       scrollable: true
       components:
       - PinInfo

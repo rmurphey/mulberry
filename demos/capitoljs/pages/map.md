@@ -1,8 +1,8 @@
 ---
 title: Map
 template:
-  phone: locations-map
-  tablet: locations-map
+  phone: google-map-phone
+  tablet: google-map-tablet
 
 locations:
   - palomar.yml
