@@ -26,10 +26,8 @@
 		648E762C145A0781004AD965 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 648E762A145A0781004AD965 /* Localizable.strings */; };
 		648E7630145A0781004AD965 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 648E762E145A0781004AD965 /* Localizable.strings */; };
 		648E7633145A0781004AD965 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 648E7632145A0781004AD965 /* icon.png */; };
-		648E7635145A0781004AD965 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 648E7634145A0781004AD965 /* icon@2x.png */; };
 		648E7637145A0781004AD965 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 648E7636145A0781004AD965 /* icon-72.png */; };
 		648E763A145A0781004AD965 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 648E7639145A0781004AD965 /* Default.png */; };
-		648E763C145A0781004AD965 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 648E763B145A0781004AD965 /* Default@2x.png */; };
 		648E763E145A0782004AD965 /* Capture.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 648E763D145A0782004AD965 /* Capture.bundle */; };
 		648E7640145A0782004AD965 /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 648E763F145A0782004AD965 /* PhoneGap.plist */; };
 		648E7655145A07C8004AD965 /* FlurryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 648E7652145A07C8004AD965 /* FlurryCommand.m */; };
@@ -67,10 +65,8 @@
 		648E762B145A0781004AD965 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		648E762F145A0781004AD965 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		648E7632145A0781004AD965 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icons/icon.png; sourceTree = "<group>"; };
-		648E7634145A0781004AD965 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Resources/icons/icon@2x.png"; sourceTree = "<group>"; };
 		648E7636145A0781004AD965 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "Resources/icons/icon-72.png"; sourceTree = "<group>"; };
 		648E7639145A0781004AD965 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/splash/Default.png; sourceTree = "<group>"; };
-		648E763B145A0781004AD965 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/splash/Default@2x.png"; sourceTree = "<group>"; };
 		648E763D145A0782004AD965 /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Capture.bundle; path = Resources/Capture.bundle; sourceTree = "<group>"; };
 		648E763F145A0782004AD965 /* PhoneGap.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PhoneGap.plist; sourceTree = "<group>"; };
 		648E7646145A0782004AD965 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
@@ -222,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				648E7632145A0781004AD965 /* icon.png */,
-				648E7634145A0781004AD965 /* icon@2x.png */,
 				648E7636145A0781004AD965 /* icon-72.png */,
 			);
 			name = icons;
@@ -232,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				648E7639145A0781004AD965 /* Default.png */,
-				648E763B145A0781004AD965 /* Default@2x.png */,
 			);
 			name = splash;
 			sourceTree = "<group>";
@@ -341,10 +335,8 @@
 				648E762C145A0781004AD965 /* Localizable.strings in Resources */,
 				648E7630145A0781004AD965 /* Localizable.strings in Resources */,
 				648E7633145A0781004AD965 /* icon.png in Resources */,
-				648E7635145A0781004AD965 /* icon@2x.png in Resources */,
 				648E7637145A0781004AD965 /* icon-72.png in Resources */,
 				648E763A145A0781004AD965 /* Default.png in Resources */,
-				648E763C145A0781004AD965 /* Default@2x.png in Resources */,
 				648E763E145A0782004AD965 /* Capture.bundle in Resources */,
 				648E7640145A0782004AD965 /* PhoneGap.plist in Resources */,
 				648E7660145A07DA004AD965 /* ChildBrowser.bundle in Resources */,
