@@ -116,11 +116,6 @@ dojo.declare('toura.components.SocialMessage', [ toura.components._Component ], 
 
   _onSocialBlur : function() {
     window.scrollTo(0,0);
-    this.onSocialBlur();
-  },
-
-  onSocialBlur : function() {
-    console.log('toura.components.SocialMessage::onSocialBlur()');
   },
 
   initializeStrings : function() {
