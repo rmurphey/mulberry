@@ -37,7 +37,7 @@ toura.app.Bootstrapper = function() {
       dojo.when(toura.app.Tour.getItems(), function(data) {
         toura.app.Data.loadData(data);
 
-        alert(
+        toura.app.Phonegap.notification.alert(
           dojo.i18n.getLocalization(
             "toura", "toura", toura.app.Config.get("locale")
           ).OTA_UPDATE_NOTICE

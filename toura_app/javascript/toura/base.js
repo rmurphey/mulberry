@@ -60,7 +60,7 @@ var readyFn = function() {
               toura.app.UI.hideSplash();
 
               if (!reachable) {
-                alert(
+                toura.app.Phonegap.notification.alert(
                   dojo.i18n.getLocalization(
                     "toura", "toura", toura.app.Config.get("locale")
                   ).STARTUP_NO_NETWORK
