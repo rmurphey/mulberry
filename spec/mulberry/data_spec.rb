@@ -18,7 +18,13 @@ describe Mulberry::Data do
       'about'
     ]
 
-    @pages = sitemap.map { |item| item.is_a?(Hash) ? item.flatten : item }.flatten
+    @pages = sitemap.map do |item|
+      if item.is_a?(Hash)
+        [ item.keys, item.values ]
+      else
+        item
+      end
+    end.flatten
 
     File.open File.join(@source_dir, 'sitemap.yml'), 'w' do |f|
       f.write sitemap.to_yaml
