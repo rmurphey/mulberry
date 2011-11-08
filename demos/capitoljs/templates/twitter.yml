@@ -2,12 +2,12 @@ twitter:
   screens:
     - name: index
       regions:
-        -
+        - type: row
           size: fixed
           scrollable: false
           components:
             - PageNav
-        -
+        - type: row
           size: flex
           scrollable: true
           components:
