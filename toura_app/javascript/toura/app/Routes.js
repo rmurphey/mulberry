@@ -33,7 +33,7 @@ toura.app.Routes = function() {
 
       if (pf.failure) {
         if (dojo.isString(pf.failure)) {
-          alert(pf.failure);
+          toura.app.Phonegap.notification.alert(pf.failure);
         }
 
         toura.app.Router.back();
