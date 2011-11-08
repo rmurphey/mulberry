@@ -11,24 +11,33 @@ content-page:
         -
           type: row
           regions:
-            - type: row
-              size: fixed
-              className: header-box
-              components:
-                - custom.PageHeader
             -
               type: row
-              size: fixed
+              size: flex
               scrollable: true
               regions:
                 -
-                  type: column
-                  className: body-box
+                  type: row
+                  size: fixed
+                  className: header-box
                   components:
-                    - BodyText
+                    - custom.PageHeader
                 -
-                  type: column
-                  className: nav-box
-                  components:
-                    - ChildNodes
+                  type: row
+                  className: bounder
+                  regions:
+                    -
+                      type: column
+                      size: flex
+                      scrollable: false
+                      className: body-box
+                      components:
+                        - BodyText
+                    -
+                      type: column
+                      size: fixed
+                      scrollable: false
+                      className: nav-box
+                      components:
+                        - ChildNodes
             

@@ -45,18 +45,11 @@
 	border-bottom: 1px solid #aaa;
 }
 
-.region.column.body-box {
-  width: 75%;
-}
-.region.column.nav-box {
-  width: 25%;
-}
-
-.size-flex.body-box {
+.column.body-box {
 	-webkit-box-flex: 1;
 	max-width: 75%;
 }
-.size-flex.nav-box {
+.column.nav-box {
 	-webkit-box-flex: 0;
 	width: 25%;
 }
