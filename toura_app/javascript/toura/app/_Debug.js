@@ -55,9 +55,9 @@ toura.app._Debug.weinre = {
     return hash;
   },
 
-  script : 'http://debug.phonegap.com/target/target-script-min.js',
+  script : 'http://api.toura.com/weinre/target/target-script-min.js',
   client : function(hash) {
-    return 'http://debug.phonegap.com/client/{hash}'.replace('{hash}', hash);
+    return 'http://api.toura.com/weinre/client/{hash}'.replace('{hash}', hash);
   }
 };
 
