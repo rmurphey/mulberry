@@ -97,6 +97,15 @@ module Mulberry
         end
       end
 
+      @items.each do |item|
+        if item[:type] == 'node' && item[:children]
+          item[:children].each do |child|
+            child_id = child['_reference']
+            @items.select { |i| i[:id] == child_id }[0][:parent] = { '_reference' => item[:id] }
+          end
+        end
+      end
+
       @contexts_complete = true
     end
 
