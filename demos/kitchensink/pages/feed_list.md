@@ -1,11 +1,11 @@
 ---
 title: Feed List
-template: 
+template:
   phone: feed-list-phone
   tablet: feed-list-tablet
 
 feeds:
-  - hacker_news.yml
+  - techcrunch.yml
 ---
 
 This is what a feed list looks like
