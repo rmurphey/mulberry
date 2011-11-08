@@ -1,0 +1,34 @@
+content-page:
+  screens:
+    - name: index
+      regions:
+        -
+          size: fixed
+          scrollable: false
+          type: row
+          components:
+            - PageNav
+        -
+          type: row
+          regions:
+            - type: row
+              size: fixed
+              className: header-box
+              components:
+                - custom.PageHeader
+            -
+              type: row
+              size: fixed
+              scrollable: true
+              regions:
+                -
+                  type: column
+                  className: body-box
+                  components:
+                    - BodyText
+                -
+                  type: column
+                  className: nav-box
+                  components:
+                    - ChildNodes
+            

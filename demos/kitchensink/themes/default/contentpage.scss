@@ -1,0 +1,72 @@
+// custom contentpage css
+
+.region {
+	font-family: Georgia, serif;
+	color: #333;
+}
+.screen > .region:nth-child(1) {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+// body text styling
+.body-text {
+	padding: 0 20px;
+}
+.body-text {
+	h1, h2, h3 {
+		font-family: $headerserif;
+		margin-bottom: 1em;
+		margin-top: 2em;
+	}
+	h1:first-child, h2:first-child, h3:first-child {
+		margin-top: 0;
+	}
+}
+
+.header-box, .body-box, .nav-box {
+	margin-top: 20px;
+}
+
+.header-box {
+	padding: 0 20px 10px;
+	h1 {
+		font-size: 40px;
+		font-family: $headerserif;
+	}
+	h3 {
+		font-size: 12px;
+		font-weight: bold;
+		margin-bottom: .25em;
+		text-transform: uppercase;
+		color: #999;
+		font-family: $sans;
+	}
+	border-bottom: 1px solid #aaa;
+}
+
+.region.column.body-box {
+  width: 75%;
+}
+.region.column.nav-box {
+  width: 25%;
+}
+
+.size-flex.body-box {
+	-webkit-box-flex: 1;
+	max-width: 75%;
+}
+.size-flex.nav-box {
+	-webkit-box-flex: 0;
+	width: 25%;
+}
+
+.component.page-nav > .top, .tablet .component.more-drawer {
+	background-image: none;
+	box-shadow: none;
+	background-color: #ccc;
+}
+
+.tablet .component.page-nav > .top ul li.back, .tablet .component.page-nav > .top ul li.more, .tablet .component.more-drawer li.font-size {
+	border-right-color: #aaa;
+}

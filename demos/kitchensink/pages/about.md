@@ -2,7 +2,7 @@
 title: About
 template: 
   phone: default
-  tablet: default
+  tablet: content-page
 ---
 
 # About Durham
