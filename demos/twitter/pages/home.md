@@ -1,6 +1,9 @@
 ---
 title: Home
-template: twitter
+template:
+  phone: twitter
+  tablet: twitter
+
 data:
   - users.yml
 ---
