@@ -11,5 +11,4 @@ twitter:
           size: flex
           scrollable: true
           components:
-            - PageHeaderImage
             - custom.Twitter
