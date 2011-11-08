@@ -6,22 +6,30 @@ twitter:
       - index:custom.UserList
       - index:custom.UserInfo
       - index:custom.LatestTweet
+
   screens:
     - name: index
       regions:
-        - size: fixed
+        - type: row
+          size: fixed
           components:
             - custom.LatestTweet
-        - size: fixed
+
+        - type: row
+          size: fixed
           components:
             - GoogleMap
-        - containerType: column
+
+        - type: row
           regions:
-            - className: user-list
+            - type: column
+              className: user-list
               size: fixed
               components:
               - custom.UserList
-            - className: user-info
+
+            - type: column
+              className: user-info
               size: flex
               components:
               - custom.UserInfo
