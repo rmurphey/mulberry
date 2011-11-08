@@ -3,7 +3,6 @@ home-capitol-js:
   screens:
   - name: index
     backgroundImage: true
-    layoutName: home-1
     regions:
     - regions:
       - components:

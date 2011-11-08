@@ -1,7 +1,6 @@
 twitter:
   screens:
     - name: index
-      layoutName: twitter
       regions:
         -
           size: fixed

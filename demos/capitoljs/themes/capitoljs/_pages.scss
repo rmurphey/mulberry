@@ -1,30 +1,27 @@
-@mixin watermark {
-  background-image: url(../media/images/watermark.png);
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-}
+// apply styles based on the template
+.page.home-capitol-js {
+  .screen {
+    background: url('../media/images/capitoljs-header.png') no-repeat;
+    -webkit-background-size: contain;
 
-a:link, a:active, a:visited {
-  color: $user-link-color;
-}
-
-h2 {
-  font-family: 'Cabin' !important;
-}
-
-.screen.home-1 {
-  background: url('../media/images/capitoljs-header.png') no-repeat;
-  -webkit-background-size: contain;
-
-  background-color: #353535;
-  > .row > .row:first-child {
-    margin-top: 119px;
+    background-color: #353535;
+    > .row > .row:first-child {
+      margin-top: 119px;
+    }
   }
 }
 
-.page-node-schedule {
-  @include watermark;
+.page.twitter,
+.page.default {
+  .screen {
+    @include watermark;
+  }
+}
 
+
+
+// apply styles for a particular node
+.page.page-node-schedule {
   .body-text {
     padding: 0 !important;
   }
@@ -52,27 +49,7 @@ h2 {
   }
 }
 
-.page-node-speakers {
-  .body {
-    @include watermark;
-  }
-
-  .top {
-//    background: none !important;
-  }
-}
-
-.screen.twitter,
-.screen.default {
-  @include watermark;
-}
-
-
-.page-node-sponsors {
-  .screen {
-    @include watermark;
-  }
-
+.page.page-node-sponsors {
   .sponsor {
     margin: 10px 0 20px 0;
     padding: 20px 0 0 0;
