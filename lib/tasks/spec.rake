@@ -1,6 +1,6 @@
 task :spec do
   $: << '.'
-  dirs = Dir.glob('spec/**').select { |d| !d.match('integration') }.join(' ')
+  dirs = Dir.glob('spec/*').select { |d| !d.match('integration') }.join(' ')
   system %{rspec --color --format doc #{dirs}}
 
   # separate out integration tests because each set needs to run using its own server
