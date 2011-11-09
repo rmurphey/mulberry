@@ -1,12 +1,5 @@
 // custom contentpage css
 
-.region {
-	font-family: Georgia, serif;
-	color: #333;
-}
-.screen > .region:nth-child(1) {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
 
 
 // body text styling
@@ -15,7 +8,6 @@
 }
 .body-text {
 	h1, h2, h3 {
-		font-family: $headerserif;
 		margin-bottom: 1em;
 		margin-top: 2em;
 	}
@@ -32,7 +24,6 @@
 	padding: 0 20px 10px;
 	h1 {
 		font-size: 40px;
-		font-family: $headerserif;
 	}
 	h3 {
 		font-size: 12px;
@@ -40,7 +31,6 @@
 		margin-bottom: .25em;
 		text-transform: uppercase;
 		color: #999;
-		font-family: $sans;
 	}
 	border-bottom: 1px solid #aaa;
 }
