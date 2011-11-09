@@ -264,4 +264,20 @@ dojo.require('dojo.hash');
       }
     }
   });
+
+  toura.route = function(route, handler, isDefaultRoute) {
+    var s = dojo.subscribe('/routes/loaded', function() {
+      toura.app.Router.registerRoute(route, handler, isDefaultRoute);
+      dojo.unsubscribe(s);
+    });
+  };
+
+  toura.routes = function(routesArray) {
+    var s = dojo.subscribe('/routes/loaded', function() {
+      dojo.forEach(routesArray, function(r) {
+        toura.app.Router.registerRoute(r.route, r.handler, r.isDefault);
+      });
+      dojo.unsubscribe(s);
+    });
+  };
 }(dojo));
