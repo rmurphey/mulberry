@@ -2,13 +2,16 @@
   screens:
     - name: index
       regions:
+        # each region can either be a row or a column
         - type: row
+          # by default, regions will all equally fill the space of their
+          # container. `size: fixed` will cause it to take the size of its
+          # contents
           size: fixed
-          scrollable: false
           components:
             - PageNav
         - type: row
-          size: flex
+          # by default `scrollable` is false
           scrollable: true
           components:
             - # add components here!
