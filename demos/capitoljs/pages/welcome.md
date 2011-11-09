@@ -1,6 +1,8 @@
 ---
 title: Welcome
-template: default
+template:
+  phone: default
+  tablet: default
 ---
 
 Good afternoon agent. Your mission, should you choose to accept it, involves

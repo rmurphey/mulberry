@@ -4,7 +4,7 @@ template:
   phone: default
   tablet: default
 
-featured_small: cooper_holga.jpg
+featured_image: cooper_holga.jpg
 ---
 
 Just here to be a part of the grid view

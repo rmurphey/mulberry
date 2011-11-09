@@ -10,12 +10,15 @@ google-map-tablet:
   - name: index
     backgroundImage: false
     regions:
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - PageNav
-    - layout: overlay
+    - type: row
+      layout: overlay
       className: hidden
       components:
       - PinInfo
-    - components:
+    - type: row
+      components:
       - GoogleMap

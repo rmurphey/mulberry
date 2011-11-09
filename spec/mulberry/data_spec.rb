@@ -12,7 +12,7 @@ describe Mulberry::Data do
         'home' => [
           'foo',
           'bar',
-          'baz'
+          'featured_image_page'
         ]
       },
       'about'
@@ -33,6 +33,10 @@ describe Mulberry::Data do
     @pages.each do |page|
       Mulberry::ContentCreator.new('page', @source_dir, page)
     end
+
+    FileUtils.cp(File.join(File.dirname(__FILE__), '..', 'fixtures', 'featured_image_page.md'), 
+                 File.join(@source_dir, 'pages'),
+                 { :preserve => false })
 
     @data = (Mulberry::Data.new Mulberry::App.new(@source_dir)).generate
   end
@@ -58,4 +62,15 @@ describe Mulberry::Data do
     end.first[:parent]['_reference'].should == 'node-home'
   end
 
+  it "should generate a page with a featured image" do
+    @data[:items].select do |item|
+      item[:id] == 'node-featured_image_page'
+    end.length.should be 1
+  end
+
+  it "should create featured image nodes with the proper structure" do
+    @data[:items].select do |item|
+      item[:id] == 'node-featured_image_page'
+    end.first[:featuredImage][:image]['_reference'].should_not be nil
+  end
 end
