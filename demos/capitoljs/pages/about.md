@@ -1,6 +1,8 @@
 ---
 title: About
-template: default
+template:
+  phone: default
+  tablet: default
 ---
 
 CapitolJS is a production of [Iterative

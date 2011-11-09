@@ -36,7 +36,8 @@
 }
 
 .component.search-results {
-  @include light-color-scheme;
+  color: #000;
+  background-color: #fff;
 }
 
 .component.app-nav {

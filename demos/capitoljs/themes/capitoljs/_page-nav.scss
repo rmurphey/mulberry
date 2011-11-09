@@ -1,33 +1,32 @@
-$icon-width: 40px;
-$icon-height: 30px;
-$btn-width : 65px;
-
-@mixin page-nav-button($type) {
-
-  & a {
-    -webkit-background-size: contain;
-  }
-
-  &.#{$type} a {
-    background: url(../icons/light/btn-page-nav-#{$type}.png) no-repeat;
-    background-position-y: center;
-  }
-
-  &.#{$type} a:active {
-    background-image: url(../icons/dark/btn-page-nav-#{$type}.png);
-  }
-
-  &.#{$type}:first-child a {
-    background-position-x: left;
-  }
-
-  &.#{$type}:last-child a {
-    background-position-x: right;
-  }
-}
-
-
 .component.page-nav {
+  $icon-width: 40px;
+  $icon-height: 30px;
+  $btn-width : 65px;
+
+  @mixin page-nav-button($type) {
+
+    & a {
+      -webkit-background-size: contain;
+    }
+
+    &.#{$type} a {
+      background: url(../icons/light/btn-page-nav-#{$type}.png) no-repeat;
+      background-position-y: center;
+    }
+
+    &.#{$type} a:active {
+      background-image: url(../icons/dark/btn-page-nav-#{$type}.png);
+    }
+
+    &.#{$type}:first-child a {
+      background-position-x: left;
+    }
+
+    &.#{$type}:last-child a {
+      background-position-x: right;
+    }
+  }
+
   color: #fff;
   overflow: visible;
   z-index: 2;
