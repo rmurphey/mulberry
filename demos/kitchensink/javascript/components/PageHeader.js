@@ -5,9 +5,5 @@ mulberry.component('PageHeader', {
 
   prep : function() {
     this.title = this.node ? this.node.name : this.title;
-  },
-
-  init : function() {
-
   }
 });
