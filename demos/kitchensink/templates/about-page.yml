@@ -19,7 +19,6 @@ about-page:
                 - custom.PageHeader
             -
               type: row
-              size: flex
               scrollable: true
               regions:
                 -
