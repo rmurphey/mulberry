@@ -19,7 +19,6 @@ dojo.declare('toura.app.PageFactory', [], {
   },
 
   _translations : {
-    'videos'                 : 'Videos1',
     'videos-and-text-phone'  : 'Videos1',
     'videos-and-text-tablet' : 'Videos1',
     'locations-map'          : 'GoogleMap1'
