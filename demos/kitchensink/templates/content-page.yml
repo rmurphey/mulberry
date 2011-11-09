@@ -13,15 +13,15 @@ content-page:
           regions:
             -
               type: row
+              size: fixed
+              className: header-box
+              components:
+                - custom.PageHeader
+            -
+              type: row
               size: flex
               scrollable: true
               regions:
-                -
-                  type: row
-                  size: fixed
-                  className: header-box
-                  components:
-                    - custom.PageHeader
                 -
                   type: row
                   className: bounder
