@@ -1,5 +1,5 @@
 describe("router", function() {
-  var test, api,
+  var test, api, init,
       routes = [
         {
           route : '/home',
@@ -7,12 +7,18 @@ describe("router", function() {
         },
         {
           route : '/test',
-          handler : function() { test = '/test'; },
-          defaultRoute : true
+          handler : function() {
+            console.log('TEST ROUTE');
+            test = '/test';
+          },
+          isDefault : true
         },
         {
           route : '/test2',
-          handler : function() { test = '/test2'; }
+          handler : function() {
+            console.log('TEST 2 ROUTE');
+            test = '/test2';
+          }
         },
         {
           route : '/basic',
@@ -52,25 +58,30 @@ describe("router", function() {
 
   beforeEach(function() {
     dojo.require("toura.app.Router");
-    api = new toura.app.Router({ routes : routes });
+    api = api || toura.app.Router;
+
+    if (!init) {
+      toura.routes(routes);
+    }
+
+    api.init();
+
     test = false;
+    init = true;
   });
 
   it("should handle a hash if one is set when initialized", function() {
-    window.location.hash = '#/test';
-    api.init();
-    expect(test).toBe('/test');
-  });
-
-  it("should expose a method for going to a new url", function() {
-    api.init();
     api.go('#/test2');
     expect(test).toBe('/test2');
   });
 
+  it("should expose a method for going to a new url", function() {
+    api.go('#/basic');
+    expect(test).toBe('basic');
+  });
+
   it("should expose a method for going to the home node", function() {
     var spy = spyOn(toura.app.UI, 'set');
-    api.init();
     api.home();
     expect(test).toBe('/home');
     expect(spy).toHaveBeenCalledWith('navDirection', 'back');
@@ -79,7 +90,6 @@ describe("router", function() {
   it("should expose a method for going back in the history", function() {
     var uiSpy = spyOn(toura.app.UI, 'set');
     var historySpy = spyOn(window.history, 'back');
-    api.init();
     api.back();
     expect(historySpy).toHaveBeenCalled();
     expect(uiSpy).toHaveBeenCalledWith('navDirection', 'back');
@@ -89,8 +99,6 @@ describe("router", function() {
     var redir = function(loc) {
       api.go(loc);
     };
-
-    api.init();
 
     redir('/bar/test-123');
     expect(test).toBe('test-123');
@@ -111,25 +119,13 @@ describe("router", function() {
     expect(test).toBe('1/2/3:4/5/6');
   });
 
-  it("should throw an error if it is instantiated without routes", function() {
-    expect(function() { var foo = new toura.app.Router(); }).toThrow();
-  });
-
-  it("should throw an error if you try to initialize it without a default route", function() {
-    var api = new toura.app.Router({ routes : [] });
-    expect(function() { api.init(); }).toThrow();
-  });
-
   it("should redirect to the default route if no route is defined for the hash", function() {
-    window.location.hash = '#/nonexistent';
-    api.init();
+    api.go('#/nonexistent');
     expect(test).toBe('/test');
   });
 
   it("should use the default route if the URL doesn't include a hash", function() {
-    window.location.hash = '';
-    api.init();
+    api.go('');
     expect(test).toBe('/test');
   });
-
 });

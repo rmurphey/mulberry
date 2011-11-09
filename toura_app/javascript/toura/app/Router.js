@@ -39,19 +39,6 @@ dojo.require('dojo.hash');
     _hasHistoryState : !!(history.pushState && history.replaceState),
 
     /**
-     * @constructor
-     */
-    constructor : function(config) {
-      if (!config || !config.routes) {
-        throw new Error('No routes defined for toura.app.Router');
-      }
-
-      d.forEach(config.routes, function(r) {
-        this.registerRoute(r.route, r.handler, r.defaultRoute);
-      }, this);
-    },
-
-    /**
      * Initializes the router and routes the current URL.
      * This should be run after all routes have been defined.
      */
@@ -260,24 +247,21 @@ dojo.require('dojo.hash');
       this._routes.push(r);
 
       if (defaultRoute) {
+        console.log('DEFAULT ROUTE FOUND', route);
         this.defaultRoute = r;
       }
     }
   });
 
+  toura.app.Router = new toura.app.Router();
+
   toura.route = function(route, handler, isDefaultRoute) {
-    var s = dojo.subscribe('/routes/loaded', function() {
-      toura.app.Router.registerRoute(route, handler, isDefaultRoute);
-      dojo.unsubscribe(s);
-    });
+    toura.app.Router.registerRoute(route, handler, isDefaultRoute);
   };
 
   toura.routes = function(routesArray) {
-    var s = dojo.subscribe('/routes/loaded', function() {
-      dojo.forEach(routesArray, function(r) {
-        toura.app.Router.registerRoute(r.route, r.handler, r.isDefault);
-      });
-      dojo.unsubscribe(s);
+    dojo.forEach(routesArray, function(r) {
+      toura.app.Router.registerRoute(r.route, r.handler, r.isDefault);
     });
   };
 }(dojo));
