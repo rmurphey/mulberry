@@ -66,12 +66,6 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
     if (this.config.components && this.config.components.length) {
       dojo.forEach(this.config.components, function(componentName) {
 
-        // don't create page nav on home node pages
-        if (
-          componentName === 'PageNav' &&
-          this.baseObj.id === toura.app.Config.get('app').homeNodeId
-        ) { return; }
-
         var klass = componentName.match(/^custom\./) ?
                     client.components[componentName.replace(/^custom\./, '')] :
                     toura.components[componentName];
