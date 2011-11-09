@@ -91,9 +91,14 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
   },
 
   _placeRegions : function() {
+    var placement = this.config.scrollable ? [this.inner, 'last'] : [this.domNode];
+    
     if (this.config.regions && this.config.regions.length) {
-      // if we're placing regions, we don't need the pane div
-      dojo.destroy(this.pane);
+      if(!this.config.scrollable) {
+        // not scrolling, don't need the pane
+        // this replicates the old functionality exactly
+        dojo.destroy(this.pane);
+      }
 
       dojo.forEach(this.config.regions, function(region) {
         this.adopt(toura.containers.Region, {
@@ -102,7 +107,7 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
           device : this.device,
           screen : this.screen,
           backgroundImage : this.backgroundImage,
-        }).placeAt(this.domNode);
+        }).placeAt(placement[0], placement[1]);
       }, this);
     }
   },
