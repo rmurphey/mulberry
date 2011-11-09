@@ -9,6 +9,7 @@ describe "Grid View", :type => :request do
 
       [:grid_child_one, :grid_child_two].each do |child_link|
         page.should have_css "li a[href$=#{child_link}]"
+        page.should have_css "div.image"
       end
 
       click_link "Grid Child One"
