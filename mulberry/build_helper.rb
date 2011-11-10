@@ -111,13 +111,14 @@ module Mulberry
     def create_css
       begin
         theme = @config['theme']['name'] || 'default'
-        custom_dir        = File.join(@source_dir, 'themes', theme)
-        custom_base_path  = File.join(custom_dir, 'custom.scss')
+        custom_dir = File.join(@source_dir, 'themes', theme)
+        theme_path = File.join(custom_dir, 'base.scss')
+        puts "theme_path=#{theme_path}"
 
         Builder::CSSMaker.new(
           :vars => @config['theme']['settings'],
           :toura_base_path => TouraAPP::base_scss,
-          :theme_path => (custom_base_path if File.exists? custom_base_path),
+          :theme_path => theme_path,
           :load_paths => [ TouraAPP::Directories.javascript, custom_dir ]
         ).render
       rescue Sass::SyntaxError => err
