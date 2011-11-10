@@ -4,6 +4,10 @@
   -webkit-background-size: cover;
 }
 
+@mixin box-shadow($x-offset, $y-offset) {
+  -webkit-box-shadow: $x-offset $y-offset 5px 0 rgba(0, 0, 0, .5);
+}
+
 a:link, a:active, a:visited {
   color: $user-link-color;
 }
