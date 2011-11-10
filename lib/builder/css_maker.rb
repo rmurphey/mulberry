@@ -6,19 +6,15 @@ module Builder
     def initialize(settings)
       scss_data = ''
 
-      if settings[:vars_path].nil? or !settings.has_key? :vars_path
-        raise "CSSMaker requires a :vars_path" unless settings[:vars]
-
-        settings[:vars].each do |k, v|
-          scss_data << "$user-#{k}: #{v};"
-        end
-      end
-
       if settings[:toura_base_path].nil? or !settings.has_key? :toura_base_path
         raise "CSSMaker requires a :toura_base_path"
       end
 
-      [ :vars_path, :toura_base_path, :custom_base_path ].each do |path|
+      settings[:vars].each do |k, v|
+        scss_data << "$user-#{k}: #{v};"
+      end
+
+      [ :toura_base_path, :theme_path ].each do |path|
         if settings.has_key?(path) && settings[path] && File.exists?(settings[path])
           scss_data << File.read(settings[path])
         end
