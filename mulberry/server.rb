@@ -36,7 +36,7 @@ module Mulberry
     # Settings
     #####################
 
-    enable :logging
+    disable :logging
 
     set :raise_errors => true
     set :root, file_path('.')
