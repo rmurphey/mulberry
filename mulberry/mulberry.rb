@@ -141,8 +141,14 @@ module Mulberry
 
       b.build
       b.cleanup
-
-      Mulberry::Server.run! :app => self
+      Mulberry::Server.set :app, self
+      Rack::Handler::WEBrick.run Mulberry::Server,
+                                 :Port => 3001,
+                                 :Logger => WEBrick::Log.new("/dev/null"),
+                                 :AccessLog => [nil, nil] do |server|
+        [:INT, :TERM].each { |sig| trap(sig) { server.stop } }
+        Mulberry::Server.set :running, true
+      end
     end
 
     def generate(settings = {})
