@@ -1,3 +1,4 @@
-require 'spec_helper'
+require 'integration/demo_spec_helper'
 
 serve_demo 'capitoljs'
+
