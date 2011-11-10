@@ -78,6 +78,22 @@ module Mulberry
 
         filenames.each { |f| (command[:creator] || default_creator).new(content_type.to_s, dir, f) }
       end
+
+      if action == 'update_themes'
+        to_dir = Dir.pwd
+        raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(to_dir)
+
+        from_dir = File.expand_path('../../themes', __FILE__)
+
+        theme_names = Dir.entries(from_dir).pop(2).join(", ")
+        puts "This will overwrite the following themes: [#{theme_names}]. Are you sure? (Y/n)"
+        input = STDIN.gets.strip
+
+        if input == "Y"
+          puts "Overwriting #{to_dir}/themes"
+          FileUtils.cp_r(from_dir, to_dir)
+        end
+      end
     end
 
     private
