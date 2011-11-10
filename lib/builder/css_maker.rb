@@ -1,23 +1,21 @@
 gem 'sass', '=3.1.4'
 require 'sass'
+require 'toura_app/application.rb'
 
 module Builder
   class CSSMaker
     def initialize(settings)
       scss_data = ''
 
-      if settings[:toura_base_path].nil? or !settings.has_key? :toura_base_path
-        raise "CSSMaker requires a :toura_base_path"
-      end
+      puts TouraAPP::base_scss
+      puts settings[:theme_path]
 
       settings[:vars].each do |k, v|
         scss_data << "$user-#{k}: #{v};"
       end
 
-      [ :toura_base_path, :theme_path ].each do |path|
-        if settings.has_key?(path) && settings[path] && File.exists?(settings[path])
-          scss_data << File.read(settings[path])
-        end
+      [ TouraAPP::base_scss, settings[:theme_path] ].each do |path|
+        scss_data << File.read(path)
       end
 
       @engine = Sass::Engine.new(scss_data,
