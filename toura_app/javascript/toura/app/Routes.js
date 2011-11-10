@@ -63,7 +63,7 @@ toura.app.Routes = function() {
         toura.lastSearchTerm = null;
         return nodeRoute(route, app.homeNodeId);
       },
-      defaultRoute : true
+      isDefault : true
     },
 
     {

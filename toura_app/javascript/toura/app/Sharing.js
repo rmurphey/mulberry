@@ -80,7 +80,7 @@ toura.app.Sharing = {
 
       service.api.postMessage(params.msg)
         .then(dojo.hitch(this, function() {
-        this.lastPost[svc] = params.msg;
+          this.lastPost[svc] = params.msg;
           dojo.publish('/share', [
             [ svc, node.id, params.msg ].join(': ')
           ]);

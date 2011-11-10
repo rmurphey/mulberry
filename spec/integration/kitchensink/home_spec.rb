@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'integration/kitchensink/spec_helper'
 
 include CapybaraSpecHelper
 

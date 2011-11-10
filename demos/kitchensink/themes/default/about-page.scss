@@ -1,0 +1,50 @@
+// custom about page css
+
+.page.about-page {
+
+  // body text styling
+  .body-text {
+  	padding: 0 20px;
+  
+  	h1, h2, h3 {
+  		margin-bottom: 1em;
+  		margin-top: 2em;
+  	}
+	
+  	h1:first-child, h2:first-child, h3:first-child {
+  		margin-top: 0;
+  	}
+	
+  }
+
+  .header-box, .body-box, .nav-box {
+  	margin-top: 20px;
+  }
+
+  .header-box {
+  	padding: 0 20px 10px;
+	
+  	h1 {
+  		font-size: 40px;
+  	}
+	
+  	h3 {
+  		font-size: 12px;
+  		font-weight: bold;
+  		margin-bottom: .25em;
+  		text-transform: uppercase;
+  		color: #999;
+  	}
+	
+  	border-bottom: 1px solid #aaa;
+  }
+
+  .column.body-box {
+  	max-width: 75%;
+  }
+
+  .column.nav-box {
+  	width: 25%;
+  }
+
+}
