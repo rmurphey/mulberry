@@ -5,6 +5,10 @@ require 'toura_app/application.rb'
 module Builder
   class CSSMaker
     def initialize(settings)
+      if !settings[:theme_path]
+        raise "CSSMaker requires a theme_path"
+      end
+
       sass_settings = {
         :syntax => :scss,
         :style => :expanded,

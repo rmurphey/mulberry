@@ -3,48 +3,32 @@ require File.join(File.expand_path(File.dirname(__FILE__)), '../../lib/builder')
 describe Builder::CSSMaker do
   before :each do
     @settings = {
-      :vars_path          => 'spec/fixtures/css/vars.scss',
       :toura_base_path    => 'spec/fixtures/css/toura.scss',
       :custom_base_path   => 'spec/fixtures/css/custom.scss',
       :load_paths         => [ 'spec/fixtures/css/load_path' ]
     }
   end
 
-  it "should raise an error if no vars path or vars are provided" do
-    @settings[:vars_path] = nil
+  it "should raise an error if no vars are provided" do
+    @settings[:vars] = nil
     lambda {
       Builder::CSSMaker.new(@settings)
     }.should raise_error
   end
 
-  it "should not raise an error if no vars path is provided but vars are provided" do
-    @settings[:vars_path] = nil
-    @settings[:vars] = {}
-    lambda {
-      Builder::CSSMaker.new(@settings)
-    }.should_not raise_error
-  end
-
-  it "should raise an error if no toura base path is provided" do
-    @settings.delete(:toura_base_path)
+  it "should raise an error if no theme path is provided" do
+    @settings.delete(:theme_path)
     lambda {
       Builder::CSSMaker.new(@settings)
     }.should raise_error
   end
 
-  it "should not raise an error if no custom base path is provided" do
-    @settings.delete(:custom_base_path)
-    lambda {
-      Builder::CSSMaker.new(@settings)
-    }.should_not raise_error
-  end
-
-  it "should not throw an error if there is no file at the provided custom base path" do
-    @settings[:custom_base_path] = 'fake'
+  it "should throw an error if there is no file at the provided custom base path" do
+    @settings[:theme_path] = 'fake'
 
     lambda {
       Builder::CSSMaker.new(@settings)
-    }.should_not raise_error
+    }.should raise_error
   end
 
   it "should properly render the css" do
