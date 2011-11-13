@@ -3,9 +3,7 @@ require File.join(File.expand_path(File.dirname(__FILE__)), '../../lib/builder')
 describe Builder::CSSMaker do
   before :each do
     @settings = {
-      :toura_base_path    => 'spec/fixtures/css/toura.scss',
-      :custom_base_path   => 'spec/fixtures/css/custom.scss',
-      :load_paths         => [ 'spec/fixtures/css/load_path' ]
+      :theme_path => 'spec/fixtures/css/base.scss',
     }
   end
 

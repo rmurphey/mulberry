@@ -111,8 +111,7 @@ module Mulberry
     def create_css
       begin
         theme = @config['theme']['name'] || 'default'
-        custom_dir = File.join(@source_dir, 'themes', theme)
-        theme_path = File.join(custom_dir, 'base.scss')
+        theme_path = File.join(@source_dir, 'themes', theme, 'base.scss')
 
         Builder::CSSMaker.new(
           :vars => @config['theme']['settings'],
