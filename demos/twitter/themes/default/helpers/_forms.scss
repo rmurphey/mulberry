@@ -1,0 +1,40 @@
+form * {
+  font-family: Helvetica Neue, sans-serif;
+}
+
+input[type=submit],
+input[type=reset],
+button {
+  -webkit-border-radius: 4px;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dadada), to(#9c9c9c));
+  border: 1px solid #999;
+  font-size: 14px;
+  font-weight: bold;
+  color: #454545;
+  height: 26px;
+  padding: 2px 15px 0 15px;
+  margin: 5px;
+
+  &.highlight {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#e8e8e8));
+  }
+}
+
+input[type=text],
+input[type=search],
+input[type=email],
+input[type=password],
+textarea {
+  border: none;
+  -webkit-border-radius: 4px;
+  -webkit-box-shadow: inset 0px 2px 5px 0px #aaa;
+  font-size: 15px;
+  height: 26px;
+  padding: 0 5px;
+  -webkit-appearance: textfield;
+}
+
+textarea {
+  display: block;
+  padding: 5px;
+}
