@@ -18,7 +18,7 @@ module Builder
       theme_dir = settings[:theme_dir]
       theme_base = File.join(theme_dir, @@css_filename)
 
-      puts "js dir: #{app_dir}"
+      puts "app_dir: #{app_dir}"
       puts "theme_base: #{theme_base}"
 
       sass_settings = {
@@ -30,8 +30,10 @@ module Builder
         :load_paths => [ app_dir, theme_dir ]
       }
 
-      settings[:vars].each do |k, v|
-        scss_data << "$user-#{k}: #{v};"
+      if settings.has_key?(:vars)
+        settings[:vars].each do |k, v|
+          scss_data << "$user-#{k}: #{v};"
+        end
       end
 
       [ app_base, theme_base ].each do |path|
