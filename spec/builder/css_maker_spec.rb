@@ -19,12 +19,12 @@ describe Builder::CSSMaker do
     end
   end
 
-#  it "should raise an error if no vars are provided" do
-#    @settings[:vars] = nil
-#    lambda {
-#      Builder::CSSMaker.new(@settings)
-#    }.should raise_error
-#  end
+  it "should raise an error if no settings are provided" do
+    @settings[:settings] = nil
+    lambda {
+      Builder::CSSMaker.new(@settings)
+    }.should raise_error
+  end
 
   it "should raise an error if no theme path is provided" do
     @settings.delete(:theme_dir)
