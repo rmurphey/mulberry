@@ -1,0 +1,30 @@
+.component.search-input {
+  @include nav;
+
+  form {
+    -webkit-box-flex: 1;
+
+    .ios & {
+      margin-top: -1px;
+    }
+
+    .phone & {
+      padding: 0 9px;
+    }
+
+    .tablet & {
+      padding: 12px;
+    }
+
+    text-align: center;
+
+    input[type=search] {
+      padding: 0 0 0 25px;
+      width: 50%;
+    }
+
+    input[type=submit] {
+      margin-left: 10px;
+    }
+  }
+}
