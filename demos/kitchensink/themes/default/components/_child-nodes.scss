@@ -1,0 +1,16 @@
+.component.child-nodes {
+  @include list-component;
+
+  a {
+    padding: 6px 50px 6px 10px;
+    -webkit-box-sizing: padding-box;
+
+    background: {
+      image: url('../icons/#{$user-font-scheme}/chevron.png');
+      repeat: no-repeat;
+      position: 98% center;
+      size: 8px 20px;
+    }
+
+  }
+}

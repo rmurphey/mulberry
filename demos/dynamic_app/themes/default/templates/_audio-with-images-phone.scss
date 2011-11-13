@@ -1,0 +1,32 @@
+.page.audio-with-images-phone {
+  .screen.index {
+    > .row:nth-child(2) {
+      @include background-shadow;
+    }
+
+    > .row:nth-child(3) {
+      height: 40px;
+
+      @if ($user-font-scheme == dark) {
+        background-color: darken($user-background-color, 17%);
+      } @else {
+        background-color: lighten($user-background-color, 17%);
+      }
+
+      audio {
+        position: relative;
+        top: -5px;
+      }
+    }
+
+    > .row:nth-child(4) {
+      .child-nodes:not(.empty) {
+        padding-top: 10px;
+      }
+
+      .body-text:not(.empty) {
+        padding: 10px;
+      }
+    }
+  }
+}

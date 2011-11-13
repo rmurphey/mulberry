@@ -1,0 +1,54 @@
+.component.audio-player {
+
+  .android & {
+    padding-top: 7px;
+  }
+
+  .ios & {
+    text-align:center;
+    padding-top: 10px;
+  }
+
+  audio {
+    width: 60%;
+    padding-top: 8px;
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  form {
+    width: 60px;
+    margin: 0 auto;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    -webkit-border-radius: 5px;
+    padding: 0px 0;
+
+    @include chrome-gradient;
+    @include box-shadow(0, 1px);
+
+    input {
+      -webkit-box-flex: 1;
+
+      margin: 0;
+      display: block;
+      border: none;
+
+      height: 30px;
+      font-size: 15px;
+      background-color: transparent;
+
+      &.play {
+        @include button('../icons/btn-play.png', 30px, 30px);
+      }
+
+    }
+  }
+
+  &.playing input.play {
+    @include button('../icons/btn-pause.png', 30px, 30px);
+  }
+}

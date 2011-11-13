@@ -1,0 +1,35 @@
+.component.pin-info {
+  height: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  padding: 10px;
+
+    .directions {
+      @include wide-icon-button('../icons/btn-map.png');
+    }
+
+    .website {
+      @include wide-icon-button('../icons/btn-website.png');
+    }
+
+    .phone-number {
+      @include wide-icon-button('../icons/btn-phone.png');
+    }
+
+    .bottom {
+      -webkit-box-flex: 1;
+
+      section {
+        @include resizable-font;
+        border-top: 1px solid #ccc;
+        margin-top: 15px;
+        padding: 15px 2px 2px 0;
+
+        header {
+          margin-bottom: 1em;
+        }
+      }
+
+    }
+}

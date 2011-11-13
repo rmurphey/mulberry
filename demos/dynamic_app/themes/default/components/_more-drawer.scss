@@ -1,0 +1,52 @@
+.component.more-drawer {
+  $nav-color: lighten(rgb(0, 0, 0), 30%);
+
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from($nav-color),
+    to(#2b2b2b)
+  );
+
+  @include box-shadow(0, 1px);
+
+  .phone & {
+    section > * {
+      border-top: 2px groove $nav-color;
+    }
+
+    section:first-child > * {
+      border-top: none;
+    }
+  }
+
+  .tablet & {
+    li.font-size {
+      border-right: 1px solid #777;
+    }
+  }
+
+  menu {
+    margin: 8px 8px 4px 8px;
+
+    li {
+      &.favorite input {
+        -webkit-appearance: none;
+        border: none;
+        background: url(../icons/light/btn-page-nav-favoriteoff.png) no-repeat;
+        -webkit-background-size: contain;
+        background-position-y: center;
+
+        &:checked {
+          background: url(../icons/light/btn-page-nav-favoriteon.png) no-repeat;
+        }
+      }
+
+      @include page-nav-button(home);
+      @include page-nav-button(font-size);
+      @include page-nav-button(search);
+      @include page-nav-button(twitter);
+      @include page-nav-button(facebook);
+      @include page-nav-button(email);
+    }
+  }
+}
