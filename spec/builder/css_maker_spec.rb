@@ -33,7 +33,7 @@ describe Builder::CSSMaker do
     }.should raise_error
   end
 
-  it "should throw an error if there is no file at the provided custom base path" do
+  it "should throw an error if there is no file at the provided in the theme directory" do
     @settings[:theme_dir] = 'fake'
 
     lambda {
@@ -47,13 +47,10 @@ describe Builder::CSSMaker do
     # test that the toura css was loaded
     css.should match '#toura'
 
-    # test that the custom css was loaded
-    css.should match '#custom'
-
-    # test that the custom file "wins"
-    css.should match '#000003'
+    # test that the theme css was loaded
+    css.should match '#theme'
 
     #test that we loaded files from the provided load paths
-    css.should match '#imported'
+    css.should match '#toura-imported'
   end
 end
