@@ -1,5 +1,7 @@
 ---
 title: CapitolJS
-template: HomeCapitolJS
+template:
+  phone: home-capitol-js
+  tablet: home-capitol-js
 ---
 

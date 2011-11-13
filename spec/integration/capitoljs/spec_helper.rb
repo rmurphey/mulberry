@@ -1,3 +1,4 @@
 require 'integration/demo_spec_helper'
 
-serve_demo 'twitter'
+serve_demo 'capitoljs'
+

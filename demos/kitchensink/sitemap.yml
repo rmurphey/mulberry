@@ -15,4 +15,5 @@
   - grid:
     - grid_child_one
     - grid_child_two
-- about
+- about:
+    - subpage

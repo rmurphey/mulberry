@@ -31,11 +31,13 @@ Capybara.register_driver :selenium do |app|
 end
 
 # setup capybara on selenium
-Capybara.default_driver = :selenium
+Capybara.default_driver   = :selenium
 Capybara.default_selector = :css
 
 def serve_demo(demo_name)
-  Mulberry::Server.set :app => Mulberry::App.new("./demos/#{demo_name}"), :logging => false
+  $app = Mulberry::App.new("./demos/#{demo_name}")
+
+  Mulberry::Server.set :app => $app, :logging => false
   Capybara.app = Mulberry::Server
 end
 

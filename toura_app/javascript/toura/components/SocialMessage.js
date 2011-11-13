@@ -19,7 +19,10 @@ dojo.declare('toura.components.SocialMessage', [ toura.components._Component ], 
   setupConnections : function() {
     this.connect(this.submitBtn, 'click', '_onSubmit');
     this.connect(this.cancelBtn, 'click', '_onCancel');
-    this.connect(this.message, 'blur', '_onSocialBlur');
+
+    dojo.forEach([this.message, this.username, this.password], dojo.hitch(this, function(node){
+      this.connect(node, 'blur', '_onSocialBlur');
+    }));
 
     dojo.forEach(['keyup', 'change'], dojo.hitch(this, function(e) {
       this.connect(this.message, e, '_resize');
