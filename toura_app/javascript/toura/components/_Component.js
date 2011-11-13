@@ -76,6 +76,37 @@ dojo.declare('toura.components._Component', [ toura._View ], {
    */
   teardown : function() { },
 
+  /**
+   * @param tpl A template function that will receive a data item and return
+   * a string
+   * @param data An array of data items to be processed by the template
+   * function
+   */
+  populate : function(tpl, data) {
+    this.populateNode(this.domNode, tpl, data);
+  },
+
+  /**
+   * @param node A node to be populated with HTML based on the provided data
+   * @param tpl A template function that will receive a data item and return
+   * a string
+   * @param data An array of data items to be processed by the template
+   * function
+   */
+  populateNode : function(node, tpl, data) {
+    if (dojo.isString(node)) {
+      node = this[node];
+    }
+
+    if (!node) { return; }
+
+    node.innerHTML = dojo.map(data, tpl).join('');
+
+    if (this.region) {
+      this.region.refreshScroller();
+    }
+  },
+
   postMixInProperties : function() {
     this.inherited(arguments);
 
