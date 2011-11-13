@@ -4,28 +4,37 @@ require 'toura_app/application.rb'
 
 module Builder
   class CSSMaker
+    @@css_filename = 'base.scss'
+
     def initialize(settings)
-      if !settings[:theme_path]
-        raise "CSSMaker requires a theme_path"
+      if !settings[:theme_dir]
+        raise "CSSMaker requires a theme_dir"
       end
 
       scss_data = ''
-      theme_path = settings[:theme_path]
-      custom_dir = File.dirname(theme_path)
+      app_dir = TouraAPP::Directories.javascript
+      app_base = File.join(app_dir, @@css_filename)
+
+      theme_dir = settings[:theme_dir]
+      theme_base = File.join(theme_dir, @@css_filename)
+
+      puts "js dir: #{app_dir}"
+      puts "theme_base: #{theme_base}"
+
       sass_settings = {
         :syntax => :scss,
         :style => :expanded,
         :line_numbers => true,
         :full_exception => false,
         :quiet => false,
-        :load_paths => [ TouraAPP::Directories.javascript, custom_dir ]
+        :load_paths => [ app_dir, theme_dir ]
       }
 
       settings[:vars].each do |k, v|
         scss_data << "$user-#{k}: #{v};"
       end
 
-      [ TouraAPP::base_scss, theme_path ].each do |path|
+      [ app_base, theme_base ].each do |path|
         scss_data << File.read(path)
       end
 

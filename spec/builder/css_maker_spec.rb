@@ -3,8 +3,21 @@ require File.join(File.expand_path(File.dirname(__FILE__)), '../../lib/builder')
 describe Builder::CSSMaker do
   before :each do
     @settings = {
-      :theme_path => 'spec/fixtures/css/base.scss',
+      :theme_path => 'spec/fixtures/css/theme_base.scss',
     }
+
+    module TouraAPP
+      class Directories
+
+        def self.fixtures
+          File.expand_path(File.dirname(__FILE__))
+        end
+
+        def self.javascript
+          File.join(self.fixtures, 'toura')
+        end
+      end
+    end
   end
 
   it "should raise an error if no vars are provided" do

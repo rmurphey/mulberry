@@ -111,11 +111,11 @@ module Mulberry
     def create_css
       begin
         theme = @config['theme']['name'] || 'default'
-        theme_path = File.join(@source_dir, 'themes', theme, 'base.scss')
+        theme_dir = File.join(@source_dir, 'themes', theme)
 
         Builder::CSSMaker.new(
           :vars => @config['theme']['settings'],
-          :theme_path => theme_path
+          :theme_dir => theme_dir
         ).render
       rescue Sass::SyntaxError => err
         puts "SASS ERROR: #{err.to_s}"
