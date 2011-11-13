@@ -4,6 +4,9 @@ describe Builder::CSSMaker do
   before :each do
     @settings = {
       :theme_dir => 'spec/fixtures/css/theme',
+      :vars => {
+        'foo' => 'bar'
+      }
     }
 
     module TouraAPP
@@ -19,8 +22,8 @@ describe Builder::CSSMaker do
     end
   end
 
-  it "should raise an error if no settings are provided" do
-    @settings[:settings] = nil
+  it "should raise an error if no vars are provided" do
+    @settings[:vars] = nil
     lambda {
       Builder::CSSMaker.new(@settings)
     }.should raise_error
