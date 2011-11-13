@@ -9,22 +9,23 @@ module Builder
         raise "CSSMaker requires a theme_path"
       end
 
+      scss_data = ''
+      theme_path = settings[:theme_path]
+      custom_dir = File.dirname(theme_path)
       sass_settings = {
         :syntax => :scss,
         :style => :expanded,
         :line_numbers => true,
         :full_exception => false,
         :quiet => false,
-        :load_paths => settings[:load_paths]
+        :load_paths => [ TouraAPP::Directories.javascript, custom_dir ]
       }
-
-      scss_data = ''
 
       settings[:vars].each do |k, v|
         scss_data << "$user-#{k}: #{v};"
       end
 
-      [ TouraAPP::base_scss, settings[:theme_path] ].each do |path|
+      [ TouraAPP::base_scss, theme_path ].each do |path|
         scss_data << File.read(path)
       end
 

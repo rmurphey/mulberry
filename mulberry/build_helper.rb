@@ -116,8 +116,7 @@ module Mulberry
 
         Builder::CSSMaker.new(
           :vars => @config['theme']['settings'],
-          :theme_path => theme_path,
-          :load_paths => [ TouraAPP::Directories.javascript, custom_dir ]
+          :theme_path => theme_path
         ).render
       rescue Sass::SyntaxError => err
         puts "SASS ERROR: #{err.to_s}"
