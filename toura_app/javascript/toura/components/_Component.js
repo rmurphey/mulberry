@@ -77,30 +77,30 @@ dojo.declare('toura.components._Component', [ toura._View ], {
   teardown : function() { },
 
   /**
-   * @param tpl A template function that will receive a data item and return
+   * @param templateFn A template function that will receive a data item and return
    * a string
    * @param data An array of data items to be processed by the template
    * function
    */
-  populate : function(tpl, data) {
-    this.populateNode(this.domNode, tpl, data);
+  populate : function(templateFn, data) {
+    this.populateNode(this.domNode, templateFn, data);
   },
 
   /**
-   * @param node A node to be populated with HTML based on the provided data
-   * @param tpl A template function that will receive a data item and return
+   * @param element A node to be populated with HTML based on the provided data
+   * @param templateFn A template function that will receive a data item and return
    * a string
    * @param data An array of data items to be processed by the template
    * function
    */
-  populateNode : function(node, tpl, data) {
-    if (dojo.isString(node)) {
-      node = this[node];
+  populateElement : function(element, templateFn, data) {
+    if (dojo.isString(element)) {
+      element = this[element];
     }
 
-    if (!node) { return; }
+    if (!element) { return; }
 
-    node.innerHTML = dojo.map(data, tpl).join('');
+    element.innerHTML = dojo.map(data, templateFn).join('');
 
     if (this.region) {
       this.region.refreshScroller();
