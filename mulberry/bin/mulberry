@@ -83,16 +83,19 @@ module Mulberry
         to_dir = Dir.pwd
         raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(to_dir)
 
-        from_dir = File.expand_path('../../themes', __FILE__)
+        from_dir = File.join(__FILE__, '../../themes')
         theme_names = Dir.entries(from_dir)[2..-1].join(", ")
 
         puts "This will overwrite the following themes: [#{theme_names}]. Are you sure? (Y/n)"
         input = STDIN.gets.strip
 
         if input == "Y"
-          puts "Overwriting #{to_dir}/themes"
+          puts "Overwriting #{to_dir}/themes."
           FileUtils.cp_r(from_dir, to_dir)
+        else
+          puts "OK. Nothing to do."
         end
+
       end
     end
 
