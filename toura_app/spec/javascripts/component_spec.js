@@ -185,7 +185,7 @@ describe("base _Component class", function() {
       templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
     });
 
-    c.populateNode('bar', function(item) { return item.text }, [
+    c.populateElement('bar', function(item) { return item.text }, [
       { text : 'text1' },
       { text : 'text2' }
     ]);
@@ -201,7 +201,7 @@ describe("base _Component class", function() {
       templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
     });
 
-    c.populateNode(c.bar, function(item) { return item.text }, [
+    c.populateElement(c.bar, function(item) { return item.text }, [
       { text : 'text1' },
       { text : 'text2' }
     ]);
