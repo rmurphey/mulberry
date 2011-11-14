@@ -14,12 +14,7 @@ module Builder
         subdir = [ 'web', @target['device_os'], @target['device_type'] ].join('-')
         dest = File.join(@location, subdir)
         FileUtils.rm_rf dest if File.exists? dest
-        FileUtils.mkdir_p dest
-
-        FileUtils.cp_r(
-          File.join(@template_dir, 'browser', 'www'),
-          dest
-        )
+        FileUtils.mkdir_p File.join(dest, 'www')
 
         Builder::Project::Browser.new(self, @build).build
         @dir = subdir
