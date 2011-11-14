@@ -26,7 +26,6 @@
 		648E7624145A0781004AD965 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 648E7623145A0781004AD965 /* main.m */; };
 		648E7627145A0781004AD965 /* PhoneGap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 648E7626145A0781004AD965 /* PhoneGap.framework */; };
 		648E762C145A0781004AD965 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 648E762A145A0781004AD965 /* Localizable.strings */; };
-		648E7630145A0781004AD965 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 648E762E145A0781004AD965 /* Localizable.strings */; };
 		648E7633145A0781004AD965 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 648E7632145A0781004AD965 /* icon.png */; };
 		648E7637145A0781004AD965 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 648E7636145A0781004AD965 /* icon-72.png */; };
 		648E763A145A0781004AD965 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 648E7639145A0781004AD965 /* Default.png */; };
@@ -67,7 +66,6 @@
 		648E7625145A0781004AD965 /* Toura-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Toura-Prefix.pch"; sourceTree = "<group>"; };
 		648E7626145A0781004AD965 /* PhoneGap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhoneGap.framework; path = /Users/Shared/PhoneGap/Frameworks/PhoneGap.framework; sourceTree = "<absolute>"; };
 		648E762B145A0781004AD965 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		648E762F145A0781004AD965 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		648E7632145A0781004AD965 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icons/icon.png; sourceTree = "<group>"; };
 		648E7636145A0781004AD965 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "Resources/icons/icon-72.png"; sourceTree = "<group>"; };
 		648E7639145A0781004AD965 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/splash/Default.png; sourceTree = "<group>"; };
@@ -213,7 +211,6 @@
 		648E762D145A0781004AD965 /* es.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				648E762E145A0781004AD965 /* Localizable.strings */,
 			);
 			name = es.lproj;
 			sourceTree = "<group>";
@@ -339,7 +336,6 @@
 			files = (
 				648E7622145A0781004AD965 /* InfoPlist.strings in Resources */,
 				648E762C145A0781004AD965 /* Localizable.strings in Resources */,
-				648E7630145A0781004AD965 /* Localizable.strings in Resources */,
 				648E7633145A0781004AD965 /* icon.png in Resources */,
 				648E7637145A0781004AD965 /* icon-72.png in Resources */,
 				648E763A145A0781004AD965 /* Default.png in Resources */,
@@ -408,14 +404,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				648E762B145A0781004AD965 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		648E762E145A0781004AD965 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				648E762F145A0781004AD965 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
