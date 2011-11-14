@@ -9,5 +9,5 @@ toura.app.Phonegap.notification = function(pg, device) {
         alert(msg);
       }
     }
-  }
+  };
 };

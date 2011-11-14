@@ -7,6 +7,9 @@ task :spec do
   Dir.glob('spec/integration/*').each do |d|
     system %{rspec --color --format doc #{d}}
   end
+
+  Rake::Task['jshint'].execute
+
 end
 
 task :default => :spec

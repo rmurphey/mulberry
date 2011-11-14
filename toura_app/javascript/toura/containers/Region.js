@@ -86,7 +86,7 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
 
   _placeRegions : function() {
     var placement = this.config.scrollable ? [this.inner, 'last'] : [this.domNode];
-    
+
     if (this.config.regions && this.config.regions.length) {
       if(!this.config.scrollable) {
         // not scrolling, don't need the pane
@@ -100,7 +100,7 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
           baseObj : this.baseObj,
           device : this.device,
           screen : this.screen,
-          backgroundImage : this.backgroundImage,
+          backgroundImage : this.backgroundImage
         }).placeAt(placement[0], placement[1]);
       }, this);
     }
