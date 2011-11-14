@@ -52,7 +52,7 @@ describe("feed item detail component", function() {
   });
 
   it("should open the link to the original using child browser", function() {
-    toura.app.Phonegap = {
+    toura.app.PhoneGap = {
       browser : {
         url : function() { }
       }
@@ -61,7 +61,7 @@ describe("feed item detail component", function() {
     c = C({ node : feedItem });
 
     var h = getEventHandler(c, 'click', c.externalLink),
-        spy = spyOn(toura.app.Phonegap.browser, 'url');
+        spy = spyOn(toura.app.PhoneGap.browser, 'url');
 
     expect(h).toBeDefined();
 

@@ -1,6 +1,6 @@
 dojo.provide('toura.app.user.Facebook.ios');
 
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 
 toura.app.user.Facebook.ios = {
   init : function(appId) {
@@ -15,7 +15,7 @@ toura.app.user.Facebook.ios = {
         scope : 'publish_stream,offline_access'
       });
 
-    this.childBrowser = toura.app.Phonegap.browser.getBrowser();
+    this.childBrowser = toura.app.PhoneGap.browser.getBrowser();
   },
 
   _realGetAuth : function() {

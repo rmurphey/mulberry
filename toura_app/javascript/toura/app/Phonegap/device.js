@@ -1,4 +1,4 @@
-dojo.provide('toura.app.Phonegap.device');
+dojo.provide('toura.app.PhoneGap.device');
 
 (function() {
 
@@ -40,7 +40,7 @@ dojo.provide('toura.app.Phonegap.device');
     return [ version[0], version[1] || '0' ].join('-');
   }
 
-  toura.app.Phonegap.device = function(pg, device) {
+  toura.app.PhoneGap.device = function(pg, device) {
     return {
       version : (function() {
         // http://www.zytrax.com/tech/web/mobile_ids.html

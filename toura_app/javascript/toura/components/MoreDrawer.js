@@ -1,7 +1,7 @@
 dojo.provide('toura.components.MoreDrawer');
 
 dojo.require('toura.components._Component');
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 dojo.require('toura.app.Sharing');
 dojo.require('toura.app.user.Favorites');
 dojo.require('toura.components.buttons.HomeButton');
@@ -102,9 +102,9 @@ dojo.declare('toura.components.MoreDrawer', [ toura.components._Component ], {
   _handleSocialMessageClick : function(service) {
     console.log('toura.components.MoreDrawer::_handleSocialMessageClick()');
 
-    toura.app.Phonegap.network.isReachable().then(dojo.hitch(this, function(isReachable) {
+    toura.app.PhoneGap.network.isReachable().then(dojo.hitch(this, function(isReachable) {
       if (!isReachable) {
-        toura.app.Phonegap.notification.alert(this.i18n_noNetwork);
+        toura.app.PhoneGap.notification.alert(this.i18n_noNetwork);
         return;
       }
 
@@ -143,7 +143,7 @@ dojo.declare('toura.components.MoreDrawer', [ toura.components._Component ], {
             // sharing failed
             function(msg) {
               // TODO: i18n
-              if (msg) { toura.app.Phonegap.notification.alert(msg); }
+              if (msg) { toura.app.PhoneGap.notification.alert(msg); }
             }
           );
       });
@@ -154,7 +154,7 @@ dojo.declare('toura.components.MoreDrawer', [ toura.components._Component ], {
         delete this.socialMessage;
       });
     }), function() {
-      toura.app.Phonegap.notification.alert(this.i18n_noNetwork);
+      toura.app.PhoneGap.notification.alert(this.i18n_noNetwork);
     });
   },
 

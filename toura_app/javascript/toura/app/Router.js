@@ -1,6 +1,6 @@
 dojo.provide('toura.app.Router');
 
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 dojo.require('dojo.hash');
 
 /**

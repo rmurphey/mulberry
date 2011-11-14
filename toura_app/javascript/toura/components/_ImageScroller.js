@@ -1,7 +1,6 @@
 dojo.provide('toura.components._ImageScroller');
 
 dojo.require('vendor.iscroll');
-dojo.require('toura.app.Phonegap');
 dojo.require('toura.components._ImageGallery');
 
 /**

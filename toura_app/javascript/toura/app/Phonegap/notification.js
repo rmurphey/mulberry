@@ -1,6 +1,6 @@
-dojo.provide('toura.app.Phonegap.notification');
+dojo.provide('toura.app.PhoneGap.notification');
 
-toura.app.Phonegap.notification = function(pg, device) {
+toura.app.PhoneGap.notification = function(pg, device) {
   return {
     alert : function(msg) {
       if (pg) {

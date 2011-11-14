@@ -204,7 +204,7 @@ dojo.declare('toura.models._Updateable', [], {
       console.log('No remote version URL -- skipping remote version check');
       dfd.resolve({ version : -1 });
     } else {
-      toura.app.Phonegap.network.isReachable()
+      toura.app.PhoneGap.network.isReachable()
         .then(
           dojo.hitch(this, function(isReachable) {
             if (!isReachable) {
@@ -252,7 +252,7 @@ dojo.declare('toura.models._Updateable', [], {
       console.log('No remote data URL -- skipping remote data check');
       dfd.resolve(false);
     } else {
-      toura.app.Phonegap.network.isReachable()
+      toura.app.PhoneGap.network.isReachable()
         .then(
           dojo.hitch(this, function() {
             this._xhr(this.remoteDataUrl, dfd);

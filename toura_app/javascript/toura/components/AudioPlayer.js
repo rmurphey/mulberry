@@ -1,6 +1,6 @@
 dojo.provide('toura.components.AudioPlayer');
 
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 dojo.require('toura.components._Component');
 dojo.require('toura.components._MediaPlayer');
 
@@ -47,7 +47,7 @@ dojo.declare('toura.components.AudioPlayer', [ toura.components._MediaPlayer ], 
 
     if (this.useHtml5Player) { return; }
 
-    var pg = toura.app.Phonegap;
+    var pg = toura.app.PhoneGap;
     pg.audio.destroy();
     pg.audio.play(this.media.url);
   },
@@ -56,14 +56,14 @@ dojo.declare('toura.components.AudioPlayer', [ toura.components._MediaPlayer ], 
     this.inherited(arguments);
 
     if (!this.useHtml5Player) {
-      toura.app.Phonegap.audio.stop();
+      toura.app.PhoneGap.audio.stop();
     }
   },
 
   teardown : function() {
     if (!this.useHtml5Player) {
       // we used the phonegap player
-      toura.app.Phonegap.audio.destroy();
+      toura.app.PhoneGap.audio.destroy();
     }
   }
 

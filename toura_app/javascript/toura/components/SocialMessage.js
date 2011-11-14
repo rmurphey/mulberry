@@ -102,7 +102,7 @@ dojo.declare('toura.components.SocialMessage', [ toura.components._Component ], 
   },
 
   _handleErrors : function(errors) {
-    toura.app.Phonegap.notification.alert(errors.join('\n'));
+    toura.app.PhoneGap.notification.alert(errors.join('\n'));
   },
 
   onSubmit : function(params) {

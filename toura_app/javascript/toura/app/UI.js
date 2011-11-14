@@ -4,7 +4,7 @@ dojo.require('toura.Utilities');
 dojo.require('toura.app.Config');
 dojo.require('toura.containers.Pages');
 dojo.require('toura.components.SiblingNav');
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 dojo.require('dojo.string');
 
 dojo.require('dojo.Stateful');
@@ -71,7 +71,7 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
 
     dojo.addClass(b, device.type);
     dojo.addClass(b, device.os);
-    dojo.addClass(b, 'version-' + toura.app.Phonegap.device.version);
+    dojo.addClass(b, 'version-' + toura.app.PhoneGap.device.version);
 
     this.set('fontSize', toura.app.DeviceStorage.get('fontSize'));
 

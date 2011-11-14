@@ -1,6 +1,6 @@
-dojo.provide('toura.app.Phonegap.network');
+dojo.provide('toura.app.PhoneGap.network');
 
-toura.app.Phonegap.network = function(pg, device) {
+toura.app.PhoneGap.network = function(pg, device) {
   var n = navigator,
       interval = 5 * 60 * 1000,
       state,
@@ -20,7 +20,7 @@ toura.app.Phonegap.network = function(pg, device) {
      */
     isReachable : function(domain) {
 
-      console.log('toura.app.Phonegap.network::isReachable()');
+      console.log('toura.app.PhoneGap.network::isReachable()');
 
       var dfd = new dojo.Deferred(),
           now = new Date().getTime();

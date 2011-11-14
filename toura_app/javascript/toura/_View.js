@@ -9,7 +9,6 @@ dojo.require('dijit._Widget');
 dojo.require('dijit._Templated');
 dojo.require('toura._Nls');
 dojo.require('toura.app.Config');
-dojo.require('toura.app.Phonegap');
 
 dojo.require('toura.ui.Scrollable');
 dojo.require('toura.ui.Clickable');

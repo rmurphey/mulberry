@@ -28,7 +28,7 @@ dojo.declare('toura.components.HeaderImage', [ toura.components._Component ], {
 
     if (origImage.destination) {
       this.connect(this.domNode, 'click', function() {
-        toura.app.Phonegap.browser.url(origImage.destination);
+        toura.app.PhoneGap.browser.url(origImage.destination);
       });
     }
   },

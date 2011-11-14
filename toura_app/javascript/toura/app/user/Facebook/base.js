@@ -1,7 +1,7 @@
 dojo.provide('toura.app.user.Facebook.base');
 
 dojo.require('toura.app.Sharing');
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 
 dojo.require('toura.app.user.Facebook.android');
 dojo.require('toura.app.user.Facebook.ios');
@@ -16,7 +16,7 @@ dojo.declare('toura.app.user.Facebook.base', [], {
     this.device = toura.app.Config.get('device');
 
     dojo.mixin(this, toura.app.user.Facebook[
-      toura.app.Phonegap.present ? this.device.os : 'browser'
+      toura.app.PhoneGap.present ? this.device.os : 'browser'
     ]);
 
     var key = toura.app.Config.get('app').facebookApiKey;

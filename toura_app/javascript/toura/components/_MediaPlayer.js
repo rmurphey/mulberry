@@ -1,9 +1,9 @@
 dojo.provide('toura.components._MediaPlayer');
 
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 
 (function() {
-var pg = toura.app.Phonegap;
+var pg = toura.app.PhoneGap;
 
 dojo.declare('toura.components._MediaPlayer', [ toura.components._Component ], {
   useHtml5Player : true,

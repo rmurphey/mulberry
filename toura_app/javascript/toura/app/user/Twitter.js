@@ -1,7 +1,7 @@
 /* jslint bitwise:false */
 dojo.provide('toura.app.user.Twitter');
 
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 dojo.require('vendor.sha');
 
 (function(){
@@ -18,8 +18,8 @@ dojo.declare('toura.app.user.Twitter', [], {
 
     if (config.customerKey && config.customerSecret) {
       this.twitterConfig = config;
-      if (toura.app.Phonegap.present) {
-        this.childBrowser = toura.app.Phonegap.browser.getBrowser();
+      if (toura.app.PhoneGap.present) {
+        this.childBrowser = toura.app.PhoneGap.browser.getBrowser();
       }
     } else {
       this.disabled = true;
@@ -39,7 +39,7 @@ dojo.declare('toura.app.user.Twitter', [], {
   isAuthenticated : function() {
     console.log('toura.app.user.Twitter::isAuthenticated()');
 
-    if (toura.app.Phonegap.present) {
+    if (toura.app.PhoneGap.present) {
       return !!(this.oauth_token && this.oauth_token_secret);
     }
 
@@ -110,7 +110,7 @@ dojo.declare('toura.app.user.Twitter', [], {
         authRequest;
 
     // outside phonegap, we can assume auth will happen automatically
-    if (!toura.app.Phonegap.present) {
+    if (!toura.app.PhoneGap.present) {
       dfd.resolve(true);
       return dfd.promise;
     }

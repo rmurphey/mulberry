@@ -21,7 +21,7 @@ dojo.declare('toura.components.LocationList', [ toura.components._Component ], {
     dojo.forEach(this.query('a.website'), function(n) {
       this.connect(n, 'click', function(e) {
         e.preventDefault();
-        toura.app.Phonegap.browser.url(
+        toura.app.PhoneGap.browser.url(
           dojo.attr(n, 'href')
         );
       });

@@ -44,7 +44,7 @@ dojo.declare('toura.components.BodyText', [ toura.components._Component ], {
     if (/^http/.test(href)) {
       e.preventDefault();
       // show the link in child browser by default
-      toura.app.Phonegap.browser.url(href);
+      toura.app.PhoneGap.browser.url(href);
       return;
     }
   },

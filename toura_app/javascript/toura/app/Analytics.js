@@ -1,6 +1,6 @@
 dojo.provide('toura.app.Analytics');
 
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 
 /**
  * toura.app.Analytics listens for the broadcast of application events
@@ -8,7 +8,7 @@ dojo.require('toura.app.Phonegap');
  */
 (function(){
 
-var _pg = toura.app.Phonegap;
+var _pg = toura.app.PhoneGap;
 
 dojo.declare('toura.app.Analytics', [], {
   /**

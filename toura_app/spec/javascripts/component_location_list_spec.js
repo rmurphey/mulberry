@@ -14,7 +14,7 @@ describe("location list", function() {
     node = nodeForController('LocationList');
     console.log('node is', node);
 
-    toura.app.Phonegap = {
+    toura.app.PhoneGap = {
       browser : {
         url : function() { }
       }
@@ -90,7 +90,7 @@ describe("location list", function() {
 
   it("should open website links in child browser", function() {
     var events = getEventHandlers(c, 'click');
-    var spy = spyOn(toura.app.Phonegap.browser, 'url');
+    var spy = spyOn(toura.app.PhoneGap.browser, 'url');
 
     events[0](fakeEventObj);
     expect(spy).toHaveBeenCalledWith(

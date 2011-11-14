@@ -6,18 +6,18 @@ var notificationCallback;
 
 toura.app.Notifications = {
   areAvailable: function() {
-    return !!toura.app.Phonegap.present;
+    return !!toura.app.PhoneGap.present;
   },
 
   init: function() {
-    if (!toura.app.Phonegap.present) { return; }
+    if (!toura.app.PhoneGap.present) { return; }
 
     window.plugins.pushNotification.startNotify();
     this._apnRegister();
   },
 
   setNotificationCallback: function(callback) {
-    if (!toura.app.Phonegap.present) { return; }
+    if (!toura.app.PhoneGap.present) { return; }
 
     notificationCallback = window.plugins.pushNotification.notificationCallback = callback;
   },

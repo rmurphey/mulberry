@@ -1,21 +1,21 @@
-dojo.provide('toura.app.Phonegap');
+dojo.provide('toura.app.PhoneGap');
 
-dojo.require('toura.app.Phonegap.notification');
-dojo.require('toura.app.Phonegap.device');
-dojo.require('toura.app.Phonegap.network');
-dojo.require('toura.app.Phonegap.analytics');
-dojo.require('toura.app.Phonegap.audio');
-dojo.require('toura.app.Phonegap.push');
-dojo.require('toura.app.Phonegap.browser');
+dojo.require('toura.app.PhoneGap.notification');
+dojo.require('toura.app.PhoneGap.device');
+dojo.require('toura.app.PhoneGap.network');
+dojo.require('toura.app.PhoneGap.analytics');
+dojo.require('toura.app.PhoneGap.audio');
+dojo.require('toura.app.PhoneGap.push');
+dojo.require('toura.app.PhoneGap.browser');
 
 (function() {
 
-  toura.app.Phonegap.registerAPI = function(name, module) {
+  toura.app.PhoneGap.registerAPI = function(name, module) {
     var s = dojo.subscribe('/app/start', function() {
       var device = toura.app.Config.get('device'),
-          phonegapPresent = toura.app.Phonegap.present = window.device && window.device.phonegap;
+          phonegapPresent = toura.app.PhoneGap.present = window.device && window.device.phonegap;
 
-      toura.app.Phonegap[name] = module(phonegapPresent, device);
+      toura.app.PhoneGap[name] = module(phonegapPresent, device);
       dojo.unsubscribe(s);
     });
   };
@@ -31,6 +31,6 @@ dojo.require('toura.app.Phonegap.browser');
   ];
 
   dojo.forEach(builtInAPIs, function(apiName) {
-    toura.app.Phonegap.registerAPI(apiName, toura.app.Phonegap[apiName]);
+    toura.app.PhoneGap.registerAPI(apiName, toura.app.PhoneGap[apiName]);
   });
 }());

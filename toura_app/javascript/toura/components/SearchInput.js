@@ -1,7 +1,7 @@
 dojo.provide('toura.components.SearchInput');
 
 dojo.require('toura.app.Config');
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 dojo.require('toura.components.buttons.BackButton');
 dojo.require('toura.components._Component');
 

@@ -50,7 +50,7 @@ var readyFn = function() {
 
       setTimeout(function() {
         dojo.publish('/app/ready');
-        toura.app.Phonegap.network.isReachable().then(
+        toura.app.PhoneGap.network.isReachable().then(
           function(reachable) {
             toura.app.Local.templates().then(function() {
               toura.routes(toura.app.Routes());
@@ -60,7 +60,7 @@ var readyFn = function() {
               toura.app.UI.hideSplash();
 
               if (!reachable) {
-                toura.app.Phonegap.notification.alert(
+                toura.app.PhoneGap.notification.alert(
                   dojo.i18n.getLocalization(
                     "toura", "toura", toura.app.Config.get("locale")
                   ).STARTUP_NO_NETWORK
