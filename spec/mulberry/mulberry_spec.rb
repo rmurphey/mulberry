@@ -69,7 +69,7 @@ describe Mulberry::App do
     end
 
     it "should build the files for serving as a static site" do
-      [ 'web-ios-phone', 'web-ios-tablet', 'web-android-phone' ].each do |subdir|
+      [ 'web-phone', 'web-tablet' ].each do |subdir|
         build_dir = File.join(@app.source_dir, 'builds', subdir, 'www')
         File.exists?(build_dir).should be_true
 

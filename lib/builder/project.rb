@@ -11,7 +11,7 @@ module Builder
       @template_dir = File.join(Builder::Build.root, 'builder', 'project_templates')
 
       if @target['build_type'] == 'browser'
-        subdir = [ 'web', @target['device_os'], @target['device_type'] ].join('-')
+        subdir = [ 'web', @target['device_type'] ].join('-')
         dest = File.join(@location, subdir)
         FileUtils.rm_rf dest if File.exists? dest
         FileUtils.mkdir_p File.join(dest, 'www')
