@@ -12,4 +12,6 @@ dojo.require('toura.capabilities.PageNav_FeedTitle');
 dojo.require('toura.capabilities.Page_Audios');
 dojo.require('toura.capabilities.AudioList_AudioPlayer');
 dojo.require('toura.capabilities.AudioList_AudioCaption');
-
+dojo.require('toura.capabilities.Page_Videos');
+dojo.require('toura.capabilities.VideoList_VideoPlayer');
+dojo.require('toura.capabilities.VideoList_VideoCaption');
