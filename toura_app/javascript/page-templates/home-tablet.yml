@@ -4,17 +4,26 @@ home-tablet:
   - name: index
     backgroundImage: true
     regions:
-    - regions:
-      - components: []
-      - regions:
-        - components:
+    - type: row
+      regions:
+
+      - type: row
+        className: top
+        components: []
+
+      - type: row
+        regions:
+        - type: column
+          scrollable: true
+          components:
           - BodyText
+        - type: column
           scrollable: true
-        - components:
+          components:
           - ChildNodes
-          scrollable: true
-        containerType: column
-    - size: fixed
+
+    - type: row
+      size: fixed
       components:
       - AppNav
 

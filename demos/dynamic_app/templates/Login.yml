@@ -2,6 +2,7 @@ Login:
   screens:
     - name: index
       regions:
-        - size: flex
+        - type: row
+          size: flex
           components:
             - custom.Login

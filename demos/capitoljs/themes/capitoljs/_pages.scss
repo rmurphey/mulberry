@@ -1,0 +1,66 @@
+// apply styles based on the template
+.page.home-capitol-js {
+  .screen {
+    background: url('../media/images/capitoljs-header.png') no-repeat;
+    -webkit-background-size: contain;
+
+    background-color: #353535;
+    > .row > .row:first-child {
+      margin-top: 119px;
+    }
+  }
+}
+
+.page.twitter,
+.page.default {
+  .screen {
+    @include watermark;
+  }
+}
+
+
+
+// apply styles for a particular node
+.page.page-node-schedule {
+  .body-text {
+    padding: 0 !important;
+  }
+
+  table {
+    thead tr {
+      background-color: #ffcc00 !important;
+      font-size: 18px;
+
+      th {
+        padding: 9px 0;
+        text-shadow: 1px -1px 0 rgba(255, 255, 255, .5);
+      }
+    }
+
+    tr:nth-child(odd) {
+      background-color: rgba(0,0,0, .04);
+    }
+
+    td {
+      padding: 5px 5px;
+      line-height: 1.2em;
+      font-size: 90%;
+    }
+  }
+}
+
+.page.page-node-sponsors {
+  .sponsor {
+    margin: 10px 0 20px 0;
+    padding: 20px 0 0 0;
+    border-top: 1px solid #ccc;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    .logo {
+      margin: 0 20px 0 0;
+    }
+  }
+}

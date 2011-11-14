@@ -14,7 +14,7 @@ describe("capabilities", function() {
       getScreen : function() {
         return {
           getComponent : function(name) {
-            if (name == 'FakeComponent') {
+            if (name === 'FakeComponent') {
               return new toura.components.FakeComponent();
             }
           }

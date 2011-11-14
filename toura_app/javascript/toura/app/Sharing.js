@@ -71,17 +71,16 @@ toura.app.Sharing = {
     }
 
     if (this.lastPost[svc] && (this.lastPost[svc] === params.msg)) {
-      console.log('the message is a duplicate');
       dfd.reject('The message is a duplicate.');
       doit = false;
     }
 
     if (doit) {
       console.log('doing it');
-      this.lastPost[svc] = params.msg;
 
       service.api.postMessage(params.msg)
         .then(dojo.hitch(this, function() {
+          this.lastPost[svc] = params.msg;
           dojo.publish('/share', [
             [ svc, node.id, params.msg ].join(': ')
           ]);

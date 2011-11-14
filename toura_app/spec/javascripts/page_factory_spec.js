@@ -60,4 +60,15 @@ describe("page factory", function() {
     }).toThrow();
   });
 
+  it("should map videos template properly", function() {
+    toura.templates.Videos1 = { screens: [{}] };
+    dojo.forEach([
+      'videos-and-text-phone',
+      'videos-and-text-tablet'
+    ], function(name) {
+      var controller = f.createPage({ pageController: {fake: name} });
+      expect(controller.templateName).toBe('Videos1');
+    });
+  });
+
 });

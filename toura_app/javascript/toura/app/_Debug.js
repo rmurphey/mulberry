@@ -6,12 +6,14 @@ dojo.require('toura.app.DeviceStorage');
 
 (function(){
 
-var sub = dojo.subscribe('/debug/user', function(query) {
-  if (!toura.features.debugPage) { return; }
-  if (!confirm('Click OK if you want to enter debug mode.')) { return; }
+var weinreServer = 'http://api.toura.com/weinre/',
 
-  toura.app.Router.go('/debug/' + query);
-});
+    sub = dojo.subscribe('/debug/user', function(query) {
+      if (!toura.features.debugPage) { return; }
+      if (!confirm('Click OK if you want to enter debug mode.')) { return; }
+
+      toura.app.Router.go('/debug/' + query);
+    });
 
 var createHash = function() {
   var nonce = [],
@@ -48,6 +50,8 @@ toura.app._Debug.weinre = {
 
     if (this.enabled) { return hash; }
 
+    window.WeinreServerURL = weinreServer;
+
     document.body.appendChild(s);
     dojo.cookie('debug-hash', hash);
     this.enabled = true;
@@ -55,9 +59,9 @@ toura.app._Debug.weinre = {
     return hash;
   },
 
-  script : 'http://debug.phonegap.com/target/target-script-min.js',
+  script : weinreServer + 'target/target-script-min.js',
   client : function(hash) {
-    return 'http://debug.phonegap.com/client/{hash}'.replace('{hash}', hash);
+    return weinreServer + 'client/{hash}'.replace('{hash}', hash);
   }
 };
 

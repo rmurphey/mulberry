@@ -70,6 +70,10 @@ module Mulberry
 
           :capability => {
             :creator  =>  Mulberry::CodeCreator
+          },
+
+          :datasource => {
+            :creator  =>  Mulberry::CodeCreator
           }
         }
 

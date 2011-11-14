@@ -16,7 +16,7 @@ module Mulberry
   class ConfigError < RuntimeError
   end
 
-  VERSION   = '0.1'
+  VERSION   = '0.1.1'
   CONFIG    = 'config.yml'
 
   DEFAULTS  = {
@@ -142,7 +142,16 @@ module Mulberry
       b.build
       b.cleanup
 
-      Mulberry::Server.run! :app => self
+      port = 3001
+      Mulberry::Server.set :app, self
+      Rack::Handler::WEBrick.run Mulberry::Server,
+                                 :Port => port,
+                                 :Logger => WEBrick::Log.new("/dev/null"),
+                                 :AccessLog => [nil, nil] do |server|
+        [:INT, :TERM].each { |sig| trap(sig) { server.stop } }
+        Mulberry::Server.set :running, true
+        puts "== mulberry has taken the stage on port #{port}"
+      end
     end
 
     def device_build(settings = {})

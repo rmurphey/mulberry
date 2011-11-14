@@ -13,6 +13,10 @@ module Mulberry
       @items      = []
       @item_ids   = []
 
+      @config['facebookApiKey'] = @config['facebook_api_key']
+      @config['twitterCustomerKey'] = @config['twitter_customer_key']
+      @config['twitterCustomerSecret'] = @config['twitter_customer_secret']
+
       read_sitemap
     end
 
@@ -90,6 +94,15 @@ module Mulberry
             end
           end
 
+        end
+      end
+
+      @items.each do |item|
+        if item[:type] == 'node' && item[:children]
+          item[:children].each do |child|
+            child_id = child['_reference']
+            @items.select { |i| i[:id] == child_id }[0][:parent] = { '_reference' => item[:id] }
+          end
         end
       end
 

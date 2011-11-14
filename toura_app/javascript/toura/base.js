@@ -53,14 +53,14 @@ var readyFn = function() {
         toura.app.Phonegap.network.isReachable().then(
           function(reachable) {
             toura.app.Local.templates().then(function() {
-              toura.app.Router = new toura.app.Router({ routes : toura.app.Routes() });
+              toura.routes(toura.app.Routes());
               dojo.publish('/routes/loaded');
               toura.app.Router.init();
 
               toura.app.UI.hideSplash();
 
               if (!reachable) {
-                alert(
+                toura.app.Phonegap.notification.alert(
                   dojo.i18n.getLocalization(
                     "toura", "toura", toura.app.Config.get("locale")
                   ).STARTUP_NO_NETWORK

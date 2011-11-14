@@ -8,10 +8,12 @@ feed-list-phone:
   - name: index
     backgroundImage : true
     regions:
-    - size: fixed
+    - type: row
+      size: fixed
       components:
       - PageNav
-    - scrollable: true
+    - type: row
+      scrollable: true
       components:
       - PageHeaderImage
       - FeedItemList

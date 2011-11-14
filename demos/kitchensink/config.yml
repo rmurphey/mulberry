@@ -43,8 +43,8 @@ os:
 type:
   # Specify the form factors to target;
   # note that Android currently only supports phones
-  - tablet
   - phone
+  - tablet
 
 # Dojo is included by default, but if you want access
 # to jQuery functionality, set this to true
@@ -85,4 +85,4 @@ flurry:
    api_key: flurry_ios_api_key
  android:
    api_key: flurry_ios_api_key
-  
+

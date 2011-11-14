@@ -31,7 +31,7 @@ would add the following to your `.profile` file.
    have [rubygems](http://docs.rubygems.org/read/chapter/3) installed; it is
    installed by default on OSX):
 
-    `gem install bundler`
+    `sudo gem install bundler`
 
 - From the *root directory of the repository*, run the following command:
 

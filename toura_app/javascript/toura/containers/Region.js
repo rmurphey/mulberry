@@ -15,7 +15,12 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
     this._placeRegions();
     this._setupScroller();
 
-    this.addClass(this.boxType);
+    if (this.config.type) {
+      this.addClass(this.config.type);
+    } else {
+      console.error("No type set for region. You should set it to 'row' or 'column'.", this);
+    }
+
     this.connect(this.screen, 'startup', 'startup');
   },
 
@@ -61,12 +66,6 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
     if (this.config.components && this.config.components.length) {
       dojo.forEach(this.config.components, function(componentName) {
 
-        // don't create page nav on home node pages
-        if (
-          componentName === 'PageNav' &&
-          this.baseObj.id === toura.app.Config.get('app').homeNodeId
-        ) { return; }
-
         var klass = componentName.match(/^custom\./) ?
                     client.components[componentName.replace(/^custom\./, '')] :
                     toura.components[componentName];
@@ -86,9 +85,14 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
   },
 
   _placeRegions : function() {
+    var placement = this.config.scrollable ? [this.inner, 'last'] : [this.domNode];
+    
     if (this.config.regions && this.config.regions.length) {
-      // if we're placing regions, we don't need the pane div
-      dojo.destroy(this.pane);
+      if(!this.config.scrollable) {
+        // not scrolling, don't need the pane
+        // this replicates the old functionality exactly
+        dojo.destroy(this.pane);
+      }
 
       dojo.forEach(this.config.regions, function(region) {
         this.adopt(toura.containers.Region, {
@@ -97,8 +101,7 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
           device : this.device,
           screen : this.screen,
           backgroundImage : this.backgroundImage,
-          boxType : this.config.containerType
-        }).placeAt(this.domNode);
+        }).placeAt(placement[0], placement[1]);
       }, this);
     }
   },

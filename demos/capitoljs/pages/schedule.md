@@ -1,6 +1,8 @@
 ---
 title: Schedule
-template: Default
+template:
+  phone: default
+  tablet: default
 ---
 
 <table>

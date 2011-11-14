@@ -1,0 +1,18 @@
+@mixin watermark {
+  background-image: url(../media/images/watermark.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+}
+
+a:link, a:active, a:visited {
+  color: $user-link-color;
+}
+
+h2 {
+  font-family: 'Cabin' !important;
+}
+
+@import 'pages';
+@import 'components';
+@import 'child-nodes';
+@import 'page-nav';

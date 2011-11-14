@@ -4,17 +4,18 @@ home-with-header-tablet:
   - name: index
     backgroundImage: true
     regions:
-    -
+    - type: row
       size: fixed
       components: [ PageHeaderImage]
-    -
-      containerType: column
+    - type: row
       regions:
-      - scrollable: true
+      - type: row
+        scrollable: true
         components:
         - BodyText
-      - scrollable: true
+      - type: row
+        scrollable: true
         components: [ ChildNodes ]
-    -
+    - type: row
       size: fixed
       components: [ AppNav ]
