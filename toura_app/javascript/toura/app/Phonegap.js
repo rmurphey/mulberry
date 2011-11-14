@@ -10,38 +10,27 @@ dojo.require('toura.app.Phonegap.browser');
 
 (function() {
 
-  var subscription = dojo.subscribe('/app/start', function() {
+  toura.app.Phonegap.registerAPI = function(name, module) {
+    var s = dojo.subscribe('/app/start', function() {
+      var device = toura.app.Config.get('device'),
+          phonegapPresent = toura.app.Phonegap.present = window.device && window.device.phonegap;
 
-    var tap = toura.app.Phonegap,
-        device = toura.app.Config.get('device'),
-        phonegapPresent = tap.present = window.device && window.device.phonegap;
-
-    /**
-     * To add more functionality, create a module in the toura.app.Phonegap
-     * namespace. The module itself should reference a function that returns an
-     * object. So, toura.app.Phonegap.device is a function that returns the
-     * toura.app.Phonegap.device.* methods and properties.
-     *
-     * Be sure to add the module's name to the list below AND to the list of
-     * requires at the top of this file.
-     */
-    dojo.forEach([
-      'notification',
-      'device',
-      'network',
-      'analytics',
-      'audio',
-      'push',
-      'browser'
-    ], function(item) {
-      if (!tap[item]) {
-        throw 'No such phonegap item ' + item;
-      }
-
-      tap[item] = tap[item](phonegapPresent, device);
+      toura.app.Phonegap[name] = module(phonegapPresent, device);
+      dojo.unsubscribe(s);
     });
+  };
 
-    dojo.unsubscribe(subscription);
+  var builtInAPIs = [
+    'notification',
+    'device',
+    'network',
+    'analytics',
+    'audio',
+    'push',
+    'browser'
+  ];
+
+  dojo.forEach(builtInAPIs, function(apiName) {
+    toura.app.Phonegap.registerAPI(apiName, toura.app.Phonegap[apiName]);
   });
-
 }());
