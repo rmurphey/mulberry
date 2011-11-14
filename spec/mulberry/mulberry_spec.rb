@@ -63,16 +63,6 @@ describe Mulberry::App do
     end
   end
 
-  describe "#generate" do
-    it "should generate the files for testing" do
-
-    end
-
-    it "should generate the files for deployment" do
-
-    end
-  end
-
   describe "#www_build" do
     before :each do
       @app.www_build
