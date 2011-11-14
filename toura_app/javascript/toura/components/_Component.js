@@ -83,7 +83,7 @@ dojo.declare('toura.components._Component', [ toura._View ], {
    * function
    */
   populate : function(templateFn, data) {
-    this.populateNode(this.domNode, templateFn, data);
+    this.populateElement(this.domNode, templateFn, data);
   },
 
   /**

@@ -36,7 +36,7 @@ dojo.declare('toura.components.SearchResults', [ toura.components._Results ], {
 
     this.results = results = results.slice(0, this.resultsToShow);
 
-    this.populateNode(this.resultsContainer, function(r) {
+    this.populateElement(this.resultsContainer, function(r) {
       var result = dojo.mixin({}, r),
           a = result.asset;
 

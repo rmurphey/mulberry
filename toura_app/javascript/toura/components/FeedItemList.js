@@ -45,7 +45,7 @@ dojo.declare('toura.components.FeedItemList', [ toura.components._Component ], {
       return;
     }
 
-    this.populateNode(this.feedItemList, function(item, idx) {
+    this.populateElement(this.feedItemList, function(item, idx) {
       item.displayText = toura.util.truncate(item.body, 200);
       item.index = idx;
       item.pubDate = dojo.date.locale.format(item.pubDate);
