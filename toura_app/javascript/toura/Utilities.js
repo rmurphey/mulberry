@@ -56,10 +56,6 @@ toura.tmpl = function(str, data) {
 
 toura.haml = Haml;
 
-toura.populate = function(targetNode, tpl, data) {
-  targetNode.innerHTML = dojo.map(data, tpl).join('');
-};
-
 toura.datasource = function(name, proto) {
   dojo.declare('client.data.' + name, null, proto);
 };

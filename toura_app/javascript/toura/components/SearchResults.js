@@ -36,7 +36,7 @@ dojo.declare('toura.components.SearchResults', [ toura.components._Results ], {
 
     this.results = results = results.slice(0, this.resultsToShow);
 
-    this.resultsContainer.innerHTML = dojo.map(results, function(r) {
+    this.populateNode(this.resultsContainer, function(r) {
       var result = dojo.mixin({}, r),
           a = result.asset;
 
@@ -44,7 +44,7 @@ dojo.declare('toura.components.SearchResults', [ toura.components._Results ], {
       result.displayText = this._truncate(result.displayText);
 
       return this.resultTemplate(result);
-    }, this).join('');
+    }, results);
 
     if (moreResults) {
       moreResults = dojo.create('li', {

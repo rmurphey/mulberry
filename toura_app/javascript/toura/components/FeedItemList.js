@@ -45,12 +45,12 @@ dojo.declare('toura.components.FeedItemList', [ toura.components._Component ], {
       return;
     }
 
-    this.feedItemList.innerHTML = dojo.map(items, function(item, idx) {
+    this.populateNode(this.feedItemList, function(item, idx) {
       item.displayText = toura.util.truncate(item.body, 200);
       item.index = idx;
       item.pubDate = dojo.date.locale.format(item.pubDate);
       return this.itemTemplate(item);
-    }, this).join('');
+    }, items);
 
     this.lastUpdated.innerHTML = ' ' + dojo.date.locale.format(new Date());
 
