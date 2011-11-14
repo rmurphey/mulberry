@@ -3,7 +3,8 @@ dojo.provide('toura.Utilities');
 // You should have a very, very good reason to put something in this file.
 
 dojo.forIn = function(obj, fn, scope) {
-  for (var k in obj) {
+  var k;
+  for (k in obj) {
     if (obj.hasOwnProperty(k)) {
       dojo.hitch(scope || window, fn)(k, obj[k]);
     }

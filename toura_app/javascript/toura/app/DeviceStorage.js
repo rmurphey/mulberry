@@ -19,9 +19,9 @@ toura.app.DeviceStorage = (function(){
       processSelecton : function(result) {
         var items = [],
             len = result.rows.length,
-            rowData;
+            rowData, i=0;
 
-        for (var i = 0; i < len; i++) {
+        for (; i < len; i++) {
           rowData = result.rows.item(i).json;
           items.push(rowData ? JSON.parse(rowData) : {});
         }
