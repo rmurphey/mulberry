@@ -9,6 +9,6 @@ mulberry.component('Tweets', {
   },
 
   _setTweetsAttr : function(tweets) {
-    mulberry.populate(this.domNode, this.tweetTemplate, tweets);
+    this.populate(this.tweetTemplate, tweets);
   }
 });
