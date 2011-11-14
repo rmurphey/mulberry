@@ -1,8 +1,0 @@
-Login:
-  screens:
-    - name: index
-      regions:
-        - type: row
-          size: flex
-          components:
-            - custom.Login
