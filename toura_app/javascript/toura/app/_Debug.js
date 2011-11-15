@@ -30,13 +30,12 @@ var createHash = function() {
 toura.app._Debug = function() {
   var tools = new toura.app._Debug.Tools().placeAt(dojo.body(), 'first'),
       msg = new toura.app._Debug.Message().placeAt(dojo.body(), 'first'),
-      tpl = 'Desktop debugging at {url}';
+      tpl = 'Debug &#64; {url} code: {hash}';
 
   dojo.connect(tools, 'onWeinre', function(hash) {
-    var url = toura.app._Debug.weinre.client(hash);
     msg.set(
       'content',
-      tpl.split('{url}').join(url)
+      tpl.split('{url}').join(weinreServer).split('{hash}').join(hash)
     );
   });
 };
