@@ -1,32 +1,128 @@
 .component.page-nav {
+  $icon-width: 40px;
+  $icon-height: 30px;
+  $btn-width : 65px;
+
+  @mixin page-nav-button($type) {
+
+    & a {
+      -webkit-background-size: contain;
+    }
+
+    &.#{$type} a {
+      background: url(../icons/light/btn-page-nav-#{$type}.png) no-repeat;
+      background-position-y: center;
+    }
+
+    &.#{$type} a:active {
+      background-image: url(../icons/dark/btn-page-nav-#{$type}.png);
+    }
+
+    &.#{$type}:first-child a {
+      background-position-x: left;
+    }
+
+    &.#{$type}:last-child a {
+      background-position-x: right;
+    }
+  }
+
   color: #fff;
+  overflow: visible;
+  z-index: 2;
+  @include box-shadow(2px, 0);
+
+  .tablet & {
+    height: 60px;
+  }
+
+  .phone & {
+    height: 50px;
+  }
 
   > .top {
-    @include chrome-gradient-flat;
-    @include box-shadow(0, 1px);
+    -webkit-transform: translate3d(0, 0, 0);
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+
+    background: url(../media/images/home-footer.png) no-repeat !important;
+    -webkit-background-size: cover;
+    @include box-shadow(2px, 0);
+
+    a {
+      display: block;
+      -webkit-background-size: contain;
+    }
+
+    h1 {
+      -webkit-box-flex: 1;
+      text-align: center;
+      font-weight: bold;
+//      font-family: Cabin;
+      font-size: 18px;
+    }
+  }
+
+  > .more-drawer {
+    position: absolute;
+    z-index: 1;
   }
 
   .tablet & > .top {
     ul {
-      li.back,
-      li.more {
-        border-right: 1px solid #777;
-      }
+      padding: 10px;
+      display: -webkit-box;
+      -webkit-box-orient: horizontal;
 
       li {
+        -webkit-box-flex: 1;
+        width: $icon-width + 20;
+
         @include page-nav-button(back);
         @include page-nav-button(home);
         @include page-nav-button(menu);
         @include page-nav-button(search);
         @include page-nav-button(more);
+
+        a {
+          height: 40px;
+        }
+      }
+
+      li.back,
+      li.more {
+        border-right: 1px solid #777;
+      }
+
+      li.search:first-child {
+        // fill extra space if the .more button isn't there
+        width: 2 * ($icon-width + 20);
       }
     }
   }
 
   .phone & > .top {
+    h1 {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
+
     div {
+      width: $icon-width + 20;
+      padding: 5px 0;
+
       @include page-nav-button(back);
       @include page-nav-button(more);
+
+      a {
+        height: 30px;
+      }
     }
   }
 }

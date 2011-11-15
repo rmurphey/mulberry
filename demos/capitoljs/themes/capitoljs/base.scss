@@ -1,13 +1,3 @@
-@mixin watermark {
-  background-image: url(../media/images/watermark.png);
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-}
-
-@mixin box-shadow($x-offset, $y-offset) {
-  -webkit-box-shadow: $x-offset $y-offset 5px 0 rgba(0, 0, 0, .5);
-}
-
 @import 'helpers/mixins';
 @import 'helpers/colors';
 @import 'helpers/forms';
@@ -17,9 +7,6 @@ body {
   font-family: Helvetica Neue, sans-serif;
 }
 
-@import 'components/base';
-@import 'templates/base';
-
 a:link, a:active, a:visited {
   color: $user-link-color;
 }
@@ -28,7 +15,9 @@ h2 {
   font-family: 'Cabin' !important;
 }
 
+@import 'components/base';
+@import 'templates/base';
+
+
 @import 'pages';
 @import 'components';
-@import 'child-nodes';
-@import 'page-nav';
