@@ -1,13 +1,13 @@
-dojo.provide('toura.app.Phonegap.audio');
+dojo.provide('toura.app.PhoneGap.audio');
 
-toura.app.Phonegap.audio = function(pg, device) {
+toura.app.PhoneGap.audio = function(pg, device) {
   var audio,
       audioSuccess = function() { },
       audioError = function(err) { };
 
   return {
     play : function(url) {
-      console.log('toura.app.Phonegap.audio::play()');
+      console.log('toura.app.PhoneGap.audio::play()');
 
       if (!pg) { return; }
 
@@ -17,7 +17,7 @@ toura.app.Phonegap.audio = function(pg, device) {
     },
 
     stop : function() {
-      console.log('toura.app.Phonegap.audio::stop()');
+      console.log('toura.app.PhoneGap.audio::stop()');
 
       if (!pg || !audio) { return; }
 

@@ -66,13 +66,13 @@ describe("header image component", function() {
     node.headerImage.phone.destination = 'foo';
     node.headerImage.tablet.destination = 'foo';
 
-    toura.app.Phonegap = {
+    toura.app.PhoneGap = {
       browser : {
         url : function() { }
       }
     };
 
-    var spy = spyOn(toura.app.Phonegap.browser, 'url');
+    var spy = spyOn(toura.app.PhoneGap.browser, 'url');
 
     allDevices(function(d) {
       c = C({ device : d, node : node });

@@ -1,8 +1,8 @@
-dojo.provide('toura.app.Phonegap.push');
+dojo.provide('toura.app.PhoneGap.push');
 
 dojo.require('vendor.urbanairship.push');
 
-toura.app.Phonegap.push = function(pg, device) {
+toura.app.PhoneGap.push = function(pg, device) {
   if (!pg) { return; }
   vendor.urbanairship.push();
 };

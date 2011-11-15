@@ -1,6 +1,6 @@
 dojo.provide('toura.app.Bootstrapper');
 
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 dojo.require('toura.app.DeviceStorage');
 dojo.require('toura.models.Tour');
 
@@ -16,7 +16,7 @@ toura.app.Bootstrapper = function() {
   // app.DeviceStorage.drop();
 
   tour = toura.app.Tour = new toura.models.Tour({
-    bundleDataUrl : toura.localDataUrl || ('./data/tour.js' + (app.Phonegap.present ? '.jet' : '')),
+    bundleDataUrl : toura.localDataUrl || ('./data/tour.js' + (app.PhoneGap.present ? '.jet' : '')),
     remoteDataUrl : app.Config.get('updateUrl'),
     remoteVersionUrl : app.Config.get('versionUrl')
   });
@@ -37,7 +37,7 @@ toura.app.Bootstrapper = function() {
       dojo.when(toura.app.Tour.getItems(), function(data) {
         toura.app.Data.loadData(data);
 
-        toura.app.Phonegap.notification.alert(
+        toura.app.PhoneGap.notification.alert(
           dojo.i18n.getLocalization(
             "toura", "toura", toura.app.Config.get("locale")
           ).OTA_UPDATE_NOTICE

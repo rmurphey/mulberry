@@ -3,7 +3,7 @@ describe("user interface controller", function() {
 
   beforeEach(function() {
     dojo.require("toura.app.UI");
-    dojo.require("toura.app.Phonegap");
+    dojo.require("toura.app.PhoneGap");
     dojo.require("toura.app.DeviceStorage");
 
     if (!pg) {

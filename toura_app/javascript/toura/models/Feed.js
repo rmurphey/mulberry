@@ -58,7 +58,7 @@ dojo.declare('toura.models.Feed', [], {
    * reachable and no attempt was made to load the feed items.
    */
   load : function() {
-    var fn = toura.app.Phonegap.present ?
+    var fn = toura.app.PhoneGap.present ?
         dojo.hitch(dojo, 'xhrGet') :
         dojo.hitch(dojo.io.script, 'get'),
 
@@ -67,7 +67,7 @@ dojo.declare('toura.models.Feed', [], {
     if (new Date().getTime() - this.lastChecked < this.throttle) {
       dfd.resolve(this._get());
     } else {
-      toura.app.Phonegap.network.isReachable()
+      toura.app.PhoneGap.network.isReachable()
         .then(dojo.hitch(this, function(reachable) {
           if (!reachable) {
             dfd.resolve(this._get());
@@ -145,7 +145,7 @@ dojo.declare('toura.models.Feed', [], {
       error : dojo.hitch(this, '_onError', dfd)
     };
 
-    if (!toura.app.Phonegap.present) {
+    if (!toura.app.PhoneGap.present) {
       req.callbackParamName = 'callback';
     } else {
       req.handleAs = 'json';

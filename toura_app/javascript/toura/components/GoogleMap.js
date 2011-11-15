@@ -4,7 +4,7 @@ dojo.require('toura.components._Component');
 dojo.require('toura._AsyncView');
 
 dojo.require('dijit.DialogUnderlay');
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 dojo.require('dojo.io.script');
 dojo.require('toura.app.URL');
 

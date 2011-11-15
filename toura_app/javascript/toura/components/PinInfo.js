@@ -20,7 +20,7 @@ dojo.declare('toura.components.PinInfo', [ toura.components._Component ], {
   setupConnections : function() {
     this.connect(this.websiteContainerNode, 'click', function(e) {
       e.preventDefault();
-      toura.app.Phonegap.browser.url(dojo.attr(this.websiteContainerNode, 'data-url'));
+      toura.app.PhoneGap.browser.url(dojo.attr(this.websiteContainerNode, 'data-url'));
     });
   },
 

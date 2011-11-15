@@ -25,7 +25,7 @@ describe("Updateable", function() {
       return dfd;
     };
 
-    toura.app.Phonegap = {
+    toura.app.PhoneGap = {
       network : {
         isReachable : function() {
           var dfd = new dojo.Deferred();

@@ -50,7 +50,7 @@ dojo.declare('toura.components.VideoPlayer', [ toura.components._MediaPlayer ], 
 
     if (this.useHtml5Player) { return; }
 
-    toura.app.Phonegap.browser.url(this.media.url);
+    toura.app.PhoneGap.browser.url(this.media.url);
   },
 
   _setMediaIdAttr : function(mediaId) {

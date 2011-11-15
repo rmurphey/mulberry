@@ -1,6 +1,7 @@
 .DS_Store
 .sass-cache
 *.scssc
+demos/*/builds
 toura_app/javascript/mulberry/*
 toura_app/javascript/browser/*
 toura_app/javascript/dev/*

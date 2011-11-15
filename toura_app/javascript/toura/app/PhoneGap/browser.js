@@ -1,11 +1,11 @@
-dojo.provide('toura.app.Phonegap.browser');
+dojo.provide('toura.app.PhoneGap.browser');
 
 // This is adapted from code that is
 // MIT licensed
 // (c) 2010 Jesse MacFadyen, Nitobi
 // https://github.com/purplecabbage/phonegap-plugins
 
-toura.app.Phonegap.browser = function(pg, device){
+toura.app.PhoneGap.browser = function(pg, device){
   function ChildBrowser() { }
   window.ChildBrowser = ChildBrowser;
 

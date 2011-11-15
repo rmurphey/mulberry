@@ -161,4 +161,52 @@ describe("base _Component class", function() {
     expect(t.querySelector('.fakeHelper')).toBeTruthy();
   });
 
+  it("should be able to repopulate itself", function() {
+    c = C({
+      device : 'phone',
+      node : node,
+      templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
+    });
+
+    c.populate(function(item) { return item.text; }, [
+      { text : 'text1' },
+      { text : 'text2' }
+    ]);
+
+    expect(c.domNode.innerHTML).toMatch('text1');
+    expect(c.domNode.innerHTML).toMatch('text2');
+    expect(c.domNode.querySelector('.bar')).toBeFalsy();
+  });
+
+  it("should be able to repopulate named nodes", function() {
+    c = C({
+      device : 'phone',
+      node : node,
+      templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
+    });
+
+    c.populateElement('bar', function(item) { return item.text; }, [
+      { text : 'text1' },
+      { text : 'text2' }
+    ]);
+
+    expect(c.bar.innerHTML).toMatch('text1');
+    expect(c.bar.innerHTML).toMatch('text2');
+  });
+
+  it("should be able to repopulate nodes", function() {
+    c = C({
+      device : 'phone',
+      node : node,
+      templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
+    });
+
+    c.populateElement(c.bar, function(item) { return item.text; }, [
+      { text : 'text1' },
+      { text : 'text2' }
+    ]);
+
+    expect(c.bar.innerHTML).toMatch('text1');
+    expect(c.bar.innerHTML).toMatch('text2');
+  });
 });

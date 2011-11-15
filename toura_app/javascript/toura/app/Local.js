@@ -1,7 +1,7 @@
 dojo.provide('toura.app.Local');
 
 dojo.require('dojo.io.script');
-dojo.require('toura.app.Phonegap');
+dojo.require('toura.app.PhoneGap');
 
 toura = toura || {};
 toura.data = toura.data || {};

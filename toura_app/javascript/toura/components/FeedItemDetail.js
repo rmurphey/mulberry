@@ -14,7 +14,7 @@ dojo.declare('toura.components.FeedItemDetail', [ toura.components._Component ],
   setupConnections : function() {
     this.connect(this.externalLink, 'click', function(e) {
       e.preventDefault();
-      toura.app.Phonegap.browser.url(this.item.link);
+      toura.app.PhoneGap.browser.url(this.item.link);
     });
   },
 

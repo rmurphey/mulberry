@@ -1,6 +1,6 @@
-dojo.provide('toura.app.Phonegap.analytics');
+dojo.provide('toura.app.PhoneGap.analytics');
 
-toura.app.Phonegap.analytics = function(pg, device) {
+toura.app.PhoneGap.analytics = function(pg, device) {
   var os = device.os,
       appName;
 
@@ -11,9 +11,9 @@ toura.app.Phonegap.analytics = function(pg, device) {
         return appName;
       }
 
-      return toura.app.Phonegap.present ?
+      return pg ?
         function(evt, params) {
-          console.log('toura.app.Phonegap::logAnalyticsEvent()');
+          console.log('toura.app.PhoneGap::logAnalyticsEvent()');
           PhoneGap.exec(
             function() {},
             function(error) { toura.log("Could not log flurry event.  Error: " + error); },
@@ -22,7 +22,7 @@ toura.app.Phonegap.analytics = function(pg, device) {
         }
         :
         function(evt, params) {
-          console.log('toura.app.Phonegap::logAnalyticsEvent()');
+          console.log('toura.app.PhoneGap::logAnalyticsEvent()');
         };
 
     }())

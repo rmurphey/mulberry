@@ -3,7 +3,8 @@ dojo.provide('toura.Utilities');
 // You should have a very, very good reason to put something in this file.
 
 dojo.forIn = function(obj, fn, scope) {
-  for (var k in obj) {
+  var k;
+  for (k in obj) {
     if (obj.hasOwnProperty(k)) {
       dojo.hitch(scope || window, fn)(k, obj[k]);
     }
@@ -54,11 +55,6 @@ toura.tmpl = function(str, data) {
 };
 
 toura.haml = Haml;
-
-toura.populate = function(targetNode, tpl, data) {
-  console.log('populating', arguments);
-  targetNode.innerHTML = dojo.map(data, tpl).join('');
-};
 
 toura.datasource = function(name, proto) {
   dojo.declare('client.data.' + name, null, proto);
