@@ -8,6 +8,18 @@
   -webkit-box-shadow: $x-offset $y-offset 5px 0 rgba(0, 0, 0, .5);
 }
 
+@import 'helpers/mixins';
+@import 'helpers/colors';
+@import 'helpers/forms';
+
+body {
+  @include text-color;
+  font-family: Helvetica Neue, sans-serif;
+}
+
+@import 'components/base';
+@import 'templates/base';
+
 a:link, a:active, a:visited {
   color: $user-link-color;
 }
