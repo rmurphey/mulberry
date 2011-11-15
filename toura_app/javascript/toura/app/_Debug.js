@@ -35,7 +35,7 @@ toura.app._Debug = function() {
   dojo.connect(tools, 'onWeinre', function(hash) {
     msg.set(
       'content',
-      tpl.split('{url}').join(weinreServer).split('{hash}').join(hash)
+      tpl.split('{url}').join(weinreServer).split('{hash}').join(hash.slice(1))
     );
   });
 };
