@@ -8,11 +8,19 @@ shared_examples_for "all demo apps" do
     DEVICES.each do |d|
       $app.data[:items].each do |item|
 
-        it "should render node #{item[:id]} for #{d[:os]}/#{d[:type]}" do
-          visit "/#{d[:os]}/#{d[:type]}/#/node/#{item[:id]}"
+        if item[:type] == 'node'
+          node_page_controller = item[:pageController][d[:type]]
 
-          page.should have_css ".page-#{item[:id]}"
-        end if item[:type] == 'node'
+          if node_page_controller != 'locations-map'
+            it "should render node #{item[:id]} for #{d[:os]}/#{d[:type]}" do
+              visit "/#{d[:os]}/#{d[:type]}/#/node/#{item[:id]}"
+
+              page.should have_css ".page-#{item[:id]}"
+            end
+          else
+            puts "SKIPPING NODE #{item[:id]} - pageController = 'locations-map'"
+          end
+        end
 
       end
     end
