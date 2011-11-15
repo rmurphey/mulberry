@@ -1,7 +1,14 @@
 .component.video-player {
   height: 100%;
-
+  width: 100%;
   display: -webkit-box;
+  position: absolute;
+
+  .ios & {
+    background: transparent url(../icons/bg-inner-shadow.png) no-repeat;
+    background-size: cover;
+    background-position-y: 100%;
+  }
 
   &.has-html5-player {
     -webkit-box-orient: vertical;
