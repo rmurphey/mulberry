@@ -45,20 +45,13 @@
     padding-bottom: 1em;
   }
 
-  ol li {
-    list-style-type: decimal;
-  }
-
-  ul li {
-    list-style-type: disc;
-  }
-
   li {
+    list-style-type: square !important;
+    padding-bottom: 0;
     position: static;
     margin-left: 10px;
     display: list-item;
     list-style-position: inside;
-    padding-bottom: 0.5em;
     text-indent: 10px;
   }
 

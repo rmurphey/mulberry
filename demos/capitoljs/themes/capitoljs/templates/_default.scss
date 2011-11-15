@@ -1,5 +1,10 @@
 .page.default {
-  .body-text {
-    padding: 10px;
+  .screen {
+    @include watermark;
+
+    .body-text {
+      padding: 10px;
+    }
   }
+
 }
