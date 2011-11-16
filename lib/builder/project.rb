@@ -111,7 +111,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
 
         # android manifest
         system %{#{sed} -e 's/{android.versionCode}/#{project_settings[:version]}/' \
-          -e 's/{android.versionName}/#{TouraAPP.version}/' \
+          -e 's/{android.versionName}/#{@build.build_helper.project_settings['published_version']}/' \
           -e 's/com.toura.www/#{app_id}/' \
           #{manifest_file}
         }
@@ -231,7 +231,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         product_name = project_settings[:name] || "The App With No Name"
         plist_result = %x{#{sed} -e 's/${PRODUCT_NAME}/#{product_name}/' \
           -e 's/com.toura.app2/#{app_id}/' \
-          -e 's/${BUNDLE_VERSION}/#{TouraAPP.version}/' \
+          -e 's/${BUNDLE_VERSION}/#{@build.build_helper.project_settings['published_version']}/' \
           -e 's/${FlurryApiKey}/#{flurry_api_key}/' \
           #{plist_file}
         }
