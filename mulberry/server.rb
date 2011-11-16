@@ -171,11 +171,16 @@ module Mulberry
     get '/:os/:type/data/*' do
       content_type "text/javascript"
 
-      case params[:splat].first
-      when 'tour.js'
-        "toura.data.local = #{JSON.pretty_generate(@helper.data)};"
-      when 'templates.js'
-        "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
+      begin
+        case params[:splat].first
+        when 'tour.js'
+          "toura.data.local = #{JSON.pretty_generate(@helper.data)};"
+        when 'templates.js'
+          "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
+        end
+      rescue RuntimeError => e
+        puts e.to_s
+        throw e
       end
     end
 
