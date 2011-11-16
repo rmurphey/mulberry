@@ -43,7 +43,6 @@ module Mulberry
     set :public_folder, file_path('www')
     set :views, file_path('templates')
     set :host, 'localhost'
-    set :port, '3001'
 
     #####################
     # Tours

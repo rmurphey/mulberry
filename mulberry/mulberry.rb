@@ -37,6 +37,17 @@ module Mulberry
     VERSION
   end
 
+  def self.get_app_dir(dir = nil)
+    dir ||= Dir.pwd
+    raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(dir)
+    dir
+  end
+
+  def self.dir_is_app?(dir)
+    dir ||= ''
+    File.exists?(dir) && File.exists?(File.join(dir, 'config.yml'))
+  end
+
   class App
     attr_reader         :name,
                         :assets_dir,
@@ -132,7 +143,7 @@ module Mulberry
       puts "Scaffolded an app at #{base}" unless silent
     end
 
-    def serve
+    def serve(args)
       b = Builder::Build.new({
         :target => 'app_development',
         :log_level => -1,
@@ -142,16 +153,22 @@ module Mulberry
       b.build
       b.cleanup
 
-      port = 3001
+      require 'webrick'
+
+      webrick_options = {:Port => args[:port]}
+
+      webrick_options.merge!({ :AccessLog => [nil, nil],
+                               :Logger    => ::WEBrick::Log.new("/dev/null")
+                            }) unless args[:verbose]
+
       Mulberry::Server.set :app, self
-      Rack::Handler::WEBrick.run Mulberry::Server,
-                                 :Port => port,
-                                 :Logger => WEBrick::Log.new("/dev/null"),
-                                 :AccessLog => [nil, nil] do |server|
+
+      Rack::Handler::WEBrick.run Mulberry::Server, webrick_options do |server|
         [:INT, :TERM].each { |sig| trap(sig) { server.stop } }
         Mulberry::Server.set :running, true
-        puts "== mulberry has taken the stage on port #{port}"
+        puts "== mulberry has taken the stage on port #{args[:port]}. ^C to quit."
       end
+
     end
 
     def device_build(settings = {})
