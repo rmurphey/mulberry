@@ -3,7 +3,6 @@ module Mulberry
     class Serve
       def initialize(args)
 
-
         default_port = 3001
         options = { :port => default_port }
 
