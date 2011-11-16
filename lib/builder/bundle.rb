@@ -18,9 +18,13 @@ module Builder
 
       @project_dir   = File.join(@project[:location], @project[:dir])
 
-      @www = @target['device_os'] == 'android' ?
-        File.join(@project_dir, 'assets', 'www') :
-        File.join(@project_dir, 'www')
+      if @target['build_type'] == 'browser'
+        @www = File.join(@project_dir, 'www')
+      else
+        @www = @target['device_os'] == 'android' ?
+          File.join(@project_dir, 'assets', 'www') :
+          File.join(@project_dir, 'www')
+      end
 
       FileUtils.mkdir_p @www unless File.exists? @www
 
@@ -360,13 +364,14 @@ module Builder
 
     def position_data
       data_dir = File.join(@www, 'data')
+      is_browser = %w{browser MAP}.include? @target['build_type']
 
       FileUtils.mkdir_p(data_dir) unless File.exists?(data_dir)
 
       @data[:files].each do |data_file|
         FileUtils.cp(
           File.join(@data[:location], data_file),
-          File.join(data_dir, "#{data_file}.jet")
+          File.join(data_dir, "#{data_file}#{is_browser ? '' : '.jet'}")
         )
       end
     end

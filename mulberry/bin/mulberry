@@ -19,7 +19,7 @@ module Mulberry
       action = args.shift
       filenames = args
 
-      if [ 'scaffold', 'serve', 'deploy', 'test', 'data' ].include? action
+      if [ 'scaffold', 'serve', 'deploy', 'test', 'www', 'data' ].include? action
         dir = (args[0] && File.expand_path(args[0]))
 
         if !dir && action == 'scaffold'
@@ -44,6 +44,7 @@ module Mulberry
       # Be a little more permissive in case someone types --v, -version, etc.
       if action.match /^-{0,2}(version|v)$/
         puts "Mulberry v#{Mulberry::version}"
+        return
       end
 
       if action.match /^create_(.+)$/
@@ -81,7 +82,10 @@ module Mulberry
         command = commands[content_type]
 
         filenames.each { |f| (command[:creator] || default_creator).new(content_type.to_s, dir, f) }
+        return
       end
+
+      puts "Sorry! Don't know how to do #{action}"
     end
 
     private
@@ -105,12 +109,17 @@ module Mulberry
 
     def deploy(dir)
       app = Mulberry::App.new(dir)
-      app.generate
+      app.device_build
     end
 
     def test(dir)
       app = Mulberry::App.new(dir)
-      app.generate(:test => true)
+      app.device_build(:test => true)
+    end
+
+    def www(dir)
+      app = Mulberry::App.new(dir)
+      app.www_build
     end
 
     def data(dir)
