@@ -23,6 +23,7 @@ module Mulberry
 
       if action.match /^-{0,2}(version|v)$/
         puts "Mulberry v#{Mulberry::version}"
+        return
       end
 
       begin
