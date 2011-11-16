@@ -143,7 +143,7 @@ module Mulberry
       puts "Scaffolded an app at #{base}" unless silent
     end
 
-    def serve(options)
+    def serve(args)
       b = Builder::Build.new({
         :target => 'app_development',
         :log_level => -1,
@@ -155,18 +155,18 @@ module Mulberry
 
       require 'webrick'
 
-      webrick_options = {:Port => options[:port]}
+      webrick_options = {:Port => args[:port]}
 
       webrick_options.merge!({ :AccessLog => [nil, nil],
                                :Logger    => ::WEBrick::Log.new("/dev/null")
-                            }) unless options[:verbose]
+                            }) unless args[:verbose]
 
       Mulberry::Server.set :app, self
 
       Rack::Handler::WEBrick.run Mulberry::Server, webrick_options do |server|
         [:INT, :TERM].each { |sig| trap(sig) { server.stop } }
         Mulberry::Server.set :running, true
-        puts "== mulberry has taken the stage on port #{options[:port]}. ^C to quit."
+        puts "== mulberry has taken the stage on port #{args[:port]}. ^C to quit."
       end
 
     end
