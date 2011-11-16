@@ -1,25 +1,10 @@
-.page.video-with-text-phone {
+.page.videos-and-text-tablet {
   .screen.index {
-    > .row.player-container {
+    .row.player-container {
       @include background-shadow;
     }
 
-    > .row.page-videos {
-      height: 40px;
-
-      @if ($user-font-scheme == dark) {
-        background-color: darken($user-background-color, 17%);
-      } @else {
-        background-color: lighten($user-background-color, 17%);
-      }
-
-      video {
-        position: relative;
-        top: -5px;
-      }
-    }
-
-    > .row:nth-child(4) {
+    .row.listing-and-children {
       .child-nodes:not(.empty) {
         padding-top: 10px;
       }

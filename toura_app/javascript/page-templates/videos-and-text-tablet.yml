@@ -23,16 +23,19 @@ videos-and-text-tablet:
         components:
         - PageNav
       - type: row
+        className: player-container
         components:
         - VideoPlayer
       - type: row
         className: listing-and-children
         regions:
-        - type: row
+        - type: column
           scrollable: true
-          className: page-videos
           components:
-          - VideoList
           - ChildNodes
           - VideoCaption
           - BodyText
+        - type: column
+          scrollable: true
+          components:
+          - VideoList
