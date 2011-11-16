@@ -10,6 +10,17 @@ module Builder
 
       @template_dir = File.join(Builder::Build.root, 'builder', 'project_templates')
 
+      if @target['build_type'] == 'browser'
+        subdir = [ 'web', @target['device_type'] ].join('-')
+        dest = File.join(@location, subdir)
+        FileUtils.rm_rf dest if File.exists? dest
+        FileUtils.mkdir_p File.join(dest, 'www')
+
+        Builder::Project::Browser.new(self, @build).build
+        @dir = subdir
+        return true
+      end
+
       case @target['device_os']
       when 'android'
         if @target['device_type'] == 'phone'
@@ -66,6 +77,18 @@ module Builder
       @template_dir
     end
 
+    class Browser
+      def initialize(task, build)
+        @task = task
+        @build = build
+        @target = task.target
+      end
+
+      def build
+        # noop for now
+      end
+    end
+
     class Android
       def initialize(task, build)
         @task = task
@@ -111,7 +134,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
 
         # android manifest
         system %{#{sed} -e 's/{android.versionCode}/#{project_settings[:version]}/' \
-          -e 's/{android.versionName}/#{TouraAPP.version}/' \
+          -e 's/{android.versionName}/#{@build.build_helper.project_settings['published_version']}/' \
           -e 's/com.toura.www/#{app_id}/' \
           #{manifest_file}
         }
@@ -231,7 +254,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         product_name = project_settings[:name] || "The App With No Name"
         plist_result = %x{#{sed} -e 's/${PRODUCT_NAME}/#{product_name}/' \
           -e 's/com.toura.app2/#{app_id}/' \
-          -e 's/${BUNDLE_VERSION}/#{TouraAPP.version}/' \
+          -e 's/${BUNDLE_VERSION}/#{@build.build_helper.project_settings['published_version']}/' \
           -e 's/${FlurryApiKey}/#{flurry_api_key}/' \
           #{plist_file}
         }
