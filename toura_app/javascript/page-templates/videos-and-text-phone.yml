@@ -23,12 +23,14 @@ videos-and-text-phone:
         components:
         - PageNav
       - type: row
+        className: player-container
         components:
         - VideoPlayer
       - type: row
         regions:
         - type: row
           scrollable: true
+          className: page-videos
           components:
           - VideoList
           - ChildNodes
