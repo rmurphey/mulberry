@@ -13,10 +13,6 @@ dojo.declare('toura.capabilities.Page_Videos', [ toura.capabilities._Capability 
   ],
 
   _setup : function(pageState) {
-    if (this.baseObj.videos.length < 2) {
-      dojo.destroy(this.videoList.domNode);
-    }
-
     this._loadVideo(pageState);
   },
 
