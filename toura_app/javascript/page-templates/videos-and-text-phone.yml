@@ -30,7 +30,7 @@ videos-and-text-phone:
         regions:
         - type: row
           scrollable: true
-          className: page-videos
+          className: listing-and-children
           components:
           - VideoList
           - ChildNodes

@@ -23,10 +23,10 @@ videos-and-text-tablet:
         components:
         - PageNav
       - type: row
-        className: player-container
         components:
         - VideoPlayer
       - type: row
+        className: listing-and-children
         regions:
         - type: row
           scrollable: true
