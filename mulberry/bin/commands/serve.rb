@@ -3,7 +3,6 @@ module Mulberry
     class Serve
       def initialize(args)
 
-        dir = Mulberry.get_app_dir args[0]
 
         default_port = 3001
         options = { :port => default_port }
@@ -19,6 +18,8 @@ module Mulberry
             options[:verbose] = v
           end
         end.parse!
+
+        dir = Mulberry.get_app_dir args[0]
 
         begin
           app = Mulberry::App.new(dir)
