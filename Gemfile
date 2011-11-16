@@ -15,3 +15,4 @@ gem 'linecache', '0.43', :platforms => :ruby_18, :require => false
 gem 'ruby-debug', :platforms => :ruby_18, :require => false
 gem 'fakefs', :require => false
 gem 'factory_girl', :require => false
+gem 'deep_merge'

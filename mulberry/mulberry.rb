@@ -6,6 +6,7 @@ require 'bundler/setup'
 require 'yaml'
 require 'json'
 require 'fileutils'
+require 'deep_merge'
 
 require 'mulberry/data'
 require 'mulberry/server'
@@ -18,6 +19,7 @@ module Mulberry
 
   VERSION   = '0.1.1'
   CONFIG    = 'config.yml'
+  DEV_CONFIG    = 'dev_config.yml'
 
   DEFAULTS  = {
     'locale'            =>  'en-US',
@@ -210,6 +212,16 @@ module Mulberry
 
     def read_config
       DEFAULTS.merge! YAML.load_file(File.join(@source_dir, CONFIG))
+
+      dev_config_path = File.join(@source_dir, DEV_CONFIG)
+
+      if File.exists?(dev_config_path)
+        DEFAULTS.deep_merge! YAML.load_file(dev_config_path)
+      end
+
+      p DEFAULTS
+      DEFAULTS
     end
+
   end
 end
