@@ -51,7 +51,7 @@ dojo.declare('toura.app.PageFactory', [], {
 
     'Videos1' : function(device) {
       return 'videos-and-text-' + device.type;
-    },
+    }
   },
 
   pages : {
