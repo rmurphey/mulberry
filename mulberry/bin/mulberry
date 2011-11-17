@@ -6,6 +6,9 @@ require 'mulberry'
 require 'content_creator'
 require 'code_creator'
 require 'template_creator'
+require 'optparse'
+
+Dir[File.dirname(__FILE__) + '/commands/*.rb'].each {|file| require file }
 
 module Mulberry
   class CLI
@@ -17,127 +20,30 @@ module Mulberry
       end
 
       action = args.shift
-      filenames = args
 
-      if [ 'scaffold', 'serve', 'deploy', 'test', 'data' ].include? action
-        dir = (args[0] && File.expand_path(args[0]))
-
-        if !dir && action == 'scaffold'
-          raise "You must specify an app name" unless dir
-        else
-          dir ||= Dir.pwd
-        end
-
-        begin
-          if action == 'scaffold' || dir_is_app?(dir)
-            self.send(action, dir)
-          else
-            raise "You must specify a valid app."
-          end
-        rescue RuntimeError => e
-          puts e
-        end
-
+      if action.match /^-{0,2}(version|v)$/
+        puts "Mulberry v#{Mulberry::version}"
         return
       end
 
-      # Be a little more permissive in case someone types --v, -version, etc.
-      if action.match /^-{0,2}(version|v)$/
-        puts "Mulberry v#{Mulberry::version}"
-      end
+      begin
 
-      if action.match /^create_(.+)$/
-        dir = Dir.pwd
-        raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(dir)
-        raise "You must specify a file to create." unless filenames.first
+        Mulberry::Command.class_eval(action.camelize).new(args)
 
-        default_creator = Mulberry::ContentCreator
+      rescue NameError => ex
 
-        commands = {
-          :page       => {},
-          :feed       => {},
-          :data       => {},
-          :location   => {},
+        # Re-raise anything that's unexpected
+        raise ex unless ex.message.include? "uninitialized constant Mulberry::Command::"
 
-          :component  => {
-            :creator  =>  Mulberry::CodeCreator
-          },
+        puts "Invalid command: #{action}\n\Valid commands:\n"
 
-          :template   => {
-            :creator  =>  Mulberry::TemplateCreator
-          },
-
-          :capability => {
-            :creator  =>  Mulberry::CodeCreator
-          },
-
-          :datasource => {
-            :creator  =>  Mulberry::CodeCreator
-          }
-        }
-
-        content_type = $~[1].to_sym
-        raise "Don't know how to do #{action}" unless commands[content_type]
-        command = commands[content_type]
-
-        filenames.each { |f| (command[:creator] || default_creator).new(content_type.to_s, dir, f) }
-      end
-
-      if action == 'update_themes'
-        to_dir = Dir.pwd
-        raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(to_dir)
-
-        from_dir = File.join(__FILE__, '../../themes')
-        theme_names = Dir.entries(from_dir)[2..-1].join(", ")
-
-        puts "This will overwrite the following themes: [#{theme_names}]. Are you sure? (Y/n)"
-        input = STDIN.gets.strip
-
-        if input == "Y"
-          puts "Overwriting #{to_dir}/themes."
-          FileUtils.cp_r(from_dir, to_dir)
-        else
-          puts "OK. Nothing to do."
+        Mulberry::Command.constants.collect{ |c| c.underscore }.sort.each do |command|
+          puts command
         end
 
-      end
-    end
-
-    private
-    def dir_is_app?(dir)
-      File.exists?(dir) && File.exists?(File.join(dir, 'config.yml'))
-    end
-
-    def scaffold(dir)
-      dir.gsub!(Dir.pwd + "/", "")
-      Mulberry::App.scaffold(dir)
-    end
-
-    def serve(dir)
-      begin
-        app = Mulberry::App.new(dir)
-        app.serve
-      rescue ConfigError => ce
-        puts "Configuration error: #{ce}"
-      end
-    end
-
-    def deploy(dir)
-      app = Mulberry::App.new(dir)
-      app.generate
-    end
-
-    def test(dir)
-      app = Mulberry::App.new(dir)
-      app.generate(:test => true)
-    end
-
-    def data(dir)
-      app = Mulberry::App.new(dir)
-      d = JSON.pretty_generate(Mulberry::Data.new(app).generate)
-      puts d
-    end
-  end
-end
+      end # begin/rescue
+    end # run
+  end # cli
+end # mulberry
 
 Mulberry::CLI.new.run(ARGV)

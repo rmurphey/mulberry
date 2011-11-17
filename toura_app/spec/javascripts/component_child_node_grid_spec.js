@@ -4,7 +4,7 @@ describe("child node grid component", function() {
   beforeEach(function() {
     dojo.require('toura.app.UI');
     dojo.require('toura.app.Config');
-    dojo.require('toura.app.Phonegap');
+    dojo.require('toura.app.PhoneGap');
     dojo.require('toura.components.ChildNodeGrid');
     dojo.require('toura.ui.BackgroundImage');
 

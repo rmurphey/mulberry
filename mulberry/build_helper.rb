@@ -33,7 +33,8 @@ module Mulberry
         :jquery               => @config['jquery'],
         :config_dir           => @source_dir,
         :flurry_config        => @config['flurry'],
-        :urban_airship_config => @config['urban_airship']
+        :urban_airship_config => @config['urban_airship'],
+        :published_version    => @config['published_version'] || '1.0'
       }
     end
 
