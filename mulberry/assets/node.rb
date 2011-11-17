@@ -3,13 +3,13 @@ require 'mulberry/assets/base'
 module Mulberry
   module Asset
     class Node < Mulberry::Asset::Base
-      def initialize(page_data = nil)
-        self.asset = page_data
+      def initialize(page = nil)
+        self.asset = page
       end
 
       def asset=(asset)
         return unless asset
-        @page_data = asset
+        @page = asset
         @asset_name = asset[:page_name]
       end
 
@@ -22,11 +22,27 @@ module Mulberry
       end
 
       def item
-        base_item.merge(@page_data)
+        base_item.merge(@page)
       end
 
       def reference
         { '_reference' => id }
+      end
+
+      def add_asset(asset, type)
+        ref = asset.reference
+
+        case type
+        when :header_image
+          [ :phoneHeaderImage, :tabletHeaderImage ].each { |k| @page[k] = ref }
+        when :featured_image
+          @page[:featuredImage] = ref
+        when :body_text
+          @page[:bodyText] = ref
+        else
+          @page[type] ||= []
+          @page[type] << ref
+        end
       end
     end
   end

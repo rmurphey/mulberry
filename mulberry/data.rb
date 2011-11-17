@@ -81,58 +81,61 @@ module Mulberry
       end
     end
 
-    def parse_page(node, children = [])
-      file = File.join(@source_dir, 'pages', "#{node}.md")
-      raise "Can't find #{node}.md in pages directory (#{file})" unless File.exists? file
-      node_data = File.read(file)
+    def parse_page(page_name, children = [])
+      file = File.join(@source_dir, 'pages', "#{page_name}.md")
+      raise "Can't find #{page_name}.md in pages directory (#{file})" unless File.exists? file
 
-      pieces = node_data.split('---').delete_if { |piece| piece.empty? }
+      pieces = File.read(file).split('---').delete_if { |piece| piece.empty? }
       frontmatter = pieces.first
       content = pieces.length > 1 ? pieces.last : ''
       config = YAML.load(frontmatter)
 
-      body_text = Mulberry::Asset::Text.new(content, node)
-      self << body_text.item
-
-      page_data = {
-        :page_name          =>  node,
-        :name               =>  config['title'] || node,
+      node = Mulberry::Asset::Node.new({
+        :page_name          =>  page_name,
+        :name               =>  config['title'] || page_name,
         :pageController     =>  config['template'],
-        :bodyText           =>  body_text.reference,
         :children           =>  children
-      }
+      })
+
+      body_text = Mulberry::Asset::Text.new(content, page_name)
+
+      add_asset body_text
+      node.add_asset body_text, :body_text
 
       if config['header_image']
         header_image = Mulberry::Asset::HeaderImage.new(config['header_image'], @assets_dir)
-        page_data[:phoneHeaderImage] = header_image.reference
-        page_data[:tabletHeaderImage] = header_image.reference
-        self << header_image.item
+        node.add_asset header_image, :header_image
+        add_asset header_image
       end
 
       if config['featured_image']
         featured_image = Mulberry::Asset::Image.new(config['featured_image'], @assets_dir)
-        page_data[:featuredImage] = featured_image.reference
-        self << featured_image.item
+        node.add_asset featured_image, :featured_image
+        add_asset featured_image
       end
 
       ASSETS.each do |asset_group, asset_class|
         if config[asset_group]
           group = DATA_NAME_MAP[asset_group] || asset_group.to_sym
-          page_data[group] = []
 
           config[asset_group].each do |asset|
             a = asset_class.new(asset, @assets_dir)
-            page_data[group] << a.reference
 
-            self << a.item
-            self << a.caption.item if a.caption
+            node.add_asset a, group
+
+            add_asset a
+            add_asset a.caption if a.caption
           end
         end
       end
 
-      node = Mulberry::Asset::Node.new(page_data)
-      self << node.item
-      node
+      add_asset node
+    end
+
+    def add_asset(asset)
+      return unless asset
+      self << asset.item
+      asset
     end
 
     def do_contexts
