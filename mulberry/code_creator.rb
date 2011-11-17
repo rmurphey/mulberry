@@ -1,4 +1,5 @@
 require 'active_support/inflector'
+require 'pathname'
 
 module Mulberry
   class CodeCreator
@@ -16,7 +17,9 @@ module Mulberry
 
       js_dir = File.join(destination_dir, 'javascript')
       code_dir = File.join(js_dir, dirnames[code_type])
-
+      themes_dir = File.join(destination_dir, 'themes/default')
+      theme_cssfile = "custom.scss"
+      
       code_filename = File.join(code_dir, "#{filename}.js")
 
       if File.exists? code_filename
@@ -46,6 +49,17 @@ module Mulberry
         # create the basic haml template for the component
         File.open(File.join(component_resource_dir, "#{filename}.haml"), 'w') do |f|
           f.write ".component.#{filename.underscore.dasherize.downcase} (This is the #{filename} component)\n"
+        end
+        
+        # create the SCSS file for the component
+        File.open(File.join(component_resource_dir, "_#{filename.underscore.dasherize.downcase}.scss"), 'w') do |f|
+          f.write "// styles for #{filename} component\n"
+        end
+        
+        # add the import statement to custom.scss
+        File.open(File.join(themes_dir, theme_cssfile), 'a') do |f|
+          pathstring = Pathname.new("#{code_dir}/_#{filename.underscore.dasherize.downcase}.scss").relative_path_from(Pathname.new(themes_dir))
+          f.write "@import '#{pathstring}';\n"
         end
 
         puts "Template is at #{File.join(component_resource_dir, "#{filename}.haml")}"
