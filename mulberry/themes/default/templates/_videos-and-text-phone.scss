@@ -1,0 +1,13 @@
+.page.videos-and-text-phone {
+  .screen.index {
+    .row.player-container {
+      @include background-shadow;
+    }
+
+    .row.listing-and-children {
+      .child-nodes:not(.empty) {
+        padding-top: 10px;
+      }
+    }
+  }
+}

@@ -10,7 +10,6 @@ dojo.require('toura.pageControllers.Debug');
 
 dojo.require('toura.pageControllers.search.Search');
 dojo.require('toura.pageControllers.favorites.Favorites');
-dojo.require('toura.pageControllers.node.Videos1');
 dojo.require('toura.pageControllers.Configurable');
 
 dojo.declare('toura.app.PageFactory', [], {
@@ -19,9 +18,7 @@ dojo.declare('toura.app.PageFactory', [], {
   },
 
   _translations : {
-    'videos-and-text-phone'  : 'Videos1',
-    'videos-and-text-tablet' : 'Videos1',
-    'locations-map'          : 'GoogleMap1'
+    'locations-map' : 'GoogleMap1'
   },
 
   /**
@@ -50,8 +47,11 @@ dojo.declare('toura.app.PageFactory', [], {
 
     'GoogleMap1' : function(device) {
       return 'google-map-' + device.type;
-    }
+    },
 
+    'Videos1' : function(device) {
+      return 'videos-and-text-' + device.type;
+    }
   },
 
   pages : {

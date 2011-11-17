@@ -31,4 +31,5 @@ dojo.require('toura.components.SiblingNav');
 dojo.require('toura.components.SocialMessage');
 dojo.require('toura.components.VideoList');
 dojo.require('toura.components.VideoPlayer');
+dojo.require('toura.components.VideoCaption');
 dojo.require('toura.components.ZoomableImageGallery');
