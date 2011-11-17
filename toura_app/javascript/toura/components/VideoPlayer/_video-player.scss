@@ -1,7 +1,8 @@
 .component.video-player {
   height: 100%;
-
+  width: 100%;
   display: -webkit-box;
+  position: absolute;
 
   &.has-html5-player {
     -webkit-box-orient: vertical;

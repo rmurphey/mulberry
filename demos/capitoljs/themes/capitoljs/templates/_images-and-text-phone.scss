@@ -1,0 +1,11 @@
+.images-and-text-phone {
+  .screen.index {
+    .row:nth-child(2) {
+      @include background-shadow;
+    }
+
+    .body-text:not(.empty) {
+      padding: 10px;
+    }
+  }
+}

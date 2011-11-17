@@ -1,0 +1,79 @@
+@mixin grid-item($width, $height-scale: 1.24) {
+  $aspect-ratio: 3/4;
+  $height: ceil($width * $aspect-ratio);
+
+  li {
+    height: ceil($height * $height-scale);
+    width: $width;
+
+    .image {
+      width: ceil($width);
+      height: ceil($height);
+    }
+  }
+}
+
+.component.child-node-grid {
+  padding: 4px;
+
+  li {
+    float: left;
+
+    a {
+      display: block;
+      @if $user-font-scheme == dark {
+        color: lighten($text-color-dark, 15%);
+      } @else if $user-font-scheme == light {
+        color: $text-color-light;
+      }
+
+      .image {
+        @include background-image(cover);
+      }
+
+      h3 {
+        margin: 8px 0 0 2px;
+        font-size: 15px;
+        line-height: 18px;
+      }
+    }
+  }
+
+  .ios.phone & {
+    @include grid-item(145px, 1.40);
+  }
+
+  @media (orientation:portrait)  {
+    li {
+      margin: 5px;
+    }
+
+    .tablet & {
+      &.size-large {
+        @include grid-item(370px);
+      }
+
+      &.size-medium {
+        @include grid-item(243px);
+      }
+    }
+  }
+
+  @media (orientation:landscape) {
+    li {
+      margin: 6px;
+    }
+
+    .tablet & {
+      &.size-large {
+        @include grid-item(326px);
+      }
+
+      &.size-medium {
+        @include grid-item(242px);
+      }
+    }
+  }
+}
+
+

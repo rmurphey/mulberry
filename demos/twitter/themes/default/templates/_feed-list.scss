@@ -1,0 +1,13 @@
+.page.feed-list-tablet {
+  .screen.index {
+    .row:nth-child(2) {
+      > .column:first-child {
+        width: 320px;
+      }
+
+      > .column:last-child {
+        @include box-shadow(-2px, 0);
+      }
+    }
+  }
+}
