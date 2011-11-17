@@ -66,33 +66,3 @@
     padding: 12px;
   }
 }
-
-@mixin image-scroller($image-sizing: contain) {
-  @include pullout;
-
-  .wrapper {
-    height: 100%;
-
-    ol.images {
-      height: 100%;
-
-      li {
-        height: 100%;
-        float: left;
-        text-align: center;
-        // width set by component js
-
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-box-pack: center;
-
-        .image {
-          height: 100%;
-          -webkit-background-size: $image-sizing;
-          background: no-repeat center center;
-          -webkit-transform: translate3d(0,0,0);
-        }
-      }
-    }
-  }
-}

@@ -1,3 +1,5 @@
 .component.image-gallery {
-  @include image-scroller(contain);
+  .image {
+    -webkit-background-size: contain;
+  }
 }

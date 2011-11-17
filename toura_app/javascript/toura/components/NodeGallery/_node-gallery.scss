@@ -1,3 +1,5 @@
 .component.node-gallery {
-  @include image-scroller(cover);
+  .image {
+    -webkit-background-size: cover;
+  }
 }
