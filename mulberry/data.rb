@@ -65,9 +65,7 @@ module Mulberry
     def read_sitemap
       f = File.join(@source_dir, SITEMAP)
       sitemap = (File.exists?(f) && YAML.load_file(f)) || []
-      sitemap.each do |item|
-        process_sitemap_item item
-      end
+      sitemap.each { |item| process_sitemap_item item }
     end
 
     def process_sitemap_item(item)
@@ -182,7 +180,7 @@ module Mulberry
       end
 
       @items.each do |item|
-        if item[:type] == 'node' && item[:children] && item[:children].length
+        if item[:type] == 'node' && item[:children]
           item[:children].each do |child|
             child_id = child['_reference']
             @items.select { |i| i[:id] == child_id }[0][:parent] = { '_reference' => item[:id] }

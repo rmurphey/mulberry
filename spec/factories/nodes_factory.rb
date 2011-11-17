@@ -13,18 +13,6 @@ FactoryGirl.define do
         'tablet'  =>  'default'
       },
 
-      :bodyText           =>  nil,
-      :images             =>  [],
-      :audios             =>  [],
-      :videos             =>  [],
-      :data               =>  [],
-      :locations          =>  [],
-      :feeds              =>  [],
-
-      :phoneHeaderImage   =>  nil,
-      :tabletHeaderImage  =>  nil,
-      :featuredImage      =>  nil,
-
       :children           =>  nil
     }
 
