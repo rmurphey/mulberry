@@ -53,12 +53,12 @@ module Mulberry
         
         # create the SCSS file for the component
         File.open(File.join(component_resource_dir, "_#{filename.underscore.dasherize.downcase}.scss"), 'w') do |f|
-          f.write "// styles for #{filename} component\n"
+          f.write "// styles for #{filename} component\n.component.#{filename.underscore.dasherize.downcase} {\n  \n}\n"
         end
         
         # add the import statement to the theme css file
         File.open(File.join(themes_dir, theme_cssfile), 'a') do |f|
-          pathstring = Pathname.new("#{code_dir}/_#{filename.underscore.dasherize.downcase}.scss").relative_path_from(Pathname.new(themes_dir))
+          pathstring = Pathname.new("#{code_dir}/#{filename}/_#{filename.underscore.dasherize.downcase}.scss").relative_path_from(Pathname.new(themes_dir))
           f.write "@import '#{pathstring}';\n"
         end
 
