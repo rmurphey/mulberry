@@ -5,13 +5,22 @@ module Mulberry
     class Text
       ASSET_TYPE    = 'text-asset'
 
-      def initialize(content, name)
+      def initialize(content = nil, name = nil)
+        return unless content
         parsed_content = parse content
 
-        @name = parsed_content[:name] || name
-        @content = Kramdown::Document.new(
-          parsed_content[:content].strip
-        ).to_html.chomp
+        self.content = parsed_content[:content].strip
+        self.name = parsed_content[:name] || name
+      end
+
+      def content=(content)
+        return unless content
+        @content = Kramdown::Document.new(content).to_html.chomp
+      end
+
+      def name=(name)
+        return unless name
+        @name = name
       end
 
       public

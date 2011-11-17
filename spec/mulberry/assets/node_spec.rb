@@ -20,4 +20,34 @@ describe Mulberry::Asset::Node do
       @node.reference['_reference'].should == @node.item[:id]
     end
   end
+
+  describe "#add_asset" do
+    it "should add regular assets to the node" do
+      image = Factory.build :image
+      @node.add_asset image, :images
+
+      @node.item[:images].length.should be 1
+      @node.item[:images].first[:image]['_reference'].should == image.item[:id]
+    end
+
+    it "should add header images to the node" do
+      header_image = Factory.build :header_image
+      @node.add_asset header_image, :header_image
+
+      @node.item[:phoneHeaderImage]['_reference'].should == header_image.item[:id]
+      @node.item[:tabletHeaderImage]['_reference'].should == header_image.item[:id]
+    end
+
+    it "should add featured images to the node" do
+      featured_image = Factory.build :image
+      @node.add_asset featured_image, :featured_image
+      @node.item[:featuredImage][:image]['_reference'].should == featured_image.item[:id]
+    end
+
+    it "should add body text assets to the node" do
+      text_asset = Factory.build :text
+      @node.add_asset text_asset, :body_text
+      @node.item[:bodyText]['_reference'].should == text_asset.item[:id]
+    end
+  end
 end
