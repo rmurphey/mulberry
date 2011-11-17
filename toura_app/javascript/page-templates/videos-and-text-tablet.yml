@@ -32,10 +32,10 @@ videos-and-text-tablet:
         - type: column
           scrollable: true
           components:
-          - ChildNodes
           - VideoCaption
           - BodyText
         - type: column
           scrollable: true
           components:
           - VideoList
+          - ChildNodes
