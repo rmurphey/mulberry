@@ -193,7 +193,6 @@
 			children = (
 				648E763D145A0782004AD965 /* Capture.bundle */,
 				648E7629145A0781004AD965 /* en.lproj */,
-				648E762D145A0781004AD965 /* es.lproj */,
 				648E7631145A0781004AD965 /* icons */,
 				648E7638145A0781004AD965 /* splash */,
 			);
@@ -206,13 +205,6 @@
 				648E762A145A0781004AD965 /* Localizable.strings */,
 			);
 			name = en.lproj;
-			sourceTree = "<group>";
-		};
-		648E762D145A0781004AD965 /* es.lproj */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = es.lproj;
 			sourceTree = "<group>";
 		};
 		648E7631145A0781004AD965 /* icons */ = {
