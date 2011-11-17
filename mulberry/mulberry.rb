@@ -80,7 +80,6 @@ module Mulberry
       raise "You must provide an app name" unless app_name
 
       mulberry_base = File.dirname(__FILE__)
-      puts File.read File.join(mulberry_base, 'LICENSE.txt') unless silent
 
       base = File.expand_path(app_name)
 
@@ -88,7 +87,7 @@ module Mulberry
         raise "Can't create #{base} -- it already exists"
       end
 
-      FileUtils.mkdir base
+      FileUtils.mkdir_p base
 
       dirs = {
         :assets => [
