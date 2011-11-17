@@ -13,11 +13,6 @@ module TouraAPP
   end
 
   # TODO: get rid of this?
-  def self.base_scss
-    File.join(TouraAPP::Directories.javascript, 'base.scss')
-  end
-
-  # TODO: get rid of this?
   def self.vars_scss_template
     File.join(TouraAPP::Directories.root, 'templates', 'vars.scss')
   end

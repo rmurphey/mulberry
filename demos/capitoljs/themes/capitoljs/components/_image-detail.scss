@@ -1,0 +1,49 @@
+.image-detail {
+  background-color: #fff;
+
+  @if ($user-font-scheme == dark) {
+    background-color: #fff;
+  } @else {
+    background-color: #000;
+  }
+
+  .image-nav {
+    width: 23px;
+    height: 50px;
+    top: 50%;
+    margin-top: -25px;
+    -webkit-background-origin: content-box;
+    -webkit-background-size: 50% 50%;
+
+    &.prev {
+      @include button('../icons/btn-arrow-left-27x50.png', 14, 25, rgba(0, 0, 0, .7));
+      background-position-x: left;
+      padding-left: 4px;
+      border-radius: 0 25px 25px 0;
+    }
+
+    &.next {
+      @include button('../icons/btn-arrow-right-27x50.png', 14, 25, rgba(0, 0, 0, .7));
+      background-position-x: right;
+      border-radius: 25px 0 0 25px;
+      padding-right: 4px;
+      right: 0;
+    }
+  }
+
+  .image {
+    .wrapper {
+      height: 90%;
+    }
+  }
+
+  .caption {
+    @include resizable-font;
+    padding: 20px;
+    background: rgba(0, 0, 0, .7);
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+  }
+
+}

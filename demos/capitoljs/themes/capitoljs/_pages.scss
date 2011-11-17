@@ -1,24 +1,3 @@
-// apply styles based on the template
-.page.home-capitol-js {
-  .screen {
-    background: url('../media/images/capitoljs-header.png') no-repeat;
-    -webkit-background-size: contain;
-
-    background-color: #353535;
-    > .row > .row:first-child {
-      margin-top: 119px;
-    }
-  }
-}
-
-.page.twitter,
-.page.default {
-  .screen {
-    @include watermark;
-  }
-}
-
-
 
 // apply styles for a particular node
 .page.page-node-schedule {

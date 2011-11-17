@@ -76,6 +76,26 @@ module Mulberry
       read_config
     end
 
+    def self.update_themes(to_dir)
+      mulberry_base = File.dirname(__FILE__)
+      from_dir = File.join(mulberry_base, 'themes')
+
+      theme_names = Dir.glob(File.join(from_dir, "**")).map{ |dir|
+        File.basename(dir)
+      }.join(", ")
+
+      puts "This will overwrite the following themes: [#{theme_names}]. Are you sure? (Y/n)"
+      input = STDIN.gets.strip
+
+      if input == "Y"
+        puts "Overwriting #{to_dir}/themes."
+        FileUtils.cp_r(from_dir, to_dir)
+      else
+        puts "OK. Nothing to do."
+      end
+
+    end
+
     def self.scaffold(app_name, silent = false)
       raise "You must provide an app name" unless app_name
 

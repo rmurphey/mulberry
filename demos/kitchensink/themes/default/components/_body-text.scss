@@ -1,0 +1,68 @@
+.component.body-text {
+  @include resizable-font;
+
+  h1, h2, h3, h4, h5, h6 {
+    @include resizable-font;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: normal;
+  }
+
+  h3 {
+    font-size: 19px;
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  h5 {
+    font-size: 13px;
+  }
+
+  h6 {
+    font-size: 11px;
+    font-weight: normal;
+  }
+
+  p {
+    margin: 0 0 .9em 0;
+  }
+
+  blockquote {
+    @extend p;
+    margin: 0 40px;
+  }
+
+  ol, ul {
+    padding-bottom: 1em;
+  }
+
+  ol li {
+    list-style-type: decimal;
+  }
+
+  ul li {
+    list-style-type: disc;
+  }
+
+  li {
+    position: static;
+    margin-left: 10px;
+    display: list-item;
+    list-style-position: inside;
+    padding-bottom: 0.5em;
+    text-indent: 10px;
+  }
+
+  a {
+    color: $user-link-color;
+  }
+}

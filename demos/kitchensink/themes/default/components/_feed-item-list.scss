@@ -1,0 +1,96 @@
+.component.feed-item-list {
+
+  header {
+    color: #999;
+    padding: 10px;
+    font-size: 12px;
+
+    @include column-container;
+
+    > div {
+      @include pane;
+    }
+
+    .spinner {
+      display: block;
+      width: 1.3em;
+      height: 1.3em;
+    }
+
+    .refresh {
+      font-weight: bold;
+      text-align: right;
+      overflow: visible;
+    }
+  }
+
+  &.loading {
+    .refresh {
+      opacity: .5;
+    }
+
+    .spinner {
+      @include spinner('../icons/spinner-2.png', 1s);
+    }
+  }
+
+  li {
+    > div {
+      margin: 6px 0;
+      overflow: visible;
+      padding: 10px 13px 10px 10px;
+
+      &:before {
+        content: "";
+        border-top: 1px solid #999;
+        display: block;
+        position: relative;
+        top: -16px;
+      }
+    }
+
+    &.active > div {
+      background-color: rgba(0, 0, 0, .05);
+    }
+
+    .image {
+      width: 60px;
+      height: 60px;
+      float: right;
+      margin: 4px 0 0 4px;
+      -webkit-background-size: cover;
+    }
+
+    h2 {
+      font-size: 18px;
+      @include resizable-font;
+      line-height: 1.2em;
+      padding-bottom: .4em;
+    }
+
+    .summary {
+      font-family: Georgia, serif;
+      font-size: 16px;
+      @include resizable-font;
+    }
+
+    .date {
+      font-size: 12px;
+      font-weight: bold;
+      color: #999;
+      @include resizable-font;
+      padding-top: .2em;
+    }
+  }
+}
+
+@media (orientation:portrait) {
+  .component.feed-item-list {
+    .tablet & {
+      .summary,
+      .image {
+        display: none;
+      }
+    }
+  }
+}
