@@ -6,7 +6,6 @@ module Mulberry
       ASSET_TYPE    = 'text-asset'
 
       def initialize(content = nil, name = nil)
-        return unless content
         parsed_content = parse content
 
         self.content = parsed_content[:content].strip
