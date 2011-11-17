@@ -1,6 +1,4 @@
 .component.node-gallery {
-  @include pullout;
-
   ol.indicator {
     position: absolute;
     height: 40px;
@@ -29,6 +27,4 @@
       }
     }
   }
-
-
 }

@@ -1,8 +1,9 @@
 .component.image-gallery {
-
-  li {
-    .image {
-      height: 90%;
+  ol.images {
+    li {
+      .image {
+        height: 90% !important;
+      }
     }
   }
 }
