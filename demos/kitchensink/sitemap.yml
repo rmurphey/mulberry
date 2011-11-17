@@ -9,6 +9,10 @@
   - feed_list
   - locations
   - location_map
+  - node_gallery:
+    - node_gallery_child_1
+    - node_gallery_child_2
+    - node_gallery_child_3
   - videos:
     - single_image_gallery
     - generic_child_page
