@@ -179,8 +179,7 @@ module Mulberry
           "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
         end
       rescue RuntimeError => e
-        puts e.to_s
-        throw e
+        puts "ERROR: #{e.to_s}
       end
     end
 
