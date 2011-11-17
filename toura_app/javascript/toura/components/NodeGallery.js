@@ -3,7 +3,6 @@ dojo.provide('toura.components.NodeGallery');
 dojo.require('toura.components._ImageScroller');
 
 dojo.declare('toura.components.NodeGallery', [ toura.components._Component, toura.components._ImageScroller ], {
-  templateString : dojo.cache('toura.components', 'NodeGallery/NodeGallery.haml'),
   'class' : 'node-gallery',
 
   prepareData : function() {

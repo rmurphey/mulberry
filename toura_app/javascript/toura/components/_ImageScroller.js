@@ -8,6 +8,8 @@ dojo.require('toura.components._ImageGallery');
  * an image scroller. It should not be used on its own.
  */
 dojo.declare('toura.components._ImageScroller', [ toura.components._ImageGallery ], {
+  templateString : dojo.cache('toura.components', '_ImageScroller/ImageScroller.haml'),
+
   postMixInProperties : function() {
     this.inherited(arguments);
     this.useScroller = this.images.length > 1;
