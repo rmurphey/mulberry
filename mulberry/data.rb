@@ -95,10 +95,11 @@ module Mulberry
       self << body_text.item
 
       page_data = {
-        :name               => config['title'] || node,
-        :pageController     => config['template'],
-        :bodyText           => body_text.reference,
-        :children           => children
+        :page_name          =>  node,
+        :name               =>  config['title'] || node,
+        :pageController     =>  config['template'],
+        :bodyText           =>  body_text.reference,
+        :children           =>  children
       }
 
       if config['header_image']
@@ -129,9 +130,7 @@ module Mulberry
         end
       end
 
-      node = Mulberry::Asset::Node.new(node, page_data)
-
-
+      node = Mulberry::Asset::Node.new(page_data)
       self << node.item
       node
     end

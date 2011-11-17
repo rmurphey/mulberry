@@ -3,9 +3,14 @@ require 'mulberry/assets/base'
 module Mulberry
   module Asset
     class Node < Mulberry::Asset::Base
-      def initialize(asset_name, page_data)
-        @asset_name = asset_name
-        @page = page_data
+      def initialize(page_data = nil)
+        self.asset = page_data
+      end
+
+      def asset=(asset)
+        return unless asset
+        @page_data = asset
+        @asset_name = asset[:page_name]
       end
 
       def asset_type_dir
@@ -17,16 +22,11 @@ module Mulberry
       end
 
       def item
-        base_item.merge(@page)
+        base_item.merge(@page_data)
       end
 
       def reference
         { '_reference' => id }
-      end
-
-      def add_child(child_name)
-        @page[:children] ||= []
-        @page[:children] << { '_reference' => "#{asset_type}-#{child_name}" }
       end
     end
   end
