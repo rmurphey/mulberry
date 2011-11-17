@@ -1,6 +1,6 @@
 require 'active_support/inflector'
 
-require 'mulberry/assets/page'
+require 'mulberry/assets/node'
 require 'mulberry/assets/text'
 require 'mulberry/assets/image'
 require 'mulberry/assets/video'
@@ -65,23 +65,23 @@ module Mulberry
     def read_sitemap
       f = File.join(@source_dir, SITEMAP)
       sitemap = (File.exists?(f) && YAML.load_file(f)) || []
-      sitemap.each do |node|
-        process_node node
+      sitemap.each do |sitemap_item|
+        process_page sitemap_item
       end
     end
 
-    def process_node(node)
-      if node.is_a? Hash
-        node.each do |parent, children|
-          parse_node(parent, children)
-          children.each { |child| process_node child }
+    def process_page(page)
+      if page.is_a? Hash
+        page.each do |parent, children|
+          children_refs = children.map { |child| process_page(child).reference }
+          parse_page(parent, children_refs)
         end
       else
-        parse_node(node)
+        parse_page(page)
       end
     end
 
-    def parse_node(node, children = [])
+    def parse_page(node, children = [])
       file = File.join(@source_dir, 'pages', "#{node}.md")
       raise "Can't find #{node}.md in pages directory (#{file})" unless File.exists? file
       node_data = File.read(file)
@@ -97,7 +97,8 @@ module Mulberry
       page_data = {
         :name               => config['title'] || node,
         :pageController     => config['template'],
-        :bodyText           => body_text.reference
+        :bodyText           => body_text.reference,
+        :children           => children
       }
 
       if config['header_image']
@@ -128,15 +129,11 @@ module Mulberry
         end
       end
 
-      page = Mulberry::Asset::Page.new(node, page_data)
+      node = Mulberry::Asset::Node.new(node, page_data)
 
-      if !children.empty?
-        children.each do |child|
-          page.add_child(child.is_a?(Hash) ? child.keys.first : child)
-        end
-      end
 
-      self << page.item
+      self << node.item
+      node
     end
 
     def do_contexts

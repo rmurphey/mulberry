@@ -2,7 +2,7 @@ require 'mulberry/assets/base'
 
 module Mulberry
   module Asset
-    class Page < Mulberry::Asset::Base
+    class Node < Mulberry::Asset::Base
       def initialize(asset_name, page_data)
         @asset_name = asset_name
         @page = page_data
