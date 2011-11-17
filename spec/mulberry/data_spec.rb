@@ -12,7 +12,8 @@ describe Mulberry::Data do
         'home' => [
           'foo',
           'bar',
-          'featured_image_page'
+          'featured_image_page',
+          'no_text_page'
         ]
       },
       'about'
@@ -34,9 +35,16 @@ describe Mulberry::Data do
       Mulberry::ContentCreator.new('page', @source_dir, page)
     end
 
-    FileUtils.cp(File.join(File.dirname(__FILE__), '..', 'fixtures', 'featured_image_page.md'), 
-                 File.join(@source_dir, 'pages'),
-                 { :preserve => false })
+    [
+      'featured_image_page',
+      'no_text_page'
+    ].each do |f|
+      FileUtils.cp(
+        File.join(FIXTURES_DIR, "#{f}.md"),
+        File.join(@source_dir, 'pages'),
+        { :preserve => false }
+      )
+    end
 
     @data = (Mulberry::Data.new Mulberry::App.new(@source_dir)).generate
   end

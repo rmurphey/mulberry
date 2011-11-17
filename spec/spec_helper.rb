@@ -15,6 +15,8 @@ Dir.glob(File.dirname(__FILE__) + "/factories/*").each do |factory|
   end
 end
 
+FIXTURES_DIR = File.join(File.dirname(__FILE__), 'fixtures')
+
 require 'capybara/rspec'
 
 b = Builder::Build.new({
