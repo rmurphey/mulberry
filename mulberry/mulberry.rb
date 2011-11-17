@@ -80,7 +80,9 @@ module Mulberry
       mulberry_base = File.dirname(__FILE__)
       from_dir = File.join(mulberry_base, 'themes')
 
-      theme_names = Dir.entries(from_dir)[2..-1].join(", ")
+      theme_names = Dir.glob(File.join(from_dir, "**")).map{ |dir|
+        File.basename(dir)
+      }.join(", ")
 
       puts "This will overwrite the following themes: [#{theme_names}]. Are you sure? (Y/n)"
       input = STDIN.gets.strip
