@@ -1,15 +1,15 @@
-describe("Phonegap bridge", function() {
+describe("PhoneGap bridge", function() {
   var pg;
 
   beforeEach(function() {
-    dojo.require('toura.app.Phonegap');
+    dojo.require('toura.app.PhoneGap');
     if (!pg) {
       dojo.publish('/app/start');
-      pg = toura.app.Phonegap;
+      pg = toura.app.PhoneGap;
     }
   });
 
-  describe("toura.app.Phonegap.device", function() {
+  describe("toura.app.PhoneGap.device", function() {
 
 
     it("should return the device version", function() {
@@ -53,10 +53,10 @@ describe("Phonegap bridge", function() {
         { ua : ' ', v : 'unknown' }
       ];
 
-      toura.app.Phonegap.present = false;
+      toura.app.PhoneGap.present = false;
 
       dojo.forEach(uas, function(item) {
-        expect(toura.app.Phonegap.device._parseVersion(item.ua)).toBe(item.v, item.ua || 'undefined');
+        expect(toura.app.PhoneGap.device._parseVersion(item.ua)).toBe(item.v, item.ua || 'undefined');
       });
     });
 

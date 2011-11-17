@@ -34,9 +34,12 @@ module Builder
     end
 
     def template_vars
+      is_browser = %w{browser MAP}.include? @target['build_type']
+
       vars = {
         :device_type          =>  @target['device_type'] || nil,
-        :include_phonegap     =>  true
+        :include_phonegap     =>  !is_browser,
+        :body_onload          =>  is_browser ? 'readyFn()' : ''
       }
 
       if @build.build_helper.respond_to? 'html_vars'
