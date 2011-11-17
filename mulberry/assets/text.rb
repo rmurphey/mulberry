@@ -43,6 +43,13 @@ module Mulberry
 
       private
       def parse(content)
+        if content.nil?
+          return {
+            :content => '',
+            :name => nil
+          }
+        end
+
         first_line = content.split("\n").first
 
         if first_line && first_line.match('---')

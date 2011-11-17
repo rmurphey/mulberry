@@ -98,7 +98,7 @@ describe Mulberry::Data do
       item[:id] == 'text-asset-featured_image_page'
     end.first[:contexts]
 
-    c.length should be 1
+    c.length.should be 1
 
     c.select do |item|
       item[:node] == 'node-featured_image_page'
