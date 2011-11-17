@@ -61,15 +61,6 @@ dojo.declare('toura.components.NodeGallery', [ toura.components._Component, tour
     toura.app.Router.go(child.url);
   },
 
-  _setCurrentImageIndexAttr : function(imageIndex) {
-    this.inherited(arguments);
-
-    dojo.forEach(this.indicator.childNodes, function(child) {
-      dojo.removeClass(child, 'active');
-    });
-    dojo.addClass(this.indicator.childNodes[imageIndex], 'active');
-  },
-
   onScrollEnd : function(imageIndex) {
     // stub for connection
   }

@@ -39,6 +39,17 @@ dojo.declare('toura.components._ImageGallery', [], {
     }, this);
 
     this.currentImageIndex = imageIndex;
+
+    if (this.indicator) {
+      this._updateIndicator();
+    }
+  },
+
+  _updateIndicator : function() {
+    dojo.forEach(this.indicator.childNodes, function(child) {
+      dojo.removeClass(child, 'active');
+    });
+    dojo.addClass(this.indicator.childNodes[this.currentImageIndex], 'active');
   },
 
   _setupClick : function() {
