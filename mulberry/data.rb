@@ -65,53 +65,51 @@ module Mulberry
     def read_sitemap
       f = File.join(@source_dir, SITEMAP)
       sitemap = (File.exists?(f) && YAML.load_file(f)) || []
-      sitemap.each do |sitemap_item|
-        process_page sitemap_item
+      sitemap.each do |item|
+        process_sitemap_item item
       end
     end
 
-    def process_page(page)
-      if page.is_a? Hash
-        page.each do |parent, children|
-          children_refs = children.map { |child| process_page(child).reference }
-          parse_page(parent, children_refs)
-        end
+    def process_sitemap_item(item)
+      if item.is_a? Hash
+        load_data_for_item(
+          item.keys.first,
+          item.values.first.map { |child| process_sitemap_item(child).reference }
+        )
       else
-        parse_page(page)
+        load_data_for_item(item)
       end
     end
 
-    def parse_page(page_name, children = [])
-      file = File.join(@source_dir, 'pages', "#{page_name}.md")
-      raise "Can't find #{page_name}.md in pages directory (#{file})" unless File.exists? file
+    def load_data_for_item(item_name, children = [])
+      item_file = File.join(@source_dir, 'pages', "#{item_name}.md")
+      raise "Can't find #{item_name}.md in pages directory (#{item_file})" unless File.exists? item_file
 
-      pieces = File.read(file).split('---').delete_if { |piece| piece.empty? }
-      frontmatter = pieces.first
-      content = pieces.length > 1 ? pieces.last : ''
+      frontmatter, content = File.read(item_file).split('---').delete_if { |p| p.empty? }
+      content ||= ''
       config = YAML.load(frontmatter)
 
       node = Mulberry::Asset::Node.new({
-        :page_name          =>  page_name,
-        :name               =>  config['title'] || page_name,
+        :page_name          =>  item_name,
+        :name               =>  config['title'] || item_name,
         :pageController     =>  config['template'],
         :children           =>  children
       })
 
-      body_text = Mulberry::Asset::Text.new(content, page_name)
+      body_text = Mulberry::Asset::Text.new(content, item_name)
 
       add_asset body_text
       node.add_asset body_text, :body_text
 
-      if config['header_image']
-        header_image = Mulberry::Asset::HeaderImage.new(config['header_image'], @assets_dir)
-        node.add_asset header_image, :header_image
-        add_asset header_image
-      end
-
-      if config['featured_image']
-        featured_image = Mulberry::Asset::Image.new(config['featured_image'], @assets_dir)
-        node.add_asset featured_image, :featured_image
-        add_asset featured_image
+      {
+        :header_image   =>  Mulberry::Asset::HeaderImage,
+        :featured_image =>  Mulberry::Asset::Image
+      }.each do |k, klass|
+        if config[k.to_s]
+          a = klass.new(config[k.to_s], @assets_dir)
+          node.add_asset a, k
+          add_asset a
+        end
       end
 
       ASSETS.each do |asset_group, asset_class|
