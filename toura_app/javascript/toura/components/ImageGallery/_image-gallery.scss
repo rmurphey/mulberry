@@ -1,29 +1,3 @@
 .component.image-gallery {
-  @include pullout;
-
-  .wrapper {
-    height: 100%;
-
-    ol.images {
-      height: 100%;
-
-      li {
-        height: 100%;
-        float: left;
-        text-align: center;
-        // width set by component js
-
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-box-pack: center;
-
-        .image {
-          height: 100%;
-          -webkit-background-size: contain;
-          background: no-repeat center center;
-          -webkit-transform: translate3d(0,0,0);
-        }
-      }
-    }
-  }
+  @include image-scroller(contain);
 }
