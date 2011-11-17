@@ -64,6 +64,18 @@ dojo.declare('toura.components._ImageScroller', [ toura.components._ImageGallery
     this.scrollToIndex(this.currentImageIndex);
   },
 
+  _setCurrentImageIndexAttr : function(imageIndex) {
+    this.inherited(arguments);
+
+    dojo.forEach(this.indicator.childNodes, function(child) {
+      dojo.removeClass(child, 'active');
+    });
+    dojo.addClass(this.indicator.childNodes[imageIndex], 'active');
+  },
+
+  _updateIndicator : function() {
+  },
+
   scrollToIndex : function(imageIndex) {
     if (!this.scrollerHandle) { return; }
     if (imageIndex === this.currentImageIndex) { return; }
