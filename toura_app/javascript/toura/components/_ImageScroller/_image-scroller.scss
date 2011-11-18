@@ -1,6 +1,10 @@
 .component.image-scroller {
   @include pullout;
 
+  ol.indicator {
+    line-height: .5;
+  }
+
   .wrapper {
     height: 100%;
 

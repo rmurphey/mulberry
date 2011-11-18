@@ -1,23 +1,14 @@
 .component.image-gallery {
   ol.indicator {
+    height: 10%;
+
     li {
       font-size: 60px;
-
-      @media (orientation: portrait) {
-        top: -5px;
-      }
-
-      @media (orientation: landscape) {
-        top: -2px;
-      }
     }
   }
 
-  ol.images {
-    li {
-      .image {
-        height: 90% !important;
-      }
-    }
+  .wrapper {
+    height: 85% !important;
+    margin-top: 10px;
   }
 }

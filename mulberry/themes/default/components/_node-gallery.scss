@@ -1,7 +1,13 @@
 .component.node-gallery {
   ol.indicator {
+    position: absolute;
+    height: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
     li {
-      top: -20px;
       font-size: 70px;
     }
   }
