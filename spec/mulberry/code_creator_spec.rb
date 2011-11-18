@@ -50,6 +50,17 @@ describe Mulberry::CodeCreator do
       js = File.join(@tmpdir, 'javascript', 'base.js')
       File.read(js).should == "dojo.require('client.components.FooBarBaz');\n"
     end
+    
+    it "should create the component styles" do
+      s = File.join(@tmpdir, 'javascript', 'components', 'FooBarBaz', '_foo-bar-baz.scss')
+      File.exists(s).should be_true
+      File.read(s).should match '.component.foo-bar-baz {'
+    end
+    
+    it "should import the component style in the base.scss" do
+      scss = File.join(@tmpdir, 'themes', 'default', 'base.scss')
+      File.read(scss).should match '@import \'../../javascript/components/FooBarBaz/foo-bar-baz\';'
+    end
   end
 
   describe "capability creation" do
