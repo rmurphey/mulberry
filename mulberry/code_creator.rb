@@ -17,7 +17,7 @@ module Mulberry
 
       js_dir = File.join(destination_dir, 'javascript')
       code_dir = File.join(js_dir, dirnames[code_type])
-      themes_dir = File.join(destination_dir, 'themes/default')
+      themes_dir = File.join(destination_dir, 'themes', 'default')
       theme_cssfile = "base.scss"
       
       code_filename = File.join(code_dir, "#{filename}.js")
