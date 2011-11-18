@@ -30,7 +30,7 @@ describe Mulberry::Asset::Node do
       [ :audio,       :audios,      :audios,          :audio          ],
       [ :video,       :videos,      :videos,          :video          ],
       [ :data,        :data,        :data,            :dataAsset      ],
-      [ :feed,        :feeds,       :feed,            :feeds          ],
+      [ :feed,        :feeds,       :feeds,           :feed           ],
       [ :location,    :locations,   :googleMapPins,   :googleMapPin   ]
     ].each do |factory_name, asset_group, data_group, data_name|
       it "should add #{asset_group.to_s} to the node" do
