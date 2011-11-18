@@ -1,0 +1,32 @@
+.component.page-nav {
+  color: #fff;
+
+  > .top {
+    @include chrome-gradient-flat;
+    @include box-shadow(0, 1px);
+  }
+
+  .tablet & > .top {
+    ul {
+      li.back,
+      li.more {
+        border-right: 1px solid #777;
+      }
+
+      li {
+        @include page-nav-button(back);
+        @include page-nav-button(home);
+        @include page-nav-button(menu);
+        @include page-nav-button(search);
+        @include page-nav-button(more);
+      }
+    }
+  }
+
+  .phone & > .top {
+    div {
+      @include page-nav-button(back);
+      @include page-nav-button(more);
+    }
+  }
+}

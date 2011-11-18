@@ -3,48 +3,34 @@ require File.join(File.expand_path(File.dirname(__FILE__)), '../../lib/builder')
 describe Builder::CSSMaker do
   before :each do
     @settings = {
-      :vars_path          => 'spec/fixtures/css/vars.scss',
-      :toura_base_path    => 'spec/fixtures/css/toura.scss',
-      :custom_base_path   => 'spec/fixtures/css/custom.scss',
-      :load_paths         => [ 'spec/fixtures/css/load_path' ]
+      :app_dir => File.join(File.dirname(__FILE__), '..', 'fixtures', 'css', 'javascript'),
+      :theme_dir => 'spec/fixtures/css/theme',
+      :vars => {
+        'foo' => 'bar'
+      }
     }
   end
 
-  it "should raise an error if no vars path or vars are provided" do
-    @settings[:vars_path] = nil
+  it "should raise an error if no vars are provided" do
+    @settings[:vars] = nil
     lambda {
       Builder::CSSMaker.new(@settings)
     }.should raise_error
   end
 
-  it "should not raise an error if no vars path is provided but vars are provided" do
-    @settings[:vars_path] = nil
-    @settings[:vars] = {}
+  it "should raise an error if no theme path is provided" do
+    @settings.delete(:theme_dir)
     lambda {
-      Builder::CSSMaker.new(@settings)
-    }.should_not raise_error
-  end
-
-  it "should raise an error if no toura base path is provided" do
-    @settings.delete(:toura_base_path)
-    lambda {
-      Builder::CSSMaker.new(@settings)
+      Builder::CSSMakeker.new(@settings)
     }.should raise_error
   end
 
-  it "should not raise an error if no custom base path is provided" do
-    @settings.delete(:custom_base_path)
-    lambda {
-      Builder::CSSMaker.new(@settings)
-    }.should_not raise_error
-  end
-
-  it "should not throw an error if there is no file at the provided custom base path" do
-    @settings[:custom_base_path] = 'fake'
+  it "should throw an error if there is no file at the provided in the theme directory" do
+    @settings[:theme_dir] = 'fake'
 
     lambda {
       Builder::CSSMaker.new(@settings)
-    }.should_not raise_error
+    }.should raise_error
   end
 
   it "should properly render the css" do
@@ -53,16 +39,10 @@ describe Builder::CSSMaker do
     # test that the toura css was loaded
     css.should match '#toura'
 
-    # test that the vars css was loaded
-    css.should match '#vars'
-
-    # test that the custom css was loaded
-    css.should match '#custom'
-
-    # test that the custom file "wins"
-    css.should match '#000003'
+    # test that the theme css was loaded
+    css.should match '#theme'
 
     #test that we loaded files from the provided load paths
-    css.should match '#imported'
+    css.should match '#toura-imported'
   end
 end

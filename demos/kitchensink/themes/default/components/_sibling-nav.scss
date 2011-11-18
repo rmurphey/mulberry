@@ -1,0 +1,33 @@
+.component.sibling-nav {
+  font-size: 13px;
+  line-height: 15px;
+  @include chrome-gradient;
+  @include box-shadow(1px, 0);
+
+  color: #fff;
+
+  .handle {
+    @include chrome-gradient;
+    -webkit-box-shadow: 0 0px 2px 0 rgba(0, 0, 0, .5);
+  }
+
+  nav {
+    ol.nodes {
+      > li {
+        &.prev > span {
+          padding: 15px 15px 15px 0;
+        }
+
+        &.next > span {
+          padding: 15px 0 15px 15px;
+        }
+
+        // nudge for nicer vertical alignment
+        .ios & span {
+          position: relative;
+          top: -.2em;
+        }
+      }
+    }
+  }
+}

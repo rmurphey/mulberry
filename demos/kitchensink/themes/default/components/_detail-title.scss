@@ -1,0 +1,11 @@
+.component.detail-title {
+  @include nav;
+
+  h1 {
+    display: block;
+    -webkit-box-flex: 1;
+    text-align: right;
+    font-weight: normal;
+    padding-right: 12px;
+  }
+}

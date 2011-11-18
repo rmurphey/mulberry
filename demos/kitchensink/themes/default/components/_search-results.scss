@@ -1,0 +1,24 @@
+.component.search-results {
+  li {
+    line-height: 22px;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+
+    @include asset-icon(image);
+    @include asset-icon(map);
+    @include asset-icon(audio);
+    @include asset-icon(video);
+
+    a {
+      @include text-color;
+      display: block;
+      padding-right: 50px;
+    }
+
+    &.more-results {
+      font-size: .9em;
+      font-style: italic;
+      border-bottom: none;
+    }
+  }
+}
