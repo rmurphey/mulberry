@@ -113,8 +113,9 @@ module Mulberry
       ASSETS.each do |asset_group, asset_class|
         if config[asset_group]
           group = DATA_NAME_MAP[asset_group] || asset_group.to_sym
+          assets = config[asset_group]
 
-          config[asset_group].each do |asset|
+          (assets.is_a?(String) ? [assets] : assets).each do |asset|
             a = asset_class.new(asset, @assets_dir)
 
             node.add_asset a, group
