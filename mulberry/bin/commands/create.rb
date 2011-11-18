@@ -1,7 +1,7 @@
 module Mulberry
   module Command
     class Create
-      def commands
+      def self.commands
         {
           :page       => {},
           :feed       => {},
@@ -30,6 +30,7 @@ module Mulberry
         dir          = Mulberry.get_app_dir
         content_type = args.shift.to_sym
         filenames    = args
+        commands     = Mulberry::Command::Create.commands
 
         raise "You must specify a file to create." unless filenames.length > 0
 
