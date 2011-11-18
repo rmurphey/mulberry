@@ -1,4 +1,10 @@
 .component.node-gallery {
+  @include row-container;
+
+  .wrapper {
+    -webkit-box-flex: 1;
+  }
+
   ol.indicator {
     position: absolute;
     height: 40px;
