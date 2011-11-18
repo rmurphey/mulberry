@@ -6,6 +6,8 @@ require 'bundler/setup'
 require 'yaml'
 require 'json'
 require 'fileutils'
+require 'pathname'
+require 'rbconfig'
 
 require 'mulberry/data'
 require 'mulberry/server'
@@ -37,6 +39,19 @@ module Mulberry
     VERSION
   end
 
+  def self.host_os
+    case Config::CONFIG['host_os']
+      when /mswin|windows/i
+        :windows
+      when /linux/i
+        :linux
+      when /darwin/i
+        :macos
+      else
+        :unknown
+    end
+  end
+
   def self.get_app_dir(dir = nil)
     dir ||= Dir.pwd
     raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(dir)
@@ -47,6 +62,35 @@ module Mulberry
     dir ||= ''
     File.exists?(dir) && File.exists?(File.join(dir, 'config.yml'))
   end
+
+  def self.root
+    find_root_with_flag
+  end
+
+  def self.template_root
+    File.join(root, 'mulberry', 'templates')
+  end
+
+  private
+  # Taken from http://apidock.com/rails/Rails/Engine/find_root_with_flag
+  def self.find_root_with_flag(flag = 'LICENSE.txt', default=nil)
+    root_path = File.expand_path(File.dirname(__FILE__))
+
+    # Minor change here: the tests will actually create a path that is wrong since __FILE__
+    # is relative to the including file, e.g. /Users/mattrogish/src/mulberry/testapp/mulberry/mulberry.rb"
+    # so we go up a dir by checking the parent, File.directory?(File.dirname(root_path)) => /Users/mattrogish/src/mulberry/testapp/
+    while root_path && (File.directory?(root_path) || File.directory?(File.dirname(root_path)) ) && !File.exist?("#{root_path}/#{flag}")
+      parent = File.dirname(root_path)
+      root_path = parent != root_path && parent
+    end
+
+    root = File.exist?("#{root_path}/#{flag}") ? root_path : default
+    raise "Could not find root path for #{self}" unless root
+
+    host_os == :windows ? Pathname.new(root).expand_path : Pathname.new(root).realpath
+  end
+
+  public
 
   class App
     attr_reader         :name,

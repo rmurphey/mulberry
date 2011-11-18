@@ -17,7 +17,7 @@ module Mulberry
         raise "Unknown content type #{content_type}"
       end
 
-      templates_dir = File.expand_path('../templates/content', __FILE__)
+      templates_dir = File.join(Mulberry.template_root, 'content')
       extension = EXTENSIONS[content_type.to_sym] || 'yml'
       dest = File.join(destination_dir, DESTINATIONS[content_type.to_sym], "#{filename}.#{extension}")
 

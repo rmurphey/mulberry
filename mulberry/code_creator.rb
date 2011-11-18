@@ -11,7 +11,7 @@ module Mulberry
 
       raise "Don't know how to create code type #{code_type}" unless dirnames[code_type]
 
-      code_templates_dir = File.expand_path('../templates/code', __FILE__)
+      code_templates_dir = File.join(Mulberry.template_root, 'code')
       puts code_templates_dir
       template = File.read(File.join(code_templates_dir, "#{code_type}.js"))
 
