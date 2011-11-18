@@ -5,9 +5,7 @@ describe Mulberry::Command::Test do
 
   describe "#initialization" do
     it "should initalize" do
-      dir = Mulberry.get_app_dir 'testapp'
-      app = Mulberry::App.new(dir)
-      app.device_build(:test => true)
+      @app.device_build(:test => true)
     end
   end
 end

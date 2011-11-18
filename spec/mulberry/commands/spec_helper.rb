@@ -20,13 +20,16 @@ module Mulberry
 
       def setup_app(describe_block)
         describe_block.before :each do
+          # Just in case
+          FileUtils.rm_rf File.join(Mulberry.root, 'testapp')
+
           Mulberry::App.scaffold('testapp', true)
           @app = Mulberry::App.new 'testapp'
           @app.should_not be_nil
         end
 
         describe_block.after :each do
-          FileUtils.rm_rf 'testapp'
+          FileUtils.rm_rf File.join(Mulberry.root, 'testapp')
         end
       end
     end

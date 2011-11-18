@@ -1,8 +1,7 @@
 module Mulberry
   module Command
     class Serve
-      def initialize(args)
-
+      def initialize(args, additional_options = {})
         default_port = 3001
         options = { :port => default_port }
 
@@ -22,7 +21,7 @@ module Mulberry
 
         begin
           app = Mulberry::App.new(dir)
-          app.serve(options)
+          app.serve(options) unless additional_options[:dontserve]
         rescue ConfigError => ce
           puts "Configuration error: #{ce}"
         end
