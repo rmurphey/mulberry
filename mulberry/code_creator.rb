@@ -67,6 +67,7 @@ module Mulberry
         end
 
         puts "Template is at #{File.join(component_resource_dir, "#{filename}.haml")}"
+        puts "Styles are at #{File.join(component_resource_dir, "_#{filename.underscore.dasherize.downcase}.scss")}"
       end
     end
   end
