@@ -9,7 +9,7 @@ describe Mulberry::Command::Create do
 
   describe '#initialize' do
     before :each do
-      Dir.chdir 'testapp'
+      Dir.chdir File.join(Mulberry.root, @app.name)
     end
 
     %w( page feed data location component template capability datasource).each do |command|
@@ -19,7 +19,7 @@ describe Mulberry::Command::Create do
     end
 
     after :each do
-      Dir.chdir '..'
+      Dir.chdir Mulberry.root
     end
   end
 end

@@ -5,7 +5,7 @@ describe Mulberry::Command::Create do
 
   describe '#initialize' do
     it "should initalize" do
-      Mulberry::Command::Data.new(['testapp'])
+      Mulberry::Command::Data.new([@app.name])
     end
   end
 end

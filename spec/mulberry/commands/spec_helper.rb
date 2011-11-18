@@ -20,16 +20,23 @@ module Mulberry
 
       def setup_app(describe_block)
         describe_block.before :each do
-          # Just in case
-          FileUtils.rm_rf File.join(Mulberry.root, 'testapp')
+          name = 'command_test_app'
 
-          Mulberry::App.scaffold('testapp', true)
-          @app = Mulberry::App.new 'testapp'
+          Dir.chdir Mulberry.root
+
+          # Just in case
+          FileUtils.rm_rf File.join(Mulberry.root, name)
+
+          Mulberry::App.scaffold(name, true)
+          @app = Mulberry::App.new name
           @app.should_not be_nil
+
         end
 
         describe_block.after :each do
-          FileUtils.rm_rf File.join(Mulberry.root, 'testapp')
+          Dir.chdir Mulberry.root
+
+          FileUtils.rm_rf File.join(Mulberry.root, @app.name)
         end
       end
     end
