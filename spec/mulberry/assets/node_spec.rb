@@ -1,6 +1,9 @@
 require 'spec/spec_helper'
+require 'fakefs/spec_helpers'
 
 describe Mulberry::Asset::Node do
+  include FakeFS::SpecHelpers
+
   before :each do
     @node = Factory.build :node, :asset_name => 'foo'
   end
@@ -22,19 +25,22 @@ describe Mulberry::Asset::Node do
   end
 
   describe "#add_asset" do
-    it "should add regular assets to the node" do
-      [
-        [ :image,       :images       ],
-        [ :audio,       :audios       ],
-        [ :video,       :videos       ],
-        [ :data,        :data         ],
-        [ :feed,        :feeds        ],
-        [ :location,    :locations    ]
-      ].each do |asset_type|
-        asset = Factory.build asset_type[0]
-        @node.add_asset asset, asset_type[1]
-        @node.item[asset_type[1]].first[asset_type[0]].length.should be 1
-        @node.item[asset_type[1]].first[asset_type[0]]['_reference'].should == asset.item[:id]
+    [
+      [ :image,       :images,      :images,          :image          ],
+      [ :audio,       :audios,      :audios,          :audio          ],
+      [ :video,       :videos,      :videos,          :video          ],
+      [ :data,        :data,        :data,            :dataAsset      ],
+      [ :feed,        :feeds,       :feed,            :feeds          ],
+      [ :location,    :locations,   :googleMapPins,   :googleMapPin   ]
+    ].each do |factory_name, asset_group, data_group, data_name|
+      it "should add #{asset_group.to_s} to the node" do
+        asset = Factory.build factory_name
+
+        @node.add_asset asset, asset_group
+
+        @node.item[data_group].should_not be_nil
+        @node.item[data_group].length.should be 1
+        @node.item[data_group].first[data_name]['_reference'].should == asset.item[:id]
       end
     end
 
