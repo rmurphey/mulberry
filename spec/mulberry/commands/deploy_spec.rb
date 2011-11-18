@@ -1,11 +1,11 @@
 require 'mulberry/commands/spec_helper.rb'
 
-describe Mulberry::Command::Create do
+describe Mulberry::Command::Deploy do
   include Mulberry::Command::SpecHelpers
 
   describe '#initialize' do
     it "should initalize" do
-      @app.device_build
+      Mulberry::Command::Deploy.new [@app.name]
     end
   end
 end
