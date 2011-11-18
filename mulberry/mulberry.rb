@@ -86,7 +86,7 @@ module Mulberry
       root_path = parent != root_path && parent
     end
 
-    root = File.exist?("#{root_path}/#{flag}") ? root_path : default
+    root = File.exist?(File.join(root_path, flag)) ? root_path : default
     raise "Could not find root path for #{self}" unless root
 
     host_os == :windows ? Pathname.new(root).expand_path : Pathname.new(root).realpath
