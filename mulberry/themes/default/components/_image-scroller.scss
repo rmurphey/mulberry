@@ -6,13 +6,10 @@
       position: relative;
       display: inline;
 
-      &:before {
-        content: '\00b7';
-        color: #fff;
-        -webkit-text-stroke: .5px #ccc;
-      }
+      color: #fff;
+      -webkit-text-stroke: .5px #ccc;
 
-      &.active:before {
+      &.active {
         color: #666;
         -webkit-text-stroke: 0;
       }
