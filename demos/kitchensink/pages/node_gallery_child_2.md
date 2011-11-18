@@ -8,4 +8,5 @@ template:
 images:
   - beardy.jpg
 ---
+This is node 2.
 

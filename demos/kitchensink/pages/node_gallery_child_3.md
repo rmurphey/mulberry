@@ -7,4 +7,5 @@ template:
 images:
   - bgoodman.jpg
 ---
+This is node 3.
 
