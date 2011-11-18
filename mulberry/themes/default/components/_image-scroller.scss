@@ -15,10 +15,15 @@
       &:before {
         content: '\00b7';
         color: #fff;
+        -webkit-text-stroke: .5px #ccc;
       }
 
       &.active:before {
+        font-size: .9em;
         color: #666;
+        text-shadow: none;
+        position: relative;
+        top: -.04em;
       }
     }
   }

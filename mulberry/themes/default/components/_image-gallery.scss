@@ -1,11 +1,8 @@
 .component.image-gallery {
   ol.indicator {
     li {
-      top: 1px;
-
-      &:before {
-        font-size: 50px;
-      }
+      top: -5px;
+      font-size: 60px;
     }
   }
 
