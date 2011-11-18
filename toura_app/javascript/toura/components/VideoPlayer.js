@@ -32,7 +32,12 @@ dojo.declare('toura.components.VideoPlayer', [ toura.components._MediaPlayer ], 
   setupConnections : function() {
     this.inherited(arguments);
 
-    if (this.useHtml5Player) { return; }
+    if (this.useHtml5Player) { 
+      // we need to hide the video when the more drawer shows :(
+      this.subscribe('/MoreDrawer/show', dojo.hitch(this, 'disable'));
+      this.subscribe('/MoreDrawer/hide', dojo.hitch(this, 'enable'));
+      return; 
+    }
 
     this.connect(this.videoPlaceholder, 'click', '_play');
 
