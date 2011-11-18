@@ -12,9 +12,6 @@ module Mulberry
       end
 
       def self.included(example_group)
-        # example_group.module_eval do
-        #   include FakeFS::SpecHelpers
-        # end
         example_group.extend self
       end
 
