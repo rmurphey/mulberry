@@ -1,0 +1,16 @@
+.component.app-nav {
+  @include chrome-gradient;
+  @include box-shadow(0, 1px);
+
+  .tablet & {
+    -webkit-border-radius: 5px;
+
+    li {
+      border-right: 1px solid #999;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}

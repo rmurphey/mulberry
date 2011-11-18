@@ -1,0 +1,97 @@
+.component.drop-down-text {
+  z-index: 1;
+  position: absolute;
+  overflow: visible;
+
+  color: $chrome-color-text;
+  line-height: 1.2em;
+
+  .phone & {
+    font-size: 12px;
+  }
+
+  .tablet & {
+    font-size: 16px;
+  }
+
+  @mixin hide-fade {
+    opacity: 1;
+    -webkit-transition: opacity .3s ease-in;
+
+    &.hidden {
+      opacity: 0;
+      display: block !important;
+    }
+  }
+
+  .button {
+    margin: 0 auto;
+    background-color: $chrome-color-base;
+    -webkit-border-radius: 0 0 8px 8px;
+    text-align: center;
+    padding: 5px;
+
+    .phone & {
+      width: 100px;
+    }
+
+    .tablet & {
+      width: 130px;
+    }
+
+    span {
+      .phone & {
+        padding-left: 15px;
+      }
+
+      .tablet & {
+        padding-left: 20px;
+      }
+
+      background: {
+        image: url(../icons/icon-target.png);
+        repeat: no-repeat;
+        position-y: center;
+        size: 12px 12px;
+      }
+    }
+  }
+
+  .open-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50px;
+
+    .button.open {
+      @include hide-fade;
+    }
+  }
+
+  .text-wrapper {
+    .phone & {
+      width: 250px;
+    }
+
+    .tablet & {
+      width: 350px;
+    }
+
+    &.hidden {
+      height: 0;
+    }
+
+    z-index: -1;
+
+    margin: 0 auto;
+    @include hide-fade;
+
+    .body-text-container {
+      background-color: $chrome-color-base;
+    }
+
+    p {
+      padding: 15px;
+    }
+  }
+}

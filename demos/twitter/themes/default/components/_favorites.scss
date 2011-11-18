@@ -1,0 +1,52 @@
+.component.favorites {
+  height: 100%;
+
+  @include background-shadow;
+
+  li {
+    @include column-container;
+
+    line-height: 22px;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    min-height: 50px;
+
+    a {
+      @include text-color;
+      @include column-container;
+      -webkit-box-flex: 1;
+      margin-right: 10px;
+
+      .img {
+        width: 67px;
+        height: 50px;
+        -webkit-background-size: cover;
+        background: no-repeat center center;
+        margin-right: 10px;
+
+        &.default {
+          background-image: url(../icons/icon-favorite.png);
+          -webkit-background-size: 67px 50px;
+        }
+      }
+
+      .text {
+        -webkit-box-flex: 1;
+
+        h2 {
+          font-weight: normal;
+        }
+
+        p {
+          font-size: 0.9em;
+          font-style: italic;
+        }
+      }
+
+    }
+
+    .delete {
+      width: 30px;
+    }
+  }
+}

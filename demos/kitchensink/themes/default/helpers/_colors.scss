@@ -1,0 +1,21 @@
+$text-color-dark: #000;
+$text-color-light: #fff;
+$chrome-color-base: rgb(80,80,80);
+$chrome-color-text: #fff;
+
+@mixin text-color($which-color: base) {
+  @if $user-font-scheme == dark  {
+    @if $which-color == base {
+      color: $text-color-dark;
+    } @else {
+      color: $text-color-light;
+    }
+  } @else if $user-font-scheme == light {
+    @if $which-color == base {
+      color: $text-color-light;
+    } @else {
+      color: $text-color-dark;
+    }
+  }
+}
+
