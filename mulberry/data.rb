@@ -81,7 +81,7 @@ module Mulberry
 
     def load_data_for_page(page_name, children = [])
       page_file = File.join(@source_dir, 'pages', "#{page_name}.md")
-      raise "Can't find #{page_name}.md in pages directory (#{page_file})" unless File.exists? item_file
+      raise "Can't find #{page_name}.md in pages directory (#{page_file})" unless File.exists? page_file
 
       frontmatter, content = File.read(page_file).split('---').delete_if { |p| p.empty? }
       content ||= ''
