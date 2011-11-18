@@ -10,7 +10,7 @@ module Mulberry
       def asset=(asset)
         return unless asset
         @page = asset
-        @asset_name = asset[:page_name]
+        @asset_name = asset[:node_name]
       end
 
       def asset_type_dir

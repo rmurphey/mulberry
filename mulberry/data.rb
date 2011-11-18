@@ -65,36 +65,36 @@ module Mulberry
     def read_sitemap
       f = File.join(@source_dir, SITEMAP)
       sitemap = (File.exists?(f) && YAML.load_file(f)) || []
-      sitemap.each { |item| process_sitemap_item item }
+      sitemap.each { |page| process_page page }
     end
 
-    def process_sitemap_item(item)
-      if item.is_a? Hash
-        load_data_for_item(
-          item.keys.first,
-          item.values.first.map { |child| process_sitemap_item(child).reference }
+    def process_page(page)
+      if page.is_a? Hash
+        load_data_for_page(
+          page.keys.first,
+          page.values.first.map { |child| process_page(child).reference }
         )
       else
-        load_data_for_item(item)
+        load_data_for_page(page)
       end
     end
 
-    def load_data_for_item(item_name, children = [])
-      item_file = File.join(@source_dir, 'pages', "#{item_name}.md")
-      raise "Can't find #{item_name}.md in pages directory (#{item_file})" unless File.exists? item_file
+    def load_data_for_page(page_name, children = [])
+      page_file = File.join(@source_dir, 'pages', "#{page_name}.md")
+      raise "Can't find #{page_name}.md in pages directory (#{page_file})" unless File.exists? item_file
 
-      frontmatter, content = File.read(item_file).split('---').delete_if { |p| p.empty? }
+      frontmatter, content = File.read(page_file).split('---').delete_if { |p| p.empty? }
       content ||= ''
       config = YAML.load(frontmatter)
 
       node = Mulberry::Asset::Node.new({
-        :page_name          =>  item_name,
-        :name               =>  config['title'] || item_name,
+        :node_name          =>  page_name,
+        :name               =>  config['title'] || page_name,
         :pageController     =>  config['template'],
         :children           =>  children
       })
 
-      body_text = Mulberry::Asset::Text.new(content, item_name)
+      body_text = Mulberry::Asset::Text.new(content, page_name)
 
       add_asset body_text
       node.add_asset body_text, :body_text
