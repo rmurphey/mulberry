@@ -45,15 +45,19 @@ module Mulberry
         # create the resource dir for the component
         component_resource_dir = File.join(code_dir, filename)
         FileUtils.mkdir_p(component_resource_dir) unless File.exists? component_resource_dir
+        
+        # get file templates
+        haml_template = File.read(File.join(code_templates_dir, "#{code_type}.haml"))
+        scss_template = File.read(File.join(code_templates_dir, "#{code_type}.scss"))
 
         # create the basic haml template for the component
         File.open(File.join(component_resource_dir, "#{filename}.haml"), 'w') do |f|
-          f.write ".component.#{filename.underscore.dasherize.downcase} (This is the #{filename} component)\n"
+          f.write haml_template.gsub('{{name}}', filename).gsub('{{dashname}}', filename.underscore.dasherize.downcase)
         end
         
         # create the SCSS file for the component
         File.open(File.join(component_resource_dir, "_#{filename.underscore.dasherize.downcase}.scss"), 'w') do |f|
-          f.write "// styles for #{filename} component\n.component.#{filename.underscore.dasherize.downcase} {\n  \n}\n"
+          f.write scss_template.gsub('{{name}}', filename).gsub('{{dashname}}', filename.underscore.dasherize.downcase)
         end
         
         # add the import statement to the theme css file
