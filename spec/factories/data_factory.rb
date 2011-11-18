@@ -4,7 +4,7 @@ require 'assets/data'
 include Mulberry::Asset
 
 FactoryGirl.define do
-  factory :data do
+  factory :data, :class => Mulberry::Asset::Data do
     asset 'foo.yml'
     parent_assets_dir do
       parent_dir = nil
