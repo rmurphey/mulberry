@@ -23,11 +23,19 @@ describe Mulberry::Asset::Node do
 
   describe "#add_asset" do
     it "should add regular assets to the node" do
-      image = Factory.build :image
-      @node.add_asset image, :images
-
-      @node.item[:images].length.should be 1
-      @node.item[:images].first[:image]['_reference'].should == image.item[:id]
+      [
+        [ :image,       :images       ],
+        [ :audio,       :audios       ],
+        [ :video,       :videos       ],
+        [ :data,        :data         ],
+        [ :feed,        :feeds        ],
+        [ :location,    :locations    ]
+      ].each do |asset_type|
+        asset = Factory.build asset_type[0]
+        @node.add_asset asset, asset_type[1]
+        @node.item[asset_type[1]].first[asset_type[0]].length.should be 1
+        @node.item[asset_type[1]].first[asset_type[0]]['_reference'].should == asset.item[:id]
+      end
     end
 
     it "should add header images to the node" do

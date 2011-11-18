@@ -39,6 +39,10 @@ module Mulberry
           @page[:featuredImage] = ref
         when :body_text
           @page[:bodyText] = ref
+        when :locations
+          # ugh
+          @page[:googleMapPins] ||= []
+          @page[:googleMapPins] << ref
         else
           @page[type] ||= []
           @page[type] << ref
