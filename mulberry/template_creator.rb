@@ -9,7 +9,7 @@ module Mulberry
         raise "Component #{template_filename} already exists"
       end
 
-      template_template = File.read(File.expand_path('../templates/template.yml', __FILE__))
+      template_template = File.read(File.join(Mulberry::Directories.templates, 'template.yml'))
 
       File.open(template_filename, 'w') do |f|
         f.write template_template.gsub('{{template_name}}', filename)
