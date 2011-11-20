@@ -12,5 +12,4 @@ FactoryGirl.define do
   factory :image_remote, :parent => :image do
     asset "http://mulberry.com/foo.jpg"
   end
-
 end
