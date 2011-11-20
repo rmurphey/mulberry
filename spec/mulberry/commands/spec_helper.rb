@@ -19,10 +19,10 @@ module Mulberry
         describe_block.before :each do
           name = 'command_test_app'
 
-          Dir.chdir Mulberry.root
+          Dir.chdir Mulberry::Directories.root
 
           # Just in case
-          FileUtils.rm_rf File.join(Mulberry.root, name)
+          FileUtils.rm_rf File.join(Mulberry::Directories.root, name)
 
           Mulberry::App.scaffold(name, true)
           @app = Mulberry::App.new name
@@ -31,9 +31,9 @@ module Mulberry
         end
 
         describe_block.after :each do
-          Dir.chdir Mulberry.root
+          Dir.chdir Mulberry::Directories.root
 
-          FileUtils.rm_rf File.join(Mulberry.root, @app.name)
+          FileUtils.rm_rf File.join(Mulberry::Directories.root, @app.name)
         end
       end
     end

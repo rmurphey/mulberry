@@ -6,7 +6,7 @@ describe Mulberry::Command::Create do
   describe '#initialize' do
     it "should initalize" do
       begin
-        Dir.chdir Mulberry.root
+        Dir.chdir Mulberry::Directories.root
         FileUtils.rm_rf 'fooapp'
         Mulberry::Command::Scaffold.new(['fooapp'])
       ensure

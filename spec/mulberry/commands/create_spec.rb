@@ -18,7 +18,7 @@ describe Mulberry::Command::Create do
 
   describe '#initialize' do
     before :each do
-      Dir.chdir File.join(Mulberry.root, @app.name)
+      Dir.chdir File.join(Mulberry::Directories.root, @app.name)
     end
 
     Mulberry::Command::Create.commands.each do |command|
@@ -28,7 +28,7 @@ describe Mulberry::Command::Create do
     end
 
     after :each do
-      Dir.chdir Mulberry.root
+      Dir.chdir Mulberry::Directories.root
     end
   end
 end
