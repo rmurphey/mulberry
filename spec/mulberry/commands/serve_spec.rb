@@ -4,20 +4,23 @@ describe Mulberry::Command::Test do
   include Mulberry::Command::SpecHelpers
 
   describe "#initialization" do
+
+    def serve
+      Mulberry::Command::Serve.new([@app.name], :running_under_test => true)
+    end
+
     it "should initalize" do
-      Mulberry::Command::Serve.new([@app.name], :dontserve => true)
+      serve
     end
 
     it "should support changing the port" do
       ARGV = ["-p", "3002"]
-
-      Mulberry::Command::Serve.new([@app.name], :dontserve => true)
+      serve
     end
 
     it "should support verbose mode" do
       ARGV = ["-v"]
-
-      Mulberry::Command::Serve.new([@app.name], :dontserve => true)
+      serve
     end
   end
 end
