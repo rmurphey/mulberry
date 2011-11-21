@@ -6,7 +6,8 @@ module Mulberry
       dirnames = {
         'component'   =>  'components',
         'capability'  =>  'capabilities',
-        'datasource'  =>  'data'
+        'datasource'  =>  'data',
+        'base'        =>  '.'
       }
 
       raise "Don't know how to create code type #{code_type}" unless dirnames[code_type]

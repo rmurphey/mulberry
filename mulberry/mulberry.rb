@@ -13,6 +13,7 @@ require 'deep_merge'
 require 'mulberry/data'
 require 'mulberry/server'
 require 'mulberry/build_helper'
+require 'mulberry/code_creator'
 require 'lib/builder'
 
 module Mulberry
@@ -181,6 +182,8 @@ module Mulberry
         FileUtils.mkdir dir
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
+
+      Mulberry::CodeCreator.new('base', base, 'base')
 
       asset_dirs = Dir.entries File.join(base, 'assets')
 
