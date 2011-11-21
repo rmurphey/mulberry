@@ -253,7 +253,7 @@ module Builder
         FileUtils.mkdir_p(permastore)
         FileUtils.cp_r(@project_dir, permastore)
 
-        if @target['build_type'] == 'mulberry'
+        if @target['build_type'] == 'mulberry' && @target['device_os'] == 'android'
           @location = File.join(permastore, 'android')
           FileUtils.cd @location
 

@@ -1,9 +1,33 @@
-require 'mulberry/page'
 require 'active_support/inflector'
+
+require 'mulberry/assets/node'
+require 'mulberry/assets/text'
+require 'mulberry/assets/image'
+require 'mulberry/assets/video'
+require 'mulberry/assets/audio'
+require 'mulberry/assets/data'
+require 'mulberry/assets/location'
+require 'mulberry/assets/feed'
+require 'mulberry/assets/header_image'
 
 module Mulberry
   class Data
     SITEMAP   = 'sitemap.yml'
+
+    ASSETS = {
+      'images'      =>  Mulberry::Asset::Image,
+      'audios'      =>  Mulberry::Asset::Audio,
+      'videos'      =>  Mulberry::Asset::Video,
+      'data'        =>  Mulberry::Asset::Data,
+      'locations'   =>  Mulberry::Asset::Location,
+      'feeds'       =>  Mulberry::Asset::Feed
+    }
+
+    DATA_NAME_MAP = {
+      'locations'   => :googleMapPins,
+      'data'        => :dataAssets
+    }
+
     attr_reader :source_dir, :assets_dir
 
     def initialize(app)
@@ -41,18 +65,77 @@ module Mulberry
     def read_sitemap
       f = File.join(@source_dir, SITEMAP)
       sitemap = (File.exists?(f) && YAML.load_file(f)) || []
-      sitemap.each { |node| Mulberry::Asset::Page.new(node, self) }
+      sitemap.each { |page| process_page page }
     end
 
-    def do_contexts
-      text_assets = {}
+    def process_page(page)
+      if page.is_a? Hash
+        load_data_for_page(
+          page.keys.first,
+          page.values.first.map { |child| process_page(child).reference }
+        )
+      else
+        load_data_for_page(page)
+      end
+    end
 
-      @items.each do |item|
-        if item[:type] == 'text-asset'
-          text_assets[item[:id]] = item
+    def load_data_for_page(page_name, children = [])
+      page_file = File.join(@source_dir, 'pages', "#{page_name}.md")
+      raise "Can't find #{page_name}.md in pages directory (#{page_file})" unless File.exists? page_file
+
+      frontmatter, content = File.read(page_file).split('---').delete_if { |p| p.empty? }
+      content ||= ''
+      config = YAML.load(frontmatter)
+
+      node = Mulberry::Asset::Node.new({
+        :node_name          =>  page_name,
+        :name               =>  config['title'] || page_name,
+        :pageController     =>  config['template'],
+        :children           =>  children
+      })
+
+      body_text = Mulberry::Asset::Text.new(content, page_name)
+
+      add_asset body_text
+      node.add_asset body_text, :body_text
+
+      {
+        :header_image   =>  Mulberry::Asset::HeaderImage,
+        :featured_image =>  Mulberry::Asset::Image
+      }.each do |k, klass|
+        if config[k.to_s]
+          a = klass.new(config[k.to_s], @assets_dir)
+          node.add_asset a, k
+          add_asset a
         end
       end
 
+      ASSETS.each do |asset_group, asset_class|
+        if config[asset_group]
+          group = DATA_NAME_MAP[asset_group] || asset_group.to_sym
+          assets = config[asset_group]
+
+          (assets.is_a?(String) ? [assets] : assets).each do |asset|
+            a = asset_class.new(asset, @assets_dir)
+
+            node.add_asset a, group
+
+            add_asset a
+            add_asset a.caption if a.caption
+          end
+        end
+      end
+
+      add_asset node
+    end
+
+    def add_asset(asset)
+      return unless asset
+      self << asset.item
+      asset
+    end
+
+    def do_contexts
       context_makers = {}
 
       [ :image, :audio, :video, 'google-map-pin'.to_sym ].each do |asset_type|
@@ -68,8 +151,8 @@ module Mulberry
       @items.each do |item|
         if item[:type] == 'node'
 
-          if item[:body_text]
-            text_asset = @items.find { |i| i[:id] == item[:body_text]['_reference'] }
+          if item[:bodyText]
+            text_asset = @items.find { |i| i[:id] == item[:bodyText]['_reference'] }
 
             text_asset[:contexts] << {
               :type       => 'node',

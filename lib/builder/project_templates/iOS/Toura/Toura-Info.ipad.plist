@@ -53,5 +53,7 @@
 	<true/>
 	<key>FlurryApiKey</key>
 	<string>${FlurryApiKey}</string>
+	<key>UIPrerenderedIcon</key>
+	<false/>
 </dict>
 </plist>
