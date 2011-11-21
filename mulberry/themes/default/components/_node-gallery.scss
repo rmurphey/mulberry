@@ -3,6 +3,10 @@
 
   .wrapper {
     -webkit-box-flex: 1;
+
+    .image {
+      -webkit-background-size: cover;
+    }
   }
 
   ol.indicator {
