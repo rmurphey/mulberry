@@ -85,3 +85,10 @@ flurry:
    api_key: flurry_ios_api_key
  android:
    api_key: flurry_android_api_key
+
+# Enter your toura api account information here
+toura_api:
+ host: api.toura.com
+ key: toura_api_key
+ secret: toura_api_secret
+
