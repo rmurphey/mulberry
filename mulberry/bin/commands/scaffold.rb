@@ -6,7 +6,7 @@ module Mulberry
 
         raise "You must specify an app name" unless dir
 
-        dir.gsub!(Dir.pwd + "/", "")
+        dir = dir.gsub(File.join(Dir.pwd, ""), "")
         Mulberry::App.scaffold(dir)
       end
     end
