@@ -2,6 +2,7 @@
 .sass-cache
 *.scssc
 demos/*/builds
+demos/*/tmp
 toura_app/javascript/mulberry/*
 toura_app/javascript/browser/*
 toura_app/javascript/dev/*
