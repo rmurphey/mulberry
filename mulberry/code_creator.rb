@@ -34,7 +34,7 @@ module Mulberry
       # add the dependency
       File.open(File.join(js_dir, 'base.js'), 'a') do |f|
         f.write "dojo.require('client.#{dirnames[code_type]}.#{filename}');\n"
-      end
+      end unless code_type == 'base'
 
       puts "Created #{code_type} at #{code_filename}"
 
