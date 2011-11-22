@@ -72,6 +72,7 @@ module Builder
       end
 
       if @build.settings[:skip_js_build]
+        @build.log "Skipping JavaScript build."
         return true
       end
 

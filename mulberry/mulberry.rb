@@ -246,6 +246,7 @@ module Mulberry
         :tmp_dir          =>  tmp_dir,
         :log_level        =>  -1,
         :force_js_build   =>  true,
+        :skip_js_build    =>  settings[:skip_js_build],
         :build_helper     =>  @helper
       })
     end
