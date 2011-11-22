@@ -8,6 +8,8 @@ dojo.require('toura.components._ImageGallery');
  * an image scroller. It should not be used on its own.
  */
 dojo.declare('toura.components._ImageScroller', [ toura.components._ImageGallery ], {
+  templateString : dojo.cache('toura.components', '_ImageScroller/ImageScroller.haml'),
+
   postMixInProperties : function() {
     this.inherited(arguments);
     this.useScroller = this.images.length > 1;
@@ -60,6 +62,18 @@ dojo.declare('toura.components._ImageScroller', [ toura.components._ImageGallery
     if (!this.scrollerHandle) { return; }
     this.scrollerHandle.refresh();
     this.scrollToIndex(this.currentImageIndex);
+  },
+
+  _setCurrentImageIndexAttr : function(imageIndex) {
+    this.inherited(arguments);
+
+    dojo.forEach(this.indicator.childNodes, function(child) {
+      dojo.removeClass(child, 'active');
+    });
+    dojo.addClass(this.indicator.childNodes[imageIndex], 'active');
+  },
+
+  _updateIndicator : function() {
   },
 
   scrollToIndex : function(imageIndex) {

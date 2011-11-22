@@ -1,11 +1,16 @@
-.component.node-gallery {
+.component.image-scroller {
   @include pullout;
 
+  ol.indicator {
+    line-height: 0;
+    overflow: visible;
+  }
+
   .wrapper {
-    height: 100%;
+    @include row-container;
 
     ol.images {
-      height: 100%;
+      @include pullout;
 
       li {
         height: 100%;
@@ -13,13 +18,12 @@
         text-align: center;
         // width set by component js
 
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
+        @include row-container;
         -webkit-box-pack: center;
 
         .image {
-          height: 100%;
-          -webkit-background-size: cover;
+          // @implement -webkit-background-size;
+          -webkit-box-flex: 1;
           background: no-repeat center center;
           -webkit-transform: translate3d(0,0,0);
         }

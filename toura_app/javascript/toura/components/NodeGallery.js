@@ -3,7 +3,6 @@ dojo.provide('toura.components.NodeGallery');
 dojo.require('toura.components._ImageScroller');
 
 dojo.declare('toura.components.NodeGallery', [ toura.components._Component, toura.components._ImageScroller ], {
-  templateString : dojo.cache('toura.components', 'NodeGallery/NodeGallery.haml'),
   'class' : 'node-gallery',
 
   prepareData : function() {
@@ -59,15 +58,6 @@ dojo.declare('toura.components.NodeGallery', [ toura.components._Component, tour
 
     toura.app.UI.click = params;
     toura.app.Router.go(child.url);
-  },
-
-  _setCurrentImageIndexAttr : function(imageIndex) {
-    this.inherited(arguments);
-
-    dojo.forEach(this.indicator.childNodes, function(child) {
-      dojo.removeClass(child, 'active');
-    });
-    dojo.addClass(this.indicator.childNodes[imageIndex], 'active');
   },
 
   onScrollEnd : function(imageIndex) {

@@ -82,7 +82,7 @@
       > li {
         width: 50%;
 
-        @include stack-container;
+        @include row-container;
         -webkit-box-pack: center;
 
         &.next {
