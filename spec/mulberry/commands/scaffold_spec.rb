@@ -26,9 +26,25 @@ describe Mulberry::Command::Create do
     it "should create any nonexistent pages in the sitemap" do
       Mulberry::Command::Scaffold.new([@app_name])
       Dir.chdir @app_name
-      File.open('sitemap.yml', 'a') { |f| f.write "\n- fake_page" }
+      File.open('sitemap.yml', 'a') do |f|
+        f.write "\n- fake_page"
+      end
       Mulberry::Command::Scaffold.new
       File.exists?(File.join('pages', 'fake_page.md')).should be_true
+    end
+
+    it "should not create any pages that already exist" do
+      Mulberry::Command::Scaffold.new([@app_name])
+      Dir.chdir @app_name
+      File.open('sitemap.yml', 'a') do |f|
+        f.write "\n- existing_page"
+      end
+      File.open(File.join('pages', 'existing_page.md'), 'w') do |f|
+        f.write 'existing page'
+      end
+      Mulberry::Command::Scaffold.new
+      File.exists?(File.join('pages', 'existing_page.md')).should be_true
+      File.read(File.join('pages', 'existing_page.md')).should include 'existing page'
     end
   end
 end
