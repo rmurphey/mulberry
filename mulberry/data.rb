@@ -48,8 +48,10 @@ module Mulberry
     def generate(include_version=false)
       do_contexts unless @contexts_complete
       result = {
-        :items    =>  @items,
-        :app      =>  @config
+        :items       =>  @items,
+        :app         =>  @config,
+        :appVersion  =>  TouraAPP.version
+
       }
       if (include_version)
         host = @config['toura_api']['host'] || 'api.toura.com'

@@ -31,8 +31,7 @@ module Mulberry
     'aboutNodeId'       =>  'node-about',
     'sharingUrl'        =>  'http://toura.com',
     'sharingText'       =>  '${name}',
-    'aboutEnabled'      =>  true,
-    'appVersion'        =>  TouraAPP.version
+    'aboutEnabled'      =>  true
   }
 
   SUPPORTED_DEVICES = {
