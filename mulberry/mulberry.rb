@@ -9,6 +9,8 @@ require 'fileutils'
 require 'pathname'
 require 'rbconfig'
 require 'deep_merge'
+require 'uri'
+require 'net/http'
 
 require 'mulberry/data'
 require 'mulberry/server'
@@ -279,6 +281,18 @@ module Mulberry
 
     def data
       @helper.data
+    end
+
+    def publish_ota(data_json)
+      host = @config['toura_api']['host'] || 'api.toura.com'
+      key, secret = @config['toura_api']['key'], @config['toura_api']['secret']
+      uri = URI("http://#{host}/applications/#{key}/ota_service/publish")
+      res = Net::HTTP.post_form(uri, 'secret' => secret, 'data_json' => data_json, 'format' => 'json')
+      if res.code == "200"
+        puts "OTA published successfully.  Version is #{JSON.parse(res.body)['version']}."
+      else
+        puts "Problem publishing OTA. Response (#{res.code}): #{res.body}"
+      end
     end
 
     private
