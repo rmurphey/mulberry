@@ -12,7 +12,7 @@ describe Mulberry::Command::Create do
       should_commands = %w(page feed data location component template capability datasource)
       actual_commands = Mulberry::Command::Create.commands.collect{ |cmd| cmd[0].to_s }
 
-     ((should_commands | actual_commands) - (should_commands & actual_commands)).should == []
+      should_commands.sort.should == actual_commands.sort
     end
   end
 
