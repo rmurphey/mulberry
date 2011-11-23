@@ -46,5 +46,14 @@ describe Mulberry::Command::Create do
       File.exists?(File.join('pages', 'existing_page.md')).should be_true
       File.read(File.join('pages', 'existing_page.md')).should include 'existing page'
     end
+
+    it "should scaffoled pages with full path" do
+      Mulberry::Command::Scaffold.new([@app_name])
+      File.open(File.join(@app_name, 'sitemap.yml'), 'a') do |f|
+        f.write "\n- fake_page"
+      end
+      Mulberry::Command::Scaffold.new(["#{Dir.pwd}/#{@app_name}"])
+      File.exists?(File.join(@app_name, 'pages', 'fake_page.md')).should be_true
+    end
   end
 end
