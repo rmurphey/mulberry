@@ -31,7 +31,8 @@ module Mulberry
     'aboutNodeId'       =>  'node-about',
     'sharingUrl'        =>  'http://toura.com',
     'sharingText'       =>  '${name}',
-    'aboutEnabled'      =>  true
+    'aboutEnabled'      =>  true,
+    'appVersion'        =>  TouraAPP.version
   }
 
   SUPPORTED_DEVICES = {
@@ -284,6 +285,9 @@ module Mulberry
     end
 
     def publish_ota(data_json)
+      unless data_json
+        data_json = JSON.pretty_generate(Mulberry::Data.new(self).generate(true))
+      end
       host = @config['toura_api']['host'] || 'api.toura.com'
       key, secret = @config['toura_api']['key'], @config['toura_api']['secret']
       uri = URI("http://#{host}/applications/#{key}/ota_service/publish")

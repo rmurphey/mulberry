@@ -2,16 +2,16 @@ module Mulberry
   module Command
     class PublishOta
       def initialize(args)
-        if (args.length < 1 )
-          dir = Mulberry.get_app_dir
-          data_json = STDIN.read # read data_json from pipe
-        elsif (args.length < 2)
-          dir = Mulberry.get_app_dir
-          data_json = File.read(args[0])
-        else
-          dir = Mulberry.get_app_dir args[0]
-          data_json = File.read(args[1])
-        end
+        data_json = nil
+        OptionParser.new do |opts|
+          opts.banner = "Usage: mulberry publish_ota [project_directory] [options]"
+
+          opts.on("-f FILE", "--file FILE", String, "Location of tour json file.") do |p|
+            data_json = File.read(p)
+          end
+        end.parse!
+
+        dir = Mulberry.get_app_dir args[0]
         app = Mulberry::App.new(dir).publish_ota(data_json)
       end
     end
