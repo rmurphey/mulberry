@@ -22,5 +22,13 @@ describe Mulberry::Command::Create do
     it "should initalize with full path" do
       Mulberry::Command::Scaffold.new(["#{Dir.pwd}/#{@app_name}"])
     end
+
+    it "should create any nonexistent pages in the sitemap" do
+      Mulberry::Command::Scaffold.new([@app_name])
+      Dir.chdir @app_name
+      File.open('sitemap.yml', 'a') { |f| f.write "\n- fake_page" }
+      Mulberry::Command::Scaffold.new
+      File.exists?(File.join('pages', 'fake_page.md')).should be_true
+    end
   end
 end
