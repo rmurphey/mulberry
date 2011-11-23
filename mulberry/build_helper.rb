@@ -168,6 +168,7 @@ module Mulberry
         else
           raise "Must configure toura_api credentials or version_url and update_url manually."
         end
+        settings['skip_version_check'] = false
       end
       settings
     end
