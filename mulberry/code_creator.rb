@@ -1,4 +1,5 @@
 require 'active_support/inflector'
+require 'pathname'
 
 module Mulberry
   class CodeCreator
@@ -17,6 +18,8 @@ module Mulberry
 
       js_dir = File.join(destination_dir, 'javascript')
       code_dir = File.join(js_dir, dirnames[code_type])
+      themes_dir = File.join(destination_dir, 'themes', 'default')
+      theme_cssfile = "base.scss"
 
       code_filename = File.join(code_dir, "#{filename}.js")
 
@@ -44,12 +47,28 @@ module Mulberry
         component_resource_dir = File.join(code_dir, filename)
         FileUtils.mkdir_p(component_resource_dir) unless File.exists? component_resource_dir
 
+        # get file templates
+        haml_template = File.read(File.join(code_templates_dir, "#{code_type}.haml"))
+        scss_template = File.read(File.join(code_templates_dir, "#{code_type}.scss"))
+
         # create the basic haml template for the component
         File.open(File.join(component_resource_dir, "#{filename}.haml"), 'w') do |f|
-          f.write ".component.#{filename.underscore.dasherize.downcase} (This is the #{filename} component)\n"
+          f.write haml_template.gsub('{{name}}', filename).gsub('{{dashname}}', filename.underscore.dasherize.downcase)
+        end
+
+        # create the SCSS file for the component
+        File.open(File.join(component_resource_dir, "_#{filename.underscore.dasherize.downcase}.scss"), 'w') do |f|
+          f.write scss_template.gsub('{{name}}', filename).gsub('{{dashname}}', filename.underscore.dasherize.downcase)
+        end
+
+        # add the import statement to the theme css file
+        File.open(File.join(themes_dir, theme_cssfile), 'a') do |f|
+          pathstring = Pathname.new("#{code_dir}/#{filename}/#{filename.underscore.dasherize.downcase}").relative_path_from(Pathname.new(themes_dir))
+          f.write "@import '#{pathstring}';\n"
         end
 
         puts "Template is at #{File.join(component_resource_dir, "#{filename}.haml")}"
+        puts "Styles are at #{File.join(component_resource_dir, "_#{filename.underscore.dasherize.downcase}.scss")}"
       end
     end
   end

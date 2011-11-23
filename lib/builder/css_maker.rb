@@ -16,7 +16,7 @@ module Builder
       end
 
       if settings[:vars_path].nil? or !settings.has_key? :vars_path
-        raise "CSSMaker requires a :vars_path" unless settings[:vars]
+        raise "CSSMaker requires a :vars_path if not setting :vars" unless settings[:vars]
       end
 
       app_dir = settings.has_key?(:app_dir) ? settings[:app_dir] : TouraAPP::Directories.javascript
