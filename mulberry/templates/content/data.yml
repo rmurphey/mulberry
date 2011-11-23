@@ -1,1 +1,9 @@
-# any valid YAML
+# you should provide a type property for your data asset; you can use the value
+# of this property to look up the asset from a component:
+#
+#   var data = this.baseObj.getData('some_type');
+#
+type:
+
+# you can provide any additional properties here; they will be available to you
+# as properties of the object that is returned by the getData method.
