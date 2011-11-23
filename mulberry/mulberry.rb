@@ -230,7 +230,7 @@ module Mulberry
       webrick_options.merge!({ :AccessLog => [nil, nil],
                                :Logger    => ::WEBrick::Log.new("/dev/null")
                             }) unless args[:verbose]
-
+      @helper.build = b
       Mulberry::Server.set :app, self
 
       Rack::Handler::WEBrick.run Mulberry::Server, webrick_options do |server|

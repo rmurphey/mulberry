@@ -122,12 +122,14 @@ module Mulberry
       os = params[:os] || 'ios'
 
       TouraAPP::Generators.config os, device_type,
-        {
-          "id" => @mulberry_app.id,
-          "build" => Time.now.to_i,
-          "skip_version_check" => true,
-          "debug" => true
-        }
+        @helper.config_settings.merge(
+          {
+            "id" => @mulberry_app.id,
+            "build" => Time.now.to_i,
+            "skip_version_check" => true,
+            "debug" => true
+          }
+        )
     end
 
     get '/:os/:type/javascript/toura/app/DevConfig.js' do
@@ -173,7 +175,7 @@ module Mulberry
       begin
         case params[:splat].first
         when 'tour.js'
-          "toura.data.local = #{JSON.pretty_generate(@helper.data)};"
+          "toura.data.local = #{JSON.pretty_generate(Mulberry::Data.new(@mulberry_app).generate(true))};"
         when 'templates.js'
           "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
         end
