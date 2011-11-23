@@ -32,7 +32,7 @@ describe Mulberry::CodeCreator do
     it "should create the component file" do
       c = File.join(@source_dir, 'javascript', 'components', 'FooBarBaz.js')
       File.exists?(c).should be_true
-      File.read(c).should match 'client.components.FooBarBaz'
+      File.read(c).should include 'client.components.FooBarBaz'
     end
 
     it "should create the component resources directory" do
@@ -44,23 +44,23 @@ describe Mulberry::CodeCreator do
     it "should create the component template" do
       t = File.join(@source_dir, 'javascript', 'components', 'FooBarBaz', 'FooBarBaz.haml')
       File.exists?(t).should be_true
-      File.read(t).should match '.component.foo-bar-baz'
+      File.read(t).should include '.component.foo-bar-baz'
     end
 
     it "should require the component in the base.js" do
       js = File.join(@source_dir, 'javascript', 'base.js')
-      File.read(js).should == "dojo.require('client.components.FooBarBaz');\n"
+      File.read(js).should include "dojo.require('client.components.FooBarBaz');\n"
     end
 
     it "should create the component styles" do
       s = File.join(@source_dir, 'javascript', 'components', 'FooBarBaz', '_foo-bar-baz.scss')
       File.exists?(s).should be_true
-      File.read(s).should match '.component.foo-bar-baz \{'
+      File.read(s).should include '.component.foo-bar-baz {'
     end
 
     it "should import the component style in the base.scss" do
        scss = File.join(@source_dir, 'themes', 'default', 'base.scss')
-       File.read(scss).should match '@import \'../../javascript/components/FooBarBaz/foo-bar-baz\';'
+       File.read(scss).should include '@import \'../../javascript/components/FooBarBaz/foo-bar-baz\';'
     end
 
     it "should include the component styling in the compiled css" do
@@ -78,7 +78,7 @@ describe Mulberry::CodeCreator do
                                           'link-color'       => '#FFFFFF'
                                         }
 
-      css_maker.render.should match '.component.foo-bar-baz'
+      css_maker.render.should include '.component.foo-bar-baz'
     end
 
 
@@ -92,12 +92,12 @@ describe Mulberry::CodeCreator do
     it "should create the capability file" do
       c = File.join(@source_dir, 'javascript', 'capabilities', 'BizBopBim.js')
       File.exists?(c).should be_true
-      File.read(c).should match 'client.capabilities.BizBopBim'
+      File.read(c).should include 'client.capabilities.BizBopBim'
     end
 
     it "should require the capability in the base.js" do
       js = File.join(@source_dir, 'javascript', 'base.js')
-      File.read(js).should == "dojo.require('client.capabilities.BizBopBim');\n"
+      File.read(js).should include "dojo.require('client.capabilities.BizBopBim');\n"
     end
   end
 end
