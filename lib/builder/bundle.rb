@@ -44,6 +44,10 @@ module Builder
       end
 
       position_build
+
+      FileUtils.cp reports[:gather][:data][:tour_json_location],
+                   @build.build_helper.project_settings[:bundle]
+
       true
     end
 

@@ -45,13 +45,26 @@ module Mulberry
     end
 
     public
-    def generate
+    def generate(include_version=false)
       do_contexts unless @contexts_complete
-
-      {
+      result = {
         :items    =>  @items,
         :app      =>  @config
       }
+      if (include_version)
+        host = @config['toura_api']['host'] || 'api.toura.com'
+        key = @config['toura_api']['key']
+        res = fetch "http://#{host}/applications/#{key}/ota_service/version_json"
+        if res.code == "200"
+          version = JSON.parse(res.body)['version']
+          new_version = version + 1
+          puts "Retrieved current version from #{host}: #{version}. Setting version for this to #{new_version}."
+          result['version'] = new_version
+        else
+          warn "Warning: Could not retrieve version from #{host}."
+        end
+      end
+      result
     end
 
     def <<(item)
@@ -196,5 +209,21 @@ module Mulberry
       id = asset_caption_object[:caption]['_reference']
       @items.find { |i| i[:id] == id }
     end
+
+    def fetch(uri_str, limit = 10)
+      raise 'too many HTTP redirects' if limit == 0
+
+      response = Net::HTTP.get_response(URI(uri_str))
+
+      case response
+      when Net::HTTPRedirection then
+        location = response['location']
+        warn "redirected to #{location}"
+        fetch(location, limit - 1)
+      else
+        response
+      end
+    end
+
   end
 end
