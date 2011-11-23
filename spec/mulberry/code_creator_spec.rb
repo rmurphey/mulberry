@@ -64,6 +64,12 @@ describe Mulberry::CodeCreator do
     end
 
     it "should include the component styling in the compiled css" do
+      s = File.join(@source_dir, 'javascript', 'components', 'FooBarBaz', '_foo-bar-baz.scss')
+
+      file_contents = File.read(s).gsub /\{.*\}/m, '{ background-color: #FFFFFF }'
+
+      File.open(s, 'w'){ |f| f.write(file_contents) }
+
       css_maker = Builder::CSSMaker.new :theme_dir => File.join(@source_dir, 'themes', 'default'),
                                         :vars => {
                                           'background-color' => '#FFFFFF',
