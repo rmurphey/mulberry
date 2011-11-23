@@ -9,7 +9,7 @@ toura.app.Routes = function() {
     pageState = pageState || {};
 
     var nodeModel = toura.app.Data.getModel(nodeId),
-        page = toura.app.UI.getCurrentPage(),
+        page = toura.app.UI.currentPage,
         pf, subscription;
 
     if (!nodeModel) {
@@ -98,7 +98,7 @@ toura.app.Routes = function() {
     {
       route : /\/search\/?(.*)/,
       handler : function(params) {
-        var page = toura.app.UI.getCurrentPage(),
+        var page = toura.app.UI.currentPage,
             term = params.splat && params.splat[0].split('/')[0];
 
         if (!page || !page.type || page.type !== 'search') {
