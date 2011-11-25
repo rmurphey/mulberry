@@ -23,6 +23,7 @@ module Mulberry
   VERSION     = '0.1.1'
   CONFIG      = 'config.yml'
   CONFIG_DEV  = 'config_dev.yml'
+  SITEMAP     = 'sitemap.yml'
 
   DEFAULTS  = {
     'locale'            =>  'en-US',
@@ -191,7 +192,7 @@ module Mulberry
         FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
       end
 
-      [ 'config.yml', 'sitemap.yml' ].each do |tmpl|
+      [ CONFIG, SITEMAP ].each do |tmpl|
         FileUtils.cp(File.join(mulberry_base, 'templates', tmpl), base)
       end
 
