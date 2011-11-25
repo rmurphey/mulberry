@@ -100,6 +100,7 @@ module Mulberry
 
   class App
     attr_reader         :name,
+                        :theme,
                         :assets_dir,
                         :source_dir,
                         :helper,
@@ -115,6 +116,7 @@ module Mulberry
       raise ConfigError, "You must provide a name for your app" unless @config['name']
 
       @name             = @config['name'].gsub(/'/, "\\\\'")
+      @theme            = @config['theme']['name']
 
       @helper           = Mulberry::BuildHelper.new(self)
 
