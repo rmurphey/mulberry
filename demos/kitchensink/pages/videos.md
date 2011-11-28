@@ -5,7 +5,6 @@ template:
   tablet: videos-and-text-tablet
 
 videos:
-  - baby_sloth.mp4
   - baby_owls.mp4
   - schnauzer_puppy.mp4
 ---
