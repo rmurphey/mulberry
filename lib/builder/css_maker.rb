@@ -46,8 +46,10 @@ module Builder
     def load_dependencies(settings, app_base, theme_base)
       scss_data = ''
 
-      settings[:vars].each do |k, v|
-        scss_data << "$user-#{k}: #{v};"
+      if settings.has_key?(:vars)
+        settings[:vars].each do |k, v|
+          scss_data << "$user-#{k}: #{v};"
+        end
       end
 
       if settings.has_key?(:vars_path)
