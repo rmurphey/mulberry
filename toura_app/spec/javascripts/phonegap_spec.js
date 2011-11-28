@@ -4,7 +4,7 @@ describe("PhoneGap bridge", function() {
   beforeEach(function() {
     dojo.require('toura.app.PhoneGap');
     if (!pg) {
-      dojo.publish('/app/start');
+      dojo.publish('/app/deviceready');
       pg = toura.app.PhoneGap;
     }
   });
