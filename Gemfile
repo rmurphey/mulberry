@@ -7,9 +7,12 @@ gem 'i18n' # activesupport dependency but need to specify manually: https://gith
 gem 'json'
 gem 'kramdown'
 gem 'mustache'
-gem 'rake', '0.9.2'
 gem 'sass', '3.1.4'
 gem 'sinatra', '1.2.6'
+
+group :development, :test do
+  gem 'rake', '0.9.2'
+end
 
 group :development do
   gem 'linecache', '0.43', :platforms => :ruby_18, :require => false
