@@ -56,7 +56,7 @@ module Mulberry
       if (include_version)
         host = @config['toura_api']['host'] || 'api.toura.com'
         key = @config['toura_api']['key']
-        res = fetch "http://#{host}/applications/#{key}/ota_service/version_json"
+        res = self.class.fetch "http://#{host}/applications/#{key}/ota_service/version_json"
         if res.code == "200"
           version = JSON.parse(res.body)['version']
           new_version = version + 1
@@ -73,6 +73,21 @@ module Mulberry
       unless @item_ids.include? item[:id]
         @item_ids << item[:id]
         @items << item
+      end
+    end
+
+    def self.fetch(uri_str, limit = 10)
+      raise 'too many HTTP redirects' if limit == 0
+
+      response = Net::HTTP.get_response(URI(uri_str))
+
+      case response
+      when Net::HTTPRedirection then
+        location = response['location']
+        warn "redirected to #{location}"
+        fetch(location, limit - 1)
+      else
+        response
       end
     end
 
@@ -210,21 +225,6 @@ module Mulberry
     def find_caption(asset_caption_object)
       id = asset_caption_object[:caption]['_reference']
       @items.find { |i| i[:id] == id }
-    end
-
-    def fetch(uri_str, limit = 10)
-      raise 'too many HTTP redirects' if limit == 0
-
-      response = Net::HTTP.get_response(URI(uri_str))
-
-      case response
-      when Net::HTTPRedirection then
-        location = response['location']
-        warn "redirected to #{location}"
-        fetch(location, limit - 1)
-      else
-        response
-      end
     end
 
   end
