@@ -118,7 +118,8 @@ dojo.declare('toura.models._Updateable', [], {
   _updateIfNecessary : function() {
     // update the local version if it was originally < 0
     var dfd = new dojo.Deferred(),
-        localVersion = this._getLocalVersion();
+        localVersion = this._getLocalVersion(),
+        self = this;
 
     dojo.when(
       // first, get the remote version
@@ -165,7 +166,12 @@ dojo.declare('toura.models._Updateable', [], {
       }),
 
       // ... hm, we did not get the remote version
-      function() {
+      function(error) {
+        // 404 is OK, proceed as if there is no update
+        if (error.status == 404) {
+          // again, we have a chance to run a hook if we need
+          self._onDataReady();
+        }
         dfd.resolve(false);
       }
     );

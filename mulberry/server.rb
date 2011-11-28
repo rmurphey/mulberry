@@ -147,6 +147,7 @@ module Mulberry
         raise "Don't know how to proxy #{url}"
       end
       res = Mulberry::Data.fetch(ota_url)
+      status res.code
       res.body
     end
 
