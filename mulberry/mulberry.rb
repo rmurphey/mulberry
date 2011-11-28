@@ -20,7 +20,7 @@ module Mulberry
   class ConfigError < RuntimeError
   end
 
-  VERSION     = '0.1.1'
+  VERSION     = '0.2'
   CONFIG      = 'config.yml'
   CONFIG_DEV  = 'config_dev.yml'
   SITEMAP     = 'sitemap.yml'
