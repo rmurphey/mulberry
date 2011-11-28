@@ -1,8 +1,8 @@
 ---
 title: Location Map
-template: 
-  phone: locations-map
-  tablet: locations-map
+template:
+  phone: google-map-phone
+  tablet: google-map-tablet
 
 locations:
   - fullsteam.yml
