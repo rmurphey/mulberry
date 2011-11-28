@@ -2,12 +2,7 @@ dojo.provide('toura.app.PageFactory');
 
 dojo.require('toura.app.Config');
 
-/**
- * TODO: create a single file that requires all page controllers
- * and then require it here.
- */
 dojo.require('toura.pageControllers.Debug');
-
 dojo.require('toura.pageControllers.search.Search');
 dojo.require('toura.pageControllers.favorites.Favorites');
 dojo.require('toura.pageControllers.Configurable');
@@ -15,43 +10,6 @@ dojo.require('toura.pageControllers.Configurable');
 dojo.declare('toura.app.PageFactory', [], {
   constructor : function(device) {
     this.device = device;
-  },
-
-  _translations : {
-    'locations-map' : 'GoogleMap1'
-  },
-
-  /**
-   * Provide a way to override controller names based on device info.
-   */
-  _overrides : {
-    'FeedList' : function(device) {
-      return 'feed-list-' + device.type;
-    },
-
-    'Images1' : function(device) {
-      return 'images-and-text-' + device.type;
-    },
-
-    'Home1' : function(device) {
-      return 'home-' + device.type;
-    },
-
-    'Home2' : function(device) {
-      return 'home-with-header-' + device.type;
-    },
-
-    'Audios1' : function(device) {
-      return 'audio-with-images-' + device.type;
-    },
-
-    'GoogleMap1' : function(device) {
-      return 'google-map-' + device.type;
-    },
-
-    'Videos1' : function(device) {
-      return 'videos-and-text-' + device.type;
-    }
   },
 
   pages : {
@@ -110,21 +68,6 @@ dojo.declare('toura.app.PageFactory', [], {
      *    2. If there is not an entry in the pages object that corresponds with
      *    the controllerName, the createPage method continues.
      *
-     * Next, we translate "new" controller names into legacy controller names.
-     * We do this by inspecting the PageFactory's '_translations' object; if it
-     * has an entry that corresponds with the controllerName, we use that
-     * entry's value as the new controllerName. (This is necessary for
-     * controllers that have not been converted to the new "configurable"
-     * system. When all controllers have been converted to the new system, the
-     * _translations object can go away.)
-     *
-     * Finally, we handle the case where MAP (Toura's internal CMS) is using
-     * old controller names (such as Home1, Images1, etc.). We do this by
-     * inspecting the PageFactory's '_overrides' object; if it has an entry
-     * that corresponds with the controllerName, we assume that entry points to
-     * a function. We run the function, passing the device object as an
-     * argument, and use the return value as the new controllerName.
-     *
      * At this point, we have a reliable controllerName. We look to see if
      * there is an entry in the toura.templates object for the controllerName.
      * If there is, we use the Configurable page controller; if not, we look
@@ -140,7 +83,7 @@ dojo.declare('toura.app.PageFactory', [], {
     if (!obj) { throw new Error('toura.app.PageFactory::createPage requires an object'); }
 
     var controllerName = obj.pageController || 'default',
-        config, Controller;
+        config;
 
     // allow setting different page controllers per device
     if (obj.pageController && dojo.isObject(obj.pageController)) {
@@ -155,34 +98,16 @@ dojo.declare('toura.app.PageFactory', [], {
       return this.pages[controllerName].call(this, obj);
     }
 
-    // translate new template names to legacy names
-    // TODO: this can go away once we don't have to support legacy names
-    if (this._translations[controllerName]) {
-      controllerName = this._translations[controllerName];
-    }
-
-    // allow overriding template name based on device info
-    // TODO: this can go away once MAP sends per-device controller names
-    if (this._overrides[controllerName]) {
-      controllerName = this._overrides[controllerName](this.device);
-    }
-
-    // use configurable page controller if a config is defined for the
-    // controller name; otherwise look for a legacy page controller
-    // TODO: this can go away once we eliminate support for legacy names
     config = toura.templates && toura.templates[controllerName];
 
-    Controller = config ? toura.pageControllers.Configurable : toura.pageControllers.node[controllerName];
-
-    // if we don't have a controller by now, we have problems
-    if (!Controller) {
+    if (!config) {
       console.error('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
       throw('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
     }
 
     toura.log('Creating ' + controllerName);
 
-    return new Controller({
+    return new toura.pageControllers.Configurable({
       baseObj : obj,
       device : this.device,
       templateConfig : config,
