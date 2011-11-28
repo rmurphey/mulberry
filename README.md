@@ -35,9 +35,19 @@ would add the following to your `.profile` file.
 
 - From the *root directory of the repository*, run the following command:
 
-    `bundle install`
+    `bundle install --without test development`
 
 - You're done! You should now be able to run mulberry from any directory.
+
+Note: As you can infer from the `bundle install` command above, this does not
+install any libraries for you do development on Mulberry core, or run any of
+the automated tests. If you wish to do these things, simply re-run the bundle
+install command, omitting the `--without` flag:
+
+	`bundle install`
+
+This will install the necessary libraries to do ruby development and run the
+automated test suite.
 
 
 # Setup
