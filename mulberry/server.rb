@@ -130,7 +130,7 @@ module Mulberry
       )
       ['version_url', 'update_url'].each do |key|
         ota_url = config_settings[key]
-        unless ota_url and ota_url.length < 1
+        if ota_url and ota_url.length > 1
           config_settings[key] = ota_url.sub(/http:\/\/[^\/]+/, url.match(/http:\/\/[^\/]+/)[0])
         end
       end
@@ -198,7 +198,9 @@ module Mulberry
       begin
         case params[:splat].first
         when 'tour.js'
-          "toura.data.local = #{JSON.pretty_generate(Mulberry::Data.new(@mulberry_app).generate(true))};"
+          target = @helper.build.target
+          ota_enabled = target['ota'] and target['ota']['enabled']
+          "toura.data.local = #{JSON.pretty_generate(Mulberry::Data.new(@mulberry_app).generate(ota_enabled))};"
         when 'templates.js'
           "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
         end
