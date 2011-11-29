@@ -146,9 +146,13 @@ module Mulberry
       else
         raise "Don't know how to proxy #{url}"
       end
-      res = Mulberry::Data.fetch(ota_url)
-      status res.code
-      res.body
+      begin
+        res = Mulberry::Data.fetch(ota_url)
+        status res.code
+        res.body
+      rescue Errno::ECONNREFUSED
+        status 503 # unavailable
+      end
     end
 
     get '/:os/:type/javascript/toura/app/DevConfig.js' do
