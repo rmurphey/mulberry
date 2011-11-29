@@ -98,7 +98,6 @@ describe Mulberry::Data do
     pg.first[:custom]['foo'].should == 'bar'
   end
 
-
   it "should create featured image nodes with the proper structure" do
     @data[:items].select do |item|
       item[:id] == 'node-featured_image_page'

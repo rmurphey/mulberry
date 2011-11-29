@@ -99,7 +99,7 @@ module Mulberry
         :name               =>  config['title'] || page_name,
         :pageController     =>  config['template'],
         :children           =>  children,
-        :custom             =>  config.delete_if { |k, v| default_node_props.include? k }
+        :custom             =>  ({}.merge(config)).delete_if { |k, v| default_node_props.include? k }
       }
 
       node = Mulberry::Asset::Node.new node_props
