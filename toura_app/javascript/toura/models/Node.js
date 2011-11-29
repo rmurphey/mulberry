@@ -77,7 +77,6 @@ dojo.declare('toura.models.Node', [], {
 
       pageController : store.getValue(item, 'pageController'),
       sharingURL : store.getValue(item, 'sharingUrl'),
-      custom : store.getValue(item, 'custom'),
 
       parent : store.getValue(item, 'parent')
     });
@@ -97,6 +96,10 @@ dojo.declare('toura.models.Node', [], {
     }, this) : [];
 
     this._assetCache = {};
+
+    dojo.forIn(store.getValue(item, 'custom'), function(k, v) {
+      this[k] = this[k] || v;
+    }, this);
 
     cache[id] = this;
   },
