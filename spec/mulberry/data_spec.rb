@@ -13,7 +13,8 @@ describe Mulberry::Data do
           { 'foo' => [ 'baz', 'bim' ] },
           'bar',
           'featured_image_page',
-          'no_text_page'
+          'no_text_page',
+          'custom_prop_page'
         ]
       },
       'about'
@@ -44,7 +45,8 @@ describe Mulberry::Data do
 
     [
       'featured_image_page',
-      'no_text_page'
+      'no_text_page',
+      'custom_prop_page'
     ].each do |f|
       FileUtils.cp(
         File.join(FIXTURES_DIR, "#{f}.md"),
@@ -86,6 +88,16 @@ describe Mulberry::Data do
       item[:id] == 'node-featured_image_page'
     end.length.should be 1
   end
+
+  it "should generate a page with a custom property" do
+    pg = @data[:items].select do |item|
+      item[:id] == 'node-custom_prop_page'
+    end
+
+    pg.length.should be 1
+    pg.first[:custom]['foo'].should == 'bar'
+  end
+
 
   it "should create featured image nodes with the proper structure" do
     @data[:items].select do |item|
