@@ -88,7 +88,7 @@ module Mulberry
 
     def data
       ota_enabled = build.target['ota'] and build.target['ota']['enabled']
-      Mulberry::Data.new(@app).generate(ota_enabled)
+      Mulberry::Data.new(@app).generate(ota_enabled, 1)
     end
 
     def templates

@@ -46,7 +46,7 @@ module Mulberry
     end
 
     public
-    def generate(include_version=false)
+    def generate(include_version=false, default_version=false)
       do_contexts unless @contexts_complete
       result = {
         :items       =>  @items,
@@ -57,18 +57,23 @@ module Mulberry
       if (include_version)
         host = @config['toura_api']['host'] || 'api.toura.com'
         key = @config['toura_api']['key']
-        res = Mulberry::Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to #{host}",
-                                  "404" => "Application with key #{key} not found on #{host}",
-                                  "503" => "#{host} is not available.",
-                                  "default" => lambda {|res|
-                                    "Could not retrieve version from #{host} (#{res.code}).  Response: #{res.body}"
-                                  } do
-          self.class.fetch "http://#{host}/applications/#{key}/ota_service/version_json"
+        begin
+          res = Mulberry::Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to #{host}",
+                                    "503" => "#{host} is not available.",
+                                    "default" => lambda {|res|
+                                      "Could not retrieve version from #{host} (#{res.code}).  Response: #{res.body}"
+                                    } do
+            self.class.fetch "http://#{host}/applications/#{key}/ota_service/version_json"
+          end
+          version = JSON.parse(res.body)['version']
+          new_version = version + 1
+          puts "Retrieved current version from #{host}: #{version}. Setting version for this to #{new_version}."
+          result['version'] = new_version
+        rescue Mulberry::Http::NotFound
+          result['version'] = default_version if default_version
         end
-        version = JSON.parse(res.body)['version']
-        new_version = version + 1
-        puts "Retrieved current version from #{host}: #{version}. Setting version for this to #{new_version}."
-        result['version'] = new_version
+      elsif (default_version)
+        result['version'] = default_version
       end
       result
     end
