@@ -9,6 +9,7 @@ require 'mulberry/assets/data'
 require 'mulberry/assets/location'
 require 'mulberry/assets/feed'
 require 'mulberry/assets/header_image'
+require 'mulberry/http'
 
 module Mulberry
   class Data
@@ -56,15 +57,18 @@ module Mulberry
       if (include_version)
         host = @config['toura_api']['host'] || 'api.toura.com'
         key = @config['toura_api']['key']
-        res = self.class.fetch "http://#{host}/applications/#{key}/ota_service/version_json"
-        if res.code == "200"
-          version = JSON.parse(res.body)['version']
-          new_version = version + 1
-          puts "Retrieved current version from #{host}: #{version}. Setting version for this to #{new_version}."
-          result['version'] = new_version
-        else
-          warn "Warning: Could not retrieve version from #{host}."
+        res = Mulberry::Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to #{host}",
+                                  "404" => "Application with key #{key} not found on #{host}",
+                                  "503" => "#{host} is not available.",
+                                  "default" => lambda {|res|
+                                    "Could not retrieve version from #{host} (#{res.code}).  Response: #{res.body}"
+                                  } do
+          self.class.fetch "http://#{host}/applications/#{key}/ota_service/version_json"
         end
+        version = JSON.parse(res.body)['version']
+        new_version = version + 1
+        puts "Retrieved current version from #{host}: #{version}. Setting version for this to #{new_version}."
+        result['version'] = new_version
       end
       result
     end

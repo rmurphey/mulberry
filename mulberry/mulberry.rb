@@ -15,6 +15,8 @@ require 'net/http'
 require 'mulberry/data'
 require 'mulberry/server'
 require 'mulberry/build_helper'
+require 'mulberry/http'
+
 require 'lib/builder'
 
 module Mulberry
@@ -286,25 +288,19 @@ module Mulberry
     def publish_ota(data_json)
       host = @config['toura_api']['host'] || 'api.toura.com'
       key, secret = @config['toura_api']['key'], @config['toura_api']['secret']
-      begin
-        unless data_json
-          data_json = JSON.pretty_generate(Mulberry::Data.new(self).generate(true))
-        end
-        uri = URI("http://#{host}/applications/#{key}/ota_service/publish")
-        res = Net::HTTP.post_form(uri, 'secret' => secret, 'data_json' => data_json, 'format' => 'json')
-        case res.code
-        when "200"
-          puts "OTA published successfully.  Version is #{JSON.parse(res.body)['version']}."
-        when "404"
-          puts "Application with key #{key} not found on #{host}."
-        when "503"
-          puts "#{host} currently unavailable.  Please try again later."
-        else
-          puts "Problem publishing OTA. Response (#{res.code}): #{res.body}"
-        end
-      rescue Errno::ECONNREFUSED
-        puts "Can't connect to ota server: #{host}."
+      unless data_json
+        data_json = JSON.pretty_generate(Mulberry::Data.new(self).generate(true))
       end
+      uri = URI("http://#{host}/applications/#{key}/ota_service/publish")
+      res = Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to ota server: #{host}.",
+                      "404" => "Application with key #{key} not found on #{host}.",
+                      "503" => "#{host} currently unavailable.  Please try again later.",
+                      "default" => lambda { |res|
+                        "Problem publishing OTA. Response (#{res.code}): #{res.body}"
+                      } do
+        Net::HTTP.post_form(uri, 'secret' => secret, 'data_json' => data_json, 'format' => 'json')
+      end
+      puts "OTA published successfully.  Version is #{JSON.parse(res.body)['version']}."
     end
 
     private

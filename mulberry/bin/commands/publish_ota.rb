@@ -12,7 +12,11 @@ module Mulberry
         end.parse!
 
         dir = Mulberry.get_app_dir args[0]
-        app = Mulberry::App.new(dir).publish_ota(data_json)
+        begin
+          app = Mulberry::App.new(dir).publish_ota(data_json)
+        rescue Mulberry::Http::Exception
+          puts "Error: #{$!}"
+        end
       end
     end
   end
