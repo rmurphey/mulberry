@@ -17,6 +17,7 @@ module Builder
           f.write json
         end
       end
+      true
     end
 
   end
