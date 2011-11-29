@@ -1,8 +1,8 @@
 dojo.provide('toura.ui.BackgroundImage');
 
-dojo.require('toura._View');
+dojo.require('dijit._Widget');
 
-dojo.declare('toura.ui.BackgroundImage', [toura._View], {
+dojo.declare('toura.ui.BackgroundImage', dijit._Widget, {
   // These attributes must be present on the dom element
   imageUrl : '',
   imageHeight : '',
