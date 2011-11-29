@@ -77,10 +77,10 @@ dojo.declare('toura.models._Updateable', [], {
         dfd = this.deferred = new dojo.Deferred();
 
     dojo.when(
-      // if localVersion < 0, then this is the first boot,
+      // if localVersion is null, then this is the first boot,
       // so we need to initialize the data; otherwise, we can
       // proceed with updating if necessary
-      localVersion < 0 ? this._initializeData() : true,
+      localVersion == null ? this._initializeData() : true,
       dojo.hitch(this, '_updateIfNecessary')
     ).then(dojo.hitch(this, '_onUpdate'));
 
@@ -133,7 +133,7 @@ dojo.declare('toura.models._Updateable', [], {
         }
 
         // check that app and remote major versions are compatible and that
-        // remote version is newer than the local version
+        // remote version is newer than the local version or local version is null.
         if (
            remoteVersionData &&
            this._isAppVersionCompatible(remoteVersionData.appVersion) &&
@@ -207,13 +207,13 @@ dojo.declare('toura.models._Updateable', [], {
 
     if (toura.skipVersionCheck || !this.remoteVersionUrl) {
       console.log('No remote version URL -- skipping remote version check');
-      dfd.resolve({ version : -1 });
+      dfd.resolve(null);
     } else {
       toura.app.PhoneGap.network.isReachable()
         .then(
           dojo.hitch(this, function(isReachable) {
             if (!isReachable) {
-              dfd.resolve({ version : -1 });
+              dfd.resolve(null);
               return;
             }
 
@@ -233,7 +233,7 @@ dojo.declare('toura.models._Updateable', [], {
    * local version.
    */
   _getLocalVersion : function() {
-    var v = toura.app.DeviceStorage.get(this.storageKey + '-version') || -1;
+    var v = toura.app.DeviceStorage.get(this.storageKey + '-version');
     return v;
   },
 
@@ -357,7 +357,7 @@ dojo.declare('toura.models._Updateable', [], {
   _store : function(sourceData) {
     this.lastUpdated = new Date().getTime();
     this._items = sourceData.items;
-    this._setLocalVersion(sourceData && sourceData.version || 0);
+    this._setLocalVersion(sourceData && sourceData.version);
   },
 
   /**
