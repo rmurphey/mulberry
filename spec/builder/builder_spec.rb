@@ -31,6 +31,22 @@ describe Builder::Build do
     b.cleanup
   end
 
+  it "should support quiet mode" do
+    builder = Proc.new do |truthy|
+      Builder::Build.new(@config.merge({
+        :target_config => {
+          'build_type' => 'fake'
+        },
+        :quiet => truthy
+      }))
+    end
+
+    [true, false].each do |truthy|
+      builder.call( truthy ).quiet.should == truthy
+    end
+
+  end
+
   describe "check for requirements" do
     it "should raise an error if requirements are not met" do
       lambda {

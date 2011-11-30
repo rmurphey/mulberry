@@ -29,7 +29,7 @@ module Builder
 
   class Build
     attr_accessor :tmp_dir, :logger
-    attr_reader   :settings, :target, :completed_steps, :build_helper
+    attr_reader   :settings, :target, :completed_steps, :build_helper, :quiet
 
     ROOT = File.expand_path(File.dirname(__FILE__))
 
@@ -71,6 +71,7 @@ module Builder
       @log_level = settings[:log_level] || 2
       @build_helper = settings[:build_helper]
       @build_helper.build = self if @build_helper
+      @quiet = settings[:quiet] || false
 
       Dir.mkdir @tmp_dir unless File.exists? @tmp_dir
 
