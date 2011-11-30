@@ -122,7 +122,7 @@ module Mulberry
                          @config['theme']['root_dir'] :
                          File.join(@source_dir, 'themes')
 
-        theme_dir = File.join(theme_root_dir, themename)
+        theme_dir = File.join(theme_root_dir, theme_name)
 
         Builder::CSSMaker.new(
           :vars => @config['theme']['settings'],
