@@ -86,6 +86,13 @@ module Mulberry
       true
     end
 
+    def css_resources(location, report)
+      resources_dir = File.join(@source_dir, 'themes', theme_name, 'resources')
+      FileUtils.cp_r(resources_dir, location) unless !File.exists? resources_dir
+
+      true
+    end
+
     def data
       Mulberry::Data.new(@app).generate
     end
@@ -111,12 +118,11 @@ module Mulberry
 
     def create_css
       begin
-        theme = @config['theme']['name'] || 'default'
         theme_root_dir = @config['theme'].has_key?('root_dir') ?
                          @config['theme']['root_dir'] :
                          File.join(@source_dir, 'themes')
 
-        theme_dir = File.join(theme_root_dir, theme)
+        theme_dir = File.join(theme_root_dir, themename)
 
         Builder::CSSMaker.new(
           :vars => @config['theme']['settings'],
@@ -145,6 +151,10 @@ module Mulberry
     private
     def padded_id
       project_settings[:id].gsub(/\W/, '');
+    end
+
+    def theme_name
+      @config['theme']['name'] || 'default'
     end
   end
 end
