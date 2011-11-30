@@ -247,13 +247,13 @@ module Mulberry
 
     def device_build(settings = {})
       build({
-        :target             =>  settings[:test] ? 'mulberry_test' : 'mulberry',
-        :tour               =>  self,
-        :tmp_dir            =>  tmp_dir,
-        :log_level          =>  -1,
-        :force_js_build     =>  true,
-        :build_helper       =>  @helper,
-        :quiet              => (settings[:quiet] || false)
+        :target          =>  settings[:test] ? 'mulberry_test' : 'mulberry',
+        :tour            =>  self,
+        :tmp_dir         =>  tmp_dir,
+        :log_level       =>  -1,
+        :force_js_build  =>  true,
+        :build_helper    =>  @helper,
+        :quiet           => (settings[:quiet] || false)
       })
     end
 
