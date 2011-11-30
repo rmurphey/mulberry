@@ -28,7 +28,7 @@ describe 'Mulberry build helper' do
       end
     end
 
-    it 'should output version_url and update_url with ota enabled' do
+    it 'should output correct version_url and update_url with ota enabled' do
       @build_helper.build = Builder::Build.new({
         :target_config => {
           'build_type' => 'mulberry',
@@ -36,8 +36,12 @@ describe 'Mulberry build helper' do
         }
       })
       config_settings  = @build_helper.config_settings
-      ['version_url', 'update_url'].each do |name|
-        config_settings[name].should match /^http/
+      api_config = @app.config['toura_api']
+      {
+        'version_url' => 'version_json',
+        'update_url' => 'data_json'
+      }.each do |name, path|
+        config_settings[name].should match /^http:\/\/#{api_config['host']}\/applications\/#{api_config['key']}\/ota_service\/#{path}/
       end
     end
 
