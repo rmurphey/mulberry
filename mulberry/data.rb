@@ -80,6 +80,13 @@ module Mulberry
     end
 
     def load_data_for_page(page_name, children = [])
+      default_node_props = %w{
+        title
+        template
+        header_image
+        featured_image
+      } + ASSETS.keys
+
       page_file = File.join(@source_dir, 'pages', "#{page_name}.md")
       raise "Can't find #{page_name}.md in pages directory (#{page_file})" unless File.exists? page_file
 
@@ -87,12 +94,15 @@ module Mulberry
       content ||= ''
       config = YAML.load(frontmatter)
 
-      node = Mulberry::Asset::Node.new({
+      node_props = {
         :node_name          =>  page_name,
         :name               =>  config['title'] || page_name,
         :pageController     =>  config['template'],
-        :children           =>  children
-      })
+        :children           =>  children,
+        :custom             =>  ({}.merge(config)).delete_if { |k, v| default_node_props.include? k }
+      }
+
+      node = Mulberry::Asset::Node.new node_props
 
       body_text = Mulberry::Asset::Text.new(content, page_name)
 
