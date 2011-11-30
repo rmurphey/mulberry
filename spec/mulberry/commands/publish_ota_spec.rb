@@ -13,10 +13,10 @@ describe Mulberry::Command::PublishOta do
     it "should print error messages in a friendly manner" do
       ["404", "503"].each do |status|
         FakeWeb.register_uri(:post, //, :status => status)
-        @output = capture_io_streams(:stdout) do
+        stdout = capture_io_streams(:stdout) do
           lambda { Mulberry::Command::PublishOta.new([@app.name]) }.should_not raise_error
         end
-        @output.should match /error/i
+        stdout.should match /error/i
       end
     end
   end

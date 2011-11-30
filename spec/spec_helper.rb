@@ -56,6 +56,7 @@ DEVICES = [
   { :type => 'tablet', :os => 'ios' }
 ]
 
+# credit for the below goes to http://rails-bestpractices.com/questions/1-test-stdin-stdout-in-rspec
 require 'stringio'
 def capture_io_streams(*streams)
   streams.map! { |stream| stream.to_s }
