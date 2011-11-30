@@ -27,6 +27,7 @@ module Mulberry
         else
           msg = "Could not successfully complete http operation.  Response (#{res.code}): #{res.body}"
         end
+        raise msg
       end
       res
     end
