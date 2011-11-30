@@ -77,7 +77,7 @@ module Mulberry
       send_file file_path(
         @source_dir,
         'themes',
-        @mulberry_app.config['themes']['name'] || 'default',
+        @mulberry_app.config['theme']['name'] || 'default',
         'resources',
         params[:splat].first
       )
