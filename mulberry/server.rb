@@ -74,7 +74,7 @@ module Mulberry
     end
 
     get '/:os/:type/css/resources/*' do
-      send_file file_path(
+      send_file File.join(
         @source_dir,
         'themes',
         @mulberry_app.config['theme']['name'] || 'default',
