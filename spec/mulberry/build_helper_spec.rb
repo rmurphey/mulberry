@@ -28,7 +28,7 @@ describe 'Mulberry build helper' do
       end
     end
 
-    it 'should not output version_url and update_url with ota disabled' do
+    it 'should output version_url and update_url with ota enabled' do
       @build_helper.build = Builder::Build.new({
         :target_config => {
           'build_type' => 'mulberry',
