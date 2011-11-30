@@ -247,7 +247,6 @@ dojo.require('dojo.hash');
       this._routes.push(r);
 
       if (defaultRoute) {
-        console.log('DEFAULT ROUTE FOUND', route);
         this.defaultRoute = r;
       }
     }

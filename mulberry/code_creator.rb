@@ -1,4 +1,5 @@
 require 'active_support/inflector'
+require 'pathname'
 
 module Mulberry
   class CodeCreator
@@ -6,7 +7,8 @@ module Mulberry
       dirnames = {
         'component'   =>  'components',
         'capability'  =>  'capabilities',
-        'datasource'  =>  'data'
+        'datasource'  =>  'data',
+        'base'        =>  '.'
       }
 
       raise "Don't know how to create code type #{code_type}" unless dirnames[code_type]
@@ -16,6 +18,7 @@ module Mulberry
 
       js_dir = File.join(destination_dir, 'javascript')
       code_dir = File.join(js_dir, dirnames[code_type])
+      theme_cssfile = "base.scss"
 
       code_filename = File.join(code_dir, "#{filename}.js")
 
@@ -33,7 +36,7 @@ module Mulberry
       # add the dependency
       File.open(File.join(js_dir, 'base.js'), 'a') do |f|
         f.write "dojo.require('client.#{dirnames[code_type]}.#{filename}');\n"
-      end
+      end unless code_type == 'base'
 
       puts "Created #{code_type} at #{code_filename}"
 
@@ -43,12 +46,32 @@ module Mulberry
         component_resource_dir = File.join(code_dir, filename)
         FileUtils.mkdir_p(component_resource_dir) unless File.exists? component_resource_dir
 
+        # get file templates
+        haml_template = File.read(File.join(code_templates_dir, "#{code_type}.haml"))
+        scss_template = File.read(File.join(code_templates_dir, "#{code_type}.scss"))
+
         # create the basic haml template for the component
         File.open(File.join(component_resource_dir, "#{filename}.haml"), 'w') do |f|
-          f.write ".component.#{filename.underscore.dasherize.downcase} (This is the #{filename} component)\n"
+          f.write haml_template.gsub('{{name}}', filename).gsub('{{dashname}}', filename.underscore.dasherize.downcase)
+        end
+
+        # create the SCSS file for the component
+        File.open(File.join(component_resource_dir, "_#{filename.underscore.dasherize.downcase}.scss"), 'w') do |f|
+          f.write scss_template.gsub('{{name}}', filename).gsub('{{dashname}}', filename.underscore.dasherize.downcase)
+        end
+
+        # add the import statement to the theme css file
+        themes_dir = File.join(destination_dir, 'themes', Mulberry::App.new(destination_dir).theme)
+
+        FileUtils.mkdir_p themes_dir unless File.exists? themes_dir
+
+        File.open(File.join(themes_dir, theme_cssfile), 'a') do |f|
+          pathstring = Pathname.new("#{code_dir}/#{filename}/#{filename.underscore.dasherize.downcase}").relative_path_from(Pathname.new(themes_dir))
+          f.write "@import '#{pathstring}';\n"
         end
 
         puts "Template is at #{File.join(component_resource_dir, "#{filename}.haml")}"
+        puts "Styles are at #{File.join(component_resource_dir, "_#{filename.underscore.dasherize.downcase}.scss")}"
       end
     end
   end

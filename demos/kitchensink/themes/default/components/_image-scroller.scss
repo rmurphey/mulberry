@@ -1,0 +1,17 @@
+.component.image-scroller {
+  ol.indicator {
+    text-align: center;
+
+    li {
+      display: inline;
+
+      color: #fff;
+      -webkit-text-stroke: .5px #ccc;
+
+      &.active {
+        color: #666;
+        -webkit-text-stroke: 0;
+      }
+    }
+  }
+}

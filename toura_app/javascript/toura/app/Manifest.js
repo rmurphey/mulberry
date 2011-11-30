@@ -38,6 +38,6 @@ dojo.declare('toura.app.Manifest', [], {
   }
 });
 
-dojo.subscribe('/app/start', function() {
+dojo.subscribe('/app/deviceready', function() {
   toura.app.Manifest = new toura.app.Manifest();
 });

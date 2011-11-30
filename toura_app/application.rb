@@ -5,7 +5,7 @@ require 'mustache'
 
 module TouraAPP
   def self.version
-    '4.0.0'
+    '4.1.0'
   end
 
   def self.dojo_version

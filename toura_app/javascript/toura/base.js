@@ -17,7 +17,7 @@ dojo.requireLocalization('toura', 'toura');
 var readyFn = function() {
   toura.features = toura.features || {};
 
-  dojo.publish('/app/start');
+  dojo.publish('/app/deviceready');
 
   toura.logSection('Bootstrapper');
 

@@ -15,6 +15,7 @@ require 'net/http'
 require 'mulberry/data'
 require 'mulberry/server'
 require 'mulberry/build_helper'
+require 'mulberry/code_creator'
 require 'mulberry/http'
 
 require 'lib/builder'
@@ -23,9 +24,10 @@ module Mulberry
   class ConfigError < RuntimeError
   end
 
-  VERSION     = '0.1.1'
+  VERSION     = '0.2'
   CONFIG      = 'config.yml'
   CONFIG_DEV  = 'config_dev.yml'
+  SITEMAP     = 'sitemap.yml'
 
   DEFAULTS  = {
     'locale'            =>  'en-US',
@@ -103,6 +105,7 @@ module Mulberry
 
   class App
     attr_reader         :name,
+                        :theme,
                         :assets_dir,
                         :source_dir,
                         :helper,
@@ -118,6 +121,7 @@ module Mulberry
       raise ConfigError, "You must provide a name for your app" unless @config['name']
 
       @name             = @config['name'].gsub(/'/, "\\\\'")
+      @theme            = @config['theme']['name']
 
       @helper           = Mulberry::BuildHelper.new(self)
 
@@ -186,13 +190,15 @@ module Mulberry
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
 
+      Mulberry::CodeCreator.new('base', base, 'base')
+
       asset_dirs = Dir.entries File.join(base, 'assets')
 
       [ 'audios', 'videos', 'images', 'locations' ].each do |asset_dir|
         FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
       end
 
-      [ 'config.yml', 'sitemap.yml' ].each do |tmpl|
+      [ CONFIG, SITEMAP ].each do |tmpl|
         FileUtils.cp(File.join(mulberry_base, 'templates', tmpl), base)
       end
 

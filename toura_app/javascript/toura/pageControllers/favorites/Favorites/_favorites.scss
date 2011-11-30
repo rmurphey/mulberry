@@ -1,5 +1,5 @@
 .page.favorites {
-  @include stack-container();
+  @include row-container();
 
   .pane.bottom {
     @include pane();

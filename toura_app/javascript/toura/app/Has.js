@@ -20,7 +20,7 @@ toura.app.Has = function() {
 
 (function(){
 
-var s = dojo.subscribe('/app/start', function() {
+var s = dojo.subscribe('/app/deviceready', function() {
   dojo.unsubscribe(s);
   if (dojo.isFunction(toura.app.Has)) {
     toura.app.Has = toura.app.Has();

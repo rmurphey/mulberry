@@ -11,7 +11,7 @@ dojo.require('toura.app.PhoneGap.browser');
 (function() {
 
   toura.app.PhoneGap.registerAPI = function(name, module) {
-    var s = dojo.subscribe('/app/start', function() {
+    var s = dojo.subscribe('/app/deviceready', function() {
       var device = toura.app.Config.get('device'),
           phonegapPresent = toura.app.PhoneGap.present = window.device && window.device.phonegap;
 

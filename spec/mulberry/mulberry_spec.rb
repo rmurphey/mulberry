@@ -33,7 +33,8 @@ describe Mulberry::App do
         [ 'assets', 'locations', 'captions' ],
         'themes',
         'templates',
-        [ 'javascript', 'components' ]
+        [ 'javascript', 'components' ],
+        [ 'javascript', 'base.js' ]
       ].each do |f|
         File.exists?(File.join('testapp', f)).should be_true
       end

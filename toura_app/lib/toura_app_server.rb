@@ -64,8 +64,8 @@ class TouraAPPServer < Sinatra::Base
     content_type 'text/css'
 
     tour_id = params[:tour_id]
-    sass_dir = File.join(custom_dir(tour_id), "sass")
-    vars_path = File.join(sass_dir, "vars.scss")
+    theme_dir = File.join(custom_dir(tour_id), "sass")
+    vars_path = File.join(theme_dir, "vars.scss")
 
     if !File.exists? vars_path
       vars_path = File.join(
@@ -75,17 +75,11 @@ class TouraAPPServer < Sinatra::Base
       )
     end
 
-    custom_base_path = File.join(sass_dir, "base.scss")
 
     begin
       Builder::CSSMaker.new(
         :vars_path => vars_path,
-        :toura_base_path => TouraAPP::App.base_scss,
-        :custom_base_path => custom_base_path,
-        :load_paths => [
-          TouraAPP::Directories.javascript,
-          sass_dir
-        ]
+        :theme_dir => theme_dir
       ).render
     rescue Sass::SyntaxError => err
       puts err.to_s

@@ -2,6 +2,7 @@
   .screen.index {
     .row.player-container {
       @include background-shadow;
+      padding-bottom: 40px;
     }
 
     .row.listing-and-children {

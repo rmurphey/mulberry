@@ -161,10 +161,6 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
   hideSplash : function() {
     var splash = dojo.byId('splash');
     if (splash) { dojo.destroy(splash); }
-  },
-
-  getCurrentPage : function() {
-    return this.currentPage;
   }
 });
 
