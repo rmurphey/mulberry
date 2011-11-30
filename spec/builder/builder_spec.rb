@@ -118,6 +118,35 @@ describe Builder::Build do
 
       b.cleanup
     end
+
+    it "should report tour json location if ota enabled" do
+      class FakeBuildHelper
+        def build=(b) end
+        def before_steps() [] end
+        def after_steps() [] end
+        def data() {"foo" => "bar"} end
+      end
+      b = Builder::Build.new(@config.merge({
+        :build_helper => FakeBuildHelper.new,
+        :target_config => {
+          'build_type' => 'device',
+          'gather' => {
+            'data' => true
+          },
+          'ota' => {
+            'enabled' => true
+          }
+        }
+      }))
+
+      b.build
+
+      data_report = b.completed_steps[:gather][:data]
+      data_report[:tour_json_location].should_not be_nil
+
+      b.cleanup
+    end
+
   end
 
   describe "build step" do
