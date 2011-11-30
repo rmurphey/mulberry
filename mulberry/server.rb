@@ -73,6 +73,16 @@ module Mulberry
       @helper.create_css
     end
 
+    get '/:os/:type/css/resources/*' do
+      send_file file_path(
+        @source_dir,
+        'themes',
+        @mulberry_app.config['themes']['name'] || 'default',
+        'resources',
+        params[:splat].first
+      )
+    end
+
     #####################
     # JavaScript
     #####################
