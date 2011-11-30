@@ -55,3 +55,16 @@ DEVICES = [
   { :type => 'phone', :os => 'android' },
   { :type => 'tablet', :os => 'ios' }
 ]
+
+require 'stringio'
+def capture_io_streams(*streams)
+  streams.map! { |stream| stream.to_s }
+  begin
+    result = StringIO.new
+    streams.each { |stream| eval "$#{stream} = result" }
+    yield
+  ensure
+    streams.each { |stream| eval("$#{stream} = #{stream.upcase}") }
+  end
+  result.string
+end

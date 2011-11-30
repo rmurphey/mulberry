@@ -25,4 +25,5 @@ group :test do
   gem 'fakefs', :require => false
   gem 'jshintrb', '1.0.4', :git => 'git://github.com/Toura/jshintrb.git', :require => false
   gem 'rspec'
+  gem 'fakeweb', :require => false
 end

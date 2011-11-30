@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'fakeweb'
 
 describe Mulberry::App do
   before :each do
@@ -102,5 +103,22 @@ describe Mulberry::App do
       @app.data[:items].select { |item| item[:id] == 'text-asset-home' }.length.should equal 1
       @app.data[:items].select { |item| item[:id] == 'node-home' }.length.should equal 1
     end
+  end
+
+  describe "#publish_ota" do
+    after :each do
+      FakeWeb.clean_registry
+    end
+
+    it 'should raise appropriate exception on http error' do
+      {
+        "404" => Mulberry::Http::NotFound,
+        "503" => Mulberry::Http::ServiceUnavailable
+      }.each do |status, exception|
+        FakeWeb.register_uri(:post, //, :status => status)
+        lambda { @app.publish_ota '{"foo":"bar"}' }.should raise_error exception
+      end
+    end
+
   end
 end
