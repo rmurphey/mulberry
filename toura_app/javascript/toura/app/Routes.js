@@ -23,7 +23,17 @@ toura.app.Routes = function() {
       // it's not a node page, or if we have a node page but
       // it's not for the requested node ... in all of these
       // cases, we need the page factory to spin up a page
-      pf = factory.createPage(nodeModel);
+      try {
+        pf = factory.createPage(nodeModel);
+      } catch(e) {
+        console.log("Toura.app.Routes: can't create a page", e, nodeModel);
+
+        if (nodeId !== 'node-home') {
+          toura.app.Router.back();
+        }
+
+        return;
+      }
 
       if (pf.failure) {
         if (dojo.isString(pf.failure)) {
