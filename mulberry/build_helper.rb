@@ -88,7 +88,11 @@ module Mulberry
 
     def css_resources(location, report)
       resources_dir = File.join(@source_dir, 'themes', theme_name, 'resources')
-      FileUtils.cp_r(resources_dir, location) unless !File.exists? resources_dir
+
+      if File.exists? resources_dir
+        FileUtils.cp_r(resources_dir, location)
+        report[:files] << 'resources'
+      end
 
       true
     end

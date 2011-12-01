@@ -281,7 +281,7 @@ module Builder
       css_dir = File.join(@www, 'css')
       Dir.mkdir(css_dir) unless File.exists?(css_dir)
       @css[:files].each do |css_file|
-        FileUtils.cp(File.join(@css[:location], css_file), css_dir)
+        FileUtils.cp_r(File.join(@css[:location], css_file), css_dir)
       end
     end
 
