@@ -244,7 +244,7 @@ module Builder
             @location,
             (@target['device_type'] == 'phone' ? 'Toura.xcodeproj' : 'Toura-iPad.xcodeproj')
           )
-          system %{open #{xcodeproj}}
+          system %{open #{xcodeproj}} unless @build.quiet
         end
       else
         permastore = @build.build_helper.project_settings[:bundle]

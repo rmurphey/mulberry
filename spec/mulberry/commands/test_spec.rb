@@ -5,7 +5,7 @@ describe Mulberry::Command::Test do
 
   describe "#initialization" do
     it "should initalize" do
-      @app.device_build(:test => true)
+      @app.device_build({:test => true, :quiet => true})
     end
   end
 end
