@@ -1,5 +1,7 @@
 dojo.provide('toura.Utilities');
 
+dojo.require('toura._LocalStore');
+
 // You should have a very, very good reason to put something in this file.
 
 dojo.forIn = function(obj, fn, scope) {
@@ -57,5 +59,5 @@ toura.tmpl = function(str, data) {
 toura.haml = Haml;
 
 toura.datasource = function(name, proto) {
-  dojo.declare('client.data.' + name, null, proto);
+  dojo.declare('client.data.' + name, toura._LocalStore, proto);
 };
