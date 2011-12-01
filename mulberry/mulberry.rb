@@ -10,6 +10,7 @@ require 'pathname'
 require 'rbconfig'
 require 'deep_merge'
 require 'socket'
+require 'timeout'
 
 require 'mulberry/data'
 require 'mulberry/server'
@@ -350,11 +351,19 @@ module Mulberry
 
     def server_running?(port)
       begin
-        TCPSocket.new('localhost',port)
-        true
-      rescue
-        false
+        Timeout::timeout(1) do
+          begin
+            s = TCPSocket.new('localhost', port)
+            s.close
+            return true
+          rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
+            return false
+          end
+        end
+      rescue Timeout::Error
       end
+
+      return false
     end
   end
 end
