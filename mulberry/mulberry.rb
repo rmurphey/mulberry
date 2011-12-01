@@ -220,7 +220,7 @@ module Mulberry
 
     def serve(args)
       if server_running?(args[:port])
-        puts "Mulberry server is already running on port #{args[:port]}. Specify a different port with the -p flag."
+        puts "The Mulberry server is already running on port #{args[:port]}. Specify a different port with the -p flag."
         return
       end
 
