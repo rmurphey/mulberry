@@ -247,12 +247,13 @@ module Mulberry
 
     def device_build(settings = {})
       build({
-        :target           =>  settings[:test] ? 'mulberry_test' : 'mulberry',
-        :tour             =>  self,
-        :tmp_dir          =>  tmp_dir,
-        :log_level        =>  -1,
-        :force_js_build   =>  true,
-        :build_helper     =>  @helper
+        :target         => settings[:test] ? 'mulberry_test' : 'mulberry',
+        :tour           => self,
+        :tmp_dir        => tmp_dir,
+        :log_level      => -1,
+        :force_js_build => true,
+        :build_helper   => @helper,
+        :quiet          => (settings[:quiet] || false)
       })
     end
 
@@ -262,14 +263,14 @@ module Mulberry
       [ 'phone', 'tablet' ].each do |type|
         if supports_type?(type)
           b = Builder::Build.new({
-            :target           =>  'www',
-            :tour             =>  self,
-            :tmp_dir          =>  tmp_dir,
-            :log_level        =>  -1,
-            :force_js_build   =>  true,
-            :build_helper     =>  @helper,
-            :device_os        =>  'ios',
-            :device_type      =>  type
+            :target         => 'www',
+            :tour           => self,
+            :tmp_dir        => tmp_dir,
+            :log_level      => -1,
+            :force_js_build => true,
+            :build_helper   => @helper,
+            :device_os      => 'ios',
+            :device_type    => type
           })
 
           b.build
@@ -300,8 +301,8 @@ module Mulberry
         types.each do |type|
           if supports_type?(type) && supports_os?(os)
             b = Builder::Build.new(base_config.merge({
-              :device_type  => type,
-              :device_os    =>  os
+              :device_type => type,
+              :device_os   => os
             }))
 
             b.build
