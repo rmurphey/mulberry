@@ -299,6 +299,7 @@ module Mulberry
       end
       uri = URI("http://#{host}/applications/#{key}/ota_service/publish")
       res = Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to ota server: #{host}.",
+                      "400" => "Data json is malformed.",
                       "404" => "Application with key #{key} not found on #{host}.",
                       "503" => "#{host} currently unavailable.  Please try again later.",
                       "default" => lambda { |res|

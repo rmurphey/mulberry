@@ -2,7 +2,7 @@ module Mulberry
   module Http
     class Exception < StandardError; end
 
-    [ 'NotFound', 'ServiceUnavailable', 'ConnectionRefused' ].each do |error_type|
+    [ 'ConnectionRefused', 'NotFound', 'ServiceUnavailable', 'BadRequest' ].each do |error_type|
       module_eval %Q{ class #{error_type} < Mulberry::Http::Exception; end}
     end
 
@@ -15,6 +15,9 @@ module Mulberry
       case res.code
       when "200"
         # do nothing
+      when "400"
+        msg = err_msgs["400"] || err_msgs[400] || err_msgs[BadRequest] || "Bad request."
+        raise NotFound.new msg
       when "404"
         msg = err_msgs["404"] || err_msgs[404] || err_msgs[NotFound] || "Resource not found."
         raise NotFound.new msg
