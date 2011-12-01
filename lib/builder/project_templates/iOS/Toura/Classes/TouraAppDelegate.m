@@ -25,6 +25,8 @@
 @synthesize invokeString;
 @synthesize launchNotification;
 
+void uncaughtExceptionHandler(NSException *);
+
 - (id) init
 {
 	/** If you need to do any extra app-specific initialization, you can do it here
@@ -40,9 +42,10 @@
 {
 	//NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
   
-   NSBundle* mainBundle = [NSBundle mainBundle];
-   NSString* flurryApiKey = [mainBundle objectForInfoDictionaryKey:@"FlurryApiKey"];
-   [ FlurryAPI startSession:flurryApiKey ];
+    NSBundle* mainBundle = [NSBundle mainBundle];
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    NSString* flurryApiKey = [mainBundle objectForInfoDictionaryKey:@"FlurryApiKey"];
+    [ FlurryAnalytics startSession:flurryApiKey ];
 
     // ******** NOTE: modified the following block from the default app delegate as it assumes
     // your app will never receive push notifications
@@ -219,7 +222,7 @@
  * Use Flurry to do some exception logging for us.
  */
 void uncaughtExceptionHandler(NSException *exception) {
-    [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 @end
