@@ -35,24 +35,24 @@ module Builder
 
     STEPS = {
       :gather => {
-        :icons        =>  Builder::Icons,
-        :load_screens =>  Builder::LoadScreens,
-        :www_icons =>     Builder::WWWIcons,
-        :assets       =>  Builder::Assets,
-        :data         =>  Builder::Data,
-        :templates    =>  Builder::Templates
+        :icons        => Builder::Icons,
+        :load_screens => Builder::LoadScreens,
+        :www_icons    => Builder::WWWIcons,
+        :assets       => Builder::Assets,
+        :data         => Builder::Data,
+        :templates    => Builder::Templates
       },
 
       :build => {
-        :javascript =>    Builder::JavaScript,
-        :css =>           Builder::CSS,
-        :html =>          Builder::HTML,
-        :config =>        Builder::Config,
-        :project =>       Builder::Project,
+        :javascript   => Builder::JavaScript,
+        :css          => Builder::CSS,
+        :html         => Builder::HTML,
+        :config       => Builder::Config,
+        :project      => Builder::Project,
       },
 
       :close => {
-        :bundle =>        Builder::Bundle,
+        :bundle       => Builder::Bundle,
       }
     }
 
