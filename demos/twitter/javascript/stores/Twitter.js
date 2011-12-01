@@ -1,6 +1,6 @@
-dojo.provide('client.data.Twitter');
+dojo.provide('client.stores.Twitter');
 
-mulberry.datasource('Twitter', {
+mulberry.stores.custom('Twitter', {
   getLatest : function(username) {
     return this._get(username, 1).then(dojo.hitch(this, '_getLatest'));
   },

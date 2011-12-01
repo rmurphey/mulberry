@@ -1,8 +1,8 @@
-dojo.provide('toura._LocalStore');
+dojo.provide('toura.stores._LocalStore');
 
 dojo.require('dojo.store.Memory');
 
-dojo.declare('toura._LocalStore', dojo.store.Memory, {
+dojo.declare('toura.stores._LocalStore', dojo.store.Memory, {
   key : 'anonymous',
 
   constructor : function() {
@@ -31,3 +31,9 @@ dojo.declare('toura._LocalStore', dojo.store.Memory, {
     toura.app.DeviceStorage.set(this.key, this.data);
   }
 });
+
+toura.stores = {
+  local : function(name, proto) {
+    dojo.declare('client.stores.' + name, toura.stores._LocalStore, proto);
+  }
+};

@@ -7,7 +7,7 @@ module Mulberry
       dirnames = {
         'component'   =>  'components',
         'capability'  =>  'capabilities',
-        'datasource'  =>  'data',
+        'store'       =>  'stores',
         'base'        =>  '.'
       }
 
