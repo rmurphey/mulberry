@@ -24,6 +24,10 @@ module Builder
       nil
     end
 
+    def css_resources(location, report)
+      nil
+    end
+
     private
     def padded_id
       # id's in iOS must be at least 2 characters :/
