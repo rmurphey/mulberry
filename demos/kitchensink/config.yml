@@ -86,8 +86,3 @@ flurry:
  android:
    api_key: flurry_ios_api_key
 
-toura_api:
-  host: localhost:3000
-  key: D0F60DC5DC8A5FC839E
-  secret: 53776E4A8FFB7DFABFF1
-
