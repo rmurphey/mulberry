@@ -41,9 +41,15 @@ void uncaughtExceptionHandler(NSException *);
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	//NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-  
+
     NSBundle* mainBundle = [NSBundle mainBundle];
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+
+    // Flurry docs lie and say this defaults to false.
+    // worse, it crashes the app in ios 5 sim when it tries to do this.
+    // may want to re-enable when this issue is fixed.
+    [ FlurryAnalytics setSessionReportsOnPauseEnabled:false ];
+
     NSString* flurryApiKey = [mainBundle objectForInfoDictionaryKey:@"FlurryApiKey"];
     [ FlurryAnalytics startSession:flurryApiKey ];
 
