@@ -1,6 +1,3 @@
-$text-color-dark: #000;
-$text-color-light: #fff;
-
 @mixin text-color($which-color: base) {
   @if $user-font-scheme == dark  {
     @if $which-color == base {
