@@ -44,7 +44,7 @@ install any libraries for you to do development on Mulberry core, or run any of
 the automated tests. If you wish to do these things, simply re-run the bundle
 install command, omitting the `--without` flag:
 
-	`bundle install`
+	bundle install
 
 This will install the necessary libraries for ruby development and for running
 the automated test suite.
