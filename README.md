@@ -186,8 +186,14 @@ See the github issues list https://github.com/Toura/mulberry/issues/
 
 # Running the tests
 
-To run the tests, simply run `rake` from the root of the repository. You can
-also run individual suites:
+
+Note that if you've been following along, you have not installed the libraries
+to do testing. Run `bundle install` to install the test/development libraries necessary
+for testing.
+
+To run the tests, run `rake` from the root of the repository.
+
+You can also run individual suites:
 
     rake spec             # run the ruby tests
     rake evergreen:run    # run the javascript tests
