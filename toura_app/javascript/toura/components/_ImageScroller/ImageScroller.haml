@@ -4,12 +4,6 @@
       :each img in images
         %li{ class : 'image ' + img.id }
           .image{ dojoType : 'toura.ui.BackgroundImage', imageUrl : img.url, imageHeight : img.height, imageWidth : img.width }
-  :if images.length > 1
-    %ol.indicator{ dojoAttachPoint : 'indicator' }
-      :each img in images
-        %li &#183;
-  <!--can't just delete the node, since the JS looks for it somewhere
-  so we create one with an empty li-->
-  :if images.length <= 1
-    %ol.indicator{ dojoAttachPoint : 'indicator' }
-      %li 
+  %ol.indicator{ dojoAttachPoint : 'indicator' }
+    :each img in images
+      %li &#183;
