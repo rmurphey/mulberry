@@ -21,7 +21,7 @@ module Mulberry
 
     def send_file(path, opts={})
       # make sure it never caches
-      FileUtils.touch(path)
+      FileUtils.touch(path) if File.exists? path
       super(path, opts={})
     end
 
