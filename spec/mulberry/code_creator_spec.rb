@@ -111,6 +111,10 @@ describe Mulberry::CodeCreator do
       File.exists?(@routes).should be_true
     end
 
+    it "should add the dependency to the base.js file" do
+      File.read(File.join(@source_dir, 'javascript', 'base.js')).should include 'client.routes'
+    end
+
     it "should add the route to the routes file" do
       File.read(@routes).should include "mulberry.route('/foo/:bar', function"
     end
