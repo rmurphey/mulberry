@@ -189,6 +189,7 @@ module Mulberry
       end
 
       Mulberry::CodeCreator.new('base', base, 'base')
+      Mulberry::CodeCreator.new('routes', base, 'routes')
 
       asset_dirs = Dir.entries File.join(base, 'assets')
 

@@ -22,6 +22,10 @@ module Mulberry
 
           :datasource => {
             :creator  =>  Mulberry::CodeCreator
+          },
+
+          :route      => {
+            :creator  =>  Mulberry::CodeCreator
           }
         }
       end

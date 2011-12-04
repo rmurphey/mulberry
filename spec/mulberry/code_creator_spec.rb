@@ -100,4 +100,21 @@ describe Mulberry::CodeCreator do
       File.read(js).should include "dojo.require('client.capabilities.BizBopBim');\n"
     end
   end
+
+  describe "route creation" do
+    before :each do
+      Mulberry::CodeCreator.new('route', @source_dir, '/foo/:bar')
+      @routes = File.join(@source_dir, 'javascript', 'routes.js')
+    end
+
+    it "should create the routes file" do
+      File.exists?(@routes).should be_true
+    end
+
+    it "should add the route to the routes file" do
+      File.read(@routes).should include "mulberry.route('/foo/:bar', function"
+    end
+  end
+
+
 end
