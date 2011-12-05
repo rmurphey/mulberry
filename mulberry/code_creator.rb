@@ -33,13 +33,16 @@ module Mulberry
 
       if @code_type == 'route'
         path_matcher = @filename
+        routes_file = File.join(@js_dir, 'routes.js')
 
         # routes just get added to the routes file
-        File.open(File.join(@js_dir, 'routes.js'), 'a') do |f|
+        File.open(routes_file, 'a') do |f|
           f.write "\n"
           f.write template.gsub('{{path_matcher}}', path_matcher)
           f.write "\n"
         end
+
+        puts "Added route #{path_matcher} to #{routes_file}"
       else
         # add the dependency
         File.open(File.join(@js_dir, 'base.js'), 'a') do |f|
@@ -50,9 +53,10 @@ module Mulberry
         File.open(File.join(@code_dir, "#{@filename}.js"), 'w') do |f|
           f.write template.gsub('{{name}}', @filename)
         end
+
+        puts "Created #{@code_type} at #{code_filename}"
       end
 
-      puts "Created #{@code_type} at #{code_filename}"
 
       if @code_type === 'component'
         create_component_files
