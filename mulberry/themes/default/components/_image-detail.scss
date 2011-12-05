@@ -1,5 +1,5 @@
 .image-detail {
-  background-color: #fff;
+  background-color: $image-detail-background-color;
 
   @if ($user-font-scheme == dark) {
     background-color: #fff;
@@ -16,14 +16,14 @@
     -webkit-background-size: 50% 50%;
 
     &.prev {
-      @include button('../icons/btn-arrow-left-27x50.png', 14, 25, rgba(0, 0, 0, .7));
+      @include button('../icons/btn-arrow-left-27x50.png', 14, 25, $overlay-chrome-color);
       background-position-x: left;
       padding-left: 4px;
       border-radius: 0 25px 25px 0;
     }
 
     &.next {
-      @include button('../icons/btn-arrow-right-27x50.png', 14, 25, rgba(0, 0, 0, .7));
+      @include button('../icons/btn-arrow-right-27x50.png', 14, 25, $overlay-chrome-color);
       background-position-x: right;
       border-radius: 25px 0 0 25px;
       padding-right: 4px;
@@ -40,9 +40,9 @@
   .caption {
     @include resizable-font;
     padding: 20px;
-    background: rgba(0, 0, 0, .7);
+    background: $overlay-chrome-color;
     text-align: center;
-    color: #fff;
+    color: $image-detail-text-color;
     font-size: 13px;
   }
 
