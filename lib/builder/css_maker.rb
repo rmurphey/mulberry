@@ -6,6 +6,13 @@ module Builder
   class CSSMaker
     @@css_filename = 'base.scss'
 
+    def self.scss_data_from_vars_hash(vars_hash)
+      vars_hash.keys.reduce("") do |scss_data, k|
+        scss_data << "$user-#{k}: #{vars_hash[k]};"
+        scss_data
+      end
+    end
+
     def initialize(settings)
       if settings[:custom_base_path]
         puts "CSSMaker: :custom_base_path is deprecated. Use :theme_dir instead."
@@ -47,9 +54,7 @@ module Builder
       scss_data = ''
 
       if settings.has_key?(:vars)
-        settings[:vars].each do |k, v|
-          scss_data << "$user-#{k}: #{v};"
-        end
+        scss_data << self.scss_data_from_vars_hash(settings[:vars])
       end
 
       if settings.has_key?(:vars_path)
