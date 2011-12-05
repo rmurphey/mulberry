@@ -54,7 +54,7 @@ module Builder
       scss_data = ''
 
       if settings.has_key?(:vars)
-        scss_data << self.scss_data_from_vars_hash(settings[:vars])
+        scss_data << self.class.scss_data_from_vars_hash(settings[:vars])
       end
 
       if settings.has_key?(:vars_path)
