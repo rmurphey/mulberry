@@ -1,6 +1,8 @@
+// TODO: Find where this is used and either make it universal, or get
+// rid of it.
 @mixin nav {
-  color: #fff;
-  background-color: lighten(rgb(0, 0, 0), 30%);
+  color: $nav-text-color;
+  background-color: $nav-color;
 
   .tablet & {
     font-size: 21px;
@@ -23,10 +25,14 @@
 
 @mixin wide-button {
   display: block;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e1e1e1), to(#9a9a9a));
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(lighten($button-color, 10.5%)),
+    to(darken($button-color, 10.5%))
+  );
   -webkit-border-radius: 2px;
   border: 1px solid #9a9a9a;
-  color: #2b2b2b;
+  color: $button-text-color-1;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
@@ -43,8 +49,8 @@
     url($image-url),
     -webkit-gradient(
       linear, 0% 0%, 0% 100%,
-      from(#e1e1e1),
-      to(#9a9a9a)
+      from(lighten($button-color, 10.5%)),
+      to(darken($button-color, 10.5%))
     );
 
   background-position: left center, center center;
@@ -56,14 +62,14 @@
       url($image-url),
       -webkit-gradient(
         linear, 0% 0%, 0% 100%,
-        from(darken(#e1e1e1, 10%)),
-        to(darken(#9a9a9a, 10%))
+        from($button-color),
+        to(darken($button-color, 20.5%))
       );
   }
 
   .label {
     margin-right: 5px;
-    color: #7d7d7d;
+    color: $button-text-color-2;
   }
 }
 
