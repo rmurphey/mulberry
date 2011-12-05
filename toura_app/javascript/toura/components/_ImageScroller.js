@@ -73,6 +73,15 @@ dojo.declare('toura.components._ImageScroller', [ toura.components._ImageGallery
     dojo.addClass(this.indicator.childNodes[imageIndex], 'active');
   },
 
+  postCreate : function() {
+    this.inherited(arguments);
+
+    // hide the dots if there's only one
+    if (this.images.length <= 1) {
+      this.hide(this.indicator);
+    }
+  },
+
   _updateIndicator : function() {
   },
 
