@@ -1,1 +1,1 @@
-dojo.require('client.components.PageHeader');dojo.require('client.stores.foo');
+dojo.require('client.components.PageHeader');
