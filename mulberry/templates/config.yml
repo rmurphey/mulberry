@@ -85,3 +85,6 @@ flurry:
    api_key: flurry_ios_api_key
  android:
    api_key: flurry_android_api_key
+
+# Enter the app store version here
+published_version: '1.0'
