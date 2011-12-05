@@ -22,6 +22,10 @@ module Mulberry
 
           :store      => {
             :creator  =>  Mulberry::CodeCreator
+          },
+
+          :route      => {
+            :creator  =>  Mulberry::CodeCreator
           }
         }
       end

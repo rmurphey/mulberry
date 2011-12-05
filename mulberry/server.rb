@@ -19,6 +19,12 @@ module Mulberry
       @js_build_name = 'dev'
     end
 
+    def send_file(path, opts={})
+      # make sure it never caches
+      FileUtils.touch(path) if File.exists? path
+      super(path, opts={})
+    end
+
     private
 
     #####################
@@ -71,6 +77,16 @@ module Mulberry
     get '/:os/:type/css/base.css' do
       content_type 'text/css'
       @helper.create_css
+    end
+
+    get '/:os/:type/css/resources/*' do
+      send_file File.join(
+        @source_dir,
+        'themes',
+        @mulberry_app.config['theme']['name'] || 'default',
+        'resources',
+        params[:splat].first
+      )
     end
 
     #####################
