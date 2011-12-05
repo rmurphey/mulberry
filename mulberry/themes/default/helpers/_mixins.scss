@@ -67,9 +67,9 @@
 
 
 @mixin chrome-gradient {
-  $color-1 : rgb(100,100,100);
-  $color-2 : rgb(80,80,80);
-  $color-3 : rgb(55,55,55);
+  $color-1 : $chrome-color-base + 20;
+  $color-2 : $chrome-color-base;
+  $color-3 : $chrome-color-base - 15;
 
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
@@ -81,9 +81,9 @@
 
 // TODO: DRY
 @mixin chrome-gradient-flat() {
-  $color-1 : rgb(110,110,110);
-  $color-2 : rgb(80,80,80);
-  $color-3 : rgb(80,80,80);
+  $color-1 : $chrome-color-base + 30;
+  $color-2 : $chrome-color-base;
+  $color-3 : $chrome-color-base;
 
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
