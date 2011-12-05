@@ -5,16 +5,20 @@ dojo.require('dojo.store.Memory');
 dojo.declare('toura.stores._LocalStore', dojo.store.Memory, {
   key : 'anonymous',
 
-  constructor : function() {
-    this.data = toura.app.DeviceStorage.get(this.key) || [];
+  add : function(item) {
+    if (!item.id) {
+      item.id = this._createId();
+    }
+
+    this.put(item);
   },
 
-  put : function() {
+  put : function(item) {
     this.inherited(arguments);
     this._save();
   },
 
-  remove : function() {
+  remove : function(id) {
     this.inherited(arguments);
     this._save();
   },
@@ -27,13 +31,16 @@ dojo.declare('toura.stores._LocalStore', dojo.store.Memory, {
     return this.inherited(arguments);
   },
 
+  setData : function(data) {
+    this.inherited(arguments);
+    this._save();
+  },
+
   _save : function() {
     toura.app.DeviceStorage.set(this.key, this.data);
-  }
-});
+  },
 
-toura.stores = {
-  local : function(name, proto) {
-    dojo.declare('client.stores.' + name, toura.stores._LocalStore, proto);
-  }
-};
+  _createId : function() {
+    return (((1+Math.random())*0x10000)).toString(16).substring(1);
+  },
+});
