@@ -1,10 +1,8 @@
 .component.more-drawer {
-  $nav-color: lighten(rgb(0, 0, 0), 30%);
-
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
     from($nav-color),
-    to(#2b2b2b)
+    to(darken($nav-color, 12%))
   );
 
   @include box-shadow(0, 1px);
@@ -21,7 +19,7 @@
 
   .tablet & {
     li.font-size {
-      border-right: 1px solid #777;
+      border-right: 1px solid $nav-border-color;
     }
   }
 
