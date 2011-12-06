@@ -175,7 +175,9 @@ module Mulberry
         ],
 
         :javascript => [
-          'components'
+          'components',
+          'stores',
+          'capabilities'
         ],
 
         :templates => [],

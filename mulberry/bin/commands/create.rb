@@ -20,7 +20,7 @@ module Mulberry
             :creator  =>  Mulberry::CodeCreator
           },
 
-          :datasource => {
+          :store      => {
             :creator  =>  Mulberry::CodeCreator
           },
 

@@ -9,7 +9,7 @@ describe Mulberry::Command::Create do
 
   describe '#commands' do
     it "should support all commands" do
-      should_commands = %w(page feed data location component template capability datasource route)
+      should_commands = %w(page feed data location component template capability store route)
       actual_commands = Mulberry::Command::Create.commands.collect{ |cmd| cmd[0].to_s }
 
       should_commands.sort.should == actual_commands.sort
