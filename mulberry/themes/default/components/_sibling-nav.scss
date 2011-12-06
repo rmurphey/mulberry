@@ -4,7 +4,7 @@
   @include chrome-gradient;
   @include box-shadow(1px, 0);
 
-  color: #fff;
+  color: $nav-text-color;
 
   .handle {
     @include chrome-gradient;
