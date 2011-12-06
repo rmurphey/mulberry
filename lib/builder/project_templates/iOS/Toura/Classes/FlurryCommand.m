@@ -7,14 +7,14 @@
 //
 
 #import "FlurryCommand.h"
-#import "FlurryAPI.h"
+#import "FlurryAnalytics.h"
 
 @implementation FlurryCommand
 
 -(void) logEvent:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
     NSString* eventName = [arguments objectAtIndex:0];
     
-    [FlurryAPI logEvent:eventName withParameters:options];
+    [FlurryAnalytics logEvent:eventName withParameters:options];
 }
 
 @end
