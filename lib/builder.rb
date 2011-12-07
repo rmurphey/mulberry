@@ -27,6 +27,10 @@ module Builder
     safe_tour_name = s.gsub( "'", "'\\\\''" )
   end
 
+  [ 'ConfigurationError' ].each do |error_type|
+    module_eval %Q{ class #{error_type} < StandardError; end}
+  end
+
   class Build
     attr_accessor :tmp_dir, :logger
     attr_reader   :settings, :target, :completed_steps, :build_helper

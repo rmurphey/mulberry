@@ -50,6 +50,18 @@ describe 'Mulberry build helper' do
       end
     end
 
+    it 'should raise exception if ota enabled but not configured' do
+      @app.config['ota'] = { 'enabled' => 'true' }
+      @build_helper.build = Builder::Build.new({
+        :target_config => {
+          'build_type' => 'mulberry',
+          'ota' => { 'enabled' => true }
+        },
+        :build_helper => @build_helper
+      })
+      lambda { @build_helper.config_settings }.should raise_error Builder::ConfigurationError
+    end
+
   end
 
 end

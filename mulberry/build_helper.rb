@@ -167,7 +167,7 @@ module Mulberry
             'version_url' =>  File.join(url, "/applications/#{key}/ota_service/version_json")
           )
         else
-          raise "Must configure toura_api credentials or version_url and update_url manually."
+          raise Builder::ConfigurationError.new "Must configure toura_api credentials or version_url and update_url manually."
         end
         settings['skip_version_check'] = false
       end
