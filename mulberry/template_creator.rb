@@ -5,7 +5,7 @@ module Mulberry
   class TemplateCreator
     def initialize(code_type, destination_dir, filename)
       template_dir = File.join(destination_dir, 'templates')
-      capability_name = "Page#{filename.capitalize}"
+      capability_name = "Page#{filename.gsub('-', '_').camelize}"
       FileUtils.mkdir_p template_dir unless File.exists? template_dir
       template_filename = File.join(template_dir, "#{filename}.yml")
 
