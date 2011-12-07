@@ -115,8 +115,8 @@
 }
 
 
-@mixin box-shadow($x-offset, $y-offset) {
-  -webkit-box-shadow: $x-offset $y-offset 5px 0 rgba(0, 0, 0, .5);
+@mixin box-shadow($x-offset, $y-offset, $blur: 5px) {
+  -webkit-box-shadow: $x-offset $y-offset $blur 0 rgba(0, 0, 0, .5);
 }
 
 
