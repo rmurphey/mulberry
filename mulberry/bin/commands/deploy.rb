@@ -4,7 +4,8 @@ module Mulberry
       def initialize(args)
         dir = Mulberry.get_app_dir args[0]
         app = Mulberry::App.new(dir)
-        app.device_build
+
+        app.device_build args[1]
       end
     end
   end

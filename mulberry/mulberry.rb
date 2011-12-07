@@ -254,19 +254,24 @@ module Mulberry
       end
     end
 
-    def device_build(settings = {})
+    def device_build(settings)
+      settings ||= {}
+
       build({
         :target         => settings[:test] ? 'mulberry_test' : 'mulberry',
         :tour           => self,
         :tmp_dir        => tmp_dir,
         :log_level      => -1,
-        :force_js_build => true,
+        :force_js_build => settings[:force_js_build] ||= true,
+        :skip_js_build  => settings[:skip_js_build]  ||= false,
         :build_helper   => @helper,
         :quiet          => (settings[:quiet] || false)
       })
     end
 
-    def www_build(settings = {})
+    def www_build(settings)
+      settings ||= {}
+
       b = nil
 
       [ 'phone', 'tablet' ].each do |type|
@@ -276,7 +281,8 @@ module Mulberry
             :tour           => self,
             :tmp_dir        => tmp_dir,
             :log_level      => -1,
-            :force_js_build => true,
+            :force_js_build => settings[:force_js_build] ||= true,
+            :skip_js_build  => settings[:skip_js_build]  ||= false,
             :build_helper   => @helper,
             :device_os      => 'ios',
             :device_type    => type
