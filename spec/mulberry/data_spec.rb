@@ -39,7 +39,8 @@ describe Mulberry::Data do
       f.write sitemap.to_yaml
     end
 
-    @pages.each do |page|
+    # Scaffold creates home and about for us automagically
+    @pages.reject{|p| %w(home about).include? p}.each do |page|
       Mulberry::ContentCreator.new('page', @source_dir, page)
     end
 

@@ -9,7 +9,7 @@ describe Mulberry::Command::Create do
 
   describe '#commands' do
     it "should support all commands" do
-      should_commands = %w(page feed data location component template capability datasource)
+      should_commands = %w(page feed data location component template capability store route)
       actual_commands = Mulberry::Command::Create.commands.collect{ |cmd| cmd[0].to_s }
 
       should_commands.sort.should == actual_commands.sort
@@ -24,6 +24,12 @@ describe Mulberry::Command::Create do
     Mulberry::Command::Create.commands.each do |command|
       it "should create #{command[0].to_s}" do
         Mulberry::Command::Create.new([command[0].to_s, "foo"])
+      end
+
+      it "should raise an error if the filename includes spaces" do
+        lambda {
+          Mulberry::Command::Create.new([command[0].to_s, "foo bar"])
+        }.should raise_error
       end
     end
 

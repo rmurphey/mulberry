@@ -19,12 +19,6 @@ module Mulberry
       @js_build_name = 'dev'
     end
 
-    def send_file(path, opts={})
-      # make sure it never caches
-      FileUtils.touch(path)
-      super(path, opts={})
-    end
-
     private
 
     #####################
