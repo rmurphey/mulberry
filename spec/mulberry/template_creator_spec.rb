@@ -11,7 +11,7 @@ describe Mulberry::TemplateCreator do
     FileUtils.rm_rf @tmpdir
   end
 
-  it "should create a template with the requested name" do
+  it "should create a template file with the requested name" do
     Mulberry::TemplateCreator.new('template', @tmpdir, 'foo')
 
     template_dir = File.join @tmpdir, @template_dir
@@ -33,5 +33,20 @@ describe Mulberry::TemplateCreator do
     template['screens'].first['name'].should_not be_nil
     template['screens'].first['regions'].should_not be_nil
     template['screens'].first['regions'].length.should be > 0
+    template['capabilities'].should_not be_nil
+    template['capabilities'].first['name'].should == 'PageFoo'
   end
+
+  it "should create a capability for the page" do
+    tpl = 'foo'
+
+    Mulberry::TemplateCreator.new('template', @tmpdir, tpl)
+
+    capability_file = File.join(@tmpdir, 'javascript', 'capabilities', 'PageFoo.js')
+
+    File.exists?(capability_file).should be_true
+    File.read(capability_file).should include 'mulberry.capability'
+    File.read(capability_file).should include 'PageFoo'
+  end
+
 end
