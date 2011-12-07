@@ -167,13 +167,12 @@
 
 @mixin list-component {
   li {
-
     a {
       line-height: 1.6em;
       display: block;
       margin: 0 0 1px 0;
       font-weight: bold;
-      @include text-color;
+      color: $text-color;
       background-color: transparentize($user-child-nav-color, .5);
       white-space: nowrap;
       overflow: hidden;
@@ -185,7 +184,7 @@
         white-space: normal;
       }
 
-      @if ($user-font-scheme == light) {
+      @if ($child-node-text-shadow == true) {
         text-shadow: 1px 1px 0 rgba(0,0,0, .2);
       }
 
@@ -193,16 +192,7 @@
   }
 
   &.not-moving a:active {
-    background-color: transparentize($user-child-nav-color, .5);
-
-    @if ($user-font-scheme == light) {
-      background-color: darken(transparentize($user-child-nav-color, .5), 20%);
-
-    } @else {
-      background-color: lighten(transparentize($user-child-nav-color, .5), 20%);
-      @include text-color(alternate);
-    }
+    background-color: $child-node-active-color;
   }
-
 }
 

@@ -1,11 +1,9 @@
 @import 'settings';
-@import 'helpers/functions';
 @import 'helpers/mixins';
-@import 'helpers/colors';
 @import 'helpers/forms';
 
 body {
-  @include text-color;
+  color: $text-color;
   font-family: $base-font;
 }
 

@@ -10,7 +10,7 @@
     @include asset-icon(video);
 
     a {
-      @include text-color;
+      color: $text-color;
       display: block;
       padding-right: 50px;
     }
