@@ -90,7 +90,7 @@ public class TouraMainActivity extends DroidGap {
    * Log something with flurry
    */
   public void logEvent(String eventId,  Map<String, String> parameters) {
-    FlurryAgent.onEvent( eventId, parameters);
+    FlurryAgent.logEvent( eventId, parameters);
   }
 
   public boolean isInForeground() {
