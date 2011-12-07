@@ -147,7 +147,7 @@ module Mulberry
         raise "Don't know how to proxy #{url}"
       end
       begin
-        res = Mulberry::Data.fetch(ota_url)
+        res = Mulberry::Http.fetch(ota_url)
         status res.code
         res.body
       rescue Errno::ECONNREFUSED

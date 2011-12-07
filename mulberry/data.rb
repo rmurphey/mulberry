@@ -63,7 +63,7 @@ module Mulberry
                                     "default" => lambda {|res|
                                       "Could not retrieve version from #{url} (#{res.code}).  Response: #{res.body}"
                                     } do
-            self.class.fetch File.join(url, "/applications/#{key}/ota_service/version_json")
+            Mulberry::Http.fetch File.join(url, "/applications/#{key}/ota_service/version_json")
           end
           version = JSON.parse(res.body)['version']
           new_version = version + 1
@@ -82,21 +82,6 @@ module Mulberry
       unless @item_ids.include? item[:id]
         @item_ids << item[:id]
         @items << item
-      end
-    end
-
-    def self.fetch(uri_str, limit = 10)
-      raise 'too many HTTP redirects' if limit == 0
-
-      response = Net::HTTP.get_response(URI(uri_str))
-
-      case response
-      when Net::HTTPRedirection then
-        location = response['location']
-        warn "redirected to #{location}"
-        fetch(location, limit - 1)
-      else
-        response
       end
     end
 
