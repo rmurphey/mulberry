@@ -13,7 +13,7 @@ $nav-color: lighten(rgb(0, 0, 0), 30%); // get rid of this. Should be same as ch
 $nav-text-color: #fff;
 $nav-border-color: #777;
 
-$chrome-color-base: rgb(80,80,80); //#505050
+$chrome-color-base: #505050;
 $chrome-color-text: #fff;
 
 $button-color: #b8b8b8;
@@ -31,3 +31,4 @@ $gallery-indicator-outline-color: #ccc;
 
 $child-node-text-shadow: false;
 $child-node-active-color: darken(transparentize($user-child-nav-color, .5), 20%);
+
