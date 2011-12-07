@@ -41,6 +41,7 @@
   }
 
   .tablet & {
+    padding: 10px;
 
     h3 {
       position: absolute;
@@ -65,11 +66,11 @@
 
     .tablet & {
       &.size-large {
-        @include grid-item(370px);
+        @include grid-item(364px);
       }
 
       &.size-medium {
-        @include grid-item(243px);
+        @include grid-item(240px);
       }
     }
   }
@@ -81,7 +82,7 @@
 
     .tablet & {
       &.size-large {
-        @include grid-item(326px);
+        @include grid-item(322px);
       }
 
       &.size-medium {
