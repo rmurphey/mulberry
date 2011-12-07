@@ -2,7 +2,7 @@
 // rid of it.
 @mixin nav {
   color: $nav-text-color;
-  background-color: $nav-color;
+  background-color: darken($chrome-color-base, 2%);
 
   .tablet & {
     font-size: 21px;

@@ -1,15 +1,15 @@
 .component.more-drawer {
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
-    from($nav-color),
-    to(darken($nav-color, 12%))
+    from(darken($chrome-color-base, 2%)),
+    to(darken($chrome-color-base, 14%))
   );
 
   @include box-shadow(0, 1px);
 
   .phone & {
     section > * {
-      border-top: 2px groove $nav-color;
+      border-top: 2px groove $chrome-color-base;
     }
 
     section:first-child > * {
