@@ -1,12 +1,6 @@
 .image-detail {
   background-color: $image-detail-background-color;
 
-  @if ($user-font-scheme == dark) {
-    background-color: #fff;
-  } @else {
-    background-color: #000;
-  }
-
   .image-nav {
     width: 23px;
     height: 50px;
