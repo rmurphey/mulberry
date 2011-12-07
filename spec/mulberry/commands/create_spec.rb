@@ -25,6 +25,12 @@ describe Mulberry::Command::Create do
       it "should create #{command[0].to_s}" do
         Mulberry::Command::Create.new([command[0].to_s, "foo"])
       end
+
+      it "should raise an error if the filename includes spaces" do
+        lambda {
+          Mulberry::Command::Create.new([command[0].to_s, "foo bar"])
+        }.should raise_error
+      end
     end
 
     after :each do

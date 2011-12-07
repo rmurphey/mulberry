@@ -1,17 +1,25 @@
 {{template_name}}:
+  capabilities:
+    # Edit the file at javascript/capabilities/{{capability_name}}.js in order
+    # to add JavaScript functionality to this page. For more details, see the
+    # Mulberry documentation on Capabilities
+    - name: {{capability_name}}
   screens:
     - name: index
       regions:
-        # each region can either be a row or a column
+        # Each region can either be a row or a column
         - type: row
-          # by default, regions will all equally fill the space of their
-          # container. `size: fixed` will cause it to take the size of its
-          # contents
+          # By default, regions will all equally fill the space of their
+          # container. Setting `size: fixed` will cause it to take the
+          # size of its contents
           size: fixed
           components:
             - PageNav
         - type: row
-          # by default `scrollable` is false
+          # By default, `scrollable` is false
           scrollable: true
           components:
-            - # add components here!
+            # Add your components here as a list. For example:
+            # - BodyText
+            # - ImageGallery
+            # - custom.YourCustomComponent
