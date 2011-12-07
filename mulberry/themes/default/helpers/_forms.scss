@@ -7,7 +7,7 @@ input[type=reset],
 button {
   -webkit-border-radius: 4px;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($form-button-color-1), to($form-button-color-2));
-  border: 1px solid $medium-gray;
+  border: 1px solid $form-button-border-color;
   font-size: 14px;
   font-weight: bold;
   color: $form-button-text-color;
