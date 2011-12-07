@@ -56,7 +56,7 @@ module Mulberry
       }
       if (include_version)
         unless @config['toura_api']
-          raise "Need toura_api configuration to include version in data json."
+          raise Builder::ConfigurationError.new "Need toura_api configuration to include version in data json."
         end
         url = @config['toura_api']['url'] || 'https://api.toura.com'
         key = @config['toura_api']['key']
