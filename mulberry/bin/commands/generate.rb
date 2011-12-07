@@ -32,7 +32,9 @@ module Mulberry
           region['regions'].each do |r|
             create_components r
           end
+        end
 
+        if region['components']
           region['components'].each do |c|
             Mulberry::CodeCreator.new(:component, @dir, component_basename(c)) unless component_exists? c
           end

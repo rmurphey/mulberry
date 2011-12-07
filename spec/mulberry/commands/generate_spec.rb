@@ -60,12 +60,14 @@ describe Mulberry::Command::Generate do
     end
 
     it "should create nonexistent components" do
-      created_component = File.join('javascript', 'components', 'NonexistentComponent.js')
+      [ 'NonexistentComponent', 'ComponentInSubregion' ].each do |c|
+        puts "Checking for #{c}"
+        created_component = File.join('javascript', 'components', "#{c}.js")
 
-      File.exists?(created_component).should be_true
-      File.read(created_component).should include 'mulberry.component'
-      File.read(created_component).should include 'NonexistentComponent'
-
+        File.exists?(created_component).should be_true
+        File.read(created_component).should include 'mulberry.component'
+        File.read(created_component).should include c
+      end
     end
 
     it "should not re-create an already existing component" do
