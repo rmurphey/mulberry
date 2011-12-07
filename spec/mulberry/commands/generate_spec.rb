@@ -10,10 +10,10 @@ describe Mulberry::Command::Generate do
   after :each do
     Dir.chdir Mulberry::Directories.root
     FileUtils.rm_rf @app_name
+    Mulberry::Command::Scaffold.new([@app_name])
   end
 
   it "should create any nonexistent pages in the sitemap" do
-    Mulberry::Command::Scaffold.new([@app_name])
     Dir.chdir @app_name
     File.open('sitemap.yml', 'a') do |f|
       f.write "\n- fake_page"
@@ -23,7 +23,6 @@ describe Mulberry::Command::Generate do
   end
 
   it "should not create any pages that already exist" do
-    Mulberry::Command::Scaffold.new([@app_name])
     Dir.chdir @app_name
     File.open('sitemap.yml', 'a') do |f|
       f.write "\n- existing_page"
@@ -37,7 +36,6 @@ describe Mulberry::Command::Generate do
   end
 
   it "should scaffold pages with full path" do
-    Mulberry::Command::Scaffold.new([@app_name])
     File.open(File.join(@app_name, 'sitemap.yml'), 'a') do |f|
       f.write "\n- fake_page"
     end
