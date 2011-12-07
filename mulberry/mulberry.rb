@@ -292,16 +292,16 @@ module Mulberry
     end
 
     def publish_ota(data_json)
-      host = @config['toura_api']['host'] || 'api.toura.com'
+      url = @config['toura_api']['url'] || 'https://api.toura.com'
       key, secret = @config['toura_api']['key'], @config['toura_api']['secret']
       unless data_json
         data_json = JSON.pretty_generate(Mulberry::Data.new(self).generate(true))
       end
-      uri = URI("http://#{host}/applications/#{key}/ota_service/publish")
-      res = Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to ota server: #{host}.",
+      uri = URI(File.join(url, "/applications/#{key}/ota_service/publish"))
+      res = Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to ota server: #{url}.",
                       "400" => "Data json is malformed.",
-                      "404" => "Application with key #{key} not found on #{host}.",
-                      "503" => "#{host} currently unavailable.  Please try again later.",
+                      "404" => "Application with key #{key} not found on #{url}.",
+                      "503" => "#{url} currently unavailable.  Please try again later.",
                       "default" => lambda { |res|
                         "Problem publishing OTA. Response (#{res.code}): #{res.body}"
                       } do

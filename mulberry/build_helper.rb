@@ -158,12 +158,11 @@ module Mulberry
             'version_url' =>  @config['update_url']
           )
         elsif @config['toura_api']
-          host = @config['toura_api']['host'] || 'api.toura.com'
-          url_base = "http://#{host}"
+          url = @config['toura_api']['url'] || 'https://api.toura.com'
           key = @config['toura_api']['key']
           settings.merge!(
-            'update_url'  =>  File.join(url_base, "/applications/#{key}/ota_service/data_json"),
-            'version_url' =>  File.join(url_base, "/applications/#{key}/ota_service/version_json")
+            'update_url'  =>  File.join(url, "/applications/#{key}/ota_service/data_json"),
+            'version_url' =>  File.join(url, "/applications/#{key}/ota_service/version_json")
           )
         else
           raise "Must configure toura_api credentials or version_url and update_url manually."

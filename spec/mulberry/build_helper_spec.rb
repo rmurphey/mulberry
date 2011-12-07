@@ -41,7 +41,7 @@ describe 'Mulberry build helper' do
         'version_url' => 'version_json',
         'update_url' => 'data_json'
       }.each do |name, path|
-        config_settings[name].should match /^http:\/\/#{api_config['host']}\/applications\/#{api_config['key']}\/ota_service\/#{path}/
+        config_settings[name].should match /^http:\/\/#{api_config['url']}\/applications\/#{api_config['key']}\/ota_service\/#{path}/
       end
     end
 

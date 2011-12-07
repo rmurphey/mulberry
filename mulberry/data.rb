@@ -55,19 +55,19 @@ module Mulberry
 
       }
       if (include_version)
-        host = @config['toura_api']['host'] || 'api.toura.com'
+        url = @config['toura_api']['url'] || 'https://api.toura.com'
         key = @config['toura_api']['key']
         begin
-          res = Mulberry::Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to #{host}",
-                                    "503" => "#{host} is not available.",
+          res = Mulberry::Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to #{url}",
+                                    "503" => "#{url} is not available.",
                                     "default" => lambda {|res|
-                                      "Could not retrieve version from #{host} (#{res.code}).  Response: #{res.body}"
+                                      "Could not retrieve version from #{url} (#{res.code}).  Response: #{res.body}"
                                     } do
-            self.class.fetch "http://#{host}/applications/#{key}/ota_service/version_json"
+            self.class.fetch File.join(url, "/applications/#{key}/ota_service/version_json")
           end
           version = JSON.parse(res.body)['version']
           new_version = version + 1
-          puts "Retrieved current version from #{host}: #{version}. Setting version for this to #{new_version}."
+          puts "Retrieved current version from #{url}: #{version}. Setting version for this to #{new_version}."
           result['version'] = new_version
         rescue Mulberry::Http::NotFound
           result['version'] = default_version if default_version
