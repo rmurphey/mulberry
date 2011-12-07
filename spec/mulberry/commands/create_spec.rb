@@ -31,6 +31,12 @@ describe Mulberry::Command::Create do
           Mulberry::Command::Create.new([command[0].to_s, "foo bar"])
         }.should raise_error
       end
+
+      it "should run the command from any dir" do
+        Dir.chdir 'themes'
+        Mulberry::Command::Create.new([command[0].to_s, "foo"])
+        Dir.chdir '..'
+      end
     end
 
     after :each do
