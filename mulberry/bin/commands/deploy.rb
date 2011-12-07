@@ -6,7 +6,12 @@ module Mulberry
         OptionParser.new do |opts|
           opts.banner = "Usage: mulberry deploy [options]"
 
-          opts.on("--skip-js-build", "Disable JavaScript build task.  DO NOT ENABLE THIS OPTION.") do |v|
+          opts.on("--skip-js-build", "Disable JavaScript build task.  This
+                                     option should not be used on real
+                                     projects, it's a tool for Mulberry
+                                     core developers to bypass this
+                                     time-consuming step when working on
+                                     other aspects of deployment.") do |v|
             options[:skip_js_build] = v
           end
         end.parse!
