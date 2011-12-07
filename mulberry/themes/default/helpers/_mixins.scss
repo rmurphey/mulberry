@@ -192,7 +192,7 @@
   }
 
   &.not-moving a:active {
-    background-color: $child-node-active-color;
+    background-color: transparentize($child-node-active-color, .5);
   }
 }
 
