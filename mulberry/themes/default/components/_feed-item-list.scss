@@ -50,7 +50,7 @@
     }
 
     &.active > div {
-      background-color: $feed-list-active-color;
+      background-color: transparentize($feed-list-active-color, .95);
     }
 
     .image {
