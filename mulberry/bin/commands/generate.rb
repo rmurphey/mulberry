@@ -18,10 +18,10 @@ module Mulberry
 
         Dir.glob(File.join(@dir, 'templates', '*.yml')).each do |f|
           tpl = YAML.load_file(f).values.first
+          raise "Template #{File.basename(f)} has no screens." unless tpl['screens']
           tpl['screens'].each do |screen|
-            screen['regions'].each do |region|
-              create_components region
-            end
+            raise "Template #{File.basename(f)} has no regions on screen #{screen['name']}." unless screen['regions']
+            screen['regions'].each(&method(:create_components))
           end
         end
       end
@@ -29,9 +29,7 @@ module Mulberry
       private
       def create_components(region)
         if region['regions']
-          region['regions'].each do |r|
-            create_components r
-          end
+          region['regions'].each(&method(:create_components))
         end
 
         if region['components']
