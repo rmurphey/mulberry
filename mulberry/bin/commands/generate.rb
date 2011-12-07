@@ -13,11 +13,45 @@ module Mulberry
         sitemap.each { |page| process_page page }
 
         if !@created_pages
-          puts "All pages in the sitemap already exist"
+          puts "All pages in the sitemap exist"
+        end
+
+        Dir.glob(File.join(@dir, 'templates', '*.yml')).each do |f|
+          tpl = YAML.load_file(f).values.first
+          raise "Template #{File.basename(f)} has no screens." unless tpl['screens']
+          tpl['screens'].each do |screen|
+            raise "Template #{File.basename(f)} has no regions on screen #{screen['name']}." unless screen['regions']
+            screen['regions'].each(&method(:create_components))
+          end
         end
       end
 
       private
+      def create_components(region)
+        if region['regions']
+          region['regions'].each(&method(:create_components))
+        end
+
+        if region['components']
+          region['components'].each do |c|
+            Mulberry::CodeCreator.new(:component, @dir, component_basename(c)) unless component_exists? c
+          end
+        end
+      end
+
+      def component_exists?(component)
+        if !component.match(/^custom\./)
+          # assume all non-custom components exist
+          true
+        else
+          File.exists?(File.join(@dir, 'javascript', 'components', "#{component_basename(component)}.js"))
+        end
+      end
+
+      def component_basename(component)
+        component.gsub(/^custom\./, '')
+      end
+
       def process_page(page)
         if page.is_a? Hash
           page.values.first.each { |child| process_page child }
@@ -28,13 +62,13 @@ module Mulberry
       end
 
       def create_page(page_name)
-        unless page_exists(page_name)
+        unless page_exists?(page_name)
           page = Mulberry::ContentCreator.new(:page, @dir, page_name)
           @created_pages = true
         end
       end
 
-      def page_exists(page_name)
+      def page_exists?(page_name)
         File.exists?(File.join(@dir, 'pages', "#{page_name}.md"))
       end
     end

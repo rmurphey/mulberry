@@ -13,6 +13,7 @@ module Mulberry
     }
 
     def initialize(code_type, destination_dir, filename)
+      code_type = code_type.to_s
       raise "Don't know how to create code type #{code_type}" unless DIRNAMES[code_type]
 
       @destination_dir      = destination_dir
