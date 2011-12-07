@@ -2,6 +2,20 @@
   @include row-container;
   margin-top: 15px;
 
+  .tablet & {
+    @media (orientation: landscape) {
+      div {
+        height: 300px;
+      }
+    }
+    @media (orientation: portrait) {
+      div {
+        height: 450px;
+      }
+    }
+
+  }
+
   .wrapper {
     -webkit-box-flex: 30;
 
