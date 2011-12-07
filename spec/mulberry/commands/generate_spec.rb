@@ -5,12 +5,12 @@ describe Mulberry::Command::Generate do
   before :each do
     @app_name = 'fooapp'
     FileUtils.rm_rf @app_name
+    Mulberry::Command::Scaffold.new([@app_name])
   end
 
   after :each do
     Dir.chdir Mulberry::Directories.root
     FileUtils.rm_rf @app_name
-    Mulberry::Command::Scaffold.new([@app_name])
   end
 
   it "should create any nonexistent pages in the sitemap" do
@@ -45,7 +45,6 @@ describe Mulberry::Command::Generate do
 
   describe "component creation" do
     before :each do
-      Mulberry::Command::Scaffold.new([@app_name])
       FileUtils.cp_r(
         File.join(FIXTURES_DIR, 'template.yml'),
         File.join(@app_name, 'templates')
