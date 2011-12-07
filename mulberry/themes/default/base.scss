@@ -6,7 +6,7 @@
 
 body {
   @include text-color;
-  font-family: Helvetica Neue, sans-serif;
+  font-family: $base-font;
 }
 
 @import 'components/base';
