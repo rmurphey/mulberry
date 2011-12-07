@@ -19,7 +19,7 @@ describe 'Mulberry build helper' do
       @build_helper.build = Builder::Build.new({
         :target_config => {
           'build_type' => 'mulberry',
-          'ota' => { 'enabled' => false}
+          'ota' => { 'enabled' => false }
         }
       })
       config_settings  = @build_helper.config_settings
@@ -29,19 +29,24 @@ describe 'Mulberry build helper' do
     end
 
     it 'should output correct version_url and update_url with ota enabled' do
+      api_config = @app.config['toura_api'] = {
+        'url' => 'https://myapi.com',
+        'key' => 'some_key'
+      }
+      @app.config['ota'] = { 'enabled' => 'true' }
       @build_helper.build = Builder::Build.new({
         :target_config => {
           'build_type' => 'mulberry',
           'ota' => { 'enabled' => true }
-        }
+        },
+        :build_helper => @build_helper
       })
       config_settings  = @build_helper.config_settings
-      api_config = @app.config['toura_api']
       {
         'version_url' => 'version_json',
         'update_url' => 'data_json'
       }.each do |name, path|
-        config_settings[name].should match /^http:\/\/#{api_config['url']}\/applications\/#{api_config['key']}\/ota_service\/#{path}/
+        config_settings[name].should match /^#{api_config['url']}\/applications\/#{api_config['key']}\/ota_service\/#{path}/
       end
     end
 
