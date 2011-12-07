@@ -31,7 +31,7 @@
     to(darken($button-color, 10.5%))
   );
   -webkit-border-radius: 2px;
-  border: 1px solid #9a9a9a;
+  border: 1px solid $button-border-color;
   color: $button-text-color-1;
   text-align: center;
   font-size: 18px;

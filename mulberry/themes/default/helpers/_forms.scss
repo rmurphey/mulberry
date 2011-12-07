@@ -6,17 +6,17 @@ input[type=submit],
 input[type=reset],
 button {
   -webkit-border-radius: 4px;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dadada), to(#9c9c9c));
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($form-button-color-1), to($form-button-color-2));
   border: 1px solid $medium-gray;
   font-size: 14px;
   font-weight: bold;
-  color: #454545;
+  color: $form-button-text-color;
   height: 26px;
   padding: 2px 15px 0 15px;
   margin: 5px;
 
   &.highlight {
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#e8e8e8));
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($form-button-highlight-color-1), to($form-button-highlight-color-2));
   }
 }
 
