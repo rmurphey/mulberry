@@ -9,6 +9,7 @@ dojo.require('toura.components._ImageGallery');
  */
 dojo.declare('toura.components._ImageScroller', [ toura.components._ImageGallery ], {
   templateString : dojo.cache('toura.components', '_ImageScroller/ImageScroller.haml'),
+  scroller : null,
 
   postMixInProperties : function() {
     this.inherited(arguments);
@@ -24,10 +25,9 @@ dojo.declare('toura.components._ImageScroller', [ toura.components._ImageGallery
     if (this.useScroller && this.scrollerNode) {
 
       var self = this,
-          node = this.scrollerNode.parentNode,
-          scroller;
+          node = this.scrollerNode.parentNode;
 
-      scroller = this.scrollerHandle = new iScroll(node, {
+      this.scroller = this.scrollerHandle = new iScroll(node, {
         snap : true,
         momentum : false,
         hScrollbar : false,
@@ -37,11 +37,12 @@ dojo.declare('toura.components._ImageScroller', [ toura.components._ImageGallery
         }
       });
 
-      scroller.refresh();
+      this.scroller.refresh();
       this.onScrollerSetupComplete();
     }
 
     this.set('currentImageIndex', 0);
+    this.scroller.refresh();
   },
 
   onScrollerSetupComplete : function() {

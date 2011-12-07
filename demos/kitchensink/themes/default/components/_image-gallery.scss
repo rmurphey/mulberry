@@ -3,15 +3,16 @@
   margin-top: 15px;
 
   .tablet & {
+    width: 100%;
     @media (orientation: landscape) {
-      div {
-        height: 300px;
-      }
+        &, .wrapper, div {
+          height: 300px;
+        }
     }
     @media (orientation: portrait) {
-      div {
-        height: 450px;
-      }
+        &, .wrapper, div {
+          height: 450px;
+        }
     }
 
   }
