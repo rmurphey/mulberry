@@ -80,7 +80,7 @@ dojo.declare('toura.models._Updateable', [], {
       // if localVersion is null, then this is the first boot,
       // so we need to initialize the data; otherwise, we can
       // proceed with updating if necessary
-      localVersion == null ? this._initializeData() : true,
+      localVersion === null ? this._initializeData() : true,
       dojo.hitch(this, '_updateIfNecessary')
     ).then(dojo.hitch(this, '_onUpdate'));
 
@@ -167,7 +167,7 @@ dojo.declare('toura.models._Updateable', [], {
       // ... hm, we did not get the remote version
       dojo.hitch(this, function(error) {
         // 404 or 503 OK, proceed as if there is no update
-        if (error.status == 404 || error.status == 503) {
+        if (error.status === 404 || error.status === 503) {
           // again, we have a chance to run a hook if we need
           this._onDataReady();
         }
