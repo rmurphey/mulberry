@@ -225,7 +225,8 @@ module Mulberry
       b = Builder::Build.new({
         :target => 'app_development',
         :log_level => -1,
-        :force_js_build => false
+        :force_js_build => false,
+        :build_helper => @helper
       })
 
       b.build
@@ -238,7 +239,7 @@ module Mulberry
       webrick_options.merge!({ :AccessLog => [nil, nil],
                                :Logger    => ::WEBrick::Log.new("/dev/null")
                             }) unless args[:verbose]
-      @helper.build = b
+
       Mulberry::Server.set :app, self
 
       Rack::Handler::WEBrick.run Mulberry::Server, webrick_options do |server|

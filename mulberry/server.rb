@@ -198,9 +198,7 @@ module Mulberry
       begin
         case params[:splat].first
         when 'tour.js'
-          target = @helper.build.target
-          ota_enabled = target['ota'] and target['ota']['enabled']
-          "toura.data.local = #{JSON.pretty_generate(Mulberry::Data.new(@mulberry_app).generate(ota_enabled))};"
+          "toura.data.local = #{JSON.pretty_generate(Mulberry::Data.new(@mulberry_app).generate(@helper.build.ota_enabled?))};"
         when 'templates.js'
           "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
         end

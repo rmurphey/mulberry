@@ -131,6 +131,12 @@ module Builder
       FileUtils.rm_rf @tmp_dir
     end
 
+    def ota_enabled?
+      # should be enabled on the target and the app (which the build_helper
+      # gives the answer to)
+      @target['ota'] and @target['ota']['enabled'] and @build_helper.ota_enabled?
+    end
+
     private
     def do_steps
       [ :gather, :build, :close ].each { |step|

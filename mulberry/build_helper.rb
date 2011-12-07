@@ -87,8 +87,7 @@ module Mulberry
     end
 
     def data
-      ota_enabled = build.target['ota'] and build.target['ota']['enabled']
-      Mulberry::Data.new(@app).generate(ota_enabled, 0)
+      Mulberry::Data.new(@app).generate(build.ota_enabled?, 0)
     end
 
     def templates
@@ -143,14 +142,17 @@ module Mulberry
       File.exists?(dir) ? dir : false
     end
 
+    def ota_enabled?
+      @config['ota'] and @config['ota']['enabled']
+    end
+
     private
     def padded_id
       project_settings[:id].gsub(/\W/, '');
     end
 
     def add_ota_to_config_settings(settings)
-      target = build.target
-      if target['ota'] and target['ota']['enabled']
+      if build.ota_enabled?
         @build.log "Adding ota settings to config settings."
         if @config['version_url']
           settings.merge!(

@@ -9,3 +9,6 @@ build:
     javascript:
       - dojo
       - toura
+
+ota:
+  enabled: true

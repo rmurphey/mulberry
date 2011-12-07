@@ -11,7 +11,7 @@ module Builder
       File.open(@destination, 'w') do |f|
         f.write "toura.data.local = #{json};"
       end
-      if @target['ota'] and @target['ota']['enabled']
+      if @build.ota_enabled?
         @report[:tour_json_location] = File.join(@location, "tour.json")
         File.open(@report[:tour_json_location], 'w') do |f|
           f.write json
