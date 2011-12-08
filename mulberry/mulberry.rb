@@ -46,12 +46,12 @@ module Mulberry
   end
 
   def self.get_app_dir(dir = nil)
-    tries = 5
     dir ||= Dir.pwd
+    last_dir = nil
 
-    while !dir_is_app?(dir) && tries > 0
+    while !dir_is_app?(dir) && last_dir != dir
+      last_dir = dir
       dir = File.join(dir, '..')
-      tries = tries - 1
     end
 
     raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(dir)
