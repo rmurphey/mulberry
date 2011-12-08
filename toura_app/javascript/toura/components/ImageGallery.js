@@ -7,7 +7,6 @@ dojo.declare('toura.components.ImageGallery', [ toura.components._Component, tou
   'class' : 'image-gallery',
   prepareData : function() {
     this.images = dojo.map(this.node.images || [], function(img) {
-      console.log(img.gallery)
       return dojo.mixin(img, {
         url : img.gallery.url,
         height : img.gallery.height,
