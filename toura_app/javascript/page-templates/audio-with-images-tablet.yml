@@ -36,25 +36,45 @@ audio-with-images-tablet:
         components:
         - PageNav
       - type: row
-        components:
-        - ImageGallery
-      - type: row
         size: fixed
-        components:
-        - AudioPlayer
+        className: image-container
+        regions:
+        - type: row
+          size: fixed
+          components:
+          - ImageGallery
+        - type: row
+          size: fixed
+          components:
+          - ImageCaption
       - type: row
+        className: text-content
         regions:
         - type: column
           scrollable: true
           components:
-          - ChildNodes
-          - AudioCaption
           - BodyText
         - type: column
           scrollable: true
-          components:
-          - ImageCaption
-          - AudioList
+          regions:
+          - type: row
+            size: fixed
+            className: audio-container
+            regions:
+            - type: row
+              size: fixed
+              components:
+              - AudioPlayer
+            - type: row
+              size: fixed
+              components:
+              - AudioCaption
+          - type: row
+            components:
+            - AudioList
+          - type: row
+            components:
+            - ChildNodes
 
     - name: detail
       regions:
