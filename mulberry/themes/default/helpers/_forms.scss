@@ -5,31 +5,7 @@ form * {
 input[type=submit],
 input[type=reset],
 button {
-  -webkit-border-radius: 4px;
-  background-image: -webkit-gradient(
-    linear,
-    0% 0%,
-    0% 100%,
-    from(lighten($form-button-color, 12%)),
-    to(darken($form-button-color, 12%))
-  );
-  border: 1px solid darken($form-button-color, 13%);
-  font-size: 14px;
-  font-weight: bold;
-  color: $form-button-text-color;
-  height: 26px;
-  padding: 2px 15px 0 15px;
-  margin: 5px;
-
-  &.highlight {
-    background-image: -webkit-gradient(
-      linear,
-      0% 0%,
-      0% 100%,
-      from(lighten($form-button-highlight-color, 12%)),
-      to(darken($form-button-highlight-color, 12%))
-    );
-  }
+  @include button;
 }
 
 input[type=text],
