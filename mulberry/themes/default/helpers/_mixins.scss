@@ -201,7 +201,7 @@
       margin: 0 0 1px 0;
       font-weight: bold;
       color: $text-color;
-      background-color: transparentize($user-child-nav-color, .5);
+      background-color: transparentize($child-nav-color, .5);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
