@@ -6,8 +6,14 @@ input[type=submit],
 input[type=reset],
 button {
   -webkit-border-radius: 4px;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($form-button-color-1), to($form-button-color-2));
-  border: 1px solid $form-button-border-color;
+  background-image: -webkit-gradient(
+    linear,
+    0% 0%,
+    0% 100%,
+    from(lighten($form-button-color, 12%)),
+    to(darken($form-button-color, 12%))
+  );
+  border: 1px solid darken($form-button-color, 13%);
   font-size: 14px;
   font-weight: bold;
   color: $form-button-text-color;
@@ -16,7 +22,13 @@ button {
   margin: 5px;
 
   &.highlight {
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($form-button-highlight-color-1), to($form-button-highlight-color-2));
+    background-image: -webkit-gradient(
+      linear,
+      0% 0%,
+      0% 100%,
+      from(lighten($form-button-highlight-color, 12%)),
+      to(darken($form-button-highlight-color, 12%))
+    );
   }
 }
 
