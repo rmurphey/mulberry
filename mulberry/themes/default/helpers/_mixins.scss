@@ -1,7 +1,7 @@
 // TODO: Find where this is used and either make it universal, or get
 // rid of it.
 @mixin nav {
-  color: $nav-text-color;
+  color: $chrome-text-color;
   background-color: darken($chrome-color-base, 2%);
 
   .tablet & {
