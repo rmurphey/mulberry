@@ -69,7 +69,7 @@
     }
 
     .summary {
-      font-family: Georgia, serif;
+      font-family: $feed-item-font;
       font-size: 16px;
       @include resizable-font;
     }

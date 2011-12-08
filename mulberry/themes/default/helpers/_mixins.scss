@@ -2,7 +2,7 @@
 // rid of it.
 @mixin nav {
   color: $chrome-text-color;
-  background-color: darken($chrome-color-base, 2%);
+  background-color: darken($chrome-color, 2%);
 
   .tablet & {
     font-size: 21px;
@@ -116,9 +116,9 @@
 
 
 @mixin chrome-gradient {
-  $color-1 : $chrome-color-base + 20;
-  $color-2 : $chrome-color-base;
-  $color-3 : $chrome-color-base - 15;
+  $color-1 : $chrome-color + 20;
+  $color-2 : $chrome-color;
+  $color-3 : $chrome-color - 15;
 
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
@@ -130,9 +130,9 @@
 
 // TODO: DRY
 @mixin chrome-gradient-flat() {
-  $color-1 : $chrome-color-base + 30;
-  $color-2 : $chrome-color-base;
-  $color-3 : $chrome-color-base;
+  $color-1 : $chrome-color + 30;
+  $color-2 : $chrome-color;
+  $color-3 : $chrome-color;
 
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
