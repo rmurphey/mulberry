@@ -224,3 +224,9 @@
   }
 }
 
+@function offset-text-color($amount) {
+  @return if(($font-scheme == dark),
+    lighten($text-color, $amount),
+    darken($text-color, $amount)
+  )
+}

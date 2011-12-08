@@ -1,7 +1,7 @@
 .component.feed-item-list {
 
   header {
-    color: $text-color-2;
+    color: offset-text-color(40%);
     padding: 10px;
     font-size: 12px;
 
@@ -77,7 +77,7 @@
     .date {
       font-size: 12px;
       font-weight: bold;
-      color: $text-color-2;
+      color: offset-text-color(50%);
       @include resizable-font;
       padding-top: .2em;
     }

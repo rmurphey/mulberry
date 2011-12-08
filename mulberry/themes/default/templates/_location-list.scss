@@ -15,7 +15,7 @@
 
   .body-text {
     @include content-padding;
-    color: mix($text-color, $text-color-2);
+    color: offset-text-color(30%);
     font-size: 15px;
 
     h4 {
