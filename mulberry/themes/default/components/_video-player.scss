@@ -1,4 +1,6 @@
 .component.video-player {
+  @include fixed-gallery;
+
   .play-button {
     background: url(../icons/btn-video-player.png) no-repeat center center;
   }

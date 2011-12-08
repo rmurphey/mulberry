@@ -200,3 +200,26 @@
 
 }
 
+@mixin fixed-gallery {
+  .tablet .region.size-fixed & {
+    position: static;
+
+    @media (orientation: landscape) {
+        & {
+          height: 300px;
+        }
+    }
+
+    @media (orientation: portrait) {
+        & {
+          height: 450px;
+        }
+    }
+  }
+}
+
+@mixin caption-style {
+  font-size: 14px;
+  color: #555;
+}
+
