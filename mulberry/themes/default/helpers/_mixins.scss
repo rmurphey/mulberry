@@ -55,12 +55,12 @@
   display: block;
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
-    from(lighten($button-color, 10.5%)),
-    to(darken($button-color, 10.5%))
+    from(lighten($wide-button-color, 10.5%)),
+    to(darken($wide-button-color, 10.5%))
   );
   -webkit-border-radius: 2px;
-  border: 1px solid $button-border-color;
-  color: $button-text-color-1;
+  border: 1px solid darken($wide-button-color, 10.5%);
+  color: $wide-button-text-color-1;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
@@ -77,8 +77,8 @@
     url($image-url),
     -webkit-gradient(
       linear, 0% 0%, 0% 100%,
-      from(lighten($button-color, 10.5%)),
-      to(darken($button-color, 10.5%))
+      from(lighten($wide-button-color, 10.5%)),
+      to(darken($wide-button-color, 10.5%))
     );
 
   background-position: left center, center center;
@@ -90,14 +90,14 @@
       url($image-url),
       -webkit-gradient(
         linear, 0% 0%, 0% 100%,
-        from($button-color),
-        to(darken($button-color, 20.5%))
+        from($wide-button-color),
+        to(darken($wide-button-color, 20.5%))
       );
   }
 
   .label {
     margin-right: 5px;
-    color: $button-text-color-2;
+    color: $wide-button-text-color-2;
   }
 }
 
