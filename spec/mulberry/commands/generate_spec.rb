@@ -43,6 +43,21 @@ describe Mulberry::Command::Generate do
     File.exists?(File.join(@app_name, 'pages', 'fake_page.md')).should be_true
   end
 
+  it "should scaffold pages from anywhere inside a project" do
+    FileUtils.mkdir_p File.join(@app_name, 'foo', 'bar')
+
+    File.open(File.join(@app_name, 'sitemap.yml'), 'a') do |f|
+      f.write "\n- fake_page"
+    end
+
+    Dir.chdir File.join(@app_name, 'foo', 'bar')
+
+    Mulberry::Command::Generate.new
+    Dir.chdir Mulberry::Directories.root
+
+    File.exists?(File.join(@app_name, 'pages', 'fake_page.md')).should be_true
+  end
+
   describe "component creation" do
     before :each do
       FileUtils.cp_r(
