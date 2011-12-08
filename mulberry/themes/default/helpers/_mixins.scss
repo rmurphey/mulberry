@@ -205,15 +205,15 @@
     position: static;
 
     @media (orientation: landscape) {
-        & {
-          height: 300px;
-        }
+      & {
+        height: 300px;
+      }
     }
 
     @media (orientation: portrait) {
-        & {
-          height: 450px;
-        }
+      & {
+        height: 450px;
+      }
     }
   }
 }
