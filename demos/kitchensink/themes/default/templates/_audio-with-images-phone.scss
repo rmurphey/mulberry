@@ -28,5 +28,12 @@
         padding: 10px;
       }
     }
+
+    .component.audio-list:not(.empty) {
+      $space: 5px;
+      padding-bottom: $space;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: $space;
+    }
   }
 }
