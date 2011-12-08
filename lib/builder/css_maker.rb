@@ -22,10 +22,6 @@ module Builder
         raise "CSSMaker requires a theme_dir"
       end
 
-      if settings[:vars_path].nil? or !settings.has_key? :vars_path
-        raise "CSSMaker requires a :vars_path if not setting :vars" unless settings[:vars]
-      end
-
       app_dir = settings.has_key?(:app_dir) ? settings[:app_dir] : TouraAPP::Directories.javascript
       app_base = File.join(app_dir, @@css_filename)
 
@@ -52,14 +48,6 @@ module Builder
     private
     def load_dependencies(settings, app_base, theme_base)
       scss_data = ''
-
-      if settings.has_key?(:vars)
-        scss_data << self.class.scss_data_from_vars_hash(settings[:vars])
-      end
-
-      if settings.has_key?(:vars_path)
-        scss_data << File.read(settings[:vars_path])
-      end
 
       [ app_base, theme_base ].each do |path|
         scss_data << File.read(path)

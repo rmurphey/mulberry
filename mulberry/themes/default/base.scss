@@ -7,6 +7,10 @@ body {
   font-family: $base-font;
 }
 
+.page {
+  background-color: $user-background-color;
+}
+
 @import 'components/base';
 @import 'templates/base';
 
