@@ -8,7 +8,7 @@ module Builder
 
     def self.scss_data_from_vars_hash(vars_hash)
       vars_hash.keys.reduce("") do |scss_data, k|
-        scss_data << "$user-#{k}: #{vars_hash[k]};"
+        scss_data << "$#{k}: #{vars_hash[k]};"
         scss_data
       end
     end
