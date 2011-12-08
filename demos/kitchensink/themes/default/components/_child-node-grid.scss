@@ -14,7 +14,7 @@
 }
 
 .component.child-node-grid {
-  padding: 4px;
+  padding: 10px;
   position: relative;
 
   li {
@@ -46,11 +46,11 @@
     h3 {
       position: absolute;
       z-index: 10;
-      bottom: 10%;
+      bottom: 0;
       left: -2px;
+      right: 0;
       background-color: rgba(0,0,0,.8);
       color: white;
-      width: 85%;
       padding: 7px 10px;
     }
   }
@@ -61,32 +61,32 @@
 
   @media (orientation:portrait)  {
     li {
-      margin: 5px;
+      margin: 10px;
     }
 
     .tablet & {
       &.size-large {
-        @include grid-item(364px);
+        @include grid-item(354px);
       }
 
       &.size-medium {
-        @include grid-item(240px);
+        @include grid-item(229px);
       }
     }
   }
 
   @media (orientation:landscape) {
     li {
-      margin: 6px;
+      margin: 10px;
     }
 
     .tablet & {
       &.size-large {
-        @include grid-item(322px);
+        @include grid-item(314px);
       }
 
       &.size-medium {
-        @include grid-item(242px);
+        @include grid-item(231px);
       }
     }
   }
