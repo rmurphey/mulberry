@@ -14,10 +14,6 @@ module Builder
     end
 
     def initialize(settings)
-      if settings[:custom_base_path]
-        puts "CSSMaker: :custom_base_path is deprecated. Use :theme_dir instead."
-      end
-
       if !settings[:theme_dir]
         raise "CSSMaker requires a theme_dir"
       end
