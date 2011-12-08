@@ -39,7 +39,7 @@
   }
 }
 
-@mixin button($img-url, $img-width, $img-height, $color:transparent, $el-width: $img-width, $el-height: $img-height) {
+@mixin icon($img-url, $img-width, $img-height, $color:transparent, $el-width: $img-width, $el-height: $img-height) {
   display: block;
   text-indent: -9999px;
   background: $color url($img-url) no-repeat center center;

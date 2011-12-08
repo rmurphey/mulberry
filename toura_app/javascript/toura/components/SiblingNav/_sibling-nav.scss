@@ -28,7 +28,7 @@
     height: $handle-height;
 
     .toggler {
-      @include button('../icons/icon-sibling-nav-toggle-arrow.png', 18px, 18px);
+      @include icon('../icons/icon-sibling-nav-toggle-arrow.png', 18px, 18px);
       width: 100%;
     }
   }
@@ -49,18 +49,18 @@
     @include column-container;
 
     .prev.controller {
-      @include button('../icons/btn-sibling-nav-prev-on.png', 20px, 20px, transparent, 20px, 100%);
+      @include icon('../icons/btn-sibling-nav-prev-on.png', 20px, 20px, transparent, 20px, 100%);
 
       &.inactive {
-        @include button('../icons/btn-sibling-nav-prev-off.png', 20px, 20px, transparent, 20px, 100%);
+        @include icon('../icons/btn-sibling-nav-prev-off.png', 20px, 20px, transparent, 20px, 100%);
       }
     }
 
     .next.controller {
-      @include button('../icons/btn-sibling-nav-next-on.png', 20px, 20px, transparent, 20px, 100%);
+      @include icon('../icons/btn-sibling-nav-next-on.png', 20px, 20px, transparent, 20px, 100%);
 
       &.inactive {
-        @include button('../icons/btn-sibling-nav-next-off.png', 20px, 20px, transparent, 20px, 100%);
+        @include icon('../icons/btn-sibling-nav-next-off.png', 20px, 20px, transparent, 20px, 100%);
       }
     }
 
