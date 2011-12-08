@@ -27,13 +27,18 @@ images-and-text-tablet:
 
       - type: row
         size: fixed
-        components:
-        - ImageGallery
+        className: image-container
+        regions:
 
-      - type: row
-        size: fixed
-        components:
-        - ImageCaption
+        - type: row
+          size: fixed
+          components:
+          - ImageGallery
+
+        - type: row
+          size: fixed
+          components:
+          - ImageCaption
 
       - type: row
         regions:
