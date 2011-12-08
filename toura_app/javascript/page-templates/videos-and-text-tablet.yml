@@ -25,14 +25,18 @@ videos-and-text-tablet:
 
       - type: row
         size: fixed
-        className: player-container
-        components:
-        - VideoPlayer
+        className: video-container
+        regions:
+        - type: row
+          size: fixed
+          className: player-container
+          components:
+          - VideoPlayer
 
-      - type: row
-        size: fixed
-        components:
-        - VideoCaption
+        - type: row
+          size: fixed
+          components:
+          - VideoCaption
 
       - type: row
         className: listing-and-children
