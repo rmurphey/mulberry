@@ -3,7 +3,7 @@
   position: absolute;
   overflow: visible;
 
-  color: $chrome-color-text;
+  color: $chrome-text-color;
   line-height: 1.2em;
 
   .phone & {
@@ -26,7 +26,7 @@
 
   .button {
     margin: 0 auto;
-    background-color: $chrome-color-base;
+    background-color: $chrome-color;
     -webkit-border-radius: 0 0 8px 8px;
     text-align: center;
     padding: 5px;
@@ -87,7 +87,7 @@
     @include hide-fade;
 
     .body-text-container {
-      background-color: $chrome-color-base;
+      background-color: $chrome-color;
     }
 
     p {

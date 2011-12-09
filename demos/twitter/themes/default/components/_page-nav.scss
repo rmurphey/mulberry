@@ -1,5 +1,5 @@
 .component.page-nav {
-  color: #fff;
+  color: $chrome-text-color;
 
   > .top {
     @include chrome-gradient-flat;
@@ -10,7 +10,7 @@
     ul {
       li.back,
       li.more {
-        border-right: 1px solid #777;
+        border-right: 1px solid $chrome-border-color;
       }
 
       li {
