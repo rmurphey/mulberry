@@ -14,8 +14,10 @@
 }
 
 .component.child-node-grid {
-  padding: 10px;
-  position: relative;
+  padding: 4px;
+  .tablet & {
+    padding: 10px;
+  }
 
   li {
     float: left;
@@ -61,10 +63,13 @@
 
   @media (orientation:portrait)  {
     li {
-      margin: 10px;
+      margin: 5px;
     }
 
     .tablet & {
+      li {
+        margin: 10px;
+      }
       &.size-large {
         @include grid-item(354px);
       }
@@ -77,10 +82,13 @@
 
   @media (orientation:landscape) {
     li {
-      margin: 10px;
+      margin: 6px;
     }
 
     .tablet & {
+      li {
+        margin: 10px;
+      }
       &.size-large {
         @include grid-item(314px);
       }
