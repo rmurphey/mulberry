@@ -1,0 +1,26 @@
+.page.location-list {
+  .page-nav {
+    h1 span {
+      display: none !important;
+    }
+  }
+
+  .image-gallery {
+    position: relative;
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    height: 200px;
+    padding-top: 10px;
+  }
+
+  .body-text {
+    @include content-padding;
+    color: #4d4d4d;
+    font-size: 15px;
+
+    h4 {
+      font-weight: bold;
+      font-size: inherit;
+    }
+  }
+}

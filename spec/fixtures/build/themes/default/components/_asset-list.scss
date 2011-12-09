@@ -1,0 +1,15 @@
+.component.asset-list {
+  @include list-component;
+
+  li {
+    background: {
+      repeat: no-repeat;
+      position: 10px center;
+      size: 28px 26px;
+    }
+
+    a {
+      padding: 10px 10px 10px 50px;
+    }
+  }
+}

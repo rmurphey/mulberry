@@ -1,0 +1,13 @@
+.component.video-player {
+  .play-button {
+    background: url(../icons/btn-video-player.png) no-repeat center center;
+  }
+
+  .overlay {
+    background-color: rgba(100,100,100, .5);
+  }
+}
+
+.android .component.video-player .play-button {
+  background-image: none;
+}
