@@ -25,15 +25,8 @@
 # Enter your application name here (required!)
 name: CapitolJS
 
-# Presently there is only one theme, the default theme. We need to document how
-# to create additional themes.
 theme:
   name: capitoljs
-  settings:
-    font-scheme:        'dark'
-    link-color:         '#c30f00'
-    background-color:   '#F9F8EE'
-    child-nav-color:    '#ff0000'
 
 os:
   # Specify the operating systems to target

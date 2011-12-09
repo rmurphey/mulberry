@@ -1,6 +1,8 @@
+// TODO: Find where this is used and either make it universal, or get
+// rid of it.
 @mixin nav {
-  color: #fff;
-  background-color: lighten(rgb(0, 0, 0), 30%);
+  color: $chrome-text-color;
+  background-color: darken($chrome-color, 2%);
 
   .tablet & {
     font-size: 21px;
@@ -21,12 +23,44 @@
   }
 }
 
+@mixin button {
+  -webkit-border-radius: 4px;
+  background-image: -webkit-gradient(
+    linear,
+    0% 0%,
+    0% 100%,
+    from(lighten($narrow-button-color, 12%)),
+    to(darken($narrow-button-color, 12%))
+  );
+  border: 1px solid darken($narrow-button-color, 13%);
+  font-size: 14px;
+  font-weight: bold;
+  color: $narrow-button-text-color;
+  height: 26px;
+  padding: 2px 15px 0 15px;
+  margin: 5px;
+
+  &.highlight {
+    background-image: -webkit-gradient(
+      linear,
+      0% 0%,
+      0% 100%,
+      from(lighten($narrow-button-highlight-color, 12%)),
+      to(darken($narrow-button-highlight-color, 12%))
+    );
+  }
+}
+
 @mixin wide-button {
   display: block;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#e1e1e1), to(#9a9a9a));
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(lighten($wide-button-color, 10.5%)),
+    to(darken($wide-button-color, 10.5%))
+  );
   -webkit-border-radius: 2px;
-  border: 1px solid #9a9a9a;
-  color: #2b2b2b;
+  border: 1px solid darken($wide-button-color, 10.5%);
+  color: $wide-button-text-color;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
@@ -43,8 +77,8 @@
     url($image-url),
     -webkit-gradient(
       linear, 0% 0%, 0% 100%,
-      from(#e1e1e1),
-      to(#9a9a9a)
+      from(lighten($wide-button-color, 10.5%)),
+      to(darken($wide-button-color, 10.5%))
     );
 
   background-position: left center, center center;
@@ -56,14 +90,14 @@
       url($image-url),
       -webkit-gradient(
         linear, 0% 0%, 0% 100%,
-        from(darken(#e1e1e1, 10%)),
-        to(darken(#9a9a9a, 10%))
+        from($wide-button-color),
+        to(darken($wide-button-color, 20.5%))
       );
   }
 
   .label {
     margin-right: 5px;
-    color: #7d7d7d;
+    color: $wide-button-prefix-text-color;
   }
 }
 
@@ -82,9 +116,9 @@
 
 
 @mixin chrome-gradient {
-  $color-1 : rgb(100,100,100);
-  $color-2 : rgb(80,80,80);
-  $color-3 : rgb(55,55,55);
+  $color-1 : $chrome-color + 20;
+  $color-2 : $chrome-color;
+  $color-3 : $chrome-color - 15;
 
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
@@ -96,9 +130,9 @@
 
 // TODO: DRY
 @mixin chrome-gradient-flat() {
-  $color-1 : rgb(110,110,110);
-  $color-2 : rgb(80,80,80);
-  $color-3 : rgb(80,80,80);
+  $color-1 : $chrome-color + 30;
+  $color-2 : $chrome-color;
+  $color-3 : $chrome-color;
 
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
@@ -109,8 +143,8 @@
 }
 
 
-@mixin box-shadow($x-offset, $y-offset) {
-  -webkit-box-shadow: $x-offset $y-offset 5px 0 rgba(0, 0, 0, .5);
+@mixin box-shadow($x-offset, $y-offset, $blur: 5px) {
+  -webkit-box-shadow: $x-offset $y-offset $blur 0 rgba(0, 0, 0, .5);
 }
 
 
@@ -161,14 +195,13 @@
 
 @mixin list-component {
   li {
-
     a {
       line-height: 1.6em;
       display: block;
       margin: 0 0 1px 0;
       font-weight: bold;
-      @include text-color;
-      background-color: transparentize($user-child-nav-color, .5);
+      color: $text-color;
+      background-color: transparentize($child-nav-color, .5);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -179,7 +212,7 @@
         white-space: normal;
       }
 
-      @if ($user-font-scheme == light) {
+      @if ($child-node-text-shadow == true) {
         text-shadow: 1px 1px 0 rgba(0,0,0, .2);
       }
 
@@ -187,16 +220,13 @@
   }
 
   &.not-moving a:active {
-    background-color: transparentize($user-child-nav-color, .5);
-
-    @if ($user-font-scheme == light) {
-      background-color: darken(transparentize($user-child-nav-color, .5), 20%);
-
-    } @else {
-      background-color: lighten(transparentize($user-child-nav-color, .5), 20%);
-      @include text-color(alternate);
-    }
+    background-color: transparentize($child-node-active-color, .5);
   }
-
 }
 
+@function offset-text-color($amount) {
+  @return if(($font-scheme == dark),
+    lighten($text-color, $amount),
+    darken($text-color, $amount)
+  )
+}

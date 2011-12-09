@@ -8,11 +8,11 @@
 
     line-height: 22px;
     padding: 15px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $border-color;
     min-height: 50px;
 
     a {
-      @include text-color;
+      color: $text-color;
       @include column-container;
       -webkit-box-flex: 1;
       margin-right: 10px;
