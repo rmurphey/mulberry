@@ -1,6 +1,7 @@
 .page.audio-with-images-tablet {
-  .component.audio-caption, .component.image-caption {
-    @include caption-style;
+  .component.audio-caption,
+  .component.image-caption {
+    @include caption-text;
     &:not(.empty) {
       padding: 10px;
     }
