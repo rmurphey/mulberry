@@ -10,7 +10,7 @@ module Mulberry
       template_filename = File.join(template_dir, "#{filename}.yml")
 
       if File.exists? template_filename
-        raise "Component #{template_filename} already exists"
+        raise "Template #{template_filename} already exists"
       end
 
       template_template = File.read(File.join(Mulberry::Directories.templates, 'template.yml'))
