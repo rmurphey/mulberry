@@ -129,7 +129,6 @@ module Mulberry
         theme_dir = File.join(theme_root_dir, theme_name)
 
         Builder::CSSMaker.new(
-          :vars => @config['theme']['settings'],
           :theme_dir => theme_dir
         ).render
       rescue Sass::SyntaxError => err

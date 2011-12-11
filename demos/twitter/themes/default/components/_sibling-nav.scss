@@ -4,11 +4,11 @@
   @include chrome-gradient;
   @include box-shadow(1px, 0);
 
-  color: #fff;
+  color: $chrome-text-color;
 
   .handle {
     @include chrome-gradient;
-    -webkit-box-shadow: 0 0px 2px 0 rgba(0, 0, 0, .5);
+    @include box-shadow(0, 0, 5px);
   }
 
   nav {
