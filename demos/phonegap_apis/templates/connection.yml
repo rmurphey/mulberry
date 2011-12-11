@@ -1,9 +1,9 @@
-camera:
+connection:
   capabilities:
-    # Edit the file at javascript/capabilities/PageCamera.js in order
+    # Edit the file at javascript/capabilities/PageConnection.js in order
     # to add JavaScript functionality to this page. For more details, see the
     # Mulberry documentation on Capabilities
-    - name: PageCamera
+    - name: PageConnection
   screens:
     - name: index
       regions:
@@ -19,4 +19,4 @@ camera:
           # By default, `scrollable` is false
           scrollable: true
           components:
-          - custom.Camera
+          - custom.Connection

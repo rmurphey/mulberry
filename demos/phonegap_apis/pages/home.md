@@ -1,8 +1,7 @@
 ---
 title: Home
 template:
-  phone: camera
-  tablet: camera
+  phone: home-phone
+  tablet: home-tablet
 ---
 
-This is some sample content. You should replace it with your own.

@@ -1,2 +1,7 @@
-- home
+- home:
+  - camera
+  - geolocation
+  - accelerometer
+  - notification
+  - connection
 - about

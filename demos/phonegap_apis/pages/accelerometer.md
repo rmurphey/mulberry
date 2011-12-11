@@ -1,0 +1,4 @@
+---
+title: Accelerometer
+template: accelerometer
+---
