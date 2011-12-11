@@ -1,6 +1,6 @@
 dojo.provide('toura.app.PhoneGap.analytics');
 
-toura.app.PhoneGap.analytics = function(pg, device) {
+toura.app.PhoneGap.registerAPI('analytics', function(pg, device) {
   var os = device.os,
       appName;
 
@@ -27,4 +27,4 @@ toura.app.PhoneGap.analytics = function(pg, device) {
 
     }())
   };
-};
+});

@@ -1,6 +1,6 @@
 dojo.provide('toura.app.PhoneGap.audio');
 
-toura.app.PhoneGap.audio = function(pg, device) {
+toura.app.PhoneGap.registerAPI('audio', function(pg, device) {
   var audio,
       audioSuccess = function() { },
       audioError = function(err) { };
@@ -33,4 +33,4 @@ toura.app.PhoneGap.audio = function(pg, device) {
       audio = null;
     }
   };
-};
+});
