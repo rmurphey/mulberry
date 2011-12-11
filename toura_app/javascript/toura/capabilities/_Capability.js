@@ -87,7 +87,7 @@ dojo.declare('toura.capabilities._Capability', [ ], {
   _loadInvolvedComponents : function() {
     var involved = {};
 
-    dojo.forEach(this.components, function(c) {
+    dojo.forEach(this.components || [], function(c) {
       var tmp = c.split(':'),
           screenName = tmp[0],
           componentName = tmp[1],
