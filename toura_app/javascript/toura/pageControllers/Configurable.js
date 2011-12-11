@@ -80,6 +80,23 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
     return this.screens[screenName];
   },
 
+  getComponent : function(componentName) {
+    var c = false;
+
+    this._components = this._components || {};
+
+    if (!this._components[componentName]) {
+      dojo.forIn(this.screens, function(screenName, screen) {
+        var tmp = screen.getComponent(componentName);
+        if (tmp) { c = tmp; }
+      });
+
+      this._components[componentName] = c;
+    }
+
+    return this._components[componentName];
+  },
+
   startup : function() {
     this.inherited(arguments);
     dojo.forIn(this.screens, function(name, screen) {
