@@ -1,0 +1,17 @@
+.page.grid-view {
+  .screen.index {
+      > .row:nth-child(3) {
+      -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .5) inset;
+    }
+  }
+
+  .header-image {
+    img {
+      display: block;
+    }
+  }
+
+  .body-text {
+    padding: 9px 9px 0 9px;
+  }
+}

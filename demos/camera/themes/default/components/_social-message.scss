@@ -1,0 +1,32 @@
+.component.social-message {
+  margin: 8px;
+  padding: 10px 0;
+
+  fieldset.auth {
+    margin-bottom: 10px;
+
+    input:first-child {
+      margin-bottom: 3px;
+      margin-right: 10px;
+    }
+  }
+
+  textarea {
+    width: 96%;
+    height: 2.5em;
+    margin-bottom: 7px;
+  }
+
+  .count {
+    color: darken($chrome-text-color, 22%);
+  }
+
+  fieldset.buttons {
+    text-align: right;
+
+    input[type=submit],
+    input[type=reset] {
+      min-width: 80px;
+    }
+  }
+}

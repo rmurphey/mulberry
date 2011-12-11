@@ -1,0 +1,35 @@
+.component.node-gallery {
+  @include row-container;
+
+  .wrapper {
+    -webkit-box-flex: 1;
+
+    .image {
+      -webkit-background-size: cover;
+    }
+  }
+
+  ol.indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    .phone & {
+      height: 15px;
+
+      li {
+        font-size: 40px;
+      }
+    }
+
+    .tablet & {
+      height: 30px;
+
+      li {
+        font-size: 60px;
+      }
+    }
+  }
+}

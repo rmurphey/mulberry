@@ -1,0 +1,232 @@
+// TODO: Find where this is used and either make it universal, or get
+// rid of it.
+@mixin nav {
+  color: $chrome-text-color;
+  background-color: darken($chrome-color, 2%);
+
+  .tablet & {
+    font-size: 21px;
+    height: 60px;
+  }
+
+  .phone & {
+    font-size: 14px;
+    height: 40px;
+  }
+}
+
+@mixin background-shadow {
+  .ios & {
+    background: transparent url(../icons/bg-inner-shadow.png) no-repeat;
+    background-size: cover;
+    background-position-y: 100%;
+  }
+}
+
+@mixin button {
+  -webkit-border-radius: 4px;
+  background-image: -webkit-gradient(
+    linear,
+    0% 0%,
+    0% 100%,
+    from(lighten($narrow-button-color, 12%)),
+    to(darken($narrow-button-color, 12%))
+  );
+  border: 1px solid darken($narrow-button-color, 13%);
+  font-size: 14px;
+  font-weight: bold;
+  color: $narrow-button-text-color;
+  height: 26px;
+  padding: 2px 15px 0 15px;
+  margin: 5px;
+
+  &.highlight {
+    background-image: -webkit-gradient(
+      linear,
+      0% 0%,
+      0% 100%,
+      from(lighten($narrow-button-highlight-color, 12%)),
+      to(darken($narrow-button-highlight-color, 12%))
+    );
+  }
+}
+
+@mixin wide-button {
+  display: block;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(lighten($wide-button-color, 10.5%)),
+    to(darken($wide-button-color, 10.5%))
+  );
+  -webkit-border-radius: 2px;
+  border: 1px solid darken($wide-button-color, 10.5%);
+  color: $wide-button-text-color;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 2em;
+  padding: 2px 15px 0 15px;
+  margin: 5px 0;
+}
+
+@mixin wide-icon-button($image-url) {
+  @include wide-button;
+  text-shadow: transparentize(#fff, .5) 0 -1px 0;
+  background-image:
+    url($image-url),
+    -webkit-gradient(
+      linear, 0% 0%, 0% 100%,
+      from(lighten($wide-button-color, 10.5%)),
+      to(darken($wide-button-color, 10.5%))
+    );
+
+  background-position: left center, center center;
+  -webkit-background-size: contain;
+  background-repeat: no-repeat;
+
+  &:active {
+    background-image:
+      url($image-url),
+      -webkit-gradient(
+        linear, 0% 0%, 0% 100%,
+        from($wide-button-color),
+        to(darken($wide-button-color, 20.5%))
+      );
+  }
+
+  .label {
+    margin-right: 5px;
+    color: $wide-button-prefix-text-color;
+  }
+}
+
+
+@mixin resizable-font {
+  line-height: 1.35em;
+
+  .font-size-small & {
+    font-size: 75%;
+  }
+
+  .font-size-large & {
+    font-size: 150%;
+  }
+}
+
+
+@mixin chrome-gradient {
+  $color-1 : $chrome-color + 20;
+  $color-2 : $chrome-color;
+  $color-3 : $chrome-color - 15;
+
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from($color-1),
+    color-stop(0.5, $color-2),
+    to($color-3)
+  );
+}
+
+// TODO: DRY
+@mixin chrome-gradient-flat() {
+  $color-1 : $chrome-color + 30;
+  $color-2 : $chrome-color;
+  $color-3 : $chrome-color;
+
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from($color-1),
+    color-stop(0.5, $color-2),
+    to($color-3)
+  );
+}
+
+
+@mixin box-shadow($x-offset, $y-offset, $blur: 5px) {
+  -webkit-box-shadow: $x-offset $y-offset $blur 0 rgba(0, 0, 0, .5);
+}
+
+
+@mixin page-nav-button($type) {
+
+  & a {
+    -webkit-background-size: contain;
+  }
+
+  &.#{$type} a {
+    background: url(../icons/light/btn-page-nav-#{$type}.png) no-repeat;
+    background-position-y: center;
+  }
+
+  &.#{$type} a:active {
+    background-image: url(../icons/dark/btn-page-nav-#{$type}.png);
+  }
+
+  &.#{$type}:first-child a {
+    background-position-x: left;
+  }
+
+  &.#{$type}:last-child a {
+    background-position-x: right;
+  }
+}
+
+@mixin asset-icon($type) {
+  &.#{$type} a {
+    background: {
+      image: url('../icons/dark/icon-asset-#{$type}.png');
+      repeat: no-repeat;
+      position: center right;
+      size: 28px 26px;
+    }
+  }
+}
+
+@mixin content-padding {
+  .phone & {
+    padding: 8px;
+  }
+
+  .tablet & {
+    padding: 12px;
+  }
+}
+
+@mixin list-component {
+  li {
+    a {
+      line-height: 1.6em;
+      display: block;
+      margin: 0 0 1px 0;
+      font-weight: bold;
+      color: $text-color;
+      background-color: transparentize($child-nav-color, .5);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      // TODO: Kludge for Wiley. Make this a parameter exported from MAP
+      .multi-line-child-nodes & {
+        overflow: visible;
+        white-space: normal;
+      }
+
+      @if ($child-node-text-shadow == true) {
+        text-shadow: 1px 1px 0 rgba(0,0,0, .2);
+      }
+
+    }
+  }
+
+  &.not-moving a:active {
+    background-color: transparentize($child-node-active-color, .5);
+  }
+}
+
+@function offset-text-color($amount) {
+  @return if(($font-scheme == dark),
+    lighten($text-color, $amount),
+    darken($text-color, $amount)
+  )
+}

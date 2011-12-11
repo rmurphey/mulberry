@@ -1,0 +1,35 @@
+.component.location-list {
+
+  @include content-padding;
+
+  li {
+    margin: 10px 0;
+    padding: 10px 0;
+    border-top: 1px solid $border-color;
+
+    .address {
+      border: 1px solid $border-color;
+      padding: 4px 8px;
+      -webkit-border-radius: 2px;
+      font-size: 15px;
+
+      font-weight: bold;
+      @include resizable-font;
+      line-height: 20px;
+      margin: 15px 0;
+      text-align: center;
+    }
+
+    .directions {
+      @include wide-icon-button('../icons/btn-map.png');
+    }
+
+    .website {
+      @include wide-icon-button('../icons/btn-website.png');
+    }
+
+    .phone-number {
+      @include wide-icon-button('../icons/btn-phone.png');
+    }
+  }
+}

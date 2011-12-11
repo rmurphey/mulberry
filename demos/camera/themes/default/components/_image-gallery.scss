@@ -1,0 +1,31 @@
+.component.image-gallery {
+  @include row-container;
+  margin-top: 15px;
+
+  .wrapper {
+    -webkit-box-flex: 30;
+
+    .image {
+      -webkit-background-size: contain;
+    }
+  }
+
+  ol.indicator {
+    .phone & {
+      padding: 8px 0 4px 0;
+
+      li {
+        font-size: 40px;
+      }
+    }
+
+    .tablet & {
+      padding: 14px 0 4px 0;
+
+      li {
+        font-size: 60px;
+      }
+    }
+  }
+
+}
