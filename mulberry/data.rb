@@ -81,11 +81,14 @@ module Mulberry
 
       api_keys.each do |api_key|
         camel_key = api_key[0].to_s.underscore.camelize(:lower)
-        @config[camel_key] = api_key[0]
+        @config[camel_key] = api_key[1]
+        @config.delete api_key[0]
       end
 
       @config['twitterCustomerKey'] = @config['twitter_customer_key']
       @config['twitterCustomerSecret'] = @config['twitter_customer_secret']
+
+      ['twitter_customer_key', 'twitter_customer_secret'].each { |key| @config.delete key }
     end
 
     def load_data_for_page(page_name, children = [])
