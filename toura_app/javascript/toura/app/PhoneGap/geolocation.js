@@ -5,6 +5,12 @@ toura.app.PhoneGap.geolocation = function(pg, device) {
 
   return {
     getCurrentPosition : function(success, error, opts) {
+      if (!dojo.isFunction(success)) {
+        opts = success;
+        success = false;
+        error = false;
+      }
+
       var dfd = new dojo.Deferred(),
 
           win = function(data) {
@@ -29,6 +35,12 @@ toura.app.PhoneGap.geolocation = function(pg, device) {
     },
 
     watchPosition : function(success, error, opts) {
+      if (!dojo.isFunction(success)) {
+        opts = success;
+        success = false;
+        error = false;
+      }
+
       var dfd = new dojo.Deferred(),
 
           win = function(data) {
