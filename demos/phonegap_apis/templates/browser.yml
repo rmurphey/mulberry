@@ -1,9 +1,9 @@
-default:
+browser:
   capabilities:
-    # Edit the file at javascript/capabilities/PageDefault.js in order
+    # Edit the file at javascript/capabilities/PageBrowser.js in order
     # to add JavaScript functionality to this page. For more details, see the
     # Mulberry documentation on Capabilities
-    - name: PageDefault
+    - name: PageBrowser
   screens:
     - name: index
       regions:
@@ -19,7 +19,4 @@ default:
           # By default, `scrollable` is false
           scrollable: true
           components:
-            # Add your components here as a list. For example:
-            # - BodyText
-            # - ImageGallery
-            - custom.Default
+          - custom.Browser

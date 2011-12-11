@@ -1,0 +1,22 @@
+device:
+  capabilities:
+    # Edit the file at javascript/capabilities/PageDevice.js in order
+    # to add JavaScript functionality to this page. For more details, see the
+    # Mulberry documentation on Capabilities
+    - name: PageDevice
+  screens:
+    - name: index
+      regions:
+        # Each region can either be a row or a column
+        - type: row
+          # By default, regions will all equally fill the space of their
+          # container. Setting `size: fixed` will cause it to take the
+          # size of its contents
+          size: fixed
+          components:
+            - PageNav
+        - type: row
+          # By default, `scrollable` is false
+          scrollable: true
+          components:
+          - custom.Device
