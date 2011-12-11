@@ -1,6 +1,6 @@
 dojo.provide('toura.app.PhoneGap.camera');
 
-toura.app.PhoneGap.registerAPI('camera', function(pg, device) {
+toura.app.PhoneGap.camera = function(pg, device) {
   return {
     getPicture : function(success, error, opts) {
       var dfd = new dojo.Deferred(),
@@ -24,4 +24,4 @@ toura.app.PhoneGap.registerAPI('camera', function(pg, device) {
       return dfd.promise;
     }
   }
-});
+};

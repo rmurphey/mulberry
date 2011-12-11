@@ -5,7 +5,7 @@ dojo.provide('toura.app.PhoneGap.browser');
 // (c) 2010 Jesse MacFadyen, Nitobi
 // https://github.com/purplecabbage/phonegap-plugins
 
-toura.app.PhoneGap.registerAPI('browser', function(pg, device){
+toura.app.PhoneGap.browser = function(pg, device){
   function ChildBrowser() { }
   window.ChildBrowser = ChildBrowser;
 
@@ -114,4 +114,5 @@ toura.app.PhoneGap.registerAPI('browser', function(pg, device){
     }
   };
 
-});
+};
+

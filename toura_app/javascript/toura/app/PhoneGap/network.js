@@ -1,6 +1,6 @@
 dojo.provide('toura.app.PhoneGap.network');
 
-toura.app.PhoneGap.registerAPI('network', function(pg, device) {
+toura.app.PhoneGap.network = function(pg, device) {
   var n = navigator,
       interval = 5 * 60 * 1000,
       state,
@@ -60,4 +60,4 @@ toura.app.PhoneGap.registerAPI('network', function(pg, device) {
       return dfd.promise;
     }
   };
-});
+};

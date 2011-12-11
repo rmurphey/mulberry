@@ -1,6 +1,6 @@
 dojo.provide('toura.app.PhoneGap.geolocation');
 
-toura.app.PhoneGap.registerAPI('geolocation', function(pg, device) {
+toura.app.PhoneGap.geolocation = function(pg, device) {
   var noop = function(){};
 
   return {
@@ -58,4 +58,4 @@ toura.app.PhoneGap.registerAPI('geolocation', function(pg, device) {
       }
     }
   };
-});
+};

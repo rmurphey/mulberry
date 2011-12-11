@@ -40,7 +40,7 @@ dojo.provide('toura.app.PhoneGap.device');
     return [ version[0], version[1] || '0' ].join('-');
   }
 
-  toura.app.PhoneGap.registerAPI('device', function(pg, device) {
+  toura.app.PhoneGap.device = function(pg, device) {
     return {
       version : (function() {
         // http://www.zytrax.com/tech/web/mobile_ids.html
@@ -53,6 +53,6 @@ dojo.provide('toura.app.PhoneGap.device');
 
       _parseVersion : parseVersion
     };
-  });
+  };
 
 }());
