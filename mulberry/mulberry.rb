@@ -254,7 +254,7 @@ module Mulberry
       end
     end
 
-    def device_build(settings)
+    def device_build(settings = nil)
       settings ||= {}
 
       build({
@@ -269,7 +269,7 @@ module Mulberry
       })
     end
 
-    def www_build(settings)
+    def www_build(settings = nil)
       settings ||= {}
 
       b = nil
