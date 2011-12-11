@@ -116,4 +116,8 @@ describe Mulberry::Data do
       item[:node] == 'node-featured_image_page'
     end.length.should be 1
   end
+
+  it "should create api keys" do
+    @data[:app]['facebookApiKey'].should == 'facebook_api_key' 
+  end
 end
