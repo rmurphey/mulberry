@@ -5,10 +5,10 @@ require 'mulberry/mulberry'
 require 'mulberry/build_helper'
 
 describe Builder::Build do
-  before do
+  before(:all) do
     @config = { :skip_js_build => true }
-    @app_dir = File.join(File.dirname(__FILE__), '..', 'fixtures', 'build')
-    @app = Mulberry::App.new(@app_dir)
+    Mulberry::App.scaffold('testapp', true)
+    @app = Mulberry::App.new 'testapp'
   end
 
   it "should properly bundle an iphone build" do
@@ -176,7 +176,7 @@ describe Builder::Build do
     end
   end
 
-  after do
-    FileUtils.rm_rf File.join(@app_dir, 'builds')
+  after(:all) do
+    FileUtils.rm_rf 'testapp'
   end
 end
