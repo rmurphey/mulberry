@@ -10,6 +10,7 @@ dojo.require('toura.app.PhoneGap.push');
 dojo.require('toura.app.PhoneGap.browser');
 dojo.require('toura.app.PhoneGap.camera');
 dojo.require('toura.app.PhoneGap.geolocation');
+dojo.require('toura.app.PhoneGap.accelerometer');
 
 (function() {
 
@@ -32,7 +33,8 @@ dojo.require('toura.app.PhoneGap.geolocation');
     'push',
     'browser',
     'camera',
-    'geolocation'
+    'geolocation',
+    'accelerometer'
   ];
 
   dojo.forEach(builtInAPIs, function(apiName) {
