@@ -1,9 +1,4 @@
 camera:
-  capabilities:
-    # Edit the file at javascript/capabilities/PageCamera.js in order
-    # to add JavaScript functionality to this page. For more details, see the
-    # Mulberry documentation on Capabilities
-    - name: PageCamera
   screens:
     - name: index
       regions:

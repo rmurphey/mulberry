@@ -1,9 +1,4 @@
 geolocation:
-  capabilities:
-    # Edit the file at javascript/capabilities/PageGeolocation.js in order
-    # to add JavaScript functionality to this page. For more details, see the
-    # Mulberry documentation on Capabilities
-    - name: PageGeolocation
   screens:
     - name: index
       regions:
