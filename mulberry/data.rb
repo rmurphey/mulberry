@@ -37,7 +37,7 @@ module Mulberry
       @items      = []
       @item_ids   = []
 
-      get_api_keys
+      process_api_keys
       read_sitemap
     end
 
@@ -76,8 +76,8 @@ module Mulberry
       end
     end
 
-    def get_api_keys
-      api_keys = @config.select { |k,v| /api_key$/ =~ k }
+    def process_api_keys
+      api_keys = @config.select { |k,v| /.+api_key$/ =~ k }
 
       api_keys.each do |api_key|
         camel_key = api_key[0].to_s.underscore.camelize(:lower)
