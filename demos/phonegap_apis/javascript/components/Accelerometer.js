@@ -3,11 +3,23 @@ dojo.provide('client.components.Accelerometer');
 mulberry.component('Accelerometer', {
   componentTemplate : dojo.cache('client.components', 'Accelerometer/Accelerometer.haml'),
 
-  prep : function() {
-
+  init : function() {
+    this.connect(this.accelButton, 'click', '_getAccel');
   },
 
-  init : function() {
+  _getAccel : function() {
+    toura.app.PhoneGap.accelerometer.getCurrentAcceleration()
+      .then(dojo.hitch(this, '_showAccel'));
+  },
 
+  _showAccel : function(accel) {
+    var str = '';
+
+    dojo.forIn(accel, function(k, v) {
+      str += '<li>' + k + ': ' + v + '</li>';
+    });
+
+    this.location.innerHTML = str;
+    dojo.publish('/content/update'); // update the scroller dimensions
   }
 });

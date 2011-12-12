@@ -17,7 +17,7 @@ mulberry.component('Geolocation', {
     var str = '';
 
     dojo.forIn(loc.coords, function(k, v) {
-      str += '<li>' + k + ': ' + v + '</li>'
+      str += '<li>' + k + ': ' + v + '</li>';
     });
 
     this.location.innerHTML = str;
