@@ -11,7 +11,7 @@ mulberry.capability('{{name}}', {
 
   connects : [
   /*
-   * '<componentLocalVariableName>', '<eventName>', '<methodName>'
+   * ['<componentLocalVariableName>', '<eventName>', '<methodName>']
    */
   ],
 
