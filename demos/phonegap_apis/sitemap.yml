@@ -1,9 +1,0 @@
-- home:
-  - camera
-  - geolocation
-  - accelerometer
-  - notification
-  - connection
-  - browser
-  - device
-- about

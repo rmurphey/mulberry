@@ -1,4 +1,0 @@
----
-title: Geolocation
-template: geolocation
----

@@ -1,4 +1,0 @@
----
-title: Device
-template: device
----

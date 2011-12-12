@@ -1,4 +1,0 @@
----
-title: Browser
-template: browser
----

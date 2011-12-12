@@ -1,4 +1,0 @@
----
-title: Camera
-template: camera
----
