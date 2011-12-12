@@ -6,11 +6,11 @@
   -webkit-box-align: center;
 
   .close {
-    @include button('../icons/light/btn-page-nav-close.png', 32px, 32px);
+    @include icon('../icons/light/btn-page-nav-close.png', 32px, 32px);
     padding-left: 12px;
 
     &:active {
-      @include button('../icons/dark/btn-page-nav-close.png', 32px, 32px);
+      @include icon('../icons/dark/btn-page-nav-close.png', 32px, 32px);
     }
   }
 

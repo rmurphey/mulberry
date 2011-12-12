@@ -17,14 +17,14 @@
     -webkit-background-size: 50% 50%;
 
     &.prev {
-      @include button('../icons/btn-arrow-left-27x50.png', 14, 25, rgba(0, 0, 0, .7));
+      @include icon('../icons/btn-arrow-left-27x50.png', 14, 25, rgba(0, 0, 0, .7));
       background-position-x: left;
       padding-left: 4px;
       border-radius: 0 25px 25px 0;
     }
 
     &.next {
-      @include button('../icons/btn-arrow-right-27x50.png', 14, 25, rgba(0, 0, 0, .7));
+      @include icon('../icons/btn-arrow-right-27x50.png', 14, 25, rgba(0, 0, 0, .7));
       background-position-x: right;
       border-radius: 25px 0 0 25px;
       padding-right: 4px;

@@ -1,0 +1,18 @@
+.page.videos-and-text-phone {
+  .screen.index {
+    .row.player-container {
+      @include background-shadow;
+      padding-bottom: 40px;
+    }
+
+    .row.listing-and-children {
+      .child-nodes:not(.empty) {
+        padding-top: 10px;
+      }
+
+      .body-text {
+        padding: 10px 20px 0 10px;
+      }
+    }
+  }
+}

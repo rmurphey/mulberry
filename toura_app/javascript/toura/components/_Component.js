@@ -201,7 +201,7 @@ toura.component = function(name, proto) {
 
     postCreate : function() {
       this.inherited(arguments);
-      if (jQuery) { this.$domNode = jQuery(this.domNode); }
+      if (window.jQuery) { this.$domNode = jQuery(this.domNode); }
     },
 
     startup : function() {

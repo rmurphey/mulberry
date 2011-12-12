@@ -4,6 +4,10 @@
   }
 
   .overlay {
-    background-color: rgba(100,100,100, .5);
+    background-color: opacify($chrome-color, .5);
   }
+}
+
+.android .component.video-player .play-button {
+  background-image: none;
 }

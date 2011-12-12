@@ -14,10 +14,10 @@
 
     .region.audio-container {
 
-      @if ($user-font-scheme == dark) {
-        background-color: darken($user-background-color, 17%);
+      @if ($font-scheme == dark) {
+        background-color: darken($app-background-color, 17%);
       } @else {
-        background-color: lighten($user-background-color, 17%);
+        background-color: lighten($app-background-color, 17%);
       }
 
       audio {

@@ -5,11 +5,11 @@
     li {
       display: inline;
 
-      color: #fff;
-      -webkit-text-stroke: .5px #ccc;
+      color: $gallery-indicator-color;
+      -webkit-text-stroke: .5px $gallery-indicator-outline-color;
 
       &.active {
-        color: #666;
+        color: $gallery-indicator-active-color;
         -webkit-text-stroke: 0;
       }
     }
