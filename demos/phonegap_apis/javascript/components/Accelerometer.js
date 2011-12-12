@@ -19,7 +19,7 @@ mulberry.component('Accelerometer', {
       str += '<li>' + k + ': ' + v + '</li>';
     });
 
-    this.location.innerHTML = str;
+    this.accel.innerHTML = str;
     dojo.publish('/content/update'); // update the scroller dimensions
   }
 });
