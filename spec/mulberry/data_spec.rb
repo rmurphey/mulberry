@@ -118,6 +118,9 @@ describe Mulberry::Data do
   end
 
   it "should create api keys" do
-    @data[:app].has_key?('facebookApiKey').should be_true  
+    @data[:app].has_key?('facebookApiKey').should be_true
+    @data[:app].has_key?('facebook_api_key').should be_false
+    @data[:app].has_key?('twitterCustomerKey').should be_true
+    @data[:app].has_key?('twitterCustomerSecret').should be_true
   end
 end
