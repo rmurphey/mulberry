@@ -28,7 +28,7 @@ toura.app.PhoneGap.geolocation = function(pg, device) {
       if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
         navigator.geolocation.getCurrentPosition(win, fail, opts);
       } else {
-        fail(msg);
+        fail(failMsg);
       }
 
       return dfd.promise;
