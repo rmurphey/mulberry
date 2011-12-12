@@ -6,7 +6,7 @@ require 'mulberry/build_helper'
 
 describe Builder::Build do
   before(:all) do
-    @config = { :skip_js_build => true }
+    @config = {}
     Mulberry::App.scaffold('testapp', true)
     @app = Mulberry::App.new 'testapp'
   end
@@ -46,53 +46,16 @@ describe Builder::Build do
       [ 'iphone', 'www', 'data', 'tour.js.jet' ],
       [ 'iphone', 'www', 'data', 'templates.js' ],
 
-      [ 'iphone', 'www', 'javascript' ]
+      [ 'iphone', 'www', 'javascript' ],
+      [ 'iphone', 'www', 'javascript', 'dojo', 'dojo.js' ],
+      [ 'iphone', 'www', 'javascript', 'toura', 'base.js' ],
+      [ 'iphone', 'www', 'javascript', 'client', 'base.js' ],
+      [ 'iphone', 'www', 'javascript', 'toura', 'app', 'TouraConfig.js' ]
     ].each do |path|
       File.exists?(File.join(bundle[:location], path)).should be_true
     end
 
     b.cleanup
-  end
-
-  it "should properly bundle an iphone build" do
-    b = Builder::Build.new(@config.merge({
-      :build_helper => Mulberry::BuildHelper.new(@app),
-      :device_type => 'phone',
-      :device_os => 'ios',
-      :target => 'device_production'
-    }))
-
-    b.build
-
-    bundle = b.completed_steps[:close][:bundle]
-    bundle[:location].should_not be_nil
-
-    [
-      [ 'iphone' ],
-
-      [ 'iphone', 'Toura' ],
-
-      [ 'iphone', 'Toura', 'Toura-Info.plist' ],
-      [ 'iphone', 'Toura', 'UrbanAirship.plist' ],
-
-      [ 'iphone', 'www' ],
-      [ 'iphone', 'www', 'index.html' ],
-
-      [ 'iphone', 'www', 'media' ],
-      [ 'iphone', 'www', 'media', 'manifest.js' ],
-      [ 'iphone', 'www', 'icons' ],
-
-      [ 'iphone', 'www', 'css' ],
-      [ 'iphone', 'www', 'css', 'base.css' ],
-
-      [ 'iphone', 'www', 'data' ],
-      [ 'iphone', 'www', 'data', 'tour.js.jet' ],
-      [ 'iphone', 'www', 'data', 'templates.js' ],
-
-      [ 'iphone', 'www', 'javascript' ]
-    ].each do |path|
-      File.exists?(File.join(bundle[:location], path)).should be_true
-    end
   end
 
   it "should properly bundle an ipad build" do
@@ -130,7 +93,11 @@ describe Builder::Build do
       [ 'ipad', 'www', 'data', 'tour.js.jet' ],
       [ 'ipad', 'www', 'data', 'templates.js' ],
 
-      [ 'ipad', 'www', 'javascript' ]
+      [ 'ipad', 'www', 'javascript' ],
+      [ 'ipad', 'www', 'javascript', 'dojo', 'dojo.js' ],
+      [ 'ipad', 'www', 'javascript', 'toura', 'base.js' ],
+      [ 'ipad', 'www', 'javascript', 'client', 'base.js' ],
+      [ 'ipad', 'www', 'javascript', 'toura', 'app', 'TouraConfig.js' ]
     ].each do |path|
       File.exists?(File.join(bundle[:location], path)).should be_true
     end
@@ -170,7 +137,11 @@ describe Builder::Build do
       [ 'android', 'assets', 'www', 'data', 'tour.js.jet' ],
       [ 'android', 'assets', 'www', 'data', 'templates.js' ],
 
-      [ 'android', 'assets', 'www', 'javascript' ]
+      [ 'android', 'assets', 'www', 'javascript' ],
+      [ 'android', 'assets', 'www', 'javascript', 'dojo', 'dojo.js' ],
+      [ 'android', 'assets', 'www', 'javascript', 'toura', 'base.js' ],
+      [ 'android', 'assets', 'www', 'javascript', 'client', 'base.js' ],
+      [ 'android', 'assets', 'www', 'javascript', 'toura', 'app', 'TouraConfig.js' ]
     ].each do |path|
       File.exists?(File.join(bundle[:location], path)).should be_true
     end
