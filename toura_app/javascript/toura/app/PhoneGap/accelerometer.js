@@ -22,7 +22,7 @@ toura.app.PhoneGap.accelerometer = function(pg, device) {
       if (navigator.accelerometer && navigator.accelerometer.getCurrentAcceleration) {
         navigator.accelerometer.getCurrentAcceleration(win, fail);
       } else {
-        fail(msg);
+        fail(failMsg);
       }
 
       return dfd.promise;
