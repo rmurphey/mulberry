@@ -35,38 +35,16 @@ toura.app.PhoneGap.geolocation = function(pg, device) {
     },
 
     watchPosition : function(success, error, opts) {
-      if (!dojo.isFunction(success)) {
-        opts = success;
-        success = false;
-        error = false;
-      }
-
-      var dfd = new dojo.Deferred(),
-
-          win = function(data) {
-            (success || noop)(data);
-            dfd.resolve(data);
-          },
-
-          fail = function(msg) {
-            (error || noop)(msg);
-            dfd.reject(msg);
-          },
-
-          watchId;
-
       if (navigator.geolocation && navigator.geolocation.watchPosition) {
-        dfd.promise.watchId = navigator.geolocation.watchPosition(win, fail, opts);
-      } else {
-        dfd.promise.watchId = true;
+        return navigator.geolocation.watchPosition(success, error, opts);
       }
+
+      return false;
     },
 
     clearWatch : function(watch) {
-      var watchId = watch.watchId || watch;
-
-      if (navigator.geoLocation && navigator.geolocation.clearWatch && watchId) {
-        navigator.geolocation.clearWatch(watchId);
+      if (watch && navigator.geolocation && navigator.geolocation.clearWatch) {
+        navigator.geolocation.clearWatch(watch);
       }
     }
   };

@@ -10,8 +10,6 @@ describe("PhoneGap bridge", function() {
   });
 
   describe("toura.app.PhoneGap.device", function() {
-
-
     it("should return the device version", function() {
       var uas = [
         // Android UAs
@@ -59,7 +57,75 @@ describe("PhoneGap bridge", function() {
         expect(toura.app.PhoneGap.device._parseVersion(item.ua)).toBe(item.v, item.ua || 'undefined');
       });
     });
-
   });
 
+  describe("toura.app.PhoneGap.accelerometer", function() {
+    var a;
+
+    beforeEach(function() {
+      a = toura.app.PhoneGap.accelerometer;
+    });
+
+    it("should be defined", function() {
+      expect(a).toBeDefined();
+    });
+
+    it("should define the expected methods", function() {
+      expect(a.getCurrentAcceleration).toBeDefined();
+      expect(a.watchAcceleration).toBeDefined();
+      expect(a.clearWatch).toBeDefined();
+    });
+
+    describe("getCurrentAcceleration", function() {
+      it("should return a promise", function() {
+        expect(dojo.isFunction(a.getCurrentAcceleration().then)).toBeTruthy();
+      });
+    });
+  });
+
+  describe("toura.app.PhoneGap.geolocation", function() {
+    var g;
+
+    beforeEach(function() {
+      g = toura.app.PhoneGap.geolocation;
+    });
+
+    it("should be defined", function() {
+      expect(g).toBeDefined();
+    });
+
+    it("should define the expected methods", function() {
+      expect(g.getCurrentPosition).toBeDefined();
+      expect(g.watchPosition).toBeDefined();
+      expect(g.clearWatch).toBeDefined();
+    });
+
+    describe("getCurrentPosition", function() {
+      it("should return a promise", function() {
+        expect(dojo.isFunction(g.getCurrentPosition().then)).toBeTruthy();
+      });
+    });
+  });
+
+  describe("toura.app.PhoneGap.camera", function() {
+    var c;
+
+    beforeEach(function() {
+      c = toura.app.PhoneGap.camera;
+    });
+
+    it("should be defined", function() {
+      expect(c).toBeDefined();
+    });
+
+    it("should define the expected methods", function() {
+      expect(c.getPicture).toBeDefined();
+    });
+
+    describe("getPicture", function() {
+      it("should return a promise", function() {
+        expect(dojo.isFunction(c.getPicture().then)).toBeTruthy();
+      });
+    });
+  });
 });

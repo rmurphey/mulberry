@@ -29,24 +29,10 @@ toura.app.PhoneGap.accelerometer = function(pg, device) {
     },
 
     watchAcceleration : function(success, error) {
-      var dfd = new dojo.Deferred(),
-
-          win = function(data) {
-            (success || noop)(data);
-            dfd.resolve(data);
-          },
-
-          fail = function(msg) {
-            (error || noop)(msg);
-            dfd.reject(msg);
-          },
-
-          watchId;
-
       if (navigator.accelerometer && navigator.accelerometer.watchAcceleration) {
-        dfd.promise.watchId = navigator.accelerometer.watchPosition(win, fail, opts);
+        return navigator.accelerometer.watchPosition(success, error);
       } else {
-        dfd.promise.watchId = true;
+        return false;
       }
     },
 
