@@ -4,18 +4,8 @@ describe Builder::CSSMaker do
   before :each do
     @settings = {
       :app_dir => File.join(File.dirname(__FILE__), '..', 'fixtures', 'css', 'javascript'),
-      :theme_dir => 'spec/fixtures/css/theme',
-      :vars => {
-        'foo' => 'bar'
-      }
+      :theme_dir => 'spec/fixtures/css/theme'
     }
-  end
-
-  it "should raise an error if no vars are provided" do
-    @settings[:vars] = nil
-    lambda {
-      Builder::CSSMaker.new(@settings)
-    }.should raise_error
   end
 
   it "should raise an error if no theme path is provided" do
@@ -36,7 +26,7 @@ describe Builder::CSSMaker do
   describe "#scss_data_from_vars_hash" do
     it "should return correctly formatted scss data" do
       scss_data = Builder::CSSMaker.scss_data_from_vars_hash({'foo' => 'bar'})
-      scss_data.should == "$user-foo: bar;"
+      scss_data.should == "$foo: bar;"
     end
   end
 

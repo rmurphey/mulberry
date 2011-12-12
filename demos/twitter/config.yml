@@ -29,11 +29,6 @@ name: Twitter Demo
 # to create additional themes.
 theme:
   name: default
-  settings:
-    font-scheme:        'dark'
-    link-color:         '#0000ff'
-    background-color:   '#fff'
-    child-nav-color:    '#fff'
 
 os:
   # Specify the operating systems to target
