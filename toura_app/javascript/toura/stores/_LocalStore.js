@@ -42,5 +42,5 @@ dojo.declare('toura.stores._LocalStore', dojo.store.Memory, {
 
   _createId : function() {
     return (((1+Math.random())*0x10000)).toString(16).substring(1);
-  },
+  }
 });

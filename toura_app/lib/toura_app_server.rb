@@ -39,7 +39,7 @@ class TouraAPPServer < Sinatra::Base
 
   set :raise_errors => true
   set :root, file_path('.')
-  set :public, file_path('www')
+  set :public_folder, file_path('www')
   set :views, file_path('templates')
 
   #####################
