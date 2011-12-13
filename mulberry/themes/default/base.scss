@@ -2,6 +2,8 @@
 @import 'helpers/mixins';
 @import 'helpers/forms';
 
+@import 'splash';
+
 body {
   color: $text-color;
   font-family: $base-font;

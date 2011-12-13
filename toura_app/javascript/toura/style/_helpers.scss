@@ -48,7 +48,7 @@
   height: $el-height;
 }
 
-@mixin spinner($path:'../icons/spinner.png', $speed: 1s) {
+@mixin spinner($path, $speed: 1s) {
   background: url($path) no-repeat center center;
   -webkit-background-size: contain;
   -webkit-animation-name: spin;
