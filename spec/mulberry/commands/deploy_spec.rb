@@ -5,7 +5,7 @@ describe Mulberry::Command::Deploy do
 
   describe '#initialize' do
     it "should initalize" do
-      Mulberry::Command::Deploy.new [@app.name]
+      Mulberry::Command::Deploy.new [@app.name], {:test => true, :quiet => true, :skip_js_build => true}
     end
   end
 end
