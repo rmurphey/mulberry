@@ -1,9 +1,9 @@
-dojo.provide('toura.capabilities._Capability');
+dojo.provide('toura._Capability');
 
 /**
  * @class
  */
-dojo.declare('toura.capabilities._Capability', [ ], {
+dojo.declare('toura._Capability', null, {
   /**
    * An object defining the required components for the capability. The
    * object's keys are the property names that will be used to refer to the
@@ -163,7 +163,7 @@ dojo.declare('toura.capabilities._Capability', [ ], {
 toura.capability = function(name, proto) {
   dojo.declare(
     'toura.capabilities.' +  name,
-    [ toura.capabilities._Capability ],
+    toura._Capability,
     proto
   );
 };
