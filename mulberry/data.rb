@@ -46,7 +46,7 @@ module Mulberry
     end
 
     public
-    def generate(include_version=false, default_version=false)
+    def generate(include_version=false)
       do_contexts unless @contexts_complete
       result = {
         :items       =>  @items,
@@ -61,22 +61,12 @@ module Mulberry
         url = @config['toura_api']['url'] || 'https://api.toura.com'
         key = @config['toura_api']['key']
         begin
-          res = Mulberry::Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to #{url}",
-                                    "503" => "#{url} is not available.",
-                                    "default" => lambda {|res|
-                                      "Could not retrieve version from #{url} (#{res.code}).  Response: #{res.body}"
-                                    } do
-            Mulberry::Http.fetch URI.join(url, "/applications/#{key}/ota_service/version_json")
-          end
-          version = JSON.parse(res.body)['version']
-          new_version = version + 1
-          puts "Retrieved current version from #{url}: #{version}. Setting version for this to #{new_version}."
-          result['version'] = new_version
+          version = OtaServiceApplication.new(url, key).version
         rescue Mulberry::Http::NotFound
-          result['version'] = default_version if default_version
         end
-      elsif (default_version)
-        result['version'] = default_version
+        new_version = (version || 0 ) + 1
+        puts "Retrieved current version from #{url}: #{version}. Setting version for this to #{new_version}."
+        result['version'] = new_version
       end
       result
     end
