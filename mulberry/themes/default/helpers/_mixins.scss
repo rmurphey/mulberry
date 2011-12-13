@@ -155,12 +155,12 @@
   }
 
   &.#{$type} a {
-    background: url(../icons/light/btn-page-nav-#{$type}.png) no-repeat;
+    background: url(resources/icons/light/btn-page-nav-#{$type}.png) no-repeat;
     background-position-y: center;
   }
 
   &.#{$type} a:active {
-    background-image: url(../icons/dark/btn-page-nav-#{$type}.png);
+    background-image: url(resources/icons/dark/btn-page-nav-#{$type}.png);
   }
 
   &.#{$type}:first-child a {
