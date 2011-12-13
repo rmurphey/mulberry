@@ -37,10 +37,7 @@ module Mulberry
       @items      = []
       @item_ids   = []
 
-      @config['facebookApiKey'] = @config['facebook_api_key']
-      @config['twitterCustomerKey'] = @config['twitter_customer_key']
-      @config['twitterCustomerSecret'] = @config['twitter_customer_secret']
-
+      process_api_keys
       read_sitemap
     end
 
@@ -76,6 +73,16 @@ module Mulberry
         )
       else
         load_data_for_page(page)
+      end
+    end
+
+    def process_api_keys
+      api_keys = @config.select { |k,v| /(.+api_key$)|(^twitter_customer_(key|secret))$/ =~ k }
+      
+      api_keys.each do |api_key|
+        camel_key = api_key[0].to_s.underscore.camelize(:lower)
+        @config[camel_key] = api_key[1]
+        @config.delete api_key[0]
       end
     end
 

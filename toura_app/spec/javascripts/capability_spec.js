@@ -11,6 +11,11 @@ describe("capabilities", function() {
       domNode : dojo.byId('test'),
       node : {},
       connect : function() {},
+      getComponent : function(name) {
+        if (name === 'FakeComponent') {
+          return new toura.components.FakeComponent();
+        }
+      },
       getScreen : function() {
         return {
           getComponent : function(name) {
@@ -74,6 +79,15 @@ describe("capabilities", function() {
         components : [ 'screenName:AnotherFakeComponent' ]
       });
     }).toThrow();
+  });
+
+  it("should not throw an error if a requried component is present but not specified by the page template", function() {
+    expect(function() {
+      new my.FakeCapability({
+        page : page,
+        requirements : { foo : 'FakeComponent' }
+      });
+    }).not.toThrow();
   });
 
   it("should create connections based on the connects array", function() {

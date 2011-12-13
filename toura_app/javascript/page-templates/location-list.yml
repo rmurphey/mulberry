@@ -1,11 +1,6 @@
 location-list:
-  type: node
   capabilities:
-  - name: ImageGalleryDetail
-    components:
-    - index:ImageGallery
-    - detail:ZoomableImageGallery
-    - detail:DetailTitle
+  - ImageGalleryDetail
   screens:
   - name: index
     regions:

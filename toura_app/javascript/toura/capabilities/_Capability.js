@@ -117,9 +117,11 @@ dojo.declare('toura.capabilities._Capability', [ ], {
     var requirementsMet = true;
 
     dojo.forIn(this.requirements, function(propName, requiredComponentName) {
-      requirementsMet = requirementsMet && !!this.involved[requiredComponentName];
-      if (!this.involved[requiredComponentName]) {
-        console.log('did not find', requiredComponentName, !!this.involved[requiredComponentName]);
+      var foundComponent = !!this.involved[requiredComponentName] || this.page.getComponent(requiredComponentName);
+      requirementsMet = requirementsMet && foundComponent;
+
+      if (!foundComponent) {
+        console.warn('did not find', requiredComponentName);
       }
     }, this);
 
@@ -134,7 +136,7 @@ dojo.declare('toura.capabilities._Capability', [ ], {
    */
   _doLookups : function() {
     dojo.forIn(this.requirements, function(propName, componentName) {
-      this[propName] = this.involved[componentName];
+      this[propName] = this.involved[componentName] || this.page.getComponent(componentName);
     }, this);
   },
 

@@ -1,11 +1,6 @@
 twitter:
   capabilities:
-    - name: Twitter
-      components:
-      - index:GoogleMap
-      - index:custom.UserList
-      - index:custom.UserInfo
-      - index:custom.LatestTweet
+    - Twitter
 
   screens:
     - name: index

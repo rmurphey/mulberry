@@ -43,7 +43,7 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
     }, this);
 
     this.capabilities = dojo.map(this.templateConfig.capabilities || [], function(config) {
-      var C = config.name,
+      var C = dojo.isObject(config) ? config.name : config,
           components = config.components;
 
       if (!toura.capabilities[C]) {
@@ -78,6 +78,23 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
 
   getScreen : function(screenName) {
     return this.screens[screenName];
+  },
+
+  getComponent : function(componentName) {
+    var c = false;
+
+    this._components = this._components || {};
+
+    if (!this._components[componentName]) {
+      dojo.forIn(this.screens, function(screenName, screen) {
+        var tmp = screen.getComponent(componentName);
+        if (tmp) { c = tmp; }
+      });
+
+      this._components[componentName] = c;
+    }
+
+    return this._components[componentName];
   },
 
   startup : function() {

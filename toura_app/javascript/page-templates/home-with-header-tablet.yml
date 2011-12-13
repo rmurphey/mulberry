@@ -1,5 +1,4 @@
 home-with-header-tablet:
-  type: node
   screens:
   - name: index
     backgroundImage: true
