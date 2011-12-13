@@ -6,18 +6,17 @@ require 'mulberry/build_helper'
 
 describe Builder::Build do
   before(:all) do
-    @config = {}
     Mulberry::App.scaffold('testapp', true)
     @app = Mulberry::App.new 'testapp'
   end
 
   it "should properly bundle an iphone build" do
-    b = Builder::Build.new(@config.merge({
+    b = Builder::Build.new({
       :build_helper => Mulberry::BuildHelper.new(@app),
       :device_type => 'phone',
       :device_os => 'ios',
       :target => 'device_production'
-    }))
+    })
 
     b.build
 
@@ -60,12 +59,12 @@ describe Builder::Build do
   end
 
   it "should properly bundle an ipad build" do
-    b = Builder::Build.new(@config.merge({
+    b = Builder::Build.new({
       :build_helper => Mulberry::BuildHelper.new(@app),
       :device_type => 'tablet',
       :device_os => 'ios',
       :target => 'device_production'
-    }))
+    })
 
     b.build
 
@@ -106,12 +105,12 @@ describe Builder::Build do
   end
 
   it "should properly bundle an android build" do
-    b = Builder::Build.new(@config.merge({
+    b = Builder::Build.new({
       :build_helper => Mulberry::BuildHelper.new(@app),
       :device_type => 'phone',
       :device_os => 'android',
       :target => 'device_production'
-    }))
+    })
 
     b.build
 
