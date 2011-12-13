@@ -68,7 +68,7 @@ describe Mulberry::App do
 
   describe "#www_build" do
     before :each do
-      @app.www_build(:skip_js_build => true)
+      @app.www_build
     end
 
     it "should build the files for serving as a static site" do
