@@ -17,7 +17,7 @@
 
 @mixin background-shadow {
   .ios & {
-    background: transparent url(../icons/bg-inner-shadow.png) no-repeat;
+    background: transparent url(resources/icons/bg-inner-shadow.png) no-repeat;
     background-size: cover;
     background-position-y: 100%;
   }
@@ -175,7 +175,7 @@
 @mixin asset-icon($type) {
   &.#{$type} a {
     background: {
-      image: url('../icons/dark/icon-asset-#{$type}.png');
+      image: url('/resourcresources/icons/daresources/icon-asset-#{$type}.png');
       repeat: no-repeat;
       position: center right;
       size: 28px 26px;
