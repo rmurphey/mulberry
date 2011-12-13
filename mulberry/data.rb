@@ -66,7 +66,7 @@ module Mulberry
                                     "default" => lambda {|res|
                                       "Could not retrieve version from #{url} (#{res.code}).  Response: #{res.body}"
                                     } do
-            Mulberry::Http.fetch File.join(url, "/applications/#{key}/ota_service/version_json")
+            Mulberry::Http.fetch URI.join(url, "/applications/#{key}/ota_service/version_json")
           end
           version = JSON.parse(res.body)['version']
           new_version = version + 1
