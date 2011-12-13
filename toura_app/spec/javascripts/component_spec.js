@@ -2,12 +2,12 @@ describe("base _Component class", function() {
   var c, C, t, img, node;
 
   beforeEach(function() {
-    dojo.require('toura.components._Component');
+    dojo.require('toura._Component');
 
     t = dojo.byId('test');
 
     C = function(config) {
-      return new toura.components._Component(config || {
+      return new toura._Component(config || {
         templateString : ".fake-component loremipsum"
       }).placeAt(t);
     };
@@ -42,7 +42,7 @@ describe("base _Component class", function() {
 
         i = 0;
 
-    dojo.declare('my.Thinger', [ toura.components._Component ], {
+    dojo.declare('my.Thinger', toura._Component, {
       templateString : '.foo',
 
       postMixInProperties : function() {

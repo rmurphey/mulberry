@@ -1,9 +1,9 @@
 dojo.provide('toura.components.NodeTitleBanner');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 dojo.require('toura.ui.BackgroundImage');
 
-dojo.declare('toura.components.NodeTitleBanner', [ toura.components._Component ], {
+dojo.declare('toura.components.NodeTitleBanner', toura._Component, {
   templateString : dojo.cache('toura.components', 'NodeTitleBanner/NodeTitleBanner.haml'),
   widgetsInTemplate : true,
 

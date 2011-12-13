@@ -2,7 +2,7 @@ dojo.provide('toura.components.SearchResults');
 
 dojo.require('toura.components._Results');
 
-dojo.declare('toura.components.SearchResults', [ toura.components._Results ], {
+dojo.declare('toura.components.SearchResults', toura.components._Results, {
   templateString : dojo.cache('toura.components', 'SearchResults/SearchResults.haml'),
   resultTemplate : Haml(dojo.cache('toura.components', 'SearchResults/Result.haml')),
 

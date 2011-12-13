@@ -1,8 +1,8 @@
 dojo.provide('toura.components.HeaderImage');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 
-dojo.declare('toura.components.HeaderImage', [ toura.components._Component ], {
+dojo.declare('toura.components.HeaderImage', toura._Component, {
   templateString : dojo.cache('toura.components', 'HeaderImage/HeaderImage.haml'),
 
   prepareData : function() {

@@ -1,8 +1,7 @@
 dojo.provide('toura.components.GoogleMap');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 dojo.require('toura._AsyncView');
-
 dojo.require('dijit.DialogUnderlay');
 dojo.require('toura.app.PhoneGap');
 dojo.require('dojo.io.script');
@@ -14,7 +13,7 @@ dojo.require('toura.app.URL');
   // Google Maps API v3 reference:
   // https://code.google.com/apis/maps/documentation/javascript/reference.html
 
-  dojo.declare('toura.components.GoogleMap', [ toura.components._Component, toura._AsyncView ], {
+  dojo.declare('toura.components.GoogleMap', [ toura._Component, toura._AsyncView ], {
     templateString : dojo.cache('toura.components', 'GoogleMap/GoogleMap.haml'),
 
     mapType : 'roadmap',
