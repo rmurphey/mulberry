@@ -1,8 +1,26 @@
 .component.search-input {
   @include nav;
 
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+
+  .back {
+    @include icon('resources/icons/light/btn-page-nav-back.png', 30px, 30px);
+    background-position: right;
+    padding-left: 5px;
+
+    &:active {
+      background-image: url('resources/icons/dark/btn-page-nav-back.png');
+    }
+  }
+
   form {
     -webkit-box-flex: 1;
+
+    input[type=search] {
+      background: #fff url(resources/icons/icon-search-input.png) no-repeat 6px center ;
+    }
 
     .ios & {
       margin-top: -1px;
