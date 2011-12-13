@@ -175,7 +175,7 @@
 @mixin asset-icon($type) {
   &.#{$type} a {
     background: {
-      image: url('/resourcresources/icons/daresources/icon-asset-#{$type}.png');
+      image: url('resources/icons/dark/icon-asset-#{$type}.png');
       repeat: no-repeat;
       position: center right;
       size: 28px 26px;
