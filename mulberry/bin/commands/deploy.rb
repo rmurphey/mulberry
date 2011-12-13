@@ -1,12 +1,12 @@
 module Mulberry
   module Command
     class Deploy
-      def initialize(args, options_hash = {})
+      def initialize(args, additional_options = {})
 
         dir = Mulberry.get_app_dir args[0]
         app = Mulberry::App.new(dir)
 
-        app.device_build options_hash
+        app.device_build additional_options
       end
     end
   end
