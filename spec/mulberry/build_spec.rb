@@ -41,6 +41,7 @@ describe Builder::Build do
 
       [ 'iphone', 'www', 'css' ],
       [ 'iphone', 'www', 'css', 'base.css' ],
+      [ 'iphone', 'www', 'css', 'resources' ],
 
       [ 'iphone', 'www', 'data' ],
       [ 'iphone', 'www', 'data', 'tour.js.jet' ],
@@ -88,6 +89,7 @@ describe Builder::Build do
 
       [ 'ipad', 'www', 'css' ],
       [ 'ipad', 'www', 'css', 'base.css' ],
+      [ 'ipad', 'www', 'css', 'resources' ],
 
       [ 'ipad', 'www', 'data' ],
       [ 'ipad', 'www', 'data', 'tour.js.jet' ],
@@ -132,7 +134,8 @@ describe Builder::Build do
 
       [ 'android', 'assets', 'www', 'css' ],
       [ 'android', 'assets', 'www', 'css', 'base.css' ],
-
+      [ 'android', 'assets', 'www', 'css', 'resources' ],
+      
       [ 'android', 'assets', 'www', 'data' ],
       [ 'android', 'assets', 'www', 'data', 'tour.js.jet' ],
       [ 'android', 'assets', 'www', 'data', 'templates.js' ],
