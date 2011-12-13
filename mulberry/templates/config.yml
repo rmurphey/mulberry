@@ -86,3 +86,12 @@ flurry:
  android:
    api_key: flurry_android_api_key
 
+# Enter your toura api details here
+#toura_api:
+#  url: https://api.toura.com/
+#  key: your_app_key
+#  secret: your_app_secret
+
+# Enter your OTA details here
+ota:
+  enabled: false
