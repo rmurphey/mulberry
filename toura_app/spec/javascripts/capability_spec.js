@@ -3,7 +3,7 @@ describe("capabilities", function() {
 
   beforeEach(function() {
     dojo.require('toura.capabilities._Capability');
-    dojo.require('toura.components._Component');
+    dojo.require('toura._Component');
 
     C = toura.capabilities._Capability;
 
@@ -31,7 +31,7 @@ describe("capabilities", function() {
       init : function() { flag = true; }
     });
 
-    dojo.declare('toura.components.FakeComponent', [ toura.components._Component ], {
+    dojo.declare('toura.components.FakeComponent', toura._Component, {
       templateString : '<div></div>',
       fakeMethod : function() {
         console.log('called fake method');
