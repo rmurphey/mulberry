@@ -1,5 +1,4 @@
 hotspots:
-  type: node
   screens:
   - regions:
     - type: row

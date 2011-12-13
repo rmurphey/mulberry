@@ -1,5 +1,4 @@
 home-with-header-phone:
-  type: node
   screens:
   - name: index
     backgroundImage: true
@@ -8,13 +7,11 @@ home-with-header-phone:
       size: fixed
       components:
       - PageHeaderImage
-
     - type: row
       scrollable: true
       components:
       - BodyText
       - ChildNodes
-
     - type: row
       size: fixed
       components:

@@ -43,7 +43,7 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
     }, this);
 
     this.capabilities = dojo.map(this.templateConfig.capabilities || [], function(config) {
-      var C = config.name,
+      var C = dojo.isObject(config) ? config.name : config,
           components = config.components;
 
       if (!toura.capabilities[C]) {

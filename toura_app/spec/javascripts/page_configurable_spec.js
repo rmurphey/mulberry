@@ -96,5 +96,23 @@ describe("configurable page controller", function() {
     expect(spy).toHaveBeenCalled();
   });
 
+  it("should work with capabilities as an array of strings", function() {
+    dojo.declare('toura.capabilities.FakeCapability', [], {});
+
+    var spy = spyOn(toura.capabilities, 'FakeCapability');
+
+    c = C({
+      baseObj : {},
+      device : devices[0],
+      templateConfig : {
+        screens : [ 1 ],
+        capabilities : [ 'FakeCapability' ]
+      }
+    });
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+
 
 });

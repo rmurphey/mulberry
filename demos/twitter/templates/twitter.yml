@@ -1,6 +1,6 @@
 twitter:
   capabilities:
-    - name: Twitter
+    - Twitter
 
   screens:
     - name: index
