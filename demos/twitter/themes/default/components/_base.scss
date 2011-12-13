@@ -3,7 +3,9 @@
 @import 'page-nav';
 @import 'detail-title';
 @import 'sibling-nav';
+@import 'search-input';
 
+@import 'delete-button';
 
 // content components
 @import 'asset-list';
@@ -27,7 +29,6 @@
 @import 'node-title-banner';
 @import 'page-header-image';
 @import 'pin-info';
-@import 'search-input';
 @import 'search-results';
 @import 'social-message';
 @import 'video-player';
