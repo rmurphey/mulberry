@@ -2,7 +2,7 @@ dojo.provide('toura.components.buttons.AboutButton');
 
 dojo.require('toura.components.buttons._Button');
 
-dojo.declare('toura.components.buttons.AboutButton', [ toura.components.buttons._Button ], {
+dojo.declare('toura.components.buttons.AboutButton', toura.components.buttons._Button, {
   "class" : 'about',
 
   prepareData : function() {

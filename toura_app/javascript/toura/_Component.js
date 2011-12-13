@@ -212,5 +212,5 @@ toura.component = function(name, proto) {
     }
   });
 
-  dojo.declare('client.components.' + name, [ toura.components._Component ], p);
+  dojo.declare('client.components.' + name, toura._Component, p);
 };
