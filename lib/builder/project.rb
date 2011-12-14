@@ -252,23 +252,34 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
           flurry_api_key = 'NO_FLURRY_KEY_AVAILABLE' # must be non-blank value
         end
         product_name = project_settings[:name] || "The App With No Name"
-        plist_result = %x{#{sed} -e 's/${PRODUCT_NAME}/#{product_name}/' \
-          -e 's/com.toura.app2/#{app_id}/' \
-          -e 's/${BUNDLE_VERSION}/#{project_settings[:published_version]}/' \
-          -e 's/${FlurryApiKey}/#{flurry_api_key}/' \
-          #{plist_file}
-        }
 
-        ua_config = project_settings[:urban_airship_config]
-        if ua_config
-          credentials = dev ? ua_config['development'] : ua_config['production']
-          plist_file = File.join(project_toura_dir, 'UrbanAirship.plist')
-          plist_result = %x{#{sed} -e 's/${UrbanAirshipKey}/#{credentials['app_key']}/' \
-            -e 's/${UrbanAirshipSecret}/#{credentials['app_secret']}/' \
-            #{plist_file}
-          }
+        text = File.read(plist_file)
+
+        [
+          ["${PRODUCT_NAME}",   "#{product_name}"],
+          ["com.toura.app2",    app_id],
+          ["${BUNDLE_VERSION}", project_settings[:published_version]],
+          ["${FlurryApiKey}",   flurry_api_key]
+        ].each { |config| text.gsub!(config[0], config[1]) }
+
+        File.open(plist_file, "w") do |file| 
+          file.puts text
         end
 
+        ua_config = project_settings[:urban_airship_config]
+
+        if ua_config
+          plist_file = File.join(project_toura_dir, 'UrbanAirship.plist')
+          text = File.read(plist_file)
+          credentials = dev ? ua_config['development'] : ua_config['production']
+
+          text.gsub!("${UrbanAirshipKey}", credentials['app_key'])
+          text.gsub!("${UrbanAirshipSecret}", credentials['app_secret'])
+
+          File.open(plist_file, "w") do |file| 
+            file.puts text
+          end
+        end
       end
     end
   end

@@ -26,7 +26,7 @@ module Mulberry
 
     def project_settings
       {
-        :id                   => @config['name'].gsub(/'/, "\\\\'"),
+        :id                   => @config['name'],
         :version              => Time.now.to_i,
         :name                 => @name,
         :bundle               => @build_dir,

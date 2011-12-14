@@ -243,7 +243,7 @@ module Builder
           xcodeproj = File.join(
             @location,
             (@target['device_type'] == 'phone' ? 'Toura.xcodeproj' : 'Toura-iPad.xcodeproj')
-          ).gsub(/[']/, '\\\\\'')
+          ).gsub(/[']/, '\\\\\'').gsub(/\s/,'\ ')
           system %{open #{xcodeproj}} unless @build.quiet
         end
       else
