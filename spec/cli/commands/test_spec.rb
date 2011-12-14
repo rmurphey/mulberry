@@ -12,5 +12,12 @@ describe Mulberry::Command::Test do
       ARGV = ['-s']
       Mulberry::Command::Test.new [@app.name], {:test => true, :quiet => true}
     end
+    
+    it "should correctly set the app name in config plist" do
+      plist_file = File.join(Mulberry::Directories.root, @app.name, "builds", "iphone", "Toura", "Toura-Info.plist")
+      doc = Nokogiri::XML(open(plist_file))
+      app_name = doc.xpath("/plist/dict/key[contains(., 'CFBundleName')]")[0].next.next.text
+      app_name.should == "command's_test_app"
+    end
   end
 end
