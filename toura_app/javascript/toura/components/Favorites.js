@@ -1,5 +1,6 @@
 dojo.provide('toura.components.Favorites');
 
+dojo.require('toura._Component');
 dojo.require('toura.components.buttons.DeleteButton');
 dojo.require('toura.ui.BackgroundImage');
 
