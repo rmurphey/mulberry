@@ -268,7 +268,8 @@ module Mulberry
         :force_js_build   =>  true,
         :skip_js_build    =>  settings[:skip_js_build],
         :build_helper     =>  @helper,
-        :toura_api_config =>  @toura_api_config
+        :toura_api_config =>  @toura_api_config,
+        :publish_ota      =>  settings[:publish_ota]
       })
     end
 
