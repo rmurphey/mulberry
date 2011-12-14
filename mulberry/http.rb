@@ -1,3 +1,5 @@
+require 'net/http'
+
 module Mulberry
   module Http
     class Exception < StandardError; end

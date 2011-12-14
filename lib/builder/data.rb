@@ -1,3 +1,4 @@
+require 'mulberry/ota_service_application'
 
 module Builder
   class Data < Builder::TaskBase

@@ -1,4 +1,5 @@
 require File.join(File.expand_path(File.dirname(__FILE__)), '../../lib/builder')
+require 'fakeweb'
 
 describe Builder::Build do
   before(:each) do
@@ -85,6 +86,11 @@ describe Builder::Build do
 
 
   describe "gathering step" do
+
+    after :each do
+      FakeWeb.clean_registry
+    end
+
     it "should do nothing if no gathering tasks are specified" do
       b = Builder::Build.new(@config.merge({
         :target_config => {
@@ -125,7 +131,9 @@ describe Builder::Build do
         def before_steps() [] end
         def after_steps() [] end
         def data() {"foo" => "bar"} end
+        def ota_enabled?() true end
       end
+      FakeWeb.register_uri(:get, //, :body => "{\"version\": 1}")
       b = Builder::Build.new(@config.merge({
         :build_helper => FakeBuildHelper.new,
         :target_config => {
@@ -136,6 +144,11 @@ describe Builder::Build do
           'ota' => {
             'enabled' => true
           }
+        },
+        :toura_api_config => {
+          'url' => 'https://api.toura.com',
+          'key' => 'a_key',
+          'secret' => 'a_secret'
         }
       }))
 
