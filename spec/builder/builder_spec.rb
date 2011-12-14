@@ -87,10 +87,6 @@ describe Builder::Build do
 
   describe "gathering step" do
 
-    after :each do
-      FakeWeb.clean_registry
-    end
-
     it "should do nothing if no gathering tasks are specified" do
       b = Builder::Build.new(@config.merge({
         :target_config => {
@@ -121,41 +117,6 @@ describe Builder::Build do
       www_icons.should_not be_nil
       www_icons[:location].should_not be_nil
       www_icons[:files].should_not be_nil
-
-      b.cleanup
-    end
-
-    it "should report tour json location if ota enabled" do
-      class FakeBuildHelper
-        def build=(b) end
-        def before_steps() [] end
-        def after_steps() [] end
-        def data() {"foo" => "bar"} end
-        def ota_enabled?() true end
-      end
-      FakeWeb.register_uri(:get, //, :body => "{\"version\": 1}")
-      b = Builder::Build.new(@config.merge({
-        :build_helper => FakeBuildHelper.new,
-        :target_config => {
-          'build_type' => 'device',
-          'gather' => {
-            'data' => true
-          },
-          'ota' => {
-            'enabled' => true
-          }
-        },
-        :toura_api_config => {
-          'url' => 'https://api.toura.com',
-          'key' => 'a_key',
-          'secret' => 'a_secret'
-        }
-      }))
-
-      b.build
-
-      data_report = b.completed_steps[:gather][:data]
-      data_report[:tour_json_location].should_not be_nil
 
       b.cleanup
     end
@@ -287,4 +248,64 @@ describe Builder::Build do
     describe "bundled builds" do
     end
   end
+
+  describe "ota" do
+
+    class FakeBuildHelper
+      def build=(b) end
+      def before_steps() [] end
+      def after_steps() [] end
+      def data() {"foo" => "bar"} end
+      def ota_enabled?() true end
+    end
+
+    after :each do
+      FakeWeb.clean_registry
+    end
+
+    describe "enabled" do
+
+      before :each do
+        @build = Builder::Build.new(@config.merge({
+          :build_helper => FakeBuildHelper.new,
+          :target_config => {
+            'build_type' => 'device',
+            'gather' => {
+              'data' => true
+            },
+            'ota' => {
+              'enabled' => true
+            }
+          },
+          :toura_api_config => {
+            'url' => 'https://api.toura.com',
+            'key' => 'a_key',
+            'secret' => 'a_secret'
+          }
+        }))
+      end
+
+      after :each do
+        @build.cleanup
+      end
+
+      it "should report tour json location if ota enabled" do
+        FakeWeb.register_uri(:get, //, :body => "{\"version\": 1}")
+        @build.build
+        data_report = @build.completed_steps[:gather][:data]
+        data_report[:tour_json_location].should_not be_nil
+      end
+
+      it "should publish ota if enabled and no published version exists" do
+        FakeWeb.register_uri(:get, //,  :status => "404")
+        FakeWeb.register_uri(:post, //, :body => "{\"version\": 1}")
+        @build.build
+        FakeWeb.last_request.method.should == "POST"
+        FakeWeb.last_request.path.should match /publish$/
+      end
+
+    end
+
+  end
+
 end
