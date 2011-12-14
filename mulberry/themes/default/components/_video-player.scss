@@ -1,11 +1,44 @@
 .component.video-player {
+  display: -webkit-box;
+
   .play-button {
     background: url(../icons/btn-video-player.png) no-repeat center center;
+  }
+
+  .poster {
+    width: 480px;
+    height: 320px;
   }
 
   .overlay {
     background-color: opacify($chrome-color, .5);
   }
+
+  &.has-html5-player {
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+  }
+
+  video {
+    height: 90%;
+  }
+
+  video,
+  .fake-video {
+    width: 100%;
+  }
+
+  .poster {
+    display: block;
+  }
+
+  .play-button {
+    position: absolute;
+    width: 480px;
+    height: 320px;
+  }
+
 }
 
 .android .component.video-player .play-button {
