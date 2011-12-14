@@ -24,7 +24,7 @@ class OtaServiceApplication
 
   def publish(data_json)
     uri = URI(File.join(url, "/applications/#{key}/ota_service/publish"))
-    res = Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to ota server: #{url}.",
+    res = Mulberry::Http.wrap Mulberry::Http::ConnectionRefused => "Can't connect to ota server: #{url}.",
                     "400" => "Data json is malformed.",
                     "404" => "Application with key #{key} not found on #{url}.",
                     "503" => "#{url} currently unavailable.  Please try again later.",

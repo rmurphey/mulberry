@@ -65,7 +65,7 @@ module Mulberry
         rescue Mulberry::Http::NotFound
         end
         new_version = (version || 0 ) + 1
-        puts "Retrieved current version from #{url}: #{version}. Setting version for this to #{new_version}."
+        puts "Retrieved current version from #{url}: #{version ? version : '(not published yet)'}. Setting version for this to #{new_version}."
         result['version'] = new_version
       end
       result

@@ -303,10 +303,11 @@ module Mulberry
     end
 
     def ota_version
+      puts "Current version is #{@ota_service_application.version}."
       @ota_service_application.version
     end
 
-    def publish_ota(data_json)
+    def publish_ota(data_json=nil)
       unless data_json
         data_json = JSON.pretty_generate(Mulberry::Data.new(self).generate(true))
       end
