@@ -34,7 +34,6 @@ class OtaServiceApplication
       Net::HTTP.post_form(uri, 'secret' => secret, 'data_json' => data_json, 'format' => 'json')
     end
     JSON.parse(res.body)['version']
-    puts "OTA published successfully.  Version is #{JSON.parse(res.body)['version']}."
   end
 
 end

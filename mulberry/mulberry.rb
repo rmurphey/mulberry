@@ -303,8 +303,9 @@ module Mulberry
     end
 
     def ota_version
-      puts "Current version is #{@ota_service_application.version}."
-      @ota_service_application.version
+      version = @ota_service_application.version
+      puts "Current version is #{version}."
+      version
     end
 
     def publish_ota(data_json=nil)
@@ -313,6 +314,7 @@ module Mulberry
       end
       version = @ota_service_application.publish data_json
       puts "OTA published successfully.  Version is #{version}."
+      version
     end
 
     private
