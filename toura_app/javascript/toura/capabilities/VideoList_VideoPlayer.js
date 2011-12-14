@@ -1,6 +1,8 @@
 dojo.provide('toura.capabilities.VideoList_VideoPlayer');
 
-dojo.declare('toura.capabilities.VideoList_VideoPlayer', [ toura.capabilities._Capability ], {
+dojo.require('toura._Capability');
+
+dojo.declare('toura.capabilities.VideoList_VideoPlayer', toura._Capability, {
   requirements : {
     videoList : 'VideoList',
     videoPlayer : 'VideoPlayer'

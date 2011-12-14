@@ -1,8 +1,8 @@
 dojo.provide('toura.capabilities.Page_GoogleMapTablet');
 
-dojo.require('toura.capabilities._Capability');
+dojo.require('toura._Capability');
 
-dojo.declare('toura.capabilities.Page_GoogleMapTablet', [ toura.capabilities._Capability ], {
+dojo.declare('toura.capabilities.Page_GoogleMapTablet', toura._Capability, {
   requirements : {
     googleMap : 'GoogleMap',
     pinInfo : 'PinInfo'
