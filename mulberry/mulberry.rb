@@ -139,7 +139,7 @@ module Mulberry
     end
 
     def config
-      read_config
+      @config ||= read_config
     end
 
     def self.update_themes(to_dir)
@@ -362,15 +362,15 @@ module Mulberry
     end
 
     def read_config
-      DEFAULTS.merge! YAML.load_file(File.join(@source_dir, CONFIG))
+      conf = DEFAULTS.merge YAML.load_file(File.join(@source_dir, CONFIG))
 
       dev_config_path = File.join(@source_dir, CONFIG_DEV)
 
       if File.exists?(dev_config_path)
-        DEFAULTS.deep_merge! YAML.load_file(dev_config_path)
+        conf.deep_merge! YAML.load_file(dev_config_path)
       end
 
-      DEFAULTS
+      conf
     end
 
   end
