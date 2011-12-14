@@ -3,6 +3,9 @@ require 'mulberry/assets/base_shared'
 require 'mulberry/assets/media_asset_shared'
 require 'fakefs/spec_helpers'
 
+
+require 'pp'
+
 describe Mulberry::Asset::Video do
 
   describe 'base behavior' do
@@ -13,9 +16,13 @@ describe Mulberry::Asset::Video do
     end
 
     it_should_behave_like "all assets"
+
+    it "should have a poster image url" do
+      @asset.item[:poster][:url].should == "media/videos/posters/#{@asset.item[:name]}.jpg"
+    end
   end
 
-  describe 'media asset behavior' do
+  describe 'video asset behavior' do
     include FakeFS::SpecHelpers
 
     before :each do
@@ -23,6 +30,8 @@ describe Mulberry::Asset::Video do
     end
 
     it_should_behave_like "all media assets"
+
   end
+
 
 end
