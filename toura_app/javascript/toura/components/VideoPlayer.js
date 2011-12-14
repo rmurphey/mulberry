@@ -6,8 +6,8 @@ dojo.require('toura.components._MediaPlayer');
  * supported environments.
  * On iOS:
  * Uses HTML5 <video> tag but renders the poster as an image. Hides the video when
- * the MoreDrawer is showing because it renders opn top of the MoreDrawer(?).
- * TODO: confirm whether this is still necessary
+ * the MoreDrawer is showing because tap events on the MoreDrawer still get picked up
+ * by the player and cause the video to start playing. (confirmed in ios 5.0)
  *
  * On Android:
  * <video> tag doesn't work within Phonegap. So we render a poster image with a
