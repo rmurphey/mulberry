@@ -130,13 +130,6 @@ describe Mulberry::Data do
       end.should raise_error Mulberry::Http::ServiceUnavailable
     end
 
-    it 'should include default version when not found on ota server' do
-      FakeWeb.register_uri(:get, //, :status => "404")
-      default_version = 1
-      @data = (Mulberry::Data.new @app).generate true, default_version
-      @data['version'].should == default_version
-    end
-
     it 'should include correct version when found on ota server' do
       existing_version = 10
       FakeWeb.register_uri(:get, //, :body => "{\"version\": #{existing_version}}")
