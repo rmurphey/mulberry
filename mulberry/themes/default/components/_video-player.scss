@@ -2,10 +2,14 @@
   display: -webkit-box;
 
   .play-button {
+    position: absolute;
+    width: 480px;
+    height: 320px;
     background: url(../icons/btn-video-player.png) no-repeat center center;
   }
 
   .poster {
+    display: block;
     width: 480px;
     height: 320px;
   }
@@ -29,18 +33,5 @@
     width: 100%;
   }
 
-  .poster {
-    display: block;
-  }
-
-  .play-button {
-    position: absolute;
-    width: 480px;
-    height: 320px;
-  }
-
 }
 
-.android .component.video-player .play-button {
-  background-image: none;
-}
