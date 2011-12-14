@@ -18,11 +18,6 @@
     background-color: opacify($chrome-color, .5);
   }
 
-  &.has-html5-player {
-    -webkit-box-orient: vertical;
-    -webkit-box-pack: center;
-    -webkit-box-align: center;
-  }
 
   video {
     height: 90%;
