@@ -1,5 +1,7 @@
 dojo.provide('toura.app.Routes');
 
+dojo.requireLocalization('toura', 'toura');
+
 toura.app.Routes = function() {
   var app = toura.app.Config.get('app'),
       factory = toura.app.PageFactory,
@@ -152,7 +154,11 @@ toura.app.Routes = function() {
       route : '/favorites',
       handler : function() {
         var page = factory.createPage({
-          pageController : 'favorites'
+          name : dojo.i18n.getLocalization(
+            "toura", "toura", toura.app.Config.get("locale")
+          ).FAVORITES,
+          pageController : 'favorites',
+          favorites : toura.app.user.Favorites.load()
         });
 
         toura.app.UI.showPage(page);

@@ -2,15 +2,14 @@ dojo.provide('toura.components.Favorites');
 
 dojo.require('toura.components.buttons.DeleteButton');
 dojo.require('toura.ui.BackgroundImage');
-dojo.require('toura.components._Results');
 
-dojo.declare('toura.components.Favorites', toura.components._Results, {
+dojo.declare('toura.components.Favorites', toura._Component, {
   templateString : dojo.cache('toura.components', 'Favorites/Favorites.haml'),
   handleClicks : true,
   widgetsInTemplate : true,
 
   prepareData : function() {
-    this.favorites = dojo.filter(this.favorites || [], function(fav) {
+    this.favorites = dojo.filter(this.node.favorites || [], function(fav) {
       return !fav.deleted;
     });
 

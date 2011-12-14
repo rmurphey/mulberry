@@ -17,10 +17,6 @@ dojo.declare('toura.app.PageFactory', [], {
       return new toura.pageControllers.search.Search({ device : this.device });
     },
 
-    "favorites" : function() {
-      return new toura.pageControllers.favorites.Favorites({ device : this.device });
-    },
-
     "feedItem" : function(obj) {
       var Controller = toura.pageControllers.Configurable,
           templateConfig = toura.templates['feed-item'];
