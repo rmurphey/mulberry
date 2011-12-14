@@ -2,10 +2,10 @@ describe("capabilities", function() {
   var t, c, C, page, flag, components;
 
   beforeEach(function() {
-    dojo.require('toura.capabilities._Capability');
     dojo.require('toura._Component');
+    dojo.require('toura._Capability');
 
-    C = toura.capabilities._Capability;
+    C = toura._Capability;
 
     page = {
       domNode : dojo.byId('test'),
@@ -27,7 +27,7 @@ describe("capabilities", function() {
       }
     };
 
-    dojo.declare('my.FakeCapability', [ toura.capabilities._Capability ], {
+    dojo.declare('my.FakeCapability', toura._Capability, {
       init : function() { flag = true; }
     });
 

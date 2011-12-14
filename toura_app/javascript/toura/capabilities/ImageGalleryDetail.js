@@ -1,9 +1,9 @@
 dojo.provide('toura.capabilities.ImageGalleryDetail');
 
-dojo.require('toura.capabilities._Capability');
+dojo.require('toura._Capability');
 dojo.require('toura.app.UI');
 
-dojo.declare('toura.capabilities.ImageGalleryDetail', [ toura.capabilities._Capability ], {
+dojo.declare('toura.capabilities.ImageGalleryDetail', [ toura._Capability ], {
   requirements : {
     imageGallery : 'ImageGallery',
     imageDetail : 'ZoomableImageGallery',
