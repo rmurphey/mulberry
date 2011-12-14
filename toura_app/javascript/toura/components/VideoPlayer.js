@@ -1,7 +1,19 @@
 dojo.provide('toura.components.VideoPlayer');
 
 dojo.require('toura.components._MediaPlayer');
-
+/*
+ * Implements a video player which provides an acceptable interface accross all
+ * supported environments.
+ * On iOS:
+ * Uses HTML5 <video> tag but renders the poster as an image. Hides the video when
+ * the MoreDrawer is showing because it renders opn top of the MoreDrawer(?).
+ * TODO: confirm whether this is still necessary
+ *
+ * On Android:
+ * <video> tag doesn't work within Phonegap. So we render a poster image with a
+ * fake button image on top, and call out to the native video player when the user
+ * taps on it.
+ */
 dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
   templateString : dojo.cache('toura.components', 'VideoPlayer/VideoPlayer.haml'),
 
