@@ -12,8 +12,14 @@ module Mulberry
       end
 
       def item
-        media_asset_item
-        # TODO: poster
+        poster_url = "media/#{asset_type_dir}/posters/#{asset_name}.jpg"
+
+        media_asset_item.merge({
+          :poster => {
+            :url => poster_url,
+            :filename => "#{@asset_name}.jpg"
+          }
+        })
       end
     end
   end
