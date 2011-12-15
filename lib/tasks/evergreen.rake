@@ -27,5 +27,3 @@ namespace :evergreen  do
     end
   end
 end
-
-task :default => 'evergreen:run'
