@@ -1,6 +1,6 @@
 dojo.provide('toura.components.MoreDrawer');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 dojo.require('toura.app.PhoneGap');
 dojo.require('toura.app.Sharing');
 dojo.require('toura.app.user.Favorites');
@@ -9,7 +9,7 @@ dojo.require('toura.components.buttons.SearchButton');
 dojo.require('toura.components.buttons.FontSize');
 dojo.require('toura.components.SocialMessage');
 
-dojo.declare('toura.components.MoreDrawer', [ toura.components._Component ], {
+dojo.declare('toura.components.MoreDrawer', toura._Component, {
   templateString : dojo.cache('toura.components', 'MoreDrawer/MoreDrawer.haml'),
 
   helpers : {

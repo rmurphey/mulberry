@@ -24,6 +24,10 @@ module Builder
       nil
     end
 
+    def css_resources(location, report)
+      nil
+    end
+
     # should be overridden appropriately
     def ota_enabled?
       false

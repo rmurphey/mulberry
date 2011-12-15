@@ -1,5 +1,4 @@
 home-phone:
-  type: node
   screens:
   - name: index
     backgroundImage: true
@@ -17,5 +16,3 @@ home-phone:
       size: fixed
       components:
       - AppNav
-
-

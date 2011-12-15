@@ -7,15 +7,15 @@
 
   .image-gallery {
     position: relative;
-    border-top: 1px solid #e9e9e9;
-    border-bottom: 1px solid #e9e9e9;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
     height: 200px;
     padding-top: 10px;
   }
 
   .body-text {
     @include content-padding;
-    color: #4d4d4d;
+    color: offset-text-color(30%);
     font-size: 15px;
 
     h4 {

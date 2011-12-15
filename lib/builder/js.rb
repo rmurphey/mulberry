@@ -59,7 +59,7 @@ module Builder
         "buildscripts"
       )
 
-      @location = TouraAPP::Directories.javascript
+      @location = Mulberry::Directories.js_builds
       @client_dir = nil
 
       get_dojo
@@ -131,7 +131,7 @@ module Builder
       # version and replace it with the unminified version after the dojo
       # build is complete
       bad_haml    = File.join(@location, @target['build_type'], 'vendor', 'haml.js')
-      good_haml   = File.join(@location, 'vendor', 'haml.js')
+      good_haml   = File.join(TouraAPP::Directories.javascript, 'vendor', 'haml.js')
 
       FileUtils.rm_rf bad_haml
       FileUtils.cp(good_haml, bad_haml)

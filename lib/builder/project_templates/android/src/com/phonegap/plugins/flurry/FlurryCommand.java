@@ -29,7 +29,7 @@ public class FlurryCommand extends Plugin {
           params.put(name, paramsJson.getString(name));
         }
       }
-      FlurryAgent.onEvent( eventId, params);
+      FlurryAgent.logEvent( eventId, params);
     } catch (Exception e) {
       return new PluginResult(Status.ERROR, e.getMessage());
     }

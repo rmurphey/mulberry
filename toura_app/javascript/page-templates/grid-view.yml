@@ -1,5 +1,4 @@
 grid-view:
-  type: node
   screens:
   - name: index
     backgroundImage: true

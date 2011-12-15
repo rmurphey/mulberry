@@ -1,10 +1,7 @@
 feed-list-tablet:
   type: node
   capabilities:
-  - name: FeedItemList_FeedItemDetail
-    components:
-    - index:FeedItemList
-    - index:FeedItemDetail
+  - FeedItemList_FeedItemDetail
   screens:
   - name: index
     backgroundImage: false

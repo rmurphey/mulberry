@@ -1,23 +1,11 @@
 form * {
-  font-family: Helvetica Neue, sans-serif;
+  font-family: $form-font;
 }
 
 input[type=submit],
 input[type=reset],
 button {
-  -webkit-border-radius: 4px;
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dadada), to(#9c9c9c));
-  border: 1px solid #999;
-  font-size: 14px;
-  font-weight: bold;
-  color: #454545;
-  height: 26px;
-  padding: 2px 15px 0 15px;
-  margin: 5px;
-
-  &.highlight {
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#e8e8e8));
-  }
+  @include button;
 }
 
 input[type=text],

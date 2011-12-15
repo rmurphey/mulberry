@@ -6,17 +6,16 @@ module Builder
   class CSSMaker
     @@css_filename = 'base.scss'
 
-    def initialize(settings)
-      if settings[:custom_base_path]
-        puts "CSSMaker: :custom_base_path is deprecated. Use :theme_dir instead."
+    def self.scss_data_from_vars_hash(vars_hash)
+      vars_hash.keys.reduce("") do |scss_data, k|
+        scss_data << "$#{k}: #{vars_hash[k]};"
+        scss_data
       end
+    end
 
+    def initialize(settings)
       if !settings[:theme_dir]
         raise "CSSMaker requires a theme_dir"
-      end
-
-      if settings[:vars_path].nil? or !settings.has_key? :vars_path
-        raise "CSSMaker requires a :vars_path if not setting :vars" unless settings[:vars]
       end
 
       app_dir = settings.has_key?(:app_dir) ? settings[:app_dir] : TouraAPP::Directories.javascript
@@ -45,16 +44,6 @@ module Builder
     private
     def load_dependencies(settings, app_base, theme_base)
       scss_data = ''
-
-      if settings.has_key?(:vars)
-        settings[:vars].each do |k, v|
-          scss_data << "$user-#{k}: #{v};"
-        end
-      end
-
-      if settings.has_key?(:vars_path)
-        scss_data << File.read(settings[:vars_path])
-      end
 
       [ app_base, theme_base ].each do |path|
         scss_data << File.read(path)

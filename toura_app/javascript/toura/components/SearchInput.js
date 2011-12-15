@@ -1,11 +1,9 @@
 dojo.provide('toura.components.SearchInput');
 
-dojo.require('toura.app.Config');
-dojo.require('toura.app.PhoneGap');
+dojo.require('toura._Component');
 dojo.require('toura.components.buttons.BackButton');
-dojo.require('toura.components._Component');
 
-dojo.declare('toura.components.SearchInput', [ toura.components._Component ], {
+dojo.declare('toura.components.SearchInput', toura._Component, {
   templateString : dojo.cache('toura.components', 'SearchInput/SearchInput.haml'),
   _oldValue : null,
 

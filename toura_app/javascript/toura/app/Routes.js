@@ -27,7 +27,11 @@ toura.app.Routes = function() {
         pf = factory.createPage(nodeModel);
       } catch(e) {
         console.log("Toura.app.Routes: can't create a page", e, nodeModel);
-        toura.app.Router.back();
+
+        if (nodeId !== 'node-home') {
+          toura.app.Router.back();
+        }
+
         return;
       }
 
@@ -119,10 +123,9 @@ toura.app.Routes = function() {
       handler : function(params) {
         var feed = toura.app.Data.getModel(params.feedId, 'feed'),
             feedItem = feed.getItem(params.itemIndex),
-            page = factory.createPage({
-              pageController : 'feedItem',
-              feedItem : feedItem
-            });
+            page = factory.createPage(dojo.mixin(feedItem, {
+              pageController : 'feed-item'
+            }));
 
         toura.app.UI.showPage(page, feedItem);
       }

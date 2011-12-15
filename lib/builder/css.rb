@@ -9,6 +9,7 @@ module Builder
       @destination = File.join(@location, CSS_FILENAME)
       @report = { :location => @location,  :files => [ CSS_FILENAME ] }
       @build.build_helper.css(@destination, @report) if build_required
+      @build.build_helper.css_resources(@location, @report)
     end
 
     private

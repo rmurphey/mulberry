@@ -1,9 +1,9 @@
 dojo.provide('toura.components.ImageGallery');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 dojo.require('toura.components._ImageScroller');
 
-dojo.declare('toura.components.ImageGallery', [ toura.components._Component, toura.components._ImageScroller ], {
+dojo.declare('toura.components.ImageGallery', [ toura._Component, toura.components._ImageScroller ], {
   'class' : 'image-gallery',
   prepareData : function() {
     this.images = dojo.map(this.node.images || [], function(img) {

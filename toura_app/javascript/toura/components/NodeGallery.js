@@ -1,8 +1,9 @@
 dojo.provide('toura.components.NodeGallery');
 
+dojo.require('toura._Component');
 dojo.require('toura.components._ImageScroller');
 
-dojo.declare('toura.components.NodeGallery', [ toura.components._Component, toura.components._ImageScroller ], {
+dojo.declare('toura.components.NodeGallery', [ toura._Component, toura.components._ImageScroller ], {
   'class' : 'node-gallery',
 
   prepareData : function() {

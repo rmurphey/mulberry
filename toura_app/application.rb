@@ -12,11 +12,6 @@ module TouraAPP
     '1.6.0'
   end
 
-  # TODO: get rid of this?
-  def self.vars_scss_template
-    File.join(TouraAPP::Directories.root, 'templates', 'vars.scss')
-  end
-
   class Directories
     def self.root
       @root ||= File.expand_path(File.dirname(__FILE__))

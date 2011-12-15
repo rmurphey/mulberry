@@ -86,6 +86,17 @@ module Mulberry
       true
     end
 
+    def css_resources(location, report)
+      resources_dir = File.join(@source_dir, 'themes', theme_name, 'resources')
+
+      if File.exists? resources_dir
+        FileUtils.cp_r(resources_dir, location)
+        report[:files] << 'resources'
+      end
+
+      true
+    end
+
     def data
       Mulberry::Data.new(@app).generate(build ? build.ota_enabled? : false)
     end
@@ -111,15 +122,13 @@ module Mulberry
 
     def create_css
       begin
-        theme = @config['theme']['name'] || 'default'
         theme_root_dir = @config['theme'].has_key?('root_dir') ?
                          @config['theme']['root_dir'] :
                          File.join(@source_dir, 'themes')
 
-        theme_dir = File.join(theme_root_dir, theme)
+        theme_dir = File.join(theme_root_dir, theme_name)
 
         Builder::CSSMaker.new(
-          :vars => @config['theme']['settings'],
           :theme_dir => theme_dir
         ).render
       rescue Sass::SyntaxError => err
@@ -149,6 +158,10 @@ module Mulberry
     private
     def padded_id
       project_settings[:id].gsub(/\W/, '');
+    end
+
+    def theme_name
+      @config['theme']['name'] || 'default'
     end
 
     def add_ota_to_config_settings(settings)

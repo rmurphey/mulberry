@@ -9,6 +9,8 @@ require 'fileutils'
 require 'pathname'
 require 'rbconfig'
 require 'deep_merge'
+require 'socket'
+require 'timeout'
 require 'uri'
 require 'net/http'
 
@@ -50,7 +52,15 @@ module Mulberry
 
   def self.get_app_dir(dir = nil)
     dir ||= Dir.pwd
+    last_dir = nil
+
+    while !dir_is_app?(dir) && last_dir != dir
+      last_dir = dir
+      dir = File.join(dir, '..')
+    end
+
     raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(dir)
+
     dir
   end
 
@@ -76,11 +86,15 @@ module Mulberry
 
   class Directories
     def self.root
-      find_root_with_flag
+      @root ||= find_root_with_flag
     end
 
     def self.templates
       File.join(root, 'mulberry', 'templates')
+    end
+
+    def self.js_builds
+      File.join(root, 'js_builds')
     end
 
     private
@@ -178,7 +192,9 @@ module Mulberry
         ],
 
         :javascript => [
-          'components'
+          'components',
+          'stores',
+          'capabilities'
         ],
 
         :templates => [],
@@ -192,6 +208,7 @@ module Mulberry
       end
 
       Mulberry::CodeCreator.new('base', base, 'base')
+      Mulberry::CodeCreator.new('routes', base, 'routes')
 
       asset_dirs = Dir.entries File.join(base, 'assets')
 
@@ -223,6 +240,11 @@ module Mulberry
     end
 
     def serve(args)
+      if server_running?(args[:port])
+        puts "The Mulberry server is already running on port #{args[:port]}. Specify a different port with the -p flag."
+        return
+      end
+
       b = Builder::Build.new({
         :target => 'app_development',
         :log_level => -1,
@@ -248,37 +270,40 @@ module Mulberry
         Mulberry::Server.set :running, true
         puts "== mulberry has taken the stage on port #{args[:port]}. ^C to quit."
       end
-
     end
 
-    def device_build(settings = {})
+    def device_build(settings = nil)
+      settings ||= {}
+
       build({
-        :target           =>  settings[:test] ? 'mulberry_test' : 'mulberry',
-        :tour             =>  self,
-        :tmp_dir          =>  tmp_dir,
-        :log_level        =>  -1,
-        :force_js_build   =>  true,
-        :skip_js_build    =>  settings[:skip_js_build],
-        :build_helper     =>  @helper,
-        :toura_api_config =>  @config['toura_api'],
-        :publish_ota      =>  settings[:publish_ota]
+        :target         => settings[:test] ? 'mulberry_test' : 'mulberry',
+        :tour           => self,
+        :tmp_dir        => tmp_dir,
+        :log_level      => -1,
+        :force_js_build => settings[:force_js_build] ||= true,
+        :skip_js_build  => settings[:skip_js_build]  ||= false,
+        :build_helper   => @helper,
+        :quiet          => (settings[:quiet] || false)
       })
     end
 
-    def www_build(settings = {})
+    def www_build(settings = nil)
+      settings ||= {}
+
       b = nil
 
       [ 'phone', 'tablet' ].each do |type|
         if supports_type?(type)
           b = Builder::Build.new({
-            :target           =>  'www',
-            :tour             =>  self,
-            :tmp_dir          =>  tmp_dir,
-            :log_level        =>  -1,
-            :force_js_build   =>  true,
-            :build_helper     =>  @helper,
-            :device_os        =>  'ios',
-            :device_type      =>  type
+            :target         => 'www',
+            :tour           => self,
+            :tmp_dir        => tmp_dir,
+            :log_level      => -1,
+            :force_js_build => settings[:force_js_build] ||= true,
+            :skip_js_build  => settings[:skip_js_build]  ||= false,
+            :build_helper   => @helper,
+            :device_os      => 'ios',
+            :device_type    => type
           })
 
           b.build
@@ -324,8 +349,8 @@ module Mulberry
         types.each do |type|
           if supports_type?(type) && supports_os?(os)
             b = Builder::Build.new(base_config.merge({
-              :device_type  => type,
-              :device_os    =>  os
+              :device_type => type,
+              :device_os   => os
             }))
 
             b.build
@@ -368,6 +393,22 @@ module Mulberry
       conf
     end
 
+    def server_running?(port)
+      begin
+        Timeout::timeout(1) do
+          begin
+            s = TCPSocket.new('localhost', port)
+            s.close
+            return true
+          rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
+            return false
+          end
+        end
+      rescue Timeout::Error
+      end
+
+      return false
+    end
     def ota_service_application
       unless @ota_service_application
         @toura_api_config = @config['toura_api']

@@ -1,8 +1,7 @@
 module Mulberry
   module Command
     class Deploy
-      def initialize(args)
-        options = {}
+      def initialize(args, options={})
         OptionParser.new do |opts|
           opts.banner = "Usage: mulberry deploy [options]"
 

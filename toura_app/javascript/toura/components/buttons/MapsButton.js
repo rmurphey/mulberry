@@ -2,7 +2,7 @@ dojo.provide('toura.components.buttons.MapsButton');
 
 dojo.require('toura.components.buttons._Button');
 
-dojo.declare('toura.components.buttons.MapsButton', [ toura.components.buttons._Button ], {
+dojo.declare('toura.components.buttons.MapsButton', toura.components.buttons._Button, {
   "class" : 'maps',
 
   prepareData : function() {

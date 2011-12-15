@@ -2,7 +2,7 @@
   li {
     line-height: 22px;
     padding: 15px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $border-color;
 
     @include asset-icon(image);
     @include asset-icon(map);
@@ -10,7 +10,7 @@
     @include asset-icon(video);
 
     a {
-      @include text-color;
+      color: $text-color;
       display: block;
       padding-right: 50px;
     }

@@ -2,7 +2,7 @@ dojo.provide('toura.components.VideoCaption');
 
 dojo.require('toura.components.BodyText');
 
-dojo.declare('toura.components.VideoCaption', [ toura.components.BodyText ], {
+dojo.declare('toura.components.VideoCaption', toura.components.BodyText, {
   "class" : 'video-caption',
 
   _getBodyText : function() {

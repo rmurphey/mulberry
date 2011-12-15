@@ -14,7 +14,8 @@ describe Mulberry::Data do
           { 'foo' => [ 'baz', 'bim' ] },
           'bar',
           'featured_image_page',
-          'no_text_page'
+          'no_text_page',
+          'custom_prop_page'
         ]
       },
       'about'
@@ -39,13 +40,15 @@ describe Mulberry::Data do
       f.write sitemap.to_yaml
     end
 
-    @pages.each do |page|
+    # Scaffold creates home and about for us automagically
+    @pages.reject{|p| %w(home about).include? p}.each do |page|
       Mulberry::ContentCreator.new('page', @source_dir, page)
     end
 
     [
       'featured_image_page',
-      'no_text_page'
+      'no_text_page',
+      'custom_prop_page'
     ].each do |f|
       FileUtils.cp(
         File.join(FIXTURES_DIR, "#{f}.md"),
@@ -88,6 +91,15 @@ describe Mulberry::Data do
     end.length.should be 1
   end
 
+  it "should generate a page with a custom property" do
+    pg = @data[:items].select do |item|
+      item[:id] == 'node-custom_prop_page'
+    end
+
+    pg.length.should be 1
+    pg.first[:custom]['foo'].should == 'bar'
+  end
+
   it "should create featured image nodes with the proper structure" do
     @data[:items].select do |item|
       item[:id] == 'node-featured_image_page'
@@ -104,6 +116,13 @@ describe Mulberry::Data do
     c.select do |item|
       item[:node] == 'node-featured_image_page'
     end.length.should be 1
+  end
+
+  it "should create api keys" do
+    @data[:app].has_key?('facebookApiKey').should be_true
+    @data[:app].has_key?('facebook_api_key').should be_false
+    @data[:app].has_key?('twitterCustomerKey').should be_true
+    @data[:app].has_key?('twitterCustomerSecret').should be_true
   end
 
   describe 'version handling' do

@@ -1,0 +1,12 @@
+fake:
+  screens:
+    - name: index
+      regions:
+      - type: row
+        components:
+        - custom.NonexistentComponent
+        - custom.AlreadyExists
+        - BuiltInComponent
+        regions:
+        - components:
+          - custom.ComponentInSubregion

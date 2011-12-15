@@ -38,10 +38,7 @@ module Mulberry
       @items      = []
       @item_ids   = []
 
-      @config['facebookApiKey'] = @config['facebook_api_key']
-      @config['twitterCustomerKey'] = @config['twitter_customer_key']
-      @config['twitterCustomerSecret'] = @config['twitter_customer_secret']
-
+      process_api_keys
       read_sitemap
     end
 
@@ -96,7 +93,24 @@ module Mulberry
       end
     end
 
+    def process_api_keys
+      api_keys = @config.select { |k,v| /(.+api_key$)|(^twitter_customer_(key|secret))$/ =~ k }
+      
+      api_keys.each do |api_key|
+        camel_key = api_key[0].to_s.underscore.camelize(:lower)
+        @config[camel_key] = api_key[1]
+        @config.delete api_key[0]
+      end
+    end
+
     def load_data_for_page(page_name, children = [])
+      default_node_props = %w{
+        title
+        template
+        header_image
+        featured_image
+      } + ASSETS.keys
+
       page_file = File.join(@source_dir, 'pages', "#{page_name}.md")
       raise "Can't find #{page_name}.md in pages directory (#{page_file})" unless File.exists? page_file
 
@@ -104,12 +118,15 @@ module Mulberry
       content ||= ''
       config = YAML.load(frontmatter)
 
-      node = Mulberry::Asset::Node.new({
+      node_props = {
         :node_name          =>  page_name,
         :name               =>  config['title'] || page_name,
         :pageController     =>  config['template'],
-        :children           =>  children
-      })
+        :children           =>  children,
+        :custom             =>  ({}.merge(config)).delete_if { |k, v| default_node_props.include? k }
+      }
+
+      node = Mulberry::Asset::Node.new node_props
 
       body_text = Mulberry::Asset::Text.new(content, page_name)
 

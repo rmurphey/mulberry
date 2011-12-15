@@ -97,6 +97,10 @@ dojo.declare('toura.models.Node', [], {
 
     this._assetCache = {};
 
+    dojo.forIn(store.getValue(item, 'custom'), function(k, v) {
+      this[k] = this[k] || v;
+    }, this);
+
     cache[id] = this;
   },
 
