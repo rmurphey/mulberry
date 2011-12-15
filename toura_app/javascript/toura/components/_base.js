@@ -11,6 +11,7 @@ dojo.require('toura.components.ChildNodes');
 dojo.require('toura.components.ColumnHeaderImage');
 dojo.require('toura.components.DetailTitle');
 dojo.require('toura.components.DropDownText');
+dojo.require('toura.components.Debug');
 dojo.require('toura.components.Favorites');
 dojo.require('toura.components.FeedItemDetail');
 dojo.require('toura.components.FeedItemList');

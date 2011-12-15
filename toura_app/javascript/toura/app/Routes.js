@@ -138,6 +138,7 @@ toura.app.Routes = function() {
       handler : function(params, route) {
         var page = factory.createPage({
           pageController : 'debug',
+          name : 'Debug',
           query : params.query
         });
 
