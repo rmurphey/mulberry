@@ -165,7 +165,7 @@ module Mulberry
     end
 
     def add_ota_to_config_settings(settings)
-      if build.ota_enabled?
+      if build and build.ota_enabled?
         @build.log "Adding ota settings to config settings."
         if @config['version_url']
           settings.merge!(
