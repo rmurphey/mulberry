@@ -105,14 +105,13 @@ toura.app.Routes = function() {
         var page = toura.app.UI.currentPage,
             term = params.splat && params.splat[0].split('/')[0];
 
-        if (!page || !page.type || page.type !== 'search') {
-          page = factory.createPage({
-            pageController : 'search'
-          });
-          toura.app.UI.showPage(page);
-        }
+        page = factory.createPage({
+          pageController : 'search',
+          term : term,
+          results : toura.app.Data.search
+        });
 
-        page.init(term);
+        toura.app.UI.showPage(page);
 
         return true;
       }
