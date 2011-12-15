@@ -9,6 +9,7 @@ require 'mulberry/assets/data'
 require 'mulberry/assets/location'
 require 'mulberry/assets/feed'
 require 'mulberry/assets/header_image'
+require 'mulberry/assets/background_image'
 
 module Mulberry
   class Data
@@ -119,7 +120,7 @@ module Mulberry
       {
         :header_image       =>  Mulberry::Asset::HeaderImage,
         :featured_image     =>  Mulberry::Asset::Image,
-        :background_image   =>  Mulberry::Asset::Image
+        :background_image   =>  Mulberry::Asset::BackgroundImage
       }.each do |k, klass|
         if config[k.to_s]
           a = klass.new(config[k.to_s], @assets_dir)
