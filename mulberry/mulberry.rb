@@ -81,11 +81,15 @@ module Mulberry
 
   class Directories
     def self.root
-      find_root_with_flag
+      @root ||= find_root_with_flag
     end
 
     def self.templates
       File.join(root, 'mulberry', 'templates')
+    end
+
+    def self.js_builds
+      File.join(root, 'js_builds')
     end
 
     private
