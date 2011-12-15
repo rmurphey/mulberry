@@ -295,15 +295,6 @@ describe Builder::Build do
         data_report = @build.completed_steps[:gather][:data]
         data_report[:tour_json_location].should_not be_nil
       end
-
-      it "should publish ota if enabled and no published version exists" do
-        FakeWeb.register_uri(:get, //,  :status => "404")
-        FakeWeb.register_uri(:post, //, :body => "{\"version\": 1}")
-        @build.build
-        FakeWeb.last_request.method.should == "POST"
-        FakeWeb.last_request.path.should match /publish$/
-      end
-
     end
 
   end

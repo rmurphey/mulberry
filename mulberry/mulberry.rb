@@ -128,14 +128,6 @@ module Mulberry
 
       @config['id']   ||= @name
       @id               = @config['id']
-
-      # initialize @ota_service_application
-      @toura_api_config = @config['toura_api']
-      if @toura_api_config
-        url = @toura_api_config['url'] || 'https://api.toura.com'
-        key, secret = @toura_api_config['key'], @toura_api_config['secret']
-        @ota_service_application = OtaServiceApplication.new(url, key, secret)
-      end
     end
 
     def config
@@ -268,7 +260,7 @@ module Mulberry
         :force_js_build   =>  true,
         :skip_js_build    =>  settings[:skip_js_build],
         :build_helper     =>  @helper,
-        :toura_api_config =>  @toura_api_config,
+        :toura_api_config =>  @config['toura_api'],
         :publish_ota      =>  settings[:publish_ota]
       })
     end
@@ -304,7 +296,7 @@ module Mulberry
     end
 
     def ota_version
-      version = @ota_service_application.version
+      version = ota_service_application.version
       puts "Current version is #{version}."
       version
     end
@@ -313,7 +305,7 @@ module Mulberry
       unless data_json
         data_json = JSON.pretty_generate(Mulberry::Data.new(self).generate(true))
       end
-      version = @ota_service_application.publish data_json
+      version = ota_service_application.publish data_json
       puts "OTA published successfully.  Version is #{version}."
       version
     end
@@ -374,6 +366,18 @@ module Mulberry
       end
 
       conf
+    end
+
+    def ota_service_application
+      unless @ota_service_application
+        @toura_api_config = @config['toura_api']
+        if @toura_api_config
+          url = @toura_api_config['url'] || 'https://api.toura.com'
+          key, secret = @toura_api_config['key'], @toura_api_config['secret']
+          @ota_service_application = OtaServiceApplication.new(url, key, secret)
+        end
+      end
+      @ota_service_application
     end
 
     def handle_publish_ota(build)

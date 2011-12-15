@@ -121,4 +121,24 @@ describe Mulberry::App do
     end
 
   end
+
+  describe "#device_build" do
+
+    it "should publish ota if enabled and no published version exists" do
+      @app.config['ota'] = { 'enabled' => 'true' }
+      @app.config['toura_api'] = {
+        'url' => 'https://myapi.com',
+        'key' => 'some_key'
+      }
+
+      FakeWeb.register_uri(:get, //,  :status => "404")
+      FakeWeb.register_uri(:post, //, :body => "{\"version\": 1}")
+
+      @app.device_build :skip_js_build => true
+
+      FakeWeb.last_request.method.should == "POST"
+      FakeWeb.last_request.path.should match /publish$/
+    end
+
+  end
 end
