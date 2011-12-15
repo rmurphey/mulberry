@@ -87,7 +87,7 @@ module Mulberry
     end
 
     def data
-      Mulberry::Data.new(@app).generate(build.ota_enabled?)
+      Mulberry::Data.new(@app).generate(build ? build.ota_enabled? : false)
     end
 
     def templates

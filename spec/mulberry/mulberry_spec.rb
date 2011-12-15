@@ -113,12 +113,18 @@ describe Mulberry::App do
     end
 
     it 'should raise appropriate exception on http error' do
+      @app.config['ota'] = { 'enabled' => 'true' }
+      @app.config['toura_api'] = {
+        'url' => 'https://myapi.com',
+        'key' => 'some_key'
+      }
+
       {
         "404" => Mulberry::Http::NotFound,
         "503" => Mulberry::Http::ServiceUnavailable
       }.each do |status, exception|
         FakeWeb.register_uri(:post, //, :status => status)
-        lambda { @app.publish_ota '{"foo":"bar"}' }.should raise_error exception
+        lambda {@app.publish_ota '{"foo":"bar"}'}.should raise_error exception
       end
     end
 
