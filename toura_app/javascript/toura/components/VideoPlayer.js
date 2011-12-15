@@ -17,8 +17,8 @@ dojo.require('toura.components._MediaPlayer');
 dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
   templateString : dojo.cache('toura.components', 'VideoPlayer/VideoPlayer.haml'),
 
+  widgetsInTemplate : true,
   playerType : 'video',
-  defaultPoster : './icons/video-poster.png',
   aspectRatio : 3/4,
 
   playerSettings : {
@@ -35,9 +35,6 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
       });
     }
 
-    if (!this.useHtml5Player) {
-      this.poster = this.media.poster || this.defaultPoster;
-    }
   },
 
   setupConnections : function() {
@@ -53,12 +50,6 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
     this.connect(this.videoPlaceholder, 'click', '_play');
 
     this.connect(this.playButton, 'click', '_play');
-  },
-
-  startup : function() {
-    if (this.useHtml5Player) {
-      toura.util.copyStyles(this.player, this.overlay, [ 'width', 'height' ]);
-    }
   },
 
   _play : function(media) {
@@ -79,13 +70,7 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
     if (!this.useHtml5Player) {
       var width = toura.app.UI.viewport.width;
 
-      this.videoPlaceholder.width = width;
-      this.videoPlaceholder.src = poster || this.defaultPoster;
-
-      dojo.style(this.playButton, {
-        'width': width + 'px',
-        'height': Math.floor(width * this.aspectRatio) + 'px'
-      });
+      this.videoPlaceholder.set('imageUrl', poster);
 
       return;
     }
