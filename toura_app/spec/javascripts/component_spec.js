@@ -185,7 +185,7 @@ describe("base _Component class", function() {
       templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
     });
 
-    c.populate(function(item) { return item.text; }, { text : 'text1' } );
+    c.populate(function(item) { return item.text; }, { text : 'text1' });
 
     expect(c.domNode.innerHTML).toMatch('text1');
     expect(c.domNode.querySelector('.bar')).toBeFalsy();
@@ -207,6 +207,18 @@ describe("base _Component class", function() {
     expect(c.bar.innerHTML).toMatch('text2');
   });
 
+  it("should be able to repopulate named nodes from a single element", function() {
+    c = C({
+      device : 'phone',
+      node : node,
+      templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
+    });
+
+    c.populateElement('bar', function(item) { return item.text; }, { text : 'text1' });
+
+    expect(c.bar.innerHTML).toMatch('text1');
+  });
+
   it("should be able to repopulate nodes", function() {
     c = C({
       device : 'phone',
@@ -222,4 +234,17 @@ describe("base _Component class", function() {
     expect(c.bar.innerHTML).toMatch('text1');
     expect(c.bar.innerHTML).toMatch('text2');
   });
+
+  it("should be able to repopulate nodes from a single data point", function() {
+    c = C({
+      device : 'phone',
+      node : node,
+      templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
+    });
+
+    c.populateElement(c.bar, function(item) { return item.text; }, { text : 'text1' });
+
+    expect(c.bar.innerHTML).toMatch('text1');
+  });
+
 });
