@@ -18,8 +18,7 @@ module Mulberry
 
       def setup_app(describe_block)
         describe_block.before :each do
-          name = "command's_test_app"
-
+          name = @name || "test_app"
           Dir.chdir Mulberry::Directories.root
 
           # Just in case
