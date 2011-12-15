@@ -7,7 +7,7 @@ dojo.require('toura.components._ImageGallery');
  * This is a mixin to be used with components that include
  * an image scroller. It should not be used on its own.
  */
-dojo.declare('toura.components._ImageScroller', [ toura.components._ImageGallery ], {
+dojo.declare('toura.components._ImageScroller', toura.components._ImageGallery, {
   templateString : dojo.cache('toura.components', '_ImageScroller/ImageScroller.haml'),
 
   postMixInProperties : function() {

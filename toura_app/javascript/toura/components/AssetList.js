@@ -1,8 +1,8 @@
 dojo.provide('toura.components.AssetList');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 
-dojo.declare('toura.components.AssetList', [ toura.components._Component ], {
+dojo.declare('toura.components.AssetList', toura._Component, {
   templateString : dojo.cache('toura.components', 'AssetList/AssetList.haml'),
   "class" : 'assets',
 

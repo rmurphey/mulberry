@@ -1,11 +1,11 @@
 dojo.provide('toura.components.PinInfo');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 dojo.require('toura.components.PinCaption');
 dojo.require('toura.ui.Scrollable');
 dojo.require('toura.app.URL');
 
-dojo.declare('toura.components.PinInfo', [ toura.components._Component ], {
+dojo.declare('toura.components.PinInfo', toura._Component, {
   templateString : dojo.cache('toura.components', 'PinInfo/PinInfo.haml'),
   widgetsInTemplate : true,
 

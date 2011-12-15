@@ -1,10 +1,10 @@
 dojo.provide('toura.components._Results');
 
+dojo.require('toura._Component');
 dojo.require('toura.ui.Scrollable');
-dojo.require('toura.components._Component');
 dojo.require('toura.Utilities');
 
-dojo.declare('toura.components._Results', [ toura.components._Component, toura.ui.Scrollable ], {
+dojo.declare('toura.components._Results', [ toura._Component, toura.ui.Scrollable ], {
   postCreate : function() {
     this.inherited(arguments);
     this.refreshScroller();

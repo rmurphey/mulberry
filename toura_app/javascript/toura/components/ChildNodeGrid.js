@@ -1,8 +1,8 @@
 dojo.provide('toura.components.ChildNodeGrid');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 
-dojo.declare('toura.components.ChildNodeGrid', [ toura.components._Component ], {
+dojo.declare('toura.components.ChildNodeGrid', toura._Component, {
   templateString : dojo.cache('toura.components', 'ChildNodeGrid/ChildNodeGrid.haml'),
   widgetsInTemplate : true,
 

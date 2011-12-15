@@ -1,9 +1,9 @@
-dojo.provide('toura.components._Component');
+dojo.provide('toura._Component');
 
 dojo.require('toura._View');
 dojo.require('toura.Utilities');
 
-dojo.declare('toura.components._Component', [ toura._View ], {
+dojo.declare('toura._Component', [ toura._View ], {
   handleClicks : false,
 
   /**
@@ -212,5 +212,5 @@ toura.component = function(name, proto) {
     }
   });
 
-  dojo.declare('client.components.' + name, [ toura.components._Component ], p);
+  dojo.declare('client.components.' + name, toura._Component, p);
 };

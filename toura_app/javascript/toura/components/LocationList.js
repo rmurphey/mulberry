@@ -1,9 +1,9 @@
 dojo.provide('toura.components.LocationList');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 dojo.require('toura.app.URL');
 
-dojo.declare('toura.components.LocationList', [ toura.components._Component ], {
+dojo.declare('toura.components.LocationList', toura._Component, {
   templateString : dojo.cache('toura.components', 'LocationList/LocationList.haml'),
 
   prepareData : function() {

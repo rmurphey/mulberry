@@ -1,6 +1,8 @@
 dojo.provide('toura.capabilities.FeedItemList_FeedItemPage');
 
-dojo.declare('toura.capabilities.FeedItemList_FeedItemPage', [ toura.capabilities._Capability ], {
+dojo.require('toura._Capability');
+
+dojo.declare('toura.capabilities.FeedItemList_FeedItemPage', [ toura._Capability ], {
   requirements : {
     feedItemList : 'FeedItemList'
   },

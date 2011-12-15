@@ -1,8 +1,8 @@
 dojo.provide('toura.components.BodyText');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 
-dojo.declare('toura.components.BodyText', [ toura.components._Component ], {
+dojo.declare('toura.components.BodyText', toura._Component, {
   templateString : dojo.cache('toura.components', 'BodyText/BodyText.haml'),
 
   prepareData : function() {

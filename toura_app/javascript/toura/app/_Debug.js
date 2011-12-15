@@ -1,7 +1,7 @@
 dojo.provide('toura.app._Debug');
 
 dojo.require('dojo.cookie');
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 dojo.require('toura.app.DeviceStorage');
 
 (function(){
@@ -64,7 +64,7 @@ toura.app._Debug.weinre = {
   }
 };
 
-dojo.declare('toura.app._Debug.Tools', [ toura.components._Component ], {
+dojo.declare('toura.app._Debug.Tools', toura._Component, {
   templateString : '<div class="component debug-tools"><div class="buttons"></div></div>',
 
   actions : [
@@ -112,7 +112,7 @@ dojo.declare('toura.app._Debug.Tools', [ toura.components._Component ], {
   onWeinre : function(hash) { }
 });
 
-dojo.declare('toura.app._Debug.Message', [ toura.components._Component ], {
+dojo.declare('toura.app._Debug.Message', toura._Component, {
   templateString : '<div class="component debug-message"></div>',
 
   postCreate : function() {

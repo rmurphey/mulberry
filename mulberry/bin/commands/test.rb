@@ -19,7 +19,7 @@ module Mulberry
         dir = Mulberry.get_app_dir args[0]
         app = Mulberry::App.new(dir)
 
-        #app.device_build( options.merge(additional_options) )
+        app.device_build( options.merge(additional_options) )
       end
     end
   end
