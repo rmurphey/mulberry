@@ -16,11 +16,8 @@
 }
 
 @mixin background-shadow {
-  .ios & {
-    background: transparent url(../icons/bg-inner-shadow.png) no-repeat;
-    background-size: cover;
-    background-position-y: 100%;
-  }
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #ccc;
 }
 
 @mixin button {
