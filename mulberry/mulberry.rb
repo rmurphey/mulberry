@@ -47,13 +47,14 @@ module Mulberry
 
   def self.get_app_dir(dir = nil)
     dir ||= Dir.pwd
-    last_dir = nil
-
-    while !dir_is_app?(dir) && last_dir != dir
-      last_dir = dir
-      dir = File.join(dir, '..')
+    dir = File.expand_path(dir)
+    
+    # when we're at the root, these will be equal
+    until File.split(dir)[0] == File.split(dir)[1]
+      return dir if dir_is_app?(dir)
+      dir = File.split(dir)[0]
     end
-
+    
     raise "You must run this command from inside a valid Mulberry app." unless dir_is_app?(dir)
 
     dir
