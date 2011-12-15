@@ -1,6 +1,4 @@
 .component.video-player {
-  display: -webkit-box;
-
   .play-button {
     position: absolute;
     z-index: 1;
@@ -13,12 +11,23 @@
     display: block;
     width: 480px;
     height: 320px;
+    $inner-color: lighten($chrome-color, 75%);
+    $mid-color: lighten($chrome-color, 65%);
+    $outer-color: lighten($chrome-color, 50%);
+
+    background-image: -webkit-gradient(
+      radial,
+      50% 50%, 0,
+      50% 50%, 300,
+      from($inner-color),
+      color-stop(0.5, $mid-color),
+      to($outer-color)
+    );
   }
 
   .overlay {
     background-color: opacify($chrome-color, .5);
   }
-
 
   video {
     height: 90%;
