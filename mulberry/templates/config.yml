@@ -45,16 +45,16 @@ type:
 # to jQuery functionality, set this to true
 jquery: true
 
-# Add api keys for services your app will consume here. 
+# Add api keys for services your app will consume here.
 # The property for the key must end in "api_key"
-# e.g. 
+# e.g.
 
 # some_web_service_api_key: asdf1234foob4rb4z
 
-# You can access these keys in your app's JavaScript as 
+# You can access these keys in your app's JavaScript as
 # properties of TouraAppConfig, like so:
 
-# TouraAppConfig.someWebServiceApiKey 
+# TouraAppConfig.someWebServiceApiKey
 
 # enter your facebook api key here in order to enable facebook features
 facebook_api_key:
@@ -94,10 +94,6 @@ flurry:
 
 # Enter the app store version here
 published_version: '1.0'
-  ios:
-    api_key: flurry_ios_api_key
-  android:
-    api_key: flurry_android_api_key
 
 # Enter your toura api details here
 # toura_api:
