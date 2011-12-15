@@ -1,4 +1,9 @@
 .component.video-player {
+  // center the player verically and horizontally
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+
   @mixin dimensions($scale: 1) {
     width: 480px * $scale;
     height: 320px * $scale;
@@ -10,7 +15,6 @@
     $outer-color: lighten($chrome-color, 50%);
 
     display: block;
-    @include dimensions(.65);
     background-image: -webkit-gradient(
       radial,
       50% 50%, 0,
@@ -29,17 +33,33 @@
     }
   }
 
-  .overlay {
-    background-color: opacify($chrome-color, .5);
-  }
-
   .ios &:not(.disabled) .fake-video {
     display: none;
   }
 
   .phone & {
-    video {
-      @include dimensions(.65);
+    video,
+    .fake-video {
+      @media (orientation: portrait) {
+        @include dimensions(.65);
+      }
+
+      @media (orientation: landscape) {
+        @include dimensions(.4);
+      }
+    }
+  }
+
+  .tablet & {
+    video,
+    .fake-video {
+      @media (orientation: portrait) {
+        @include dimensions(1.2);
+      }
+
+      @media (orientation: landscape) {
+        @include dimensions(.9);
+      }
     }
   }
 }
