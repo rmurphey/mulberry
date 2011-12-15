@@ -26,13 +26,15 @@ dojo.declare('toura.Page', toura.pageControllers._Page, {
       throw "The config for toura.Page must have at least one screen defined";
     }
 
+    var bgImg = this._getBackgroundImage();
+
     dojo.forEach(this.templateConfig.screens, function(screen) {
       var scr = this.adopt(toura.containers.Screen, {
         page : this,
         config : screen,
         baseObj : this.baseObj,
         device : this.device,
-        backgroundImage : this._getBackgroundImage()
+        backgroundImage : bgImg
       }).placeAt(this.domNode);
 
       this.screens[screen.name] = scr;
