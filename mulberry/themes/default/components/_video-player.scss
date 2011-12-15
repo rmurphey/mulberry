@@ -20,6 +20,8 @@
       to($outer-color)
     );
 
+    background-size: cover;
+
     .play-button {
       @include pullout;
       z-index: 1;
