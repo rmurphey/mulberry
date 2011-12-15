@@ -178,6 +178,19 @@ describe("base _Component class", function() {
     expect(c.domNode.querySelector('.bar')).toBeFalsy();
   });
 
+  it("should be able to repopulate itself from a single data point", function() {
+    c = C({
+      device : 'phone',
+      node : node,
+      templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
+    });
+
+    c.populate(function(item) { return item.text; }, { text : 'text1' } );
+
+    expect(c.domNode.innerHTML).toMatch('text1');
+    expect(c.domNode.querySelector('.bar')).toBeFalsy();
+  });
+
   it("should be able to repopulate named nodes", function() {
     c = C({
       device : 'phone',
