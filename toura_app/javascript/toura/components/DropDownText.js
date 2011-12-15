@@ -1,8 +1,9 @@
 dojo.provide('toura.components.DropDownText');
 
+dojo.require('toura._Component');
 dojo.require('toura.components.BodyText');
 
-dojo.declare('toura.components.DropDownText', [ toura.components.BodyText ], {
+dojo.declare('toura.components.DropDownText', toura.components.BodyText, {
   templateString : dojo.cache('toura.components', 'DropDownText/DropDownText.haml'),
   adjustMarkup : function() {
     this.hide(this.textWrapper);

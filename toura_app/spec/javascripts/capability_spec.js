@@ -2,15 +2,20 @@ describe("capabilities", function() {
   var t, c, C, page, flag, components;
 
   beforeEach(function() {
-    dojo.require('toura.capabilities._Capability');
-    dojo.require('toura.components._Component');
+    dojo.require('toura._Component');
+    dojo.require('toura._Capability');
 
-    C = toura.capabilities._Capability;
+    C = toura._Capability;
 
     page = {
       domNode : dojo.byId('test'),
       node : {},
       connect : function() {},
+      getComponent : function(name) {
+        if (name === 'FakeComponent') {
+          return new toura.components.FakeComponent();
+        }
+      },
       getScreen : function() {
         return {
           getComponent : function(name) {
@@ -22,11 +27,11 @@ describe("capabilities", function() {
       }
     };
 
-    dojo.declare('my.FakeCapability', [ toura.capabilities._Capability ], {
+    dojo.declare('my.FakeCapability', toura._Capability, {
       init : function() { flag = true; }
     });
 
-    dojo.declare('toura.components.FakeComponent', [ toura.components._Component ], {
+    dojo.declare('toura.components.FakeComponent', toura._Component, {
       templateString : '<div></div>',
       fakeMethod : function() {
         console.log('called fake method');
@@ -74,6 +79,15 @@ describe("capabilities", function() {
         components : [ 'screenName:AnotherFakeComponent' ]
       });
     }).toThrow();
+  });
+
+  it("should not throw an error if a requried component is present but not specified by the page template", function() {
+    expect(function() {
+      new my.FakeCapability({
+        page : page,
+        requirements : { foo : 'FakeComponent' }
+      });
+    }).not.toThrow();
   });
 
   it("should create connections based on the connects array", function() {

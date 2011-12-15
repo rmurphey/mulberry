@@ -1,10 +1,7 @@
 feed-item:
   type: detail
   capabilities:
-  - name: PageNav_FeedTitle
-    components:
-    - index:PageNav
-    - index:FeedItemDetail
+  - PageNav_FeedTitle
   screens:
   - name: index
     backgroundImage: true

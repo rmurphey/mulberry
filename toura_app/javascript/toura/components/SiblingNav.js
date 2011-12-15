@@ -1,8 +1,8 @@
 dojo.provide('toura.components.SiblingNav');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 
-dojo.declare('toura.components.SiblingNav', [ toura.components._Component ], {
+dojo.declare('toura.components.SiblingNav', toura._Component, {
   templateString : dojo.cache('toura.components', 'SiblingNav/SiblingNav.haml'),
   siblingTemplate : Haml(dojo.cache('toura.components', 'SiblingNav/Sibling.haml')),
 

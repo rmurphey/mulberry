@@ -1,5 +1,4 @@
 node-gallery:
-  type: node
   screens:
   - name: index
     regions:

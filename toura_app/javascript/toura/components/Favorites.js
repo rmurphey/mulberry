@@ -4,7 +4,7 @@ dojo.require('toura.components.buttons.DeleteButton');
 dojo.require('toura.ui.BackgroundImage');
 dojo.require('toura.components._Results');
 
-dojo.declare('toura.components.Favorites', [ toura.components._Results ], {
+dojo.declare('toura.components.Favorites', toura.components._Results, {
   templateString : dojo.cache('toura.components', 'Favorites/Favorites.haml'),
   handleClicks : true,
   widgetsInTemplate : true,

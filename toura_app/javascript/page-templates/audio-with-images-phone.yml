@@ -1,31 +1,12 @@
 audio-with-images-phone:
   type: node
   capabilities:
-  - name: ImageGallery_ImageCaption
-    components:
-    - index:ImageGallery
-    - index:ImageCaption
-  - name: ImageGalleryDetail
-    components:
-    - index:ImageGallery
-    - detail:ZoomableImageGallery
-    - detail:DetailTitle
-  - name: Page_Images
-    components:
-    - index:ImageGallery
-    - index:ImageCaption
-  - name: Page_Audios
-    components:
-    - index:AudioList
-    - index:AudioPlayer
-  - name: AudioList_AudioPlayer
-    components:
-    - index:AudioPlayer
-    - index:AudioList
-  - name: AudioList_AudioCaption
-    components:
-    - index:AudioList
-    - index:AudioCaption
+  - ImageGallery_ImageCaption
+  - ImageGalleryDetail
+  - Page_Images
+  - Page_Audios
+  - AudioList_AudioPlayer
+  - AudioList_AudioCaption
 
   screens:
     - name: index

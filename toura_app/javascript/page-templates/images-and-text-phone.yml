@@ -1,20 +1,8 @@
 images-and-text-phone:
-  type: node
   capabilities:
-  - name: ImageGallery_ImageCaption
-    components:
-    - index:ImageGallery
-    - index:ImageCaption
-  - name: ImageGalleryDetail
-    components:
-    - index:ImageGallery
-    - detail:ZoomableImageGallery
-    - detail:DetailTitle
-  - name: Page_Images
-    components:
-    - index:ImageGallery
-    - index:ImageCaption
-
+  - ImageGallery_ImageCaption
+  - ImageGalleryDetail
+  - Page_Images
   screens:
     - name: index
       backgroundImage: true

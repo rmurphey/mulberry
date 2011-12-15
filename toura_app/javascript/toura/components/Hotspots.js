@@ -1,10 +1,9 @@
 dojo.provide('toura.components.Hotspots');
 
-dojo.require('toura.components._Component');
-dojo.require('vendor.iscroll');
+dojo.require('toura._Component');
 dojo.require('toura.ui.BackgroundImage');
 
-dojo.declare('toura.components.Hotspots', [ toura.components._Component ], {
+dojo.declare('toura.components.Hotspots', toura._Component, {
   templateString : dojo.cache('toura.components', 'Hotspots/Hotspots.haml'),
 
   widgetsInTemplate : true,

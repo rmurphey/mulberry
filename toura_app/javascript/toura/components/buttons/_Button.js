@@ -1,10 +1,9 @@
 dojo.provide('toura.components.buttons._Button');
 
-dojo.require('toura.app.Config');
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 dojo.require('toura.app.URL');
 
-dojo.declare('toura.components.buttons._Button', [ toura.components._Component ], {
+dojo.declare('toura.components.buttons._Button', toura._Component, {
   templateString : dojo.cache('toura.components.buttons', '_Button/_Button.haml'),
 
   url : '#',

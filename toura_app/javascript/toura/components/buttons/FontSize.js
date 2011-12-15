@@ -1,8 +1,8 @@
 dojo.provide('toura.components.buttons.FontSize');
 
-dojo.require('toura.components._Component');
+dojo.require('toura.components.buttons._Button');
 
-dojo.declare('toura.components.buttons.FontSize', [ toura.components.buttons._Button ], {
+dojo.declare('toura.components.buttons.FontSize', toura.components.buttons._Button, {
   sizes : [
     'small',
     'medium',
