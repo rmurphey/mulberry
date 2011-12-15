@@ -108,7 +108,7 @@ toura.app.Routes = function() {
         page = factory.createPage({
           pageController : 'search',
           term : term,
-          results : toura.app.Data.search
+          getResults : dojo.hitch(toura.app.Data, 'search')
         });
 
         toura.app.UI.showPage(page);
