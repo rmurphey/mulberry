@@ -137,7 +137,7 @@ dojo.declare('toura.models.Feed', [], {
     var req = {
       url : 'http://query.yahooapis.com/v1/public/yql',
       content : {
-        q : "select * from feed where url='{{feed}}' limit 20".replace('{{feed}}', this.feedUrl),
+        q : "select * from feed where url='{{feed}}' limit 15".replace('{{feed}}', this.feedUrl),
         format : 'json'
       },
       preventCache : true,
