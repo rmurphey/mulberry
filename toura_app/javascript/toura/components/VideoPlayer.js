@@ -34,7 +34,14 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
         poster : this.media.poster
       });
     }
+  },
 
+  startup : function() {
+    this.inherited(arguments);
+
+    if (!this.useHtml5Player && this.media.poster) {
+      this.videoPlaceholder.loadImage();
+    }
   },
 
   setupConnections : function() {

@@ -2,7 +2,7 @@
   :if !useHtml5Player
     .fake-video
       .play-button{ dojoAttachPoint : 'playButton' }
-      .poster{ dojoAttachPoint : "videoPlaceholder", dojoType : 'toura.ui.BackgroundImage', imageUrl : media.poster, loadOnInit: true }
+      .poster{ dojoAttachPoint : "videoPlaceholder", dojoType : 'toura.ui.BackgroundImage', imageUrl : media.poster }
 
   :if useHtml5Player
     .overlay{ dojoAttachPoint : 'overlay' }
