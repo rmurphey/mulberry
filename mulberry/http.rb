@@ -8,7 +8,7 @@ module Mulberry
       module_eval %Q{ class #{error_type} < Mulberry::Http::Exception; end}
     end
 
-    def self.fetch(uri_str, limit = 10)
+    def self.fetch(uri_str, limit = 10, warn_on_redirect=false)
       raise 'too many HTTP redirects' if limit == 0
 
       response = Net::HTTP.get_response(URI(uri_str))
@@ -16,7 +16,7 @@ module Mulberry
       case response
       when Net::HTTPRedirection then
         location = response['location']
-        warn "redirected to #{location}"
+        warn "redirected to #{location}" if warn_on_redirect
         fetch(location, limit - 1)
       else
         response
