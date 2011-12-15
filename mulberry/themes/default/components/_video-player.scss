@@ -5,34 +5,34 @@
   }
 
   .fake-video {
+    $inner-color: lighten($chrome-color, 75%);
+    $mid-color: lighten($chrome-color, 65%);
+    $outer-color: lighten($chrome-color, 50%);
+
+    display: block;
+    @include dimensions(.65);
+    background-image: -webkit-gradient(
+      radial,
+      50% 50%, 0,
+      50% 50%, 300,
+      from($inner-color),
+      color-stop(0.5, $mid-color),
+      to($outer-color)
+    );
+
     .play-button {
-      position: absolute;
+      @include pullout;
       z-index: 1;
-      @include dimensions;
       background: url(../icons/btn-video-player.png) no-repeat center center;
-    }
-
-    .poster {
-      display: block;
-      width: 480px;
-      height: 320px;
-      $inner-color: lighten($chrome-color, 75%);
-      $mid-color: lighten($chrome-color, 65%);
-      $outer-color: lighten($chrome-color, 50%);
-
-      background-image: -webkit-gradient(
-        radial,
-        50% 50%, 0,
-        50% 50%, 300,
-        from($inner-color),
-        color-stop(0.5, $mid-color),
-        to($outer-color)
-      );
     }
   }
 
   .overlay {
     background-color: opacify($chrome-color, .5);
+  }
+
+  .ios &:not(.disabled) .fake-video {
+    display: none;
   }
 
   .phone & {

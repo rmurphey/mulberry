@@ -39,7 +39,7 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
   startup : function() {
     this.inherited(arguments);
 
-    if (!this.useHtml5Player && this.media.poster) {
+    if (this.media.poster) {
       this.videoPlaceholder.loadImage();
     }
   },
