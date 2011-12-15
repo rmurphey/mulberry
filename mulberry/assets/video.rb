@@ -11,16 +11,25 @@ module Mulberry
         'video'
       end
 
-      def item
-        poster_filename = "#{@asset_name}.jpg"
-        poster_url = File.exists?(File.join(@dir, 'posters', poster_filename)) ?  "media/#{asset_type_dir}/posters/#{asset_name}.jpg" : ""
+      def poster_dir
+        File.join(@dir, 'posters')
+      end
 
-          media_asset_item.merge({
-            :poster => {
-              :url => poster_url,
-              :filename => poster_filename
-            }
-          })
+      def poster_filename
+        "#{@asset_name}.jpg"
+      end
+
+      def poster_url
+        File.exists?(File.join(poster_dir, poster_filename)) ? "media/#{asset_type_dir}/posters/#{poster_filename}" : ""
+      end
+
+      def item
+        media_asset_item.merge({
+          :poster => {
+            :url => poster_url,
+            :filename => poster_filename
+          }
+        })
       end
     end
   end
