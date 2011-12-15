@@ -5,9 +5,11 @@ describe Mulberry::App do
   before :each do
     Mulberry::App.scaffold('testapp', true)
     @app = Mulberry::App.new 'testapp'
+    @initial_dir = Dir.pwd
   end
 
   after :each do
+    Dir.chdir @initial_dir
     FileUtils.rm_rf 'testapp'
   end
 
@@ -124,20 +126,38 @@ describe Mulberry::App do
 
   describe "#device_build" do
 
-    it "should publish ota if enabled and no published version exists" do
+    after :each do
+      FakeWeb.clean_registry
+    end
+
+    def test_should_publish
       @app.config['ota'] = { 'enabled' => 'true' }
       @app.config['toura_api'] = {
         'url' => 'https://myapi.com',
         'key' => 'some_key'
       }
 
-      FakeWeb.register_uri(:get, //,  :status => "404")
-      FakeWeb.register_uri(:post, //, :body => "{\"version\": 1}")
-
-      @app.device_build :skip_js_build => true
+      yield
 
       FakeWeb.last_request.method.should == "POST"
       FakeWeb.last_request.path.should match /publish$/
+    end
+
+    it "should publish ota if enabled and no published version exists" do
+      test_should_publish do
+        FakeWeb.register_uri(:get, //,  :status => "404")
+        FakeWeb.register_uri(:post, //, :body => "{\"version\": 1}")
+        @app.device_build :skip_js_build => true
+      end
+    end
+
+    it "should publish ota if forced even if published version exists" do
+      test_should_publish do
+        FakeWeb.register_uri(:get, //,  :body => "{\"version\": 1}")
+        FakeWeb.register_uri(:post, //, :body => "{\"version\": 2}")
+
+        @app.device_build :skip_js_build => true, :publish_ota => true
+      end
     end
 
   end
