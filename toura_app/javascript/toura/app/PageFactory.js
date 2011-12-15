@@ -2,12 +2,12 @@ dojo.provide('toura.app.PageFactory');
 
 dojo.require('toura.app.Config');
 
+dojo.require('toura.Page');
 dojo.require('toura.pageControllers.Debug');
 dojo.require('toura.pageControllers.search.Search');
 dojo.require('toura.pageControllers.favorites.Favorites');
-dojo.require('toura.pageControllers.Configurable');
 
-dojo.declare('toura.app.PageFactory', [], {
+dojo.declare('toura.app.PageFactory', null, {
   constructor : function(device) {
     this.device = device;
   },
@@ -55,13 +55,7 @@ dojo.declare('toura.app.PageFactory', [], {
      *    complete.
      *
      *    2. If there is not an entry in the pages object that corresponds with
-     *    the controllerName, the createPage method continues.
-     *
-     * At this point, we have a reliable controllerName. We look to see if
-     * there is an entry in the toura.templates object for the controllerName.
-     * If there is, we use the Configurable page controller; if not, we look
-     * for a legacy page controller with that name. (This is necessary until
-     * all *node* page controllers have been converted to the new system.)
+     *    the controllerName, the createPage method uses toura.Page.
      *
      * Once we have determined the proper page controller to use, we create an
      * instance of that controller, passing it the data it will need in order
@@ -96,7 +90,7 @@ dojo.declare('toura.app.PageFactory', [], {
 
     toura.log('Creating ' + controllerName);
 
-    return new toura.pageControllers.Configurable({
+    return new toura.Page({
       baseObj : obj,
       device : this.device,
       templateConfig : config,
