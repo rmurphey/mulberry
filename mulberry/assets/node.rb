@@ -35,6 +35,8 @@ module Mulberry
         case type
         when :header_image
           [ :phoneHeaderImage, :tabletHeaderImage ].each { |k| @page[k] = ref }
+        when :background_image
+          [ :phoneBackgroundImage, :tabletBackgroundImage ].each { |k| @page[k] = ref }
         when :featured_image
           @page[:featuredImage] = ref
         when :body_text
