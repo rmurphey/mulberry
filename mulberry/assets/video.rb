@@ -12,14 +12,15 @@ module Mulberry
       end
 
       def item
-        poster_url = "media/#{asset_type_dir}/posters/#{asset_name}.jpg"
+        poster_filename = "#{@asset_name}.jpg"
+        poster_url = File.exists?(File.join(@dir, 'posters', poster_filename)) ?  "media/#{asset_type_dir}/posters/#{asset_name}.jpg" : ""
 
-        media_asset_item.merge({
-          :poster => {
-            :url => poster_url,
-            :filename => "#{@asset_name}.jpg"
-          }
-        })
+          media_asset_item.merge({
+            :poster => {
+              :url => poster_url,
+              :filename => poster_filename
+            }
+          })
       end
     end
   end
