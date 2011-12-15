@@ -58,23 +58,23 @@ audio-with-images-tablet:
           scrollable: true
           regions:
           - type: row
-            size: fixed
-            className: audio-container
-            regions:
-            - type: row
-              size: fixed
-              components:
-              - AudioPlayer
-            - type: row
-              size: fixed
-              components:
-              - AudioCaption
-          - type: row
             components:
             - AudioList
           - type: row
             components:
             - ChildNodes
+      - type: row
+        size: fixed
+        className: audio-container
+        regions:
+        - type: row
+          size: fixed
+          components:
+          - AudioPlayer
+        - type: row
+          size: fixed
+          components:
+          - AudioCaption
 
     - name: detail
       regions:

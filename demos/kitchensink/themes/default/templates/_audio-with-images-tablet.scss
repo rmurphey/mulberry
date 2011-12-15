@@ -13,12 +13,7 @@
     }
 
     .region.audio-container {
-
-      @if ($font-scheme == dark) {
-        background-color: darken($app-background-color, 17%);
-      } @else {
-        background-color: lighten($app-background-color, 17%);
-      }
+      @include background-shadow(top);
 
       audio {
         position: relative;
