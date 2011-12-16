@@ -13,8 +13,13 @@ dojo.declare('toura.capabilities.Page_Search', toura._Capability, {
   ],
 
   init : function() {
+    var term = this.baseObj.term || toura.lastSearchTerm;
+
     this.getResults = this.baseObj.getResults;
-    this._handleSearch(this.baseObj.term || toura.lastSearchTerm);
+
+    if (term) {
+      this._handleSearch(term);
+    }
   },
 
   _handleSearch : function(term) {
