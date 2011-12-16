@@ -30,7 +30,6 @@ describe("search results component", function() {
       expect(isWidgetRegistered('components_SearchResults')).toBeTruthy();
 
       expect(c.resultsContainer).toBeDefined();
-      expect(c.scroller).toBeDefined();
 
       expect(c.i18n_instructions).toBeDefined();
       expect(c.i18n_noResults).toBeDefined();

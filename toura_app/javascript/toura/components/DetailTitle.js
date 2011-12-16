@@ -1,8 +1,8 @@
 dojo.provide('toura.components.DetailTitle');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 
-dojo.declare('toura.components.DetailTitle', [ toura.components._Component ], {
+dojo.declare('toura.components.DetailTitle', toura._Component, {
   templateString : dojo.cache('toura.components', 'DetailTitle/DetailTitle.haml'),
 
   setupConnections : function() {

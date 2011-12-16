@@ -1,8 +1,8 @@
 dojo.provide('toura.capabilities.ImageGallery_ImageCaption');
 
-dojo.require('toura.capabilities._Capability');
+dojo.require('toura._Capability');
 
-dojo.declare('toura.capabilities.ImageGallery_ImageCaption', [ toura.capabilities._Capability ], {
+dojo.declare('toura.capabilities.ImageGallery_ImageCaption', [ toura._Capability ], {
   requirements : {
     imageGallery : 'ImageGallery',
     imageCaption : 'ImageCaption'

@@ -1,10 +1,10 @@
 dojo.provide('toura.components.FeedItemList');
 
+dojo.require('toura._Component');
 dojo.require('dojo.date.locale');
-dojo.require('toura.components._Component');
 dojo.require('toura.Utilities');
 
-dojo.declare('toura.components.FeedItemList', [ toura.components._Component ], {
+dojo.declare('toura.components.FeedItemList', toura._Component, {
   templateString : dojo.cache('toura.components', 'FeedItemList/FeedItemList.haml'),
   itemTemplate : Haml(dojo.cache('toura.components', 'FeedItemList/FeedItem.haml')),
 

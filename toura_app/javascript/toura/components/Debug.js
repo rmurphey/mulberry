@@ -1,12 +1,11 @@
-dojo.provide('toura.pageControllers.Debug');
+dojo.provide('toura.components.Debug');
 
-dojo.require('toura.pageControllers._Page');
-dojo.require('toura.components.PageNav');
+dojo.require('toura._Component');
 
-dojo.declare('toura.pageControllers.Debug', [ toura.pageControllers._Page ], {
-  templateString : dojo.cache('toura.pageControllers', 'Debug/Debug.haml'),
+dojo.declare('toura.components.Debug', toura._Component, {
+  templateString : dojo.cache('toura.components', 'Debug/Debug.haml'),
 
-  postMixInProperties : function() {
+  prepareData : function() {
     var html = [],
         tpl = function(k, v) {
           return '<tr><th>{k}</th><td>{v}</td></tr>'.replace('{k}', k).replace('{v}', v);
@@ -55,18 +54,12 @@ dojo.declare('toura.pageControllers.Debug', [ toura.pageControllers._Page ], {
 
   _weinre : function() {
     this.status.innerHTML = 'debugging at ' + toura.app._Debug.weinre.init();
+    dojo.publish('/content/update');
   },
 
   _resetDB : function() {
     toura.app.DeviceStorage.drop();
     window.location.reload();
-  },
-
-  setupNav : function() {
-    this.adopt(toura.components.PageNav, {
-      title : 'Debug',
-      shareable : false
-    }, this.pageNav);
   }
 });
 

@@ -1,0 +1,12 @@
+debug:
+  screens:
+  - name: index
+    regions:
+    - type: row
+      size: fixed
+      components:
+      - PageNav
+    - type: row
+      scrollable: true
+      components:
+      - Debug

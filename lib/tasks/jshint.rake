@@ -35,5 +35,3 @@ task :jshint do
     puts "JSHinty-fresh!"
   end
 end
-
-task :default => :jshint

@@ -1,9 +1,8 @@
 dojo.provide('toura.components.buttons.FavoritesButton');
 
-dojo.require('toura.app.Config');
 dojo.require('toura.components.buttons._Button');
 
-dojo.declare('toura.components.buttons.FavoritesButton', [ toura.components.buttons._Button ], {
+dojo.declare('toura.components.buttons.FavoritesButton', toura.components.buttons._Button, {
   "class" : 'favorites',
 
   prepareData : function() {

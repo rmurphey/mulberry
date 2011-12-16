@@ -1,12 +1,12 @@
 dojo.provide('toura.components.AppNav');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 dojo.require('toura.components.buttons.SearchButton');
 dojo.require('toura.components.buttons.AboutButton');
 dojo.require('toura.components.buttons.MapsButton');
 dojo.require('toura.components.buttons.FavoritesButton');
 
-dojo.declare('toura.components.AppNav', [ toura.components._Component ], {
+dojo.declare('toura.components.AppNav', toura._Component, {
   templateString : dojo.cache('toura.components', 'AppNav/AppNav.haml'),
   widgetsInTemplate : true,
   handleClicks : true,

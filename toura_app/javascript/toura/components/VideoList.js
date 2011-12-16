@@ -2,7 +2,7 @@ dojo.provide('toura.components.VideoList');
 
 dojo.require('toura.components.AssetList');
 
-dojo.declare('toura.components.VideoList', [ toura.components.AssetList ], {
+dojo.declare('toura.components.VideoList', toura.components.AssetList, {
   "class" : 'video-list',
 
   postMixInProperties : function() {
