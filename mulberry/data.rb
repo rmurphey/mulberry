@@ -9,6 +9,7 @@ require 'mulberry/assets/data'
 require 'mulberry/assets/location'
 require 'mulberry/assets/feed'
 require 'mulberry/assets/header_image'
+require 'mulberry/assets/background_image'
 
 module Mulberry
   class Data
@@ -78,7 +79,7 @@ module Mulberry
 
     def process_api_keys
       api_keys = @config.select { |k,v| /(.+api_key$)|(^twitter_customer_(key|secret))$/ =~ k }
-      
+
       api_keys.each do |api_key|
         camel_key = api_key[0].to_s.underscore.camelize(:lower)
         @config[camel_key] = api_key[1]
@@ -117,8 +118,9 @@ module Mulberry
       node.add_asset body_text, :body_text
 
       {
-        :header_image   =>  Mulberry::Asset::HeaderImage,
-        :featured_image =>  Mulberry::Asset::Image
+        :header_image       =>  Mulberry::Asset::HeaderImage,
+        :featured_image     =>  Mulberry::Asset::Image,
+        :background_image   =>  Mulberry::Asset::BackgroundImage
       }.each do |k, klass|
         if config[k.to_s]
           a = klass.new(config[k.to_s], @assets_dir)

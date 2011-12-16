@@ -18,7 +18,8 @@ dojo.declare('toura.components.Favorites', toura._Component, {
       fav.img = fav.model.featuredImage && fav.model.featuredImage.small.url;
 
       fav.displayText = fav.model.bodyText && fav.model.bodyText.body ?
-        this._truncate(fav.model.bodyText.body) : false;
+        toura.util.truncate(fav.model.bodyText.body, 200) :
+        false;
 
       return fav;
     }, this);

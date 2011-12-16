@@ -36,7 +36,6 @@ describe Builder::Build do
 
       [ 'iphone', 'www', 'media' ],
       [ 'iphone', 'www', 'media', 'manifest.js' ],
-      [ 'iphone', 'www', 'icons' ],
 
       [ 'iphone', 'www', 'css' ],
       [ 'iphone', 'www', 'css', 'base.css' ],
@@ -85,7 +84,6 @@ describe Builder::Build do
 
       [ 'ipad', 'www', 'media' ],
       [ 'ipad', 'www', 'media', 'manifest.js' ],
-      [ 'ipad', 'www', 'icons' ],
 
       [ 'ipad', 'www', 'css' ],
       [ 'ipad', 'www', 'css', 'base.css' ],
@@ -131,7 +129,6 @@ describe Builder::Build do
 
       [ 'android', 'assets', 'www', 'media' ],
       [ 'android', 'assets', 'www', 'media', 'manifest.js' ],
-      [ 'android', 'assets', 'www', 'icons' ],
 
       [ 'android', 'assets', 'www', 'css' ],
       [ 'android', 'assets', 'www', 'css', 'base.css' ],
