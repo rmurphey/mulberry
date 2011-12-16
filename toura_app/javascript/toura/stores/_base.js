@@ -5,7 +5,7 @@ dojo.require('toura.stores._LocalStore');
 
 dojo.mixin(toura.stores, {
   remote : function(name, proto) {
-    client.stores[name] = new dojo.store.Memory();
+    client.stores[name] = new dojo.store.Memory(proto);
   },
 
   local : function(name, proto) {
