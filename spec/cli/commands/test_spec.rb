@@ -31,12 +31,12 @@ describe Mulberry::Command::Test do
         build_file = File.join(Mulberry::Directories.root, @app.name, "builds", "android", "build.xml")
         doc = Nokogiri::XML(open(build_file))
         app_name = doc.xpath("/project").attr("name").text
-        app_name.should == @name
+        app_name.should == @name.split(%r{[^\w]+}).join
         
-        strings_file = File.join(Mulberry::Directories.root, @app.name, "builds", "android", "res", "values", "build.xml")
+        strings_file = File.join(Mulberry::Directories.root, @app.name, "builds", "android", "res", "values", "strings.xml")
         doc = Nokogiri::XML(open(strings_file))
-        app_name = doc.xpath("/resources/string[@name=app_name]").text
-        app_name.should == @name
+        app_name = doc.xpath("/resources/string[@name='app_name']").text
+        app_name.should == "\"#{@name}\""
       end
     end
   end
