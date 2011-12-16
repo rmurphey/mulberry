@@ -30,6 +30,10 @@ describe Mulberry::Asset::Video do
     it "should have a poster image url" do
       @asset.item[:poster][:url].should == "media/videos/posters/#{@asset.item[:name]}.jpg"
     end
+
+    it "should have a poster image filename" do
+      @asset.item[:poster][:filename].should == "#{@asset.item[:name]}.jpg"
+    end
   end
 
   describe 'video asset behavior' do
