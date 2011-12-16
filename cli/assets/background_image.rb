@@ -1,4 +1,4 @@
-require 'mulberry/assets/image'
+require 'cli/assets/image'
 
 module Mulberry
   module Asset
