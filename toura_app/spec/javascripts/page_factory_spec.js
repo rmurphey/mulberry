@@ -18,7 +18,7 @@ describe("page factory", function() {
       pageController : 'user defined template'
     };
 
-    var spy = spyOn(toura.pageControllers, 'Configurable');
+    var spy = spyOn(toura, 'Page');
 
     f.createPage(node);
 
@@ -33,7 +33,7 @@ describe("page factory", function() {
       pageController : ''
     };
 
-    var spy = spyOn(toura.pageControllers, 'Configurable');
+    var spy = spyOn(toura, 'Page');
 
     f.createPage("node", node);
 

@@ -48,8 +48,9 @@ describe Mulberry::Asset::Node do
       header_image = Factory.build :header_image
       @node.add_asset header_image, :header_image
 
-      @node.item[:phoneHeaderImage]['_reference'].should == header_image.item[:id]
-      @node.item[:tabletHeaderImage]['_reference'].should == header_image.item[:id]
+      [ :phoneHeaderImage, :tabletHeaderImage ].each do |p|
+        @node.item[p]['_reference'].should == header_image.item[:id]
+      end
     end
 
     it "should add featured images to the node" do
@@ -63,5 +64,14 @@ describe Mulberry::Asset::Node do
       @node.add_asset text_asset, :body_text
       @node.item[:bodyText]['_reference'].should == text_asset.item[:id]
     end
+
+    it "should add background images to the node" do
+      background_image = Factory.build :background_image
+      @node.add_asset background_image, :background_image
+      [ :phoneBackgroundImage, :tabletBackgroundImage ].each do |p|
+        @node.item[p]['_reference'].should == background_image.item[:id]
+      end
+    end
+
   end
 end

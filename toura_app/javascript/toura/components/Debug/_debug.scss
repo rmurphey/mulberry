@@ -1,17 +1,4 @@
-.page.debug {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-
-  .header {
-    height: 60px;
-  }
-
-  .body {
-    -webkit-box-flex: 1;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-  }
-
+.component.debug {
   table {
     width: 100%;
 
@@ -31,6 +18,11 @@
       text-align:center;
       margin:0 0 10px 0;
     }
+  }
 
+  .status {
+    padding: 10px;
+    color: red;
   }
 }
+

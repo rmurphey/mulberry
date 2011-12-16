@@ -101,7 +101,8 @@ class TouraAPPServer < Sinatra::Base
   # dojo files have to come from the built js
   get '/:os/:device_type/tours/:tour_id/javascript/dojo/*' do
     send_file file_path(
-      "javascript",
+      '..',
+      "js_builds",
       @js_build_name,
       "dojo",
       params[:splat].first
@@ -110,7 +111,8 @@ class TouraAPPServer < Sinatra::Base
 
   get '/:os/:device_type/tours/:tour_id/javascript/dijit/*' do
     send_file file_path(
-      "javascript",
+      '..',
+      "js_builds",
       @js_build_name,
       "dijit",
       params[:splat].first
@@ -120,7 +122,8 @@ class TouraAPPServer < Sinatra::Base
   # nls (i18n) files have to come from the built js
   get '/:os/:device_type/tours/:tour_id/javascript/toura/nls/*' do
     send_file file_path(
-      "javascript",
+      '..',
+      "js_builds",
       @js_build_name,
       "toura",
       "nls",

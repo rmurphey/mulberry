@@ -1,13 +1,13 @@
-dojo.provide('toura.pageControllers.Configurable');
+dojo.provide('toura.Page');
 
 dojo.require('toura.pageControllers._Page');
 dojo.require('toura.containers.Screen');
 dojo.require('toura.components._base');
 dojo.require('toura.capabilities._base');
 
-dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page ], {
+dojo.declare('toura.Page', toura.pageControllers._Page, {
   templateConfig : {},
-  templateString : dojo.cache('toura.pageControllers', 'Configurable/Configurable.haml'),
+  templateString : dojo.cache('toura', 'Page/Page.haml'),
 
   postMixInProperties : function() {
     this.inherited(arguments);
@@ -19,16 +19,14 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
     this.screens = {};
 
     if (!this.baseObj) {
-      throw "Configurable page controller requires a base object";
-    }
-
-    if (!this.templateConfig) {
-      throw "Configurable page controller requires a template config";
+      throw "toura.Page requires a base object";
     }
 
     if (!this.templateConfig.screens || !this.templateConfig.screens.length) {
-      throw "Configurable page controller must have at least one screen defined";
+      throw "The config for toura.Page must have at least one screen defined";
     }
+
+    var bgImg = this._getBackgroundImage();
 
     dojo.forEach(this.templateConfig.screens, function(screen) {
       var scr = this.adopt(toura.containers.Screen, {
@@ -36,7 +34,7 @@ dojo.declare('toura.pageControllers.Configurable', [ toura.pageControllers._Page
         config : screen,
         baseObj : this.baseObj,
         device : this.device,
-        backgroundImage : this._getBackgroundImage()
+        backgroundImage : bgImg
       }).placeAt(this.domNode);
 
       this.screens[screen.name] = scr;
