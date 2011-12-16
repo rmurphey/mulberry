@@ -14,7 +14,8 @@ describe Mulberry::Data do
           'bar',
           'featured_image_page',
           'no_text_page',
-          'custom_prop_page'
+          'custom_prop_page',
+          'built_in_props_page'
         ]
       },
       'about'
@@ -55,6 +56,33 @@ describe Mulberry::Data do
         { :preserve => false }
       )
     end
+
+    built_in_props_page = {
+      'title'      =>  'Built-in props',
+      'template'   =>  'default',
+      'videos'     =>  [ 'video1.mp4' ],
+      'audios'     =>  [ 'audio1.mp3' ],
+      'images'     =>  [ 'image1.png' ],
+      'data'       =>  [ 'data.yml' ],
+      'feeds'      =>  [ 'feed.yml' ],
+      'locations'  =>  [ 'location.yml' ],
+
+      'featured_image'   =>  'featured_image.png',
+      'background_image' =>  'background_image.png'
+    }
+
+    File.open(File.join(@source_dir, 'pages', 'built_in_props_page.md'), 'w') do |f|
+      f.write built_in_props_page.to_yaml
+      f.write "---\n"
+    end
+
+    %w{videos audios images}.each do |a|
+      built_in_props_page[a].each { |f| FileUtils.touch File.join(@source_dir, 'assets', a.to_s, f) }
+    end
+
+    Factory.build :data, :asset => 'data.yml', :parent_assets_dir => File.join(@source_dir, 'assets')
+    Factory.build :feed, :asset => 'feed.yml', :parent_assets_dir => File.join(@source_dir, 'assets')
+    Factory.build :location, :asset => 'location.yml', :parent_assets_dir => File.join(@source_dir, 'assets')
 
     @data = (Mulberry::Data.new Mulberry::App.new(@source_dir)).generate
   end
@@ -123,4 +151,15 @@ describe Mulberry::Data do
     @data[:app].has_key?('twitterCustomerKey').should be_true
     @data[:app].has_key?('twitterCustomerSecret').should be_true
   end
+
+  describe "page with built-in properties" do
+    it "should have all the built-in properties on the node object" do
+      page = @data[:items].select do |item|
+        item[:id] == 'node-built_in_props_page'
+      end.first
+
+      page[:audios].should be_defined
+    end
+  end
+
 end
