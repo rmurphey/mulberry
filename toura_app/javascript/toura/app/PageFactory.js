@@ -3,8 +3,6 @@ dojo.provide('toura.app.PageFactory');
 dojo.require('toura.app.Config');
 
 dojo.require('toura.Page');
-dojo.require('toura.pageControllers.Debug');
-dojo.require('toura.pageControllers.search.Search');
 dojo.require('toura.pageControllers.favorites.Favorites');
 
 dojo.declare('toura.app.PageFactory', null, {
@@ -13,16 +11,8 @@ dojo.declare('toura.app.PageFactory', null, {
   },
 
   pages : {
-    "search" : function() {
-      return new toura.pageControllers.search.Search({ device : this.device });
-    },
-
     "favorites" : function() {
       return new toura.pageControllers.favorites.Favorites({ device : this.device });
-    },
-
-    "debug" : function(obj) {
-      return new toura.pageControllers.Debug({ device : this.device, query : obj.query });
     }
   },
 
