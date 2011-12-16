@@ -8,8 +8,7 @@ describe("page factory", function() {
 
     toura.templates = {
       "user defined template" : "success",
-      "default" : "default",
-      "Home1" : function() { }
+      "default" : "default"
     };
   });
 
@@ -41,17 +40,8 @@ describe("page factory", function() {
     expect(spy.mostRecentCall.args[0].templateConfig).toBe('default');
   });
 
-  it("should throw an error when trying to create a asset without required data", function() {
-    expect(function() { f.createPage('node', {}); }).toThrow();
-    expect(function() { f.createPage('node', null, 'images'); }).toThrow();
-  });
-
-  it("should throw an error if the page type is not specified", function() {
+  it("should throw an error if no page object is provided", function() {
     expect(function() { f.createPage(); }).toThrow();
-  });
-
-  it("should throw an error if there is no function specified for the given type", function() {
-    expect(function() { f.createPage("nonexistent"); }).toThrow();
   });
 
   it("should throw an error if the controller associated with the node does not exist", function() {
