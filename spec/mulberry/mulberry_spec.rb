@@ -10,6 +10,18 @@ describe Mulberry::App do
     FileUtils.rm_rf 'testapp'
   end
 
+  describe "#paths" do
+    it "should find a mulberry directory" do
+      Mulberry.get_app_dir('testapp').should match 'testapp'
+    end
+
+    it "should error out if not in a mulberry directory" do
+      Dir.mkdir 'foobar'
+      lambda { Mulberry.get_app_dir('foobar') }.should raise_error
+      Dir.rmdir 'foobar'
+    end
+  end
+
   describe "#scaffold" do
     it "should create an app directory" do
       File.exists?('testapp').should be_true
