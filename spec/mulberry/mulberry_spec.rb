@@ -22,7 +22,7 @@ describe Mulberry::App do
     end
   end
 
-  describe "App::scaffold" do
+  describe "::scaffold" do
     it "should create an app directory" do
       File.exists?('testapp').should be_true
     end
@@ -72,13 +72,13 @@ describe Mulberry::App do
     end
   end
 
-  describe "App#initialize" do
+  describe "#initialize" do
     it "should set the name of the app" do
       @app.name.should == 'testapp'
     end
   end
 
-  describe "App#www_build" do
+  describe "#www_build" do
     before :each do
       @app.www_build
     end
@@ -105,7 +105,7 @@ describe Mulberry::App do
     end
   end
 
-  describe "App#data" do
+  describe "#data" do
     before :each do
       @app = Mulberry::App.new 'testapp'
     end
