@@ -11,8 +11,8 @@ module Mulberry
         'video'
       end
 
-      def poster_dir
-        File.join(@dir, 'posters')
+      def poster_dir(base_dir=@dir)
+        File.join(base_dir, 'posters')
       end
 
       def poster_filename

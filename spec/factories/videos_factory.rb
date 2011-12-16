@@ -10,8 +10,16 @@ FactoryGirl.define do
   end
 
   factory :video_with_poster, :parent => :video do
-    Dir.mktmpdir poster_dir
-    FileUtils.touch File.join(poster_dir, poster_filename)
+    parent_assets_dir do
+      parent_dir = nil
+      parent_dir = Dir.mktmpdir
+
+      poster_dir = File.join(parent_dir, 'videos', 'posters')
+
+      FileUtils.mkdir_p poster_dir
+      FileUtils.touch File.join(poster_dir, "foo.jpg")
+      parent_dir
+    end
   end
 
   factory :video_remote, :parent => :video do

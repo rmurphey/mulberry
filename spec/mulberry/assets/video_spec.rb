@@ -1,9 +1,7 @@
 require 'spec/spec_helper'
 require 'mulberry/assets/base_shared'
 require 'mulberry/assets/media_asset_shared'
-require 'mulberry/assets/video'
 require 'fakefs/spec_helpers'
-
 
 describe Mulberry::Asset::Video do
 
