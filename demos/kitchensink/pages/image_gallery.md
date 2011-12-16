@@ -8,4 +8,6 @@ images:
   - bangs.jpg
   - beardy.jpg
   - bgoodman.jpg
+
+background_image: bangs.jpg
 ---
