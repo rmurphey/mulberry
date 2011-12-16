@@ -195,8 +195,10 @@ To run the tests, run `rake` from the root of the repository.
 
 You can also run individual suites:
 
-    rake spec             # run the ruby tests
-    rake evergreen:run    # run the javascript tests
+    rake                  # run all of the tests & jshint. Alised of rake ci
+    rake spec			  # run the ruby unit tests
+    rake integration      # run the javascript integration tests
+    rake evergreen:run    # run the javascript unit tests
     rake evergreen:serve  # serve the javascript tests for manual testing
     rake jshint           # run jshint on the js code and js tests
 

@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra/base'
 
+require 'mulberry'
 require 'lib/builder/css_maker'
 require 'toura_app/application'
 
@@ -24,12 +25,20 @@ module Mulberry
     #####################
     # Helpers
     #####################
-    def self.file_path(*args)
+    def self.mulberry_file_path(*args)
+      File.join(Mulberry::Directories.root, *args)
+    end
+
+    def mulberry_file_path(*args)
+      Mulberry::Server.mulberry_file_path(*args);
+    end
+
+    def self.app_file_path(*args)
       File.join(TouraAPP::Directories.root, *args)
     end
 
-    def file_path(*args)
-      Mulberry::Server.file_path(*args);
+    def app_file_path(*args)
+      Mulberry::Server.app_file_path(*args);
     end
 
     #####################
@@ -39,9 +48,9 @@ module Mulberry
     disable :logging
 
     set :raise_errors => true
-    set :root, file_path('.')
-    set :public_folder, file_path('www')
-    set :views, file_path('templates')
+    set :root, app_file_path('.')
+    set :public_folder, app_file_path('www')
+    set :views, app_file_path('templates')
     set :host, 'localhost'
 
     #####################
@@ -90,8 +99,8 @@ module Mulberry
     # dojo files have to come from the built js
     get '/:os/:type/javascript/dojo/*' do
       content_type 'text/javascript'
-      send_file file_path(
-        "javascript",
+      send_file mulberry_file_path(
+        'js_builds',
         @js_build_name,
         "dojo",
         params[:splat].first
@@ -100,8 +109,8 @@ module Mulberry
 
     get '/:os/:type/javascript/dijit/*' do
       content_type 'text/javascript'
-      send_file file_path(
-        "javascript",
+      send_file mulberry_file_path(
+        "js_builds",
         @js_build_name,
         "dijit",
         params[:splat].first
@@ -111,8 +120,8 @@ module Mulberry
     # nls (i18n) files have to come from the built js
     get '/:os/:type/javascript/toura/nls/*' do
       content_type 'text/javascript'
-      nls_file = file_path(
-        "javascript",
+      nls_file = mulberry_file_path(
+        "js_builds",
         @js_build_name,
         "toura",
         "nls",
@@ -143,7 +152,7 @@ module Mulberry
     get '/:os/:type/javascript/toura/app/DevConfig.js' do
       content_type 'text/javascript'
 
-      dev_config = file_path(
+      dev_config = app_file_path(
         'javascript',
         'toura',
         'app',
@@ -168,7 +177,7 @@ module Mulberry
 
     get '/:os/:type/javascript/*' do
       content_type 'text/javascript'
-      send_file file_path(
+      send_file app_file_path(
         "javascript",
         params[:splat].first
       )
@@ -211,7 +220,7 @@ module Mulberry
     # Resources
     #####################
     get '/:os/:type/*' do
-      send_file file_path(
+      send_file app_file_path(
         "www",
         params[:splat].first
       )
