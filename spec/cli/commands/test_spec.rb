@@ -4,11 +4,6 @@ describe Mulberry::Command::Test do
   include Mulberry::Command::SpecHelpers
 
   describe "#initialization" do
-    before(:each) do
-      @app = scaffold_app("test_app")
-      @app.should_not be_nil
-    end
-
     it "should initalize" do
       Mulberry::Command::Test.new [@app.name], {:test => true, :quiet => true, :skip_js_build => true}
     end

@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'fakefs/spec_helpers'
+require 'nokogiri'
 
 Dir[File.dirname(__FILE__) + '/../../../cli/bin/commands/*.rb'].each {|file| require file }
 
@@ -16,6 +17,11 @@ module Mulberry
       end
 
       def setup_app(describe_block)
+        describe_block.before :each do
+          @app = scaffold_app("test_app")
+          @app.should_not be_nil
+        end
+
         describe_block.after :each do
           Dir.chdir Mulberry::Directories.root
 
