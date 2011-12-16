@@ -102,6 +102,10 @@ dojo.declare('toura.Page', [ toura._View, toura.ui.BackgroundImage ], {
     });
   },
 
+  init : function() {
+    // for capability connections
+  },
+
   _getBackgroundImage : function() {
     var appBgImg, img;
 
