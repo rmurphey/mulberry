@@ -1,0 +1,13 @@
+favorites:
+  type: node
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - type: row
+      size: fixed
+      components:
+      - PageNav
+    - type: row
+      components:
+      - Favorites

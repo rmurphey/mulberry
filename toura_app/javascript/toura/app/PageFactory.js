@@ -1,19 +1,11 @@
 dojo.provide('toura.app.PageFactory');
 
 dojo.require('toura.app.Config');
-
 dojo.require('toura.Page');
-dojo.require('toura.pageControllers.favorites.Favorites');
 
 dojo.declare('toura.app.PageFactory', null, {
   constructor : function(device) {
     this.device = device;
-  },
-
-  pages : {
-    "favorites" : function() {
-      return new toura.pageControllers.favorites.Favorites({ device : this.device });
-    }
   },
 
   createPage : function(obj) {
@@ -35,18 +27,6 @@ dojo.declare('toura.app.PageFactory', null, {
      *    a 'tablet' property; the controllerName is set to the value that
      *    corresponds with the device type.
      *
-     * Next, we check the PageFactory's 'pages' object to determine whether the
-     * specified controllerName should receive special handling.
-     *
-     *    1. If there is an entry in the pages object that corresponds with the
-     *    controllerName, we expect that entry to point to a function. We call
-     *    that function, passing it the object that was passed to createPage,
-     *    and return its result. In this case, the createPage method is
-     *    complete.
-     *
-     *    2. If there is not an entry in the pages object that corresponds with
-     *    the controllerName, the createPage method uses toura.Page.
-     *
      * Once we have determined the proper page controller to use, we create an
      * instance of that controller, passing it the data it will need in order
      * to create the page. We return the controller instance, and createPage is
@@ -65,13 +45,7 @@ dojo.declare('toura.app.PageFactory', null, {
       controllerName = obj.pageController || 'default';
     }
 
-    // handle special cases like search, favorites, feed item, debug
-    // TODO: this can go away once those pages are converted to configurables
-    if (this.pages[controllerName]) {
-      return this.pages[controllerName].call(this, obj);
-    }
-
-    config = toura.templates && toura.templates[controllerName];
+    config = toura.templates[controllerName];
 
     if (!config) {
       console.error('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
