@@ -107,14 +107,13 @@ toura.app.Routes = function() {
         var page = toura.app.UI.currentPage,
             term = params.splat && params.splat[0].split('/')[0];
 
-        if (!page || !page.type || page.type !== 'search') {
-          page = factory.createPage({
-            pageController : 'search'
-          });
-          toura.app.UI.showPage(page);
-        }
+        page = factory.createPage({
+          pageController : 'search',
+          term : term,
+          getResults : dojo.hitch(toura.app.Data, 'search')
+        });
 
-        page.init(term);
+        toura.app.UI.showPage(page);
 
         return true;
       }
@@ -125,10 +124,9 @@ toura.app.Routes = function() {
       handler : function(params) {
         var feed = toura.app.Data.getModel(params.feedId, 'feed'),
             feedItem = feed.getItem(params.itemIndex),
-            page = factory.createPage({
-              pageController : 'feedItem',
-              feedItem : feedItem
-            });
+            page = factory.createPage(dojo.mixin(feedItem, {
+              pageController : 'feed-item'
+            }));
 
         toura.app.UI.showPage(page, feedItem);
       }
@@ -141,6 +139,7 @@ toura.app.Routes = function() {
       handler : function(params, route) {
         var page = factory.createPage({
           pageController : 'debug',
+          name : 'Debug',
           query : params.query
         });
 
