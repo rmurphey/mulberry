@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'fakefs/spec_helpers'
-require 'nokogiri'
 
 Dir[File.dirname(__FILE__) + '/../../../cli/bin/commands/*.rb'].each {|file| require file }
 

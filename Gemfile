@@ -24,6 +24,5 @@ group :test do
   gem 'factory_girl', :require => false
   gem 'fakefs', :require => false
   gem 'jshintrb', '1.0.4', :git => 'git://github.com/Toura/jshintrb.git', :require => false
-  gem 'nokogiri'
   gem 'rspec'
 end
