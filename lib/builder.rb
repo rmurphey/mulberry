@@ -13,7 +13,6 @@ require "builder/templates"
 require "builder/js"
 require "builder/css"
 require "builder/html"
-require "builder/www_icons"
 require "builder/config"
 require "builder/project"
 require "builder/target"
@@ -37,7 +36,6 @@ module Builder
       :gather => {
         :icons        => Builder::Icons,
         :load_screens => Builder::LoadScreens,
-        :www_icons    => Builder::WWWIcons,
         :assets       => Builder::Assets,
         :data         => Builder::Data,
         :templates    => Builder::Templates

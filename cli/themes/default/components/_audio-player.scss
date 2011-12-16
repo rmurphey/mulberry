@@ -42,13 +42,13 @@
       background-color: transparent;
 
       &.play {
-        @include icon('../icons/btn-play.png', 30px, 30px);
+        @include icon('resources/icons/btn-play.png', 30px, 30px);
       }
 
     }
   }
 
   &.playing input.play {
-    @include icon('../icons/btn-pause.png', 30px, 30px);
+    @include icon('resources/icons/btn-pause.png', 30px, 30px);
   }
 }

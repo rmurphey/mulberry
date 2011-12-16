@@ -6,15 +6,15 @@
   padding: 10px;
 
     .directions {
-      @include wide-icon-button('../icons/btn-map.png');
+      @include wide-icon-button('resources/icons/btn-map.png');
     }
 
     .website {
-      @include wide-icon-button('../icons/btn-website.png');
+      @include wide-icon-button('resources/icons/btn-website.png');
     }
 
     .phone-number {
-      @include wide-icon-button('../icons/btn-phone.png');
+      @include wide-icon-button('resources/icons/btn-phone.png');
     }
 
     .bottom {

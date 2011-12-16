@@ -27,10 +27,6 @@
   .handle {
     height: $handle-height;
 
-    .toggler {
-      @include icon('../icons/icon-sibling-nav-toggle-arrow.png', 18px, 18px);
-      width: 100%;
-    }
   }
 
   &.open .handle .toggler {
@@ -47,22 +43,6 @@
     }
 
     @include column-container;
-
-    .prev.controller {
-      @include icon('../icons/btn-sibling-nav-prev-on.png', 20px, 20px, transparent, 20px, 100%);
-
-      &.inactive {
-        @include icon('../icons/btn-sibling-nav-prev-off.png', 20px, 20px, transparent, 20px, 100%);
-      }
-    }
-
-    .next.controller {
-      @include icon('../icons/btn-sibling-nav-next-on.png', 20px, 20px, transparent, 20px, 100%);
-
-      &.inactive {
-        @include icon('../icons/btn-sibling-nav-next-off.png', 20px, 20px, transparent, 20px, 100%);
-      }
-    }
 
     .controller {
       width: 60px;
