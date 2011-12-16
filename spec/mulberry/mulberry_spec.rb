@@ -10,7 +10,7 @@ describe Mulberry::App do
     FileUtils.rm_rf 'testapp'
   end
 
-  describe "#paths" do
+  describe "::get_app_dir" do
     it "should find a mulberry directory" do
       Mulberry.get_app_dir('testapp').should match 'testapp'
     end
@@ -22,7 +22,7 @@ describe Mulberry::App do
     end
   end
 
-  describe "#scaffold" do
+  describe "App::scaffold" do
     it "should create an app directory" do
       File.exists?('testapp').should be_true
     end
@@ -72,13 +72,13 @@ describe Mulberry::App do
     end
   end
 
-  describe "#initialize" do
+  describe "App#initialize" do
     it "should set the name of the app" do
       @app.name.should == 'testapp'
     end
   end
 
-  describe "#www_build" do
+  describe "App#www_build" do
     before :each do
       @app.www_build
     end
@@ -105,7 +105,7 @@ describe Mulberry::App do
     end
   end
 
-  describe "#data" do
+  describe "App#data" do
     before :each do
       @app = Mulberry::App.new 'testapp'
     end
