@@ -14,7 +14,8 @@ describe Mulberry::Data do
           'bar',
           'featured_image_page',
           'no_text_page',
-          'custom_prop_page'
+          'custom_prop_page',
+          'built_in_props_page'
         ]
       },
       'about'
@@ -122,5 +123,92 @@ describe Mulberry::Data do
     @data[:app].has_key?('facebook_api_key').should be_false
     @data[:app].has_key?('twitterCustomerKey').should be_true
     @data[:app].has_key?('twitterCustomerSecret').should be_true
+  end
+
+  describe "page with built-in properties" do
+    before :each do
+      built_in_props_page = {
+        'title'      =>  'Built-in props',
+        'template'   =>  'default',
+        'videos'     =>  [ 'video1.mp4' ],
+        'audios'     =>  [ 'audio1.mp3' ],
+        'images'     =>  [ 'image1.png' ],
+        'data'       =>  [ 'data.yml' ],
+        'feeds'      =>  [ 'feed.yml' ],
+        'locations'  =>  [ 'location.yml' ],
+
+        'featured_image'    =>  'featured_image.png',
+        'background_image'  =>  'background_image.png',
+        'header_image'      =>  'header_image.png'
+      }
+
+      File.open(File.join(@source_dir, 'pages', 'built_in_props_page.md'), 'w') do |f|
+        f.write built_in_props_page.to_yaml
+        f.write "---\n"
+      end
+
+      %w{videos audios images}.each do |a|
+        built_in_props_page[a].each { |f| FileUtils.touch File.join(@source_dir, 'assets', a.to_s, f) }
+      end
+
+      Mulberry::ContentCreator.new 'feed', @source_dir, 'feed'
+      Mulberry::ContentCreator.new 'location', @source_dir, 'location'
+      Mulberry::ContentCreator.new 'data', @source_dir, 'data'
+
+      @data = (Mulberry::Data.new Mulberry::App.new(@source_dir)).generate
+    end
+
+    it "should have all the built-in properties on the node object" do
+      page = @data[:items].select do |item|
+        item[:id] == 'node-built_in_props_page'
+      end.first
+
+      page[:audios].length.should == 1
+      page[:videos].length.should == 1
+      page[:images].length.should == 1
+      page[:dataAssets].length.should == 1
+      page['googleMapPins'.to_sym].length.should == 1
+      page[:feeds].length.should == 1
+
+      page[:featuredImage].should be_a Hash
+      page[:phoneBackgroundImage].should be_a Hash
+      page[:tabletBackgroundImage].should be_a Hash
+      page[:phoneHeaderImage].should be_a Hash
+      page[:tabletHeaderImage].should be_a Hash
+    end
+
+    it "should create references to objects for items assigned to built-in properties" do
+      page = @data[:items].select do |item|
+        item[:id] == 'node-built_in_props_page'
+      end.first
+
+      page[:audios].first[:audio]['_reference'].should == 'audio-audio1'
+      page[:videos].first[:video]['_reference'].should == 'video-video1'
+      page[:images].first[:image]['_reference'].should == 'image-image1'
+      page[:dataAssets].first[:dataAsset]['_reference'].should == 'data-asset-data'
+      page[:feeds].first[:feed]['_reference'].should == 'feed-feed'
+      page['googleMapPins'.to_sym].first['googleMapPin'.to_sym]['_reference'].should == 'google-map-pin-location'
+
+      page[:featuredImage][:image]['_reference'].should == 'image-featured_image'
+      page[:phoneBackgroundImage]['_reference'].should == 'image-background_image'
+      page[:tabletBackgroundImage]['_reference'].should == 'image-background_image'
+      page[:phoneHeaderImage]['_reference'].should == 'image-header_image'
+      page[:tabletHeaderImage]['_reference'].should == 'image-header_image'
+    end
+
+    it "should create the objects for items assigned to built-in properties" do
+      %w{
+        audio-audio1
+        video-video1
+        image-image1
+        data-asset-data
+        feed-feed
+        image-featured_image
+        image-background_image
+        image-header_image
+      }.each do |asset_id|
+        @data[:items].select { |item| item[:id] == asset_id.strip }.length.should == 1
+      end
+    end
   end
 end
