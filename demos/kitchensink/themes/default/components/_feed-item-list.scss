@@ -30,7 +30,7 @@
     }
 
     .spinner {
-      @include spinner('../icons/spinner-2.png', 1s);
+      @include spinner('resources/icons/spinner-2.png', 1s);
     }
   }
 

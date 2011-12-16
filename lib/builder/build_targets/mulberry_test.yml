@@ -10,7 +10,6 @@ gather:
     assets: true
     data: true
     templates: true
-    www_icons: true
 
 build:
     javascript:

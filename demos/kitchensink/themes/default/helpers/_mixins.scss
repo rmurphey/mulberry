@@ -17,7 +17,7 @@
 
 @mixin background-shadow {
   .ios & {
-    background: transparent url(../icons/bg-inner-shadow.png) no-repeat;
+    background: transparent url(resources/icons/bg-inner-shadow.png) no-repeat;
     background-size: cover;
     background-position-y: 100%;
   }
@@ -155,12 +155,12 @@
   }
 
   &.#{$type} a {
-    background: url(../icons/light/btn-page-nav-#{$type}.png) no-repeat;
+    background: url(resources/icons/light/btn-page-nav-#{$type}.png) no-repeat;
     background-position-y: center;
   }
 
   &.#{$type} a:active {
-    background-image: url(../icons/dark/btn-page-nav-#{$type}.png);
+    background-image: url(resources/icons/dark/btn-page-nav-#{$type}.png);
   }
 
   &.#{$type}:first-child a {
@@ -175,7 +175,7 @@
 @mixin asset-icon($type) {
   &.#{$type} a {
     background: {
-      image: url('../icons/dark/icon-asset-#{$type}.png');
+      image: url('resources/icons/dark/icon-asset-#{$type}.png');
       repeat: no-repeat;
       position: center right;
       size: 28px 26px;

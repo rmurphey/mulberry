@@ -120,14 +120,15 @@ module Mulberry
       true
     end
 
+    def theme_dir
+      root_dir = @config['theme'].has_key?('root_dir') ?
+        @config['theme']['root_dir'] : File.join(@source_dir, 'themes')
+
+      File.join(root_dir, theme_name)
+    end
+
     def create_css
       begin
-        theme_root_dir = @config['theme'].has_key?('root_dir') ?
-                         @config['theme']['root_dir'] :
-                         File.join(@source_dir, 'themes')
-
-        theme_dir = File.join(theme_root_dir, theme_name)
-
         Builder::CSSMaker.new(
           :theme_dir => theme_dir
         ).render

@@ -29,7 +29,7 @@
     .play-button {
       @include pullout;
       z-index: 1;
-      background: url(../icons/btn-video-player.png) no-repeat center center;
+      background: url(resources/icons/btn-video-player.png) no-repeat center center;
     }
   }
 
