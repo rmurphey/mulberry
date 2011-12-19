@@ -30,7 +30,7 @@ toura.app.PhoneGap.accelerometer = function(pg, device) {
 
     watchAcceleration : function(success, error) {
       if (navigator.accelerometer && navigator.accelerometer.watchAcceleration) {
-        return navigator.accelerometer.watchPosition(success, error);
+        return navigator.accelerometer.watchAcceleration(success, error);
       } else {
         return false;
       }
