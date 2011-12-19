@@ -15,3 +15,4 @@ dojo.require('toura.capabilities.AudioList_AudioCaption');
 dojo.require('toura.capabilities.Page_Videos');
 dojo.require('toura.capabilities.VideoList_VideoPlayer');
 dojo.require('toura.capabilities.VideoList_VideoCaption');
+dojo.require('toura.capabilities.Page_Search');

@@ -1,8 +1,9 @@
 dojo.provide('toura.components.AudioCaption');
 
+dojo.require('toura._Component');
 dojo.require('toura.components.BodyText');
 
-dojo.declare('toura.components.AudioCaption', [ toura.components.BodyText ], {
+dojo.declare('toura.components.AudioCaption', toura.components.BodyText, {
   "class" : 'audio-caption',
 
   _getBodyText : function() {

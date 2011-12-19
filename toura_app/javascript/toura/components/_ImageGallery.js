@@ -6,7 +6,7 @@ dojo.require('toura.ui.BackgroundImage');
  * This is a mixin to be used with components that include
  * a set of images. It should not be used on its own.
  */
-dojo.declare('toura.components._ImageGallery', [], {
+dojo.declare('toura.components._ImageGallery', null, {
   widgetsInTemplate : true,
 
   postCreate : function() {

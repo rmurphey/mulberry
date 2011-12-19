@@ -2,7 +2,7 @@ dojo.provide('toura.components.buttons.DeleteButton');
 
 dojo.require('toura.components.buttons._Button');
 
-dojo.declare('toura.components.buttons.DeleteButton', [ toura.components.buttons._Button ], {
+dojo.declare('toura.components.buttons.DeleteButton', toura.components.buttons._Button, {
   templateString : dojo.cache('toura.components.buttons', 'DeleteButton/DeleteButton.haml'),
 
   objId : '',

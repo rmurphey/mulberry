@@ -17,15 +17,15 @@ your app, and a framework for adding custom functionality and CSS.
 
     `git clone git@github.com:Toura/mulberry.git`
 
-- Add the full path to `mulberry/bin` to your path by editing your profile and
+- Add the full path to `cli/bin` to your path by editing your profile and
   adding the following:
 
-	`export PATH=$PATH:/full/path/to/mulberry/mulberry/bin`
+	`export PATH=$PATH:/full/path/to/mulberry/cli/bin`
 
 For example, if you cloned the repository to `~/projects/mulberry`, you
 would add the following to your `.profile` file.
 
-    export PATH=$PATH:/Users/yourusername/projects/mulberry/mulberry/bin
+    export PATH=$PATH:/Users/yourusername/projects/mulberry/cli/bin
 
 - Install bundler if it is not already installed (note that you will need to
    have [rubygems](http://docs.rubygems.org/read/chapter/3) installed; it is
@@ -195,8 +195,10 @@ To run the tests, run `rake` from the root of the repository.
 
 You can also run individual suites:
 
-    rake spec             # run the ruby tests
-    rake evergreen:run    # run the javascript tests
+    rake                  # run all of the tests & jshint. Alised of rake ci
+    rake spec			  # run the ruby unit tests
+    rake integration      # run the javascript integration tests
+    rake evergreen:run    # run the javascript unit tests
     rake evergreen:serve  # serve the javascript tests for manual testing
     rake jshint           # run jshint on the js code and js tests
 

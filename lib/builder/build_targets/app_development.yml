@@ -4,6 +4,8 @@
 build_type: dev
 device_type: browser
 development: true
+ota:
+  enabled: true
 
 build:
     javascript:

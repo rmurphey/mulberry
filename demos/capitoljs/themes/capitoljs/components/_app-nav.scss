@@ -2,4 +2,74 @@
   background: url(../media/images/home-footer.png) no-repeat !important;
   -webkit-background-size: cover;
   -webkit-box-shadow: none !important;
+
+  $icon-width: 60px;
+  $icon-height: 50px;
+  $btn-width : 145px;
+  $btn-amount : 3;
+
+  @mixin nav-button($type) {
+    .#{$type} {
+      background: url(resources/icons/light/btn-app-nav-#{$type}.png) no-repeat center center;
+    }
+
+    .#{$type}:active {
+      background: url(resources/icons/dark/btn-app-nav-#{$type}.png) no-repeat center center;
+    }
+  }
+
+  ol {
+    padding: 10px;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+  }
+
+  a {
+    display: block;
+    text-indent: -9999px;
+    -webkit-background-size: contain;
+  }
+
+  @include nav-button(contents);
+  @include nav-button(search);
+  @include nav-button(maps);
+  @include nav-button(about);
+  @include nav-button(favorites);
+
+  .phone & {
+    li {
+      -webkit-box-flex: 1;
+      width: $btn-width;
+
+      a {
+        height: $icon-height/2;
+      }
+    }
+  }
+
+  .tablet & {
+    width: $btn-width * $btn-amount - 1;
+    margin: 0 auto 20px auto;
+
+    li {
+      -webkit-box-flex: 1;
+      height: $icon-height;
+      width: $btn-width;
+
+      a {
+        height: $icon-height;
+      }
+    }
+  }
+  .tablet & {
+    -webkit-border-radius: 5px;
+
+    li {
+      border-right: 1px solid $chrome-border-color;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
 }

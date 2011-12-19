@@ -3,9 +3,11 @@
 @import 'helpers/colors';
 @import 'helpers/forms';
 
+@import 'splash';
+
 body {
-  @include text-color;
-  font-family: Helvetica Neue, sans-serif;
+  color: $text-color;
+  font-family: $base-font;
 }
 
 a:link, a:active, a:visited {

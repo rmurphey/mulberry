@@ -1,8 +1,8 @@
 dojo.provide('toura.capabilities.Page_FullScreenImages');
 
-dojo.require('toura.capabilities._Capability');
+dojo.require('toura._Capability');
 
-dojo.declare('toura.capabilities.Page_FullScreenImages', [ toura.capabilities._Capability ], {
+dojo.declare('toura.capabilities.Page_FullScreenImages', [ toura._Capability ], {
   requirements : {
     imageGallery : 'ZoomableImageGallery',
     pageNav : 'PageNav'

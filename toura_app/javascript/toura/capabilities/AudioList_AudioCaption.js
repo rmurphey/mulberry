@@ -1,6 +1,8 @@
 dojo.provide('toura.capabilities.AudioList_AudioCaption');
 
-dojo.declare('toura.capabilities.AudioList_AudioCaption', [ toura.capabilities._Capability ], {
+dojo.require('toura._Capability');
+
+dojo.declare('toura.capabilities.AudioList_AudioCaption', [ toura._Capability ], {
   requirements : {
     audioList : 'AudioList',
     audioCaption : 'AudioCaption'

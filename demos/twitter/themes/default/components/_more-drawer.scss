@@ -30,12 +30,12 @@
       &.favorite input {
         -webkit-appearance: none;
         border: none;
-        background: url(../icons/light/btn-page-nav-favoriteoff.png) no-repeat;
+        background: url(resources/icons/light/btn-page-nav-favoriteoff.png) no-repeat;
         -webkit-background-size: contain;
         background-position-y: center;
 
         &:checked {
-          background: url(../icons/light/btn-page-nav-favoriteon.png) no-repeat;
+          background: url(resources/icons/light/btn-page-nav-favoriteon.png) no-repeat;
         }
       }
 

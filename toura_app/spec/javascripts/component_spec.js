@@ -2,12 +2,12 @@ describe("base _Component class", function() {
   var c, C, t, img, node;
 
   beforeEach(function() {
-    dojo.require('toura.components._Component');
+    dojo.require('toura._Component');
 
     t = dojo.byId('test');
 
     C = function(config) {
-      return new toura.components._Component(config || {
+      return new toura._Component(config || {
         templateString : ".fake-component loremipsum"
       }).placeAt(t);
     };
@@ -42,7 +42,7 @@ describe("base _Component class", function() {
 
         i = 0;
 
-    dojo.declare('my.Thinger', [ toura.components._Component ], {
+    dojo.declare('my.Thinger', toura._Component, {
       templateString : '.foo',
 
       postMixInProperties : function() {
@@ -178,6 +178,19 @@ describe("base _Component class", function() {
     expect(c.domNode.querySelector('.bar')).toBeFalsy();
   });
 
+  it("should be able to repopulate itself from a single data point", function() {
+    c = C({
+      device : 'phone',
+      node : node,
+      templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
+    });
+
+    c.populate(function(item) { return item.text; }, { text : 'text1' });
+
+    expect(c.domNode.innerHTML).toMatch('text1');
+    expect(c.domNode.querySelector('.bar')).toBeFalsy();
+  });
+
   it("should be able to repopulate named nodes", function() {
     c = C({
       device : 'phone',
@@ -192,6 +205,18 @@ describe("base _Component class", function() {
 
     expect(c.bar.innerHTML).toMatch('text1');
     expect(c.bar.innerHTML).toMatch('text2');
+  });
+
+  it("should be able to repopulate named nodes from a single element", function() {
+    c = C({
+      device : 'phone',
+      node : node,
+      templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
+    });
+
+    c.populateElement('bar', function(item) { return item.text; }, { text : 'text1' });
+
+    expect(c.bar.innerHTML).toMatch('text1');
   });
 
   it("should be able to repopulate nodes", function() {
@@ -209,4 +234,17 @@ describe("base _Component class", function() {
     expect(c.bar.innerHTML).toMatch('text1');
     expect(c.bar.innerHTML).toMatch('text2');
   });
+
+  it("should be able to repopulate nodes from a single data point", function() {
+    c = C({
+      device : 'phone',
+      node : node,
+      templateString : '.foo\n  .bar{ dojoAttachPoint : "bar" }'
+    });
+
+    c.populateElement(c.bar, function(item) { return item.text; }, { text : 'text1' });
+
+    expect(c.bar.innerHTML).toMatch('text1');
+  });
+
 });

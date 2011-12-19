@@ -2,7 +2,7 @@ dojo.provide('toura.components.ImageCaption');
 
 dojo.require('toura.components.BodyText');
 
-dojo.declare('toura.components.ImageCaption', [ toura.components.BodyText ], {
+dojo.declare('toura.components.ImageCaption', toura.components.BodyText, {
   "class" : 'image-caption',
 
   _getBodyText : function() {

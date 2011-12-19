@@ -1,16 +1,13 @@
 home-tablet:
-  type: node
   screens:
   - name: index
     backgroundImage: true
     regions:
     - type: row
       regions:
-
       - type: row
         className: top
         components: []
-
       - type: row
         regions:
         - type: column
@@ -21,10 +18,7 @@ home-tablet:
           scrollable: true
           components:
           - ChildNodes
-
     - type: row
       size: fixed
       components:
       - AppNav
-
-

@@ -12,13 +12,6 @@
   -webkit-box-pack: center;
   -webkit-box-align: center;
 
-  .spinner {
-    width: 35px;
-    height: 35px;
-
-    @include spinner('../icons/spinner.png', 1.5s);
-  }
-
   @media (orientation:landscape) {
     background-image: url($splash-landscape);
   }
@@ -27,6 +20,3 @@
     background-image: url($splash-portrait);
   }
 }
-
-
-

@@ -4,7 +4,7 @@ dojo.require('toura.components._ImageGallery');
 dojo.require('toura.components.ImageCaption');
 dojo.require('toura.ui.PinchZoom');
 
-dojo.declare('toura.components.ZoomableImageGallery', [ toura.components._Component, toura.components._ImageGallery, toura.ui.PinchZoom ], {
+dojo.declare('toura.components.ZoomableImageGallery', [ toura._Component, toura.components._ImageGallery, toura.ui.PinchZoom ], {
   templateString : dojo.cache('toura.components', 'ZoomableImageGallery/ZoomableImageGallery.haml'),
   widgetsInTemplate : true,
   chromeVisible : false,

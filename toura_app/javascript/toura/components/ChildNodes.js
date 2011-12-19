@@ -1,8 +1,8 @@
 dojo.provide('toura.components.ChildNodes');
 
-dojo.require('toura.components._Component');
+dojo.require('toura._Component');
 
-dojo.declare('toura.components.ChildNodes', [ toura.components._Component ], {
+dojo.declare('toura.components.ChildNodes', toura._Component, {
   templateString : dojo.cache('toura.components', 'ChildNodes/ChildNodes.haml'),
   handleClicks : true,
 

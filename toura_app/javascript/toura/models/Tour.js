@@ -47,7 +47,10 @@ dojo.declare('toura.models.Tour', [ toura.models._Updateable ], {
   },
 
   _onDataReady : function() {
-    toura.app.Config.set('app', toura.app.DeviceStorage.get('app'));
+    var appConfig = toura.app.DeviceStorage.get('app'); 
+
+    toura.app.Config.set('app', appConfig);
+    window.TouraAppConfig = appConfig;
   }
 });
 

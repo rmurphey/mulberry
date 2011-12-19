@@ -30,7 +30,10 @@ describe("toura.components.Favorites", function() {
   it("should generate the component", function() {
     allDevices(function(d) {
       var deleteBtn, click;
-          c = C({ device : d, favorites : [] });
+          c = C({
+            device : d,
+            node : { favorites : [] }
+          });
 
       expect(c).toBeDefined();
       expect(c.domNode).toBeDefined();
@@ -48,7 +51,10 @@ describe("toura.components.Favorites", function() {
       f = favs.load();
       num = f.length;
 
-      c = C({ device : d, favorites : f });
+      c = C({
+        device : d,
+        node : { favorites : f }
+      });
 
       expect(c.favorites.length).toEqual(num);
       expect(c.favoritesList.childNodes.length).toEqual(num);
@@ -57,7 +63,10 @@ describe("toura.components.Favorites", function() {
 
   it("should display a message if there are no favorites listed", function() {
     allDevices(function(d) {
-      c = C({ device : d, favorites : [] });
+      c = C({
+        device : d,
+        node : { favorites : [] }
+      });
 
       expect(c.favoritesList.childNodes.length).toEqual(1);
       expect(c.favoritesList.childNodes[0].innerText).toEqual(c.i18n_noFavorites);
@@ -75,7 +84,10 @@ describe("toura.components.Favorites", function() {
       f = favs.load();
       num = f.length;
 
-      c = C({ device : d, favorites : f });
+      c = C({
+        device : d,
+        node : { favorites : f }
+      });
 
       deleteBtn = c._supportingWidgets[0];
       deleteBtn.deleting = true;

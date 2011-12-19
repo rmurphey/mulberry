@@ -99,43 +99,6 @@ describe Builder::Build do
     end
   end
 
-
-  describe "gathering step" do
-    it "should do nothing if no gathering tasks are specified" do
-      b = Builder::Build.new(@config.merge({
-        :target_config => {
-          'build_type' => 'fake'
-        }
-      }))
-
-      b.build
-
-      b.completed_steps[:build].keys.length.should == 0
-
-      b.cleanup
-    end
-
-    it "should gather www icons if specified" do
-      b = Builder::Build.new(@config.merge({
-        :target_config => {
-          'build_type' => 'device',
-          'gather' => {
-            'www_icons' => true
-          }
-        }
-      }))
-
-      b.build
-
-      www_icons = b.completed_steps[:gather][:www_icons]
-      www_icons.should_not be_nil
-      www_icons[:location].should_not be_nil
-      www_icons[:files].should_not be_nil
-
-      b.cleanup
-    end
-  end
-
   describe "build step" do
     it "should do nothing if no build tasks are specified" do
       b = Builder::Build.new(@config.merge({

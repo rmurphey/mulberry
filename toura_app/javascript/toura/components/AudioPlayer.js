@@ -1,10 +1,9 @@
 dojo.provide('toura.components.AudioPlayer');
 
 dojo.require('toura.app.PhoneGap');
-dojo.require('toura.components._Component');
 dojo.require('toura.components._MediaPlayer');
 
-dojo.declare('toura.components.AudioPlayer', [ toura.components._MediaPlayer ], {
+dojo.declare('toura.components.AudioPlayer', toura.components._MediaPlayer, {
   templateString : dojo.cache('toura.components', 'AudioPlayer/AudioPlayer.haml'),
 
   playerType : 'audio',
