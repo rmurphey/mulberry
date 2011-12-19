@@ -34,7 +34,7 @@ module Mulberry
     end
 
     def self.app_file_path(*args)
-      File.join(TouraAPP::Directories.root, *args)
+      File.join(TouraAPP::Directories.root, 'toura_app', *args)
     end
 
     def app_file_path(*args)

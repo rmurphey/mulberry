@@ -37,6 +37,10 @@ module TouraAPP
       File.join(self.root, 'toura_app', 'tmp', 'build')
     end
 
+    def self.app_specs
+      File.join(self.root, 'toura_app', 'spec')
+    end
+
     # TODO: remove this?
     def self.client_customizations(tour_id=nil)
       tour_id = nil if tour_id.respond_to?(:empty?) ? tour_id.empty? : !tour_id
