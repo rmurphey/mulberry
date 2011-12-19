@@ -90,7 +90,7 @@ dojo.declare('toura._Component', [ toura._View ], {
    * @param element A node to be populated with HTML based on the provided data
    * @param templateFn A template function that will receive a data item and return
    * a string
-   * @param data An array of data items to be processed by the template
+   * @param data An array of data items, or single data item, to be processed by the template
    * function
    */
   populateElement : function(element, templateFn, data) {
@@ -100,7 +100,7 @@ dojo.declare('toura._Component', [ toura._View ], {
 
     if (!element) { return; }
 
-    element.innerHTML = dojo.map(data, templateFn).join('');
+    element.innerHTML = dojo.isArray(data) ? dojo.map(data, templateFn).join('') : templateFn(data);
 
     if (this.region) {
       this.region.refreshScroller();

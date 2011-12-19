@@ -1,8 +1,8 @@
 dojo.provide('toura.components.SearchResults');
 
-dojo.require('toura.components._Results');
+dojo.require('toura._Component');
 
-dojo.declare('toura.components.SearchResults', toura.components._Results, {
+dojo.declare('toura.components.SearchResults', toura._Component, {
   templateString : dojo.cache('toura.components', 'SearchResults/SearchResults.haml'),
   resultTemplate : Haml(dojo.cache('toura.components', 'SearchResults/Result.haml')),
 
@@ -54,7 +54,7 @@ dojo.declare('toura.components.SearchResults', toura.components._Results, {
       dojo.place(moreResults, this.resultsContainer, 'last');
     }
 
-    this.refreshScroller();
+    dojo.publish('/content/update');
   },
 
   _handleNoResults : function() {
@@ -69,5 +69,9 @@ dojo.declare('toura.components.SearchResults', toura.components._Results, {
     this.i18n_instructions = this.getString('SEARCH_INSTRUCTIONS');
     this.i18n_noResults = this.getString('SEARCH_NO_RESULTS');
     this.i18n_moreResults = this.getString('SEARCH_MORE_RESULTS');
+  },
+
+  _truncate : function(text) {
+    return toura.util.truncate(text, 200);
   }
 });

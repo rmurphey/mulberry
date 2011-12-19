@@ -1,0 +1,8 @@
+#splash {
+  .spinner {
+    width: 35px;
+    height: 35px;
+
+    @include spinner('resources/icons/spinner.png', 1.5s);
+  }
+}

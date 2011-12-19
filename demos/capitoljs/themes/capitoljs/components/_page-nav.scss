@@ -3,33 +3,8 @@
   $icon-height: 30px;
   $btn-width : 65px;
 
-  @mixin page-nav-button($type) {
+  color: $chrome-text-color;
 
-    & a {
-      -webkit-background-size: contain;
-    }
-
-    &.#{$type} a {
-      background: url(../icons/light/btn-page-nav-#{$type}.png) no-repeat;
-      background-position-y: center;
-    }
-
-    &.#{$type} a:active {
-      background-image: url(../icons/dark/btn-page-nav-#{$type}.png);
-    }
-
-    &.#{$type}:first-child a {
-      background-position-x: left;
-    }
-
-    &.#{$type}:last-child a {
-      background-position-x: right;
-    }
-  }
-
-  color: #fff;
-  overflow: visible;
-  z-index: 2;
   @include box-shadow(2px, 0);
 
   .tablet & {
@@ -64,7 +39,6 @@
       -webkit-box-flex: 1;
       text-align: center;
       font-weight: bold;
-//      font-family: Cabin;
       font-size: 18px;
     }
   }
@@ -76,53 +50,25 @@
 
   .tablet & > .top {
     ul {
-      padding: 10px;
-      display: -webkit-box;
-      -webkit-box-orient: horizontal;
+      li.back,
+      li.more {
+        border-right: 1px solid $chrome-border-color;
+      }
 
       li {
-        -webkit-box-flex: 1;
-        width: $icon-width + 20;
-
         @include page-nav-button(back);
         @include page-nav-button(home);
         @include page-nav-button(menu);
         @include page-nav-button(search);
         @include page-nav-button(more);
-
-        a {
-          height: 40px;
-        }
-      }
-
-      li.back,
-      li.more {
-        border-right: 1px solid #777;
-      }
-
-      li.search:first-child {
-        // fill extra space if the .more button isn't there
-        width: 2 * ($icon-width + 20);
       }
     }
   }
 
   .phone & > .top {
-    h1 {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-    }
-
     div {
-      width: $icon-width + 20;
-      padding: 5px 0;
-
       @include page-nav-button(back);
       @include page-nav-button(more);
-
-      a {
-        height: 30px;
-      }
     }
   }
 }
