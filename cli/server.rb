@@ -50,7 +50,7 @@ module Mulberry
     set :raise_errors => true
     set :root, app_file_path('.')
     set :public_folder, app_file_path('www')
-    set :views, app_file_path('templates')
+    set :views, TouraAPP::Templates.root
     set :host, 'localhost'
 
     #####################

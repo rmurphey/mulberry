@@ -50,7 +50,7 @@ module TouraAPP
 
   class Templates
     def self.root
-      @root ||= File.join(File.expand_path(File.dirname(__FILE__)), 'cli', 'templates', 'app')
+      @root ||= File.join(TouraAPP::Directories.root, 'cli', 'templates', 'app')
     end
 
     def self.index_html
