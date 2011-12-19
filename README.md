@@ -11,46 +11,14 @@ your app, and a framework for adding custom functionality and CSS.
 - #touramulberry on irc.freenode.net: A live chat room with Mulberry users and
   developers. Use your own IRC client or [use Freenode's webchat](http://webchat.freenode.net/)
 
+
 # Installation
 
-- Clone this repository to a location of your choosing.
-
-    `git clone git@github.com:Toura/mulberry.git`
-
-- Add the full path to `cli/bin` to your path by editing your profile and
-  adding the following:
-
-	`export PATH=$PATH:/full/path/to/mulberry/cli/bin`
-
-For example, if you cloned the repository to `~/projects/mulberry`, you
-would add the following to your `.profile` file.
-
-    export PATH=$PATH:/Users/yourusername/projects/mulberry/cli/bin
-
-- Install bundler if it is not already installed (note that you will need to
-   have [rubygems](http://docs.rubygems.org/read/chapter/3) installed; it is
-   installed by default on OSX):
-
-    `sudo gem install bundler`
-
-- From the *root directory of the repository*, run the following command:
-
-    `bundle install --without test development`
-
-- You're done! You should now be able to run mulberry from any directory.
-
-Note: As you can infer from the `bundle install` command above, this does not
-install any libraries for you to do development on Mulberry core, or run any of
-the automated tests. If you wish to do these things, simply re-run the bundle
-install command, omitting the `--without` flag:
-
-	bundle install
-
-This will install the necessary libraries for ruby development and for running
-the automated test suite.
+Windows, Linux, and OSX all have different installation methods. Please see the
+platform-specific README.md located in the `install/osx`, `install/windows`, etc. directories.
 
 
-# Setup
+# Post-Installation Setup
 
 Mulberry currently supports the following mobile platforms:
 
@@ -64,33 +32,10 @@ Mulberry apps do not support Windows Mobile or BlackBerry in any version.
 Mulberry development tools are supported on the following platforms:
 
 - OSX Snow Leopard and Lion
+- Windows 7 64-bit via CYGWIN
 
 Mulberry development is not supported on Linux, but it might work. Please let
 us know at mulberry@toura.com if you can get it working on a particular Linux distro.
-
-We do not currently support running Mulberry on Windows or any other OS;
-however, some work has been done to get it working on Windows -- additional
-pull requests welcome!
-
-
-## Installing PhoneGap
-
-Mulberry supports PhoneGap 1.1. Any other version will not work.
-
-Go to [the PhoneGap download page](https://github.com/callback/phonegap/zipball/1.1.0)
-and download the 1.1.0 release. Extract it to a convenient directory.
-
-
-### Installing iOS Phonegap Library
-
-In the extracted phonegap directory, go into iOS, and run the installer.
-The xcode project will call the lib that is installed to your computer.
-
-
-### Installing Droidgap
-
-You do not need to install droidgap as the Android project template included in
-Mulberry already contains the compiled results.
 
 
 ## iOS Development
@@ -180,9 +125,6 @@ Start the emulator, then type:
 
 	  adb install -r /path/to/your.apk
 
-# TODOs
-
-See the github issues list https://github.com/Toura/mulberry/issues/
 
 # Running the tests
 
@@ -208,4 +150,5 @@ You will need chromedriver in order to run the JavaScript tests. You can
 [download chromedriver](http://code.google.com/p/chromium/downloads/list)
 if you do not already have it installed; make sure you install it somewhere in your $PATH.
 
-OSX users with [Homebrew](http://mxcl.github.com/homebrew/) installed can just `brew install chromedriver`.
+This is automatically installed for you by the OSX installer, other platforms
+will need to install it by hand.
