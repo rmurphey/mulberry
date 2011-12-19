@@ -14,11 +14,11 @@ module TouraAPP
 
   class Directories
     def self.root
-      @root ||= File.join(File.expand_path(File.dirname(__FILE__)), 'toura_app')
+      @root ||= File.join(File.expand_path(File.dirname(__FILE__)))
     end
 
     def self.javascript
-      File.join(self.root, 'javascript')
+      File.join(self.root, 'toura_app', 'javascript')
     end
 
     def self.page_templates
@@ -29,8 +29,12 @@ module TouraAPP
       File.join(self.javascript, 'data-fixtures')
     end
 
+    def self.profiles
+      File.join(self.root, 'toura_app', 'profiles')
+    end
+
     def self.build_root
-      File.join(self.root, 'tmp', 'build')
+      File.join(self.root, 'toura_app', 'tmp', 'build')
     end
 
     # TODO: remove this?
@@ -42,7 +46,7 @@ module TouraAPP
 
   class Templates
     def self.root
-      @root ||= File.join(TouraAPP::Directories.root, 'templates')
+      @root ||= File.join(File.expand_path(File.dirname(__FILE__)), 'cli', 'templates', 'app')
     end
 
     def self.index_html
