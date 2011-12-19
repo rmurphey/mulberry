@@ -3,7 +3,7 @@ require 'sinatra/base'
 
 require 'mulberry'
 require 'lib/builder/css_maker'
-require 'toura_app/application'
+require 'app'
 
 module Mulberry
   class Server < Sinatra::Base

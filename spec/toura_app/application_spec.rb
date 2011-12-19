@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'toura_app/application'
+require 'app'
 
 describe TouraAPP do
   describe "#version" do
