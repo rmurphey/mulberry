@@ -37,25 +37,28 @@ audio-with-images-tablet:
           - BodyText
         - type: column
           scrollable: true
-          regions:
-          - type: row
-            components:
-            - AudioList
-          - type: row
-            components:
-            - ChildNodes
+          components:
+          - ChildNodes
       - type: row
         size: fixed
         className: audio-container
         regions:
-        - type: row
-          size: fixed
-          components:
-          - AudioPlayer
-        - type: row
-          size: fixed
-          components:
-          - AudioCaption
+        - type: column
+          regions:
+          - type: row
+            size: fixed
+            components:
+            - AudioPlayer
+          - type: row
+            size: fixed
+            components:
+            - AudioCaption
+        - type: column
+          regions:
+          - type: row
+            scrollable: true
+            components:
+            - AudioList
 
     - name: detail
       regions:
