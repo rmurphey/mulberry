@@ -190,7 +190,7 @@ module Mulberry
       begin
         case params[:splat].first
         when 'tour.js'
-          "toura.data.local = #{JSON.pretty_generate(@helper.data)};"
+          TouraAPP::Generators.data(@helper.data)
         when 'templates.js'
           "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
         end
