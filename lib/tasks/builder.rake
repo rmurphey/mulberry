@@ -1,5 +1,5 @@
 require 'lib/builder'
-require 'toura_app/lib/filesystem_build_helper'
+require 'lib/legacy/filesystem_build_helper'
 
 namespace :builder do
   desc "Generates the build required for APP browser development"
