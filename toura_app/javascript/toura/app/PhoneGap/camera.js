@@ -31,5 +31,5 @@ toura.app.PhoneGap.camera = function(pg, device) {
 
       return dfd.promise;
     }
-  }
+  };
 };
