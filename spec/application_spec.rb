@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'toura_app/application'
+require 'app'
 
 describe TouraAPP do
   describe "#version" do
@@ -18,8 +18,6 @@ describe TouraAPP do
     it "should point to important directories" do
       root = TouraAPP::Directories.root
 
-      root.should match 'toura_app'
-
       [ :javascript, :page_templates, :data_fixtures, :build_root ].each do |d|
         dir = TouraAPP::Directories.send(d.to_s)
         dir.should match root
@@ -30,7 +28,7 @@ describe TouraAPP do
   describe TouraAPP::Templates do
     describe "#root" do
       it "should return the location of the toura_app templates directory" do
-        TouraAPP::Templates.root.should match TouraAPP::Directories.root
+        TouraAPP::Templates.root.should match File.join(TouraAPP::Directories.root, 'cli', 'templates', 'app')
       end
     end
 
@@ -99,6 +97,13 @@ describe TouraAPP do
       it "should set toura.features.disableBackButton if :disable_back_button is true" do
         html = TouraAPP::Generators.index_html :disable_back_button => true
         html.should match 'toura.features.disableBackButton = true;'
+      end
+    end
+
+    describe "#data" do
+      it "should return the contents for tour.json" do
+        data = TouraAPP::Generators.data({})
+        data.should include 'toura.data.local = '
       end
     end
 

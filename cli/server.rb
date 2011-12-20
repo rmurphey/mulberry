@@ -3,7 +3,7 @@ require 'sinatra/base'
 
 require 'mulberry'
 require 'lib/builder/css_maker'
-require 'toura_app/application'
+require 'app'
 
 module Mulberry
   class Server < Sinatra::Base
@@ -34,7 +34,7 @@ module Mulberry
     end
 
     def self.app_file_path(*args)
-      File.join(TouraAPP::Directories.root, *args)
+      File.join(TouraAPP::Directories.root, 'toura_app', *args)
     end
 
     def app_file_path(*args)
@@ -50,7 +50,7 @@ module Mulberry
     set :raise_errors => true
     set :root, app_file_path('.')
     set :public_folder, app_file_path('www')
-    set :views, app_file_path('templates')
+    set :views, TouraAPP::Templates.root
     set :host, 'localhost'
 
     #####################
@@ -190,7 +190,7 @@ module Mulberry
       begin
         case params[:splat].first
         when 'tour.js'
-          "toura.data.local = #{JSON.pretty_generate(@helper.data)};"
+          TouraAPP::Generators.data(@helper.data)
         when 'templates.js'
           "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
         end

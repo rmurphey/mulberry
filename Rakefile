@@ -9,6 +9,6 @@ end
 $: << File.expand_path('../', __FILE__)
 $: << File.expand_path('../..', __FILE__)
 
-require 'toura_app/application'
+require 'app'
 
 Dir.glob('lib/tasks/**/*.rake').each{|f| load f }
