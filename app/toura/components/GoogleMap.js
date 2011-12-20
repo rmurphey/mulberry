@@ -1,7 +1,6 @@
 dojo.provide('toura.components.GoogleMap');
 
 dojo.require('toura._Component');
-dojo.require('toura._AsyncView');
 dojo.require('dijit.DialogUnderlay');
 dojo.require('toura.app.PhoneGap');
 dojo.require('dojo.io.script');
@@ -13,7 +12,7 @@ dojo.require('toura.app.URL');
   // Google Maps API v3 reference:
   // https://code.google.com/apis/maps/documentation/javascript/reference.html
 
-  dojo.declare('toura.components.GoogleMap', [ toura._Component, toura._AsyncView ], {
+  dojo.declare('toura.components.GoogleMap', toura._Component, {
     templateString : dojo.cache('toura.components', 'GoogleMap/GoogleMap.haml'),
 
     mapType : 'roadmap',
@@ -22,6 +21,7 @@ dojo.require('toura.app.URL');
     prepareData : function() {
       // TODO: different behavior if the network isn't reachable?
 
+      this.queue = [];
       this.googleTries = 0;
       this.pinCache = {};
       this.markerCache = {};
@@ -153,6 +153,16 @@ dojo.require('toura.app.URL');
 
         google.maps.event.clearInstanceListeners(this.map);
       }
+    },
+
+    _addToQueue : function(fn) {
+      this.queue.push(fn);
+    },
+
+    _doQueue : function() {
+      dojo.forEach(this.queue, function(fn) {
+        fn();
+      }, this);
     }
   });
 }(dojo));

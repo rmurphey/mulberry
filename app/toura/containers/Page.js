@@ -1,4 +1,4 @@
-dojo.provide('toura.Page');
+dojo.provide('toura.containers.Page');
 
 dojo.require('toura._View');
 dojo.require('toura.ui.BackgroundImage');
@@ -6,9 +6,9 @@ dojo.require('toura.containers.Screen');
 dojo.require('toura.components._base');
 dojo.require('toura.capabilities._base');
 
-dojo.declare('toura.Page', [ toura._View, toura.ui.BackgroundImage ], {
+dojo.declare('toura.containers.Page', [ toura._View, toura.ui.BackgroundImage ], {
   templateConfig : {},
-  templateString : dojo.cache('toura', 'Page/Page.haml'),
+  templateString : dojo.cache('toura.containers', 'Page/Page.haml'),
 
   postMixInProperties : function() {
     this.inherited(arguments);

@@ -1,10 +1,10 @@
-dojo.provide('toura.containers.Pages');
+dojo.provide('toura.containers.Viewport');
 
 dojo.require('toura._View');
 dojo.require('toura.app.Config');
 
-dojo.declare('toura.containers.Pages', [ toura._View ], {
-  templateString : dojo.cache('toura.containers', 'Pages/Pages.haml'),
+dojo.declare('toura.containers.Viewport', [ toura._View ], {
+  templateString : dojo.cache('toura.containers', 'Viewport/Viewport.haml'),
 
   direction : 'next',
 
@@ -44,7 +44,7 @@ dojo.declare('toura.containers.Pages', [ toura._View ], {
   },
 
   _cleanupOldPage : function() {
-    var pages = document.querySelectorAll('ol.page-container > li');
+    var pages = document.querySelectorAll('ol.viewport > li');
 
     dojo.forEach(pages, function(page) {
       if (this.currentPage.domNode !== page) {

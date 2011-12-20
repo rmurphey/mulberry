@@ -2,7 +2,7 @@ dojo.provide('toura.app.UI');
 
 dojo.require('toura.Utilities');
 dojo.require('toura.app.Config');
-dojo.require('toura.containers.Pages');
+dojo.require('toura.containers.Viewport');
 dojo.require('toura.components.SiblingNav');
 dojo.require('toura.app.PhoneGap');
 dojo.require('dojo.string');
@@ -39,7 +39,7 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
       },
 
       navDirection : function(k, old, dir) {
-        this.containers.pages.set('navDirection', dir);
+        this.containers.viewport.set('navDirection', dir);
       },
 
       siblingNavVisible : function(k, old, visible) {
@@ -91,7 +91,7 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
   },
 
   _containersSetup : function() {
-    this.containers.pages = new toura.containers.Pages().placeAt(this.body, 'first');
+    this.containers.viewport = new toura.containers.Viewport().placeAt(this.body, 'first');
   },
 
   _navSetup : function() {
@@ -150,7 +150,7 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
       });
     }
 
-    this.containers.pages.set('content', page);
+    this.containers.viewport.set('content', page);
     this.currentPage = page;
 
     if (!this.siblingNav) { return; }

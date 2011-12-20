@@ -2,12 +2,12 @@ describe("configurable page controller", function() {
   var t, c, C;
 
   beforeEach(function() {
-    dojo.require('toura.Page');
+    dojo.require('toura.containers.Page');
 
     if (c) { c.destroy(); }
 
     C = function(config) {
-      return new toura.Page(config || {}).placeAt(t);
+      return new toura.containers.Page(config || {}).placeAt(t);
     };
 
     t = dojo.byId('test');
