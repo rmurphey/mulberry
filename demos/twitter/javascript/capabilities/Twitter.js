@@ -15,7 +15,7 @@ mulberry.capability('Twitter', {
 
   init : function() {
     this.users = this.baseObj.getData('users').users;
-    this.twitter = new client.stores.Twitter();
+    this.twitter = client.stores.Twitter;
 
     var user = this.users[0];
     this.userInfo.set('user', user);
