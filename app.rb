@@ -40,16 +40,6 @@ module TouraAPP
     def self.build_root
       File.join(self.app, 'tmp', 'build')
     end
-
-    def self.app_specs
-      File.join(self.root, 'app', 'spec')
-    end
-
-    # TODO: remove this?
-    def self.client_customizations(tour_id=nil)
-      tour_id = nil if tour_id.respond_to?(:empty?) ? tour_id.empty? : !tour_id
-      File.join(self.app, 'client_customizations', (tour_id ? "tour-#{tour_id}" : ''))
-    end
   end
 
   class Templates
