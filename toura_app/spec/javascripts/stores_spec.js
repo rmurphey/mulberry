@@ -68,4 +68,16 @@ describe("local store", function() {
       expect(client.stores.foo.query({ text : 'no id' })[0].id).toBeDefined();
     });
   });
+
+  describe("remote store", function() {
+    it("should create a memory store with the provided prototype", function() {
+      toura.stores.remote('foo', { bar : 'baz' });
+
+      var s = client.stores.foo;
+
+      expect(s).toBeDefined();
+      expect(s.bar).toBe('baz');
+      expect(s instanceof dojo.store.Memory).toBeTruthy();
+    });
+  });
 });

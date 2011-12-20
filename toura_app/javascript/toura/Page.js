@@ -115,11 +115,15 @@ dojo.declare('toura.Page', [ toura._View, toura.ui.BackgroundImage ], {
     }
 
     if (!img) {
-      appBgImg = toura.app.Config.get('app').backgroundImage[this.device.type];
+      appBgImg = toura.app.Config.get('app').backgroundImage;
 
-      img = toura.app.Data.getModel(appBgImg, 'backgroundImage')[
-        this.device.type === 'phone' ? 'gallery' : 'original'
-      ];
+      if (appBgImg) {
+        appBgImg = appBgImg[this.device.type];
+
+        img = toura.app.Data.getModel(appBgImg, 'backgroundImage')[
+          this.device.type === 'phone' ? 'gallery' : 'original'
+        ];
+      }
     }
 
     return img || '';
