@@ -17,16 +17,20 @@ module TouraAPP
       @root ||= File.expand_path(File.dirname(__FILE__))
     end
 
+    def self.app
+      File.join(@root, 'app')
+    end
+
     def self.javascript
-      File.join(self.root, 'toura_app', 'javascript')
+      self.app
     end
 
     def self.page_templates
-      File.join(self.javascript, 'page-templates')
+      File.join(self.app, 'page-templates')
     end
 
     def self.data_fixtures
-      File.join(self.javascript, 'data-fixtures')
+      File.join(self.app, 'data-fixtures')
     end
 
     def self.profiles
@@ -34,17 +38,17 @@ module TouraAPP
     end
 
     def self.build_root
-      File.join(self.root, 'toura_app', 'tmp', 'build')
+      File.join(self.app, 'tmp', 'build')
     end
 
     def self.app_specs
-      File.join(self.root, 'toura_app', 'spec')
+      File.join(self.root, 'app', 'spec')
     end
 
     # TODO: remove this?
     def self.client_customizations(tour_id=nil)
       tour_id = nil if tour_id.respond_to?(:empty?) ? tour_id.empty? : !tour_id
-      File.join(self.javascript, 'client_customizations', (tour_id ? "tour-#{tour_id}" : ''))
+      File.join(self.app, 'client_customizations', (tour_id ? "tour-#{tour_id}" : ''))
     end
   end
 
