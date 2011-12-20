@@ -28,6 +28,17 @@ module Builder
       nil
     end
 
+    def templates
+      templates = {}
+
+      Dir.glob(File.join(TouraAPP::Directories.page_templates, '*.yml')).each do |t|
+        d = YAML.load_file(t)
+        templates.merge!(d) if d
+      end
+
+      templates
+    end
+
     private
     def padded_id
       # id's in iOS must be at least 2 characters :/

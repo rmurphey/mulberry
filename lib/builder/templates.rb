@@ -20,13 +20,7 @@ module Builder
 
     private
     def templates
-      app_templates = nil
-
-      if @build.build_helper.respond_to? 'templates'
-        app_templates = @build.build_helper.templates
-      end
-
-      "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates(app_templates))};"
+      TouraAPP::Generators.page_templates(@build.build_helper.templates);
     end
   end
 end

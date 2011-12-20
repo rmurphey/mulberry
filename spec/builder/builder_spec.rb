@@ -99,6 +99,25 @@ describe Builder::Build do
     end
   end
 
+  describe "gathering step" do
+    it "should properly create the templates file" do
+      b = Builder::Build.new(@config.merge({
+        :target_config => {
+          'build_type' => 'device',
+          'gather' => {
+            'templates' => true
+          }
+        }
+      }))
+
+      b.build
+
+      templates = b.completed_steps[:build][:templates]
+
+      p b.completed_steps
+    end
+  end
+
   describe "build step" do
     it "should do nothing if no build tasks are specified" do
       b = Builder::Build.new(@config.merge({
@@ -203,6 +222,7 @@ describe Builder::Build do
       index_html = File.read(File.join(html[:location], 'index.html'))
       index_html.should_not match 'phonegap'
     end
+
   end
 
   describe "closing" do

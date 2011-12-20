@@ -63,16 +63,8 @@ module TouraAPP
   end
 
   class Generators
-    def self.page_templates(app_templates = nil)
-      base_templates = {}
-      page_templates_dir = TouraAPP::Directories.page_templates
-
-      Dir.glob(File.join(page_templates_dir, '*.yml')).each do |t|
-        base_templates.merge! YAML.load_file(t)
-      end
-
-      base_templates.merge!(app_templates) if app_templates
-      base_templates
+    def self.page_templates(templates)
+      "toura.templates = #{JSON.pretty_generate(templates)};"
     end
 
     def self.index_html(params = {})

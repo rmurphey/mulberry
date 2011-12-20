@@ -192,7 +192,7 @@ module Mulberry
         when 'tour.js'
           TouraAPP::Generators.data(@helper.data)
         when 'templates.js'
-          "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
+          TouraAPP::Generators.page_templates(@helper.templates)
         end
       rescue RuntimeError => e
         puts "ERROR: #{e.to_s}"

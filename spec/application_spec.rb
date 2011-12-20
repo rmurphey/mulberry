@@ -51,19 +51,11 @@ describe TouraAPP do
 
   describe TouraAPP::Generators do
     describe "#page_templates" do
-      it "should return a page templates object" do
-        template_obj = TouraAPP::Generators.page_templates
-        template_obj.keys.length.should be > 0
-
-        Dir.glob(File.join(TouraAPP::Directories.page_templates, '*.yml')).each do |t|
-          template_name = YAML.load_file(t).keys.first
-          template_obj[template_name].should_not be_nil
-        end
-      end
-
-      it "should accept an object containing additional templates" do
-        template_obj = TouraAPP::Generators.page_templates({ 'foo' => 'bar' })
-        template_obj['foo'].should == 'bar'
+      it "should return a page templates JS string based on what it is provided" do
+        str = TouraAPP::Generators.page_templates({ 'foo' => 'bar' })
+        str.should include 'toura.templates = '
+        str.should include 'foo'
+        str.should include 'bar'
       end
     end
 
