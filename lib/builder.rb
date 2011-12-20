@@ -3,7 +3,7 @@ $: << File.expand_path('../..', __FILE__)
 
 require "tmpdir"
 
-require "toura_app/application"
+require "app"
 require "builder/icons"
 require "builder/load_screens"
 require "builder/assets"
