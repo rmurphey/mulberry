@@ -44,6 +44,7 @@ audio-with-images-tablet:
         className: audio-container
         regions:
         - type: column
+          className: audio-active-player
           regions:
           - type: row
             size: fixed

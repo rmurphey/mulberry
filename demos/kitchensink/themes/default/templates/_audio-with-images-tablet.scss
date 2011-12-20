@@ -16,6 +16,10 @@
       @include background-shadow(top);
       @include column-container;
 
+      .region.audio-active-player {
+        @include row-container;
+      }
+
       audio {
         position: relative;
         top: -5px;
