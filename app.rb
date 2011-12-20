@@ -14,7 +14,7 @@ module TouraAPP
 
   class Directories
     def self.root
-      @root ||= File.join(File.expand_path(File.dirname(__FILE__)))
+      @root ||= File.expand_path(File.dirname(__FILE__))
     end
 
     def self.javascript
