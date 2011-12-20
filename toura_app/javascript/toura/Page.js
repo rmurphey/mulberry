@@ -1,11 +1,12 @@
 dojo.provide('toura.Page');
 
-dojo.require('toura.pageControllers._Page');
+dojo.require('toura._View');
+dojo.require('toura.ui.BackgroundImage');
 dojo.require('toura.containers.Screen');
 dojo.require('toura.components._base');
 dojo.require('toura.capabilities._base');
 
-dojo.declare('toura.Page', toura.pageControllers._Page, {
+dojo.declare('toura.Page', [ toura._View, toura.ui.BackgroundImage ], {
   templateConfig : {},
   templateString : dojo.cache('toura', 'Page/Page.haml'),
 
@@ -15,7 +16,6 @@ dojo.declare('toura.Page', toura.pageControllers._Page, {
   },
 
   postCreate : function() {
-    this.inherited(arguments);
     this.screens = {};
 
     if (!this.baseObj) {
@@ -64,7 +64,6 @@ dojo.declare('toura.Page', toura.pageControllers._Page, {
     this.addClass(this.templateName);
   },
 
-
   showScreen : function (screenName) {
     dojo.forIn(this.screens, function(name, screen) {
       if (name !== screenName) {
@@ -97,24 +96,32 @@ dojo.declare('toura.Page', toura.pageControllers._Page, {
 
   startup : function() {
     this.inherited(arguments);
+
     dojo.forIn(this.screens, function(name, screen) {
       screen.startup();
     });
   },
 
-  /**
-   * @override
-   */
-  _applyBackgroundImage : function() { },
+  init : function() {
+    // for capability connections
+  },
 
   _getBackgroundImage : function() {
-    var img;
+    var appBgImg, img;
 
+    // use the node's background image if present
     if (this.baseObj.getBackgroundImage) {
       img = this.baseObj.getBackgroundImage(this.device);
     }
 
-    return img || this.inherited(arguments);
+    if (!img) {
+      appBgImg = toura.app.Config.get('app').backgroundImage[this.device.type];
+
+      img = toura.app.Data.getModel(appBgImg, 'backgroundImage')[
+        this.device.type === 'phone' ? 'gallery' : 'original'
+      ];
+    }
+
+    return img || '';
   }
 });
-
