@@ -102,6 +102,13 @@ describe TouraAPP do
       end
     end
 
+    describe "#data" do
+      it "should return the contents for tour.json" do
+        data = TouraAPP::Generators.data({})
+        data.should include 'toura.data.local = '
+      end
+    end
+
     describe "#config" do
       it "should return a TouraConfig file" do
         c = TouraAPP::Generators.config('ios', 'phone')
