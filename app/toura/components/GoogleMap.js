@@ -25,7 +25,6 @@ dojo.require('toura.app.URL');
       this.googleTries = 0;
       this.pinCache = {};
       this.markerCache = {};
-      this.queue = [];
       this.isBuilt = false;
 
       this.pins = this.node.googleMapPins;
