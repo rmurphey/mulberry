@@ -18,7 +18,7 @@ toura.app.PhoneGap.network = function(pg, device) {
      * @returns {Promise} A promise that, when resolved, will resolve with a
      * boolean, with `true` indicating the network is reachable.
      */
-    isReachable : function(domain) {
+    isReachable : function() {
 
       console.log('toura.app.PhoneGap.network::isReachable()');
 
@@ -58,6 +58,33 @@ toura.app.PhoneGap.network = function(pg, device) {
       dfd.resolve(reachable);
 
       return dfd.promise;
+    },
+
+    state : function() {
+      var states = {},
+          type;
+
+      if (navigator.network && navigator.network.connection) {
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        type = navigator.network.connection.type;
+
+        return {
+          state : type,
+          description : states[type]
+        };
+      } else {
+        return {
+          state : -1,
+          description : 'Unknown connection'
+        };
+      }
     }
   };
 };

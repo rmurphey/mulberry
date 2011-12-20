@@ -1,4 +1,4 @@
-require 'toura_app/application'
+require 'app'
 require 'builder/build_helper'
 
 # WARNING: This file is for internal Toura development needs and it will go

@@ -18,7 +18,7 @@ module TouraAPP
     end
 
     def self.javascript
-      File.join(self.root, 'javascript')
+      File.join(self.root, 'toura_app', 'javascript')
     end
 
     def self.page_templates
@@ -29,8 +29,16 @@ module TouraAPP
       File.join(self.javascript, 'data-fixtures')
     end
 
+    def self.profiles
+      File.join(self.root, 'lib', 'builder', 'profiles')
+    end
+
     def self.build_root
-      File.join(self.root, 'tmp', 'build')
+      File.join(self.root, 'toura_app', 'tmp', 'build')
+    end
+
+    def self.app_specs
+      File.join(self.root, 'toura_app', 'spec')
     end
 
     # TODO: remove this?
@@ -42,7 +50,7 @@ module TouraAPP
 
   class Templates
     def self.root
-      @root ||= File.join(TouraAPP::Directories.root, 'templates')
+      @root ||= File.join(TouraAPP::Directories.root, 'cli', 'templates', 'app')
     end
 
     def self.index_html
@@ -98,6 +106,9 @@ module TouraAPP
       Mustache.render(tmpl, settings)
     end
 
+    def self.data(data_object)
+      "toura.data.local = #{JSON.pretty_generate(data_object)};"
+    end
   end
 end
 

@@ -4,8 +4,7 @@ require "json"
 module Builder
   class JavaScript < Builder::TaskBase
     COPYRIGHT_FILE = File.join(
-      TouraAPP::Directories.root,
-      "profiles",
+      TouraAPP::Directories.profiles,
       "copyright.txt"
     )
 
@@ -164,7 +163,7 @@ module Builder
       if @build.build_helper.respond_to? 'custom_js_source'
         custom_js_source = @build.build_helper.custom_js_source
         if custom_js_source
-          @client_dir = File.join(TouraAPP::Directories.root, 'javascript', 'client_tmp')
+          @client_dir = File.join(TouraAPP::Directories.javascript, 'client_tmp')
           FileUtils.rm_rf @client_dir if File.exists? @client_dir
           FileUtils.cp_r(custom_js_source, @client_dir)
           profile[:prefixes] << [ 'client', '../../client_tmp' ]

@@ -1,6 +1,6 @@
 gem 'sass', '=3.1.4'
 require 'sass'
-require 'toura_app/application.rb'
+require 'app'
 
 module Builder
   class CSSMaker
