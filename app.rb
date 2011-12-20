@@ -106,6 +106,9 @@ module TouraAPP
       Mustache.render(tmpl, settings)
     end
 
+    def self.data(data_object)
+      "toura.data.local = #{JSON.pretty_generate(data_object)};"
+    end
   end
 end
 
