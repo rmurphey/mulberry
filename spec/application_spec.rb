@@ -28,7 +28,7 @@ describe TouraAPP do
   describe TouraAPP::Templates do
     describe "#root" do
       it "should return the location of the toura_app templates directory" do
-        TouraAPP::Templates.root.should match TouraAPP::Directories.root
+        TouraAPP::Templates.root.should match File.join(TouraAPP::Directories.root, 'cli', 'templates', 'app')
       end
     end
 
