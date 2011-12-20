@@ -18,8 +18,6 @@ describe TouraAPP do
     it "should point to important directories" do
       root = TouraAPP::Directories.root
 
-      root.should match 'mulberry'
-
       [ :javascript, :page_templates, :data_fixtures, :build_root ].each do |d|
         dir = TouraAPP::Directories.send(d.to_s)
         dir.should match root
