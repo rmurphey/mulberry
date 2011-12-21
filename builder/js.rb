@@ -1,4 +1,6 @@
 require "builder/task_base.rb"
+require "cli/directories"
+require "cli/env"
 require "json"
 
 module Builder
