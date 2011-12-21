@@ -12,6 +12,12 @@ module Builder
 
     PROFILE_FILE = "toura.profile.js"
 
+    BUILDSCRIPTS_DIR = File.join(
+      TouraAPP::Directories.dojo,
+      "util",
+      "buildscripts"
+    )
+
     WEBKIT = {
       :dev =>             false,
       :MAP =>             false,
@@ -53,12 +59,6 @@ module Builder
 
       @required_layers = @target['build']['javascript']
 
-      @buildscripts_dir = File.join(
-        TouraAPP::Directories.dojo,
-        "util",
-        "buildscripts"
-      )
-
       @location = Mulberry::Directories.js_builds
       @client_dir = nil
 
@@ -75,25 +75,11 @@ module Builder
         return true
       end
 
-      pwd = Dir.pwd
+      dojo_build
+      unminify_haml
 
-      begin
-        Dir.chdir @buildscripts_dir
-
-        File.open(PROFILE_FILE, 'w') do |f|
-          f.write "dependencies = #{JSON.pretty_generate(base_profile)};"
-        end
-
-        dojo_build
-        unminify_haml
-
-        File.delete PROFILE_FILE
-      ensure
-        Dir.chdir pwd
-
-        if @client_dir
-          FileUtils.rm_rf @client_dir
-        end
+      if @client_dir
+        FileUtils.rm_rf @client_dir
       end
 
       true
@@ -193,8 +179,21 @@ module Builder
     end
 
     def dojo_build
-      puts "Building the JavaScript -- this can take a while, be patient!"
-      system %{./build.sh profileFile=#{PROFILE_FILE} releaseDir=#{@location} #{'> /dev/null' if !@build.settings[:verbose]}}
+      pwd = Dir.pwd
+      profile_file = File.join(BUILDSCRIPTS_DIR, PROFILE_FILE)
+
+      begin
+        File.open(profile_file, 'w') do |f|
+          f.write "dependencies = #{JSON.pretty_generate(base_profile)};"
+        end
+
+        Dir.chdir BUILDSCRIPTS_DIR
+        puts "Building the JavaScript -- this can take a while, be patient!"
+        system %{./build.sh profileFile=#{PROFILE_FILE} releaseDir=#{@location} #{'> /dev/null' if !@build.settings[:verbose]}}
+      ensure
+        FileUtils.rm_rf profile_file
+        Dir.chdir pwd
+      end
     end
   end
 end
