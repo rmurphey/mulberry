@@ -68,11 +68,7 @@ module Builder
     end
 
     private
-    def self.sed
-      is_mac = RUBY_PLATFORM =~ /darwin/
-      is_mac ? %{sed -i '' } : %{sed -i""}
-    end
-
+    
     def template_dir
       @template_dir
     end
@@ -97,7 +93,6 @@ module Builder
       end
 
       def build
-        sed = Builder::Project.sed
         dev = @task.target['development']
         project_settings = @build.build_helper.project_settings
 
@@ -133,27 +128,43 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         build_file = File.join(android_dir, 'build.xml')
 
         # android manifest
-        system %{#{sed} -e 's/{android.versionCode}/#{project_settings[:version]}/' \
-          -e 's/{android.versionName}/#{project_settings[:published_version]}/' \
-          -e 's/com.toura.www/#{app_id}/' \
-          #{manifest_file}
-        }
+
+        text = File.read(manifest_file)
+
+        text.gsub!("{android.versionCode}", project_settings[:version].to_s)
+        text.gsub!("com.toura.www", app_id)
+
+        File.open(manifest_file, "w") do |file| 
+          file.puts text
+        end
 
         # use the proper id in all java files
         java_src_files.each do |java_file|
-          system %{#{sed} -e 's/com.toura.www/#{app_id}/' #{java_file} }
+          text = File.read(java_file)
+          text.gsub!("com.toura.www", app_id)
+
+          File.open(java_file, "w") do |file| 
+            file.puts text
+          end
         end
 
         # use a "safe" version of the tour name in build.xml
-        system %{#{sed} -e 's/name=\"www\"/name=\"#{safe_name}\"/' \ #{build_file}}
+        text = File.read(build_file)
+        text.gsub!("name=\"www\"", "name=\"#{safe_name}\"")
 
-        # TODO: figure this out (???)
-        safe_display_name = Builder.escape_quotes_for_system_call(project_settings[:name])
+        File.open(build_file, "w") do |file| 
+          file.puts text
+        end
 
+        safe_display_name = "\"#{project_settings[:name]}\""
         # Set the display name
-        system %{#{sed} -e 's/www/#{safe_display_name}/' \
-          #{File.join(android_dir, 'res', 'values', 'strings.xml')}
-        }
+        strings_file = File.join(android_dir, 'res', 'values', 'strings.xml')
+        text = File.read(strings_file)
+        text.gsub!("www", safe_display_name)
+
+        File.open(strings_file, "w") do |file| 
+          file.puts text
+        end
 
         assets_dir = File.join(android_dir, 'assets')
 
@@ -163,7 +174,13 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         else
           flurry_api_key = 'NO_FLURRY_KEY_AVAILABLE' # must be non-blank value
         end
-        %x{#{sed} -e 's/${flurryApiKey}/#{flurry_api_key}/' #{touraconfig_file}}
+
+        text = File.read(touraconfig_file)
+        text.gsub!("${flurryApiKey}", flurry_api_key)
+
+        File.open(touraconfig_file, "w") do |file| 
+          file.puts text
+        end
 
         ua_config = project_settings[:urban_airship_config]
         if ua_config
@@ -179,13 +196,20 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
             credential_key_prefix = 'production'
             credentials = ua_config['production']
           end
-          %x{#{sed} -e 's/${#{credential_key_prefix}AppKey}/#{credentials['app_key']}/' \
-            -e 's/${#{credential_key_prefix}AppSecret}/#{credentials['app_secret']}/' \
-            -e 's/${debug}/#{debug}/' -e 's/${inProduction}/#{in_production}/' \
-            -e 's/${transport}/#{ua_config['android']['transport']}/' \
-            -e 's/${c2dmSender}/#{ua_config['android']['c2dm_sender']}/' \
-            #{airshipconfig_file}
-          }
+
+          text = File.read(airshipconfig_file)
+
+          [
+            ["${#{credential_key_prefix}AppKey}",     app_id],
+            ["${#{credential_key_prefix}AppSecret}",  credentials['app_secret']],
+            ["${debug}/#{debug}",                     "${inProduction}/#{in_production}"],
+            ["${transport}",                          ua_config['android']['transport']],
+            ["${c2dmSender}",                         ua_config['android']['c2dm_sender']]
+          ].each { |config| text.gsub!(config[0], config[1]) }
+
+          File.open(airshipconfig_file, "w") do |file| 
+            file.puts text
+          end
         end
 
         www = File.join(android_dir, 'assets', 'www')
@@ -230,7 +254,6 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
 
       def build
         dev = @task.target['development']
-        sed = Builder::Project.sed
         app_id = @build.build_helper.app_id(
           @target['device_os'],
           @target['device_type']
@@ -252,23 +275,34 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
           flurry_api_key = 'NO_FLURRY_KEY_AVAILABLE' # must be non-blank value
         end
         product_name = project_settings[:name] || "The App With No Name"
-        plist_result = %x{#{sed} -e 's/${PRODUCT_NAME}/#{product_name}/' \
-          -e 's/com.toura.app2/#{app_id}/' \
-          -e 's/${BUNDLE_VERSION}/#{project_settings[:published_version]}/' \
-          -e 's/${FlurryApiKey}/#{flurry_api_key}/' \
-          #{plist_file}
-        }
 
-        ua_config = project_settings[:urban_airship_config]
-        if ua_config
-          credentials = dev ? ua_config['development'] : ua_config['production']
-          plist_file = File.join(project_toura_dir, 'UrbanAirship.plist')
-          plist_result = %x{#{sed} -e 's/${UrbanAirshipKey}/#{credentials['app_key']}/' \
-            -e 's/${UrbanAirshipSecret}/#{credentials['app_secret']}/' \
-            #{plist_file}
-          }
+        text = File.read(plist_file)
+
+        [
+          ["${PRODUCT_NAME}",   "#{product_name}"],
+          ["com.toura.app2",    app_id],
+          ["${BUNDLE_VERSION}", project_settings[:published_version]],
+          ["${FlurryApiKey}",   flurry_api_key]
+        ].each { |config| text.gsub!(config[0], config[1]) }
+
+        File.open(plist_file, "w") do |file| 
+          file.puts text
         end
 
+        ua_config = project_settings[:urban_airship_config]
+
+        if ua_config
+          plist_file = File.join(project_toura_dir, 'UrbanAirship.plist')
+          text = File.read(plist_file)
+          credentials = dev ? ua_config['development'] : ua_config['production']
+
+          text.gsub!("${UrbanAirshipKey}", credentials['app_key'])
+          text.gsub!("${UrbanAirshipSecret}", credentials['app_secret'])
+
+          File.open(plist_file, "w") do |file| 
+            file.puts text
+          end
+        end
       end
     end
   end
