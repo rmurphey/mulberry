@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'fakefs/spec_helpers'
+require 'nokogiri'
 
 Dir[File.dirname(__FILE__) + '/../../../cli/bin/commands/*.rb'].each {|file| require file }
 
@@ -17,17 +18,8 @@ module Mulberry
 
       def setup_app(describe_block)
         describe_block.before :each do
-          name = 'command_test_app'
-
-          Dir.chdir Mulberry::Directories.root
-
-          # Just in case
-          FileUtils.rm_rf File.join(Mulberry::Directories.root, name)
-
-          Mulberry::App.scaffold(name, true)
-          @app = Mulberry::App.new name
+          @app = scaffold_app("test_app")
           @app.should_not be_nil
-
         end
 
         describe_block.after :each do
@@ -35,6 +27,16 @@ module Mulberry
 
           FileUtils.rm_rf File.join(Mulberry::Directories.root, @app.name)
         end
+      end
+
+      def scaffold_app(name)
+        Dir.chdir Mulberry::Directories.root
+
+        # Just in case
+        FileUtils.rm_rf File.join(Mulberry::Directories.root, name)
+
+        Mulberry::App.scaffold(name, true)
+        Mulberry::App.new name
       end
     end
   end
