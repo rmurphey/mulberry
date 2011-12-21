@@ -123,24 +123,6 @@ describe Builder::Build do
       File.exists?(File.join(js[:location], 'dojo', 'dojo.js')).should_not be_nil
       File.exists?(File.join(js[:location], 'toura', 'base.js')).should_not be_nil
 
-      b.cleanup
-    end
-
-    it "should ensure haml ends up unminified" do
-      b = Builder::Build.new(@config.merge({
-        :skip_js_build => false,
-        :target_config => {
-          'build_type' => 'fake',
-          'build' => {
-            'javascript' => [ 'dojo' ]
-          }
-        }
-      }))
-
-      b.build
-
-      js = b.completed_steps[:build][:javascript]
-
       haml = File.join(js[:location], 'vendor', 'haml.js')
       File.exists?(haml).should_not be_nil
       contents = File.read haml
