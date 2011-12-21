@@ -4,6 +4,7 @@ Mulberry takes content from your filesystem and turns it into a working mobile a
 on Android and iOS. It also provides a local development server for testing
 your app, and a framework for adding custom functionality and CSS.
 
+
 ## Support
 
 - [Documentation](https://github.com/toura/mulberry/wiki)
@@ -14,7 +15,7 @@ your app, and a framework for adding custom functionality and CSS.
 
 # Installation
 
-Windows, Linux, and OSX all have different installation methods. Please see the
+Windows, Ubuntu Linux, and OSX all have different installation methods. Please see the
 platform-specific README.md located in the `install/osx`, `install/windows`, etc. directories.
 
 
@@ -44,12 +45,13 @@ To build and run apps on iOS Simulator, you must:
 
 - Own an Intel Mac running OSX Snow Leopard or Lion
 
-- Download Xcode 4.1 or greater (preferably 4.2) from the
+- Download Xcode 4.2 or greater from the
    [Mac App Store](http://itunes.apple.com/us/app/xcode/id448457090?mt=12)
 
 
 In order to submit your apps to the Apple iOS App Store, you must
 [sign up with Apple's iOS Developer Program](http://developer.apple.com/programs/ios/)
+
 
 ## Android Development
 
