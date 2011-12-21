@@ -15,7 +15,7 @@ task :jshint do
 
   files = (
     Dir[File.join(TouraAPP::Directories.javascript, 'toura', '**', '*.js')] +
-    Dir[File.join(TouraAPP::Directories.app_specs, 'javascripts', '**', '*.js')]
+    Dir[File.join(TouraAPP::Directories.root, 'spec', 'app', '**', '*.js')]
   ).flatten
 
   files.each do |f|
