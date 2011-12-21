@@ -1,4 +1,4 @@
-require File.join(File.expand_path(File.dirname(__FILE__)), '../../builder')
+require "builder"
 
 describe Builder::Build do
   before(:each) do

@@ -1,10 +1,10 @@
-require File.join(File.expand_path(File.dirname(__FILE__)), '../../builder')
+require "builder"
 
 describe Builder::CSSMaker do
   before :each do
     @settings = {
       :app_dir => File.join(File.dirname(__FILE__), '..', 'fixtures', 'css', 'javascript'),
-      :theme_dir => 'spec/fixtures/css/theme'
+      :theme_dir => File.join('spec', 'fixtures', 'css', 'theme')
     }
   end
 
