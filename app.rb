@@ -26,7 +26,7 @@ module TouraAPP
     end
 
     def self.page_templates
-      File.join(self.app, 'page-templates')
+      File.join(self.root, 'base_apps', 'toura', 'pagedefs')
     end
 
     def self.data_fixtures
