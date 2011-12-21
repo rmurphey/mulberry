@@ -100,20 +100,6 @@ describe Builder::Build do
   end
 
   describe "build step" do
-    it "should do nothing if no build tasks are specified" do
-      b = Builder::Build.new(@config.merge({
-        :target_config => {
-          'build_type' => 'fake'
-        }
-      }))
-
-      b.build
-
-      b.completed_steps[:build].keys.length.should == 0
-
-      b.cleanup
-    end
-
     it "should kick off js build if javascript layers are specified" do
       b = Builder::Build.new(@config.merge({
         :skip_js_build => false,
