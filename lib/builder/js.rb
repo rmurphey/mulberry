@@ -52,8 +52,7 @@ module Builder
       @required_layers = @target['build']['javascript']
 
       @buildscripts_dir = File.join(
-        TouraAPP::Directories.javascript,
-        "dojo-release-#{TouraAPP.dojo_version}-src",
+        TouraAPP::Directories.dojo,
         "util",
         "buildscripts"
       )
@@ -108,9 +107,8 @@ module Builder
 
     private
     def get_dojo
-      ver = TouraAPP.dojo_version
-      dojo = "http://download.dojotoolkit.org/release-#{ver}/dojo-release-#{ver}-src.tar.gz"
-      dest = File.join(TouraAPP::Directories.javascript, "dojo-release-#{ver}-src")
+      dojo = "http://download.dojotoolkit.org/release-#{TouraAPP.dojo_version}/dojo-release-#{TouraAPP.dojo_version}-src.tar.gz"
+      dest = TouraAPP::Directories.dojo
 
       unless File.exists?(dest)
         Dir.chdir TouraAPP::Directories.javascript
