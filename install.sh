@@ -8,7 +8,7 @@ case "$(uname)" in
       ;;
 
     Linux|*)
-      . install/linux/install.sh
+      . install/ubuntu/install.sh
       ;;
 esac
 
