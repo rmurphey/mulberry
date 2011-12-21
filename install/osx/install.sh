@@ -3,7 +3,6 @@
 PACKAGES='git chromedriver'
 
 RVMFILE=$(which rvm)
-RUBYFILE=$(which ruby)
 BREWFILE=$(which brew)
 GEMFILE=$(which gem)
 JAVAFILE=$(which java)
@@ -31,24 +30,6 @@ else
 fi
 
 
-if [ "$RUBYFILE" ]
-then
-	echo "Ruby is installed..."
-else
-	echo "Installing Ruby via RVM..."
-	rvm install ree
-fi
-
-
-if [ "$BREWFILE" ]
-then
-	echo "Homebrew is installed..."
-else
-	echo "Installing Homebrew..."
-	ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
-fi
-
-
 if [ "$GEMFILE" ]
 then
     echo "Rubygems is installed..."
@@ -63,6 +44,39 @@ else
 	cd ..
 	rm -rf rubygems*
 	cd ..
+fi
+
+
+RVMRUBIES=$(rvm list strings)
+
+if [[ $RVMRUBIES =~ '1.9.3' ]]
+then
+	echo "Ruby 1.9.3 is installed..."
+else
+	echo "Installing Ruby 1.9.3 via RVM..."
+	rvm install 1.9.3
+fi
+
+RVMGEMSETS=$(rvm gemset list strings)
+
+if [[ $RVMGEMSETS =~ 'mulberry' ]]
+then
+	echo "Mulberry gemset exists..."
+else
+	echo "Creating Mulberry gemset..."
+	rvm use 1.9.3
+	rvm gemset create 'mulberry'
+fi
+
+rvm use 1.9.3@mulberry
+
+
+if [ "$BREWFILE" ]
+then
+	echo "Homebrew is installed..."
+else
+	echo "Installing Homebrew..."
+	ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
 fi
 
 

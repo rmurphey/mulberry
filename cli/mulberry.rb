@@ -7,7 +7,6 @@ require 'yaml'
 require 'json'
 require 'fileutils'
 require 'pathname'
-require 'rbconfig'
 require 'deep_merge'
 require 'socket'
 require 'timeout'
@@ -63,21 +62,6 @@ module Mulberry
   def self.dir_is_app?(dir)
     dir ||= ''
     File.exists?(dir) && File.exists?(File.join(dir, 'config.yml'))
-  end
-
-  class Env
-    def self.host_os
-      case Config::CONFIG['host_os']
-        when /mswin|windows/i
-          :windows
-        when /linux/i
-          :linux
-        when /darwin/i
-          :macos
-        else
-          :unknown
-      end
-    end
   end
 
   class Directories
