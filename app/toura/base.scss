@@ -14,11 +14,10 @@
 @import 'containers/layout-box';
 @import 'containers/Region/region';
 @import 'containers/Screen/screen';
-@import 'containers/Pages/pages';
+@import 'containers/Viewport/viewport';
+@import 'containers/Page/page';
 
 @import 'style/splash';
-
-@import 'page';
 
 @import 'components/base';
 

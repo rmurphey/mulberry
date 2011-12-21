@@ -1,14 +1,14 @@
 dojo.provide('toura.app.PageFactory');
 
 dojo.require('toura.app.Config');
-dojo.require('toura.Page');
+dojo.require('toura.containers.Page');
 
 dojo.declare('toura.app.PageFactory', null, {
-  constructor : function(device) {
+  constructor: function(device) {
     this.device = device;
   },
 
-  createPage : function(obj) {
+  createPage: function(obj) {
     /*
      * createPage receives an object that it will use to create a page. It
      * looks at the object for a pageController property, and uses that
@@ -33,10 +33,12 @@ dojo.declare('toura.app.PageFactory', null, {
      * complete.
      */
 
-    if (!obj) { throw new Error('toura.app.PageFactory::createPage requires an object'); }
+    if (!obj) {
+      throw new Error('toura.app.PageFactory::createPage requires an object');
+    }
 
     var controllerName = obj.pageController || 'default',
-        config;
+    config;
 
     // allow setting different page controllers per device
     if (obj.pageController && dojo.isObject(obj.pageController)) {
@@ -49,16 +51,16 @@ dojo.declare('toura.app.PageFactory', null, {
 
     if (!config) {
       console.error('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
-      throw('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
+      throw ('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
     }
 
     toura.log('Creating ' + controllerName);
 
-    return new toura.Page({
-      baseObj : obj,
-      device : this.device,
-      templateConfig : config,
-      templateName : controllerName
+    return new toura.containers.Page({
+      baseObj: obj,
+      device: this.device,
+      templateConfig: config,
+      templateName: controllerName
     });
   }
 });
@@ -66,3 +68,4 @@ dojo.declare('toura.app.PageFactory', null, {
 dojo.subscribe('/app/ready', function() {
   toura.app.PageFactory = new toura.app.PageFactory(toura.app.Config.get('device'));
 });
+
