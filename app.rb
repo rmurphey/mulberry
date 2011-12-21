@@ -40,6 +40,10 @@ module TouraAPP
     def self.build_root
       File.join(self.app, 'tmp', 'build')
     end
+
+    def self.dojo
+      File.join(self.javascript, "dojo-release-#{TouraAPP.dojo_version}-src")
+    end
   end
 
   class Templates
