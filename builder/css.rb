@@ -1,5 +1,5 @@
-require "lib/builder/task_base"
-require "lib/builder/css_maker"
+require "builder/task_base"
+require "builder/css_maker"
 
 module Builder
   class CSS < Builder::TaskBase

@@ -1,4 +1,4 @@
-require 'lib/builder'
+require 'builder'
 require 'lib/legacy/filesystem_build_helper'
 
 namespace :builder do

@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra/base'
 
 require 'mulberry'
-require 'lib/builder/css_maker'
+require 'builder/css_maker'
 require 'app'
 
 module Mulberry

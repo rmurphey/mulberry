@@ -34,7 +34,7 @@ module TouraAPP
     end
 
     def self.profiles
-      File.join(self.root, 'lib', 'builder', 'profiles')
+      File.join(self.root, 'builder', 'profiles')
     end
 
     def self.build_root

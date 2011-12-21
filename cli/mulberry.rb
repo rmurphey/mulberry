@@ -16,7 +16,7 @@ require 'cli/data'
 require 'cli/server'
 require 'cli/build_helper'
 require 'cli/code_creator'
-require 'lib/builder'
+require 'builder'
 
 module Mulberry
   class ConfigError < RuntimeError

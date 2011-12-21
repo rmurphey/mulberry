@@ -1,4 +1,4 @@
-require "lib/builder/task_base"
+require "builder/task_base"
 
 module Builder
   class Bundle < Builder::TaskBase
@@ -244,7 +244,7 @@ module Builder
             @location,
             (@target['device_type'] == 'phone' ? 'Toura.xcodeproj' : 'Toura-iPad.xcodeproj')
           ).gsub(/[']/, '\\\\\'').gsub(/\s/,'\ ') # escape single quotes & spaces before sending to `open`
-          
+
           system %{open #{xcodeproj}} unless @build.quiet
         end
       else

@@ -1,4 +1,3 @@
-
 module Builder
   class Data < Builder::TaskBase
     DATA_FILENAME = 'tour.js'

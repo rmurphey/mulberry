@@ -1,4 +1,4 @@
-require "lib/builder/task_base"
+require "builder/task_base"
 
 module Builder
   class LoadScreens < Builder::TaskBase

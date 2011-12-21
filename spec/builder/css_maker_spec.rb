@@ -1,4 +1,4 @@
-require File.join(File.expand_path(File.dirname(__FILE__)), '../../lib/builder')
+require File.join(File.expand_path(File.dirname(__FILE__)), '../../builder')
 
 describe Builder::CSSMaker do
   before :each do

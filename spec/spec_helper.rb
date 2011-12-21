@@ -2,7 +2,7 @@ $: << File.expand_path('../', __FILE__)
 $: << File.expand_path('../..', __FILE__)
 
 require 'cli/mulberry'
-require 'lib/builder'
+require 'builder'
 require 'factory_girl'
 
 Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}

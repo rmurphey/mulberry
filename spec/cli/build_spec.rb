@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-require 'lib/builder'
+require 'builder'
 require 'cli/mulberry'
 require 'cli/build_helper'
 

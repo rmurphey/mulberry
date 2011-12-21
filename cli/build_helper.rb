@@ -1,5 +1,5 @@
-require 'lib/builder/build_helper'
-require 'lib/builder/css_maker'
+require 'builder/build_helper'
+require 'builder/css_maker'
 
 module Mulberry
   class BuildHelper

@@ -1,4 +1,4 @@
-require "lib/builder/task_base"
+require "builder/task_base"
 
 module Builder
   class Project < Builder::TaskBase
@@ -68,7 +68,7 @@ module Builder
     end
 
     private
-    
+
     def template_dir
       @template_dir
     end
@@ -134,7 +134,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         text.gsub!("{android.versionCode}", project_settings[:version].to_s)
         text.gsub!("com.toura.www", app_id)
 
-        File.open(manifest_file, "w") do |file| 
+        File.open(manifest_file, "w") do |file|
           file.puts text
         end
 
@@ -143,7 +143,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
           text = File.read(java_file)
           text.gsub!("com.toura.www", app_id)
 
-          File.open(java_file, "w") do |file| 
+          File.open(java_file, "w") do |file|
             file.puts text
           end
         end
@@ -152,7 +152,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         text = File.read(build_file)
         text.gsub!("name=\"www\"", "name=\"#{safe_name}\"")
 
-        File.open(build_file, "w") do |file| 
+        File.open(build_file, "w") do |file|
           file.puts text
         end
 
@@ -162,7 +162,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         text = File.read(strings_file)
         text.gsub!("www", safe_display_name)
 
-        File.open(strings_file, "w") do |file| 
+        File.open(strings_file, "w") do |file|
           file.puts text
         end
 
@@ -178,7 +178,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         text = File.read(touraconfig_file)
         text.gsub!("${flurryApiKey}", flurry_api_key)
 
-        File.open(touraconfig_file, "w") do |file| 
+        File.open(touraconfig_file, "w") do |file|
           file.puts text
         end
 
@@ -207,7 +207,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
             ["${c2dmSender}",                         ua_config['android']['c2dm_sender']]
           ].each { |config| text.gsub!(config[0], config[1]) }
 
-          File.open(airshipconfig_file, "w") do |file| 
+          File.open(airshipconfig_file, "w") do |file|
             file.puts text
           end
         end
@@ -285,7 +285,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
           ["${FlurryApiKey}",   flurry_api_key]
         ].each { |config| text.gsub!(config[0], config[1]) }
 
-        File.open(plist_file, "w") do |file| 
+        File.open(plist_file, "w") do |file|
           file.puts text
         end
 
@@ -299,7 +299,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
           text.gsub!("${UrbanAirshipKey}", credentials['app_key'])
           text.gsub!("${UrbanAirshipSecret}", credentials['app_secret'])
 
-          File.open(plist_file, "w") do |file| 
+          File.open(plist_file, "w") do |file|
             file.puts text
           end
         end
