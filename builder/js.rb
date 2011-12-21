@@ -89,11 +89,11 @@ module Builder
 
         File.delete PROFILE_FILE
       ensure
-        if @client_dir && (File.exists? @client_dir)
+        Dir.chdir pwd
+
+        if @client_dir
           FileUtils.rm_rf @client_dir
         end
-
-        Dir.chdir pwd
       end
 
       true
@@ -102,7 +102,6 @@ module Builder
     def report
       {
         :build_contents   => File.join(@location, @build_type.to_s, 'dojo', 'build.txt'),
-        :profile          => base_profile,
         :location         => File.join(@location, @build_type)
       }
     end
@@ -162,6 +161,7 @@ module Builder
 
       if @build.build_helper.respond_to? 'custom_js_source'
         custom_js_source = @build.build_helper.custom_js_source
+
         if custom_js_source
           @client_dir = File.join(TouraAPP::Directories.javascript, 'client_tmp')
           FileUtils.rm_rf @client_dir if File.exists? @client_dir
