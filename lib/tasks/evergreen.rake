@@ -1,3 +1,4 @@
+require 'mulberry'
 require 'evergreen'
 
 namespace :evergreen  do
@@ -12,6 +13,10 @@ namespace :evergreen  do
   end
 
   task :generate_stuff do
+    if !File.exists?(TouraAPP::Directories.dojo)
+      Rake::Task['builder:app_dev'].execute
+      raise "Dojo downloaded and built; you'll need to re-run the rake task for it to work. Sorry."
+    end
     File.open(File.join(TouraAPP::Directories.javascript, 'toura', 'app', 'TouraConfig.js'), 'w') do |f|
       f.write TouraAPP::Generators.config('ios', 'phone')
     end

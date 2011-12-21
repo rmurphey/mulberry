@@ -1,6 +1,6 @@
 require 'sinatra/base'
-require 'lib/builder/css_maker.rb'
-require 'toura_app/application'
+require 'builder/css_maker'
+require 'app'
 
 # WARNING: This file is for Toura internal use and will be removed.
 

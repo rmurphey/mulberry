@@ -17,34 +17,32 @@ module TouraAPP
       @root ||= File.expand_path(File.dirname(__FILE__))
     end
 
+    def self.app
+      File.join(@root, 'app')
+    end
+
     def self.javascript
-      File.join(self.root, 'toura_app', 'javascript')
+      self.app
     end
 
     def self.page_templates
-      File.join(self.javascript, 'page-templates')
+      File.join(self.root, 'base_apps', 'toura', 'pagedefs')
     end
 
     def self.data_fixtures
-      File.join(self.javascript, 'data-fixtures')
+      File.join(self.app, 'data-fixtures')
     end
 
     def self.profiles
-      File.join(self.root, 'lib', 'builder', 'profiles')
+      File.join(self.root, 'builder', 'profiles')
     end
 
     def self.build_root
-      File.join(self.root, 'toura_app', 'tmp', 'build')
+      File.join(self.app, 'tmp', 'build')
     end
 
-    def self.app_specs
-      File.join(self.root, 'toura_app', 'spec')
-    end
-
-    # TODO: remove this?
-    def self.client_customizations(tour_id=nil)
-      tour_id = nil if tour_id.respond_to?(:empty?) ? tour_id.empty? : !tour_id
-      File.join(self.javascript, 'client_customizations', (tour_id ? "tour-#{tour_id}" : ''))
+    def self.dojo
+      File.join(self.javascript, "dojo-release-#{TouraAPP.dojo_version}-src")
     end
   end
 
@@ -63,16 +61,8 @@ module TouraAPP
   end
 
   class Generators
-    def self.page_templates(app_templates = nil)
-      base_templates = {}
-      page_templates_dir = TouraAPP::Directories.page_templates
-
-      Dir.glob(File.join(page_templates_dir, '*.yml')).each do |t|
-        base_templates.merge! YAML.load_file(t)
-      end
-
-      base_templates.merge!(app_templates) if app_templates
-      base_templates
+    def self.page_templates(templates)
+      "toura.templates = #{JSON.pretty_generate(templates)};"
     end
 
     def self.index_html(params = {})

@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra/base'
 
 require 'mulberry'
-require 'lib/builder/css_maker'
+require 'builder/css_maker'
 require 'app'
 
 module Mulberry
@@ -34,7 +34,7 @@ module Mulberry
     end
 
     def self.app_file_path(*args)
-      File.join(TouraAPP::Directories.root, 'toura_app', *args)
+      File.join(TouraAPP::Directories.app, *args)
     end
 
     def app_file_path(*args)
@@ -49,7 +49,6 @@ module Mulberry
 
     set :raise_errors => true
     set :root, app_file_path('.')
-    set :public_folder, app_file_path('www')
     set :views, TouraAPP::Templates.root
     set :host, 'localhost'
 
@@ -151,7 +150,6 @@ module Mulberry
       content_type 'text/javascript'
 
       dev_config = app_file_path(
-        'javascript',
         'toura',
         'app',
         'DevConfig.js'
@@ -176,7 +174,6 @@ module Mulberry
     get '/:os/:type/javascript/*' do
       content_type 'text/javascript'
       send_file app_file_path(
-        "javascript",
         params[:splat].first
       )
     end
@@ -192,7 +189,7 @@ module Mulberry
         when 'tour.js'
           TouraAPP::Generators.data(@helper.data)
         when 'templates.js'
-          "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates @helper.templates)};"
+          TouraAPP::Generators.page_templates(@helper.templates)
         end
       rescue RuntimeError => e
         puts "ERROR: #{e.to_s}"

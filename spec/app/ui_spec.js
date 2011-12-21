@@ -20,14 +20,14 @@ describe("user interface controller", function() {
   });
 
   it("should set up the main container", function() {
-    expect(dojo.query(".page-container").length).toBe(1);
+    expect(dojo.query(".viewport").length).toBe(1);
   });
 
   describe("page population", function() {
     it("should pass page content to the page container", function() {
-      spyOn(ui.containers.pages, "_setContentAttr");
+      spyOn(ui.containers.viewport, "_setContentAttr");
       ui.showPage("fake page");
-      expect(ui.containers.pages._setContentAttr).toHaveBeenCalledWith("fake page");
+      expect(ui.containers.viewport._setContentAttr).toHaveBeenCalledWith("fake page");
     });
 
     it("should throw an error when attempting to show a page without providing a page type", function() {
@@ -43,9 +43,9 @@ describe("user interface controller", function() {
   });
 
   it("should allow setting the nav direction", function() {
-    expect(ui.containers.pages.direction).toBe('next');
+    expect(ui.containers.viewport.direction).toBe('next');
     ui.set('navDirection', 'back');
-    expect(ui.containers.pages.direction).toBe('prev');
+    expect(ui.containers.viewport.direction).toBe('prev');
   });
 
   it("should allow setting the font size", function() {
@@ -77,7 +77,7 @@ describe("user interface controller", function() {
       toura.features.siblingNav = true;
       ui = new toura.app.UI(devices[0]);
 
-      spyOn(ui.containers.pages, 'set');
+      spyOn(ui.containers.viewport, 'set');
       var spy = spyOn(ui.siblingNav, 'set');
 
       ui.showPage('foo', 'bar');

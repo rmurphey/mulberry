@@ -1,0 +1,56 @@
+.viewport {
+  height: 100%;
+  width: 100%;
+
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+
+  -webkit-transform: translate3d(0,0,0);
+  position: absolute;
+
+  -webkit-animation-duration: 350ms;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-out;
+
+  .page {
+    -webkit-transform: translate3d(0,0,0);
+  }
+
+  &.pre-slide {
+    width: 200%;
+  }
+
+  &.slide-left {
+    -webkit-animation-name: slide-left;
+  }
+
+  &.slide-right {
+    -webkit-animation-name: slide-right;
+  }
+
+  .sibling-nav-visible & {
+    -webkit-box-sizing: border-box;
+    border-bottom: 18px solid transparent;
+  }
+}
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translate3d(0,0,0);
+  }
+  100% {
+    -webkit-transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0,0,0);
+  }
+}
+
+
+

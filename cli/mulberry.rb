@@ -15,7 +15,7 @@ require 'cli/data'
 require 'cli/server'
 require 'cli/build_helper'
 require 'cli/code_creator'
-require 'lib/builder'
+require 'builder'
 
 module Mulberry
   class ConfigError < RuntimeError
@@ -119,7 +119,7 @@ module Mulberry
 
       raise ConfigError, "You must provide a name for your app" unless @config['name']
 
-      @name             = @config['name'].gsub(/'/, "\\\\'")
+      @name             = @config['name']
       @theme            = @config['theme']['name']
 
       @helper           = Mulberry::BuildHelper.new(self)
