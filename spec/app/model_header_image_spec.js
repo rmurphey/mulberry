@@ -5,8 +5,7 @@ describe("header image model", function() {
     dojo.require('toura.models.HeaderImage');
 
     api = dataAPI;
-    imageObj = api.getById('node-grid').phoneHeaderImage;
-    console.log(imageObj);
+    imageObj = api.getById('node-grid').phoneHeaderImage[0];
   });
 
   it("should create a header image model", function() {
