@@ -6,17 +6,17 @@ describe("featured image model", function() {
 
     api = dataAPI;
 
-    imageObj = api.getById('image-540');
+    imageObj = api.getModel('node-grid_child_one').featuredImage;
 
     newImageObj = {
       "image": {
-        "_reference": "image-540"
+        "_reference": "image-cooper_beach"
       }
     };
   });
 
   it("should create a featured image model from old style data", function() {
-    var model = new toura.models.FeaturedImage(api._store, imageObj);
+    var model = imageObj;
     expect(model.large).toBeDefined();
     expect(model.small).toBeDefined();
     expect(model.large.url).toBeDefined();
