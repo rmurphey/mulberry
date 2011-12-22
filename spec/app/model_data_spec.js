@@ -2,7 +2,7 @@ describe("data asset model", function() {
   var m, M, asset, node;
 
   beforeEach(function() {
-    node = dataAPI.getModel('text-asset-single_image_gallery');
+    node = dataAPI.getModel('node-grid');
     console.log(node);
     asset = node.data[0];
   });
@@ -12,9 +12,9 @@ describe("data asset model", function() {
   });
 
   it("should properly populate the properties", function() {
-    expect(asset.id).toBe('data-asset-1');
-    expect(asset.name).toBe('foo data asset');
-    expect(asset.type).toBe('FooDataAssetType');
+    expect(asset.id).toBe('data-asset-test');
+    expect(asset.name).toBe('test');
+    expect(asset.type).toBe(null);
     expect(asset.json.foo).toBe('bar');
   });
 });
