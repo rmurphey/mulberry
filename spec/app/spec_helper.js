@@ -59,16 +59,27 @@ beforeEach(function() {
   dataAPI = toura.app.Data = dataAPI || new toura.app.Data(toura.data.local.items);
 
   nodeForController = function(c, cb, q) {
-    var node;
+    var node, map;
 
-    dataAPI._store.fetch({
-      query : dojo.mixin({
-        'pageController' : c
-      }, q || {}),
-      onComplete : function(items) {
-        node = cb ? cb(items) : dataAPI.getModel(items[0].id[0]);
-      }
-    });
+    if (c.match(/Images1|Videos1|Audios1|GoogleMap1/)) {
+      map = {
+        'Images1'     : 'node-image_gallery',
+        'Videos1'     : 'node-videos', 
+        'Audios1'     : 'node-audio_list',
+        'GoogleMap1'  : 'node-location_map' 
+      };
+      
+      node = dataAPI.getModel(map[c]);
+    } else {
+      dataAPI._store.fetch({
+        query : dojo.mixin({
+          'pageController' : c
+        }, q || {}),
+        onComplete : function(items) {
+          node = cb ? cb(items) : dataAPI.getModel(items[0].id[0]);
+        }
+      });
+    }
 
     return node;
   };
@@ -85,12 +96,6 @@ beforeEach(function() {
     return dojo.some(widgets, function(widget) {
       return widget.match(widgetName);
     });
-  };
-
-  getChildById = function(node, id) {
-    return node.children.filter(function(child){ 
-      return child.id[0] === id;
-    })[0];
   };
 
   getRootSelector = function(instance) {
