@@ -2,6 +2,7 @@ require "builder/task_base.rb"
 require "cli/directories"
 require "cli/env"
 require "json"
+require "pathname"
 
 module Builder
   class JavaScript < Builder::TaskBase
@@ -9,6 +10,10 @@ module Builder
       TouraAPP::Directories.profiles,
       "copyright.txt"
     )
+    require 'ruby-debug' ; debugger
+
+    # Hacktastic because dojo build on Windows doesn't support absolute paths well
+    COPYRIGHT_FILE = File.join( "..", "..", "..", "..", "profiles", "copyright.txt")
 
     PROFILE_FILE = "toura.profile.js"
 
@@ -28,7 +33,7 @@ module Builder
 
     LAYERS = {
       :dojo => {
-        :name =>            "dojo.js",
+        :name => "dojo.js",
         :dependencies =>    [
           "dijit._Widget",
           "dijit._Templated",
@@ -189,7 +194,17 @@ module Builder
 
         Dir.chdir BUILDSCRIPTS_DIR
         puts "Building the JavaScript -- this can take a while, be patient!"
-        system %{./build.sh profileFile=#{PROFILE_FILE} releaseDir=#{@location} #{'> /dev/null' if !@build.settings[:verbose]}}
+
+        if TouraAPP::Env.host_os == :windows
+          build_script = 'build.bat'
+          location     = Pathname.new(@location).relative_path_from(Pathname.new(Dir.pwd)).to_s
+        else
+          build_script = 'build.sh'
+          location     = @location
+        end
+
+        system %{./#{build_script} profileFile=#{PROFILE_FILE} releaseDir=#{location} #{'> /dev/null' if !@build.settings[:verbose]}}
+
       ensure
         FileUtils.rm_rf profile_file
         Dir.chdir pwd
