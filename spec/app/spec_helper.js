@@ -6,6 +6,7 @@ require('/toura/_Logging.js');
 var dataAPI,
     nodeForController,
     isWidgetRegistered,
+    getChildById,
     getRootSelector,
     getEventHandlers,
     pageControllerMocks,
@@ -84,6 +85,12 @@ beforeEach(function() {
     return dojo.some(widgets, function(widget) {
       return widget.match(widgetName);
     });
+  };
+
+  getChildById = function(node, id) {
+    return node.children.filter(function(child){ 
+      return child.id[0] === id;
+    })[0];
   };
 
   getRootSelector = function(instance) {

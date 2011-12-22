@@ -2,7 +2,7 @@ describe("data asset model", function() {
   var m, M, asset, node;
 
   beforeEach(function() {
-    node = dataAPI.getModel('node-365');
+    node = dataAPI.getModel('text-asset-single_image_gallery');
     console.log(node);
     asset = node.data[0];
   });
