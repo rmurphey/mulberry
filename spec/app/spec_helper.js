@@ -61,12 +61,15 @@ beforeEach(function() {
   nodeForController = function(c, cb, q) {
     var node, map;
 
-    if (c.match(/Images1|Videos1|Audios1|GoogleMap1/)) {
+    if (c.match(/Images1|Videos1|Audios1|GoogleMap1|FeedList|LocationList|Default/)) {
       map = {
-        'Images1'     : 'node-image_gallery',
-        'Videos1'     : 'node-videos', 
-        'Audios1'     : 'node-audio_list',
-        'GoogleMap1'  : 'node-location_map' 
+        'Images1'       : 'node-image_gallery',
+        'Videos1'       : 'node-videos', 
+        'Audios1'       : 'node-audio_list',
+        'GoogleMap1'    : 'node-location_map',
+        'FeedList'      : 'node-feed_list',
+        'LocationList'  : 'node-locations',
+        'Default'       : 'node-about'
       };
       
       node = dataAPI.getModel(map[c]);

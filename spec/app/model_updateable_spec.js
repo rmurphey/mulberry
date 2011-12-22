@@ -38,6 +38,8 @@ describe("Updateable", function() {
     dojo.xhrGet = dojo.io.script.get = mockjax;
     appMajorVersion = toura.app.Config.get('appVersion').split('.')[0] * 1;
 
+    toura.data.local.version = 1;
+
     newerRemoteData = dojo.mixin({}, toura.data.local);
     newerRemoteData.appVersion = appMajorVersion + ".0";
     newerRemoteData.version = toura.data.local.version + 1;
