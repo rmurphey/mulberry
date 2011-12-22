@@ -117,7 +117,6 @@ describe Builder::Build do
 
       js.should_not be_nil
       js[:location].should_not be_nil
-      js[:profile].should_not be_nil
       js[:build_contents].should_not be_nil
 
       File.exists?(File.join(js[:location], 'dojo', 'dojo.js')).should_not be_nil
