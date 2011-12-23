@@ -32,7 +32,6 @@ describe("column header image component", function() {
 
       c = C({ device : d, node : node });
       c.startup();
-      console.log(c);
 
       expect(
         dojo.style(c.imageNode, 'width')
