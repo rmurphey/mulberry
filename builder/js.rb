@@ -10,10 +10,6 @@ module Builder
       TouraAPP::Directories.profiles,
       "copyright.txt"
     )
-    require 'ruby-debug' ; debugger
-
-    # Hacktastic because dojo build on Windows doesn't support absolute paths well
-    COPYRIGHT_FILE = File.join( "..", "..", "..", "..", "profiles", "copyright.txt")
 
     PROFILE_FILE = "toura.profile.js"
 
@@ -187,6 +183,12 @@ module Builder
       pwd = Dir.pwd
       profile_file = File.join(BUILDSCRIPTS_DIR, PROFILE_FILE)
 
+      # require 'ruby-debug' ; debugger
+
+      # Hacktastic because dojo build on Windows doesn't support absolute paths well
+      # COPYRIGHT_FILE = File.join( "..", "..", "..", "..", "profiles", "copyright.txt")
+
+
       begin
         File.open(profile_file, 'w') do |f|
           f.write "dependencies = #{JSON.pretty_generate(base_profile)};"
@@ -195,7 +197,7 @@ module Builder
         Dir.chdir BUILDSCRIPTS_DIR
         puts "Building the JavaScript -- this can take a while, be patient!"
 
-        if TouraAPP::Env.host_os == :windows
+        if Mulberry::Env.host_os == :windows
           build_script = 'build.bat'
           location     = Pathname.new(@location).relative_path_from(Pathname.new(Dir.pwd)).to_s
         else
