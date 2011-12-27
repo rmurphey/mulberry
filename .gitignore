@@ -14,7 +14,7 @@ app/data-fixtures/TouraConfig.js.*
 log/*.log
 tmp
 chromedriver.log
-app/data-fixtures/tour.js
+app/tour.js
 lib/builder/project_templates/iOS/Toura/Toura-Info.plist
 lib/builder/project_templates/iOS/Toura/UrbanAirship.plist
 lib/builder/project_templates/iOS/build/*

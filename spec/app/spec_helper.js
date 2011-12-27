@@ -1,6 +1,6 @@
 require('/dojo-release-1.6.0-src/dojo/dojo.js');
 require('/vendor/haml.js');
-require('/data-fixtures/tour.js');
+require('/tour.js');
 require('/toura/_Logging.js');
 
 var dataAPI,
