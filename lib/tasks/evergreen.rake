@@ -14,9 +14,11 @@ namespace :evergreen  do
 
   task :generate_stuff do
     # generate a tour.js from kitchensink
-    Mulberry::App.new(File.join(TouraAPP::Directories.root, "demos", "kitchensink")).www_build
-
-    FileUtils.cp(File.join(TouraAPP::Directories.root, "demos", "kitchensink", "builds", "web-phone", "www", "data", "tour.js"), File.join(TouraAPP::Directories.root, "app"), { :preserve => false })
+    app = Mulberry::App.new(File.join(TouraAPP::Directories.root, "demos", "kitchensink"))
+    
+    File.open(File.join(TouraAPP::Directories.root, "app", "fixtures", "tour.js"), "w") do |f|
+      f.write TouraAPP::Generators.data(Mulberry::Data.new(app).generate)
+    end
     
     if !File.exists?(TouraAPP::Directories.dojo)
       Rake::Task['builder:app_dev'].execute
