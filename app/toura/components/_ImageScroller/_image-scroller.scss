@@ -4,6 +4,10 @@
   ol.indicator {
     line-height: 0;
     overflow: visible;
+
+    body:not(.feature-imageScrollerIndicator) & {
+      display: none;
+    }
   }
 
   .wrapper {
