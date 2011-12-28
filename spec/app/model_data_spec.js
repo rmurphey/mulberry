@@ -3,7 +3,6 @@ describe("data asset model", function() {
 
   beforeEach(function() {
     node = dataAPI.getModel('node-grid');
-    console.log(node);
     asset = node.data[0];
   });
 

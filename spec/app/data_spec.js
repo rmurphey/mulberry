@@ -162,7 +162,6 @@ describe("data API", function() {
     describe("determine streamability of assets", function() {
       it("should use a remote URL if it is not in the manifest", function() {
         var image = node.images[3];
-        console.log(node);
         expect(image.original.url).toMatch(/^http/);
         expect(image.featured.url).toMatch(/^http/);
         expect(image.gallery.url).toMatch(/^http/);
