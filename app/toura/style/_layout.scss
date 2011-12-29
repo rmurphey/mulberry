@@ -1,15 +1,17 @@
-.layout-box {
+@mixin hidable {
+  &.hidden {
+    display: none !important;
+  }
+}
+
+@mixin flex-container {
   display: -webkit-box;
   background-position: center center;
   -webkit-background-size: cover;
 
-  &.hidden {
-    display: none !important;
-  }
 
   &.row-container,
   &.component-container {
     -webkit-box-orient: vertical;
   }
-
 }

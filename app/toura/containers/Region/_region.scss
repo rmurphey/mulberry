@@ -1,5 +1,7 @@
 .region {
-  @extend .layout-box;
+  @include flex-container;
+  @include hidable;
+
   overflow: visible;
 
   &.size-fixed {

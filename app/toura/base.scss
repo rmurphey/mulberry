@@ -2,6 +2,7 @@
 @import 'style/debug-tools';
 
 @import 'style/helpers';
+@import 'style/layout';
 
 // reset styles before anything else
 @import 'style/reset';
@@ -11,7 +12,6 @@
 @import 'ui/background-image';
 @import 'ui/scrollable';
 
-@import 'containers/layout-box';
 @import 'containers/Region/region';
 @import 'containers/Screen/screen';
 @import 'containers/Viewport/viewport';
