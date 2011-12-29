@@ -2,7 +2,7 @@ require "builder"
 
 describe Builder::JavaScript do
 
-  describe "#dojo_build" do
+  describe "#base_profile" do
     before(:each) do
       @b = Builder::Build.new(
         :skip_js_build => false,
@@ -16,53 +16,13 @@ describe Builder::JavaScript do
 
     end
 
-    it "should return a relative path on windows" do
-      # Need to override the Env class to return windows so we can check this
-      check_copyright_file :windows, /^\.\..+/
-    end
+    it "should return a relative path for copyright file" do
 
-    it "should return absolute path on non-windows" do
-      check_copyright_file :macos, /^\/.+/
-    end
-  end
-end
+      js = Builder::JavaScript.new @b, 'dojo'
 
-def check_copyright_file(host_os, matcher)
-  set_host_os(host_os) do
-
-    js = Builder::JavaScript.new @b, 'dojo'
-
-    js.send(:base_profile)[:layers].each do |layer|
-      layer[:copyrightFile].should match matcher
-    end
-  end
-end
-
-def set_host_os(host_os_sym)
-  Mulberry.module_eval do
-    self::Env.class_eval do
-      eval "class << self
-        alias_method :saved_host_os, :host_os
-        def host_os
-          :#{host_os_sym}
-        end
-      end"
-    end
-  end
-
-  begin
-    yield
-  ensure
-    reset_host_os
-  end
-end
-
-def reset_host_os
-  Mulberry.module_eval do
-    self::Env.class_eval do
-      class << self
-        undef :host_os
-        alias_method :host_os, :saved_host_os
+      js.send(:base_profile)[:layers].each do |layer|
+        layer[:copyrightFile].should == Pathname.new(Builder::JavaScript::COPYRIGHT_FILE).relative_path_from(Pathname.new(Builder::JavaScript::BUILDSCRIPTS_DIR)).to_s
+        layer[:copyrightFile].should match /^\.\..+/
       end
     end
   end

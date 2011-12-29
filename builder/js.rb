@@ -6,10 +6,6 @@ require "pathname"
 
 module Builder
   class JavaScript < Builder::TaskBase
-    COPYRIGHT_FILE = File.join(
-      TouraAPP::Directories.profiles,
-      "copyright.txt"
-    )
 
     PROFILE_FILE = "toura.profile.js"
 
@@ -18,6 +14,17 @@ module Builder
       "util",
       "buildscripts"
     )
+
+    COPYRIGHT_FILE = File.join(
+      TouraAPP::Directories.profiles,
+      "copyright.txt"
+    )
+
+    # Hacktastic because dojo build on CYGWIN calls Windows' Java
+    # and an absolute path will be relative to C:\, not C:\CYGWINDRIVE, thus
+    # looking for the copyright_file in a location not accessible
+    # to cygwin. Thus, we have to make this a silly relative path
+    COPYRIGHT_FILE_REL_PATH = Pathname.new(COPYRIGHT_FILE).relative_path_from(Pathname.new(BUILDSCRIPTS_DIR)).to_s
 
     WEBKIT = {
       :dev =>             false,
@@ -41,14 +48,14 @@ module Builder
       },
 
       :toura => {
-        :copyrightFile  => COPYRIGHT_FILE,
+        :copyrightFile  => COPYRIGHT_FILE_REL_PATH,
         :name           => "../toura/base.js",
         :resourceName   => "toura.base",
         :dependencies   => [ "toura.base" ]
       },
 
       :client => {
-        :copyrightFile  => COPYRIGHT_FILE,
+        :copyrightFile  => COPYRIGHT_FILE_REL_PATH,
         :name           => "../client/base.js",
         :resourceName   => "client.base",
         :dependencies   => [ "client.base" ]
@@ -182,12 +189,6 @@ module Builder
     def dojo_build
       pwd = Dir.pwd
       profile_file = File.join(BUILDSCRIPTS_DIR, PROFILE_FILE)
-
-      # require 'ruby-debug' ; debugger
-
-      # Hacktastic because dojo build on Windows doesn't support absolute paths well
-      # COPYRIGHT_FILE = File.join( "..", "..", "..", "..", "profiles", "copyright.txt")
-
 
       begin
         File.open(profile_file, 'w') do |f|
