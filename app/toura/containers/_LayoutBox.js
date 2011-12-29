@@ -25,17 +25,16 @@ dojo.declare('toura.containers._LayoutBox', [ toura._View, toura.ui.BackgroundIm
   postCreate : function() {
     this.inherited(arguments);
 
-    var classNames = [
-      this.config.containerType + '-container',
-      'size-' + this.config.size,
-      'layout-' + this.config.layout
-    ];
+ //   var classNames = [
+ //     this.config.containerType + '-container',
+ //     'size-' + this.config.size,
+ //     'layout-' + this.config.layout
+ //   ];
 
     if (this.config.className) {
-      classNames.push(this.config.className);
+      this.addClass(this.config.className);
     }
 
-    this.addClass(classNames);
 
     if (this.config.backgroundImage && this.backgroundImage) {
       this.loadImage();
@@ -47,18 +46,18 @@ dojo.declare('toura.containers._LayoutBox', [ toura._View, toura.ui.BackgroundIm
 
     dojo.forEach(regions, function(region) {
       if (!{ row : 1, column : 1, component : 1}[region.type]) {
-        throw 'Unknown region type: ' + region.type;
+//        throw 'Unknown region type: ' + region.type;
       }
 
       if (!containerType || containerType === region.type) {
         containerType = region.type;
       } else {
-        throw 'You cannot put columns and rows in the same region';
+//        throw 'You cannot put columns and rows in the same region';
       }
     }, this);
 
     if (!containerType) {
-      throw 'Could not determine containerType for region';
+//      throw 'Could not determine containerType for region';
     }
 
     return containerType;

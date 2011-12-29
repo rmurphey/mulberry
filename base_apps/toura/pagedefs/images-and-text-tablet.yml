@@ -8,26 +8,23 @@ images-and-text-tablet:
       backgroundImage: true
       regions:
 
-      - type: row
-        size: fixed
+      - className: page-nav
         components:
         - PageNav
 
-      - type: row
+      - className: image-gallery
         components:
         - ImageGallery
 
-      - type: row
+      - className: bottom-columns
         regions:
 
-        - type: column
-          scrollable: true
+        - scrollable: true
           components:
           - ChildNodes
           - BodyText
 
-        - type: column
-          scrollable: true
+        - scrollable: true
           components:
           - ImageCaption
 

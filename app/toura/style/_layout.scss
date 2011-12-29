@@ -9,9 +9,53 @@
   background-position: center center;
   -webkit-background-size: cover;
 
-
   &.row-container,
   &.component-container {
     -webkit-box-orient: vertical;
   }
+
+  > .region {
+    -webkit-box-flex: 1;
+  }
+}
+
+@mixin row-container {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+@mixin column-container {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+
+@mixin pane($proportion: 1) {
+  -webkit-box-flex: $proportion;
+}
+
+@mixin pullout {
+  // Pull it out of normal flow, so its contents don't affect the size of the box
+  position: absolute;
+
+  // Stretch the box to fill the entire area of the parent
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  // Make sure content doesn't stretch the box
+  overflow: hidden;
+}
+
+@mixin size-fixed {
+  -webkit-box-flex: 0;
+
+  > * {
+    width: 100%;
+  }
+}
+
+@mixin flex-row($proportion: 1) {
+  -webkit-box-flex: $proportion;
 }
