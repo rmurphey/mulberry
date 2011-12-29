@@ -7,7 +7,6 @@ images-and-text-tablet:
     - name: index
       backgroundImage: true
       regions:
-
       - className: page-nav
         components:
         - PageNav
@@ -18,26 +17,21 @@ images-and-text-tablet:
 
       - className: bottom-columns
         regions:
-
         - scrollable: true
           components:
           - ChildNodes
           - BodyText
-
         - scrollable: true
           components:
           - ImageCaption
 
     - name: detail
       regions:
-      - type: row
-        layout: overlay
-        size: fixed
+      - className: header
         components:
         - DetailTitle
 
-      - type: row
-        components:
+      - components:
         - ZoomableImageGallery
 
 

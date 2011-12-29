@@ -9,10 +9,22 @@
     .region.bottom-columns {
       @include column-container;
     }
+
+    .component.body-text:not(.empty) {
+      padding: 10px;
+    }
   }
 
-  .body-text:not(.empty) {
-    padding: 10px;
+  .screen.detail {
+    @include row-container;
+
+    .region.header {
+      @include layout-overlay;
+
+      > * {
+        width: 100%;
+      }
+    }
   }
 }
 

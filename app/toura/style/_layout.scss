@@ -56,6 +56,11 @@
   }
 }
 
+@mixin layout-overlay {
+  position: absolute;
+  width: 100%;
+}
+
 @mixin flex-row($proportion: 1) {
   -webkit-box-flex: $proportion;
 }
