@@ -6,6 +6,10 @@
       @include size-fixed;
     }
 
+    .region.image-gallery {
+      @include background-shadow;
+    }
+
     .region.bottom-columns {
       @include column-container;
 
