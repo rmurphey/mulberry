@@ -9,6 +9,7 @@ gem 'kramdown'
 gem 'mustache'
 gem 'sass', '3.1.4'
 gem 'sinatra', '1.3.1'
+gem 'guid'
 
 group :development, :test do
   gem 'rake', '0.9.2'
