@@ -75,7 +75,8 @@ module Mulberry
                         :assets_dir,
                         :source_dir,
                         :helper,
-                        :id
+                        :id,
+                        :config
 
     def initialize(source_dir)
       @source_dir       = File.expand_path(source_dir)
