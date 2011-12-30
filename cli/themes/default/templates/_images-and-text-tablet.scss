@@ -1,4 +1,4 @@
-.images-and-text-tablet {
+.page.images-and-text-tablet {
   .screen.index {
     @include row-container;
 
@@ -13,7 +13,6 @@
         padding: 10px;
       }
     }
-
   }
 
   .screen.detail {
