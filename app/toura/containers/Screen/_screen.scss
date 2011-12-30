@@ -1,5 +1,4 @@
 .screen {
-  @include flex-container;
   @include pullout;
   @include hidable;
 }

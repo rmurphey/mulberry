@@ -4,29 +4,22 @@
   }
 }
 
-@mixin flex-container {
+@mixin row-container {
   display: -webkit-box;
-  background-position: center center;
-  -webkit-background-size: cover;
-
-  &.row-container,
-  &.component-container {
-    -webkit-box-orient: vertical;
-  }
+  -webkit-box-orient: vertical;
 
   > .region {
     -webkit-box-flex: 1;
   }
 }
 
-@mixin row-container {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-}
-
 @mixin column-container {
   display: -webkit-box;
   -webkit-box-orient: horizontal;
+
+  > .region {
+    -webkit-box-flex: 1;
+  }
 }
 
 @mixin pane($proportion: 1) {

@@ -8,11 +8,12 @@
 
     .region.bottom-columns {
       @include column-container;
+
+      .component.body-text:not(.empty) {
+        padding: 10px;
+      }
     }
 
-    .component.body-text:not(.empty) {
-      padding: 10px;
-    }
   }
 
   .screen.detail {
