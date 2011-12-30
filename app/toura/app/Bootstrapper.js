@@ -48,7 +48,9 @@ toura.app.Bootstrapper = function() {
     });
   });
 
-  tour.bootstrap().then(dfd.resolve, dfd.reject);
+  tour.bootstrap().then(function() {
+    dfd.resolve(tour);
+  }, dfd.reject);
 
   return dfd.promise;
 };
