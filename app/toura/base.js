@@ -52,7 +52,6 @@ var readyFn = function() {
         dojo.publish('/app/ready');
         toura.app.PhoneGap.network.isReachable().then(
           function(reachable) {
-            toura.app.Local.templates().then(function() {
               toura.routes(toura.app.Routes());
               dojo.publish('/routes/loaded');
               toura.app.Router.init();
@@ -68,7 +67,6 @@ var readyFn = function() {
               }
 
               dojo.publish('/app/started');
-            });
 
           }
         );
