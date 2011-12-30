@@ -2,10 +2,10 @@ dojo.provide('toura.app.Routes');
 
 dojo.requireLocalization('toura', 'toura');
 
-toura.app.Routes = function() {
-  var app = toura.app.Config.get('app'),
-      factory = toura.app.PageFactory,
-      routes;
+(function() {
+
+var routes = function(app, factory) {
+  var routes;
 
   function nodeRoute(route, nodeId, pageState) {
     pageState = pageState || {};
@@ -167,3 +167,14 @@ toura.app.Routes = function() {
 
   return routes;
 };
+
+dojo.subscribe('/app/started', function() {
+  toura.routes(
+    routes(
+      toura.app.Config.get('app'),
+      toura.app.PageFactory
+    )
+  );
+});
+
+}());
