@@ -69,8 +69,9 @@ beforeEach(function() {
         'Default'       : 'node-about'
       };
       
-    if (map[c])
+    if (map[c]) {
       node = dataAPI.getModel(map[c]);
+    }
 
     return node;
   };
