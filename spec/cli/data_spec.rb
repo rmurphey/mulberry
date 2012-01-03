@@ -1,3 +1,4 @@
+require 'fakeweb'
 require 'spec_helper'
 require 'content_creator'
 
