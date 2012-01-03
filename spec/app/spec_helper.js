@@ -6,7 +6,6 @@ require('/toura/_Logging.js');
 var dataAPI,
     nodeForController,
     isWidgetRegistered,
-    getChildById,
     getRootSelector,
     getEventHandlers,
     pageControllerMocks,
