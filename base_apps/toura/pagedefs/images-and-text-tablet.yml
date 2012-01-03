@@ -3,6 +3,7 @@ images-and-text-tablet:
   - ImageGallery_ImageCaption
   - ImageGalleryDetail
   - Page_Images
+
   screens:
     - name: index
       backgroundImage: true
