@@ -4,8 +4,10 @@ mulberry.component('Tweets', {
   componentTemplate : dojo.cache('client.components', 'Tweets/Tweets.haml'),
   tweetTemplate : mulberry.haml(dojo.cache('client.components', 'Tweets/Tweet.haml')),
 
-  init : function() {
-    this.baseObj.tweets.then(dojo.hitch(this, 'set', 'tweets'));
+  when : {
+    tweets : function(data) {
+      this.set('tweets', data);
+    }
   },
 
   _setTweetsAttr : function(tweets) {

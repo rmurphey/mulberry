@@ -12,19 +12,23 @@ images-and-text-tablet:
         components:
         - PageNav
 
-      - className: image-gallery
-        components:
-        - ImageGallery
+      - className: image-container
+        regions:
+        - components:
+          - ImageGallery
+        - className: caption
+          components:
+          - ImageCaption
 
       - className: bottom-columns
         regions:
         - scrollable: true
           components:
-          - ChildNodes
           - BodyText
         - scrollable: true
           components:
-          - ImageCaption
+          - ChildNodes
+
 
     - name: detail
       regions:

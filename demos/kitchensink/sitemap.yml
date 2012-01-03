@@ -19,5 +19,9 @@
   - grid:
     - grid_child_one
     - grid_child_two
+    - grid_child_three
+    - grid_child_four
+    - grid_child_five
+    - grid_child_six
 - about:
     - subpage

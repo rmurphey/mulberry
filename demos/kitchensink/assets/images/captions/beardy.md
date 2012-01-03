@@ -1,1 +1,1 @@
-Trendy beard.
+Trendy beard. Verrrry trendy. I mean seriously, don't you want a beard like that? I know you do! Totally beardy.

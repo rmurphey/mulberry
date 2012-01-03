@@ -6,16 +6,21 @@
       @include size-fixed;
     }
 
-    .region.image-gallery {
+    .region.image-container {
       @include background-shadow;
+      @include row-container;
+
+      > .region.caption {
+        @include size-fixed;
+      }
     }
 
     .region.bottom-columns {
       @include column-container;
+    }
 
-      .component.body-text:not(.empty) {
-        padding: 10px;
-      }
+    .component.body-text:not(.empty) {
+      padding: 10px;
     }
   }
 
