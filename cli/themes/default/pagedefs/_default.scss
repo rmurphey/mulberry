@@ -1,5 +1,13 @@
 .page.default {
-  .body-text {
+  .screen {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+  }
+
+  .component.body-text {
     padding: 10px;
   }
 }
