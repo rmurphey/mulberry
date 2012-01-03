@@ -100,33 +100,6 @@ describe Builder::Build do
     end
   end
 
-<<<<<<< HEAD
-
-  describe "gathering step" do
-    it "should gather www icons if specified" do
-      b = Builder::Build.new(@config.merge({
-        :target_config => {
-          'build_type' => 'device',
-          'gather' => {
-            'www_icons' => true
-          }
-        }
-      }))
-
-      b.build
-
-      www_icons = b.completed_steps[:gather][:www_icons]
-      www_icons.should_not be_nil
-      www_icons[:location].should_not be_nil
-      www_icons[:files].should_not be_nil
-
-      b.cleanup
-    end
-
-  end
-
-=======
->>>>>>> master
   describe "build step" do
     it "should kick off js build if javascript layers are specified" do
       b = Builder::Build.new(@config.merge({
