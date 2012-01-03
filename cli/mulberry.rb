@@ -14,6 +14,10 @@ require 'timeout'
 require 'uri'
 require 'net/http'
 
+require 'lib/toura_api'
+require 'lib/http'
+require 'lib/ota_service_application'
+
 require 'cli/directories'
 require 'cli/env'
 
@@ -23,9 +27,6 @@ require 'cli/server'
 require 'cli/build_helper'
 require 'cli/code_creator'
 require 'builder'
-
-require 'lib/http'
-require 'lib/ota_service_application'
 
 module Mulberry
   class ConfigError < RuntimeError
@@ -49,7 +50,7 @@ module Mulberry
     'android' =>  [ 'phone' ],
     'ios'     =>  [ 'phone', 'tablet' ]
   }
-    
+
   def self.version
     VERSION
   end
@@ -371,11 +372,12 @@ module Mulberry
 
       return false
     end
+
     def ota_service_application
       unless @ota_service_application
         @toura_api_config = @config['toura_api']
         if @toura_api_config
-          url = @toura_api_config['url'] || 'https://api.toura.com'
+          url = @toura_api_config['url'] || TouraApi::URL
           key, secret = @toura_api_config['key'], @toura_api_config['secret']
           @ota_service_application = OtaServiceApplication.new(url, key, secret)
         end

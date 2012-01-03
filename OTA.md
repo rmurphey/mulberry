@@ -30,7 +30,7 @@ entail source code changes get distributed to devices.
 The app store is not involved directly in the actual over-the-air update
 itself, but is an important player in the overall OTA management process.
 
-## Mulberry app (deployed on device)
+## Deployed app
 
 Once your app has gotten past the app store and installed onto a device, it is
 ready to receive OTA's (if it was configured to be OTA enabled when it was
@@ -97,9 +97,10 @@ Device C, though it was OTA-enabled, did not get the OTA for whatever reason
 store submission and approval), but still gets the content update bundled along
 with the new app store version when it installs it.
 
-**Note: If the nature of the change to your app's content is such that only the
-newer version of the source code is able to process it without breaking, then
-the receivers of the this OTA (Devices A and B) could be stuck for weeks with a
+**Note: The OTA does not distribute JavaScript source code, only content. If
+the nature of the change to your app's content is such that only the newer
+version of the source code is able to process it without breaking, then the
+receivers of the this OTA (Devices A and B) could be stuck for weeks with a
 broken app and no way to fix it.**
 
 ## OTA with Existing App, Publish on Approval

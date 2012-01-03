@@ -1,5 +1,7 @@
 require 'active_support/inflector'
 
+require 'lib/toura_api'
+
 require 'cli/assets/node'
 require 'cli/assets/text'
 require 'cli/assets/image'
@@ -57,7 +59,7 @@ module Mulberry
         unless @config['toura_api']
           raise Builder::ConfigurationError.new "Need toura_api configuration to include version in data json."
         end
-        url = @config['toura_api']['url'] || 'https://api.toura.com'
+        url = @config['toura_api']['url'] || TouraApi::URL
         key = @config['toura_api']['key']
         begin
           version = OtaServiceApplication.new(url, key).version

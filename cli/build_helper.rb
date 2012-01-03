@@ -1,3 +1,4 @@
+require 'lib/toura_api'
 require 'builder/build_helper'
 require 'builder/css_maker'
 
@@ -176,7 +177,7 @@ module Mulberry
             'version_url' =>  @config['update_url']
           )
         elsif @config['toura_api']
-          url = @config['toura_api']['url'] || 'https://api.toura.com'
+          url = @config['toura_api']['url'] || TouraApi::URL
           key = @config['toura_api']['key']
           settings.merge!(
             'update_url'  =>  File.join(url, "/applications/#{key}/ota_service/data_json"),
