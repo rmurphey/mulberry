@@ -23,7 +23,7 @@ module Mulberry
         @dir = dir.gsub(File.join(Dir.pwd, ""), "")
         Mulberry::App.scaffold(@dir)
 
-        reporting_opt_in unless !Mulberry::FEATURES[:reporting]
+        reporting_opt_in if Mulberry::FEATURES[:reporting]
       end
 
       def reporting_opt_in
