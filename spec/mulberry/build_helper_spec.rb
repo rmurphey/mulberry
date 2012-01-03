@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'fakeweb'
-require 'mulberry/build_helper'
+require 'cli/build_helper'
 
 describe 'Mulberry build helper' do
   before :each do

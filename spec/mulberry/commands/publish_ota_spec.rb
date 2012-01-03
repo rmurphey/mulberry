@@ -1,4 +1,4 @@
-require 'mulberry/commands/spec_helper.rb'
+require 'cli/commands/spec_helper.rb'
 require 'fakeweb'
 
 describe Mulberry::Command::PublishOta do
