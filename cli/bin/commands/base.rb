@@ -33,7 +33,12 @@ module Mulberry
           }.to_json
         }
 
-        Net::HTTP.post_form(host, report)
+        begin
+          Net::HTTP.post_form(host, report)
+        rescue
+          # fail silently
+        end
+
       end
     end
   end
