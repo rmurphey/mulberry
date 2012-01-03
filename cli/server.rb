@@ -139,7 +139,7 @@ module Mulberry
 
       TouraAPP::Generators.config os, device_type,
         {
-          "id" => escape_single_quote(@mulberry_app.id),
+          "id" => Mulberry.escape_single_quote(@mulberry_app.id),
           "build" => Time.now.to_i,
           "skip_version_check" => true,
           "debug" => true
