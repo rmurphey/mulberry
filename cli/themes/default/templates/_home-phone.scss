@@ -1,6 +1,7 @@
 .page.home-phone {
   .screen.index {
     @include row-container;
+    padding-top: 90%;
 
     > .region {
       @include row-container;
