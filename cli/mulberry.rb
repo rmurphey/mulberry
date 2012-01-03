@@ -24,8 +24,8 @@ require 'cli/build_helper'
 require 'cli/code_creator'
 require 'builder'
 
-require 'mulberry/http'
-require 'mulberry/ota_service_application'
+require 'lib/http'
+require 'lib/ota_service_application'
 
 module Mulberry
   class ConfigError < RuntimeError

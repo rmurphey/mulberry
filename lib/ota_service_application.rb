@@ -1,5 +1,5 @@
 require 'json'
-require 'mulberry/http'
+require 'lib/http'
 
 class OtaServiceApplication
 

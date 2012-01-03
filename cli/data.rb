@@ -11,7 +11,7 @@ require 'cli/assets/feed'
 require 'cli/assets/header_image'
 require 'cli/assets/background_image'
 
-require 'mulberry/http'
+require 'lib/http'
 
 module Mulberry
   class Data

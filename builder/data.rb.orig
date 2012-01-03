@@ -1,5 +1,8 @@
-require 'lib/ota_service_application'
+<<<<<<< HEAD
+require 'mulberry/ota_service_application'
 
+=======
+>>>>>>> master
 module Builder
   class Data < Builder::TaskBase
     DATA_FILENAME = 'tour.js'
@@ -10,7 +13,11 @@ module Builder
       @report = { :location => @location, :files => [ DATA_FILENAME ] }
       json = JSON.pretty_generate(@build.build_helper.data)
       File.open(@destination, 'w') do |f|
+<<<<<<< HEAD
+        f.write "toura.data.local = #{json};"
+=======
         f.write TouraAPP::Generators.data(@build.build_helper.data)
+>>>>>>> master
       end
       if @build.ota_enabled? || @build.settings[:publish_ota]
         @report[:tour_json_location] = File.join(@location, "tour.json")
