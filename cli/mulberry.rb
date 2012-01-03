@@ -31,6 +31,10 @@ module Mulberry
   CONFIG_DEV  = 'config_dev.yml'
   SITEMAP     = 'sitemap.yml'
 
+  FEATURES    = {
+    :reporting    =>    true
+  }
+
   DEFAULTS  = {
     'locale'            =>  'en-US',
     'homeNodeId'        =>  'node-home',

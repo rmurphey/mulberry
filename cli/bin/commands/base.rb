@@ -6,6 +6,7 @@ module Mulberry
   module Command
     class Base
       def report(app_dir, command)
+        return if !Mulberry::FEATURES[:reporting]
         settings_file = File.join(app_dir, '.mulberry')
 
         if File.exists? settings_file
