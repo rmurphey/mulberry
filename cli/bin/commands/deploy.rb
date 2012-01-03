@@ -11,12 +11,12 @@ module Mulberry
                                      core developers to bypass this
                                      time-consuming step when working on
                                      other aspects of deployment.") do |v|
-            options[:skip_js_build] = v
+            additional_options[:skip_js_build] = v
           end
 
           opts.on("--publish-ota",   "Publish an OTA with the contents of this
                                      build.") do |v|
-            options[:publish_ota] = v
+            additional_options[:publish_ota] = v
           end
 
         end.parse!
