@@ -57,11 +57,9 @@ beforeEach(function() {
   toura.app.Has = dojo.isFunction(toura.app.Has) ? toura.app.Has() : toura.app.Has;
   dataAPI = toura.app.Data = dataAPI || new toura.app.Data(toura.data.local.items);
 
-  nodeForController = function(c, cb, q) {
-    var node, map;
-
-    if (c.match(/Images1|Videos1|Audios1|GoogleMap1|FeedList|LocationList|Default/)) {
-      map = {
+  nodeForController = function(c) {
+    var node, 
+        map = {
         'Images1'       : 'node-image_gallery',
         'Videos1'       : 'node-videos', 
         'Audios1'       : 'node-audio_list',
@@ -71,17 +69,8 @@ beforeEach(function() {
         'Default'       : 'node-about'
       };
       
+    if (map[c])
       node = dataAPI.getModel(map[c]);
-    } else {
-      dataAPI._store.fetch({
-        query : dojo.mixin({
-          'pageController' : c
-        }, q || {}),
-        onComplete : function(items) {
-          node = cb ? cb(items) : dataAPI.getModel(items[0].id[0]);
-        }
-      });
-    }
 
     return node;
   };
