@@ -1,0 +1,36 @@
+images-and-text-phone:
+  capabilities:
+  - ImageGallery_ImageCaption
+  - ImageGalleryDetail
+  - Page_Images
+  screens:
+    - name: index
+      backgroundImage: true
+      regions:
+      - type: row
+        size: fixed
+        components:
+        - PageNav
+
+      - type: row
+        components:
+        - ImageGallery
+
+      - type: row
+        scrollable: true
+        components:
+        - ChildNodes
+        - ImageCaption
+        - BodyText
+
+    - name: detail
+      regions:
+      - type: row
+        layout: overlay
+        size: fixed
+        components:
+        - DetailTitle
+
+      - type: row
+        components:
+        - ZoomableImageGallery

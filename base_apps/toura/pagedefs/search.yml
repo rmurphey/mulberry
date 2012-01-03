@@ -1,0 +1,14 @@
+search:
+  capabilities:
+  - Page_Search
+  screens:
+  - name: index
+    regions:
+    - type: row
+      size: fixed
+      components:
+      - SearchInput
+    - type: row
+      scrollable: true
+      components:
+      - SearchResults

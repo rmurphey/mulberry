@@ -1,0 +1,17 @@
+full-screen-images:
+  type: node
+  capabilities:
+  - Page_FullScreenImages
+  screens:
+    - name: index
+      regions:
+      - type: row
+        layout: overlay
+        size: fixed
+        components:
+        - PageNav
+      - type: row
+        components:
+        - ZoomableImageGallery
+
+

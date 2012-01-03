@@ -1,0 +1,28 @@
+.component.debug {
+  table {
+    width: 100%;
+
+    td, th {
+      padding: 8px;
+      border: 1px solid #aaa;
+    }
+  }
+
+  .actions{
+    margin: 10px 0;
+
+    li {
+      padding: 10px;
+      background-color: #ccc;
+      font-weight:bold;
+      text-align:center;
+      margin:0 0 10px 0;
+    }
+  }
+
+  .status {
+    padding: 10px;
+    color: red;
+  }
+}
+

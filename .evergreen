@@ -7,7 +7,6 @@ Capybara.server_boot_timeout = 50
 
 Evergreen.configure do |config|
   config.driver = :selenium
-  config.public_dir = 'toura_app/javascript'
-  config.spec_dir = 'toura_app/spec/javascripts'
-  config.template_dir = 'toura_app/spec/templates'
+  config.public_dir = 'app'
+  config.spec_dir = 'spec/app'
 end

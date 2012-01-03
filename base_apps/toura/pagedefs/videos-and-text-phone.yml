@@ -1,0 +1,27 @@
+videos-and-text-phone:
+  capabilities:
+  - Page_Videos
+  - VideoList_VideoPlayer
+  - VideoList_VideoCaption
+  screens:
+    - name: index
+      backgroundImage: true
+      regions:
+      - type: row
+        size: fixed
+        components:
+        - PageNav
+      - type: row
+        className: player-container
+        components:
+        - VideoPlayer
+      - type: row
+        regions:
+        - type: row
+          scrollable: true
+          className: listing-and-children
+          components:
+          - VideoList
+          - ChildNodes
+          - VideoCaption
+          - BodyText

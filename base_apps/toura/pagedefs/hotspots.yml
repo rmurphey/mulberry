@@ -1,0 +1,10 @@
+hotspots:
+  screens:
+  - regions:
+    - type: row
+      size: fixed
+      components:
+      - PageNav
+    - type: row
+      components:
+      - Hotspots
