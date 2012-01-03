@@ -27,7 +27,7 @@ module Mulberry
       begin
         res = yield
       rescue Errno::ECONNREFUSED
-        raise ConnectionRefused.new (err_msgs[ConnectionRefused] || "Can't connect to server.")
+        raise ConnectionRefused.new(err_msgs[ConnectionRefused] || "Can't connect to server.")
       end
       case res.code
       when "200"
