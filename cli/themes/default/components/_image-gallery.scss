@@ -2,6 +2,8 @@
   @include row-container;
   margin-top: 15px;
 
+  @include fixed-gallery;
+
   .wrapper {
     -webkit-box-flex: 30;
 
