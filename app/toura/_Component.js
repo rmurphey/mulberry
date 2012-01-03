@@ -125,8 +125,8 @@ dojo.declare('toura._Component', [ toura._View ], {
   postCreate : function() {
     this.inherited(arguments);
 
-    if (this.resolutions) {
-      dojo.forIn(this.resolutions, function(k, v) {
+    if (this.when) {
+      dojo.forIn(this.when, function(k, v) {
         var node = this.node || this.baseObj;
         node[k].then(dojo.hitch(this, v));
       }, this);
