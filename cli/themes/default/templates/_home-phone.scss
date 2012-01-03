@@ -1,5 +1,17 @@
 .page.home-phone {
-  .body-text {
-    padding: 0 10px 10px 10px;
+  .screen.index {
+    @include row-container;
+
+    > .region {
+      @include row-container;
+
+      .component.body-text {
+        padding: 0 10px 10px 10px;
+      }
+    }
+
+    .region.nav {
+      @include size-fixed;
+    }
   }
 }

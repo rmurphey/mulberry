@@ -3,16 +3,12 @@ home-phone:
   - name: index
     backgroundImage: true
     regions:
-    - type: row
-      regions:
-      - type: row
-        components: []
-      - type: row
-        scrollable: true
+    - regions:
+      - components: []
+      - scrollable: true
         components:
         - BodyText
         - ChildNodes
-    - type: row
-      size: fixed
+    - className: nav
       components:
       - AppNav
