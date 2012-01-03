@@ -12,7 +12,8 @@
     }
 
     > .region.nav {
-      @include size-fixed;
+      -webkit-box-flex: 0;
+      margin-bottom: 20px;
     }
 
     .component.body-text {
