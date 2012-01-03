@@ -45,6 +45,7 @@ module Mulberry
           end
 
           puts "Created #{File.join(@dir, '.mulberry')} to enable anonymous reporting"
+          report @dir, 'scaffold'
         end
       end
     end
