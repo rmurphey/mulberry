@@ -1,5 +1,5 @@
-require 'lib/builder/build_helper'
-require 'lib/builder/css_maker'
+require 'builder/build_helper'
+require 'builder/css_maker'
 
 module Mulberry
   class BuildHelper
@@ -26,7 +26,7 @@ module Mulberry
 
     def project_settings
       {
-        :id                   => @config['name'].gsub(/'/, "\\\\'"),
+        :id                   => @config['name'],
         :version              => Time.now.to_i,
         :name                 => @name,
         :bundle               => @build_dir,
@@ -102,15 +102,17 @@ module Mulberry
     end
 
     def templates
-      templates_dir = File.join(@source_dir, 'templates')
+      app_templates_dir = File.join(@source_dir, 'templates')
+      base_templates_dir = TouraAPP::Directories.page_templates
+
       templates = {}
 
-      Dir.entries(templates_dir).each do |t|
-        if t.match(/.yml$/)
-          template_data = YAML.load_file File.join(@source_dir, 'templates', t)
-          templates.merge!(template_data) if template_data
-        end
-      end unless !File.exists?(templates_dir)
+      [ app_templates_dir, base_templates_dir ].each do |dir|
+        Dir.glob(File.join(dir, '*.yml')).each do |t|
+          d = YAML.load_file(t)
+          templates.merge!(d) if d
+        end unless !File.exists?(dir)
+      end
 
       templates
     end

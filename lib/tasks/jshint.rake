@@ -14,8 +14,8 @@ task :jshint do
   found_errors = false
 
   files = (
-    Dir[File.join(TouraAPP::Directories.root, 'javascript/toura/**/*.js')] +
-    Dir[File.join(TouraAPP::Directories.root, 'spec/javascripts/**/*.js')]
+    Dir[File.join(TouraAPP::Directories.javascript, 'toura', '**', '*.js')] +
+    Dir[File.join(TouraAPP::Directories.root, 'spec', 'app', '**', '*.js')]
   ).flatten
 
   files.each do |f|
