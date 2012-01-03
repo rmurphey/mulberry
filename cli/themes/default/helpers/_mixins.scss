@@ -227,6 +227,11 @@
   }
 }
 
+@mixin bottom-divider($space: 5px) {
+  padding-bottom: $space;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: $space;
+
 @mixin fixed-gallery {
   .tablet .region.size-fixed & {
     position: static;

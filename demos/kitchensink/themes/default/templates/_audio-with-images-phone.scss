@@ -28,5 +28,9 @@
         padding: 10px;
       }
     }
+
+    .component.audio-list:not(.empty) {
+      @include bottom-divider;
+    }
   }
 }
