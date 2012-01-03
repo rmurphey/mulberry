@@ -6,6 +6,11 @@
     overflow: visible;
   }
 
+  // if this is in a fixed container, it can't be positioned absolutely
+  .region.size-fixed & {
+    position: static;
+  }
+
   .wrapper {
     @include row-container;
 
