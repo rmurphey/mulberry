@@ -247,4 +247,64 @@ describe("base _Component class", function() {
     expect(c.bar.innerHTML).toMatch('text1');
   });
 
+  it("should automatically resolve promises as specified by the resolutions object", function() {
+    var dfd = new dojo.Deferred(),
+        flag;
+
+    c = C({
+      node : {
+        promise : dfd.promise
+      },
+      resolutions : {
+        'promise' : function(result) {
+          flag = result;
+        }
+      }
+    });
+
+    dfd.resolve('resolved');
+    expect(flag).toBe('resolved');
+  });
+
+  it("should accept a string as the resolver", function() {
+    var dfd = new dojo.Deferred(),
+        flag;
+
+    c = C({
+      node : {
+        promise : dfd.promise
+      },
+      resolutions : {
+        'promise' : 'foo'
+      },
+      foo : function(result) {
+        flag = result;
+      }
+    });
+
+    dfd.resolve('resolved');
+    expect(flag).toBe('resolved');
+  });
+
+  it("should call the resolver in the scope of the component", function() {
+    var dfd = new dojo.Deferred(),
+        flag;
+
+    c = C({
+      node : {
+        promise : dfd.promise
+      },
+      resolutions : {
+        'promise' : function(result) {
+          this.foo(result);
+        }
+      },
+      foo : function(result) {
+        flag = result;
+      }
+    });
+
+    dfd.resolve('resolved');
+    expect(flag).toBe('resolved');
+  });
 });

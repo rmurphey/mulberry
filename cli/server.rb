@@ -139,7 +139,7 @@ module Mulberry
 
       config_settings = @helper.config_settings.merge(
         {
-          "id" => @mulberry_app.id,
+          "id" => Mulberry.escape_single_quote(@mulberry_app.id),
           "build" => Time.now.to_i,
           "debug" => true
         }

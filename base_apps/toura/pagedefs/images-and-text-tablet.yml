@@ -14,8 +14,19 @@ images-and-text-tablet:
         - PageNav
 
       - type: row
-        components:
-        - ImageGallery
+        size: fixed
+        className: image-container
+        regions:
+
+        - type: row
+          size: fixed
+          components:
+          - ImageGallery
+
+        - type: row
+          size: fixed
+          components:
+          - ImageCaption
 
       - type: row
         regions:
@@ -23,13 +34,13 @@ images-and-text-tablet:
         - type: column
           scrollable: true
           components:
-          - ChildNodes
           - BodyText
 
         - type: column
           scrollable: true
           components:
-          - ImageCaption
+          - ChildNodes
+
 
     - name: detail
       regions:

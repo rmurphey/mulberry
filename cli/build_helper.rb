@@ -40,7 +40,7 @@ module Mulberry
 
     def config_settings
       add_ota_to_config_settings({
-        'id' => @config['name'].gsub(/'/, "\\\\'")
+        'id' => Mulberry.escape_single_quote(@config['name'])
       })
     end
 

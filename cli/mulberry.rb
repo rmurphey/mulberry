@@ -49,7 +49,7 @@ module Mulberry
     'android' =>  [ 'phone' ],
     'ios'     =>  [ 'phone', 'tablet' ]
   }
-
+    
   def self.version
     VERSION
   end
@@ -72,6 +72,10 @@ module Mulberry
   def self.dir_is_app?(dir)
     dir ||= ''
     File.exists?(dir) && File.exists?(File.join(dir, 'config.yml'))
+  end
+
+  def self.escape_single_quote(str)
+    str.gsub(/[']/,"\\\\'")
   end
 
   class App
