@@ -16,7 +16,7 @@ describe("column header image component", function() {
       height : 100
     };
 
-    node = dataAPI.getModel('node-feed_list');
+    node = nodeForController('FeedList');
   });
 
   it("should set up the component", function() {
