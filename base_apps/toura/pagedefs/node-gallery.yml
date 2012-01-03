@@ -1,0 +1,15 @@
+node-gallery:
+  screens:
+  - name: index
+    regions:
+    - type: row
+      size: fixed
+      components:
+      - PageNav
+    - type: row
+      size: fixed
+      components:
+        - DropDownText
+    - type: row
+      components:
+      - NodeGallery

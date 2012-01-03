@@ -1,0 +1,18 @@
+home-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - type: row
+      regions:
+      - type: row
+        components: []
+      - type: row
+        scrollable: true
+        components:
+        - BodyText
+        - ChildNodes
+    - type: row
+      size: fixed
+      components:
+      - AppNav

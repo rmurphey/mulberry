@@ -1,0 +1,18 @@
+home-with-header-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - type: row
+      size: fixed
+      components:
+      - PageHeaderImage
+    - type: row
+      scrollable: true
+      components:
+      - BodyText
+      - ChildNodes
+    - type: row
+      size: fixed
+      components:
+      - AppNav
