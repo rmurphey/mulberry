@@ -1,6 +1,7 @@
 dojo.provide('toura.models.Tour');
 
 dojo.require('toura.models._Updateable');
+dojo.require('toura.app.DeviceStorage');
 
 dojo.declare('toura.models.Tour', [ toura.models._Updateable ], {
   storageKey : 'tour',
@@ -30,10 +31,6 @@ dojo.declare('toura.models.Tour', [ toura.models._Updateable ], {
     } else {
       toura.app.DeviceStorage.get('tour')
         .then(dojo.hitch(this, function(items) {
-          if (toura.extraRawTourData && dojo.isArray(toura.extraRawTourData)) {
-            dojo.forEach(toura.extraRawTourData, function(item) { items.push(item); });
-          }
-
           this._items = items;
           dfd.resolve(items);
         }));

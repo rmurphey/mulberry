@@ -151,3 +151,5 @@ toura.app.DeviceStorage = (function(){
     }
   };
 }());
+
+console.log(toura.app.DeviceStorage);
