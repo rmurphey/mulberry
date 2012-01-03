@@ -1,7 +1,7 @@
 module Mulberry
   module Command
     class Deploy
-      def initialize(args, options={})
+      def initialize(args, additional_options={})
         OptionParser.new do |opts|
           opts.banner = "Usage: mulberry deploy [options]"
 
@@ -24,7 +24,7 @@ module Mulberry
         dir = Mulberry.get_app_dir args[0]
 
         app = Mulberry::App.new(dir)
-        app.device_build options
+        app.device_build additional_options
       end
     end
   end

@@ -1,9 +1,9 @@
 # Introduction
 
 OTA (Over The Air) updates allow you to update the content of your application
-without submitting a new version of your app to the app store. You can change
-the text on pages, add new assets, even change the sitemap for your
-application, with an OTA update, all without having to wait for app your to be
+without submitting a new version of your app to the app store. With an OTA
+update you can change the text on pages, add new assets, even change the
+sitemap for your application -- all without having to wait for app your to be
 approved before users can receive it.
 
 To help you get a big picture understanding of how OTA's work, and the
@@ -43,7 +43,7 @@ The OTA Server distributes your over-the-air updates directly to devices. You
 publish your update to this server and your app installed on the device queries
 it for updates.
 
-Toura provides an OTA server that you can use for OTA's for your mulberry
+Toura provides an OTA server that you can use for OTA's for your Mulberry
 apps.
 
 # OTA Scenarios
@@ -97,10 +97,10 @@ Device C, though it was OTA-enabled, did not get the OTA for whatever reason
 store submission and approval), but still gets the content update bundled along
 with the new app store version when it installs it.
 
-If the nature of the change to your app's content is such that only the newer
-version of the source code is able to process it without breaking, then the
-receivers of the this OTA (Devices A and B) could be stuck for weeks with a
-broken app and no way to fix it.
+**Note: If the nature of the change to your app's content is such that only the
+newer version of the source code is able to process it without breaking, then
+the receivers of the this OTA (Devices A and B) could be stuck for weeks with a
+broken app and no way to fix it.**
 
 ## OTA with Existing App, Publish on Approval
 
@@ -173,6 +173,9 @@ Add the details for the OTA server to your `config.yml`:
      url: https://api.toura.com/
      key: your_app_key
      secret: your_app_secret
+
+You can sign up to create an application that can receive OTA's at
+[http://api.toura.com/](http://api.toura.com/).
 
 Also in `config.yml`, enable/disable OTA's for your app like so
 

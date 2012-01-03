@@ -276,14 +276,14 @@ module Mulberry
       settings ||= {}
 
       build({
-        :target         => settings[:test] ? 'mulberry_test' : 'mulberry',
-        :tour           => self,
-        :tmp_dir        => tmp_dir,
-        :log_level      => -1,
-        :force_js_build => settings[:force_js_build] ||= true,
-        :skip_js_build  => settings[:skip_js_build]  ||= false,
-        :build_helper   => @helper,
-        :quiet          => (settings[:quiet] || false),
+        :target           => settings[:test] ? 'mulberry_test' : 'mulberry',
+        :tour             => self,
+        :tmp_dir          => tmp_dir,
+        :log_level        => -1,
+        :force_js_build   => settings[:force_js_build] ||= true,
+        :skip_js_build    => settings[:skip_js_build]  ||= false,
+        :build_helper     => @helper,
+        :quiet            => (settings[:quiet] || false),
         :toura_api_config =>  @config['toura_api'],
         :publish_ota      =>  settings[:publish_ota]
       })
