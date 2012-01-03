@@ -1,8 +1,8 @@
 $: << File.expand_path('../', __FILE__)
 $: << File.expand_path('../..', __FILE__)
 
-require 'mulberry/mulberry'
-require 'lib/builder'
+require 'cli/mulberry'
+require 'builder'
 require 'factory_girl'
 
 Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
@@ -38,6 +38,7 @@ Capybara.default_selector = :css
 
 def serve_demo(demo_name)
   $app = Mulberry::App.new("./demos/#{demo_name}")
+  $templates = $app.helper.templates
 
   Mulberry::Server.set :app => $app, :logging => false
   Capybara.app = Mulberry::Server

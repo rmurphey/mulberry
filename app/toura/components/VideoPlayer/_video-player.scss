@@ -1,0 +1,20 @@
+.component.video-player {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+
+  .overlay {
+    display: none;
+  }
+
+  &.disabled {
+    video {
+      display: none;
+    }
+
+    .overlay {
+      display: block;
+    }
+  }
+
+}

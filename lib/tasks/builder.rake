@@ -1,5 +1,5 @@
-require 'lib/builder'
-require 'lib/filesystem_build_helper'
+require 'builder'
+require 'lib/legacy/filesystem_build_helper'
 
 namespace :builder do
   desc "Generates the build required for APP browser development"

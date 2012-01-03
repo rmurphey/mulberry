@@ -1,4 +1,4 @@
-require File.join(File.expand_path(File.dirname(__FILE__)), '../../lib/builder')
+require "builder"
 require 'fakeweb'
 
 describe Builder::Build do
@@ -100,6 +100,7 @@ describe Builder::Build do
     end
   end
 
+<<<<<<< HEAD
 
   describe "gathering step" do
     it "should gather www icons if specified" do
@@ -124,21 +125,9 @@ describe Builder::Build do
 
   end
 
+=======
+>>>>>>> master
   describe "build step" do
-    it "should do nothing if no build tasks are specified" do
-      b = Builder::Build.new(@config.merge({
-        :target_config => {
-          'build_type' => 'fake'
-        }
-      }))
-
-      b.build
-
-      b.completed_steps[:build].keys.length.should == 0
-
-      b.cleanup
-    end
-
     it "should kick off js build if javascript layers are specified" do
       b = Builder::Build.new(@config.merge({
         :skip_js_build => false,
@@ -156,29 +145,10 @@ describe Builder::Build do
 
       js.should_not be_nil
       js[:location].should_not be_nil
-      js[:profile].should_not be_nil
       js[:build_contents].should_not be_nil
 
       File.exists?(File.join(js[:location], 'dojo', 'dojo.js')).should_not be_nil
       File.exists?(File.join(js[:location], 'toura', 'base.js')).should_not be_nil
-
-      b.cleanup
-    end
-
-    it "should ensure haml ends up unminified" do
-      b = Builder::Build.new(@config.merge({
-        :skip_js_build => false,
-        :target_config => {
-          'build_type' => 'fake',
-          'build' => {
-            'javascript' => [ 'dojo' ]
-          }
-        }
-      }))
-
-      b.build
-
-      js = b.completed_steps[:build][:javascript]
 
       haml = File.join(js[:location], 'vendor', 'haml.js')
       File.exists?(haml).should_not be_nil
@@ -228,6 +198,7 @@ describe Builder::Build do
       index_html = File.read(File.join(html[:location], 'index.html'))
       index_html.should_not match 'phonegap'
     end
+
   end
 
   describe "closing" do
