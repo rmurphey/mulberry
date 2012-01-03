@@ -2,21 +2,25 @@ require 'mulberry'
 require 'evergreen'
 
 namespace :evergreen  do
+  tour_data_file = File.join(TouraAPP::Directories.root, "app", "fixtures", "tour.js")
+
   desc "Run jasmine specs via evergreen"
   task :run => :generate_stuff do
     Kernel.exit(1) unless Evergreen::Cli.execute(["run"])
+    FileUtils.rm(tour_data_file)
   end
 
   desc "Run jasmine specs server via evergreen"
   task :serve => :generate_stuff do
     Evergreen::Cli.execute(["serve"])
+    FileUtils.rm(tour_data_file)
   end
 
   task :generate_stuff do
     # generate a tour.js from kitchensink
     app = Mulberry::App.new(File.join(TouraAPP::Directories.root, "demos", "kitchensink"))
     
-    File.open(File.join(TouraAPP::Directories.root, "app", "fixtures", "tour.js"), "w") do |f|
+    File.open(tour_data_file, "w") do |f|
       f.write TouraAPP::Generators.data(Mulberry::Data.new(app).generate)
     end
     
@@ -29,4 +33,5 @@ namespace :evergreen  do
       f.write TouraAPP::Generators.config('ios', 'phone')
     end
   end
+
 end
