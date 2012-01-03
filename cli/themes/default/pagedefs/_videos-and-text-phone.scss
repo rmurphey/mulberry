@@ -15,4 +15,8 @@
       }
     }
   }
+
+  .component.video-list:not(.empty) {
+    @include bottom-divider;
+  }
 }
