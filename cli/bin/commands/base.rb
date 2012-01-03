@@ -6,32 +6,34 @@ module Mulberry
   module Command
     class Base
       def report(app_dir, command)
-        return if !Mulberry::FEATURES[:reporting]
+        return unless Mulberry::FEATURES[:reporting]
+
         settings_file = File.join(app_dir, '.mulberry')
 
-        if File.exists? settings_file
-          settings = YAML.load_file settings_file
-          config = Mulberry::App.new(app_dir).config
+        return unless File.exists? settings_file
 
-          host = settings['host']
-          guid = settings['guid']
+        settings = YAML.load_file settings_file
 
-          return unless host && guid
+        host = settings['host']
+        guid = settings['guid']
 
-          report = {
-            'data' => {
-              'config'    => {
-                'jquery'  =>  config['jquery'],
-                'os'      =>  config['os'].join(','),
-                'type'    =>  config['type'].join(',')
-              },
-              'command'   =>  command,
-              'guid'      =>  guid
-            }.to_json
-          }
+        return unless host && guid
 
-          Net::HTTP.post_form(host, report)
-        end
+        config = Mulberry::App.new(app_dir).config
+
+        report = {
+          'data' => {
+            'config'    => {
+              'jquery'  =>  config['jquery'],
+              'os'      =>  config['os'].join(','),
+              'type'    =>  config['type'].join(',')
+            },
+            'command'   =>  command,
+            'guid'      =>  guid
+          }.to_json
+        }
+
+        Net::HTTP.post_form(host, report)
       end
     end
   end
