@@ -1,15 +1,22 @@
 .page.home-tablet {
   .screen.index {
-    -webkit-background-size: cover;
+    @include row-container;
 
-    .tablet & {
-      .screen {
-        height: 100%;
-      }
+    > .region.top {
+      @include flex-row;
+      @include row-container;
 
-      .body-text {
-        padding: 0 20px 0 20px;
+      .columns {
+        @include column-container;
       }
+    }
+
+    > .region.nav {
+      @include size-fixed;
+    }
+
+    .component.body-text {
+      padding: 0 20px 0 20px;
     }
   }
 }
