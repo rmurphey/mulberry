@@ -1,0 +1,9 @@
+.page.feed-item {
+  .screen {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+  }
+}
