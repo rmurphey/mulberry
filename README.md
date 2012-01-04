@@ -1,10 +1,3 @@
-# Mulberry
-
-Mulberry takes content from your filesystem and turns it into a working mobile app
-on Android and iOS. It also provides a local development server for testing
-your app, and a framework for adding custom functionality and CSS.
-
-
 # Support
 
 - [Documentation](https://github.com/toura/mulberry/wiki)
