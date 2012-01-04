@@ -22,17 +22,14 @@ videos-and-text-tablet:
           components:
           - VideoCaption
 
-      - type: row
-        className: listing-and-children
+      - className: listing-and-children
         regions:
 
-        - type: column
-          scrollable: true
+        - scrollable: true
           components:
           - BodyText
 
-        - type: column
-          scrollable: true
+        - scrollable: true
           components:
           - VideoList
           - ChildNodes
