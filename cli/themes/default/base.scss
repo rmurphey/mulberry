@@ -14,7 +14,7 @@ body {
 }
 
 @import 'components/base';
-@import 'templates/base';
+@import 'pagedefs/base';
 
 // KLUDGE: workaround for bug in ios where :last-child styles in captions are
 // not applied until after scroller moves, which changes the height and breaks

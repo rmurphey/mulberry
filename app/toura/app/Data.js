@@ -46,7 +46,7 @@ dojo.declare('toura.app.Data', null, {
 
   getModel : function(id, type) {
     if (!id) {
-      throw new Error('toura.app.Data::getModel requires an id');
+      throw new Error('toura.app.Data::getModel requires an id. Possibly your hash string is invalid?');
     }
 
     if (!dojo.isString(id)) {
