@@ -85,7 +85,7 @@ toura.model = function(name, proto) {
     'client.models.' + name,
     dojo.Stateful,
     dojo.mixin({
-      format : function(item) {}
+      format : function() {}
     }, proto)
   );
 };
