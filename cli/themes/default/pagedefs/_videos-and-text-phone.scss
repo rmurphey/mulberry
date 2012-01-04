@@ -1,22 +1,29 @@
 .page.videos-and-text-phone {
   .screen.index {
-    .row.player-container {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+
+    .region.player-container {
       @include background-shadow;
       padding-bottom: 40px;
     }
 
-    .row.listing-and-children {
-      .child-nodes:not(.empty) {
+    .region.listing-and-children {
+      .component.video-list:not(.empty) {
+        @include bottom-divider;
+      }
+
+      .component.child-nodes:not(.empty) {
         padding-top: 10px;
       }
 
-      .body-text {
+      .component.body-text {
         padding: 10px 20px 0 10px;
       }
     }
   }
 
-  .component.video-list:not(.empty) {
-    @include bottom-divider;
-  }
 }
