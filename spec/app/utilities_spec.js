@@ -102,10 +102,7 @@ describe("utilities", function() {
           flag = false;
 
       runs(function() {
-        ret.then(function(data) {
-          console.log('GOT IT', data);
-          flag = data;
-        });
+        ret.then(function(data) { flag = data; });
       });
 
       waits(500);
