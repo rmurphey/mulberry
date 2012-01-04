@@ -1,5 +1,3 @@
-require 'content_creator'
-
 module Mulberry
   module Command
     class Generate < Mulberry::Command::Base
