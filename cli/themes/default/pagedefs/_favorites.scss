@@ -1,0 +1,9 @@
+.page.favorites {
+  .screen.index {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+  }
+}
