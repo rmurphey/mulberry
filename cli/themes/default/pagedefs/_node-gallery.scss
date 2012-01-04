@@ -1,0 +1,17 @@
+.page.node-gallery {
+  .screen.index {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+
+    .region.drop-down-text {
+      @include size-fixed;
+    }
+
+    .region.node-gallery {
+      @include flex-row;
+    }
+  }
+}
