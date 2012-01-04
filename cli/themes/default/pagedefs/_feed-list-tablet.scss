@@ -1,0 +1,22 @@
+.page.feed-list-tablet {
+  .screen.index {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+
+    > .region:nth-child(2) {
+      @include column-container;
+
+      > .region:first-child {
+        width: 320px;
+        @include size-fixed;
+      }
+
+      > .region:last-child {
+        @include box-shadow(-2px, 0);
+      }
+    }
+  }
+}
