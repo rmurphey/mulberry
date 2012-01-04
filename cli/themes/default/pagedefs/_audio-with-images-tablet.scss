@@ -2,22 +2,51 @@
   .component.audio-caption,
   .component.image-caption {
     @include caption-text;
+
     &:not(.empty) {
       padding: 10px;
     }
   }
 
   .screen.index {
-    > .region.image-container {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+
+    .region.image-container {
       @include background-shadow;
+      @include row-container;
+
+      .region.caption {
+        @include size-fixed;
+      }
+    }
+
+    .region.text-content {
+      @include column-container;
+
+      .child-nodes:not(.empty) {
+        padding-top: 10px;
+      }
+
+      .body-text:not(.empty) {
+        padding: 10px;
+      }
     }
 
     .region.audio-container {
+      @include size-fixed;
       @include background-shadow(top);
       @include column-container;
 
       .region.audio-active-player {
         @include row-container;
+
+        .region {
+          @include size-fixed;
+        }
       }
 
       audio {
@@ -26,22 +55,16 @@
       }
 
     }
+  }
 
-    > .region.text-content {
-      .child-nodes:not(.empty) {
-        padding-top: 10px;
-      }
+  .screen.detail {
+    @include row-container;
 
-      > .column:nth-child(1) {
-        .body-text:not(.empty) {
-          padding: 10px;
-        }
-      }
+    .region.header {
+      @include layout-overlay;
 
-      > .column:nth-child(2) {
-        .body-text {
-          padding: 10px;
-        }
+      > * {
+        width: 100%;
       }
     }
   }
