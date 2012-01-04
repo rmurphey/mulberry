@@ -1,8 +1,7 @@
 .page.videos-and-text-tablet {
   .screen.index {
-    .row.player-container {
+    .row.video-container {
       @include background-shadow;
-      padding-bottom: 40px;
     }
 
     .row.listing-and-children {
@@ -14,10 +13,6 @@
         .body-text:not(.empty) {
           padding: 10px;
         }
-
-        .body-text.video-caption {
-          padding: 10px 20px 0 10px;
-        }
       }
 
       > .column:nth-child(2) {
@@ -26,9 +21,13 @@
         }
       }
     }
+    
+    .component.body-text {
+  		padding: 10px;
+  	}
 
     .video-list + .child-nodes {
       margin-top: .4em;
-    } 
+    }
   }
 }

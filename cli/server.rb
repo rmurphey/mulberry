@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra/base'
+require 'rack/file'
 
 require 'mulberry'
 require 'builder/css_maker'
@@ -139,7 +140,7 @@ module Mulberry
 
       TouraAPP::Generators.config os, device_type,
         {
-          "id" => @mulberry_app.id,
+          "id" => Mulberry.escape_single_quote(@mulberry_app.id),
           "build" => Time.now.to_i,
           "skip_version_check" => true,
           "debug" => true
