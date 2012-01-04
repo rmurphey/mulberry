@@ -7,23 +7,18 @@ videos-and-text-tablet:
     - name: index
       backgroundImage: true
       regions:
-      - type: row
-        size: fixed
+      regions:
+      - className: page-nav
         components:
         - PageNav
 
-      - type: row
-        size: fixed
-        className: video-container
+      - className: video-container
         regions:
-        - type: row
-          size: fixed
-          className: player-container
+        - className: player-container
           components:
           - VideoPlayer
 
-        - type: row
-          size: fixed
+        - className: video-caption
           components:
           - VideoCaption
 
