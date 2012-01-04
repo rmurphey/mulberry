@@ -5,7 +5,7 @@ describe Mulberry::Command::Generate do
   before :each do
     @app_name = 'fooapp'
     FileUtils.rm_rf @app_name
-    Mulberry::Command::Scaffold.new([@app_name])
+    Mulberry::Command::Scaffold.new([@app_name], { :reporting_enabled => true })
   end
 
   after :each do

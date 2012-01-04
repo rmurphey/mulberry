@@ -13,12 +13,13 @@ require 'timeout'
 
 require 'cli/directories'
 require 'cli/env'
-
-
 require 'cli/data'
 require 'cli/server'
 require 'cli/build_helper'
 require 'cli/code_creator'
+require 'cli/content_creator'
+require 'cli/template_creator'
+
 require 'builder'
 
 module Mulberry
