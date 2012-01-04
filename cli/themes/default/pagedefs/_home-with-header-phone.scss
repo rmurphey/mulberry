@@ -1,5 +1,17 @@
 .page.home-with-header-phone {
-  .body-text {
-    padding: 10px;
+  .screen.index {
+    @include row-container;
+
+    .component.body-text {
+      padding: 10px;
+    }
+
+    .region.header-image {
+      @include size-fixed;
+    }
+
+    .region.nav {
+      @include size-fixed;
+    }
   }
 }
