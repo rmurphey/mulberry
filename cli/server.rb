@@ -4,6 +4,7 @@ require 'sinatra/base'
 require 'mulberry'
 require 'builder/css_maker'
 require 'app'
+require 'rack/file'
 
 module Mulberry
   class Server < Sinatra::Base
