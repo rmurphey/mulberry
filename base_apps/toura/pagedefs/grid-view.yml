@@ -3,15 +3,13 @@ grid-view:
   - name: index
     backgroundImage: true
     regions:
-    - type: row
-      size: fixed
+    - className: page-nav
       components:
       - PageNav
-    - type: row
-      size: fixed
+    - className: page-header
       components:
       - PageHeaderImage
-    - type: row
+    - className: grid
       scrollable: true
       components:
       - BodyText
