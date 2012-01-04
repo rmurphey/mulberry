@@ -36,12 +36,10 @@ toura.app.DeviceStorage = (function(){
       this.appId = appId;
 
       if (!window.localStorage) {
-        console.log('no local storage');
         throw new Error('Local storage interface is not defined. Cannot create database. Aborting.');
       }
 
       if (!window.openDatabase) {
-        console.log('no database capability');
         throw new Error('SQLite database interface is not defined. Cannot create database. Aborting.');
       }
 
