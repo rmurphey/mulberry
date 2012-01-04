@@ -1,28 +1,25 @@
 location-list:
   capabilities:
   - ImageGalleryDetail
+
   screens:
   - name: index
     regions:
-    - type: row
-      size: fixed
+    - className: page-nav
       components:
       - PageNav
-    - type: row
-      scrollable: true
+    - scrollable: true
       components:
       - NodeTitleBanner
       - ImageGallery
       - BodyText
       - LocationList
+
   - name: detail
     regions:
-    - type: row
-      layout: overlay
-      size: fixed
+    - className: detail-title
       components:
       - DetailTitle
-    - type: row
-      components:
+    - components:
       - ZoomableImageGallery
 
