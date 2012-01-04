@@ -27,11 +27,12 @@ module Mulberry
       end
 
       def reporting_opt_in
-        unless @options[:reporting_enabled]
+        if @options[:reporting_enabled]
+          # this is to allow tests to run silently and without interruption
+          input = 'Y'
+        else
           puts "Are you willing to send Toura anonymous usage statistics to help improve Mulberry? (Y/n)"
           input = STDIN.gets.strip
-        else
-          input = 'Y'
         end
 
         if input.downcase == 'y'
