@@ -1,6 +1,7 @@
 dojo.provide('toura._Store');
 
 dojo.require('dojo.store.Memory');
+dojo.require('dojo.Stateful');
 
 dojo.declare('toura._Store', dojo.store.Memory, {
   key : 'anonymous',
