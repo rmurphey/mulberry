@@ -32,6 +32,7 @@ Mulberry source code to your computer.
 
 Then run the installation script:
 
+	cd src/mulberry
 	source ./install.sh
 
 - You're done! You should now be able to run mulberry from any directory.
