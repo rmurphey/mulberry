@@ -1,0 +1,18 @@
+.page.google-map-tablet {
+  .screen.index {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+
+    .region.google-map {
+      @include row-container;
+    }
+
+    .region.pin-info {
+      @include layout-overlay;
+    }
+  }
+
+}
