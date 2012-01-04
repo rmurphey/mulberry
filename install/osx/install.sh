@@ -9,7 +9,7 @@ JAVAFILE=$(which java)
 ANTFILE=$(which ant)
 ANDROIDFILE=$(which android)
 
-function check_or_install() {
+function check_or_install_brew_pkg() {
 	FILELOCATION=$(which $1)
 	if [ "$FILELOCATION" ]
 	then
@@ -118,7 +118,7 @@ fi
 
 for package in $PACKAGES
 do
-	check_or_install $package
+	check_or_install_brew_pkg $package
 done
 
 
