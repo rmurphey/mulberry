@@ -31,7 +31,7 @@ module Mulberry
   SITEMAP     = 'sitemap.yml'
 
   FEATURES    = {
-    :reporting    =>    true
+    :reporting    =>    false
   }
 
   DEFAULTS  = {
@@ -47,7 +47,7 @@ module Mulberry
     'android' =>  [ 'phone' ],
     'ios'     =>  [ 'phone', 'tablet' ]
   }
-    
+
   def self.version
     VERSION
   end
