@@ -1,0 +1,21 @@
+.page.google-map-phone {
+  .screen.index {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+
+    .region.google-map {
+      @include row-container;
+    }
+  }
+
+  .screen.detail {
+    @include row-container;
+
+    .region.header {
+      @include size-fixed;
+    }
+  }
+}
