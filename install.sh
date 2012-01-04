@@ -1,6 +1,6 @@
 case "$(uname)" in
 	Darwin)
-#      . install/osx/install.sh
+      . install/osx/install.sh
       ;;
 
     CYGWIN*)
@@ -8,7 +8,8 @@ case "$(uname)" in
       ;;
 
     Linux|*)
-      . install/ubuntu/install.sh
+	  echo "Linux is not yet supported; please open install/ubuntu/README.md for more information."
+      # TODO: . install/ubuntu/install.sh
       ;;
 esac
 
@@ -28,19 +29,4 @@ echo -e "\n\nexport PATH=\$PATH:${DIR}/cli/bin" >> ~/.bash_profile
 export PATH=$PATH:$DIR/cli/bin
 
 
-echo "Downloading PhoneGap to tmp/callback-phonegap-c81c02b..."
-
-cd tmp
-curl https://nodeload.github.com/callback/phonegap/zipball/1.1.0 --O phonegap.1.1.0.zip
-
-unzip phonegap.1.1.0.zip
-cd ..
-
-if [[ "$(uname)" == "Darwin" ]]
-then
-	open tmp/callback-phonegap-c81c02b/iOS/PhoneGap-1.1.0.dmg
-fi
-
-
-echo "Configuring android..."
-android
+echo "Please open README.md for steps to install and configure Android."

@@ -1,7 +1,7 @@
-#!/bin/bash
 # install.sh: Installation script for OSX
 PACKAGES='git chromedriver'
 
+XCODEFILE=$(which xed)
 RVMFILE=$(which rvm)
 BREWFILE=$(which brew)
 GEMFILE=$(which gem)
@@ -19,6 +19,15 @@ function check_or_install() {
 		brew install $1
 	fi
 }
+
+
+if [ "$XCODEFILE" ]
+then
+	echo "XCode is installed..."
+else
+	echo "XCode is not installed. Please install XCode 4.3+ from http://itunes.apple.com/us/app/xcode/id448457090?mt=12"
+	exit 1
+fi
 
 
 if [ "$RVMFILE" ]
@@ -119,4 +128,22 @@ then
 else
 	echo "Installing android"
 	brew install android-sdk
+fi
+
+:q
+if [[ $(cat ~/Documents/PhoneGapLib/VERSION ) =~ '1.3.0' ]]
+then
+	echo "PhoneGap 1.3.0 is installed."
+else
+	echo "Downloading PhoneGap 1.3.0 to tmp/callback-phonegap-b81151f..."
+
+	cd tmp
+	curl https://nodeload.github.com/callback/phonegap/zipball/1.3.0 --O phonegap.1.3.0.zip
+
+	unzip -q phonegap.1.3.0.zip
+	cd ..
+
+	hdiutil mount tmp/callback-phonegap-b81151f/iOS/PhoneGap-1.3.0.dmg
+
+	open /Volumes/PhoneGap-1.3.0/PhoneGap-1.3.0.pkg
 fi
