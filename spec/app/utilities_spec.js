@@ -90,4 +90,29 @@ describe("utilities", function() {
       );
     });
   });
+
+  describe('toura.jsonp', function() {
+    it("should return a promise", function() {
+      var ret = toura.jsonp('http://search.twitter.com/search.json?q=toura');
+      expect(ret.then).toBeDefined();
+    });
+
+    it("should resolve the promise with the returned data", function() {
+      var ret = toura.jsonp('http://search.twitter.com/search.json?q=toura'),
+          flag = false;
+
+      runs(function() {
+        ret.then(function(data) {
+          console.log('GOT IT', data);
+          flag = data;
+        });
+      });
+
+      waits(500);
+
+      runs(function() {
+        expect(flag).toBeTruthy();
+      });
+    });
+  });
 });
