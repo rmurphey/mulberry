@@ -56,3 +56,17 @@ toura.tmpl = function(str, data) {
 
 toura.haml = Haml;
 
+toura.jsonp = function(url, config) {
+  config = dojo.isObject(url) ? url : (config || {});
+  url = dojo.isString(url) ? url : config.url;
+
+  if (!url) { return; }
+
+  return dojo.io.script.get({
+    url : url,
+    handleAs : 'json',
+    callbackParamName : config.callback || 'callback',
+    load : config.load,
+    error : config.error
+  });
+};
