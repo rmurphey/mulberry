@@ -119,10 +119,6 @@ describe("utilities", function() {
           }),
           flag = false;
 
-      runs(function() {
-        ret.then(function(data) { flag = data; });
-      });
-
       waits(500);
 
       runs(function() {
@@ -135,10 +131,6 @@ describe("utilities", function() {
             load : function() { flag = true; }
           }),
           flag = false;
-
-      runs(function() {
-        ret.then(function(data) { flag = data; });
-      });
 
       waits(500);
 
