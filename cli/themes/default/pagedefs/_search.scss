@@ -1,0 +1,9 @@
+.page.search {
+  .screen.index {
+    @include row-container;
+
+    .region.search-input {
+      @include size-fixed;
+    }
+  }
+}

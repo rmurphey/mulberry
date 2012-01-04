@@ -4,11 +4,9 @@ search:
   screens:
   - name: index
     regions:
-    - type: row
-      size: fixed
+    - className: search-input
       components:
       - SearchInput
-    - type: row
-      scrollable: true
+    - scrollable: true
       components:
       - SearchResults
