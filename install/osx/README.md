@@ -23,12 +23,14 @@ Download and install the OSX version of git from [git-scm.com](http://git-scm.co
 
 ### Install Mulberry
 
-After installing Git, open a Terminal window and type:
+After installing Git, open a Terminal window. The following will copy the latest
+Mulberry source code to your computer.
 
 	`mkdir src`
     `git clone git@github.com:Toura/mulberry.git src/mulberry`
 
-This will copy the latest Mulberry source code to your computer.
+
+Then run the installation script:
 
 	`source ./install.sh`
 
