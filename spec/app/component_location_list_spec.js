@@ -12,7 +12,6 @@ describe("location list", function() {
     };
 
     node = nodeForController('LocationList');
-    console.log('node is', node);
 
     toura.app.PhoneGap = {
       browser : {

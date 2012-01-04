@@ -5,7 +5,7 @@ describe("header image model", function() {
     dojo.require('toura.models.HeaderImage');
 
     api = dataAPI;
-    imageObj = api.getById('image-540');
+    imageObj = api.getById('image-bangs');
   });
 
   it("should create a header image model", function() {
