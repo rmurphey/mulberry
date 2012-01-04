@@ -111,5 +111,40 @@ describe("utilities", function() {
         expect(flag).toBeTruthy();
       });
     });
+
+    it("should accept just a config object", function() {
+      var ret = toura.jsonp({
+            url : 'http://search.twitter.com/search.json?q=toura',
+            load : function() { flag = true; }
+          }),
+          flag = false;
+
+      runs(function() {
+        ret.then(function(data) { flag = data; });
+      });
+
+      waits(500);
+
+      runs(function() {
+        expect(flag).toBeTruthy();
+      });
+    });
+
+    it("should accept a url and a config object", function() {
+      var ret = toura.jsonp('http://search.twitter.com/search.json?q=toura', {
+            load : function() { flag = true; }
+          }),
+          flag = false;
+
+      runs(function() {
+        ret.then(function(data) { flag = data; });
+      });
+
+      waits(500);
+
+      runs(function() {
+        expect(flag).toBeTruthy();
+      });
+    });
   });
 });
