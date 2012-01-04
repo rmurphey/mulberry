@@ -5,13 +5,10 @@ full-screen-images:
   screens:
     - name: index
       regions:
-      - type: row
-        layout: overlay
-        size: fixed
+      - className: page-nav
         components:
         - PageNav
-      - type: row
-        components:
+      - components:
         - ZoomableImageGallery
 
 
