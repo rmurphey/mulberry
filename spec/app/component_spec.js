@@ -262,6 +262,7 @@ describe("base _Component class", function() {
       }
     });
 
+    c.startup();
     dfd.resolve('resolved');
     expect(flag).toBe('resolved');
   });
@@ -282,6 +283,7 @@ describe("base _Component class", function() {
       }
     });
 
+    c.startup();
     dfd.resolve('resolved');
     expect(flag).toBe('resolved');
   });
@@ -304,6 +306,7 @@ describe("base _Component class", function() {
       }
     });
 
+    c.startup();
     dfd.resolve('resolved');
     expect(flag).toBe('resolved');
   });
