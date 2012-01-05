@@ -1,5 +1,4 @@
 require 'active_support/inflector'
-require 'cli/code_creator'
 
 module Mulberry
   class TemplateCreator

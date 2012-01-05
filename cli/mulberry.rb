@@ -7,19 +7,19 @@ require 'yaml'
 require 'json'
 require 'fileutils'
 require 'pathname'
-require 'rbconfig'
 require 'deep_merge'
 require 'socket'
 require 'timeout'
 
 require 'cli/directories'
 require 'cli/env'
-
-
 require 'cli/data'
 require 'cli/server'
 require 'cli/build_helper'
 require 'cli/code_creator'
+require 'cli/content_creator'
+require 'cli/template_creator'
+
 require 'builder'
 
 module Mulberry
@@ -30,6 +30,10 @@ module Mulberry
   CONFIG      = 'config.yml'
   CONFIG_DEV  = 'config_dev.yml'
   SITEMAP     = 'sitemap.yml'
+
+  FEATURES    = {
+    :reporting    =>    false
+  }
 
   DEFAULTS  = {
     'locale'            =>  'en-US',
@@ -44,7 +48,7 @@ module Mulberry
     'android' =>  [ 'phone' ],
     'ios'     =>  [ 'phone', 'tablet' ]
   }
-    
+
   def self.version
     VERSION
   end
@@ -79,7 +83,8 @@ module Mulberry
                         :assets_dir,
                         :source_dir,
                         :helper,
-                        :id
+                        :id,
+                        :config
 
     def initialize(source_dir)
       @source_dir       = File.expand_path(source_dir)

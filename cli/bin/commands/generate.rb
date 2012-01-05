@@ -1,8 +1,6 @@
-require 'content_creator'
-
 module Mulberry
   module Command
-    class Generate
+    class Generate < Mulberry::Command::Base
       def initialize(args = [])
 
         @dir = Mulberry.get_app_dir args[0]
@@ -23,6 +21,8 @@ module Mulberry
             screen['regions'].each(&method(:create_components))
           end
         end
+
+        report @dir, "generate"
       end
 
       private

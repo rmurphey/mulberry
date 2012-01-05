@@ -1,4 +1,5 @@
 .component.image-scroller {
+  @include row-container;
   @include pullout;
 
   ol.indicator {

@@ -247,7 +247,7 @@ describe("base _Component class", function() {
     expect(c.bar.innerHTML).toMatch('text1');
   });
 
-  it("should automatically resolve promises as specified by the resolutions object", function() {
+  it("should automatically resolve promises as specified by the when object", function() {
     var dfd = new dojo.Deferred(),
         flag;
 
@@ -255,13 +255,14 @@ describe("base _Component class", function() {
       node : {
         promise : dfd.promise
       },
-      resolutions : {
+      when : {
         'promise' : function(result) {
           flag = result;
         }
       }
     });
 
+    c.startup();
     dfd.resolve('resolved');
     expect(flag).toBe('resolved');
   });
@@ -274,7 +275,7 @@ describe("base _Component class", function() {
       node : {
         promise : dfd.promise
       },
-      resolutions : {
+      when : {
         'promise' : 'foo'
       },
       foo : function(result) {
@@ -282,6 +283,7 @@ describe("base _Component class", function() {
       }
     });
 
+    c.startup();
     dfd.resolve('resolved');
     expect(flag).toBe('resolved');
   });
@@ -294,7 +296,7 @@ describe("base _Component class", function() {
       node : {
         promise : dfd.promise
       },
-      resolutions : {
+      when : {
         'promise' : function(result) {
           this.foo(result);
         }
@@ -304,6 +306,7 @@ describe("base _Component class", function() {
       }
     });
 
+    c.startup();
     dfd.resolve('resolved');
     expect(flag).toBe('resolved');
   });

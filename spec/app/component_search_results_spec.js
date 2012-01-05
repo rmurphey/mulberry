@@ -12,7 +12,7 @@ describe("search results component", function() {
     dataAPI._store.fetch({
       query : { type : 'text-asset' },
       onComplete : function(items) {
-        var term = items[0].body[0].split(' ')[2];
+        var term = items[1].body[0].split(' ')[2];
         results = dataAPI.search(term);
       }
     });

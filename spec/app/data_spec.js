@@ -15,7 +15,7 @@ describe("data API", function() {
 
   describe("get model for item", function() {
     beforeEach(function() {
-      node = api.getModel('node-368');
+      node = api.getModel('node-videos');
     });
 
     it("should return an object of the given type", function() {
@@ -31,18 +31,18 @@ describe("data API", function() {
     });
 
     it("should throw an error if a model for an unknown type is requested", function() {
-      expect(function() { api.getModel('image-183'); }).toThrow();
+      expect(function() { api.getModel('image-bangs'); }).toThrow();
     });
 
     it("should allow specifying a model type", function() {
       // note that a limited number of types are defined in toura.app.Data!
-      expect(api.getModel('node-368', 'node') instanceof toura.models.Node).toBeTruthy();
-      expect(api.getModel('image-183', 'backgroundImage') instanceof toura.models.BackgroundImage).toBeTruthy();
+      expect(api.getModel('node-videos', 'node') instanceof toura.models.Node).toBeTruthy();
+      expect(api.getModel('image-bangs', 'backgroundImage') instanceof toura.models.BackgroundImage).toBeTruthy();
     });
 
     it("should cache the results of getting a model", function() {
-      expect(api.cache['node-368']).toBeDefined();
-      expect(api.cache['node-368'].name).toEqual(node.name);
+      expect(api.cache['node-videos']).toBeDefined();
+      expect(api.cache['node-videos'].name).toEqual(node.name);
     });
 
     it("should return a falsy value if there is no matching item", function() {
@@ -53,7 +53,7 @@ describe("data API", function() {
 
   describe("get item by id", function() {
     it("should return an object when asked for an available id", function() {
-      expect(api.getById('node-368')).toBeTruthy();
+      expect(api.getById('node-videos')).toBeTruthy();
     });
 
     it("should return nothing when asked for an unavailable id", function() {
@@ -63,26 +63,26 @@ describe("data API", function() {
 
   describe("search", function() {
     it("should return search results objects for the specified term", function() {
-      var results = api.search('citaaay');
-      expect(results.length).toEqual(1);
-      expect(results[0].displayName).toBe('California Love');
+      var results = api.search('bangs');
+      expect(results.length).toEqual(4);
+      expect(results[0].displayName).toBe('bangs');
       expect(results[0].asset).toBeTruthy();
     });
 
     it("should search the text and body properties of text assets for matches", function() {
-      var results = api.search('citaaay');
-      expect(results.length).toEqual(1);
+      var results = api.search('bangs');
+      expect(results.length).toEqual(4);
 
-      results = api.search('California');
-      expect(results.length).toEqual(1);
+      results = api.search('trendy');
+      expect(results.length).toEqual(8);
     });
 
     it("should allow multi-word searches", function() {
-      expect(api.search('city of Compton').length).toEqual(1);
+      expect(api.search('trendy bangs').length).toEqual(4);
     });
 
     it("should make searches case insensitive", function() {
-      expect(api.search('city of compTON').length).toEqual(1);
+      expect(api.search('trendy BANGS').length).toEqual(4);
     });
 
     it("should return an empty array if no search term is provided", function() {
@@ -91,33 +91,33 @@ describe("data API", function() {
     });
 
     it("should use a cached result for a term if it has one", function() {
-      var results = api.search('citaaay');
+      var results = api.search('beard');
       var length = results.length;
 
       spyOn(api._store, 'fetch');
 
-      var resultsCached = api.search('citaaay');
+      var resultsCached = api.search('beard');
       expect(api._store.fetch).wasNotCalled();
-      expect(resultsCached.length).toEqual(1);
+      expect(resultsCached.length).toEqual(4);
       expect(results[0].name).toBe(resultsCached[0].name);
     });
 
     it("should sanitize the search to include only letters, numbers, and spaces", function() {
-      expect(api.search('city*of+Compton><').length).toBe(1);
+      expect(api.search('trendy*bangs><').length).toBe(4);
     });
   });
 
   describe("node object", function() {
     beforeEach(function() {
-      node = api.getModel('node-368');
+      node = api.getModel('node-image_gallery');
     });
 
     it("should have its properties populated correctly from the data", function() {
-      expect(node.id).toEqual('node-368');
+      expect(node.id).toEqual('node-image_gallery');
       expect(node.name).toEqual('Image Gallery');
       expect(node.children).toBeDefined();
 
-      expect(node.images.length).toEqual(9);
+      expect(node.images.length).toEqual(4);
       expect(node.images[0].declaredClass).toEqual('toura.models.Image');
 
       expect(node.audios.length).toEqual(0);
@@ -152,7 +152,7 @@ describe("data API", function() {
       });
 
       it("should use the name from the caption, if the image doesn't have one", function() {
-        image = node.images[1];
+        image = node.images[2];
         expect(image.caption).toBeUndefined();
         expect(image.name).toBeDefined();
         expect(image.id).toBeDefined();
@@ -161,7 +161,7 @@ describe("data API", function() {
 
     describe("determine streamability of assets", function() {
       it("should use a remote URL if it is not in the manifest", function() {
-        var image = node.images[1];
+        var image = node.images[3];
         expect(image.original.url).toMatch(/^http/);
         expect(image.featured.url).toMatch(/^http/);
         expect(image.gallery.url).toMatch(/^http/);
@@ -181,7 +181,7 @@ describe("data API", function() {
     var audio;
 
     beforeEach(function() {
-      node = api.getModel('node-369');
+      node = api.getModel('node-audio_list');
       audio = node.audios[0];
     });
 
@@ -196,7 +196,7 @@ describe("data API", function() {
     var video;
 
     beforeEach(function() {
-      node = api.getModel('node-372');
+      node = api.getModel('node-videos');
       video = node.videos[0];
     });
 
@@ -211,7 +211,7 @@ describe("data API", function() {
     var pin;
 
     beforeEach(function(){
-      node = api.getModel('node-371');
+      node = api.getModel('node-location_map');
       pin = node.googleMapPins[0];
     });
 
