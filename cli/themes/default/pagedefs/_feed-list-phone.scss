@@ -1,9 +1,5 @@
 .page.feed-list-phone {
   .screen {
-    @include flex-row-container;
-
-    .region.page-nav {
-      @include size-fixed;
-    }
+    @include standard-screen;
   }
 }

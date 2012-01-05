@@ -1,10 +1,6 @@
 .page.audio-with-images-phone {
   .screen.index {
-    @include flex-row-container;
-
-    .region.page-nav {
-      @include size-fixed;
-    }
+    @include standard-screen;
 
     .region.image-gallery {
       @include background-shadow;

@@ -1,10 +1,6 @@
 .page.feed-list-tablet {
   .screen.index {
-    @include flex-row-container;
-
-    .region.page-nav {
-      @include size-fixed;
-    }
+    @include standard-screen;
 
     > .region:nth-child(2) {
       @include flex-column-container;

@@ -1,9 +1,5 @@
 .page.hotspots {
   .screen {
-    @include flex-row-container;
-
-    .region.page-nav {
-      @include size-fixed;
-    }
+    @include standard-screen;
   }
 }

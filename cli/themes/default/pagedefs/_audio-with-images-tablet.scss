@@ -9,11 +9,7 @@
   }
 
   .screen.index {
-    @include flex-row-container;
-
-    .region.page-nav {
-      @include size-fixed;
-    }
+    @include standard-screen;
 
     .region.image-container {
       @include background-shadow;

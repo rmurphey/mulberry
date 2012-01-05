@@ -1,10 +1,6 @@
 .page.default {
   .screen {
-    @include flex-row-container;
-
-    .region.page-nav {
-      @include size-fixed;
-    }
+    @include standard-screen;
   }
 
   .component.body-text {

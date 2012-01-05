@@ -1,10 +1,6 @@
 .page.google-map-phone {
   .screen.index {
-    @include flex-row-container;
-
-    .region.page-nav {
-      @include size-fixed;
-    }
+    @include standard-screen;
 
     .region.google-map {
       @include flex-row-container;

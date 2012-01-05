@@ -1,10 +1,6 @@
 .page.node-gallery {
   .screen.index {
-    @include flex-row-container;
-
-    .region.page-nav {
-      @include size-fixed;
-    }
+    @include standard-screen;
 
     .region.drop-down-text {
       @include size-fixed;
