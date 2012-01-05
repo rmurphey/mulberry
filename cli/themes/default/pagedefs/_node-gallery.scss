@@ -9,9 +9,5 @@
     .region.drop-down-text {
       @include size-fixed;
     }
-
-    .region.node-gallery {
-      @include flex-row;
-    }
   }
 }

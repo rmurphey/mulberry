@@ -8,7 +8,7 @@
     @include flex-column-container;
 
     > div {
-      @include pane;
+      @include flex-region;
     }
 
     .spinner {

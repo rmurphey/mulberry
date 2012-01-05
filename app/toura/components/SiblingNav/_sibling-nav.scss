@@ -51,7 +51,7 @@
     }
 
     ol.nodes {
-      @include pane;
+      @include flex-region;
       @include flex-column-container;
       height: 100%;
 

@@ -3,7 +3,6 @@
     @include flex-row-container;
 
     > .region.top {
-      @include flex-row;
       @include flex-row-container;
 
       .columns {

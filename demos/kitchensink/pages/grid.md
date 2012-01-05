@@ -1,10 +1,10 @@
 ---
 title: Grid
-template: 
+template:
   phone: grid-view
   tablet: grid-view
 
 data: test.json
-header_image: bangs.jpg
+header_image: puppy-header.jpg
 ---
 
