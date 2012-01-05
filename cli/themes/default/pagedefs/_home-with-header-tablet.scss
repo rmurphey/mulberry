@@ -1,9 +1,22 @@
 .page.home-with-header-tablet {
-  .body-text {
-    padding: 20px 20px 0 20px;
-  }
+  .screen.index {
+    @include row-container;
 
-  .child-nodes {
-    padding-top: 20px;
+    .body-text {
+      padding: 20px 20px 0 20px;
+    }
+
+    .child-nodes {
+      padding-top: 20px;
+    }
+
+    .region.page-header {
+      @include size-fixed;
+    }
+
+    .region.nav {
+      -webkit-box-flex: 0;
+      margin-bottom: 20px;
+    }
   }
 }
