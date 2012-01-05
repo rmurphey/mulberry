@@ -406,8 +406,10 @@ module Mulberry
         end
         data_report = build.completed_steps[:gather][:data]
         json = File.read data_report[:tour_json_location]
-        version = ota_service_application.publish json  if not version or build.settings[:publish_ota]
-        puts "Published OTA version #{version}."
+        if not version or build.settings[:publish_ota]
+          version = ota_service_application.publish json
+          puts "Published OTA version #{version}."
+        end
       end
     end
 
