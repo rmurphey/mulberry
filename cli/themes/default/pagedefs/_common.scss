@@ -2,6 +2,6 @@
   @include flex-row-container;
 
   .region.page-nav {
-    @include size-fixed;
+    @include fixed-flex-region;
   }
 }

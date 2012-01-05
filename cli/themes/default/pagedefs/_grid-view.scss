@@ -3,7 +3,7 @@
     @include standard-screen;
 
     .region.page-header {
-      @include size-fixed;
+      @include fixed-flex-region;
     }
 
     .region.grid {

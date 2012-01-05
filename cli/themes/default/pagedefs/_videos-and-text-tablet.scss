@@ -12,7 +12,7 @@
       }
 
       .region.video-caption {
-        @include size-fixed;
+        @include fixed-flex-region;
       }
     }
 

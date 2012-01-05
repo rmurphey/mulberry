@@ -7,11 +7,11 @@
     }
 
     .region.header-image {
-      @include size-fixed;
+      @include fixed-flex-region;
     }
 
     .region.nav {
-      @include size-fixed;
+      @include fixed-flex-region;
     }
   }
 }

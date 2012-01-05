@@ -3,7 +3,7 @@
     @include standard-screen;
 
     .region.drop-down-text {
-      @include size-fixed;
+      @include fixed-flex-region;
     }
   }
 }

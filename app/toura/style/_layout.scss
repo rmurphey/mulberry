@@ -20,6 +20,10 @@
   -webkit-box-flex: $proportion;
 }
 
+@mixin fixed-flex-region {
+  -webkit-box-flex: 0;
+}
+
 @mixin pullout {
   // Pull it out of normal flow, so its contents don't affect the size of the box
   position: absolute;
@@ -35,19 +39,10 @@
   overflow: hidden;
 }
 
-@mixin size-fixed {
-  -webkit-box-flex: 0;
-
-  > * {
-    width: 100%;
-  }
-}
-
 @mixin layout-overlay {
   position: absolute;
   width: 100%;
 }
-
 
 @mixin hidable {
   &.hidden {

@@ -11,7 +11,7 @@
     @include flex-row-container;
 
     .region.header {
-      @include size-fixed;
+      @include fixed-flex-region;
     }
   }
 }

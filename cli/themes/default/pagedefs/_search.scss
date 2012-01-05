@@ -3,7 +3,7 @@
     @include flex-row-container;
 
     .region.search-input {
-      @include size-fixed;
+      @include fixed-flex-region;
     }
   }
 }

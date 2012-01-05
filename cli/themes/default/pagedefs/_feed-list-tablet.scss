@@ -7,7 +7,7 @@
 
       > .region:first-child {
         width: 320px;
-        @include size-fixed;
+        @include fixed-flex-region;
       }
 
       > .region:last-child {

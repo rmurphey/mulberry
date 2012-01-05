@@ -7,7 +7,7 @@
     }
 
     .region.audio-gallery {
-      @include size-fixed;
+      @include fixed-flex-region;
       height: 40px;
 
       @if ($font-scheme == dark) {

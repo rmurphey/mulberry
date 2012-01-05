@@ -16,7 +16,7 @@
       @include flex-row-container;
 
       .region.caption {
-        @include size-fixed;
+        @include fixed-flex-region;
       }
     }
 
@@ -33,15 +33,19 @@
     }
 
     .region.audio-container {
-      @include size-fixed;
+      @include fixed-flex-region;
       @include background-shadow(top);
       @include flex-column-container;
+
+      > * {
+        width: 100%;
+      }
 
       .region.audio-active-player {
         @include flex-row-container;
 
         .region {
-          @include size-fixed;
+          @include fixed-flex-region;
         }
       }
 

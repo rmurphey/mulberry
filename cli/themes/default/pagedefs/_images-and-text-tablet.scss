@@ -7,7 +7,7 @@
       @include flex-row-container;
 
       > .region.caption {
-        @include size-fixed;
+        @include fixed-flex-region;
       }
     }
 
