@@ -16,7 +16,7 @@ describe("page header image component", function() {
       height : 100
     };
 
-    node = nodeForController('Default');
+    node = dataAPI.getModel("node-grid");
   });
 
   it("should set up the component", function() {
@@ -41,6 +41,4 @@ describe("page header image component", function() {
       expect(parseInt(dojo.attr(c.imageNode, 'width'), 10)).toBe(toura.app.UI.viewport.width);
     });
   });
-
-
 });

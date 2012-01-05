@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra/base'
+require 'rack/file'
 
 require 'mulberry'
 require 'builder/css_maker'

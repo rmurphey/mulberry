@@ -3,7 +3,7 @@ describe("node model", function() {
 
   beforeEach(function() {
     api = dataAPI;
-    node = api.getModel('node-368');
+    node = api.getModel('node-home');
   });
 
   it("should return assets for all known asset types", function() {

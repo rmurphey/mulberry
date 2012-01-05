@@ -1,15 +1,53 @@
-require 'content_creator'
+require 'yaml'
+require 'guid'
 
 module Mulberry
   module Command
-    class Scaffold
-      def initialize(args = [])
+    class Scaffold < Mulberry::Command::Base
+      def initialize(args, additional_options = {})
         dir = args[0]
+
+        @options = { :reporting_enabled => false }.merge(additional_options)
+        input = nil
+
+        OptionParser.new do |opts|
+          opts.banner = "Usage: mulberry scaffold [dirname] [options]"
+
+          opts.on("-r", "--reporting_enabled", "Automatically enables reporting. Default: #{@options[:reporting_enabled]}") do |r|
+            @options[:reporting_enabled] = r
+          end
+        end.parse!
 
         raise "You must specify an app name" unless dir
 
-        dir = dir.gsub(File.join(Dir.pwd, ""), "")
-        Mulberry::App.scaffold(dir)
+        @dir = dir.gsub(File.join(Dir.pwd, ""), "")
+        Mulberry::App.scaffold(@dir)
+
+        reporting_opt_in if Mulberry::FEATURES[:reporting]
+      end
+
+      def reporting_opt_in
+        if @options[:reporting_enabled]
+          # this is to allow tests to run silently and without interruption
+          input = 'Y'
+        else
+          puts "Are you willing to send Toura anonymous usage statistics to help improve Mulberry? (Y/n)"
+          input = STDIN.gets.strip
+        end
+
+        if input.downcase == 'y'
+          File.open(File.join(@dir, '.mulberry'), 'w') do |f|
+            y = {
+              'host'            =>  'http://localhost:8888',
+              'guid'            =>  Guid.new.to_s
+            }.to_yaml
+
+            f.write y
+          end
+
+          puts "Created #{File.join(@dir, '.mulberry')} to enable anonymous reporting"
+          report @dir, 'scaffold'
+        end
       end
     end
   end

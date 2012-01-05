@@ -15,10 +15,20 @@ describe Mulberry::Command::Create do
   end
 
   it "should initalize" do
-    Mulberry::Command::Scaffold.new([@app_name])
+    Mulberry::Command::Scaffold.new([@app_name], { :reporting_enabled => true })
   end
 
   it "should initalize with full path" do
-    Mulberry::Command::Scaffold.new(["#{Dir.pwd}/#{@app_name}"])
+    Mulberry::Command::Scaffold.new(["#{Dir.pwd}/#{@app_name}"], { :reporting_enabled => true })
+  end
+
+  it "should create the .mulberry file" do
+    old_val = Mulberry::FEATURES[:reporting]
+    Mulberry::FEATURES[:reporting] = true
+
+    Mulberry::Command::Scaffold.new([@app_name], :reporting_enabled => true)
+    File.exists?(File.join(@app_name, '.mulberry')).should be_true
+
+    Mulberry::FEATURES[:reporting] = old_val
   end
 end

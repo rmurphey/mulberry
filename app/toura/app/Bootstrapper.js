@@ -6,7 +6,9 @@ dojo.require('toura.models.Tour');
 
 dojo.requireLocalization('toura', 'toura');
 
-toura.app.Bootstrapper = function() {
+(function() {
+
+var bootstrapper = function() {
   var dfd = new dojo.Deferred(),
       app = toura.app,
       tour;
@@ -15,7 +17,7 @@ toura.app.Bootstrapper = function() {
   app.DeviceStorage.init(app.Config.get("id"));
   // app.DeviceStorage.drop();
 
-  tour = toura.app.Tour = new toura.models.Tour({
+  tour = new toura.models.Tour({
     bundleDataUrl : toura.localDataUrl || ('./data/tour.js' + (app.PhoneGap.present ? '.jet' : '')),
     remoteDataUrl : app.Config.get('updateUrl'),
     remoteVersionUrl : app.Config.get('versionUrl')
@@ -48,7 +50,58 @@ toura.app.Bootstrapper = function() {
     });
   });
 
-  tour.bootstrap().then(dfd.resolve, dfd.reject);
+  tour.bootstrap().then(function() {
+    dfd.resolve(tour);
+  }, dfd.reject);
 
   return dfd.promise;
 };
+
+dojo.subscribe('/app/deviceready', function() {
+
+  bootstrapper().then(function(tour) {
+
+    tour.getItems().then(function(data) {
+
+      //>>excludeStart('production', kwArgs.production);
+      if (toura.extraTourData && dojo.isArray(toura.extraTourData)) {
+        dojo.forEach(toura.extraTourData, function(item) {
+          data.push(item);
+        });
+      }
+      //>>excludeEnd('production');
+
+      toura.app.Data = new toura.app.Data(data);
+
+      // this timeout is here to avoid a nasty problem with webkit
+      // where reading a node's innerHTML will not work correctly;
+      // this bug manifests itself with an "Invalid template" error,
+      // which will make no sense because the template is perfectly
+      // valid. this error will only appear intermittently, and almost
+      // exclusively on device. long story short:
+      //
+      // DO NOT REMOVE THIS TIMEOUT
+      //
+
+      setTimeout(function() {
+        dojo.publish('/app/ready');
+
+        toura.app.PhoneGap.network.isReachable().then(
+          function(reachable) {
+            if (!reachable) {
+              toura.app.PhoneGap.notification.alert(
+                dojo.i18n.getLocalization(
+                  "toura", "toura", toura.app.Config.get("locale")
+                ).STARTUP_NO_NETWORK
+              );
+            }
+          }
+        );
+      }, 200);
+    });
+
+  });
+
+});
+
+}());

@@ -3,9 +3,6 @@ $: << File.expand_path('../..', __FILE__)
 $: << File.expand_path('../../..', __FILE__)
 
 require 'mulberry'
-require 'content_creator'
-require 'code_creator'
-require 'template_creator'
 require 'optparse'
 
 Dir[File.dirname(__FILE__) + '/commands/*.rb'].each {|file| require file }

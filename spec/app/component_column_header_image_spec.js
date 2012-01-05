@@ -16,7 +16,7 @@ describe("column header image component", function() {
       height : 100
     };
 
-    node = nodeForController('Default');
+    node = nodeForController('FeedList');
   });
 
   it("should set up the component", function() {
@@ -32,6 +32,7 @@ describe("column header image component", function() {
 
       c = C({ device : d, node : node });
       c.startup();
+
       expect(
         dojo.style(c.imageNode, 'width')
       ).toEqual(dojo.style(t, 'width'));

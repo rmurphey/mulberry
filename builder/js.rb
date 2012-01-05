@@ -2,13 +2,10 @@ require "builder/task_base.rb"
 require "cli/directories"
 require "cli/env"
 require "json"
+require "pathname"
 
 module Builder
   class JavaScript < Builder::TaskBase
-    COPYRIGHT_FILE = File.join(
-      TouraAPP::Directories.profiles,
-      "copyright.txt"
-    )
 
     PROFILE_FILE = "toura.profile.js"
 
@@ -17,6 +14,17 @@ module Builder
       "util",
       "buildscripts"
     )
+
+    COPYRIGHT_FILE = File.join(
+      TouraAPP::Directories.profiles,
+      "copyright.txt"
+    )
+
+    # Hacktastic because dojo build on CYGWIN calls Windows' Java
+    # and an absolute path will be relative to C:\, not C:\CYGWINDRIVE, thus
+    # looking for the copyright_file in a location not accessible
+    # to cygwin. Thus, we have to make this a silly relative path
+    COPYRIGHT_FILE_REL_PATH = Pathname.new(COPYRIGHT_FILE).relative_path_from(Pathname.new(BUILDSCRIPTS_DIR)).to_s
 
     WEBKIT = {
       :dev =>             false,
@@ -28,7 +36,7 @@ module Builder
 
     LAYERS = {
       :dojo => {
-        :name =>            "dojo.js",
+        :name => "dojo.js",
         :dependencies =>    [
           "dijit._Widget",
           "dijit._Templated",
@@ -40,14 +48,14 @@ module Builder
       },
 
       :toura => {
-        :copyrightFile  => COPYRIGHT_FILE,
+        :copyrightFile  => COPYRIGHT_FILE_REL_PATH,
         :name           => "../toura/base.js",
         :resourceName   => "toura.base",
         :dependencies   => [ "toura.base" ]
       },
 
       :client => {
-        :copyrightFile  => COPYRIGHT_FILE,
+        :copyrightFile  => COPYRIGHT_FILE_REL_PATH,
         :name           => "../client/base.js",
         :resourceName   => "client.base",
         :dependencies   => [ "client.base" ]
@@ -190,7 +198,17 @@ module Builder
 
         Dir.chdir BUILDSCRIPTS_DIR
         puts "Building the JavaScript -- this can take a while, be patient!"
-        system %{./build.sh profileFile=#{PROFILE_FILE} releaseDir=#{@location} #{'> /dev/null' if !@build.settings[:verbose]}}
+
+        if Mulberry::Env.host_os == :windows
+          build_script = 'build.bat'
+          location     = Pathname.new(@location).relative_path_from(Pathname.new(Dir.pwd)).to_s
+        else
+          build_script = 'build.sh'
+          location     = @location
+        end
+
+        system %{./#{build_script} profileFile=#{PROFILE_FILE} releaseDir=#{location} #{'> /dev/null' if !@build.settings[:verbose]}}
+
       ensure
         FileUtils.rm_rf profile_file
         Dir.chdir pwd

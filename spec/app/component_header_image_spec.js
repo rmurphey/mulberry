@@ -11,14 +11,14 @@ describe("header image component", function() {
       return new toura.components.HeaderImage(config || {}).placeAt(t);
     };
 
-    img = img || nodeForController('Default').headerImage;
+    img = img || dataAPI.getModel('node-grid').phoneHeaderImage;
 
     toura.app.UI.viewport = {
       width : 100,
       height : 100
     };
 
-    node = nodeForController('Default');
+    node = dataAPI.getModel('node-grid');
   });
 
   it("should set up the component", function() {
@@ -28,7 +28,6 @@ describe("header image component", function() {
 
       c = C({ device : d, node : node });
 
-      console.log('device:', d, t.querySelector(getRootSelector(c)));
       expect(t.querySelector(getRootSelector(c))).toBeTruthy();
       expect(isWidgetRegistered('components_HeaderImage')).toBeTruthy();
       expect(c.viewImage).toBeDefined();
