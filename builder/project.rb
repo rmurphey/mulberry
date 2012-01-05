@@ -131,6 +131,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
 
         text = File.read(manifest_file)
 
+        text.gsub!("{android.versionName}", project_settings[:published_version].to_s)
         text.gsub!("{android.versionCode}", project_settings[:version].to_s)
         text.gsub!("com.toura.www", app_id)
 

@@ -207,6 +207,12 @@ describe Builder::Build do
       end
     end
 
+    it "should properly populate the manifest" do
+      manifest = File.read(File.join(@bundle[:location], 'android', 'AndroidManifest.xml'))
+      manifest.should include 'android:versionName="1.0"'
+      manifest.should include 'com.toura.app2_fake'
+    end
+
     after do
       @b.cleanup
     end
