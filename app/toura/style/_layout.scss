@@ -1,25 +1,19 @@
-@mixin hidable {
-  &.hidden {
-    display: none !important;
+@mixin flex-container {
+  display: -webkit-box;
+
+  > .region {
+    -webkit-box-flex: 1;
   }
 }
 
 @mixin row-container {
-  display: -webkit-box;
+  @include flex-container;
   -webkit-box-orient: vertical;
-
-  > .region {
-    -webkit-box-flex: 1;
-  }
 }
 
 @mixin column-container {
-  display: -webkit-box;
+  @include flex-container;
   -webkit-box-orient: horizontal;
-
-  > .region {
-    -webkit-box-flex: 1;
-  }
 }
 
 @mixin pane($proportion: 1) {
@@ -56,4 +50,10 @@
 
 @mixin flex-row($proportion: 1) {
   -webkit-box-flex: $proportion;
+}
+
+@mixin hidable {
+  &.hidden {
+    display: none !important;
+  }
 }
