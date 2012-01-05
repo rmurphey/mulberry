@@ -1,0 +1,9 @@
+.page.hotspots {
+  .screen {
+    @include row-container;
+
+    .region.page-nav {
+      @include size-fixed;
+    }
+  }
+}
