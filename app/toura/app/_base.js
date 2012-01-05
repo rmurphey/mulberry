@@ -20,3 +20,4 @@ dojo.require('toura.app.Manifest');
 dojo.require('toura.app.Has');
 
 dojo.require('toura._Store');
+dojo.require('toura._Model');

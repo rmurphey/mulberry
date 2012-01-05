@@ -1,7 +1,6 @@
 dojo.provide('toura._Store');
 
 dojo.require('dojo.store.Memory');
-dojo.require('dojo.Stateful');
 
 dojo.declare('toura._Store', dojo.store.Memory, {
   key : 'anonymous',
@@ -79,14 +78,4 @@ toura.store = function(name, proto) {
   );
 
   client.stores[name] = new client.stores[name]();
-};
-
-toura.model = function(name, proto) {
-  dojo.declare(
-    'client.models.' + name,
-    dojo.Stateful,
-    dojo.mixin({
-      format : function() {}
-    }, proto)
-  );
 };

@@ -1,5 +1,6 @@
 describe("toura.model", function() {
   beforeEach(function() {
+    dojo.require('toura._Model');
     dojo.require('toura._Store');
   });
 

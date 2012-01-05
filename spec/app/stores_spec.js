@@ -4,6 +4,7 @@ describe("local store", function() {
   beforeEach(function() {
     dojo.require('toura.app.DeviceStorage');
     dojo.require('toura._Store');
+    dojo.require('toura._Model');
   });
 
   describe("local store", function() {
