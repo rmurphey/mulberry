@@ -1,5 +1,5 @@
 .component.image-scroller {
-  @include row-container;
+  @include flex-row-container;
   @include pullout;
 
   ol.indicator {
@@ -13,7 +13,7 @@
   }
 
   .wrapper {
-    @include row-container;
+    @include flex-row-container;
 
     ol.images {
       @include pullout;
@@ -24,7 +24,7 @@
         text-align: center;
         // width set by component js
 
-        @include row-container;
+        @include flex-row-container;
         -webkit-box-pack: center;
 
         .image {

@@ -1,13 +1,13 @@
 .page.videos-and-text-tablet {
   .screen.index {
-    @include row-container;
+    @include flex-row-container;
 
     .region.page-nav {
       @include size-fixed;
     }
 
     .region.video-container {
-      @include row-container;
+      @include flex-row-container;
       @include background-shadow;
       padding-bottom: 20px;
 
@@ -21,7 +21,7 @@
     }
 
     .region.listing-and-children {
-      @include column-container;
+      @include flex-column-container;
 
       .child-nodes:not(.empty) {
         padding-top: 10px;

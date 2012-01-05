@@ -6,12 +6,12 @@
   }
 }
 
-@mixin row-container {
+@mixin flex-row-container {
   @include flex-container;
   -webkit-box-orient: vertical;
 }
 
-@mixin column-container {
+@mixin flex-column-container {
   @include flex-container;
   -webkit-box-orient: horizontal;
 }

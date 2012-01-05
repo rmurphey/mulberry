@@ -1,9 +1,9 @@
 .page.home-phone {
   .screen.index {
-    @include row-container;
+    @include flex-row-container;
 
     > .region {
-      @include row-container;
+      @include flex-row-container;
 
       .component.body-text {
         padding: 0 10px 10px 10px;

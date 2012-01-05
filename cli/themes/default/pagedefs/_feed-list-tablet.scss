@@ -1,13 +1,13 @@
 .page.feed-list-tablet {
   .screen.index {
-    @include row-container;
+    @include flex-row-container;
 
     .region.page-nav {
       @include size-fixed;
     }
 
     > .region:nth-child(2) {
-      @include column-container;
+      @include flex-column-container;
 
       > .region:first-child {
         width: 320px;

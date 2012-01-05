@@ -1,6 +1,6 @@
 .page.home-with-header-phone {
   .screen.index {
-    @include row-container;
+    @include flex-row-container;
 
     .component.body-text {
       padding: 10px;

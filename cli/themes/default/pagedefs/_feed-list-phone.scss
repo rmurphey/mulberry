@@ -1,6 +1,6 @@
 .page.feed-list-phone {
   .screen {
-    @include row-container;
+    @include flex-row-container;
 
     .region.page-nav {
       @include size-fixed;

@@ -1,6 +1,6 @@
 .page.audio-with-images-phone {
   .screen.index {
-    @include row-container;
+    @include flex-row-container;
 
     .region.page-nav {
       @include size-fixed;
@@ -42,7 +42,7 @@
   }
 
   .screen.detail {
-    @include row-container;
+    @include flex-row-container;
 
     .region.header {
       @include layout-overlay;

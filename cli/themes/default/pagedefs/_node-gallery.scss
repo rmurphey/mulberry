@@ -1,6 +1,6 @@
 .page.node-gallery {
   .screen.index {
-    @include row-container;
+    @include flex-row-container;
 
     .region.page-nav {
       @include size-fixed;

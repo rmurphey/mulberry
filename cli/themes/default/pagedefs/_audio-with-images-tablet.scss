@@ -9,7 +9,7 @@
   }
 
   .screen.index {
-    @include row-container;
+    @include flex-row-container;
 
     .region.page-nav {
       @include size-fixed;
@@ -17,7 +17,7 @@
 
     .region.image-container {
       @include background-shadow;
-      @include row-container;
+      @include flex-row-container;
 
       .region.caption {
         @include size-fixed;
@@ -25,7 +25,7 @@
     }
 
     .region.text-content {
-      @include column-container;
+      @include flex-column-container;
 
       .child-nodes:not(.empty) {
         padding-top: 10px;
@@ -39,10 +39,10 @@
     .region.audio-container {
       @include size-fixed;
       @include background-shadow(top);
-      @include column-container;
+      @include flex-column-container;
 
       .region.audio-active-player {
-        @include row-container;
+        @include flex-row-container;
 
         .region {
           @include size-fixed;
@@ -58,7 +58,7 @@
   }
 
   .screen.detail {
-    @include row-container;
+    @include flex-row-container;
 
     .region.header {
       @include layout-overlay;

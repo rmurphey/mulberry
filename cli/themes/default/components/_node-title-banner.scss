@@ -1,6 +1,6 @@
 .component.node-title-banner {
   @include content-padding;
-  @include column-container;
+  @include flex-column-container;
 
   .image {
     height: 50px;
