@@ -25,29 +25,11 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
   },
 
   /*
-   * Depending on some parameters from the region definition in templates.json,
-   * components need to be placed differently in order to get the correct dom
-   * structure.
-   *
-   * Rules:
-   *
-   * The default placement is to replace the .pane elemement with the component.
-   * We don't want the extra dom by placing in .inner
-   * BUG: If you place multiple components, only the last component will end up
-   * in the dom.
-   *
    * If the region has scrollable=true, place the component into the .inner div
    * because iScroll needs that extra wrapper div
-   *
-   * If containerType==component, place the component directly into .region. We
-   * don't need any of the extra container elements because we want the region to
-   * take the size of the component itself (used for stuff like PageNav
    */
   _placeComponents : function() {
-    // TODO: There is probably a clearer way to get the results we need
-    var placement = this.containerType === 'component' ? [this.domNode, 'replace'] :
-                    this.config.scrollable ? [this.inner, 'last'] :
-                    [this.pane, 'replace'] ;
+    var placement = this.config.scrollable ? [this.inner, 'last'] : [this.pane, 'replace'] ;
 
     if (
       this.config.components &&
