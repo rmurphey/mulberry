@@ -44,6 +44,12 @@ module Builder
       end
 
       position_build
+
+      tour_json_location = reports[:gather][:data][:tour_json_location]
+      if tour_json_location
+        FileUtils.cp tour_json_location,
+                     @build.build_helper.project_settings[:bundle]
+      end
       true
     end
 

@@ -138,13 +138,38 @@ module Mulberry
       device_type = params[:type] || 'phone'
       os = params[:os] || 'ios'
 
-      TouraAPP::Generators.config os, device_type,
+      config_settings = @helper.config_settings.merge(
         {
           "id" => Mulberry.escape_single_quote(@mulberry_app.id),
           "build" => Time.now.to_i,
-          "skip_version_check" => true,
           "debug" => true
         }
+      )
+      ['version_url', 'update_url'].each do |key|
+        ota_url = config_settings[key]
+        if ota_url and ota_url.length > 1
+          config_settings[key] = ota_url.sub(/http:\/\/[^\/]+/, url.match(/http:\/\/[^\/]+/)[0])
+        end
+      end
+      TouraAPP::Generators.config os, device_type, config_settings
+    end
+
+    get '*ota_service*' do
+      if url.match /version_json/
+        ota_url = @helper.config_settings['version_url']
+      elsif url.match /data_json/
+        ota_url = @helper.config_settings['update_url']
+        headers 'Content-Encoding' => 'gzip'
+      else
+        raise "Don't know how to proxy #{url}"
+      end
+      begin
+        res = Mulberry::Http.fetch(ota_url)
+        status res.code
+        res.body
+      rescue Errno::ECONNREFUSED
+        status 503 # unavailable
+      end
     end
 
     get '/:os/:type/javascript/toura/app/DevConfig.js' do
@@ -188,7 +213,8 @@ module Mulberry
       begin
         case params[:splat].first
         when 'tour.js'
-          TouraAPP::Generators.data(@helper.data)
+          ota_enabled = @helper.build ? @helper.build.ota_enabled? : false
+          TouraAPP::Generators.data(Mulberry::Data.new(@mulberry_app).generate(ota_enabled))
         when 'templates.js'
           TouraAPP::Generators.page_templates(@helper.templates)
         end

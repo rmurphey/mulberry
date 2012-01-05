@@ -1,12 +1,15 @@
 require 'spec_helper'
+require 'fakeweb'
 
 describe Mulberry::App do
   before :each do
     Mulberry::App.scaffold('testapp', true)
     @app = Mulberry::App.new 'testapp'
+    @initial_dir = Dir.pwd
   end
 
   after :each do
+    Dir.chdir @initial_dir
     FileUtils.rm_rf 'testapp'
   end
 
@@ -116,5 +119,66 @@ describe Mulberry::App do
       @app.data[:items].select { |item| item[:id] == 'text-asset-home' }.length.should equal 1
       @app.data[:items].select { |item| item[:id] == 'node-home' }.length.should equal 1
     end
+  end
+
+  describe "#publish_ota" do
+    after :each do
+      FakeWeb.clean_registry
+    end
+
+    it 'should raise appropriate exception on http error' do
+      @app.config['ota'] = { 'enabled' => 'true' }
+      @app.config['toura_api'] = {
+        'url' => 'https://myapi.com',
+        'key' => 'some_key'
+      }
+
+      {
+        "404" => Mulberry::Http::NotFound,
+        "503" => Mulberry::Http::ServiceUnavailable
+      }.each do |status, exception|
+        FakeWeb.register_uri(:post, //, :status => status)
+        lambda {@app.publish_ota '{"foo":"bar"}'}.should raise_error exception
+      end
+    end
+
+  end
+
+  describe "#device_build" do
+
+    after :each do
+      FakeWeb.clean_registry
+    end
+
+    def test_should_publish
+      @app.config['ota'] = { 'enabled' => 'true' }
+      @app.config['toura_api'] = {
+        'url' => 'https://myapi.com',
+        'key' => 'some_key'
+      }
+
+      yield
+
+      FakeWeb.last_request.method.should == "POST"
+      FakeWeb.last_request.path.should match /publish$/
+    end
+
+    it "should publish ota if enabled and no published version exists" do
+      test_should_publish do
+        FakeWeb.register_uri(:get, //,  :status => "404")
+        FakeWeb.register_uri(:post, //, :body => "{\"version\": 1}")
+        @app.device_build :skip_js_build => true
+      end
+    end
+
+    it "should publish ota if forced even if published version exists" do
+      test_should_publish do
+        FakeWeb.register_uri(:get, //,  :body => "{\"version\": 1}")
+        FakeWeb.register_uri(:post, //, :body => "{\"version\": 2}")
+
+        @app.device_build :skip_js_build => true, :publish_ota => true
+      end
+    end
+
   end
 end

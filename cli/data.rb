@@ -1,5 +1,7 @@
 require 'active_support/inflector'
 
+require 'lib/toura_api'
+
 require 'cli/assets/node'
 require 'cli/assets/text'
 require 'cli/assets/image'
@@ -10,6 +12,8 @@ require 'cli/assets/location'
 require 'cli/assets/feed'
 require 'cli/assets/header_image'
 require 'cli/assets/background_image'
+
+require 'lib/http'
 
 module Mulberry
   class Data
@@ -43,13 +47,29 @@ module Mulberry
     end
 
     public
-    def generate
+    def generate(include_version=false)
       do_contexts unless @contexts_complete
+      result = {
+        :items       =>  @items,
+        :app         =>  @config,
+        :appVersion  =>  TouraAPP.version
 
-      {
-        :items    =>  @items,
-        :app      =>  @config
       }
+      if (include_version)
+        unless @config['toura_api']
+          raise Builder::ConfigurationError.new "Need toura_api configuration to include version in data json."
+        end
+        url = @config['toura_api']['url'] || TouraApi::URL
+        key = @config['toura_api']['key']
+        begin
+          version = OtaServiceApplication.new(url, key).version
+        rescue Mulberry::Http::NotFound
+        end
+        new_version = (version || 0 ) + 1
+        puts "Retrieved current version from #{url}: #{version ? version : '(not published yet)'}. Setting version for this to #{new_version}."
+        result['version'] = new_version
+      end
+      result
     end
 
     def <<(item)
@@ -215,5 +235,6 @@ module Mulberry
       id = asset_caption_object[:caption]['_reference']
       @items.find { |i| i[:id] == id }
     end
+
   end
 end

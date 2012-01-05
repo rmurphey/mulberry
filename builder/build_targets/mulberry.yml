@@ -24,3 +24,6 @@ build:
 
 close:
     bundle: true
+
+ota:
+  enabled: true

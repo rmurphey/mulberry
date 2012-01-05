@@ -39,6 +39,11 @@ module Builder
       templates
     end
 
+    # should be overridden appropriately
+    def ota_enabled?
+      false
+    end
+
     private
     def padded_id
       # id's in iOS must be at least 2 characters :/

@@ -1,3 +1,4 @@
+require 'lib/toura_api'
 require 'builder/build_helper'
 require 'builder/css_maker'
 
@@ -39,9 +40,9 @@ module Mulberry
     end
 
     def config_settings
-      {
+      add_ota_to_config_settings({
         'id' => Mulberry.escape_single_quote(@config['name'])
-      }
+      })
     end
 
     def icons(destination, report)
@@ -98,7 +99,7 @@ module Mulberry
     end
 
     def data
-      Mulberry::Data.new(@app).generate
+      Mulberry::Data.new(@app).generate(build ? build.ota_enabled? : false)
     end
 
     def templates
@@ -154,6 +155,10 @@ module Mulberry
       File.exists?(dir) ? dir : false
     end
 
+    def ota_enabled?
+      @config['ota'] and @config['ota']['enabled']
+    end
+
     private
     def padded_id
       project_settings[:id].gsub(/\W/, '');
@@ -162,5 +167,29 @@ module Mulberry
     def theme_name
       @config['theme']['name'] || 'default'
     end
+
+    def add_ota_to_config_settings(settings)
+      if build and build.ota_enabled?
+        @build.log "Adding ota settings to config settings."
+        if @config['version_url']
+          settings.merge!(
+            'update_url'  =>  @config['version_url'],
+            'version_url' =>  @config['update_url']
+          )
+        elsif @config['toura_api']
+          url = @config['toura_api']['url'] || TouraApi::URL
+          key = @config['toura_api']['key']
+          settings.merge!(
+            'update_url'  =>  File.join(url, "/applications/#{key}/ota_service/data_json"),
+            'version_url' =>  File.join(url, "/applications/#{key}/ota_service/version_json")
+          )
+        else
+          raise Builder::ConfigurationError.new "Must configure toura_api credentials or version_url and update_url manually."
+        end
+        settings['skip_version_check'] = false
+      end
+      settings
+    end
+
   end
 end
