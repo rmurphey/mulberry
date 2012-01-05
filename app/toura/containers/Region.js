@@ -15,12 +15,6 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
     this._placeRegions();
     this._setupScroller();
 
-    if (this.config.type) {
-      this.addClass(this.config.type);
-    } else {
-      console.error("No type set for region. You should set it to 'row' or 'column'.", this);
-    }
-
     this.connect(this.screen, 'startup', 'startup');
   },
 
