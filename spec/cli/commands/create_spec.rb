@@ -28,6 +28,7 @@ describe Mulberry::Command::Create do
         :component => [ 'javascript', 'components', "#{@filename}.js" ],
         :capability => [ 'javascript', 'capabilities', "#{@filename}.js" ],
         :store => [ 'javascript', 'stores', "#{@filename}.js" ],
+        :model => [ 'javascript', 'models', "#{@filename}.js" ],
         :route => [ 'javascript', 'routes.js' ],
         :template => [ 'templates', "#{@filename}.yml" ],
       }
