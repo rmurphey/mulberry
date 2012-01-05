@@ -216,19 +216,22 @@ module Mulberry
 
       require 'webrick'
 
-      webrick_options = {:Port => args[:port]}
-
-      webrick_options.merge!({ :AccessLog => [nil, nil],
-                               :Logger    => ::WEBrick::Log.new("/dev/null")
-                            }) unless args[:verbose]
-
       Mulberry::Server.set :app, self
 
-      Rack::Handler::WEBrick.run Mulberry::Server, webrick_options do |server|
-        [:INT, :TERM].each { |sig| trap(sig) { server.stop } }
-        Mulberry::Server.set :running, true
-        puts "== mulberry has taken the stage on port #{args[:port]}. ^C to quit."
+      webrick_options = {:Port => args[:port], :app => Mulberry::Server}
+
+      unless args[:verbose]
+        logger = ::WEBrick::Log.new
+        logger.level = 0
+
+        webrick_options.merge!({ :AccessLog => [nil, nil],
+                                 :Logger    => logger
+                              })
       end
+
+      puts "== mulberry has taken the stage on port #{args[:port]}. ^C to quit."
+
+      Rack::Server.start( webrick_options )
     end
 
     def device_build(settings = nil)
