@@ -22,7 +22,12 @@
           
           &.child-nodes,
           &.body-text {
-            width: 640px;
+            width: 87%;
+            
+            @media only screen and (min-width: 800px) {
+              width: 57.5%;
+              margin-left: 12.5%;
+            }
           }
         }
       }
