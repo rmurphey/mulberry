@@ -49,7 +49,7 @@ dojo.declare('toura.app.PageFactory', null, {
 
     pageDef = toura.pagedefs[pageDefName];
 
-    if (!config) {
+    if (!pageDef) {
       throw ('toura.app.PageFactory: The page definition "' + pageDefName + '" does not exist.');
     }
 
@@ -58,7 +58,7 @@ dojo.declare('toura.app.PageFactory', null, {
     return new toura.containers.Page({
       baseObj: obj,
       device: this.device,
-      pageDef: config,
+      pageDef: pageDef,
       pageDefName: pageDefName
     });
   }
