@@ -110,7 +110,6 @@ dojo.declare('toura._Component', [ toura._View ], {
   postMixInProperties : function() {
     this.inherited(arguments);
 
-    // support for new templates
     if (this.screen) {
       this.screen.registerComponent(this);
       this.connect(this.screen, 'startup', 'startup');
