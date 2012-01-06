@@ -15,10 +15,11 @@ module Mulberry
 
           settings = YAML.load_file settings_file
 
-          report_url = URI(settings['report_url'])
           guid = settings['guid']
 
-          return unless host && guid
+          return unless settings['report_url'] && guid
+
+          report_url = URI(settings['report_url'])
 
           config = Mulberry::App.new(app_dir).config
 
@@ -33,7 +34,6 @@ module Mulberry
             'command'   =>  command,
             'guid'      =>  guid
           }.to_json
-          req.send
           res = Net::HTTP.start(report_url.host, report_url.port) { |http| http.request(req) }
         rescue
           # fail silently
