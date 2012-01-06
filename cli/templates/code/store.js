@@ -1,6 +1,6 @@
 dojo.provide('client.stores.{{name}}');
 
-mulberry.stores.local('{{name}}', {
+mulberry.store('{{name}}', {
   /*
    * This creates a store at client.stores.{{name}}
    *
