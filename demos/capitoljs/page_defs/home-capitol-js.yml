@@ -4,15 +4,13 @@ home-capitol-js:
   - name: index
     backgroundImage: true
     regions:
-    - type: row
+    - className: main
       regions:
-      - type: row
+      - scrollable: true
         components:
         - BodyText
         - ChildNodes
-        scrollable: true
-    - type: row
-      size: fixed
+    - className: nav
       components:
       - AppNav
 
