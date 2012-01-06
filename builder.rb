@@ -8,7 +8,7 @@ require "builder/icons"
 require "builder/load_screens"
 require "builder/assets"
 require "builder/data"
-require "builder/templates"
+require "builder/page_defs"
 
 require "builder/js"
 require "builder/css"
@@ -38,7 +38,7 @@ module Builder
         :load_screens => Builder::LoadScreens,
         :assets       => Builder::Assets,
         :data         => Builder::Data,
-        :templates    => Builder::Templates
+        :page_defs    => Builder::PageDefs
       },
 
       :build => {

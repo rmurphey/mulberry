@@ -6,7 +6,7 @@ module Builder
     def build
       reports = @build.completed_steps
 
-      [ :icons, :load_screens, :assets, :data, :templates, :www_icons ].each do |attrib|
+      [ :icons, :load_screens, :assets, :data, :page_defs, :www_icons ].each do |attrib|
         self.instance_variable_set( "@#{attrib.to_s}", reports[:gather][attrib])
       end
 
@@ -34,7 +34,7 @@ module Builder
       position_config unless !@config
       position_data unless !@data
       position_assets unless !@assets
-      position_templates unless !@templates
+      position_page_defs unless !@page_defs
       position_www_icons unless !@www_icons
 
       # TODO: separate these. this is dumb, but i copied it
@@ -63,15 +63,15 @@ module Builder
       end
     end
 
-    def position_templates
+    def position_page_defs
       data_dir = File.join(@www, 'data')
 
       FileUtils.mkdir_p(data_dir) unless File.exists?(data_dir)
 
-      @templates[:files].each do |template_file|
+      @page_defs[:files].each do |page_def_file|
         FileUtils.cp(
-          File.join(@templates[:location], template_file),
-          File.join(data_dir, "#{template_file}")
+          File.join(@page_defs[:location], page_def_file),
+          File.join(data_dir, "#{page_def_file}")
         )
       end
     end

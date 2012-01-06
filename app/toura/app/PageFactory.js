@@ -37,30 +37,29 @@ dojo.declare('toura.app.PageFactory', null, {
       throw new Error('toura.app.PageFactory::createPage requires an object');
     }
 
-    var controllerName = obj.pageController || 'default',
-    config;
+    var pageDefName = obj.pageController || 'default',
+        pageDef;
 
     // allow setting different page controllers per device
     if (obj.pageController && dojo.isObject(obj.pageController)) {
-      controllerName = obj.pageController[this.device.type] || 'default';
+      pageDefName = obj.pageController[this.device.type] || 'default';
     } else {
-      controllerName = obj.pageController || 'default';
+      pageDefName = obj.pageController || 'default';
     }
 
-    config = toura.templates[controllerName];
+    pageDef = toura.pagedefs[pageDefName];
 
     if (!config) {
-      console.error('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
-      throw ('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
+      throw ('toura.app.PageFactory: The page definition "' + pageDefName + '" does not exist.');
     }
 
-    toura.log('Creating ' + controllerName);
+    toura.log('Creating ' + pageDefName);
 
     return new toura.containers.Page({
       baseObj: obj,
       device: this.device,
-      templateConfig: config,
-      templateName: controllerName
+      pageDef: config,
+      pageDefName: pageDefName
     });
   }
 });
