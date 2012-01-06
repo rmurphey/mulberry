@@ -12,5 +12,5 @@ default:
       scrollable: true
       components:
       - PageHeaderImage
-      - BodyText
       - ChildNodes
+      - BodyText
