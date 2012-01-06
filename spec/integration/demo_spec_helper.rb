@@ -5,7 +5,7 @@ shared_examples_for "all demo apps" do
   describe "Demo app page smoke test", :type => :request do
 
     $app.should_not == nil
-    $templates.should_not == nil
+    $page_defs.should_not == nil
 
     # these are components that remove themselves if there is no data for them
     # TODO: we should be smarter about this
@@ -19,7 +19,7 @@ shared_examples_for "all demo apps" do
 
           if node_page_controller != 'locations-map'
             components = []
-            config = $templates[node_page_controller.to_s]
+            config = $page_defs[node_page_controller.to_s]
 
             raise "No config for #{node_page_controller}" unless config
 

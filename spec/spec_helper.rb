@@ -38,7 +38,7 @@ Capybara.default_selector = :css
 
 def serve_demo(demo_name)
   $app = Mulberry::App.new("./demos/#{demo_name}")
-  $templates = $app.helper.templates
+  $page_defs = $app.helper.page_defs
 
   Mulberry::Server.set :app => $app, :logging => false
   Capybara.app = Mulberry::Server
