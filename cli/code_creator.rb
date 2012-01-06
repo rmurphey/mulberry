@@ -7,6 +7,7 @@ module Mulberry
       'component'   =>  'components',
       'capability'  =>  'capabilities',
       'store'       =>  'stores',
+      'model'       =>  'models',
       'base'        =>  '.',
       'routes'      =>  '.',
       'route'       =>  '.'

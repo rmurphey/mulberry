@@ -1,6 +1,6 @@
 dojo.provide('client.stores.Twitter');
 
-mulberry.stores.remote('Twitter', {
+mulberry.store('Twitter', {
   getLatest : function(username) {
     return this._get(username, 1).then(dojo.hitch(this, '_getLatest'));
   },
