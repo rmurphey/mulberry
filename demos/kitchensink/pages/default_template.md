@@ -1,6 +1,6 @@
 ---
 title: Default Template
-template:
+page_def:
   phone: default
   tablet: default
 
