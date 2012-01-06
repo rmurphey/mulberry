@@ -10,7 +10,8 @@ default:
       - PageNav
     - type: row
       scrollable: true
+      className: main-content
       components:
       - PageHeaderImage
-      - ChildNodes
       - BodyText
+      - ChildNodes
