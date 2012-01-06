@@ -3,7 +3,8 @@ describe("local store", function() {
 
   beforeEach(function() {
     dojo.require('toura.app.DeviceStorage');
-    dojo.require('toura.stores._base');
+    dojo.require('toura._Store');
+    dojo.require('toura._Model');
   });
 
   describe("local store", function() {
@@ -13,7 +14,7 @@ describe("local store", function() {
         { id : 2, text : 'bar' }
       ]);
 
-      toura.stores.local('foo', {
+      toura.store('foo', {
         bar : 'baz'
       });
     });
@@ -67,17 +68,50 @@ describe("local store", function() {
       client.stores.foo.add({ text : 'no id' });
       expect(client.stores.foo.query({ text : 'no id' })[0].id).toBeDefined();
     });
-  });
 
-  describe("remote store", function() {
-    it("should create a memory store with the provided prototype", function() {
-      toura.stores.remote('foo', { bar : 'baz' });
+    describe("model creation", function() {
+      beforeEach(function() {
+        toura.model('Bar', {
+          format : function() {
+            this.set('newattr', true);
+          }
+        });
 
-      var s = client.stores.foo;
+        toura.store('bar', {
+          model : 'Bar',
+          doIt : function() {
+            return this.process([
+              { a : 1 },
+              { b : 2 },
+              { c : 3 }
+            ]);
+          }
+        });
+      });
 
-      expect(s).toBeDefined();
-      expect(s.bar).toBe('baz');
-      expect(s instanceof dojo.store.Memory).toBeTruthy();
+      it("should mix in the provided object", function() {
+        var d = client.stores.bar.doIt();
+
+        expect(d[0].a).toBe(1);
+        expect(d[1].b).toBe(2);
+        expect(d[2].c).toBe(3);
+      });
+
+      it("should run the model's format method", function() {
+        var d = client.stores.bar.doIt();
+
+        expect(d[0].newattr).toBeTruthy();
+        expect(d[1].newattr).toBeTruthy();
+        expect(d[2].newattr).toBeTruthy();
+      });
+
+      it("should create an instance of the specified model", function() {
+        var d = client.stores.bar.doIt();
+
+        expect(d[0] instanceof client.models.Bar).toBeTruthy();
+        expect(d[1] instanceof client.models.Bar).toBeTruthy();
+        expect(d[2] instanceof client.models.Bar).toBeTruthy();
+      });
     });
   });
 });
