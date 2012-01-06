@@ -6,6 +6,7 @@ module Mulberry
         app = Mulberry::App.new(dir)
         d = JSON.pretty_generate(Mulberry::Data.new(app).generate)
         puts d
+        report dir, self.class.name.split("::").last.underscore
       end
     end
   end
