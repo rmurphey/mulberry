@@ -1,6 +1,6 @@
 ---
 title: Map
-template:
+page_def:
   phone: google-map-phone
   tablet: google-map-tablet
 

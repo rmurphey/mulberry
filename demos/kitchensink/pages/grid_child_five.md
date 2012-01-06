@@ -1,6 +1,6 @@
 ---
 title: Grid Child Five has a really really long title for it
-template: 
+page_def:
   phone: default
   tablet: default
 

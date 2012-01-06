@@ -1,6 +1,6 @@
 ---
 title: Grid Child Three has a moderate title
-template: 
+page_def:
   phone: default
   tablet: default
 

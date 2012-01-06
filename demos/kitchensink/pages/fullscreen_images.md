@@ -1,6 +1,6 @@
 ---
-title: Fullscreen Image Gallery 
-template: full-screen-images
+title: Fullscreen Image Gallery
+page_def: full-screen-images
 
 images:
   - bangs.jpg

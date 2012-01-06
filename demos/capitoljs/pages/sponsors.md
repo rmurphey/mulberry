@@ -1,6 +1,6 @@
 ---
 title: Sponsors
-template:
+page_def:
   phone: default
   tablet: default
 ---

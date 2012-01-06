@@ -1,6 +1,6 @@
 ---
 title: Grid Child Six has a holy moly this title is so utterly out of proportion to anything sane what on earth was the author thinking when he wrote this oh my good lord why would you ever make the title so ridiculously stupidly verbose?
-template:
+page_def:
   phone: default
   tablet: default
 

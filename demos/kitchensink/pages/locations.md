@@ -1,6 +1,6 @@
 ---
 title: Locations Page
-template:
+page_def:
   phone: location-list
   tablet: location-list
 

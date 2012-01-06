@@ -1,6 +1,6 @@
 ---
 title: Grid Child Two
-template: 
+page_def:
   phone: default
   tablet: default
 

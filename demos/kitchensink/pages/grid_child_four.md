@@ -1,6 +1,6 @@
 ---
 title: Grid Child Four
-template: 
+page_def:
   phone: default
   tablet: default
 

@@ -1,6 +1,6 @@
 ---
 title: Audio List
-template:
+page_def:
   phone: audio-with-images-phone
   tablet: audio-with-images-tablet
 

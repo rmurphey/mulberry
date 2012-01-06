@@ -1,6 +1,6 @@
 ---
 title: Node Gallery
-template:
+page_def:
   phone: node-gallery
   tablet: node-gallery
 

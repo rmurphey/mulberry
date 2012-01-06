@@ -1,6 +1,6 @@
 ---
 title: Grid
-template: 
+page_def:
   phone: grid-view
   tablet: grid-view
 
