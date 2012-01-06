@@ -1,10 +1,13 @@
 .page.audio-with-images-phone {
   .screen.index {
-    > .row:nth-child(2) {
+    @include standard-screen;
+
+    .region.image-gallery {
       @include background-shadow;
     }
 
-    > .row:nth-child(3) {
+    .region.audio-gallery {
+      @include fixed-flex-region;
       height: 40px;
 
       @if ($font-scheme == dark) {
@@ -19,13 +22,29 @@
       }
     }
 
-    > .row:nth-child(4) {
+    .region.bottom {
       .child-nodes:not(.empty) {
         padding-top: 10px;
       }
 
       .body-text:not(.empty) {
         padding: 10px;
+      }
+    }
+
+    .component.audio-list:not(.empty) {
+      @include bottom-divider;
+    }
+  }
+
+  .screen.detail {
+    @include flex-row-container;
+
+    .region.header {
+      @include layout-overlay;
+
+      > * {
+        width: 100%;
       }
     }
   }

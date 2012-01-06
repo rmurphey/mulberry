@@ -3,6 +3,7 @@
 @import 'helpers/forms';
 
 @import 'splash';
+@import 'screen';
 
 body {
   color: $text-color;
@@ -14,8 +15,7 @@ body {
 }
 
 @import 'components/base';
-@import 'templates/base';
-@import 'custom';
+@import 'page_defs/base';
 
 // KLUDGE: workaround for bug in ios where :last-child styles in captions are
 // not applied until after scroller moves, which changes the height and breaks
@@ -26,4 +26,4 @@ body {
   }
 }
 
-
+@import 'custom';
