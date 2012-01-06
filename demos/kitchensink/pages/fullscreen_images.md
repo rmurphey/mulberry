@@ -9,4 +9,4 @@ images:
   - wiry.jpg
 ---
 
-This page uses the FullScreenImages template.
+This page uses the FullScreenImages page definition.
