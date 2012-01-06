@@ -258,3 +258,13 @@
     darken($text-color, $amount)
   )
 }
+
+@mixin content-padding {
+  .phone & {
+    padding: 8px;
+  }
+
+  .tablet & {
+    padding: 12px;
+  }
+}

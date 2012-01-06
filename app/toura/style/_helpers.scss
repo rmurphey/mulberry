@@ -28,15 +28,6 @@
   -webkit-animation-timing-function: linear;
 }
 
-@mixin content-padding {
-  .phone & {
-    padding: 8px;
-  }
-
-  .tablet & {
-    padding: 12px;
-  }
-}
 
 @mixin hideable {
   &.hidden {
