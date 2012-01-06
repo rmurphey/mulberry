@@ -1,8 +1,4 @@
 .region {
-  @include hidable;
+  @include hideable;
   overflow: visible;
-
-//  &.component-container {
-//    -webkit-box-orient: vertical;
-//  }
 }

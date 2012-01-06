@@ -37,3 +37,9 @@
     padding: 12px;
   }
 }
+
+@mixin hideable {
+  &.hidden {
+    display: none !important;
+  }
+}

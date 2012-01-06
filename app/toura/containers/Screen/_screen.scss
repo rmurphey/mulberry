@@ -1,4 +1,4 @@
 .screen {
   @include pullout;
-  @include hidable;
+  @include hideable;
 }
