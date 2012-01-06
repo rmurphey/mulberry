@@ -37,14 +37,14 @@ dojo.declare('toura.app.PageFactory', null, {
       throw new Error('toura.app.PageFactory::createPage requires an object');
     }
 
-    var pageDefName = obj.pageController || 'default',
+    var pageDefName = obj.pageController || obj.pageDef || 'default',
         pageDef;
 
     // allow setting different page controllers per device
-    if (obj.pageController && dojo.isObject(obj.pageController)) {
-      pageDefName = obj.pageController[this.device.type] || 'default';
+    if (pageDefName && dojo.isObject(pageDefName)) {
+      pageDefName = pageDefName[this.device.type] || 'default';
     } else {
-      pageDefName = obj.pageController || 'default';
+      pageDefName = pageDefName || 'default';
     }
 
     pageDef = toura.pagedefs[pageDefName];

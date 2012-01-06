@@ -27,6 +27,19 @@ describe("page factory", function() {
     expect(spy.mostRecentCall.args[0].pageDef).toBe('success');
   });
 
+  it("should work with a pageDef property", function() {
+    var node = {
+      pageDef : 'user defined template'
+    };
+
+    var spy = spyOn(toura.containers, 'Page');
+
+    f.createPage(node);
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy.mostRecentCall.args[0].pageDef).toBe('success');
+  });
+
   it("should use the default page controller if one is not defined", function() {
     var node = {
       pageController : ''
