@@ -7,7 +7,7 @@ dojo.require('toura.components._base');
 dojo.require('toura.capabilities._base');
 
 dojo.declare('toura.containers.Page', [ toura._View, toura.ui.BackgroundImage ], {
-  templateConfig : {},
+  pageDef : {},
   templateString : dojo.cache('toura.containers', 'Page/Page.haml'),
 
   postMixInProperties : function() {
@@ -22,13 +22,13 @@ dojo.declare('toura.containers.Page', [ toura._View, toura.ui.BackgroundImage ],
       throw "toura.Page requires a base object";
     }
 
-    if (!this.templateConfig.screens || !this.templateConfig.screens.length) {
+    if (!this.pageDef.screens || !this.pageDef.screens.length) {
       throw "The config for toura.Page must have at least one screen defined";
     }
 
     var bgImg = this._getBackgroundImage();
 
-    dojo.forEach(this.templateConfig.screens, function(screen) {
+    dojo.forEach(this.pageDef.screens, function(screen) {
       var scr = this.adopt(toura.containers.Screen, {
         page : this,
         config : screen,
@@ -40,7 +40,7 @@ dojo.declare('toura.containers.Page', [ toura._View, toura.ui.BackgroundImage ],
       this.screens[screen.name] = scr;
     }, this);
 
-    this.capabilities = dojo.map(this.templateConfig.capabilities || [], function(config) {
+    this.capabilities = dojo.map(this.pageDef.capabilities || [], function(config) {
       var C = dojo.isObject(config) ? config.name : config,
           components = config.components;
 
@@ -61,7 +61,7 @@ dojo.declare('toura.containers.Page', [ toura._View, toura.ui.BackgroundImage ],
     }
 
     this.addClass('page-' + this.baseObj.id);
-    this.addClass(this.templateName);
+    this.addClass(this.pageDefName);
   },
 
   showScreen : function (screenName) {

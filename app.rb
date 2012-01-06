@@ -25,7 +25,7 @@ module TouraAPP
       self.app
     end
 
-    def self.page_templates
+    def self.page_defs
       File.join(self.root, 'base_apps', 'toura', 'pagedefs')
     end
 
@@ -61,8 +61,8 @@ module TouraAPP
   end
 
   class Generators
-    def self.page_templates(templates)
-      "toura.templates = #{JSON.pretty_generate(templates)};"
+    def self.page_defs(page_defs)
+      "toura.pagedefs = #{JSON.pretty_generate(page_defs)};"
     end
 
     def self.index_html(params = {})

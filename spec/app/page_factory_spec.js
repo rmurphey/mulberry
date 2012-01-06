@@ -37,7 +37,7 @@ describe("page factory", function() {
     f.createPage("node", node);
 
     expect(spy).toHaveBeenCalled();
-    expect(spy.mostRecentCall.args[0].templateConfig).toBe('default');
+    expect(spy.mostRecentCall.args[0].pageDef).toBe('default');
   });
 
   it("should throw an error if no page object is provided", function() {

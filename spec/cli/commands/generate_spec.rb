@@ -61,8 +61,8 @@ describe Mulberry::Command::Generate do
   describe "component creation" do
     before :each do
       FileUtils.cp_r(
-        File.join(FIXTURES_DIR, 'template.yml'),
-        File.join(@app_name, 'templates')
+        File.join(FIXTURES_DIR, 'page_def.yml'),
+        File.join(@app_name, 'page_defs')
       )
 
       FileUtils.touch File.join(@app_name, 'javascript', 'components', 'AlreadyExists.js')

@@ -8,8 +8,8 @@ describe Builder::Build do
   before(:all) do
     Mulberry::App.scaffold('testapp', true)
     @app = Mulberry::App.new 'testapp'
-    @templates = Dir.glob(File.join(TouraAPP::Directories.page_templates, '*.yml')).map do |t|
-      YAML.load_file(t).keys.first
+    @page_defs = Dir.glob(File.join(TouraAPP::Directories.page_defs, '*.yml')).map do |page_def|
+      YAML.load_file(page_def).keys.first
     end
   end
 
@@ -49,7 +49,7 @@ describe Builder::Build do
 
         [ 'iphone', 'www', 'data' ],
         [ 'iphone', 'www', 'data', 'tour.js.jet' ],
-        [ 'iphone', 'www', 'data', 'templates.js' ],
+        [ 'iphone', 'www', 'data', 'pagedefs.js' ],
 
         [ 'iphone', 'www', 'javascript' ],
         [ 'iphone', 'www', 'javascript', 'dojo', 'dojo.js' ],
@@ -66,11 +66,11 @@ describe Builder::Build do
       File.read(File.join(@bundle[:location], 'iphone', 'www', 'data', 'tour.js.jet')).should include 'toura.data.local'
     end
 
-    it "should properly generate the template data" do
-      templates = File.read(File.join(@bundle[:location], 'iphone', 'www', 'data', 'templates.js'))
-      templates.should include 'toura.templates = '
-      @templates.each do |t|
-        templates.should include t
+    it "should properly generate the pagedef data" do
+      page_defs = File.read(File.join(@bundle[:location], 'iphone', 'www', 'data', 'pagedefs.js'))
+      page_defs.should include 'toura.pagedefs = '
+      @page_defs.each do |page_def|
+        page_defs.should include page_def
       end
     end
 
@@ -116,7 +116,7 @@ describe Builder::Build do
 
         [ 'ipad', 'www', 'data' ],
         [ 'ipad', 'www', 'data', 'tour.js.jet' ],
-        [ 'ipad', 'www', 'data', 'templates.js' ],
+        [ 'ipad', 'www', 'data', 'pagedefs.js' ],
 
         [ 'ipad', 'www', 'javascript' ],
         [ 'ipad', 'www', 'javascript', 'dojo', 'dojo.js' ],
@@ -133,11 +133,11 @@ describe Builder::Build do
       File.read(File.join(@bundle[:location], 'ipad', 'www', 'data', 'tour.js.jet')).should include 'toura.data.local'
     end
 
-    it "should properly generate the template data" do
-      templates = File.read(File.join(@bundle[:location], 'ipad', 'www', 'data', 'templates.js'))
-      templates.should include 'toura.templates = '
-      @templates.each do |t|
-        templates.should include t
+    it "should properly generate the page def data" do
+      page_defs = File.read(File.join(@bundle[:location], 'ipad', 'www', 'data', 'pagedefs.js'))
+      page_defs.should include 'toura.pagedefs = '
+      @page_defs.each do |page_def|
+        page_defs.should include page_def
       end
     end
 
@@ -182,7 +182,7 @@ describe Builder::Build do
 
         [ 'android', 'assets', 'www', 'data' ],
         [ 'android', 'assets', 'www', 'data', 'tour.js.jet' ],
-        [ 'android', 'assets', 'www', 'data', 'templates.js' ],
+        [ 'android', 'assets', 'www', 'data', 'pagedefs.js' ],
 
         [ 'android', 'assets', 'www', 'javascript' ],
         [ 'android', 'assets', 'www', 'javascript', 'dojo', 'dojo.js' ],
@@ -199,11 +199,11 @@ describe Builder::Build do
       File.read(File.join(@bundle[:location], 'android', 'assets', 'www', 'data', 'tour.js.jet')).should include 'toura.data.local'
     end
 
-    it "should properly generate the template data" do
-      templates = File.read(File.join(@bundle[:location], 'android', 'assets', 'www', 'data', 'templates.js'))
-      templates.should include 'toura.templates = '
-      @templates.each do |t|
-        templates.should include t
+    it "should properly generate the page def data" do
+      page_defs = File.read(File.join(@bundle[:location], 'android', 'assets', 'www', 'data', 'pagedefs.js'))
+      page_defs.should include 'toura.pagedefs = '
+      @page_defs.each do |page_def|
+        page_defs.should include page_def
       end
     end
 

@@ -102,20 +102,20 @@ module Mulberry
       Mulberry::Data.new(@app).generate(build ? build.ota_enabled? : false)
     end
 
-    def templates
-      app_templates_dir = File.join(@source_dir, 'templates')
-      base_templates_dir = TouraAPP::Directories.page_templates
+    def page_defs
+      app_page_defs_dir = File.join(@source_dir, 'page_defs')
+      base_page_defs_dir = TouraAPP::Directories.page_defs
 
-      templates = {}
+      page_defs = {}
 
-      [ app_templates_dir, base_templates_dir ].each do |dir|
-        Dir.glob(File.join(dir, '*.yml')).each do |t|
-          d = YAML.load_file(t)
-          templates.merge!(d) if d
+      [ app_page_defs_dir, base_page_defs_dir ].each do |dir|
+        Dir.glob(File.join(dir, '*.yml')).each do |page_def|
+          d = YAML.load_file(page_def)
+          page_defs.merge!(d) if d
         end unless !File.exists?(dir)
       end
 
-      templates
+      page_defs
     end
 
     def css(destination, report)

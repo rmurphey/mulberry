@@ -24,7 +24,7 @@ require 'cli/server'
 require 'cli/build_helper'
 require 'cli/code_creator'
 require 'cli/content_creator'
-require 'cli/template_creator'
+require 'cli/page_def_creator'
 
 require 'builder'
 
@@ -163,7 +163,7 @@ module Mulberry
           'capabilities'
         ],
 
-        :templates => [],
+        :page_defs => [],
         :pages => []
       }
 
