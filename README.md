@@ -10,7 +10,7 @@ to work by following the instructions in the Ubuntu installation README.*
 1. Read `install/<your_operating_system>/README.md` for details on dependencies
   for your operating system. The installation process takes care of as much of
   this as possible, but **some dependencies may need to be installed manually
-  before the installation scrpits will work**.
+  before the installation scripts will work**.
 2. Download the [latest release](https://github.com/Toura/mulberry/tags), or
   clone the repository into a directory of your choosing:
 
