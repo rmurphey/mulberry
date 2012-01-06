@@ -215,8 +215,8 @@ module Mulberry
         when 'tour.js'
           ota_enabled = @helper.build ? @helper.build.ota_enabled? : false
           TouraAPP::Generators.data(Mulberry::Data.new(@mulberry_app).generate(ota_enabled))
-        when 'templates.js'
-          TouraAPP::Generators.page_templates(@helper.templates)
+        when 'pagedefs.js'
+          TouraAPP::Generators.page_defs(@helper.page_defs)
         end
       rescue RuntimeError => e
         puts "ERROR: #{e.to_s}"
