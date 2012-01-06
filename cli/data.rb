@@ -110,7 +110,7 @@ module Mulberry
     def load_data_for_page(page_name, children = [])
       default_node_props = %w{
         title
-        template
+        page_def
         header_image
         featured_image
       } + ASSETS.keys
@@ -125,7 +125,7 @@ module Mulberry
       node_props = {
         :node_name          =>  page_name,
         :name               =>  config['title'] || page_name,
-        :pageController     =>  config['template'],
+        :pageController     =>  config['page_def'],
         :children           =>  children,
         :custom             =>  ({}.merge(config)).delete_if { |k, v| default_node_props.include? k }
       }

@@ -37,7 +37,7 @@ dojo.declare('toura.app.PageFactory', null, {
       throw new Error('toura.app.PageFactory::createPage requires an object');
     }
 
-    var pageDefName = obj.pageController || obj.pageDef || 'default',
+    var pageDefName = obj.pageDef || obj.pageController || 'default',
         pageDef;
 
     // allow setting different page controllers per device
