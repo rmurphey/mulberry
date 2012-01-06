@@ -38,7 +38,7 @@ module Mulberry
   SITEMAP     = 'sitemap.yml'
 
   FEATURES    = {
-    :reporting    =>    false
+    :reporting    =>    true
   }
 
   DEFAULTS  = {

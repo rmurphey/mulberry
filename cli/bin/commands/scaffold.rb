@@ -38,7 +38,7 @@ module Mulberry
         if input.downcase == 'y'
           File.open(File.join(@dir, '.mulberry'), 'w') do |f|
             y = {
-              'host'            =>  'http://localhost:8888',
+              'report_url'         =>  URI.join(TouraApi::URL, '/mulberry_command_logs').to_s,
               'guid'            =>  Guid.new.to_s
             }.to_yaml
 

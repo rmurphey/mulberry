@@ -15,26 +15,26 @@ module Mulberry
 
           settings = YAML.load_file settings_file
 
-          host = settings['host']
+          report_url = URI(settings['report_url'])
           guid = settings['guid']
 
           return unless host && guid
 
           config = Mulberry::App.new(app_dir).config
 
-          report = {
-            'data' => {
-              'config'    => {
-                'jquery'  =>  config['jquery'],
-                'os'      =>  config['os'].join(','),
-                'type'    =>  config['type'].join(',')
-              },
-              'command'   =>  command,
-              'guid'      =>  guid
-            }.to_json
-          }
-
-          Net::HTTP.post_form(host, report)
+          req = Net::HTTP::Post.new(report_url.path)
+          req.content_type = 'application/json'
+          req.body = {
+            'config'    => {
+              'jquery'  =>  config['jquery'],
+              'os'      =>  config['os'].join(','),
+              'type'    =>  config['type'].join(',')
+            },
+            'command'   =>  command,
+            'guid'      =>  guid
+          }.to_json
+          req.send
+          res = Net::HTTP.start(report_url.host, report_url.port) { |http| http.request(req) }
         rescue
           # fail silently
         end
