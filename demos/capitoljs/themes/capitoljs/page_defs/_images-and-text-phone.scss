@@ -1,11 +1,25 @@
-.images-and-text-phone {
+.page.images-and-text-phone {
   .screen.index {
-    .row:nth-child(2) {
+    @include standard-screen;
+
+    .region.image-gallery {
       @include background-shadow;
     }
 
     .body-text:not(.empty) {
       padding: 10px;
+    }
+  }
+
+  .screen.detail {
+    @include flex-row-container;
+
+    .region.header {
+      @include layout-overlay;
+
+      > * {
+        width: 100%;
+      }
     }
   }
 }
