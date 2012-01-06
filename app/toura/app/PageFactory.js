@@ -11,25 +11,22 @@ dojo.declare('toura.app.PageFactory', null, {
   createPage: function(obj) {
     /*
      * createPage receives an object that it will use to create a page. It
-     * looks at the object for a pageController property, and uses that
-     * pageController property to determine how to set up the page controller
-     * for the page. The process for determining this is a bit convoluted for
-     * the time being, in order to support some legacy systems. Here's how it
-     * works:
+     * looks at the object for a pageDef or pageController property, and uses
+     * that property to determine how to set up the page.
      *
      * First, we determine the name of the controller we're going to use:
      *
-     *    1. If the object does not have a pageController property, then the
-     *    controllerName is set to 'default'
+     *    1. If the object does not have a pageDef or pageController property,
+     *    then the pageDefName is set to 'default'
      *
-     *    2. If the object has a pageController property and the property's
-     *    value is an object, then it is assumed the object has a 'phone' and
-     *    a 'tablet' property; the controllerName is set to the value that
-     *    corresponds with the device type.
+     *    2. If the object has a pageDef or pageController property and the
+     *    property's value is an object, then it is assumed the object has a
+     *    'phone' and a 'tablet' property; the pageDefName is set to the value
+     *    that corresponds with the device type.
      *
-     * Once we have determined the proper page controller to use, we create an
-     * instance of that controller, passing it the data it will need in order
-     * to create the page. We return the controller instance, and createPage is
+     * Once we have determined the proper page definition to use, we create an
+     * instance of a Page using that definition, passing the Page instance the
+     * data it will need. We return the Page instance, and createPage is
      * complete.
      */
 
