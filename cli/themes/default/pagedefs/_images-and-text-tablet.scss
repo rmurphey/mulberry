@@ -5,8 +5,14 @@
     .region.image-container {
       @include background-shadow;
       @include flex-row-container;
+      @include fixed-flex-region;
+      padding-top: 10px;
 
-      > .region.caption {
+      .component.image-gallery {
+        @include fixed-height-gallery;
+      }
+
+      .region.caption {
         @include fixed-flex-region;
       }
     }
