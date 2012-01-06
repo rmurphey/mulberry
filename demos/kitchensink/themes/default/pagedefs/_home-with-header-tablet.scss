@@ -1,0 +1,22 @@
+.page.home-with-header-tablet {
+  .screen.index {
+    @include flex-row-container;
+
+    .body-text {
+      padding: 20px 20px 0 20px;
+    }
+
+    .child-nodes {
+      padding-top: 20px;
+    }
+
+    .region.page-header {
+      @include fixed-flex-region;
+    }
+
+    .region.nav {
+      -webkit-box-flex: 0;
+      margin-bottom: 20px;
+    }
+  }
+}
