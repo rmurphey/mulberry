@@ -1,10 +1,9 @@
 .page.default {
   .screen {
-    @include watermark;
-
-    .body-text {
-      padding: 10px;
-    }
+    @include standard-screen;
   }
 
+  .component.body-text {
+    padding: 10px;
+  }
 }

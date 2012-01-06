@@ -1,14 +1,11 @@
 twitter:
   screens:
-    - name: index
-      regions:
-        - type: row
-          size: fixed
-          scrollable: false
-          components:
-            - PageNav
-        - type: row
-          size: flex
-          scrollable: true
-          components:
-            - custom.Twitter
+  - name: index
+    regions:
+    - className: page-nav
+      scrollable: false
+      components:
+      - PageNav
+    - scrollable: true
+      components:
+      - custom.Twitter
