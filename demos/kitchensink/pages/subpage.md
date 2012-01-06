@@ -1,6 +1,6 @@
 ---
 title: Subpage
-template:
+page_def:
   phone: default
   tablet: default
 

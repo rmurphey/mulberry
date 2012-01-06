@@ -23,7 +23,7 @@ describe("configurable page controller", function() {
       c = C({
         baseObj : {},
         device : d,
-        templateConfig : {
+        pageDef : {
           screens : [ 1 ]
         }
       });
@@ -39,7 +39,7 @@ describe("configurable page controller", function() {
     c = C({
       baseObj : {},
       device : devices[0],
-      templateConfig : {
+      pageDef : {
         screens : [ 1 ]
       }
     });
@@ -51,7 +51,7 @@ describe("configurable page controller", function() {
     expect(function() {
       c = C({
         device : devices[0],
-        templateConfig : {
+        pageDef : {
           screens : [ 1 ]
         }
       });
@@ -63,7 +63,7 @@ describe("configurable page controller", function() {
       c = C({
         baseObj : {},
         device : d,
-        templateConfig : { }
+        pageDef : { }
       });
     }).toThrow();
   });
@@ -85,7 +85,7 @@ describe("configurable page controller", function() {
     c = C({
       baseObj : {},
       device : devices[0],
-      templateConfig : {
+      pageDef : {
         screens : [ 1 ],
         capabilities : [
           { name : 'FakeCapability' }
@@ -104,7 +104,7 @@ describe("configurable page controller", function() {
     c = C({
       baseObj : {},
       device : devices[0],
-      templateConfig : {
+      pageDef : {
         screens : [ 1 ],
         capabilities : [ 'FakeCapability' ]
       }

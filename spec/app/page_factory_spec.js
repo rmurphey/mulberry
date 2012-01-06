@@ -6,7 +6,7 @@ describe("page factory", function() {
     console.log('PageFactory', toura.app.PageFactory);
     f = f || new toura.app.PageFactory({ type : 'fake', os : 'fake' });
 
-    toura.templates = {
+    toura.pagedefs = {
       "user defined template" : "success",
       "default" : "default"
     };
@@ -24,7 +24,20 @@ describe("page factory", function() {
     expect(spy).toHaveBeenCalled();
     expect(spy.mostRecentCall.args[0].baseObj).toBe(node);
     expect(spy.mostRecentCall.args[0].device).toBe(f.device);
-    expect(spy.mostRecentCall.args[0].templateConfig).toBe('success');
+    expect(spy.mostRecentCall.args[0].pageDef).toBe('success');
+  });
+
+  it("should work with a pageDef property", function() {
+    var node = {
+      pageDef : 'user defined template'
+    };
+
+    var spy = spyOn(toura.containers, 'Page');
+
+    f.createPage(node);
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy.mostRecentCall.args[0].pageDef).toBe('success');
   });
 
   it("should use the default page controller if one is not defined", function() {
@@ -37,7 +50,7 @@ describe("page factory", function() {
     f.createPage("node", node);
 
     expect(spy).toHaveBeenCalled();
-    expect(spy.mostRecentCall.args[0].templateConfig).toBe('default');
+    expect(spy.mostRecentCall.args[0].pageDef).toBe('default');
   });
 
   it("should throw an error if no page object is provided", function() {

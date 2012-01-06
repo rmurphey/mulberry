@@ -1,3 +1,4 @@
+require 'fakeweb'
 require 'spec_helper'
 require 'content_creator'
 
@@ -211,4 +212,48 @@ describe Mulberry::Data do
       end
     end
   end
+
+  describe 'version handling' do
+    before :each do
+      @app = Mulberry::App.new(@source_dir)
+      @app.config['toura_api'] = {
+        'url' => 'http://myapi.com', 'key' => 'some_key'
+      }
+    end
+
+    after :each do
+      FakeWeb.clean_registry
+    end
+
+    it 'should not output a version unless told to' do
+      @data = (Mulberry::Data.new @app).generate
+      @data['version'].should be_nil
+    end
+
+    it 'should raise exception when trying to include version but ota server unavailable' do
+      FakeWeb.register_uri(:get, //, :status => "503")
+      lambda do
+        @data = (Mulberry::Data.new @app).generate true
+      end.should raise_error Mulberry::Http::ServiceUnavailable
+    end
+
+    it 'should include correct version when found on ota server' do
+      existing_version = 10
+      FakeWeb.register_uri(:get, //, :body => "{\"version\": #{existing_version}}")
+      @app.config['toura_api'] = {
+        'url' => 'http://myapi.com', 'key' => 'some_key'
+      }
+      @data = (Mulberry::Data.new @app).generate true
+      @data['version'].should == existing_version + 1
+    end
+
+    it 'should raise exception if asked to include version but no toura api config' do
+      @app.config.delete 'toura_api'
+      lambda do
+        (Mulberry::Data.new Mulberry::App.new(@source_dir)).generate true
+      end.should raise_error Builder::ConfigurationError
+    end
+
+  end
+
 end

@@ -10,6 +10,12 @@ require 'pathname'
 require 'deep_merge'
 require 'socket'
 require 'timeout'
+require 'uri'
+require 'net/http'
+
+require 'lib/toura_api'
+require 'lib/http'
+require 'lib/ota_service_application'
 
 require 'cli/directories'
 require 'cli/env'
@@ -18,7 +24,7 @@ require 'cli/server'
 require 'cli/build_helper'
 require 'cli/code_creator'
 require 'cli/content_creator'
-require 'cli/template_creator'
+require 'cli/page_def_creator'
 
 require 'builder'
 
@@ -105,7 +111,7 @@ module Mulberry
     end
 
     def config
-      read_config
+      @config ||= read_config
     end
 
     def self.update_themes(to_dir)
@@ -157,7 +163,7 @@ module Mulberry
           'capabilities'
         ],
 
-        :templates => [],
+        :page_defs => [],
         :pages => []
       }
 
@@ -208,7 +214,8 @@ module Mulberry
       b = Builder::Build.new({
         :target => 'app_development',
         :log_level => -1,
-        :force_js_build => false
+        :force_js_build => false,
+        :build_helper => @helper
       })
 
       b.build
@@ -216,33 +223,38 @@ module Mulberry
 
       require 'webrick'
 
-      webrick_options = {:Port => args[:port]}
-
-      webrick_options.merge!({ :AccessLog => [nil, nil],
-                               :Logger    => ::WEBrick::Log.new("/dev/null")
-                            }) unless args[:verbose]
-
       Mulberry::Server.set :app, self
 
-      Rack::Handler::WEBrick.run Mulberry::Server, webrick_options do |server|
-        [:INT, :TERM].each { |sig| trap(sig) { server.stop } }
-        Mulberry::Server.set :running, true
-        puts "== mulberry has taken the stage on port #{args[:port]}. ^C to quit."
+      webrick_options = {:Port => args[:port], :app => Mulberry::Server}
+
+      unless args[:verbose]
+        logger = ::WEBrick::Log.new
+        logger.level = 0
+
+        webrick_options.merge!({ :AccessLog => [nil, nil],
+                                 :Logger    => logger
+                              })
       end
+
+      puts "== mulberry has taken the stage on port #{args[:port]}. ^C to quit."
+
+      Rack::Server.start( webrick_options )
     end
 
     def device_build(settings = nil)
       settings ||= {}
 
       build({
-        :target         => settings[:test] ? 'mulberry_test' : 'mulberry',
-        :tour           => self,
-        :tmp_dir        => tmp_dir,
-        :log_level      => -1,
-        :force_js_build => settings[:force_js_build] ||= true,
-        :skip_js_build  => settings[:skip_js_build]  ||= false,
-        :build_helper   => @helper,
-        :quiet          => (settings[:quiet] || false)
+        :target           => settings[:test] ? 'mulberry_test' : 'mulberry',
+        :tour             => self,
+        :tmp_dir          => tmp_dir,
+        :log_level        => -1,
+        :force_js_build   => settings[:force_js_build] ||= true,
+        :skip_js_build    => settings[:skip_js_build]  ||= false,
+        :build_helper     => @helper,
+        :quiet            => (settings[:quiet] || false),
+        :toura_api_config =>  @config['toura_api'],
+        :publish_ota      =>  settings[:publish_ota]
       })
     end
 
@@ -279,6 +291,21 @@ module Mulberry
       @helper.data
     end
 
+    def ota_version
+      version = ota_service_application.version
+      puts "Current version is #{version}."
+      version
+    end
+
+    def publish_ota(data_json=nil)
+      unless data_json
+        data_json = JSON.pretty_generate(Mulberry::Data.new(self).generate(true))
+      end
+      version = ota_service_application.publish data_json
+      puts "OTA published successfully.  Version is #{version}."
+      version
+    end
+
     private
     def tmp_dir
       File.join(@source_dir, 'tmp')
@@ -302,6 +329,8 @@ module Mulberry
         end
       end
 
+      handle_publish_ota b
+
       if b
         builds = File.join(@source_dir, 'builds')
         Dir.mkdir(builds) unless File.exists? builds
@@ -324,15 +353,15 @@ module Mulberry
     end
 
     def read_config
-      DEFAULTS.merge! YAML.load_file(File.join(@source_dir, CONFIG))
+      conf = DEFAULTS.merge YAML.load_file(File.join(@source_dir, CONFIG))
 
       dev_config_path = File.join(@source_dir, CONFIG_DEV)
 
       if File.exists?(dev_config_path)
-        DEFAULTS.deep_merge! YAML.load_file(dev_config_path)
+        conf.deep_merge! YAML.load_file(dev_config_path)
       end
 
-      DEFAULTS
+      conf
     end
 
     def server_running?(port)
@@ -351,5 +380,38 @@ module Mulberry
 
       return false
     end
+
+    def ota_service_application
+      unless @ota_service_application
+        @toura_api_config = @config['toura_api']
+        if @toura_api_config
+          url = @toura_api_config['url'] || TouraApi::URL
+          key, secret = @toura_api_config['key'], @toura_api_config['secret']
+          @ota_service_application = OtaServiceApplication.new(url, key, secret)
+        end
+      end
+      @ota_service_application
+    end
+
+    def handle_publish_ota(build)
+      if build.ota_enabled? || build.settings[:publish_ota]
+        toura_api_config = build.settings[:toura_api_config]
+        ota_service_application = OtaServiceApplication.new(toura_api_config['url'],
+                                                            toura_api_config['key'],
+                                                            toura_api_config['secret'])
+        version = nil
+        begin
+          version = ota_service_application.version
+        rescue Mulberry::Http::NotFound
+        end
+        data_report = build.completed_steps[:gather][:data]
+        json = File.read data_report[:tour_json_location]
+        if not version or build.settings[:publish_ota]
+          version = ota_service_application.publish json
+          puts "Published OTA version #{version}."
+        end
+      end
+    end
+
   end
 end

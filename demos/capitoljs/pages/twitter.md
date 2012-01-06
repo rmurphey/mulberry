@@ -1,6 +1,6 @@
 ---
 title: Twitter
-template:
+page_def:
   phone: twitter
   tablet: twitter
 

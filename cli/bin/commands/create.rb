@@ -12,8 +12,8 @@ module Mulberry
             :creator  =>  Mulberry::CodeCreator
           },
 
-          :template   => {
-            :creator  =>  Mulberry::TemplateCreator
+          :page_def   => {
+            :creator  =>  Mulberry::PageDefCreator
           },
 
           :capability => {

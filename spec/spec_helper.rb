@@ -38,7 +38,7 @@ Capybara.default_selector = :css
 
 def serve_demo(demo_name)
   $app = Mulberry::App.new("./demos/#{demo_name}")
-  $templates = $app.helper.templates
+  $page_defs = $app.helper.page_defs
 
   Mulberry::Server.set :app => $app, :logging => false
   Capybara.app = Mulberry::Server
@@ -56,3 +56,17 @@ DEVICES = [
   { :type => 'phone', :os => 'android' },
   { :type => 'tablet', :os => 'ios' }
 ]
+
+# credit for the below goes to http://rails-bestpractices.com/questions/1-test-stdin-stdout-in-rspec
+require 'stringio'
+def capture_io_streams(*streams)
+  streams.map! { |stream| stream.to_s }
+  begin
+    result = StringIO.new
+    streams.each { |stream| eval "$#{stream} = result" }
+    yield
+  ensure
+    streams.each { |stream| eval("$#{stream} = #{stream.upcase}") }
+  end
+  result.string
+end

@@ -8,7 +8,7 @@ require "builder/icons"
 require "builder/load_screens"
 require "builder/assets"
 require "builder/data"
-require "builder/templates"
+require "builder/page_defs"
 
 require "builder/js"
 require "builder/css"
@@ -26,6 +26,10 @@ module Builder
     safe_tour_name = s.gsub( "'", "'\\\\''" )
   end
 
+  [ 'ConfigurationError' ].each do |error_type|
+    module_eval %Q{ class #{error_type} < StandardError; end}
+  end
+
   class Build
     attr_accessor :tmp_dir, :logger
     attr_reader   :settings, :target, :completed_steps, :build_helper, :quiet
@@ -38,7 +42,7 @@ module Builder
         :load_screens => Builder::LoadScreens,
         :assets       => Builder::Assets,
         :data         => Builder::Data,
-        :templates    => Builder::Templates
+        :page_defs    => Builder::PageDefs
       },
 
       :build => {
@@ -128,6 +132,12 @@ module Builder
 
     def cleanup
       FileUtils.rm_rf @tmp_dir
+    end
+
+    def ota_enabled?
+      # should be enabled on the target and the app (which the build_helper
+      # gives the answer to)
+      @target['ota'] and @target['ota']['enabled'] and @build_helper.ota_enabled?
     end
 
     private

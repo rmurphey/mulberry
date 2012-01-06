@@ -13,11 +13,11 @@ module Mulberry
           puts "All pages in the sitemap exist"
         end
 
-        Dir.glob(File.join(@dir, 'templates', '*.yml')).each do |f|
-          tpl = YAML.load_file(f).values.first
-          raise "Template #{File.basename(f)} has no screens." unless tpl['screens']
-          tpl['screens'].each do |screen|
-            raise "Template #{File.basename(f)} has no regions on screen #{screen['name']}." unless screen['regions']
+        Dir.glob(File.join(@dir, 'page_defs', '*.yml')).each do |f|
+          page_def = YAML.load_file(f).values.first
+          raise "Page definition #{File.basename(f)} has no screens." unless page_def['screens']
+          page_def['screens'].each do |screen|
+            raise "Page definition #{File.basename(f)} has no regions on screen #{screen['name']}." unless screen['regions']
             screen['regions'].each(&method(:create_components))
           end
         end

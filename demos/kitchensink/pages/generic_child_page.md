@@ -1,6 +1,6 @@
 ---
 title: Generic Child Page
-template:
+page_def:
   phone: default
   tablet: default
 ---

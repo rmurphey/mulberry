@@ -1,6 +1,6 @@
 ---
 title: Image Gallery
-template:
+page_def:
   phone: images-and-text-phone
   tablet: images-and-text-tablet
 

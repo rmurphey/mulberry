@@ -28,15 +28,20 @@ module Builder
       nil
     end
 
-    def templates
-      templates = {}
+    def page_defs
+      page_defs = {}
 
-      Dir.glob(File.join(TouraAPP::Directories.page_templates, '*.yml')).each do |t|
+      Dir.glob(File.join(TouraAPP::Directories.page_defs, '*.yml')).each do |t|
         d = YAML.load_file(t)
-        templates.merge!(d) if d
+        page_defs.merge!(d) if d
       end
 
-      templates
+      page_defs
+    end
+
+    # should be overridden appropriately
+    def ota_enabled?
+      false
     end
 
     private

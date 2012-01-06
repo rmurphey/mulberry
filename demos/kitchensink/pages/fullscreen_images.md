@@ -1,6 +1,6 @@
 ---
-title: Fullscreen Image Gallery 
-template: full-screen-images
+title: Fullscreen Image Gallery
+page_def: full-screen-images
 
 images:
   - bangs.jpg
@@ -9,4 +9,4 @@ images:
   - wiry.jpg
 ---
 
-This page uses the FullScreenImages template.
+This page uses the FullScreenImages page definition.

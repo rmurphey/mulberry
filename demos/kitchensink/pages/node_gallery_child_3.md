@@ -1,6 +1,6 @@
 ---
 title: Node Gallery Child 3
-template:
+page_def:
   phone: default
   tablet: default
 

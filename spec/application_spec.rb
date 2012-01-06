@@ -18,7 +18,7 @@ describe TouraAPP do
     it "should point to important directories" do
       root = TouraAPP::Directories.root
 
-      [ :javascript, :page_templates, :data_fixtures, :build_root, :dojo, :profiles ].each do |d|
+      [ :javascript, :page_defs, :data_fixtures, :build_root, :dojo, :profiles ].each do |d|
         dir = TouraAPP::Directories.send(d.to_s)
         dir.should match root
       end
@@ -50,10 +50,10 @@ describe TouraAPP do
   end
 
   describe TouraAPP::Generators do
-    describe "#page_templates" do
-      it "should return a page templates JS string based on what it is provided" do
-        str = TouraAPP::Generators.page_templates({ 'foo' => 'bar' })
-        str.should include 'toura.templates = '
+    describe "#page_defs" do
+      it "should return a page defs JS string based on what it is provided" do
+        str = TouraAPP::Generators.page_defs({ 'foo' => 'bar' })
+        str.should include 'toura.pagedefs = '
         str.should include 'foo'
         str.should include 'bar'
       end

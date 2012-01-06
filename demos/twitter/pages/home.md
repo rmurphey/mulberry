@@ -1,6 +1,6 @@
 ---
 title: Home
-template:
+page_def:
   phone: twitter
   tablet: twitter
 

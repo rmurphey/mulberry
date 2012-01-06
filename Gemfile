@@ -8,7 +8,7 @@ gem 'json'
 gem 'kramdown'
 gem 'mustache'
 gem 'sass', '3.1.4'
-gem 'sinatra', '1.3.1'
+gem 'sinatra', '1.3.2'
 gem 'guid'
 
 group :development, :test do
@@ -27,4 +27,5 @@ group :test do
   gem 'jshintrb', '1.0.4', :git => 'git://github.com/Toura/jshintrb.git', :require => false
   #gem 'racc' # For CYGWIN to compile nokogiri
   gem 'rspec'
+  gem 'fakeweb', :require => false
 end

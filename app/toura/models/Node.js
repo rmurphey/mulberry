@@ -75,7 +75,7 @@ dojo.declare('toura.models.Node', [], {
 
       feeds : getAssets('feeds', toura.models.Feed),
 
-      pageController : store.getValue(item, 'pageController'),
+      pageDef : store.getValue(item, 'pageController'),
       sharingURL : store.getValue(item, 'sharingUrl'),
 
       parent : store.getValue(item, 'parent')

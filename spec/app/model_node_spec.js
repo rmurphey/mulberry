@@ -65,7 +65,7 @@ describe("node model", function() {
       'googleMapPins',
       'feeds',
 
-      'pageController',
+      'pageDef',
       'sharingURL',
       'parent'
     ], function(prop) {
@@ -88,7 +88,7 @@ describe("node model", function() {
       'googleMapPins',
       'feeds',
 
-      'pageController'
+      'pageDef'
     ], function(prop) {
       expect(node[prop]).toBeDefined();
     });

@@ -1,6 +1,6 @@
 ---
 title: Schedule
-template:
+page_def:
   phone: default
   tablet: default
 ---
