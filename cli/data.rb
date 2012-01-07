@@ -125,7 +125,7 @@ module Mulberry
       node_props = {
         :node_name          =>  page_name,
         :name               =>  config['title'] || page_name,
-        :pageController     =>  config['page_def'],
+        :pageController     =>  config['page_def'] || { 'phone' => 'default', 'tablet' => 'default' },
         :children           =>  children,
         :custom             =>  ({}.merge(config)).delete_if { |k, v| default_node_props.include? k }
       }
