@@ -1,10 +1,16 @@
-describe("local store", function() {
+describe("store", function() {
   var s;
 
   beforeEach(function() {
     dojo.require('toura.app.DeviceStorage');
     dojo.require('toura._Store');
     dojo.require('toura._Model');
+
+    toura.model('Bar', {
+      format : function() {
+        this.set('newattr', true);
+      }
+    });
   });
 
   describe("local store", function() {
@@ -15,6 +21,7 @@ describe("local store", function() {
       ]);
 
       toura.store('foo', {
+        model : 'Bar',
         bar : 'baz'
       });
     });
@@ -41,16 +48,29 @@ describe("local store", function() {
     });
 
     it("should add items", function() {
+      var old = client.stores.foo.data.length;
       client.stores.foo.add({ text : 'new text' });
-      expect(client.stores.foo.data.length).toBe(3);
+      expect(client.stores.foo.data.length).toBe(old + 1);
     });
 
-    it("should return all items when queried without params", function() {
-      expect(client.stores.foo.query().length).toBe(2);
+    it("should add an id to added items if one is not present", function() {
+      client.stores.foo.add({ text : 'newer text' });
+      var result = client.stores.foo.query({ text : 'newer text' });
+      expect(result[0].id).toBeDefined();
     });
 
-    it("should return specified items when queried with params", function() {
-      expect(client.stores.foo.query({ text : 'foo' }).length).toBe(1);
+    it("should return models for all items when queried without params", function() {
+      var result = client.stores.foo.query();
+      expect(result.length).toBe(2);
+      expect(result[1] instanceof client.models.Bar).toBeTruthy();
+    });
+
+    it("should return models for the specified items when queried with params", function() {
+      var result = client.stores.foo.query({ text : 'foo' });
+
+      expect(result.length).toBe(1);
+      console.log(result[0]);
+      expect(result[0] instanceof client.models.Bar).toBeTruthy();
     });
 
     it("should allow setting of data", function() {
@@ -71,12 +91,6 @@ describe("local store", function() {
 
     describe("model creation", function() {
       beforeEach(function() {
-        toura.model('Bar', {
-          format : function() {
-            this.set('newattr', true);
-          }
-        });
-
         toura.store('bar', {
           model : 'Bar',
           doIt : function() {
@@ -111,6 +125,19 @@ describe("local store", function() {
         expect(d[0] instanceof client.models.Bar).toBeTruthy();
         expect(d[1] instanceof client.models.Bar).toBeTruthy();
         expect(d[2] instanceof client.models.Bar).toBeTruthy();
+      });
+
+    });
+
+    describe('get', function() {
+      it("should return a model", function() {
+        client.stores.bar.setData([
+          { a : 1, id : 'item-1' },
+          { b : 2, id : 'item-2' }
+        ]);
+
+        var item = client.stores.bar.get('item-1');
+        expect(item instanceof client.models.Bar).toBeTruthy();
       });
     });
   });
