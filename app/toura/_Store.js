@@ -47,17 +47,13 @@ dojo.declare('toura._Store', dojo.store.Memory, {
     return data;
   },
 
-  apply : function(ids, fn) {
+  eachModel : function(ids, fn) {
     ids = dojo.isArray(ids) ? ids : [ ids ];
 
     var models = dojo.map(ids, function(id) {
       var item = this.get(id);
 
-      if (dojo.isString(fn)) {
-        dojo.hitch(item, fn)();
-      } else {
-        fn(item);
-      }
+      dojo.hitch(item, fn)(item);
 
       this.put(item);
 

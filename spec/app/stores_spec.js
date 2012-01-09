@@ -94,7 +94,8 @@ describe("store", function() {
 
     describe("function application", function() {
       it("should apply a given function to models for the provided id", function() {
-        client.stores.foo.apply(1, function(item) {
+        client.stores.foo.eachModel(1, function(item) {
+          expect(item).toBe(this);
           item.newProp = true;
         });
 
@@ -102,19 +103,19 @@ describe("store", function() {
       });
 
       it("should apply a given method name to models for the provided id", function() {
-        client.stores.foo.apply(1, 'modify');
+        client.stores.foo.eachModel(1, 'modify');
         expect(client.stores.foo.get(1).modifyResult).toBeDefined();
       });
 
       it("should work when the first argument is an array of ids", function() {
-        client.stores.foo.apply([ 1, 2 ], 'modify');
+        client.stores.foo.eachModel([ 1, 2 ], 'modify');
 
         expect(client.stores.foo.get(1).modifyResult).toBeDefined();
         expect(client.stores.foo.get(2).modifyResult).toBeDefined();
       });
 
       it("should return an array of the models for the given ids", function() {
-        var results = client.stores.foo.apply(1, 'modify');
+        var results = client.stores.foo.eachModel(1, 'modify');
         expect(results.length).toBe(1);
         expect(results[0].modifyResult).toBeDefined();
       });
