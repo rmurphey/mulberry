@@ -3,6 +3,8 @@ require 'cli/commands/spec_helper.rb'
 describe Mulberry::Command::Create do
   include Mulberry::Command::SpecHelpers
 
+  it_should_behave_like "all commands"
+
   before :each do
     @app_name = 'fooapp'
 

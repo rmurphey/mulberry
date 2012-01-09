@@ -3,6 +3,8 @@ require 'cli/commands/spec_helper.rb'
 describe Mulberry::Command::Test do
   include Mulberry::Command::SpecHelpers
 
+  it_should_behave_like "all commands"
+
   describe "#initialization" do
 
     def serve
