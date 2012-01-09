@@ -160,6 +160,7 @@ module Mulberry
         :javascript => [
           'components',
           'stores',
+          'models',
           'capabilities'
         ],
 

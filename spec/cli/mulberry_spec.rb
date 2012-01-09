@@ -50,6 +50,7 @@ describe Mulberry::App do
         'page_defs',
         [ 'javascript', 'components' ],
         [ 'javascript', 'stores' ],
+        [ 'javascript', 'models' ],
         [ 'javascript', 'capabilities' ],
         [ 'javascript', 'base.js' ]
       ].each do |f|
