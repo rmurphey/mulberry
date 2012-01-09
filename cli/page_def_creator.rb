@@ -41,6 +41,10 @@ module Mulberry
 
       page_def_scss_tpl = File.read(File.join(Mulberry::Directories.templates, 'code', 'page_def.scss'))
 
+      if File.exists? scss_filename
+        raise "Page definition scss #{scss_filename} already exists"
+      end
+
       File.open(scss_filename, 'w') do |f|
         f.write page_def_scss_tpl.gsub('{{page_def_name}}', @filename)
       end
