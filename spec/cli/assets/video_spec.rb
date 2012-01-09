@@ -1,12 +1,10 @@
 require 'spec/spec_helper'
 require 'cli/assets/base_shared'
 require 'cli/assets/media_asset_shared'
-require 'fakefs/spec_helpers'
 
 describe Mulberry::Asset::Video do
 
-  describe 'base behavior' do
-    include FakeFS::SpecHelpers
+  describe 'base behavior', :fakefs => true do
 
     before :each do
       @asset = Factory.build :video
@@ -20,8 +18,7 @@ describe Mulberry::Asset::Video do
 
   end
 
-  describe 'video poster behavior' do
-    include FakeFS::SpecHelpers
+  describe 'video poster behavior', :fakefs => true do
 
     before :each do
       @asset = Factory.build :video_with_poster
@@ -36,8 +33,7 @@ describe Mulberry::Asset::Video do
     end
   end
 
-  describe 'video asset behavior' do
-    include FakeFS::SpecHelpers
+  describe 'video asset behavior', :fakefs => true do
 
     before :each do
       @remote_asset = Factory.build :video_remote
