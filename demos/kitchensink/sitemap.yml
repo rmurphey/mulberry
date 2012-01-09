@@ -2,10 +2,11 @@
   - audio_list:
     - single_image_gallery
     - generic_child_page
+    - audio_list_childless
   - image_gallery:
     - single_image_gallery
     - generic_child_page
-  - image_gallery_no_child
+    - image_gallery_no_child
   - fullscreen_images
   - feed_list
   - locations
@@ -17,6 +18,7 @@
   - videos:
     - single_image_gallery
     - generic_child_page
+    - videos_childless
   - grid:
     - grid_child_one:
       - grid_child_two
