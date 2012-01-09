@@ -22,7 +22,7 @@ describe Mulberry::Asset::Image do
     it_should_behave_like "all media assets"
   end
 
-  describe '#item', :fakefs => true do
+  describe '#item local', :fakefs => true do
 
     before :each do
       #@remote_image = Factory.build :image_remote
@@ -37,6 +37,7 @@ describe Mulberry::Asset::Image do
       item = @image.item
 
       Image::IMAGE_TYPES.each do |image_type|
+        item[image_type][:url].should be_nil
         item[image_type][:height].should == 1
         item[image_type][:width ].should == 1
       end
@@ -44,7 +45,7 @@ describe Mulberry::Asset::Image do
 
   end
 
-  describe '#item', :fakefs => true do
+  describe '#item streaming', :fakefs => true do
     it 'should output url in each style' do
       @remote_image = Factory.build :image_remote
       item = @remote_image.item
@@ -53,6 +54,12 @@ describe Mulberry::Asset::Image do
         item[image_type][:height].should == 1
         item[image_type][:width ].should == 1
       end
+    end
+  end
+
+  describe '#IMAGE_TYPES' do
+    it 'should match expected types' do
+      Image::IMAGE_TYPES.collect{|c| c.to_s}.sort.should == %w(featured featuredSmall gallery original).sort
     end
   end
 
