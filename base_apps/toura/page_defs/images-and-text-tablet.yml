@@ -3,6 +3,7 @@ images-and-text-tablet:
   - ImageGallery_ImageCaption
   - ImageGalleryDetail
   - Page_Images
+  - Text_ChildNodes
   screens:
     - name: index
       backgroundImage: true
@@ -29,14 +30,17 @@ images-and-text-tablet:
           - ImageCaption
 
       - type: row
+        className: text-and-child-nodes
         regions:
 
         - type: column
+          className: body-text-container
           scrollable: true
           components:
           - BodyText
 
         - type: column
+          className: child-nodes-container
           scrollable: true
           components:
           - ChildNodes

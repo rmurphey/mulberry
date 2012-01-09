@@ -256,5 +256,10 @@
   @return if(($font-scheme == dark),
     lighten($text-color, $amount),
     darken($text-color, $amount)
-  )
+  );
+}
+
+@mixin portrait-column {
+  width: 75%;
+  margin-left: 12.5%;
 }

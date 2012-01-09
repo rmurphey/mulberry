@@ -5,6 +5,7 @@
   - image_gallery:
     - single_image_gallery
     - generic_child_page
+  - image_gallery_no_child
   - fullscreen_images
   - feed_list
   - locations
