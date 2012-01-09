@@ -73,7 +73,6 @@ describe("store", function() {
       var result = client.stores.foo.query({ text : 'foo' });
 
       expect(result.length).toBe(1);
-      console.log(result[0]);
       expect(result[0] instanceof client.models.Bar).toBeTruthy();
     });
 
