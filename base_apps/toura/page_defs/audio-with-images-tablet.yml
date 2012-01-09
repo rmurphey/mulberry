@@ -7,6 +7,7 @@ audio-with-images-tablet:
   - Page_Audios
   - AudioList_AudioPlayer
   - AudioList_AudioCaption
+  - Text_ChildNodes
 
   screens:
     - name: index
@@ -29,13 +30,17 @@ audio-with-images-tablet:
           components:
           - ImageCaption
       - type: row
-        className: text-content
+        className: text-and-child-nodes
         regions:
+
         - type: column
+          className: body-text-container
           scrollable: true
           components:
           - BodyText
+
         - type: column
+          className: child-nodes-container
           scrollable: true
           components:
           - ChildNodes

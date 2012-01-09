@@ -26,8 +26,16 @@
       }
 
     }
-
-    > .region.text-content {
+    
+    > .region.text-and-child-nodes {
+      @media only screen and (min-width: 800px) {
+        @include portrait-column;
+      }
+      
+      .region.child-nodes-container.empty {
+        -webkit-box-flex: .188889;        // 1/6 width
+      }
+    
       .child-nodes:not(.empty) {
         padding-top: 10px;
       }
