@@ -10,7 +10,11 @@ require 'capybara/rspec'
 FIXTURES_DIR = File.join(File.dirname(__FILE__), 'fixtures')
 
 ["/support/**/*.rb", "/factories/*"].each do |dir|
-  Dir[File.dirname(__FILE__) + dir].each{|f| require f}
+  begin
+    Dir[File.dirname(__FILE__) + dir].each{|f| require f}
+  rescue
+    nil
+  end
 end
 
 # Allow us to specify fakefs: true in specs to automagically include the spec helpers
