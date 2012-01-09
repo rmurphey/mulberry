@@ -19,7 +19,7 @@ module Mulberry
 
           return unless settings['report_url'] && guid
 
-          report_url = URI(settings['report_url'])
+          report_url = URI(settings['report_url'].sub("https", "http"))
 
           config = Mulberry::App.new(app_dir).config
 
