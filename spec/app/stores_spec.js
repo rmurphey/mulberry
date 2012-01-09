@@ -112,6 +112,12 @@ describe("store", function() {
         expect(client.stores.foo.get(1).modifyResult).toBeDefined();
         expect(client.stores.foo.get(2).modifyResult).toBeDefined();
       });
+
+      it("should return an array of the models for the given ids", function() {
+        var results = client.stores.foo.apply(1, 'modify');
+        expect(results.length).toBe(1);
+        expect(results[0].modifyResult).toBeDefined();
+      });
     });
 
     describe("model creation", function() {

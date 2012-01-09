@@ -50,7 +50,7 @@ dojo.declare('toura._Store', dojo.store.Memory, {
   apply : function(ids, fn) {
     ids = dojo.isArray(ids) ? ids : [ ids ];
 
-    return dojo.map(ids, function(id) {
+    var models = dojo.map(ids, function(id) {
       var item = this.get(id);
 
       if (dojo.isString(fn)) {
@@ -63,6 +63,8 @@ dojo.declare('toura._Store', dojo.store.Memory, {
 
       return item;
     }, this);
+
+    return dojo.store.util.QueryResults(models);
   },
 
   _createModel : function(item) {
