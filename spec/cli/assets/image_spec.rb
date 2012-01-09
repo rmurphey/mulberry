@@ -16,7 +16,6 @@ describe Mulberry::Asset::Image do
   describe 'media asset behavior', :fakefs => true do
 
     before :each do
-      #SampleFiles.register_sample_image_url
       @remote_asset = Factory.build :image_remote
     end
 
@@ -27,9 +26,6 @@ describe Mulberry::Asset::Image do
 
     before :each do
       @image = Factory.build :image
-
-      # Copy the fixture file into our fake filesystem so the dimensions can be calculated
-      #FakeFS::FileSystem.clone @image.asset_file
     end
 
     it 'should calculate image dimensions' do
@@ -46,8 +42,6 @@ describe Mulberry::Asset::Image do
 
   describe '#item streaming', :fakefs => true do
     it 'should output url, height, width in each style' do
-      #SampleFiles.register_sample_image_url
-
       @remote_image = Factory.build :image_remote
       item = @remote_image.item
 
