@@ -51,7 +51,7 @@ shared_examples_for "all commands" do
       toura_api_uri = URI(TouraApi::URL)
       command = described_class.name.split("::").last.underscore
       begin
-        described_class.new(["foo", "bar"])
+        described_class.new([@app.name, "foo"])
       rescue
       end
       WebMock.should have_requested(:post,
