@@ -1,6 +1,6 @@
 ---
 title: About
-template:
+page_def:
   phone: default
   tablet: default
 ---
