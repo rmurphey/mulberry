@@ -1,8 +1,13 @@
 require 'cli/assets/media_asset'
+require 'image_size'
+require 'open-uri' # For remote images
 
 module Mulberry
   module Asset
     class Image < Mulberry::Asset::MediaAsset
+
+      IMAGE_TYPES = [ :featured, :featuredSmall, :gallery, :original ].freeze
+
       def asset_type_dir
         'images'
       end
@@ -11,15 +16,24 @@ module Mulberry
         'image'
       end
 
+      def asset_file
+        @asset_file
+      end
+
       def item
         item_data = media_asset_item
 
-        [ :featured, :featuredSmall, :gallery, :original ].each do |image_type|
+        IMAGE_TYPES.each do |image_type|
           override = "#{@asset_name}-#{image_type}.#{@filename.split('.').last}"
+
           item_data[image_type] = {
             :filename => File.exists?(File.join(@dir, override)) ? override : @filename
           }
           item_data[image_type][:url] = @url if @url
+
+          open(@url || @asset_file, 'rb') do |fh|
+            item_data[image_type][:width], item_data[image_type][:height] = ::ImageSize.new(fh.read).get_size
+          end
         end
 
         item_data

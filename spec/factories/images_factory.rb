@@ -5,11 +5,11 @@ include Mulberry::Asset
 
 FactoryGirl.define do
   factory :image do
-    asset "foo.jpg"
-    parent_assets_dir Dir.mktmpdir
+    asset             SampleFiles.get_sample_image
+    parent_assets_dir SampleFiles.parent_assets_dir
   end
 
   factory :image_remote, :parent => :image do
-    asset "http://mulberry.com/foo.jpg"
+    asset SampleFiles.get_sample_image_url
   end
 end
