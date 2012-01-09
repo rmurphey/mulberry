@@ -2,19 +2,19 @@ google-map-tablet:
   type: node
   capabilities:
   - Page_GoogleMapTablet
+
   screens:
   - name: index
     backgroundImage: false
     regions:
-    - type: row
-      size: fixed
+    - className: page-nav
       components:
       - PageNav
-    - type: row
-      layout: overlay
-      className: hidden
+
+    - className: pin-info
       components:
       - PinInfo
-    - type: row
+
+    - className: google-map
       components:
       - GoogleMap

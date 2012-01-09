@@ -218,7 +218,6 @@
       @if ($child-node-text-shadow == true) {
         text-shadow: 1px 1px 0 rgba(0,0,0, .2);
       }
-
     }
   }
 
@@ -233,17 +232,15 @@
   margin-bottom: $space;
 }
 
-@mixin fixed-gallery {
-  .tablet .region.size-fixed & {
-    position: static;
+@mixin fixed-height-gallery {
+  position: static;
 
-    @media (orientation: landscape) {
-      height: 300px;
-    }
+  @media (orientation: landscape) {
+    height: 300px;
+  }
 
-    @media (orientation: portrait) {
-      height: 450px;
-    }
+  @media (orientation: portrait) {
+    height: 450px;
   }
 }
 
@@ -257,4 +254,14 @@
     lighten($text-color, $amount),
     darken($text-color, $amount)
   )
+}
+
+@mixin content-padding {
+  .phone & {
+    padding: 8px;
+  }
+
+  .tablet & {
+    padding: 12px;
+  }
 }

@@ -1,0 +1,22 @@
+.page.home-tablet {
+  .screen.index {
+    @include flex-row-container;
+
+    > .region.top {
+      @include flex-row-container;
+
+      .columns {
+        @include flex-column-container;
+      }
+    }
+
+    > .region.nav {
+      -webkit-box-flex: 0;
+      margin-bottom: 20px;
+    }
+
+    .component.body-text {
+      padding: 0 20px 0 20px;
+    }
+  }
+}

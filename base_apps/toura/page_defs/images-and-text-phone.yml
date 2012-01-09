@@ -3,21 +3,20 @@ images-and-text-phone:
   - ImageGallery_ImageCaption
   - ImageGalleryDetail
   - Page_Images
+
   screens:
     - name: index
       backgroundImage: true
       regions:
-      - type: row
-        size: fixed
+      - className: page-nav
         components:
         - PageNav
 
-      - type: row
+      - className: image-gallery
         components:
         - ImageGallery
 
-      - type: row
-        scrollable: true
+      - scrollable: true
         components:
         - ChildNodes
         - ImageCaption
@@ -25,12 +24,9 @@ images-and-text-phone:
 
     - name: detail
       regions:
-      - type: row
-        layout: overlay
-        size: fixed
+      - className: header
         components:
         - DetailTitle
 
-      - type: row
-        components:
+      - components:
         - ZoomableImageGallery

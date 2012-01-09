@@ -1,32 +1,3 @@
-@mixin row-container {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-}
-
-@mixin column-container {
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-}
-
-@mixin pane($proportion: 1) {
-  -webkit-box-flex: $proportion;
-}
-
-@mixin pullout {
-  // Pull it out of normal flow, so its contents don't affect the size of the box
-  position: absolute;
-
-  // Stretch the box to fill the entire area of the parent
-  width: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  // Make sure content doesn't stretch the box
-  overflow: hidden;
-}
-
 @mixin resizable-font {
   line-height: 1.35em;
 
@@ -57,12 +28,9 @@
   -webkit-animation-timing-function: linear;
 }
 
-@mixin content-padding {
-  .phone & {
-    padding: 8px;
-  }
 
-  .tablet & {
-    padding: 12px;
+@mixin hideable {
+  &.hidden {
+    display: none !important;
   }
 }

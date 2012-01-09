@@ -1,0 +1,76 @@
+.page.audio-with-images-tablet {
+  .component.audio-caption,
+  .component.image-caption {
+    @include caption-text;
+
+    &:not(.empty) {
+      padding: 10px;
+    }
+  }
+
+  .screen.index {
+    @include standard-screen;
+
+    .region.image-container {
+      @include background-shadow;
+      @include flex-row-container;
+      @include fixed-flex-region;
+      padding-top: 10px;
+
+      .component.image-gallery {
+        @include fixed-height-gallery;
+      }
+
+      .region.caption {
+        @include fixed-flex-region;
+      }
+    }
+
+    .region.text-content {
+      @include flex-column-container;
+
+      .child-nodes:not(.empty) {
+        padding-top: 10px;
+      }
+
+      .body-text:not(.empty) {
+        padding: 10px;
+      }
+    }
+
+    .region.audio-container {
+      @include fixed-flex-region;
+      @include background-shadow(top);
+      @include flex-column-container;
+
+      > * {
+        width: 100%;
+      }
+
+      .region.audio-active-player {
+        @include flex-row-container;
+
+        .region {
+          @include fixed-flex-region;
+        }
+      }
+
+      audio {
+        position: relative;
+        top: -5px;
+      }
+    }
+  }
+
+  .screen.detail {
+    @include flex-row-container;
+
+    .region.header {
+      @include layout-overlay;
+
+      > * {
+        width: 100%;
+      }
+    }
+  }
+}

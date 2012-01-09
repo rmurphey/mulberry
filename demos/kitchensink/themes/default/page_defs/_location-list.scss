@@ -1,0 +1,34 @@
+.page.location-list {
+  .screen.index {
+    @include standard-screen;
+
+    .component.image-gallery {
+      position: relative;
+      border-top: 1px solid $border-color;
+      border-bottom: 1px solid $border-color;
+      height: 200px;
+      padding-top: 10px;
+    }
+
+    .component.body-text {
+      @include content-padding;
+      color: offset-text-color(30%);
+      font-size: 15px;
+
+      h4 {
+        font-weight: bold;
+        font-size: inherit;
+      }
+    }
+  }
+
+  .screen.detail {
+    @include flex-row-container;
+
+    .region.detail-title {
+      @include fixed-flex-region;
+      @include layout-overlay;
+    }
+
+  }
+}

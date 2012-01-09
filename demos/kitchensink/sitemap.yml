@@ -23,5 +23,6 @@
     - grid_child_four
     - grid_child_five
     - grid_child_six
+  - default_template
 - about:
     - subpage

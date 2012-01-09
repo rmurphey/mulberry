@@ -1,8 +1,6 @@
 .component.image-gallery {
   margin-top: 15px;
 
-  @include fixed-gallery;
-
   .wrapper {
     -webkit-box-flex: 30;
 

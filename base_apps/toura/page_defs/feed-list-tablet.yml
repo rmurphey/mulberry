@@ -6,20 +6,16 @@ feed-list-tablet:
   - name: index
     backgroundImage: false
     regions:
-    - type: row
-      size: fixed
+    - className: page-nav
       components:
       - PageNav
-    - type: row
-      regions:
-      - type: column
-        size: fixed
-        backgroundImage: true
+
+    - regions:
+      - backgroundImage: true
         scrollable: true
         components:
         - ColumnHeaderImage
         - FeedItemList
-      - type: column
-        scrollable: true
+      - scrollable: true
         components:
         - FeedItemDetail

@@ -1,0 +1,51 @@
+.page.audio-with-images-phone {
+  .screen.index {
+    @include standard-screen;
+
+    .region.image-gallery {
+      @include background-shadow;
+    }
+
+    .region.audio-gallery {
+      @include fixed-flex-region;
+      height: 40px;
+
+      @if ($font-scheme == dark) {
+        background-color: darken($app-background-color, 17%);
+      } @else {
+        background-color: lighten($app-background-color, 17%);
+      }
+
+      audio {
+        position: relative;
+        top: -5px;
+      }
+    }
+
+    .region.bottom {
+      .child-nodes:not(.empty) {
+        padding-top: 10px;
+      }
+
+      .body-text:not(.empty) {
+        padding: 10px;
+      }
+    }
+
+    .component.audio-list:not(.empty) {
+      @include bottom-divider;
+    }
+  }
+
+  .screen.detail {
+    @include flex-row-container;
+
+    .region.header {
+      @include layout-overlay;
+
+      > * {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.page.node-gallery {
+  .screen.index {
+    @include standard-screen;
+
+    .region.drop-down-text {
+      @include fixed-flex-region;
+
+      .component.drop-down-text {
+        width: 100%;
+      }
+    }
+  }
+}

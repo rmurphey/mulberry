@@ -42,17 +42,17 @@
       height: $phone-height - $handle-height;
     }
 
-    @include column-container;
+    @include flex-column-container;
 
     .controller {
       width: 60px;
       margin: 0 10px;
-      @include column-container;
+      @include flex-column-container;
     }
 
     ol.nodes {
-      @include pane;
-      @include column-container;
+      @include flex-region;
+      @include flex-column-container;
       height: 100%;
 
       &, * {
@@ -62,7 +62,7 @@
       > li {
         width: 50%;
 
-        @include row-container;
+        @include flex-row-container;
         -webkit-box-pack: center;
 
         &.next {

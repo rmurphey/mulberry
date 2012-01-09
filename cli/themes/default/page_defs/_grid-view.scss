@@ -1,0 +1,23 @@
+.page.grid-view {
+  .screen.index {
+    @include standard-screen;
+
+    .region.page-header {
+      @include fixed-flex-region;
+    }
+
+    .region.grid {
+      -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .5) inset;
+    }
+  }
+
+  .component.header-image {
+    img {
+      display: block;
+    }
+  }
+
+  .component.body-text {
+    padding: 9px 9px 0 9px;
+  }
+}

@@ -1,0 +1,9 @@
+.page.search {
+  .screen.index {
+    @include flex-row-container;
+
+    .region.search-input {
+      @include fixed-flex-region;
+    }
+  }
+}

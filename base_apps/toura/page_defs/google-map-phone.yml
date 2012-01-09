@@ -2,29 +2,27 @@ google-map-phone:
   type: node
   capabilities:
   - Page_GoogleMapPhone
+
   screens:
   - name: index
     backgroundImage: false
     regions:
-    - type: row
-      size: fixed
+    - className: page-nav
       components:
       - PageNav
 
-    - type: row
+    - className: google-map
       components:
       - GoogleMap
 
   - name: detail
     backgroundImage: false
     regions:
-    - type: row
-      size: fixed
+    - className: header
       components:
       - DetailTitle
 
-    - type: row
-      scrollable: true
+    - scrollable: true
       components:
       - PinInfo
 
