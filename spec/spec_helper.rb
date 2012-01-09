@@ -5,27 +5,19 @@ require 'cli/mulberry'
 require 'builder'
 require 'factory_girl'
 require 'fakefs/spec_helpers'
-
-# Require all support stuff
-Dir[File.dirname(__FILE__) + "/support/**/*.rb"].each {|f| require f}
-
-Dir.glob(File.dirname(__FILE__) + "/factories/*").each do |factory|
-  begin
-    require factory
-  rescue
-    nil
-  end
-end
+require 'capybara/rspec'
 
 FIXTURES_DIR = File.join(File.dirname(__FILE__), 'fixtures')
 
+["/support/**/*.rb", "/factories/*"].each do |dir|
+  Dir[File.dirname(__FILE__) + dir].each{|f| require f}
+end
 
 # Allow us to specify fakefs: true in specs to automagically include the spec helpers
 RSpec.configure do |config|
   config.include FakeFS::SpecHelpers, :fakefs => true
 end
 
-require 'capybara/rspec'
 
 b = Builder::Build.new({
   :target => 'app_development',
