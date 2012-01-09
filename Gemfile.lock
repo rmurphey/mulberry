@@ -42,6 +42,7 @@ GEM
     guid (0.1.1)
     haml (3.1.2)
     i18n (0.6.0)
+    imagesize (0.1.1)
     json (1.5.3)
     json_pure (1.6.1)
     kramdown (0.13.3)
@@ -102,6 +103,7 @@ DEPENDENCIES
   guid
   haml (= 3.1.2)
   i18n
+  imagesize
   jshintrb (= 1.0.4)!
   json
   kramdown

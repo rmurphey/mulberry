@@ -4,6 +4,7 @@ gem 'activesupport', '~> 3.0.9'
 gem 'deep_merge'
 gem 'haml', '3.1.2'
 gem 'i18n' # activesupport dependency but need to specify manually: https://github.com/rails/rails/pull/235
+gem 'imagesize'
 gem 'json'
 gem 'kramdown'
 gem 'mustache'
