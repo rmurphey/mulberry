@@ -3,11 +3,15 @@ require 'cli/commands/spec_helper.rb'
 describe Mulberry::Command::Test do
   include Mulberry::Command::SpecHelpers
 
+  def exec_simple_init_example
+    Mulberry::Command::Test.new [@app.name], {:test => true, :quiet => true, :skip_js_build => true}
+  end
+
   it_should_behave_like "all commands"
 
   describe "#initialization" do
     it "should initalize" do
-      Mulberry::Command::Test.new [@app.name], {:test => true, :quiet => true, :skip_js_build => true}
+      exec_simple_init_example
     end
 
     it "should support skipping JS builds" do

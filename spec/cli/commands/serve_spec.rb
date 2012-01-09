@@ -1,15 +1,19 @@
 require 'cli/commands/spec_helper.rb'
 
-describe Mulberry::Command::Test do
+describe Mulberry::Command::Serve do
   include Mulberry::Command::SpecHelpers
 
   it_should_behave_like "all commands"
 
-  describe "#initialization" do
+  def serve
+    Mulberry::Command::Serve.new([@app.name], :running_under_test => true)
+  end
 
-    def serve
-      Mulberry::Command::Serve.new([@app.name], :running_under_test => true)
-    end
+  def exec_simple_init_example
+    serve
+  end
+
+  describe "#initialization" do
 
     it "should initalize" do
       serve

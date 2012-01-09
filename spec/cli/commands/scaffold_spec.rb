@@ -1,7 +1,11 @@
 require 'cli/commands/spec_helper.rb'
 
-describe Mulberry::Command::Create do
+describe Mulberry::Command::Scaffold do
   include Mulberry::Command::SpecHelpers
+
+  def exec_simple_init_example
+    Mulberry::Command::Scaffold.new([@app_name], { :reporting_enabled => true })
+  end
 
   it_should_behave_like "all commands"
 
@@ -17,7 +21,7 @@ describe Mulberry::Command::Create do
   end
 
   it "should initalize" do
-    Mulberry::Command::Scaffold.new([@app_name], { :reporting_enabled => true })
+    exec_simple_init_example
   end
 
   it "should initalize with full path" do
