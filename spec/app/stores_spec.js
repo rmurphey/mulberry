@@ -9,6 +9,10 @@ describe("store", function() {
     toura.model('Bar', {
       format : function() {
         this.set('newattr', true);
+      },
+
+      modify : function() {
+        this.modifyResult = true;
       }
     });
   });
@@ -87,6 +91,28 @@ describe("store", function() {
     it("should ensure added items have an id", function() {
       client.stores.foo.add({ text : 'no id' });
       expect(client.stores.foo.query({ text : 'no id' })[0].id).toBeDefined();
+    });
+
+    describe("function application", function() {
+      it("should apply a given function to models for the provided id", function() {
+        client.stores.foo.apply(1, function(item) {
+          item.newProp = true;
+        });
+
+        expect(client.stores.foo.get(1).newProp).toBeTruthy();
+      });
+
+      it("should apply a given method name to models for the provided id", function() {
+        client.stores.foo.apply(1, 'modify');
+        expect(client.stores.foo.get(1).modifyResult).toBeDefined();
+      });
+
+      it("should work when the first argument is an array of ids", function() {
+        client.stores.foo.apply([ 1, 2 ], 'modify');
+
+        expect(client.stores.foo.get(1).modifyResult).toBeDefined();
+        expect(client.stores.foo.get(2).modifyResult).toBeDefined();
+      });
     });
 
     describe("model creation", function() {

@@ -47,6 +47,24 @@ dojo.declare('toura._Store', dojo.store.Memory, {
     return data;
   },
 
+  apply : function(ids, fn) {
+    ids = dojo.isArray(ids) ? ids : [ ids ];
+
+    return dojo.map(ids, function(id) {
+      var item = this.get(id);
+
+      if (dojo.isString(fn)) {
+        dojo.hitch(item, fn)();
+      } else {
+        fn(item);
+      }
+
+      this.put(item);
+
+      return item;
+    }, this);
+  },
+
   _createModel : function(item) {
     if (this.model && client.models[this.model]) {
       item = new client.models[this.model](item);
