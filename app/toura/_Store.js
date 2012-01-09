@@ -47,7 +47,7 @@ dojo.declare('toura._Store', dojo.store.Memory, {
     return data;
   },
 
-  eachModel : function(ids, fn) {
+  invoke : function(ids, fn) {
     ids = dojo.isArray(ids) ? ids : [ ids ];
 
     var models = dojo.map(ids, function(id) {
