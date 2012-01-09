@@ -28,8 +28,8 @@ module Mulberry
           req.body = {
             'config'    => {
               'jquery'  =>  config['jquery'],
-              'os'      =>  config['os'].join(','),
-              'type'    =>  config['type'].join(',')
+              'oses'      =>  config['os'],
+              'types'    =>  config['type']
             },
             'command'   =>  command,
             'guid'      =>  guid
