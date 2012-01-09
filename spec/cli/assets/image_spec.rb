@@ -25,7 +25,6 @@ describe Mulberry::Asset::Image do
   describe '#item local', :fakefs => true do
 
     before :each do
-      #@remote_image = Factory.build :image_remote
       @image = Factory.build :image
 
       # Copy the fixture file into our fake filesystem so the dimensions can be calculated
@@ -33,7 +32,6 @@ describe Mulberry::Asset::Image do
     end
 
     it 'should calculate image dimensions' do
-
       item = @image.item
 
       Image::IMAGE_TYPES.each do |image_type|
@@ -49,6 +47,7 @@ describe Mulberry::Asset::Image do
     it 'should output url in each style' do
       @remote_image = Factory.build :image_remote
       item = @remote_image.item
+
       Image::IMAGE_TYPES.each do |image_type|
         item[image_type][:url].should match /#{@remote_image.asset_name}/
         item[image_type][:height].should == 1

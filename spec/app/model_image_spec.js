@@ -14,8 +14,8 @@ describe("image model", function() {
       'id',
       'name',
       'caption',
-	  'height',
-	  'width'
+      'height',
+      'width'
     ], function(prop) {
       expect(model[prop]).toBeDefined();
     });
