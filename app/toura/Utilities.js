@@ -65,3 +65,9 @@ toura.jsonp = function(url, config) {
 
   return dojo.io.script.get(dojo.delegate(config, { url : url }));
 };
+
+toura.page = function(route, config, isDefault) {
+  toura.route(route, function(params) {
+    toura.showPage(toura.createPage(dojo.mixin(config, { params : params })));
+  }, isDefault);
+};
