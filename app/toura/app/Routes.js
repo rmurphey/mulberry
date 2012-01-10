@@ -2,10 +2,13 @@ dojo.provide('toura.app.Routes');
 
 dojo.requireLocalization('toura', 'toura');
 
-(function() {
-
-var routes = function(app, factory) {
-  var routes;
+toura.routes(function() {
+  var routes,
+      app = function() {
+        var appConfig = toura.app.Config.get('app');
+        app = function() { return appConfig; };
+        return appConfig;
+      };
 
   function nodeRoute(route, nodeId, pageState) {
     pageState = pageState || {};
@@ -26,7 +29,7 @@ var routes = function(app, factory) {
       // it's not for the requested node ... in all of these
       // cases, we need the page factory to spin up a page
       try {
-        pf = factory.createPage(nodeModel);
+        pf = toura.createPage(nodeModel);
       } catch(e) {
         console.log("Toura.app.Routes: can't create a page", e, nodeModel);
 
@@ -67,7 +70,7 @@ var routes = function(app, factory) {
       route : '/home',
       handler : function(params, route) {
         toura.lastSearchTerm = null;
-        return nodeRoute(route, app.homeNodeId);
+        return nodeRoute(route, app().homeNodeId);
       },
       isDefault : true
     },
@@ -75,14 +78,14 @@ var routes = function(app, factory) {
     {
       route : '/about',
       handler : function(params, route) {
-        return nodeRoute(route, app.aboutNodeId);
+        return nodeRoute(route, app().aboutNodeId);
       }
     },
 
     {
       route : '/maps',
       handler : function(params, route) {
-        return nodeRoute(route, app.mapNodeId);
+        return nodeRoute(route, app().mapNodeId);
       }
     },
 
@@ -107,7 +110,7 @@ var routes = function(app, factory) {
         var page = toura.app.UI.currentPage,
             term = params.splat && params.splat[0].split('/')[0];
 
-        page = factory.createPage({
+        page = toura.createPage({
           pageController : 'search',
           term : term,
           getResults : dojo.hitch(toura.app.Data, 'search')
@@ -124,7 +127,7 @@ var routes = function(app, factory) {
       handler : function(params) {
         var feed = toura.app.Data.getModel(params.feedId, 'feed'),
             feedItem = feed.getItem(params.itemIndex),
-            page = factory.createPage(dojo.mixin(feedItem, {
+            page = toura.createPage(dojo.mixin(feedItem, {
               pageController : 'feed-item'
             }));
 
@@ -137,7 +140,7 @@ var routes = function(app, factory) {
     routes.push({
       route : '/debug/:query',
       handler : function(params, route) {
-        var page = factory.createPage({
+        var page = toura.createPage({
           pageController : 'debug',
           name : 'Debug',
           query : params.query
@@ -152,7 +155,7 @@ var routes = function(app, factory) {
     routes.push({
       route : '/favorites',
       handler : function() {
-        var page = factory.createPage({
+        var page = toura.createPage({
           name : dojo.i18n.getLocalization(
             "toura", "toura", toura.app.Config.get("locale")
           ).FAVORITES,
@@ -166,15 +169,4 @@ var routes = function(app, factory) {
   }
 
   return routes;
-};
-
-dojo.subscribe('/app/started', function() {
-  toura.routes(
-    routes(
-      toura.app.Config.get('app'),
-      toura.app.PageFactory
-    )
-  );
-});
-
 }());
