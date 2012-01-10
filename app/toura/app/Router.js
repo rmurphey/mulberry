@@ -248,6 +248,8 @@ dojo.require('dojo.hash');
         // last default route wins
         this.defaultRoute = r;
       }
+
+      this._cache = {};
     }
   });
 
