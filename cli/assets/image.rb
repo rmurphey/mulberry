@@ -5,6 +5,7 @@ require 'open-uri' # For remote images
 module Mulberry
   module Asset
     class Image < Mulberry::Asset::MediaAsset
+      attr_reader :asset_file
 
       IMAGE_TYPES = [ :featured, :featuredSmall, :gallery, :original ].freeze
 
@@ -14,10 +15,6 @@ module Mulberry
 
       def asset_type
         'image'
-      end
-
-      def asset_file
-        @asset_file
       end
 
       def item
