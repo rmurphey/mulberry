@@ -59,7 +59,6 @@ describe("router", function() {
   beforeEach(function() {
     dojo.require("toura.app.Router");
     api = api || toura.app.Router;
-    api._cache = {};
 
     if (!init) {
       toura.routes(routes);
