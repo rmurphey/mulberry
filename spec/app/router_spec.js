@@ -128,4 +128,12 @@ describe("router", function() {
     api.go('');
     expect(test).toBe('/test');
   });
+
+  it("should always use the first-provided default route", function() {
+    toura.route('/newdefault', function() {
+      test = '/newdefault';
+    }, true);
+    api.go('');
+    expect(test).toBe('/test');
+  });
 });
