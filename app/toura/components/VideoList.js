@@ -11,7 +11,6 @@ dojo.declare('toura.components.VideoList', toura.components.AssetList, {
   },
   
   adjustMarkup : function() {
-    console.log(this.assets, this.node.videos);
     if (this.assets.length <= 1) {
       this.addClass('hide-playlist');
     }
