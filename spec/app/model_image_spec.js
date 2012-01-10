@@ -22,7 +22,7 @@ describe("image model", function() {
   });
 
   it("should set the attributes correctly", function(){
-	var model = new toura.models.Image(api._store, imageObj);
+    var model = new toura.models.Image(api._store, imageObj);
 	dojo.forEach([
 	  'featured',
 	  'featuredSmall',
