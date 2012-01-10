@@ -246,7 +246,8 @@ dojo.require('dojo.hash');
 
       this._routes.push(r);
 
-      if (defaultRoute) {
+      if (defaultRoute && !this.defaultRoute) {
+        // first default route wins
         this.defaultRoute = r;
       }
     }

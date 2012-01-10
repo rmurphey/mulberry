@@ -176,5 +176,4 @@ dojo.subscribe('/app/started', function() {
     )
   );
 });
-
 }());
