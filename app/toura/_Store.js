@@ -3,14 +3,14 @@ dojo.provide('toura._Store');
 dojo.require('dojo.store.Memory');
 
 dojo.declare('toura._Store', dojo.store.Memory, {
-  key : 'anonymous',
-
   add : function(item) {
-    if (!item.id) {
-      item.id = this._createId();
-    }
-
+    item = this._createModel(item);
     this.put(item);
+  },
+
+  get : function(id) {
+    var item = this.inherited(arguments);
+    return this._createModel(item);
   },
 
   put : function(item) {
@@ -24,16 +24,62 @@ dojo.declare('toura._Store', dojo.store.Memory, {
   },
 
   query : function(query, opts) {
-    if (!query) {
-      return dojo.store.util.QueryResults(this.data);
-    }
-
-    return this.inherited(arguments);
+    var results = query ? this.inherited(arguments) : dojo.store.util.QueryResults(this.data);
+    return results.map(dojo.hitch(this, '_createModel'));
   },
 
   setData : function(data) {
     this.inherited(arguments);
     this._save();
+  },
+
+  prepareData : function(data) {
+    return data;
+  },
+
+  process : function(data) {
+    data = this.prepareData(data);
+
+    if (this.model && client.models[this.model]) {
+      data = this._createModels(data);
+    }
+
+    return data;
+  },
+
+  invoke : function(ids, fn) {
+    ids = dojo.isArray(ids) ? ids : [ ids ];
+
+    var models = dojo.map(ids, function(id) {
+      var item = this.get(id);
+
+      dojo.hitch(item, fn)(item);
+
+      this.put(item);
+
+      return item;
+    }, this);
+
+    return dojo.store.util.QueryResults(models);
+  },
+
+  _createModel : function(item) {
+    if (this.model && client.models[this.model]) {
+      item = new client.models[this.model](item);
+      item.format();
+    } else {
+      console.warn('No model for ' + this.declaredClass);
+    }
+
+    if (!item.id) {
+      item.id = this._createId();
+    }
+
+    return item;
+  },
+
+  _createModels : function(data) {
+    return dojo.map(data, dojo.hitch(this, '_createModel'));
   },
 
   _save : function() {
@@ -51,29 +97,7 @@ toura.store = function(name, proto) {
     toura._Store,
     dojo.mixin({
       key : name,
-      data : toura.app.DeviceStorage.get(name),
-
-      prepareData : function(data) {
-        return data;
-      },
-
-      process : function(data) {
-        data = this.prepareData(data);
-
-        if (this.model && client.models[this.model]) {
-          data = this._createModels(data);
-        }
-
-        return data;
-      },
-
-      _createModels : function(data) {
-        return dojo.map(data, function(item) {
-          var m = new client.models[this.model](item);
-          m.format();
-          return m;
-        }, this);
-      }
+      data : toura.app.DeviceStorage.get(name)
     }, proto)
   );
 

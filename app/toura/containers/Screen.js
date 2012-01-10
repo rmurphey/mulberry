@@ -12,11 +12,6 @@ dojo.declare('toura.containers.Screen', [ toura.containers._LayoutBox ], {
 
     this.addClass(this.config.name);
 
-    // TODO: remove this
-    if (this.config.layoutName) {
-      this.addClass(this.config.layoutName);
-    }
-
     if (this.config.regions) {
       this.regions = dojo.map(this.config.regions, function(region) {
         return this.adopt(toura.containers.Region, {
@@ -26,7 +21,6 @@ dojo.declare('toura.containers.Screen', [ toura.containers._LayoutBox ], {
           device : this.device,
           screen : this,
           backgroundImage : this.backgroundImage,
-          boxType : this.config.containerType
         }).placeAt(this.domNode);
       }, this);
     }

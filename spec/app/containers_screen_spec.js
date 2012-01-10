@@ -17,23 +17,15 @@ describe("containers screen", function() {
     expect(t.querySelector(getRootSelector(c))).toBeTruthy();
   });
 
-  it("should allow the layout to be specified", function() {
-    c = C({
-      config : { containerType : 'something' }
-    });
-
-    expect(dojo.hasClass(c.domNode, 'something-container')).toBeTruthy();
-  });
-
   it("should create regions if they are specified", function() {
     var spy = spyOn(toura.containers, 'Region').andCallThrough();
 
     c = C({
       config : {
         regions : [
-          { type: 'row'},
-          { type: 'row'},
-          { type: 'row'}
+          { scrollable : true },
+          { scrollable : true },
+          { scrollable : true }
         ]
       },
       baseObj : 'fake node',
@@ -44,22 +36,10 @@ describe("containers screen", function() {
 
     var regionArgs = spy.mostRecentCall.args[0];
 
-    expect(regionArgs.config).toEqual({ type: 'row'});
+    expect(regionArgs.config).toEqual({ scrollable: true});
     expect(regionArgs.baseObj).toBe('fake node');
     expect(regionArgs.device).toBe('fake device');
     expect(regionArgs.screen).toBe(c);
-  });
-
-
-  it("should set the layout class on the screen element if a layout is defined in the template config", function() {
-    c = C({
-      device : 'fake device',
-      config : {
-        layoutName : 'fake-layout'
-      }
-    });
-
-    expect(dojo.hasClass(c.domNode, 'fake-layout')).toBeTruthy();
   });
 
 });

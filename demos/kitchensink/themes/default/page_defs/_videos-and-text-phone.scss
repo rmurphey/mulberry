@@ -1,0 +1,25 @@
+.page.videos-and-text-phone {
+  .screen.index {
+    @include standard-screen;
+
+    .region.player-container {
+      @include background-shadow;
+      padding-bottom: 40px;
+    }
+
+    .region.listing-and-children {
+      .component.video-list:not(.empty) {
+        @include bottom-divider;
+      }
+
+      .component.child-nodes:not(.empty) {
+        padding-top: 10px;
+      }
+
+      .component.body-text {
+        padding: 10px 20px 0 10px;
+      }
+    }
+  }
+
+}

@@ -1,4 +1,4 @@
 .screen {
-  @extend .layout-box;
   @include pullout;
+  @include hideable;
 }

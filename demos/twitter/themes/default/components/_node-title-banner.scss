@@ -1,6 +1,6 @@
 .component.node-title-banner {
   @include content-padding;
-  @include column-container;
+  @include flex-column-container;
 
   .image {
     height: 50px;
@@ -14,7 +14,7 @@
   }
 
   header {
-    @include pane;
+    @include flex-region;
     h3 {
       font-size: 11px;
       padding-bottom: 8px;

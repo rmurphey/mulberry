@@ -5,10 +5,10 @@
     padding: 10px;
     font-size: 12px;
 
-    @include column-container;
+    @include flex-column-container;
 
     > div {
-      @include pane;
+      @include flex-region;
     }
 
     .spinner {

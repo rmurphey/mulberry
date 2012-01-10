@@ -1,0 +1,8 @@
+@mixin standard-screen {
+  @include flex-row-container;
+  @include watermark;
+
+  .region.page-nav {
+    @include fixed-flex-region;
+  }
+}

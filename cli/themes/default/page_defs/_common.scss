@@ -1,0 +1,5 @@
+@mixin standard-screen {
+  .region.page-nav {
+    @include fixed-flex-region;
+  }
+}

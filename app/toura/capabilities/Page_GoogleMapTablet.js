@@ -13,6 +13,7 @@ dojo.declare('toura.capabilities.Page_GoogleMapTablet', toura._Capability, {
   ],
 
   init : function() {
+    this.pinInfo.region.hide();
     this.googleMap.set('pinInfo', this.pinInfo);
   },
 

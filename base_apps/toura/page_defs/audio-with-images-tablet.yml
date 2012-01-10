@@ -13,68 +13,52 @@ audio-with-images-tablet:
     - name: index
       backgroundImage: true
       regions:
-      - type: row
-        size: fixed
+
+      - className: page-nav
         components:
         - PageNav
-      - type: row
-        size: fixed
-        className: image-container
+
+      - className: image-container
         regions:
-        - type: row
-          size: fixed
-          components:
+        - components:
           - ImageGallery
-        - type: row
-          size: fixed
+        - className: caption
           components:
           - ImageCaption
+
       - type: row
         className: text-and-child-nodes
         regions:
 
-        - type: column
-          className: body-text-container
+        - className: body-text-container
           scrollable: true
           components:
           - BodyText
 
-        - type: column
-          className: child-nodes-container
+        - className: child-nodes-container
           scrollable: true
           components:
           - ChildNodes
-      - type: row
-        size: fixed
-        className: audio-container
+
+      - className: audio-container
         regions:
-        - type: column
-          className: audio-active-player
+        - className: audio-active-player
           regions:
-          - type: row
-            size: fixed
-            components:
+          - components:
             - AudioPlayer
-          - type: row
-            size: fixed
-            components:
+          - components:
             - AudioCaption
-        - type: column
-          regions:
-          - type: row
-            scrollable: true
-            components:
-            - AudioList
+        - className: audio-list
+          scrollable: true
+          components:
+          - AudioList
 
     - name: detail
       regions:
-      - type: row
-        layout: overlay
-        size: fixed
+      - className: header
         components:
         - DetailTitle
-      - type: row
-        components:
+      - components:
         - ZoomableImageGallery
 
 

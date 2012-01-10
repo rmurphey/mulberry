@@ -4,43 +4,32 @@ images-and-text-tablet:
   - ImageGalleryDetail
   - Page_Images
   - Text_ChildNodes
+
   screens:
     - name: index
       backgroundImage: true
       regions:
-
-      - type: row
-        size: fixed
+      - className: page-nav
         components:
         - PageNav
 
-      - type: row
-        size: fixed
-        className: image-container
+      - className: image-container
         regions:
-
-        - type: row
-          size: fixed
-          components:
+        - components:
           - ImageGallery
-
-        - type: row
-          size: fixed
+        - className: caption
           components:
           - ImageCaption
 
-      - type: row
-        className: text-and-child-nodes
+      - className: text-and-child-nodes
         regions:
 
-        - type: column
-          className: body-text-container
+        - className: body-text-container
           scrollable: true
           components:
           - BodyText
 
-        - type: column
-          className: child-nodes-container
+        - className: child-nodes-container
           scrollable: true
           components:
           - ChildNodes
@@ -48,14 +37,11 @@ images-and-text-tablet:
 
     - name: detail
       regions:
-      - type: row
-        layout: overlay
-        size: fixed
+      - className: header
         components:
         - DetailTitle
 
-      - type: row
-        components:
+      - components:
         - ZoomableImageGallery
 
 

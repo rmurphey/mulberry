@@ -1,0 +1,14 @@
+.page.google-map-tablet {
+  .screen.index {
+    @include standard-screen;
+
+    .region.google-map {
+      @include flex-row-container;
+    }
+
+    .region.pin-info {
+      @include layout-overlay;
+    }
+  }
+
+}
