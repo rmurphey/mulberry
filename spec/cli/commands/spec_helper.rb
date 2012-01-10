@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'fakefs/spec_helpers'
+require 'webmock/rspec'
 require 'nokogiri'
 
 Dir[File.dirname(__FILE__) + '/../../../cli/bin/commands/*.rb'].each {|file| require file }
@@ -40,4 +41,29 @@ module Mulberry
       end
     end
   end
+end
+
+shared_examples_for "all commands" do
+
+  it "should report its usage" do
+    begin
+      Mulberry::Command::Scaffold.create_dot_mulberry_file @app.source_dir
+      toura_api_uri = URI(TouraApi::URL)
+      command = described_class.name.split("::").last.underscore
+      begin
+        if self.respond_to? "exec_simple_init_example"
+          exec_simple_init_example
+        else
+          described_class.new([@app.name, "foo"])
+        end
+      rescue
+      end
+      WebMock.should have_requested(:post,
+                       "#{toura_api_uri.host}/mulberry_command_logs").
+                     with { |req| JSON.parse(req.body)['command'].match /^#{command}/ }
+    ensure
+      FileUtils.rm_rf File.join(@app.source_dir, ".mulberry")
+    end
+  end
+
 end

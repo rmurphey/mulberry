@@ -20,7 +20,7 @@ module Mulberry
         app = Mulberry::App.new(dir)
 
         app.device_build( options.merge(additional_options) )
-        report dir, "test"
+        report dir
       end
     end
   end
