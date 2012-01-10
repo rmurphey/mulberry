@@ -9,10 +9,10 @@ dojo.declare('toura.components.VideoList', toura.components.AssetList, {
     this.assets = this.node.videos || [];
     this.inherited(arguments);
   },
-  
+
   adjustMarkup : function() {
     if (this.assets.length <= 1) {
-      this.addClass('hide-playlist');
+      this.hide();
     }
   },
 });
