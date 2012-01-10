@@ -59,7 +59,7 @@ shared_examples_for "all commands" do
       rescue
       end
       WebMock.should have_requested(:post,
-                       "#{toura_api_uri.host}:#{toura_api_uri.port}/mulberry_command_logs").
+                       "#{toura_api_uri.host}/mulberry_command_logs").
                      with { |req| JSON.parse(req.body)['command'].match /^#{command}/ }
     ensure
       FileUtils.rm_rf File.join(@app.source_dir, ".mulberry")
