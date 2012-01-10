@@ -47,5 +47,9 @@
     .video-list + .child-nodes {
       margin-top: .4em;
     }
+    
+    .video-list.hide-playlist {
+      display: none;
+    }
   }
 }
