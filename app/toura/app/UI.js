@@ -166,5 +166,5 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
 
 dojo.subscribe('/app/ready', function() {
   toura.app.UI = new toura.app.UI(toura.app.Config.get('device'));
-  toura.showPage = toura.app.UI.showPage;
+  toura.showPage = dojo.hitch(toura.app.UI, 'showPage');
 });

@@ -63,6 +63,6 @@ dojo.declare('toura.app.PageFactory', null, {
 
 dojo.subscribe('/app/ready', function() {
   toura.app.PageFactory = new toura.app.PageFactory(toura.app.Config.get('device'));
-  toura.createPage = toura.app.PageFactory.createPage;
+  toura.createPage = dojo.hitch(toura.app.PageFactory, 'createPage');
 });
 
