@@ -92,10 +92,10 @@ dojo.declare('toura.models.Node', [], {
       isHomeNode : this.id === toura.app.Config.get("app").homeNodeId
     });
 
+    this.pageDef = dojo.isObject(this.pageDef) ? this.pageDef[device.type] : this.pageDef;
+
     if (!this.pageDef) {
       this.pageDef = 'default';
-    } else {
-      this.pageDef = dojo.isObject(this.pageDef) ? this.pageDef[device.type] : this.pageDef;
     }
 
     this.siblings = this.parent ? dojo.map(this.parent.children, function(c) {

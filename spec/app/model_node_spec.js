@@ -3,6 +3,7 @@ describe("node model", function() {
 
   beforeEach(function() {
     api = dataAPI;
+    api.cache = {};
     node = api.getModel('node-home');
     dojo.publish('/tour/update'); // cache busting
   });
@@ -98,12 +99,18 @@ describe("node model", function() {
 
   it("should determine the proper page def for phone", function() {
     toura.app.Config.set('device', { type : 'phone', os : 'ios' });
-    expect(node.pageDef).toBe('home-phone');
+    expect(api.getModel('node-single_image_gallery')).toBe('images-and-text-phone');
   });
 
   it("should determine the proper page def for tablet", function() {
     toura.app.Config.set('device', { type : 'tablet', os : 'ios' });
     expect(api.getModel('node-single_image_gallery').pageDef).toBe('images-and-text-tablet');
   });
+
+  it("should use the default pagedef if one is not provided", function() {
+    toura.app.Config.set('device', { type : 'unknown', os : 'ios' });
+    expect(api.getModel('node-single_image_gallery').pageDef).toBe('default');
+  });
+
 });
 
