@@ -1,10 +1,5 @@
 dojo.provide('toura.base');
 
-/**
- * Logging wrapper
- *
- * This needs to come before anything else.
- */
 toura.data = toura.data || {};
 mulberry = toura;
 
