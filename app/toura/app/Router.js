@@ -184,8 +184,6 @@ dojo.require('dojo.hash');
      * @type Object
      */
     _lookupRoute : function(hash) {
-      var routeablePath = this._routeablePath(hash);
-
       if (!this._cache[hash]) {
         d.forEach(this._routes, function(route) {
           if (this._routeablePath(hash).match(route.path)) {
@@ -246,8 +244,8 @@ dojo.require('dojo.hash');
 
       this._routes.push(r);
 
-      if (defaultRoute && !this.defaultRoute) {
-        // first default route wins
+      if (defaultRoute) {
+        // last default route wins
         this.defaultRoute = r;
       }
     }

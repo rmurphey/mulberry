@@ -59,6 +59,7 @@ describe("router", function() {
   beforeEach(function() {
     dojo.require("toura.app.Router");
     api = api || toura.app.Router;
+    api._cache = {};
 
     if (!init) {
       toura.routes(routes);
@@ -129,11 +130,11 @@ describe("router", function() {
     expect(test).toBe('/test');
   });
 
-  it("should always use the first-provided default route", function() {
-    toura.route('/newdefault', function() {
+  it("should always use the last-provided default route", function() {
+    toura.route('/test', function() {
       test = '/newdefault';
     }, true);
     api.go('');
-    expect(test).toBe('/test');
+    expect(test).toBe('/newdefault');
   });
 });
