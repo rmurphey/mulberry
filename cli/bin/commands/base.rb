@@ -5,9 +5,12 @@ require 'net/http'
 module Mulberry
   module Command
     class Base
-      def report(app_dir, command)
+      def report(app_dir, sub_command=nil)
         begin
           return unless Mulberry::FEATURES[:reporting]
+
+          command = self.class.name.split("::").last.underscore
+          command << ":#{sub_command}" if sub_command
 
           settings_file = File.join(app_dir, '.mulberry')
 

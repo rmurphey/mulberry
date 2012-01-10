@@ -22,7 +22,7 @@ module Mulberry
         end.parse!
 
         dir = Mulberry.get_app_dir args[0]
-        report dir, "deploy"
+        report dir
 
         app = Mulberry::App.new(dir)
         app.device_build additional_options

@@ -17,7 +17,7 @@ module Mulberry
         end.parse!
 
         dir = Mulberry.get_app_dir args[0]
-        report dir, self.class.name.split("::").last.underscore
+        report dir
         begin
           app = Mulberry::App.new(dir).send(app_method, *app_method_args)
         rescue Mulberry::Http::Exception

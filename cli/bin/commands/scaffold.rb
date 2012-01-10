@@ -37,7 +37,7 @@ module Mulberry
 
         if input.downcase == 'y'
           self.class.create_dot_mulberry_file @dir
-          report @dir, 'scaffold'
+          report @dir
         end
       end
 
