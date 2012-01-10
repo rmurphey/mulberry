@@ -3,7 +3,6 @@ describe("page factory", function() {
 
   beforeEach(function() {
     dojo.require("toura.app.PageFactory");
-    console.log('PageFactory', toura.app.PageFactory);
     f = f || new toura.app.PageFactory({ type : 'fake', os : 'fake' });
 
     toura.pagedefs = {
@@ -14,7 +13,7 @@ describe("page factory", function() {
 
   it("should use a user defined template if one is defined", function() {
     var node = {
-      pageController : 'user defined template'
+      pageDef : 'user defined template'
     };
 
     var spy = spyOn(toura.containers, 'Page');
@@ -27,39 +26,13 @@ describe("page factory", function() {
     expect(spy.mostRecentCall.args[0].pageDef).toBe('success');
   });
 
-  it("should work with a pageDef property", function() {
-    var node = {
-      pageDef : 'user defined template'
-    };
-
-    var spy = spyOn(toura.containers, 'Page');
-
-    f.createPage(node);
-
-    expect(spy).toHaveBeenCalled();
-    expect(spy.mostRecentCall.args[0].pageDef).toBe('success');
-  });
-
-  it("should use the default page controller if one is not defined", function() {
-    var node = {
-      pageController : ''
-    };
-
-    var spy = spyOn(toura.containers, 'Page');
-
-    f.createPage("node", node);
-
-    expect(spy).toHaveBeenCalled();
-    expect(spy.mostRecentCall.args[0].pageDef).toBe('default');
-  });
-
   it("should throw an error if no page object is provided", function() {
     expect(function() { f.createPage(); }).toThrow();
   });
 
   it("should throw an error if the controller associated with the node does not exist", function() {
     expect(function() {
-      f.createPage('node', { pageController : 'nonexistent' });
+      f.createPage('node', { pageDef : 'nonexistent' });
     }).toThrow();
   });
 });

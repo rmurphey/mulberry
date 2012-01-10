@@ -26,7 +26,8 @@ dojo.declare('toura.models.Node', [], {
    * by a view
    */
   constructor : function(store, item) {
-    var id = store.getValue(item, 'id');
+    var id = store.getValue(item, 'id'),
+        device = toura.app.Config.get('device');
 
     if (cache[id]) {
       dojo.mixin(this, cache[id]);
@@ -90,6 +91,12 @@ dojo.declare('toura.models.Node', [], {
       parent : this.parent && new toura.models.Node(store, this.parent),
       isHomeNode : this.id === toura.app.Config.get("app").homeNodeId
     });
+
+    this.pageDef = dojo.isObject(this.pageDef) ? this.pageDef[device.type] : this.pageDef;
+
+    if (!this.pageDef) {
+      this.pageDef = 'default';
+    }
 
     this.siblings = this.parent ? dojo.map(this.parent.children, function(c) {
       return new toura.models.SimpleNode(this.store, c);
