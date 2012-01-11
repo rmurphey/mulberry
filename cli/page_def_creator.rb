@@ -26,15 +26,15 @@ module Mulberry
       page_def_template = File.read(File.join(Mulberry::Directories.templates, 'page_def.yml'))
 
       File.open(page_def_filename, 'w') do |f|
-        f.write page_def_template.gsub('{{page_def_name}}', @filename).gsub('{{@capability_name}}', @capability_name)
+        f.write page_def_template.gsub('{{page_def_name}}', @filename).gsub('{{capability_name}}', @capability_name)
       end
 
       puts "Created page_def at #{page_def_filename}"
     end
 
     def create_page_def_scss
-      theme = Mulberry::App.new(Mulberry.get_app_dir).theme
-      theme_page_def_dir = File.join(Mulberry.get_app_dir, 'themes', theme, 'page_defs')
+      theme = Mulberry::App.new(@destination_dir).theme
+      theme_page_def_dir = File.join(@destination_dir, 'themes', theme, 'page_defs')
 
       scss_filename = File.join(theme_page_def_dir, "_#{@filename}.scss")
       theme_page_def_base_filename = File.join(theme_page_def_dir, '_base.scss')

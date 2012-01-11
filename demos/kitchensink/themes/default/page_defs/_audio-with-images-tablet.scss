@@ -26,7 +26,7 @@
       }
     }
 
-    .region.text-content {
+    .region.body-text-container {
       @include flex-column-container;
 
       .child-nodes:not(.empty) {
@@ -35,6 +35,17 @@
 
       .body-text:not(.empty) {
         padding: 10px;
+      }
+    }
+
+    > .region.text-and-child-nodes {
+      @include flex-column-container;
+      @media (min-width: 800px) {
+        @include portrait-column;
+      }
+
+      .region.child-nodes-container.empty {
+        -webkit-box-flex: .188889;      // 1/6 width
       }
     }
 
@@ -60,6 +71,7 @@
         top: -5px;
       }
     }
+
   }
 
   .screen.detail {

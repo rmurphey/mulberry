@@ -3,6 +3,7 @@ videos-and-text-tablet:
   - Page_Videos
   - VideoList_VideoPlayer
   - VideoList_VideoCaption
+  - Text_ChildNodes_VideoList
   screens:
     - name: index
       backgroundImage: true
@@ -22,7 +23,7 @@ videos-and-text-tablet:
           components:
           - VideoCaption
 
-      - className: listing-and-children
+      - className: text-and-listings
         regions:
 
         - scrollable: true
@@ -30,6 +31,7 @@ videos-and-text-tablet:
           - BodyText
 
         - scrollable: true
+          className: listings-container
           components:
           - VideoList
           - ChildNodes
