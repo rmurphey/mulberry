@@ -1,9 +1,10 @@
 task :spec do
   $: << '.'
-  dirs = Dir.glob('spec/*').select { |d| !d.match('integration') }.join(' ' << Dir.pwd )
+  dirs = Dir[File.join(Dir.pwd, 'spec/*')].select { |d| !d.match('integration') }.join(' ')
   puts "Current dir = #{Dir.pwd}"
   puts "Executing `rspec --color --format doc #{dirs}`..."
-  system %{rspec --color --format doc #{dirs}}
+  exit 1
+  #system %{rspec --color --format doc #{dirs}}
 end
 
 task :integration do
