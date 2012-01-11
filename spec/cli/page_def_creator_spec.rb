@@ -59,7 +59,7 @@ describe Mulberry::PageDefCreator do
     capability_file_contents.should include 'PageFooBar'
   end
 
-  it "should create a page def css" do
+  it "should create page definition css" do
     name = 'foo-bar'
 
     Mulberry::PageDefCreator.new('page_def', @source_dir, name)
