@@ -169,4 +169,4 @@ toura.routes(function() {
   }
 
   return routes;
-}());
+})();
