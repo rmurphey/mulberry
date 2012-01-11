@@ -15,8 +15,6 @@ describe Mulberry::PageDefCreator do
 
     Mulberry::App.scaffold(@source_dir, true)
     @page_def_dir = File.join(@source_dir, 'page_defs')
-
-    #Dir.chdir @source_dir
   end
 
   after :each do
