@@ -14,6 +14,7 @@ describe Mulberry::PageDefCreator do
     cleanup(@source_dir)
 
     Mulberry::App.scaffold(@source_dir, true)
+
     @page_def_dir = File.join(@source_dir, 'page_defs')
   end
 
@@ -50,11 +51,35 @@ describe Mulberry::PageDefCreator do
 
     Mulberry::PageDefCreator.new('page_def', @source_dir, name)
 
-    capability_file = File.join(@source_dir, 'javascript', 'capabilities', 'PageFooBar.js')
+    capability_file          = File.join(@source_dir, 'javascript', 'capabilities', 'PageFooBar.js')
+    capability_file_contents = File.read(capability_file)
 
     File.exists?(capability_file).should be_true
-    File.read(capability_file).should include 'mulberry.capability'
-    File.read(capability_file).should include 'PageFooBar'
+    capability_file_contents.should include 'mulberry.capability'
+    capability_file_contents.should include 'PageFooBar'
   end
 
+  it "should create a page def css" do
+    name = 'foo-bar'
+
+    Mulberry::PageDefCreator.new('page_def', @source_dir, name)
+
+    app = Mulberry::App.new(@source_dir)
+    app.should_not be_nil
+
+    theme = app.theme
+    theme_page_def_dir = File.join(@source_dir, 'themes', theme, 'page_defs')
+
+    scss_filename = File.join(theme_page_def_dir, "_#{name}.scss")
+    theme_page_def_base_filename = File.join(theme_page_def_dir, '_base.scss')
+
+    page_def_scss = File.read(scss_filename)
+
+    File.exists?(scss_filename).should be_true
+
+    page_def_scss.should_not include '{{page_def_name}}'
+    page_def_scss.should     include name
+
+    File.read(theme_page_def_base_filename).should include "@import '#{name}';"
+  end
 end
