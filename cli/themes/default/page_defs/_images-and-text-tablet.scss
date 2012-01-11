@@ -20,7 +20,7 @@
     .region.text-and-child-nodes {
       @include flex-column-container;
 
-      @media only screen and (min-width: 800px) {
+      @media (min-width: 800px) {
         @include portrait-column;
       }
 

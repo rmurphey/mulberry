@@ -26,7 +26,7 @@
           &.body-text {
             width: 87%;
 
-            @media only screen and (min-width: 800px) {
+            @media (min-width: 800px) {
               width: 62.5%;
               margin-left: 12.5%;
             }
