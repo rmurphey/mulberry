@@ -13,7 +13,7 @@ end
 task :travis do
   puts "Grabbing chromedriver..."
   mkdir_p "/tmp/bin"
-  system "cd /tmp/bin && wget http://chromium.googlecode.com/files/chromedriver_linux32_18.0.995.0.zip && unzip chromedriver_linux32_16.0.902.0.zip"
+  system "cd /tmp/bin && wget http://chromium.googlecode.com/files/chromedriver_linux32_18.0.995.0.zip && unzip chromedriver_linux32_18.0.995.0.zip"
 
   puts "Starting to run tests..."
   system("export PATH=/tmp/bin:$PATH && export DISPLAY=:99.0 && bundle exec rake")
