@@ -13,7 +13,7 @@ dojo.declare('toura.capabilities.Text_ChildNodes_VideoList', toura._Capability, 
 
   init: function() {
     if (this.childNodes.children.length === 0 && this.videoList.assets.length <= 1) {
-      this.childNodes.region.domNode.className += " empty";
+      dojo.addClass(this.childNodes.region.domNode, 'empty');
     }
   }
 });

@@ -12,7 +12,7 @@ dojo.declare('toura.capabilities.Text_ChildNodes', toura._Capability, {
 
   init: function() {
     if (this.childNodes.children.length === 0) {
-      this.childNodes.region.domNode.className += " empty";
+      dojo.addClass(this.childNodes.region.domNode, 'empty');
     }
   }
 });
