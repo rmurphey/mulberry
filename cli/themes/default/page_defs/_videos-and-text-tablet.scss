@@ -16,8 +16,16 @@
       }
     }
 
-    .region.listing-and-children {
+    .region.text-and-listings {
       @include flex-column-container;
+
+      @media (min-width: 800px) {
+        @include portrait-column;
+      }
+
+      .region.listings-container.empty {
+        -webkit-box-flex: .188889;      // 1/6 width
+      }
 
       .child-nodes:not(.empty) {
         padding-top: 10px;
@@ -47,5 +55,6 @@
     .video-list + .child-nodes {
       margin-top: .4em;
     }
+
   }
 }

@@ -17,8 +17,16 @@
       }
     }
 
-    .region.bottom-columns {
+    .region.text-and-child-nodes {
       @include flex-column-container;
+
+      @media (min-width: 800px) {
+        @include portrait-column;
+      }
+
+      .region.child-nodes-container.empty {
+        -webkit-box-flex: .188889;      // 1/6 width
+      }
     }
 
     .component.body-text:not(.empty) {
