@@ -26,7 +26,7 @@
       }
     }
 
-    .region.text-content {
+    .region.body-text-container {
       @include flex-column-container;
 
       .child-nodes:not(.empty) {
@@ -39,6 +39,7 @@
     }
 
     > .region.text-and-child-nodes {
+      @include flex-column-container;
       @media only screen and (min-width: 800px) {
         @include portrait-column;
       }
