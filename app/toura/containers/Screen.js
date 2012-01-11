@@ -20,7 +20,7 @@ dojo.declare('toura.containers.Screen', [ toura.containers._LayoutBox ], {
           baseObj : this.baseObj,
           device : this.device,
           screen : this,
-          backgroundImage : this.backgroundImage,
+          backgroundImage : this.backgroundImage
         }).placeAt(this.domNode);
       }, this);
     }

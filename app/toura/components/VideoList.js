@@ -14,6 +14,6 @@ dojo.declare('toura.components.VideoList', toura.components.AssetList, {
     if (this.assets.length <= 1) {
       this.hide();
     }
-  },
+  }
 });
 
