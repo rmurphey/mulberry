@@ -1,4 +1,5 @@
 before_script:
+  - 'sudo apt-get install chromedriver'
   - 'sh -e /etc/init.d/xvfb start'
 rvm:
   - 1.9.3
