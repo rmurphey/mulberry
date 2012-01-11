@@ -1,0 +1,13 @@
+.page.full-screen-images {
+  .screen {
+    @include flex-row-container;
+
+    .region.page-nav {
+      @include layout-overlay;
+
+      > * {
+        width: 100%;
+      }
+    }
+  }
+}

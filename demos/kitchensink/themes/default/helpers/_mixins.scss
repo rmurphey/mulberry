@@ -11,7 +11,7 @@
 
   .phone & {
     font-size: 14px;
-height: 40px;
+    height: 40px;
   }
 }
 
@@ -29,48 +29,48 @@ height: 40px;
 @mixin button {
   -webkit-border-radius: 4px;
   background-image: -webkit-gradient(
+    linear,
+    0% 0%,
+    0% 100%,
+    from(lighten($narrow-button-color, 12%)),
+    to(darken($narrow-button-color, 12%))
+  );
+  border: 1px solid darken($narrow-button-color, 13%);
+  font-size: 14px;
+  font-weight: bold;
+  color: $narrow-button-text-color;
+  height: 26px;
+  padding: 2px 15px 0 15px;
+  margin: 5px;
+
+  &.highlight {
+    background-image: -webkit-gradient(
       linear,
       0% 0%,
       0% 100%,
-      from(lighten($narrow-button-color, 12%)),
-      to(darken($narrow-button-color, 12%))
-      );
-border: 1px solid darken($narrow-button-color, 13%);
-        font-size: 14px;
-        font-weight: bold;
-color: $narrow-button-text-color;
-height: 26px;
-padding: 2px 15px 0 15px;
-margin: 5px;
-
-        &.highlight {
-          background-image: -webkit-gradient(
-              linear,
-              0% 0%,
-              0% 100%,
-              from(lighten($narrow-button-highlight-color, 12%)),
-              to(darken($narrow-button-highlight-color, 12%))
-              );
-        }
+      from(lighten($narrow-button-highlight-color, 12%)),
+      to(darken($narrow-button-highlight-color, 12%))
+    );
+  }
 }
 
 @mixin wide-button {
-display: block;
-         background-image: -webkit-gradient(
-             linear, 0% 0%, 0% 100%,
-             from(lighten($wide-button-color, 10.5%)),
-             to(darken($wide-button-color, 10.5%))
-             );
-         -webkit-border-radius: 2px;
-border: 1px solid darken($wide-button-color, 10.5%);
-color: $wide-button-text-color;
-       text-align: center;
-       font-size: 18px;
-       font-weight: bold;
-height: 40px;
-        line-height: 2em;
-padding: 2px 15px 0 15px;
-margin: 5px 0;
+  display: block;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(lighten($wide-button-color, 10.5%)),
+    to(darken($wide-button-color, 10.5%))
+  );
+  -webkit-border-radius: 2px;
+  border: 1px solid darken($wide-button-color, 10.5%);
+  color: $wide-button-text-color;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 2em;
+  padding: 2px 15px 0 15px;
+  margin: 5px 0;
 }
 
 @mixin wide-icon-button($image-url) {
@@ -79,10 +79,10 @@ margin: 5px 0;
   background-image:
     url($image-url),
     -webkit-gradient(
-        linear, 0% 0%, 0% 100%,
-        from(lighten($wide-button-color, 10.5%)),
-        to(darken($wide-button-color, 10.5%))
-        );
+      linear, 0% 0%, 0% 100%,
+      from(lighten($wide-button-color, 10.5%)),
+      to(darken($wide-button-color, 10.5%))
+    );
 
   background-position: left center, center center;
   -webkit-background-size: contain;
@@ -92,15 +92,15 @@ margin: 5px 0;
     background-image:
       url($image-url),
       -webkit-gradient(
-          linear, 0% 0%, 0% 100%,
-          from($wide-button-color),
-          to(darken($wide-button-color, 20.5%))
-          );
+        linear, 0% 0%, 0% 100%,
+        from($wide-button-color),
+        to(darken($wide-button-color, 20.5%))
+      );
   }
 
   .label {
     margin-right: 5px;
-color: $wide-button-prefix-text-color;
+    color: $wide-button-prefix-text-color;
   }
 }
 
@@ -124,11 +124,11 @@ color: $wide-button-prefix-text-color;
   $color-3 : $chrome-color - 15;
 
   background-image: -webkit-gradient(
-      linear, 0% 0%, 0% 100%,
-      from($color-1),
-      color-stop(0.5, $color-2),
-      to($color-3)
-      );
+    linear, 0% 0%, 0% 100%,
+    from($color-1),
+    color-stop(0.5, $color-2),
+    to($color-3)
+  );
 }
 
 // TODO: DRY
@@ -138,11 +138,11 @@ color: $wide-button-prefix-text-color;
   $color-3 : $chrome-color;
 
   background-image: -webkit-gradient(
-      linear, 0% 0%, 0% 100%,
-      from($color-1),
-      color-stop(0.5, $color-2),
-      to($color-3)
-      );
+    linear, 0% 0%, 0% 100%,
+    from($color-1),
+    color-stop(0.5, $color-2),
+    to($color-3)
+  );
 }
 
 
@@ -158,8 +158,8 @@ color: $wide-button-prefix-text-color;
   }
 
   &.#{$type} a {
-background: url(resources/icons/light/btn-page-nav-#{$type}.png) no-repeat;
-            background-position-y: center;
+    background: url(resources/icons/light/btn-page-nav-#{$type}.png) no-repeat;
+    background-position-y: center;
   }
 
   &.#{$type} a:active {
@@ -177,22 +177,22 @@ background: url(resources/icons/light/btn-page-nav-#{$type}.png) no-repeat;
 
 @mixin asset-icon($type) {
   &.#{$type} a {
-background: {
-image: url('resources/icons/dark/icon-asset-#{$type}.png');
-repeat: no-repeat;
-position: center right;
-size: 28px 26px;
-            }
+    background: {
+      image: url('resources/icons/dark/icon-asset-#{$type}.png');
+      repeat: no-repeat;
+      position: center right;
+      size: 28px 26px;
+    }
   }
 }
 
 @mixin content-padding {
   .phone & {
-padding: 8px;
+    padding: 8px;
   }
 
   .tablet & {
-padding: 12px;
+    padding: 12px;
   }
 }
 
@@ -200,25 +200,24 @@ padding: 12px;
   li {
     a {
       line-height: 1.6em;
-display: block;
-margin: 0 0 1px 0;
-        font-weight: bold;
-color: $text-color;
-       background-color: transparentize($child-nav-color, .5);
-       white-space: nowrap;
-overflow: hidden;
-          text-overflow: ellipsis;
+      display: block;
+      margin: 0 0 1px 0;
+      font-weight: bold;
+      color: $text-color;
+      background-color: transparentize($child-nav-color, .5);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
-          // TODO: Kludge for Wiley. Make this a parameter exported from MAP
-          .multi-line-child-nodes & {
-overflow: visible;
-          white-space: normal;
-          }
+      // TODO: Kludge for Wiley. Make this a parameter exported from MAP
+      .multi-line-child-nodes & {
+        overflow: visible;
+        white-space: normal;
+      }
 
-          @if ($child-node-text-shadow == true) {
-            text-shadow: 1px 1px 0 rgba(0,0,0, .2);
-          }
-
+      @if ($child-node-text-shadow == true) {
+        text-shadow: 1px 1px 0 rgba(0,0,0, .2);
+      }
     }
   }
 
@@ -227,24 +226,21 @@ overflow: visible;
   }
 }
 
-
 @mixin bottom-divider($space: 5px) {
   padding-bottom: $space;
   border-bottom: 1px solid #ccc;
   margin-bottom: $space;
 }
 
-@mixin fixed-gallery {
-  .tablet .region.size-fixed & {
-    position: static;
+@mixin fixed-height-gallery {
+  position: static;
 
-    @media (orientation: landscape) {
-      height: 300px;
-    }
+  @media (orientation: landscape) {
+    height: 300px;
+  }
 
-    @media (orientation: portrait) {
-      height: 450px;
-    }
+  @media (orientation: portrait) {
+    height: 450px;
   }
 }
 
@@ -258,4 +254,22 @@ overflow: visible;
     lighten($text-color, $amount),
     darken($text-color, $amount)
   )
+}
+
+@mixin content-padding {
+  .phone & {
+    padding: 8px;
+  }
+
+  .tablet & {
+    padding: 12px;
+  }
+}
+
+@mixin standard-screen {
+  @include flex-row-container;
+
+  .region.page-nav {
+    @include fixed-flex-region;
+  }
 }

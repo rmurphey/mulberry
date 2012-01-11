@@ -36,19 +36,23 @@ module Mulberry
         end
 
         if input.downcase == 'y'
-          File.open(File.join(@dir, '.mulberry'), 'w') do |f|
-            y = {
-              'host'            =>  'http://localhost:8888',
-              'guid'            =>  Guid.new.to_s
-            }.to_yaml
-
-            f.write y
-          end
-
-          puts "Created #{File.join(@dir, '.mulberry')} to enable anonymous reporting"
-          report @dir, 'scaffold'
+          self.class.create_dot_mulberry_file @dir
+          report @dir
         end
       end
+
+      def self.create_dot_mulberry_file(dir)
+        File.open(File.join(dir, '.mulberry'), 'w') do |f|
+          y = {
+            'report_url'      =>  URI.join(TouraApi::URL, '/mulberry_command_logs').to_s,
+            'guid'            =>  Guid.new.to_s
+          }.to_yaml
+
+          f.write y
+        end
+
+      end
+
     end
   end
 end

@@ -2,14 +2,12 @@ node-gallery:
   screens:
   - name: index
     regions:
-    - type: row
-      size: fixed
+    - className: page-nav
       components:
       - PageNav
-    - type: row
-      size: fixed
+    - className: drop-down-text
       components:
         - DropDownText
-    - type: row
+    - className: node-gallery
       components:
       - NodeGallery

@@ -1,0 +1,7 @@
+before_script:
+  - 'sudo apt-get install chromium-browser'
+  - 'sh -e /etc/init.d/xvfb start'
+rvm:
+  - ree
+script:
+  - 'bundle exec rake travis'

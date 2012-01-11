@@ -21,8 +21,8 @@ module Mulberry
 
         begin
           app = Mulberry::App.new(dir)
+          report dir
           app.serve(options) unless additional_options[:running_under_test]
-          report dir, "serve"
         rescue ConfigError => ce
           puts "Configuration error: #{ce}"
         end

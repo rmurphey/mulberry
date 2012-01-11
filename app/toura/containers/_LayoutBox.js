@@ -7,61 +7,25 @@ dojo.declare('toura.containers._LayoutBox', [ toura._View, toura.ui.BackgroundIm
   templateString : '<div class=layout-box></div>',
 
   defaultConfig : {
-    containerType : 'component', // row || column || component
-    layout : 'normal', // normal | overlay
-    size : 'flex', // flex || fixed || full
     scrollable : false
   },
 
   postMixInProperties : function() {
     // use the default config, but override with any settings that get passed in
     this.config = dojo.mixin(dojo.mixin({}, this.defaultConfig), this.config);
-
-    if (this.config.regions && this.config.regions.length) {
-      this.config.containerType = this._determineContainerType(this.config.regions);
-    }
   },
 
   postCreate : function() {
     this.inherited(arguments);
 
-    var classNames = [
-      this.config.containerType + '-container',
-      'size-' + this.config.size,
-      'layout-' + this.config.layout
-    ];
-
     if (this.config.className) {
-      classNames.push(this.config.className);
+      this.addClass(this.config.className);
     }
-
-    this.addClass(classNames);
 
     if (this.config.backgroundImage && this.backgroundImage) {
       this.loadImage();
     }
-  },
-
-  _determineContainerType : function(regions) {
-    var containerType;
-
-    dojo.forEach(regions, function(region) {
-      if (!{ row : 1, column : 1, component : 1}[region.type]) {
-        throw 'Unknown region type: ' + region.type;
-      }
-
-      if (!containerType || containerType === region.type) {
-        containerType = region.type;
-      } else {
-        throw 'You cannot put columns and rows in the same region';
-      }
-    }, this);
-
-    if (!containerType) {
-      throw 'Could not determine containerType for region';
-    }
-
-    return containerType;
   }
+
 });
 

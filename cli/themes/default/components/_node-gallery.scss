@@ -1,5 +1,5 @@
 .component.node-gallery {
-  @include row-container;
+  @include flex-row-container;
 
   .wrapper {
     -webkit-box-flex: 1;

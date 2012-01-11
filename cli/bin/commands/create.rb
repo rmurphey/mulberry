@@ -36,7 +36,7 @@ module Mulberry
         filenames    = args
         commands     = Mulberry::Command::Create.commands
 
-        report dir, "create:#{content_type}"
+        report dir, content_type
 
         raise "You must specify a file to create." unless filenames.length > 0
 

@@ -38,7 +38,7 @@ module Mulberry
   SITEMAP     = 'sitemap.yml'
 
   FEATURES    = {
-    :reporting    =>    false
+    :reporting    =>    true
   }
 
   DEFAULTS  = {
@@ -160,6 +160,7 @@ module Mulberry
         :javascript => [
           'components',
           'stores',
+          'models',
           'capabilities'
         ],
 

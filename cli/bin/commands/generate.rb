@@ -22,7 +22,7 @@ module Mulberry
           end
         end
 
-        report @dir, "generate"
+        report @dir
       end
 
       private

@@ -7,6 +7,12 @@ end
 describe Mulberry::Command::Create do
   include Mulberry::Command::SpecHelpers
 
+  before :each do
+    Dir.chdir File.join(Mulberry::Directories.root, @app.name)
+  end
+
+  it_should_behave_like "all commands"
+
   describe '#commands' do
     it "should support all commands" do
       should_commands = %w(page feed data location component page_def capability store route)
@@ -32,8 +38,6 @@ describe Mulberry::Command::Create do
         :route => [ 'javascript', 'routes.js' ],
         :page_def => [ 'page_defs', "#{@filename}.yml" ],
       }
-
-      Dir.chdir File.join(Mulberry::Directories.root, @app.name)
     end
 
     Mulberry::Command::Create.commands.each do |command|

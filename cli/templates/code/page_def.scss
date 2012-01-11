@@ -1,0 +1,9 @@
+.page.{{page_def_name}} {
+  .screen.index {
+    @include flex-row-container;
+
+    .region.page-nav {
+      @include fixed-flex-region;
+    }
+  }
+}

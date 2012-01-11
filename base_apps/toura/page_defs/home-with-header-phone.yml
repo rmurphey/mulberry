@@ -3,16 +3,15 @@ home-with-header-phone:
   - name: index
     backgroundImage: true
     regions:
-    - type: row
-      size: fixed
+    - className: header-image
       components:
       - PageHeaderImage
-    - type: row
-      scrollable: true
+
+    - scrollable: true
       components:
       - BodyText
       - ChildNodes
-    - type: row
-      size: fixed
+
+    - className: nav
       components:
       - AppNav

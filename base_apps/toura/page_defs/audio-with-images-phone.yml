@@ -12,37 +12,34 @@ audio-with-images-phone:
     - name: index
       backgroundImage: true
       regions:
-      - type: row
-        size: fixed
+      - className: page-nav
         components:
         - PageNav
-      - type: row
+
+      - className: image-gallery
         components:
         - ImageGallery
-      - type: row
-        size: fixed
+
+      - className: audio-gallery
         components:
         - AudioPlayer
-      - type: row
-        regions:
-        - type: row
-          scrollable: true
-          components:
-          - AudioList
-          - ChildNodes
-          - AudioCaption
-          - ImageCaption
-          - BodyText
+
+      - className: bottom
+        scrollable: true
+        components:
+        - AudioList
+        - ChildNodes
+        - AudioCaption
+        - ImageCaption
+        - BodyText
 
     - name: detail
       regions:
-      - type: row
-        layout: overlay
-        size: fixed
+      - className: header
         components:
         - DetailTitle
-      - type: row
-        components:
+
+      - components:
         - ZoomableImageGallery
 
 

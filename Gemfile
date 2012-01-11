@@ -29,4 +29,5 @@ group :test do
   #gem 'racc' # For CYGWIN to compile nokogiri
   gem 'rspec', '2.6.0', :require => false
   gem 'fakeweb', :require => false
+  gem 'webmock', :require => false
 end

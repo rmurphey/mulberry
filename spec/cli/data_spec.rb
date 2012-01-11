@@ -16,7 +16,8 @@ describe Mulberry::Data do
           'featured_image_page',
           'no_text_page',
           'custom_prop_page',
-          'built_in_props_page'
+          'built_in_props_page',
+          'no_page_def_page'
         ]
       },
       'about'
@@ -49,7 +50,8 @@ describe Mulberry::Data do
     [
       'featured_image_page',
       'no_text_page',
-      'custom_prop_page'
+      'custom_prop_page',
+      'no_page_def_page'
     ].each do |f|
       FileUtils.cp(
         File.join(FIXTURES_DIR, "#{f}.md"),
@@ -222,6 +224,17 @@ describe Mulberry::Data do
       }.each do |asset_id|
         @data[:items].select { |item| item[:id] == asset_id.strip }.length.should == 1
       end
+    end
+  end
+
+  describe 'page without a page def' do
+    it "should still have a pageController property in the data" do
+      pc = @data[:items].select do |item|
+        item[:id] == 'node-no_page_def_page'
+      end.first[:pageController]
+
+      pc['phone'].should == 'default'
+      pc['tablet'].should == 'default'
     end
   end
 

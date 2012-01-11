@@ -15,11 +15,14 @@
   }
 }
 
-@mixin background-shadow {
-  .ios & {
-    background: transparent url(resources/icons/bg-inner-shadow.png) no-repeat;
-    background-size: cover;
-    background-position-y: 100%;
+@mixin background-shadow($side:bottom) {
+  border-#{$side}: 1px solid;
+  @if ($font-scheme == dark) {
+    background-color: darken($app-background-color, 5%);
+    border-#{$side}-color: darken($app-background-color, 17%);
+  } @else {
+    background-color: lighten($app-background-color, 5%);
+    border-#{$side}-color: lighten($app-background-color, 17%);
   }
 }
 
@@ -175,7 +178,7 @@
 @mixin asset-icon($type) {
   &.#{$type} a {
     background: {
-      image: url('/resourcresources/icons/daresources/icon-asset-#{$type}.png');
+      image: url('resources/icons/dark/icon-asset-#{$type}.png');
       repeat: no-repeat;
       position: center right;
       size: 28px 26px;
@@ -215,7 +218,6 @@
       @if ($child-node-text-shadow == true) {
         text-shadow: 1px 1px 0 rgba(0,0,0, .2);
       }
-
     }
   }
 
@@ -224,9 +226,42 @@
   }
 }
 
+@mixin bottom-divider($space: 5px) {
+  padding-bottom: $space;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: $space;
+}
+
+@mixin fixed-height-gallery {
+  position: static;
+
+  @media (orientation: landscape) {
+    height: 300px;
+  }
+
+  @media (orientation: portrait) {
+    height: 450px;
+  }
+}
+
+@mixin caption-text {
+  font-size: 14px;
+  color: #555;
+}
+
 @function offset-text-color($amount) {
   @return if(($font-scheme == dark),
     lighten($text-color, $amount),
     darken($text-color, $amount)
   )
+}
+
+@mixin content-padding {
+  .phone & {
+    padding: 8px;
+  }
+
+  .tablet & {
+    padding: 12px;
+  }
 }

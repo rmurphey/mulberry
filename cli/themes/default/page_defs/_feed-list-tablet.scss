@@ -1,0 +1,18 @@
+.page.feed-list-tablet {
+  .screen.index {
+    @include standard-screen;
+
+    > .region:nth-child(2) {
+      @include flex-column-container;
+
+      > .region:first-child {
+        width: 320px;
+        @include fixed-flex-region;
+      }
+
+      > .region:last-child {
+        @include box-shadow(-2px, 0);
+      }
+    }
+  }
+}

@@ -53,27 +53,14 @@ describe("containers region", function() {
     c = C({
       config : {
         regions : [
-          { type: 'row'},
-          { type: 'row'},
-          { type: 'row'}
+          { },
+          { },
+          { }
         ]
       }
     });
 
     expect(c.domNode.querySelectorAll(getRootSelector(c)).length).toBe(3);
-  });
-
-  it("should add class to regions depending on what the type is", function() {
-    c = C({
-      config : {
-        regions : [
-          { type: 'row'},
-          { type: 'row'}
-        ]
-      }
-    });
-
-    expect(c.domNode.querySelectorAll('.row').length).toBe(2);
   });
 
 });

@@ -1,0 +1,17 @@
+.page.home-phone {
+  .screen.index {
+    @include flex-row-container;
+
+    > .region {
+      @include flex-row-container;
+
+      .component.body-text {
+        padding: 0 10px 10px 10px;
+      }
+    }
+
+    .region.nav {
+      @include fixed-flex-region;
+    }
+  }
+}
