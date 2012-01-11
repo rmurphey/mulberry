@@ -60,6 +60,13 @@ describe Mulberry::Data do
       )
     end
 
+    # /cli/assets/image.rb requires the image to exist on disk, so copy it in
+    # featured_image_page has a hard-coded reference to the sample image
+    FileUtils.cp(
+      SampleFiles.get_sample_image,
+      File.join(@source_dir, 'assets', 'images' )
+    )
+
     @data = (Mulberry::Data.new Mulberry::App.new(@source_dir)).generate
   end
 
@@ -152,6 +159,11 @@ describe Mulberry::Data do
 
       %w{videos audios images}.each do |a|
         built_in_props_page[a].each { |f| FileUtils.touch File.join(@source_dir, 'assets', a.to_s, f) }
+      end
+
+      # If the images don't exist, the image instantiation in Data will asplode
+      %w{featured background header}.each do |i|
+        FileUtils.touch File.join(@source_dir, 'assets', 'images', "#{i}_image.png")
       end
 
       Mulberry::ContentCreator.new 'feed', @source_dir, 'feed'
