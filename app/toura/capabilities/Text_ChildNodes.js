@@ -8,8 +8,6 @@ dojo.declare('toura.capabilities.Text_ChildNodes', toura._Capability, {
     childNodes : 'ChildNodes'
   },
 
-  connects: [],
-
   init: function() {
     if (this.childNodes.children.length === 0) {
       dojo.addClass(this.childNodes.region.domNode, 'empty');
