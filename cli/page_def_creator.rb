@@ -26,7 +26,7 @@ module Mulberry
       page_def_template = File.read(File.join(Mulberry::Directories.templates, 'page_def.yml'))
 
       File.open(page_def_filename, 'w') do |f|
-        f.write page_def_template.gsub('{{page_def_name}}', @filename).gsub('{{@capability_name}}', @capability_name)
+        f.write page_def_template.gsub('{{page_def_name}}', @filename).gsub('{{capability_name}}', @capability_name)
       end
 
       puts "Created page_def at #{page_def_filename}"

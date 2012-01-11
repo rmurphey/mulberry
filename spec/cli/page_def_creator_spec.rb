@@ -44,7 +44,6 @@ describe Mulberry::PageDefCreator do
     page_def['screens'].first['regions'].should_not be_nil
     page_def['screens'].first['regions'].length.should be > 0
     page_def['capabilities'].should_not be_nil
-
     page_def['capabilities'].first['name'].should == 'PageFooBar'
   end
 
