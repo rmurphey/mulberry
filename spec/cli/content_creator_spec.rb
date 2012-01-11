@@ -38,9 +38,9 @@ describe Mulberry::ContentCreator do
     }.should raise_error
   end
 
-  it "should put the page's name in the file" do
+  it "should put the page title in the file" do
     Mulberry::ContentCreator.new('page', @source_dir, 'testpage')
-    File.read(File.join(@source_dir, 'pages', 'testpage.md')).should include 'testpage'
+    File.read(File.join(@source_dir, 'pages', 'testpage.md')).should include 'title: testpage'
   end
 
 end
