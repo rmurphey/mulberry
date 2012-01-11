@@ -1,0 +1,6 @@
+before_script:
+  - 'sh -e /etc/init.d/xvfb start'
+rvm:
+  - 1.9.3
+script:
+  - 'export DISPLAY=:99.0 && bundle exec rake'
