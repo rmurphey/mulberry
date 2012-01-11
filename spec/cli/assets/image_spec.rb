@@ -13,9 +13,10 @@ describe Mulberry::Asset::Image do
     it_should_behave_like "all assets"
   end
 
-  describe 'media asset behavior', :fakefs => true do
+  describe 'media asset behavior' do
 
     before :each do
+      #require 'fakeweb'
       @remote_asset = Factory.build :image_remote
     end
 
@@ -40,7 +41,7 @@ describe Mulberry::Asset::Image do
 
   end
 
-  describe '#item streaming', :fakefs => true do
+  describe '#item streaming' do
     it 'should output url, height, width in each style' do
       @remote_image = Factory.build :image_remote
       item = @remote_image.item

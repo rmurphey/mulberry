@@ -27,7 +27,7 @@ group :test do
   gem 'fakefs', :require => false
   gem 'jshintrb', '1.0.4', :git => 'git://github.com/Toura/jshintrb.git', :require => false
   #gem 'racc' # For CYGWIN to compile nokogiri
-  gem 'rspec', '2.6.0', :require => false
+  gem 'rspec', '2.6.0'
   gem 'fakeweb', :require => false
   gem 'webmock', :require => false
 end

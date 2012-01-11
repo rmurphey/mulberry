@@ -1,6 +1,5 @@
 require 'tmpdir'
 require 'assets/image'
-require 'fakeweb'
 
 include Mulberry::Asset
 
@@ -15,8 +14,12 @@ FactoryGirl.define do
   end
 
   factory :image_remote, :parent => :image do
-    asset SampleFiles.get_sample_image_url
-    after_build{
+    asset do
+      # This require fails if added to 'after_build', so we need to do this here...
+      require 'fakeweb'
+      SampleFiles.get_sample_image_url
+    end
+    after_build {
 
       stream = File.open(SampleFiles.get_sample_image, 'rb')
       file_data = stream.read
