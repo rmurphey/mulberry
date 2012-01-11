@@ -1,7 +1,7 @@
 before_script:
-  - 'sudo apt-get install chromedriver'
+  - 'sudo apt-get install chromium-browser'
   - 'sh -e /etc/init.d/xvfb start'
 rvm:
   - 1.9.3
 script:
-  - 'export DISPLAY=:99.0 && bundle exec rake'
+  - 'bundle exec rake travis'
