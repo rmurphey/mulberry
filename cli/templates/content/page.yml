@@ -1,5 +1,5 @@
 ---
-title:
+title: {{name}}
 page_def:
   phone: default
   tablet: default
