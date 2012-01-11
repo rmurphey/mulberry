@@ -111,7 +111,7 @@ toura.routes(function() {
             term = params.splat && params.splat[0].split('/')[0];
 
         page = toura.createPage({
-          pageController : 'search',
+          pageDef : 'search',
           term : term,
           getResults : dojo.hitch(toura.app.Data, 'search')
         });
@@ -128,7 +128,7 @@ toura.routes(function() {
         var feed = toura.app.Data.getModel(params.feedId, 'feed'),
             feedItem = feed.getItem(params.itemIndex),
             page = toura.createPage(dojo.mixin(feedItem, {
-              pageController : 'feed-item'
+              pageDef : 'feed-item'
             }));
 
         toura.app.UI.showPage(page, feedItem);
@@ -141,7 +141,7 @@ toura.routes(function() {
       route : '/debug/:query',
       handler : function(params, route) {
         var page = toura.createPage({
-          pageController : 'debug',
+          pageDef : 'debug',
           name : 'Debug',
           query : params.query
         });
@@ -159,7 +159,7 @@ toura.routes(function() {
           name : dojo.i18n.getLocalization(
             "toura", "toura", toura.app.Config.get("locale")
           ).FAVORITES,
-          pageController : 'favorites',
+          pageDef : 'favorites',
           favorites : toura.app.user.Favorites.load()
         });
 
