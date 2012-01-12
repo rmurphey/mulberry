@@ -64,25 +64,25 @@ describe("data API", function() {
   describe("search", function() {
     it("should return search results objects for the specified term", function() {
       var results = api.search('bangs');
-      expect(results.length).toEqual(4);
+      expect(results.length).toEqual(5);
       expect(results[0].displayName).toBe('bangs');
       expect(results[0].asset).toBeTruthy();
     });
 
     it("should search the text and body properties of text assets for matches", function() {
       var results = api.search('bangs');
-      expect(results.length).toEqual(4);
+      expect(results.length).toEqual(5);
 
       results = api.search('trendy');
-      expect(results.length).toEqual(8);
+      expect(results.length).toEqual(10);
     });
 
     it("should allow multi-word searches", function() {
-      expect(api.search('trendy bangs').length).toEqual(4);
+      expect(api.search('trendy bangs').length).toEqual(5);
     });
 
     it("should make searches case insensitive", function() {
-      expect(api.search('trendy BANGS').length).toEqual(4);
+      expect(api.search('trendy BANGS').length).toEqual(5);
     });
 
     it("should return an empty array if no search term is provided", function() {
@@ -98,12 +98,12 @@ describe("data API", function() {
 
       var resultsCached = api.search('beard');
       expect(api._store.fetch).wasNotCalled();
-      expect(resultsCached.length).toEqual(4);
+      expect(resultsCached.length).toEqual(5);
       expect(results[0].name).toBe(resultsCached[0].name);
     });
 
     it("should sanitize the search to include only letters, numbers, and spaces", function() {
-      expect(api.search('trendy*bangs><').length).toBe(4);
+      expect(api.search('trendy*bangs><').length).toBe(5);
     });
   });
 
