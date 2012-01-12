@@ -99,7 +99,7 @@ describe("node model", function() {
 
   it("should determine the proper page def for phone", function() {
     toura.app.Config.set('device', { type : 'phone', os : 'ios' });
-    expect(api.getModel('node-single_image_gallery')).toBe('images-and-text-phone');
+    expect(api.getModel('node-single_image_gallery').pageDef).toBe('images-and-text-phone');
   });
 
   it("should determine the proper page def for tablet", function() {
