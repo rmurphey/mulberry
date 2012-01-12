@@ -1,5 +1,5 @@
 describe("toura.components.Favorites", function() {
-  var c, t, data, ds, node, favs, id = 'node-368';
+  var c, t, data, ds, node, favs, id = 'node-videos';
 
   function C(config) {
     if (c) { c.destroy(); }

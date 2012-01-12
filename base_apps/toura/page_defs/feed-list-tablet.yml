@@ -1,0 +1,21 @@
+feed-list-tablet:
+  type: node
+  capabilities:
+  - FeedItemList_FeedItemDetail
+  screens:
+  - name: index
+    backgroundImage: false
+    regions:
+    - className: page-nav
+      components:
+      - PageNav
+
+    - regions:
+      - backgroundImage: true
+        scrollable: true
+        components:
+        - ColumnHeaderImage
+        - FeedItemList
+      - scrollable: true
+        components:
+        - FeedItemDetail

@@ -1,0 +1,22 @@
+home-tablet:
+  screens:
+  - name: index
+    backgroundImage: true
+
+    regions:
+    - className: top
+      regions:
+      - components: []
+
+      - className: columns
+        regions:
+        - scrollable: true
+          components:
+          - BodyText
+        - scrollable: true
+          components:
+          - ChildNodes
+
+    - className: nav
+      components:
+      - AppNav

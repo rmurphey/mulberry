@@ -1,0 +1,64 @@
+audio-with-images-tablet:
+  type: node
+  capabilities:
+  - ImageGallery_ImageCaption
+  - ImageGalleryDetail
+  - Page_Images
+  - Page_Audios
+  - AudioList_AudioPlayer
+  - AudioList_AudioCaption
+  - Text_ChildNodes
+
+  screens:
+    - name: index
+      backgroundImage: true
+      regions:
+
+      - className: page-nav
+        components:
+        - PageNav
+
+      - className: image-container
+        regions:
+        - components:
+          - ImageGallery
+        - className: caption
+          components:
+          - ImageCaption
+
+      - type: row
+        className: text-and-child-nodes
+        regions:
+
+        - className: body-text-container
+          scrollable: true
+          components:
+          - BodyText
+
+        - className: child-nodes-container
+          scrollable: true
+          components:
+          - ChildNodes
+
+      - className: audio-container
+        regions:
+        - className: audio-active-player
+          regions:
+          - components:
+            - AudioPlayer
+          - components:
+            - AudioCaption
+        - className: audio-list
+          scrollable: true
+          components:
+          - AudioList
+
+    - name: detail
+      regions:
+      - className: header
+        components:
+        - DetailTitle
+      - components:
+        - ZoomableImageGallery
+
+

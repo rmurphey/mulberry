@@ -1,0 +1,17 @@
+.page.google-map-phone {
+  .screen.index {
+    @include standard-screen;
+
+    .region.google-map {
+      @include flex-row-container;
+    }
+  }
+
+  .screen.detail {
+    @include flex-row-container;
+
+    .region.header {
+      @include fixed-flex-region;
+    }
+  }
+}

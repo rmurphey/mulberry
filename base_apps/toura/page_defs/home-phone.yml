@@ -1,0 +1,15 @@
+home-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - regions:
+      - components: []
+      - scrollable: true
+        components:
+        - BodyText
+        - ChildNodes
+
+    - className: nav
+      components:
+      - AppNav

@@ -3,7 +3,9 @@ describe("node model", function() {
 
   beforeEach(function() {
     api = dataAPI;
-    node = api.getModel('node-368');
+    api.cache = {};
+    node = api.getModel('node-home');
+    dojo.publish('/tour/update'); // cache busting
   });
 
   it("should return assets for all known asset types", function() {
@@ -65,7 +67,7 @@ describe("node model", function() {
       'googleMapPins',
       'feeds',
 
-      'pageController',
+      'pageDef',
       'sharingURL',
       'parent'
     ], function(prop) {
@@ -88,10 +90,27 @@ describe("node model", function() {
       'googleMapPins',
       'feeds',
 
-      'pageController'
+      'pageDef'
     ], function(prop) {
       expect(node[prop]).toBeDefined();
     });
+
   });
+
+  it("should determine the proper page def for phone", function() {
+    toura.app.Config.set('device', { type : 'phone', os : 'ios' });
+    expect(api.getModel('node-single_image_gallery').pageDef).toBe('images-and-text-phone');
+  });
+
+  it("should determine the proper page def for tablet", function() {
+    toura.app.Config.set('device', { type : 'tablet', os : 'ios' });
+    expect(api.getModel('node-single_image_gallery').pageDef).toBe('images-and-text-tablet');
+  });
+
+  it("should use the default pagedef if one is not provided", function() {
+    toura.app.Config.set('device', { type : 'unknown', os : 'ios' });
+    expect(api.getModel('node-single_image_gallery').pageDef).toBe('default');
+  });
+
 });
 

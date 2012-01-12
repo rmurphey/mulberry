@@ -1,0 +1,37 @@
+videos-and-text-tablet:
+  capabilities:
+  - Page_Videos
+  - VideoList_VideoPlayer
+  - VideoList_VideoCaption
+  - Text_ChildNodes_VideoList
+  screens:
+    - name: index
+      backgroundImage: true
+      regions:
+      regions:
+      - className: page-nav
+        components:
+        - PageNav
+
+      - className: video-container
+        regions:
+        - className: player-container
+          components:
+          - VideoPlayer
+
+        - className: video-caption
+          components:
+          - VideoCaption
+
+      - className: text-and-listings
+        regions:
+
+        - scrollable: true
+          components:
+          - BodyText
+
+        - scrollable: true
+          className: listings-container
+          components:
+          - VideoList
+          - ChildNodes

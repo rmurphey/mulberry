@@ -130,7 +130,7 @@ dojo.declare('toura._Capability', null, {
 
   /**
    * @private
-   * Associates the components specified by the template with the appropriate
+   * Associates the components specified by the page definition with the appropriate
    * property names, so that the capability can refer to the components in a
    * predictable manner.
    */

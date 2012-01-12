@@ -1,0 +1,17 @@
+.page.home-with-header-phone {
+  .screen.index {
+    @include flex-row-container;
+
+    .component.body-text {
+      padding: 10px;
+    }
+
+    .region.header-image {
+      @include fixed-flex-region;
+    }
+
+    .region.nav {
+      @include fixed-flex-region;
+    }
+  }
+}

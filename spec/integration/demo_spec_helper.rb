@@ -5,7 +5,7 @@ shared_examples_for "all demo apps" do
   describe "Demo app page smoke test", :type => :request do
 
     $app.should_not == nil
-    $templates.should_not == nil
+    $page_defs.should_not == nil
 
     # these are components that remove themselves if there is no data for them
     # TODO: we should be smarter about this
@@ -15,13 +15,13 @@ shared_examples_for "all demo apps" do
       $app.data[:items].each do |item|
 
         if item[:type] == 'node'
-          node_page_controller = item[:pageController][d[:type]] || 'default'
+          page_def_name = item[:pageController][d[:type]] || 'default'
 
-          if node_page_controller != 'locations-map'
+          if page_def_name.to_s != 'locations-map'
             components = []
-            config = $templates[node_page_controller.to_s]
+            config = $page_defs[page_def_name.to_s]
 
-            raise "No config for #{node_page_controller}" unless config
+            raise "No config for #{page_def_name}" unless config
 
             config['screens'].each do |s|
               s['regions'].each do |r|

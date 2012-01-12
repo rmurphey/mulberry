@@ -11,7 +11,7 @@ gather:
     load_screens: true
     assets: true
     data: true
-    templates: true
+    page_defs: true
 
 build:
     javascript:

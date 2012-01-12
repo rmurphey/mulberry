@@ -1,8 +1,6 @@
 require 'spec/spec_helper'
-require 'fakefs/spec_helpers'
 
-describe Mulberry::Asset::Node do
-  include FakeFS::SpecHelpers
+describe Mulberry::Asset::Node, :fakefs => true do
 
   before :each do
     @node = Factory.build :node, :asset_name => 'foo'

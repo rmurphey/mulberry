@@ -1,0 +1,16 @@
+home-capitol-js:
+  type: node
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: main
+      regions:
+      - scrollable: true
+        components:
+        - BodyText
+        - ChildNodes
+    - className: nav
+      components:
+      - AppNav
+

@@ -1,0 +1,23 @@
+.page.home-capitol-js {
+  .screen {
+    @include flex-row-container;
+
+    background: url('../media/images/capitoljs-header.png') no-repeat;
+    -webkit-background-size: contain;
+
+    background-color: #353535;
+
+    .region.main {
+      @include flex-row-container;
+
+      > .region:first-child {
+        margin-top: 119px;
+      }
+    }
+
+
+    .region.nav {
+      @include fixed-flex-region;
+    }
+  }
+}

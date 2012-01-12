@@ -4,7 +4,7 @@
   @include background-shadow;
 
   li {
-    @include column-container;
+    @include flex-column-container;
 
     line-height: 22px;
     padding: 15px;
@@ -13,7 +13,7 @@
 
     a {
       @include text-color;
-      @include column-container;
+      @include flex-column-container;
       -webkit-box-flex: 1;
       margin-right: 10px;
 

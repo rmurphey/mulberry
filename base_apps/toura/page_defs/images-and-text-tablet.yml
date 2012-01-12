@@ -1,0 +1,47 @@
+images-and-text-tablet:
+  capabilities:
+  - ImageGallery_ImageCaption
+  - ImageGalleryDetail
+  - Page_Images
+  - Text_ChildNodes
+
+  screens:
+    - name: index
+      backgroundImage: true
+      regions:
+      - className: page-nav
+        components:
+        - PageNav
+
+      - className: image-container
+        regions:
+        - components:
+          - ImageGallery
+        - className: caption
+          components:
+          - ImageCaption
+
+      - className: text-and-child-nodes
+        regions:
+
+        - className: body-text-container
+          scrollable: true
+          components:
+          - BodyText
+
+        - className: child-nodes-container
+          scrollable: true
+          components:
+          - ChildNodes
+
+
+    - name: detail
+      regions:
+      - className: header
+        components:
+        - DetailTitle
+
+      - components:
+        - ZoomableImageGallery
+
+

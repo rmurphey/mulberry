@@ -1,0 +1,16 @@
+feed-list-phone:
+  type: node
+  capabilities:
+  - FeedItemList_FeedItemPage
+
+  screens:
+  - name: index
+    backgroundImage : true
+    regions:
+    - className: page-nav
+      components:
+      - PageNav
+    - scrollable: true
+      components:
+      - PageHeaderImage
+      - FeedItemList

@@ -1,6 +1,6 @@
 module Mulberry
   module Command
-    class Create
+    class Create < Mulberry::Command::Base
       def self.commands
         {
           :page       => {},
@@ -12,8 +12,8 @@ module Mulberry
             :creator  =>  Mulberry::CodeCreator
           },
 
-          :template   => {
-            :creator  =>  Mulberry::TemplateCreator
+          :page_def   => {
+            :creator  =>  Mulberry::PageDefCreator
           },
 
           :capability => {
@@ -35,6 +35,8 @@ module Mulberry
         content_type = args.shift.to_sym
         filenames    = args
         commands     = Mulberry::Command::Create.commands
+
+        report dir, content_type
 
         raise "You must specify a file to create." unless filenames.length > 0
 

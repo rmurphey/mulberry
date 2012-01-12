@@ -1,0 +1,9 @@
+.page.default {
+  .screen {
+    @include standard-screen;
+  }
+
+  .component.body-text {
+    padding: 10px;
+  }
+}

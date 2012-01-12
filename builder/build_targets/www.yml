@@ -10,7 +10,7 @@ development: false
 gather:
     assets: true
     data: true
-    templates: true
+    page_defs: true
 
 build:
     javascript:

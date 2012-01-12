@@ -1,0 +1,38 @@
+.page.default {
+  .screen {
+    @include standard-screen;
+  }
+
+  .component.body-text {
+    padding: 10px;
+  }
+
+  .tablet & {
+    .main-content {
+      .inner {
+        @include flex-row-container;
+
+        .component {
+          &.page-header-image,
+          &.child-nodes {
+            -webkit-box-ordinal-group: 1;
+          }
+
+          &.body-text {
+            -webkit-box-ordinal-group: 2;
+          }
+
+          &.child-nodes,
+          &.body-text {
+            width: 87%;
+
+            @media (min-width: 800px) {
+              width: 62.5%;
+              margin-left: 12.5%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

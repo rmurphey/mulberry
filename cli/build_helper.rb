@@ -1,3 +1,4 @@
+require 'lib/toura_api'
 require 'builder/build_helper'
 require 'builder/css_maker'
 
@@ -39,9 +40,9 @@ module Mulberry
     end
 
     def config_settings
-      {
-        'id' => @config['name'].gsub(/'/, "\\\\'")
-      }
+      add_ota_to_config_settings({
+        'id' => Mulberry.escape_single_quote(@config['name'])
+      })
     end
 
     def icons(destination, report)
@@ -98,23 +99,23 @@ module Mulberry
     end
 
     def data
-      Mulberry::Data.new(@app).generate
+      Mulberry::Data.new(@app).generate(build ? build.ota_enabled? : false)
     end
 
-    def templates
-      app_templates_dir = File.join(@source_dir, 'templates')
-      base_templates_dir = TouraAPP::Directories.page_templates
+    def page_defs
+      app_page_defs_dir = File.join(@source_dir, 'page_defs')
+      base_page_defs_dir = TouraAPP::Directories.page_defs
 
-      templates = {}
+      page_defs = {}
 
-      [ app_templates_dir, base_templates_dir ].each do |dir|
-        Dir.glob(File.join(dir, '*.yml')).each do |t|
-          d = YAML.load_file(t)
-          templates.merge!(d) if d
+      [ app_page_defs_dir, base_page_defs_dir ].each do |dir|
+        Dir.glob(File.join(dir, '*.yml')).each do |page_def|
+          d = YAML.load_file(page_def)
+          page_defs.merge!(d) if d
         end unless !File.exists?(dir)
       end
 
-      templates
+      page_defs
     end
 
     def css(destination, report)
@@ -154,6 +155,10 @@ module Mulberry
       File.exists?(dir) ? dir : false
     end
 
+    def ota_enabled?
+      @config['ota'] and @config['ota']['enabled']
+    end
+
     private
     def padded_id
       project_settings[:id].gsub(/\W/, '');
@@ -162,5 +167,29 @@ module Mulberry
     def theme_name
       @config['theme']['name'] || 'default'
     end
+
+    def add_ota_to_config_settings(settings)
+      if build and build.ota_enabled?
+        @build.log "Adding ota settings to config settings."
+        if @config['version_url']
+          settings.merge!(
+            'update_url'  =>  @config['version_url'],
+            'version_url' =>  @config['update_url']
+          )
+        elsif @config['toura_api']
+          url = @config['toura_api']['url'] || TouraApi::URL
+          key = @config['toura_api']['key']
+          settings.merge!(
+            'update_url'  =>  File.join(url, "/applications/#{key}/ota_service/data_json"),
+            'version_url' =>  File.join(url, "/applications/#{key}/ota_service/version_json")
+          )
+        else
+          raise Builder::ConfigurationError.new "Must configure toura_api credentials or version_url and update_url manually."
+        end
+        settings['skip_version_check'] = false
+      end
+      settings
+    end
+
   end
 end

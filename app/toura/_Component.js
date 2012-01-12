@@ -110,7 +110,6 @@ dojo.declare('toura._Component', [ toura._View ], {
   postMixInProperties : function() {
     this.inherited(arguments);
 
-    // support for new templates
     if (this.screen) {
       this.screen.registerComponent(this);
       this.connect(this.screen, 'startup', 'startup');
@@ -149,6 +148,13 @@ dojo.declare('toura._Component', [ toura._View ], {
   startup : function() {
     this.inherited(arguments);
     this.resizeElements();
+
+    if (this.when) {
+      dojo.forIn(this.when, function(k, v) {
+        var node = this.node || this.baseObj;
+        node[k].then(dojo.hitch(this, v));
+      }, this);
+    }
   },
 
   destroy : function() {

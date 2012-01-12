@@ -1,0 +1,14 @@
+full-screen-images:
+  type: node
+  capabilities:
+  - Page_FullScreenImages
+  screens:
+    - name: index
+      regions:
+      - className: page-nav
+        components:
+        - PageNav
+      - components:
+        - ZoomableImageGallery
+
+

@@ -1,0 +1,13 @@
+node-gallery:
+  screens:
+  - name: index
+    regions:
+    - className: page-nav
+      components:
+      - PageNav
+    - className: drop-down-text
+      components:
+        - DropDownText
+    - className: node-gallery
+      components:
+      - NodeGallery

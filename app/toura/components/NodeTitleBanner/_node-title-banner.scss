@@ -5,6 +5,6 @@
   }
 
   header {
-    @include pane;
+    @include flex-region;
   }
 }

@@ -1,0 +1,19 @@
+{{page_def_name}}:
+  capabilities:
+    # Edit the file at javascript/capabilities/{{capability_name}}.js in order
+    # to add JavaScript functionality to this page. For more details, see the
+    # Mulberry documentation on Capabilities
+    - name: {{capability_name}}
+  screens:
+    - name: index
+      regions:
+        - className: page-nav
+          components:
+            - PageNav
+        - # By default, `scrollable` is false
+          scrollable: true
+          components:
+            # Add your components here as a list. For example:
+            # - BodyText
+            # - ImageGallery
+            # - custom.YourCustomComponent

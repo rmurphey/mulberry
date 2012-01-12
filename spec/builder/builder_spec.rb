@@ -1,4 +1,6 @@
+require 'spec_helper'
 require "builder"
+require 'fakeweb'
 
 describe Builder::Build do
   before(:each) do
@@ -192,4 +194,55 @@ describe Builder::Build do
     describe "bundled builds" do
     end
   end
+
+  describe "ota" do
+
+    class FakeBuildHelper
+      def build=(b) end
+      def before_steps() [] end
+      def after_steps() [] end
+      def data() {"foo" => "bar"} end
+      def ota_enabled?() true end
+    end
+
+    after :each do
+      FakeWeb.clean_registry
+    end
+
+    describe "enabled" do
+
+      before :each do
+        @build = Builder::Build.new(@config.merge({
+          :build_helper => FakeBuildHelper.new,
+          :target_config => {
+            'build_type' => 'device',
+            'gather' => {
+              'data' => true
+            },
+            'ota' => {
+              'enabled' => true
+            }
+          },
+          :toura_api_config => {
+            'url' => 'https://api.toura.com',
+            'key' => 'a_key',
+            'secret' => 'a_secret'
+          }
+        }))
+      end
+
+      after :each do
+        @build.cleanup
+      end
+
+      it "should report tour json location if ota enabled" do
+        FakeWeb.register_uri(:get, //, :body => "{\"version\": 1}")
+        @build.build
+        data_report = @build.completed_steps[:gather][:data]
+        data_report[:tour_json_location].should_not be_nil
+      end
+    end
+
+  end
+
 end

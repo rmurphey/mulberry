@@ -1,0 +1,46 @@
+@mixin flex-container {
+  display: -webkit-box;
+
+  > .region {
+    -webkit-box-flex: 1;
+  }
+}
+
+@mixin flex-row-container {
+  @include flex-container;
+  -webkit-box-orient: vertical;
+}
+
+@mixin flex-column-container {
+  @include flex-container;
+  -webkit-box-orient: horizontal;
+}
+
+@mixin flex-region($proportion: 1) {
+  -webkit-box-flex: $proportion;
+}
+
+@mixin fixed-flex-region {
+  -webkit-box-flex: 0;
+}
+
+@mixin pullout {
+  // Pull it out of normal flow, so its contents don't affect the size of the box
+  position: absolute;
+
+  // Stretch the box to fill the entire area of the parent
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  // Make sure content doesn't stretch the box
+  overflow: hidden;
+}
+
+@mixin layout-overlay {
+  position: absolute;
+  width: 100%;
+}
+

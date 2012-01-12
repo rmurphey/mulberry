@@ -18,6 +18,6 @@ dojo.require('toura.app.Notifications');
 dojo.require('toura.app._Debug');
 dojo.require('toura.app.Manifest');
 dojo.require('toura.app.Has');
-dojo.require('toura.app.Local');
 
-dojo.require('toura.stores._base');
+dojo.require('toura._Store');
+dojo.require('toura._Model');

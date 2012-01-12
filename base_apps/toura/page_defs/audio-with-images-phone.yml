@@ -1,0 +1,45 @@
+audio-with-images-phone:
+  type: node
+  capabilities:
+  - ImageGallery_ImageCaption
+  - ImageGalleryDetail
+  - Page_Images
+  - Page_Audios
+  - AudioList_AudioPlayer
+  - AudioList_AudioCaption
+
+  screens:
+    - name: index
+      backgroundImage: true
+      regions:
+      - className: page-nav
+        components:
+        - PageNav
+
+      - className: image-gallery
+        components:
+        - ImageGallery
+
+      - className: audio-gallery
+        components:
+        - AudioPlayer
+
+      - className: bottom
+        scrollable: true
+        components:
+        - AudioList
+        - ChildNodes
+        - AudioCaption
+        - ImageCaption
+        - BodyText
+
+    - name: detail
+      regions:
+      - className: header
+        components:
+        - DetailTitle
+
+      - components:
+        - ZoomableImageGallery
+
+

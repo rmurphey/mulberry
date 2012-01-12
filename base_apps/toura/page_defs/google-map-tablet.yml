@@ -1,0 +1,20 @@
+google-map-tablet:
+  type: node
+  capabilities:
+  - Page_GoogleMapTablet
+
+  screens:
+  - name: index
+    backgroundImage: false
+    regions:
+    - className: page-nav
+      components:
+      - PageNav
+
+    - className: pin-info
+      components:
+      - PinInfo
+
+    - className: google-map
+      components:
+      - GoogleMap

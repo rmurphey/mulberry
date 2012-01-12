@@ -1,0 +1,16 @@
+grid-view:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: page-nav
+      components:
+      - PageNav
+    - className: page-header
+      components:
+      - PageHeaderImage
+    - className: grid
+      scrollable: true
+      components:
+      - BodyText
+      - ChildNodeGrid

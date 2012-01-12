@@ -1,0 +1,17 @@
+home-with-header-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: header-image
+      components:
+      - PageHeaderImage
+
+    - scrollable: true
+      components:
+      - BodyText
+      - ChildNodes
+
+    - className: nav
+      components:
+      - AppNav

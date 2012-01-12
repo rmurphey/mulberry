@@ -1,6 +1,6 @@
 require('/dojo-release-1.6.0-src/dojo/dojo.js');
 require('/vendor/haml.js');
-require('/data-fixtures/tour.js');
+require('/fixtures/tour.js');
 require('/toura/_Logging.js');
 
 var dataAPI,
@@ -57,17 +57,21 @@ beforeEach(function() {
   toura.app.Has = dojo.isFunction(toura.app.Has) ? toura.app.Has() : toura.app.Has;
   dataAPI = toura.app.Data = dataAPI || new toura.app.Data(toura.data.local.items);
 
-  nodeForController = function(c, cb, q) {
-    var node;
-
-    dataAPI._store.fetch({
-      query : dojo.mixin({
-        'pageController' : c
-      }, q || {}),
-      onComplete : function(items) {
-        node = cb ? cb(items) : dataAPI.getModel(items[0].id[0]);
-      }
-    });
+  nodeForController = function(c) {
+    var node, 
+        map = {
+        'Images1'       : 'node-image_gallery',
+        'Videos1'       : 'node-videos', 
+        'Audios1'       : 'node-audio_list',
+        'GoogleMap1'    : 'node-location_map',
+        'FeedList'      : 'node-feed_list',
+        'LocationList'  : 'node-locations',
+        'Default'       : 'node-about'
+      };
+      
+    if (map[c]) {
+      node = dataAPI.getModel(map[c]);
+    }
 
     return node;
   };

@@ -1,0 +1,25 @@
+.page.images-and-text-phone {
+  .screen.index {
+    @include standard-screen;
+
+    .region.image-gallery {
+      @include background-shadow;
+    }
+
+    .body-text:not(.empty) {
+      padding: 10px;
+    }
+  }
+
+  .screen.detail {
+    @include flex-row-container;
+
+    .region.header {
+      @include layout-overlay;
+
+      > * {
+        width: 100%;
+      }
+    }
+  }
+}

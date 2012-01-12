@@ -1,6 +1,6 @@
 module Mulberry
   module Command
-    class Test
+    class Test < Mulberry::Command::Base
       def initialize(args, additional_options = {})
         options = {:quiet => false, :test => true}
 
@@ -20,6 +20,7 @@ module Mulberry
         app = Mulberry::App.new(dir)
 
         app.device_build( options.merge(additional_options) )
+        report dir
       end
     end
   end

@@ -1,0 +1,28 @@
+google-map-phone:
+  type: node
+  capabilities:
+  - Page_GoogleMapPhone
+
+  screens:
+  - name: index
+    backgroundImage: false
+    regions:
+    - className: page-nav
+      components:
+      - PageNav
+
+    - className: google-map
+      components:
+      - GoogleMap
+
+  - name: detail
+    backgroundImage: false
+    regions:
+    - className: header
+      components:
+      - DetailTitle
+
+    - scrollable: true
+      components:
+      - PinInfo
+

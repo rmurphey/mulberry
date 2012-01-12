@@ -2,10 +2,13 @@ require 'cli/commands/spec_helper.rb'
 
 describe Mulberry::Command::Generate do
   include Mulberry::Command::SpecHelpers
+
+  it_should_behave_like "all commands"
+
   before :each do
     @app_name = 'fooapp'
     FileUtils.rm_rf @app_name
-    Mulberry::Command::Scaffold.new([@app_name])
+    Mulberry::Command::Scaffold.new([@app_name], { :reporting_enabled => true })
   end
 
   after :each do
@@ -61,8 +64,8 @@ describe Mulberry::Command::Generate do
   describe "component creation" do
     before :each do
       FileUtils.cp_r(
-        File.join(FIXTURES_DIR, 'template.yml'),
-        File.join(@app_name, 'templates')
+        File.join(FIXTURES_DIR, 'page_def.yml'),
+        File.join(@app_name, 'page_defs')
       )
 
       FileUtils.touch File.join(@app_name, 'javascript', 'components', 'AlreadyExists.js')

@@ -1,0 +1,12 @@
+search:
+  capabilities:
+  - Page_Search
+  screens:
+  - name: index
+    regions:
+    - className: search-input
+      components:
+      - SearchInput
+    - scrollable: true
+      components:
+      - SearchResults

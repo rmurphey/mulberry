@@ -1,4 +1,4 @@
-@mixin grid-item($width, $height-scale: 1.24) {
+@mixin grid-item($width, $height-scale: 1) {
   $aspect-ratio: 3/4;
   $height: ceil($width * $aspect-ratio);
 
@@ -15,6 +15,9 @@
 
 .component.child-node-grid {
   padding: 4px;
+  .tablet & {
+    padding: 10px;
+  }
 
   li {
     float: left;
@@ -37,6 +40,21 @@
     }
   }
 
+  .tablet & {
+    padding: 10px;
+
+    h3 {
+      position: absolute;
+      z-index: 10;
+      bottom: 0;
+      left: -2px;
+      right: 0;
+      background-color: rgba(0,0,0,.8);
+      color: white;
+      padding: 7px 10px;
+    }
+  }
+
   .ios.phone & {
     @include grid-item(145px, 1.40);
   }
@@ -47,12 +65,15 @@
     }
 
     .tablet & {
+      li {
+        margin: 10px;
+      }
       &.size-large {
-        @include grid-item(370px);
+        @include grid-item(354px);
       }
 
       &.size-medium {
-        @include grid-item(243px);
+        @include grid-item(229px);
       }
     }
   }
@@ -63,12 +84,15 @@
     }
 
     .tablet & {
+      li {
+        margin: 10px;
+      }
       &.size-large {
-        @include grid-item(326px);
+        @include grid-item(314px);
       }
 
       &.size-medium {
-        @include grid-item(242px);
+        @include grid-item(231px);
       }
     }
   }

@@ -1,19 +1,19 @@
 ---
-title: # required!
-template:
+title: {{name}}
+page_def:
   phone: default
   tablet: default
 
-# this should optionally point at an image in the images dir
-header_image:
-
-# each of these properties can include an array of filenames
+# each of these properties can contain an array of filenames
 images:
 videos:
 audios:
 feeds:
 locations:
 data:
+
+# this should optionally point at an image in the images dir
+header_image:
 ---
 
 # page body text goes here (optional)

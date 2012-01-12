@@ -1,0 +1,32 @@
+images-and-text-phone:
+  capabilities:
+  - ImageGallery_ImageCaption
+  - ImageGalleryDetail
+  - Page_Images
+
+  screens:
+    - name: index
+      backgroundImage: true
+      regions:
+      - className: page-nav
+        components:
+        - PageNav
+
+      - className: image-gallery
+        components:
+        - ImageGallery
+
+      - scrollable: true
+        components:
+        - ChildNodes
+        - ImageCaption
+        - BodyText
+
+    - name: detail
+      regions:
+      - className: header
+        components:
+        - DetailTitle
+
+      - components:
+        - ZoomableImageGallery

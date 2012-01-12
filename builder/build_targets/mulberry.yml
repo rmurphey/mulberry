@@ -10,7 +10,7 @@ build_type: mulberry
 gather:
     assets: true
     data: true
-    templates: true
+    page_defs: true
 
 build:
     javascript:
@@ -24,3 +24,6 @@ build:
 
 close:
     bundle: true
+
+ota:
+  enabled: true

@@ -1,0 +1,15 @@
+home-with-header-tablet:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: page-header
+      components: [ PageHeaderImage]
+
+    - scrollable: true
+      components:
+      - BodyText
+      - ChildNodes
+
+    - className: nav
+      components: [ AppNav ]

@@ -11,25 +11,12 @@ dojo.declare('toura.app.PageFactory', null, {
   createPage: function(obj) {
     /*
      * createPage receives an object that it will use to create a page. It
-     * looks at the object for a pageController property, and uses that
-     * pageController property to determine how to set up the page controller
-     * for the page. The process for determining this is a bit convoluted for
-     * the time being, in order to support some legacy systems. Here's how it
-     * works:
+     * looks at the object for a pageDef property, and uses that property to
+     * determine how to set up the page.
      *
-     * First, we determine the name of the controller we're going to use:
-     *
-     *    1. If the object does not have a pageController property, then the
-     *    controllerName is set to 'default'
-     *
-     *    2. If the object has a pageController property and the property's
-     *    value is an object, then it is assumed the object has a 'phone' and
-     *    a 'tablet' property; the controllerName is set to the value that
-     *    corresponds with the device type.
-     *
-     * Once we have determined the proper page controller to use, we create an
-     * instance of that controller, passing it the data it will need in order
-     * to create the page. We return the controller instance, and createPage is
+     * Once we have determined the proper page definition to use, we create an
+     * instance of a Page using that definition, passing the Page instance the
+     * data it will need. We return the Page instance, and createPage is
      * complete.
      */
 
@@ -37,35 +24,26 @@ dojo.declare('toura.app.PageFactory', null, {
       throw new Error('toura.app.PageFactory::createPage requires an object');
     }
 
-    var controllerName = obj.pageController || 'default',
-    config;
+    var pageDefName = obj.pageDef || 'default',
+        pageDef = toura.pagedefs[pageDefName];
 
-    // allow setting different page controllers per device
-    if (obj.pageController && dojo.isObject(obj.pageController)) {
-      controllerName = obj.pageController[this.device.type] || 'default';
-    } else {
-      controllerName = obj.pageController || 'default';
+    if (!pageDef) {
+      throw ('toura.app.PageFactory: The page definition "' + pageDefName + '" does not exist.');
     }
 
-    config = toura.templates[controllerName];
-
-    if (!config) {
-      console.error('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
-      throw ('toura.app.PageFactory: The controller "' + controllerName + '" does not exist. Did you require it in PageFactory?');
-    }
-
-    toura.log('Creating ' + controllerName);
+    toura.log('Creating ' + pageDefName);
 
     return new toura.containers.Page({
       baseObj: obj,
       device: this.device,
-      templateConfig: config,
-      templateName: controllerName
+      pageDef: pageDef,
+      pageDefName: pageDefName
     });
   }
 });
 
 dojo.subscribe('/app/ready', function() {
   toura.app.PageFactory = new toura.app.PageFactory(toura.app.Config.get('device'));
+  toura.createPage = dojo.hitch(toura.app.PageFactory, 'createPage');
 });
 

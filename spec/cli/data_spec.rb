@@ -1,3 +1,4 @@
+require 'fakeweb'
 require 'spec_helper'
 require 'content_creator'
 
@@ -15,7 +16,8 @@ describe Mulberry::Data do
           'featured_image_page',
           'no_text_page',
           'custom_prop_page',
-          'built_in_props_page'
+          'built_in_props_page',
+          'no_page_def_page'
         ]
       },
       'about'
@@ -48,7 +50,8 @@ describe Mulberry::Data do
     [
       'featured_image_page',
       'no_text_page',
-      'custom_prop_page'
+      'custom_prop_page',
+      'no_page_def_page'
     ].each do |f|
       FileUtils.cp(
         File.join(FIXTURES_DIR, "#{f}.md"),
@@ -56,6 +59,13 @@ describe Mulberry::Data do
         { :preserve => false }
       )
     end
+
+    # /cli/assets/image.rb requires the image to exist on disk, so copy it in
+    # featured_image_page has a hard-coded reference to the sample image
+    FileUtils.cp(
+      SampleFiles.get_sample_image,
+      File.join(@source_dir, 'assets', 'images' )
+    )
 
     @data = (Mulberry::Data.new Mulberry::App.new(@source_dir)).generate
   end
@@ -151,6 +161,11 @@ describe Mulberry::Data do
         built_in_props_page[a].each { |f| FileUtils.touch File.join(@source_dir, 'assets', a.to_s, f) }
       end
 
+      # If the images don't exist, the image instantiation in Data will asplode
+      %w{featured background header}.each do |i|
+        FileUtils.touch File.join(@source_dir, 'assets', 'images', "#{i}_image.png")
+      end
+
       Mulberry::ContentCreator.new 'feed', @source_dir, 'feed'
       Mulberry::ContentCreator.new 'location', @source_dir, 'location'
       Mulberry::ContentCreator.new 'data', @source_dir, 'data'
@@ -211,4 +226,59 @@ describe Mulberry::Data do
       end
     end
   end
+
+  describe 'page without a page def' do
+    it "should still have a pageController property in the data" do
+      pc = @data[:items].select do |item|
+        item[:id] == 'node-no_page_def_page'
+      end.first[:pageController]
+
+      pc['phone'].should == 'default'
+      pc['tablet'].should == 'default'
+    end
+  end
+
+  describe 'version handling' do
+    before :each do
+      @app = Mulberry::App.new(@source_dir)
+      @app.config['toura_api'] = {
+        'url' => 'http://myapi.com', 'key' => 'some_key'
+      }
+    end
+
+    after :each do
+      FakeWeb.clean_registry
+    end
+
+    it 'should not output a version unless told to' do
+      @data = (Mulberry::Data.new @app).generate
+      @data['version'].should be_nil
+    end
+
+    it 'should raise exception when trying to include version but ota server unavailable' do
+      FakeWeb.register_uri(:get, //, :status => "503")
+      lambda do
+        @data = (Mulberry::Data.new @app).generate true
+      end.should raise_error Mulberry::Http::ServiceUnavailable
+    end
+
+    it 'should include correct version when found on ota server' do
+      existing_version = 10
+      FakeWeb.register_uri(:get, //, :body => "{\"version\": #{existing_version}}")
+      @app.config['toura_api'] = {
+        'url' => 'http://myapi.com', 'key' => 'some_key'
+      }
+      @data = (Mulberry::Data.new @app).generate true
+      @data['version'].should == existing_version + 1
+    end
+
+    it 'should raise exception if asked to include version but no toura api config' do
+      @app.config.delete 'toura_api'
+      lambda do
+        (Mulberry::Data.new Mulberry::App.new(@source_dir)).generate true
+      end.should raise_error Builder::ConfigurationError
+    end
+
+  end
+
 end

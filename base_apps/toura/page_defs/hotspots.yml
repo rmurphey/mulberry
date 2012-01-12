@@ -1,0 +1,8 @@
+hotspots:
+  screens:
+  - regions:
+    - className: page-nav
+      components:
+      - PageNav
+    - components:
+      - Hotspots
