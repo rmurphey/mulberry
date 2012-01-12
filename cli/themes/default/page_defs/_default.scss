@@ -5,6 +5,10 @@
 
   .component.body-text {
     padding: 10px;
+    
+    .tablet & {
+      padding: 20px;
+    }
   }
 
   .tablet & {
@@ -24,7 +28,7 @@
 
           &.child-nodes,
           &.body-text {
-            width: 87%;
+            width: 82.5%;
 
             @media (min-width: 800px) {
               width: 62.5%;
