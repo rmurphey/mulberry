@@ -32,7 +32,7 @@ describe("toura._PageDef", function() {
 
   it("should throw an error if the pagedef screens do not include regions", function() {
     expect(function() {
-      toura.pageDef('another', { screens : [] });
+      toura.pageDef('another', { screens : [ 'bar' ] });
     }).toThrow();
   });
 
