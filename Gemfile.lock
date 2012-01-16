@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/Toura/jshintrb.git
-  revision: 6bd1372f5b6de0467af9c6b823cba767e22856f2
+  revision: ae3078e9fe9e8f2bfb45e9a4918b2c477057755c
   specs:
-    jshintrb (1.0.4)
+    jshintrb (1.1)
       therubyracer (~> 0.8)
 
 GEM
@@ -108,7 +108,7 @@ DEPENDENCIES
   haml (= 3.1.2)
   i18n
   imagesize
-  jshintrb (= 1.0.4)!
+  jshintrb (= 1.1)!
   json
   kramdown
   linecache (= 0.43)
