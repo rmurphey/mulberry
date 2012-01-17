@@ -20,9 +20,9 @@ dojo.declare('toura._Nls', null, {
   /**
   *
   * @param {String} key - the name of the key in the translation file
-  * @param {Object or Array?} substitutes - in cases where the translated  
+  * @param {Object or Array?} substitutes - in cases where the translated
   *   string is a template for string substitution, this parameter
-  *   holds the values to be used by dojo.string.substitute on that  
+  *   holds the values to be used by dojo.string.substitute on that
   *   template
   */
   getString : function(/*String*/ key, /*Object or Array?*/ substitutes) {
