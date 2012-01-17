@@ -14,7 +14,6 @@ task :jshint do
     :funcscope  =>  true,
     :browser    =>  true,
     :dojo       =>  true
-    # :onevar     =>  true
   })
 
   found_errors = false
