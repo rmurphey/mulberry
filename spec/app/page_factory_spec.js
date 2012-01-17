@@ -5,7 +5,7 @@ describe("page factory", function() {
     dojo.require("toura.app.PageFactory");
     f = f || new toura.app.PageFactory({ type : 'fake', os : 'fake' });
 
-    toura.pagedefs = {
+    toura.pageDefs = {
       "user defined template" : "success",
       "default" : "default"
     };

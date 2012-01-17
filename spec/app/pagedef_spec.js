@@ -14,14 +14,15 @@ describe("toura._PageDef", function() {
     };
   });
 
-  it("should create toura.pagedefs", function() {
-    expect(toura.pagedefs).toBeDefined();
+  it("should create toura.pageDefs", function() {
+    expect(toura.pageDefs).toBeDefined();
   });
 
-  it("should expose a method for adding entries to toura.pagedefs", function() {
+  it("should expose a method for adding entries to toura.pageDefs", function() {
     toura.pageDef('foo', pagedef);
-    expect(toura.pagedefs.foo).toBeDefined();
-    expect(toura.pagedefs.foo).toBe(pagedef);
+    expect(toura.pageDefs.foo).toBeDefined();
+    expect(toura.pageDefs.foo.screens[0].regions[0].components[0]).toBe('Foo');
+    expect(toura.pageDefs.foo instanceof toura._PageDef).toBeTruthy();
   });
 
   it("should throw an error if the pagedef does not include screens", function() {
