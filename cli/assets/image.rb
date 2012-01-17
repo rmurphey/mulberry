@@ -28,8 +28,11 @@ module Mulberry
           }
           item_data[image_type][:url] = @url if @url
 
-          open(@url || @asset_file, 'rb') do |fh|
-            item_data[image_type][:width], item_data[image_type][:height] = ::ImageSize.new(fh.read).get_size
+          begin
+            open(@url || @asset_file, 'rb') do |fh|
+              item_data[image_type][:width], item_data[image_type][:height] = ::ImageSize.new(fh.read).get_size
+            end
+          rescue
           end
         end
 
