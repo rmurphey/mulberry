@@ -34,7 +34,7 @@ dojo.declare('toura.components._MediaCaption', toura.components.BodyText, {
   },
   
   setupSubscriptions: function() {
-    this.subscribe('/content/update', '_fixCaptionAlignment'));
-    this.subscribe('/window/resize',  '_fixCaptionAlignment'));
+    this.subscribe('/content/update', '_fixCaptionAlignment');
+    this.subscribe('/window/resize',  '_fixCaptionAlignment');
   }
 });
