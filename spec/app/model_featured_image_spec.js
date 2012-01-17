@@ -6,13 +6,13 @@ describe("featured image model", function() {
 
     api = dataAPI;
 
-    oldImageObj = { 
-      "_reference" : "image-cooper_beach" 
+    oldImageObj = {
+      "_reference" : "image-cooper_beach"
     };
 
     imageObj = api.getModel('node-grid_child_one').featuredImage;
   });
-  
+
   /* TODO: come up with a good way of testing MAP-style data */
   xit("should create a featured image model from old style data", function() {
     var model = new toura.models.FeaturedImage(api._store, oldImageObj);
