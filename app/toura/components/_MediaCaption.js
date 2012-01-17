@@ -15,13 +15,13 @@ dojo.declare('toura.components._MediaCaption', toura.components.BodyText, {
 
     // we add float:left so this will carry a width determined by its content
     // rather than the window
-    dojo.style(this.domNode, { float: 'left' });
+    dojo.style(this.domNode, { 'float' : 'left' });
     
     textwidth = dojo.position(this.domNode).w;
     if (fullwidth > textwidth) {
       dojo.addClass(this.domNode, 'caption-center');
     } else {
-      dojo.removeClass(this.domNode, 'caption-center')
+      dojo.removeClass(this.domNode, 'caption-center');
     }
     
     // remove the float, since it's no longer needed

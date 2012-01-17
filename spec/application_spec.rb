@@ -52,10 +52,10 @@ describe TouraAPP do
   describe TouraAPP::Generators do
     describe "#page_defs" do
       it "should return a page defs JS string based on what it is provided" do
-        str = TouraAPP::Generators.page_defs({ 'foo' => 'bar' })
-        str.should include 'toura.pagedefs = '
-        str.should include 'foo'
+        str = TouraAPP::Generators.page_defs({ 'foo' => { 'bar' => 'baz' }})
+        str.should include "toura.pageDef('foo'"
         str.should include 'bar'
+        str.should include 'baz'
       end
     end
 

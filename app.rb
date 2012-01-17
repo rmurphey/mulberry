@@ -62,7 +62,13 @@ module TouraAPP
 
   class Generators
     def self.page_defs(page_defs)
-      "toura.pagedefs = #{JSON.pretty_generate(page_defs)};"
+      str = ''
+
+      page_defs.each do |page_def_name, config|
+        str << "toura.pageDef('#{page_def_name}', #{JSON.pretty_generate(config)});\n\n"
+      end
+
+      str
     end
 
     def self.index_html(params = {})
