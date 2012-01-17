@@ -27,7 +27,7 @@ After installing Git, open a Terminal window. The following will copy the latest
 Mulberry source code to your computer.
 
 	mkdir src
-    git clone git@github.com:Toura/mulberry.git src/mulberry
+    git clone git://github.com/Toura/mulberry.git src/mulberry
 
 
 Then run the installation script:

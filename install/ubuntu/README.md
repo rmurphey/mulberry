@@ -1,20 +1,15 @@
-## Installation notes on Ubuntu (64-bit 11.04)
+# Mulberry Ubuntu (11.04) Installation Instructions
 
-Note: Instructions assume you want to put all the necessary files into `~/dev.` Change this if you like/need to.
+Note:
+Windows, Linux, and OSX all have different installation methods. Please see the
+platform-specific directories located in the `install` directory.
 
-### Install Ruby
+Mulberry tools are used to develop, debug, and test locally on your local browser.
+These tools are written in ruby and are available via github or the Mulberry website.
 
-Here are the commands needed to install ruby, rails, git. ruby comes with Ubuntu 11.04 but its outdated. This method will install the RVM package manager and let you use ruby 1.9.2.
-
-    sudo apt-get update
-    sudo apt-get install build-essential git git-core curl
-    bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
-    echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc 
     . ~/.bashrc
-    sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison ia32-libs
-    rvm install 1.9.2
-    rvm --default use 1.9.2
-    gem install rails
+    sudo apt-get install libreadline6 libreadline6-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3  autoconf libc6-dev ncurses-dev automake libtool bison ia32-libs
+
 
 Notes:
 
@@ -40,12 +35,12 @@ This issue has [been reported](https://github.com/Toura/mulberry/issues/93), hop
 
 #### Android VM cannot be created
 
-When trying to build an AVD, an error appears: 
+When trying to build an AVD, an error appears:
 
     Error: Failed to create the SD card.
 
 As per [this thread](http://stackoverflow.com/questions/3878445/ubuntu-error-failed-to-create-the-sd-card#answer-3887112), you need to install `ia32-libs`:
-    
+
     sudo apt-get install ia32-libs
 
 ### Setup your Android phone
