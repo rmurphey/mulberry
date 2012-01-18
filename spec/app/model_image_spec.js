@@ -23,15 +23,15 @@ describe("image model", function() {
 
   it("should set the attributes correctly", function(){
     var model = new toura.models.Image(api._store, imageObj);
-	dojo.forEach([
-	  'featured',
-	  'featuredSmall',
-	  'gallery',
-	  'original'
-	], function(style) {
-	  expect(model[style].height).toBe(160);
-	  expect(model[style].width).toBe(240);
-	});
+  dojo.forEach([
+    'featured',
+    'featuredSmall',
+    'gallery',
+    'original'
+  ], function(style) {
+    expect(model[style].height).toBe(160);
+    expect(model[style].width).toBe(240);
+  });
 
   });
 });
