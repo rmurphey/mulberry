@@ -8,13 +8,18 @@
       @include fixed-flex-region;
       padding-top: 10px;
 
-      .component.image-gallery {
-        @include fixed-height-gallery;
+      .component.body-text:not(.empty) {
+        padding: 0 10px 10px 10px;
       }
 
       .region.caption {
         @include fixed-flex-region;
       }
+
+      .component.image-gallery {
+        @include fixed-height-gallery;
+      }
+
     }
 
     .region.text-and-child-nodes {
@@ -24,14 +29,15 @@
         @include portrait-column;
       }
 
+      .component.body-text:not(.empty) {
+        padding: 10px;
+      }
+
       .region.child-nodes-container.empty {
         -webkit-box-flex: .188889;      // 1/6 width
       }
     }
 
-    .component.body-text:not(.empty) {
-      padding: 10px;
-    }
   }
 
   .screen.detail {

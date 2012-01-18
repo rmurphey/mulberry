@@ -1,6 +1,11 @@
 .component.image-gallery {
-  margin-top: 15px;
+  .phone & {
+    padding: 15px 0 5px 0;
+  }
 
+  .tablet & {
+    padding: 15px 0 5px 0;
+  }
   .wrapper {
     -webkit-box-flex: 30;
 
@@ -11,7 +16,7 @@
 
   ol.indicator {
     .phone & {
-      padding: 8px 0 4px 0;
+      padding: 10px 0 0 0;
 
       li {
         font-size: 40px;
@@ -19,7 +24,7 @@
     }
 
     .tablet & {
-      padding: 14px 0 4px 0;
+      padding: 14px 0 0 0;
 
       li {
         font-size: 60px;
