@@ -136,7 +136,7 @@ module Mulberry
           :theme_dir => theme_dir
         ).render
       rescue Sass::SyntaxError => err
-        puts "SASS ERROR: #{err.to_s}"
+        puts "SASS ERROR on line #{err.sass_line} of #{err.sass_filename}:\n #{err.to_s}"
       end
     end
 
