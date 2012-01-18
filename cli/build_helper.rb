@@ -42,8 +42,7 @@ module Mulberry
     def config_settings
 
       add_ota_to_config_settings({
-        'id' => Mulberry.escape_single_quote(@config['name']),
-        'image_scroller_indicator' => true
+        'id' => Mulberry.escape_single_quote(@config['name'])
       })
     end
 

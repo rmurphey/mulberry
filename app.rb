@@ -88,7 +88,8 @@ module TouraAPP
         'os'                  =>  os,
         'device_type'         =>  device_type,
         'debug'               =>  false,
-        'force_local'         =>  false
+        'force_local'         =>  false,
+        'image_scroller_indicator' => true
       }
 
       settings = defaults.merge(binding)
