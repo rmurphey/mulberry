@@ -24,6 +24,8 @@ module Builder
       theme_dir = settings[:theme_dir]
       theme_base = File.join(theme_dir, @@css_filename)
 
+      settings_overrides = settings[:settings_overrides]
+
       sass_settings = {
         :syntax => :scss,
         :style => :expanded,
@@ -33,7 +35,7 @@ module Builder
         :load_paths => [ app_dir, theme_dir ]
       }
 
-      data = load_dependencies(settings, app_base, theme_base)
+      data = load_dependencies(settings, app_base, theme_base, settings_overrides)
       create_engine(data, sass_settings)
     end
 
@@ -42,11 +44,17 @@ module Builder
     end
 
     private
-    def load_dependencies(settings, app_base, theme_base)
+    def load_dependencies(settings, app_base, theme_base, settings_overrides = nil)
       scss_data = ''
 
-      [ app_base, theme_base ].each do |path|
-        scss_data << File.read(path)
+      scss_data << File.read(app_base)
+
+      theme_base_contents = File.read(theme_base)
+
+      if settings_overrides
+        scss_data << theme_base_contents.gsub("@import 'settings';", settings_overrides)
+      else
+        scss_data << theme_base_contents
       end
 
       scss_data
