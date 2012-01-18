@@ -3,7 +3,7 @@
     %ol.images{ dojoAttachPoint : 'imageList' }
       :each img in images
         %li{ class : 'image ' + img.id }
-          .image{ dojoType : 'toura.ui.BackgroundImage', imageUrl : img.url, imageHeight : img.height, imageWidth : img.width }
+          .image{ dojoType : 'toura.ui.BackgroundImage', imageUrl : img.url }
   %ol.indicator{ dojoAttachPoint : 'indicator' }
     :each img in images
       %li &#183;
