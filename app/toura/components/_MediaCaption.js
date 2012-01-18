@@ -25,7 +25,7 @@ dojo.declare('toura.components._MediaCaption', toura.components.BodyText, {
     }
     
     // remove the float, since it's no longer needed
-    dojo.style(this.domNode, { float: '' });
+    dojo.style(this.domNode, { 'float' : '' });
   },
   
   resizeElements: function() {
