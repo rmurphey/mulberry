@@ -31,22 +31,12 @@ dojo.declare('toura.ui.BackgroundImage', dijit._Widget, {
   unloadImage : function() {
     dojo.style(this.domNode, 'backgroundImage', null);
     this.isLoaded = false;
-    if (this.subscription) {
-      dojo.unsubscribe(this.subscription);
-    }
   },
 
   _setBackgroundImageAttr : function(imageProps) {
     if (!imageProps) { return; }
 
    this.imageUrl = imageProps.url;
-  },
-
-  destroy : function() {
-    this.inherited(arguments);
-    if (this.subscription) {
-      dojo.unsubscribe(this.subscription);
-    }
   }
 
 });
