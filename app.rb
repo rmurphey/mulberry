@@ -44,6 +44,10 @@ module TouraAPP
     def self.dojo
       File.join(self.javascript, "dojo-release-#{TouraAPP.dojo_version}-src")
     end
+
+    def self.themes
+      File.join(@root, 'cli', 'themes')
+    end
   end
 
   class Templates
