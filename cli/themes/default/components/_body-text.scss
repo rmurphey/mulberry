@@ -1,40 +1,34 @@
 .component.body-text {
   @include resizable-font;
-  
-  font-size: 16px;
-  
-  .tablet & {
-    font-size: 18px;
-  }
 
   h1, h2, h3, h4, h5, h6 {
     @include resizable-font;
   }
 
   h1 {
-    font-size: 2em;  /* 16px * 2 = 32px */
+    font-size: 32px;
   }
 
   h2 {
-    font-size: 1.5em;   /* 16px * 1.5 = 24px */
+    font-size: 24px;
     font-weight: normal;
   }
 
   h3 {
-    font-size: 1.1875em;  /* 16px * 1.1875 = 19px */
+    font-size: 19px;
   }
 
   h4 {
-    font-size: 1em;         /* 16px */
+    font-size: 6px;
     font-weight: normal;
   }
 
   h5 {
-    font-size: 0.8125em;    /* 16px * 0.8125 = 13px */
+    font-size: 13px;
   }
 
   h6 {
-    font-size: 0.6875em;    /* 16px * 0.6875 = 11px */
+    font-size: 11px;
     font-weight: normal;
   }
 
