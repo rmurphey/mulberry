@@ -1,12 +1,6 @@
 .component.body-text {
   @include resizable-font;
 
-  //font-size: 16px;
-
-  //.tablet & {
-  //  font-size: 18px;
-  //}
-
   h1, h2, h3, h4, h5, h6 {
     @include resizable-font;
   }
