@@ -52,5 +52,6 @@ dojo.declare('toura.components.BodyText', toura._Component, {
   _setContentAttr : function(val) {
     this.bodyTextContainer.innerHTML = val;
     dojo[val ? 'removeClass' : 'addClass'](this.domNode, 'empty');
+    dojo.publish('/content/update');
   }
 });
