@@ -41,6 +41,10 @@ module TouraAPP
       File.join(self.app, 'tmp', 'build')
     end
 
+    def self.js_builds
+      File.join(self.root, 'js_builds')
+    end
+
     def self.dojo
       File.join(self.javascript, "dojo-release-#{TouraAPP.dojo_version}-src")
     end
