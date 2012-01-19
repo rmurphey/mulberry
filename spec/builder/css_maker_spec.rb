@@ -38,11 +38,11 @@ describe Builder::CSSMaker do
       css.should include '#toura-imported'
     end
 
-    it "should render the css with settings overrides" do
+    it "should render the css with overrides" do
       override = File.read(File.join(FIXTURES_DIR, 'css', 'settings.scss'))
 
       css = Builder::CSSMaker.new(@settings.merge({
-        :settings_overrides => override
+        :overrides => { :settings => override }
       })).render
 
       css.should include '#vars'
