@@ -16,9 +16,9 @@ dojo.declare('toura.components._MediaCaption', toura.components.BodyText, {
     
     textWidth = dojo.position(this.domNode).w;
     if (fullWidth > textWidth) {
-      this.addClass('caption-center');
+      this.addClass('short-caption');
     } else {
-      this.removeClass('caption-center');
+      this.removeClass('short-caption');
     }
     
     // remove the float, since it's no longer needed

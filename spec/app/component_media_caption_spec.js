@@ -21,7 +21,7 @@ describe("media caption component", function() {
     c = C({ node : node }).placeAt(t);
     
     c.set('content', shorttext);
-    expect(dojo.hasClass(c.domNode, 'caption-center')).toBe(true);
+    expect(dojo.hasClass(c.domNode, 'short-caption')).toBe(true);
   });
   
   it("should remove the center class when provided lots of text", function() {
@@ -31,7 +31,7 @@ describe("media caption component", function() {
     c = C({ node: node }).placeAt(t);
       
     c.set('content', longtext);
-    expect(dojo.hasClass(c.domNode, 'caption-center')).toBe(false);
+    expect(dojo.hasClass(c.domNode, 'short-caption')).toBe(false);
   });
 
 });
