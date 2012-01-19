@@ -15,7 +15,8 @@ images-and-text-tablet:
 
       - className: image-container
         regions:
-        - components:
+        - className: image-gallery
+          components:
           - ImageGallery
         - className: caption
           components:
