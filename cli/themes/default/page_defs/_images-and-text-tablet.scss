@@ -19,6 +19,10 @@
 
     .region.text-and-child-nodes {
       @include flex-column-container;
+      
+      .component.body-text {
+        padding: 20px;
+      }
 
       @media (min-width: 800px) {
         @include portrait-column;

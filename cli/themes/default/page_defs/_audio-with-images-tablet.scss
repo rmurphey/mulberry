@@ -43,6 +43,10 @@
       @media (min-width: 800px) {
         @include portrait-column;
       }
+      
+      .component.body-text {
+        padding: 20px;
+      }
 
       .region.child-nodes-container.empty {
         -webkit-box-flex: .188889;      // 1/6 width
