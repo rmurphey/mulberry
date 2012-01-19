@@ -1,7 +1,9 @@
 .component.video-caption {
   @include caption-text;
   
-  &.caption-center {
-    text-align: center;
+  .tablet & {
+    &.short-caption {
+      text-align: center;
+    }
   }
 }
