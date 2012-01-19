@@ -18,7 +18,7 @@ describe TouraAPP do
     it "should point to important directories" do
       root = TouraAPP::Directories.root
 
-      [ :javascript, :page_defs, :data_fixtures, :build_root, :dojo, :profiles ].each do |d|
+      [ :javascript, :page_defs, :data_fixtures, :build_root, :dojo, :profiles, :themes ].each do |d|
         dir = TouraAPP::Directories.send(d.to_s)
         dir.should match root
       end
