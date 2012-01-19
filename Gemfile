@@ -1,3 +1,4 @@
+# Toura FYI: if anything is added to this file, it will need to be added to MAP as well
 source 'http://rubygems.org'
 
 gem 'activesupport', '~> 3.0.9'
