@@ -48,5 +48,15 @@ describe Builder::CSSMaker do
       css.should include '#vars'
       css.should include '#000001'
     end
+
+    it "should render the css with a postscript" do
+      postscript = '#postscript { color: red; }'
+
+      css = Builder::CSSMaker.new(@settings.merge({
+        :postscript => postscript
+      })).render
+
+      css.should include '#postscript'
+    end
   end
 end

@@ -26,7 +26,7 @@ module Builder
         :load_paths => [ app_dir, theme_dir ]
       }
 
-      data = load_dependencies(settings, app_base, theme_base, settings[:overrides])
+      data = load_dependencies(settings, app_base, theme_base)
       create_engine(data, sass_settings)
     end
 
@@ -35,18 +35,22 @@ module Builder
     end
 
     private
-    def load_dependencies(settings, app_base, theme_base, overrides = {})
+    def load_dependencies(settings, app_base, theme_base)
       scss_data = ''
 
       scss_data << File.read(app_base)
 
       theme_base_contents = File.read(theme_base)
 
-      overrides.each do |k, v|
+      settings[:overrides].each do |k, v|
         theme_base_contents.gsub!("@import '#{k.to_s}';", v)
-      end if overrides
+      end if settings[:overrides]
 
       scss_data << theme_base_contents
+
+      if settings[:postscript]
+        scss_data << settings[:postscript]
+      end
 
       scss_data
     end
