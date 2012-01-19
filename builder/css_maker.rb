@@ -6,13 +6,6 @@ module Builder
   class CSSMaker
     @@css_filename = 'base.scss'
 
-    def self.scss_data_from_vars_hash(vars_hash)
-      vars_hash.keys.reduce("") do |scss_data, k|
-        scss_data << "$#{k}: #{vars_hash[k]};"
-        scss_data
-      end
-    end
-
     def initialize(settings)
       if !settings[:theme_dir]
         raise "CSSMaker requires a theme_dir"
