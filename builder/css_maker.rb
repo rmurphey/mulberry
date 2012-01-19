@@ -6,13 +6,6 @@ module Builder
   class CSSMaker
     @@css_filename = 'base.scss'
 
-    def self.scss_data_from_vars_hash(vars_hash)
-      vars_hash.keys.reduce("") do |scss_data, k|
-        scss_data << "$#{k}: #{vars_hash[k]};"
-        scss_data
-      end
-    end
-
     def initialize(settings)
       if !settings[:theme_dir]
         raise "CSSMaker requires a theme_dir"
@@ -45,8 +38,18 @@ module Builder
     def load_dependencies(settings, app_base, theme_base)
       scss_data = ''
 
-      [ app_base, theme_base ].each do |path|
-        scss_data << File.read(path)
+      scss_data << File.read(app_base)
+
+      theme_base_contents = File.read(theme_base)
+
+      settings[:overrides].each do |k, v|
+        theme_base_contents.gsub!("@import '#{k.to_s}';", v)
+      end if settings[:overrides]
+
+      scss_data << theme_base_contents
+
+      if settings[:postscript]
+        scss_data << settings[:postscript]
       end
 
       scss_data

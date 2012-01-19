@@ -43,7 +43,7 @@ describe("image caption component", function() {
     expect(t.innerText).not.toMatch(node.images[0].caption);
     expect(t.innerText).toMatch(txt2);
   });
-
+  
 });
 
 

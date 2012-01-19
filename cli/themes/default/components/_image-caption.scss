@@ -1,3 +1,7 @@
 .component.image-caption {
   @include caption-text;
+  
+  &.caption-center {
+    text-align: center;
+  }
 }
