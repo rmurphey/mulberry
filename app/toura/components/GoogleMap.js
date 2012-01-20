@@ -1,7 +1,6 @@
 dojo.provide('toura.components.GoogleMap');
 
 dojo.require('toura._Component');
-dojo.require('dijit.DialogUnderlay');
 dojo.require('toura.app.PhoneGap');
 dojo.require('dojo.io.script');
 dojo.require('toura.app.URL');

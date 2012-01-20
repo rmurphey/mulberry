@@ -68,7 +68,7 @@ describe Builder::Build do
 
     it "should properly generate the pagedef data" do
       page_defs = File.read(File.join(@bundle[:location], 'iphone', 'www', 'data', 'pagedefs.js'))
-      page_defs.should include 'toura.pagedefs = '
+      page_defs.should include 'toura.pageDef('
       @page_defs.each do |page_def|
         page_defs.should include page_def
       end
@@ -135,7 +135,7 @@ describe Builder::Build do
 
     it "should properly generate the page def data" do
       page_defs = File.read(File.join(@bundle[:location], 'ipad', 'www', 'data', 'pagedefs.js'))
-      page_defs.should include 'toura.pagedefs = '
+      page_defs.should include 'toura.pageDef('
       @page_defs.each do |page_def|
         page_defs.should include page_def
       end
@@ -201,7 +201,7 @@ describe Builder::Build do
 
     it "should properly generate the page def data" do
       page_defs = File.read(File.join(@bundle[:location], 'android', 'assets', 'www', 'data', 'pagedefs.js'))
-      page_defs.should include 'toura.pagedefs = '
+      page_defs.should include 'toura.pageDef('
       @page_defs.each do |page_def|
         page_defs.should include page_def
       end

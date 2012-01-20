@@ -25,7 +25,7 @@ dojo.declare('toura.app.PageFactory', null, {
     }
 
     var pageDefName = obj.pageDef || 'default',
-        pageDef = toura.pagedefs[pageDefName];
+        pageDef = toura.pageDefs[pageDefName];
 
     if (!pageDef) {
       throw ('toura.app.PageFactory: The page definition "' + pageDefName + '" does not exist.');

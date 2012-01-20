@@ -2,14 +2,19 @@ require 'jshintrb'
 
 desc "Run JSHint on app code"
 task :jshint do
-  jsl = JSLint.new(:undef => false,
-                   :strict => false,
-                   :nomen => false,
-                   :onevar => false,
-                   :newcap => false,
-                   :regexp => false,
-                   :plusplus => false,
-                   :linter => 'jshint')
+  jsl = JSLint.new({
+    :curly      =>  true,
+    :bitwise    =>  true,
+    :eqeqeq     =>  true,
+    :immed      =>  true,
+    :latedef    =>  true,
+    :noempty    =>  true,
+    :trailing   =>  true,
+    :debug      =>  true,
+    :funcscope  =>  true,
+    :browser    =>  true,
+    :dojo       =>  true
+  })
 
   found_errors = false
 
