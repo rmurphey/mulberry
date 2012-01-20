@@ -1,3 +1,5 @@
+require 'cli/bin/commands/base'
+
 module Mulberry
   module Command
     class Data < Mulberry::Command::Base
