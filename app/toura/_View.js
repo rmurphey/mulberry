@@ -12,6 +12,7 @@ dojo.require('toura.app.Config');
 
 dojo.require('toura.ui.Scrollable');
 dojo.require('toura.ui.Clickable');
+dojo.require('vendor.mustache');
 
 (function() {
 
@@ -37,7 +38,30 @@ dojo.declare('toura._View', [ dijit._Widget, dijit._Templated, toura._Nls ], {
   _skipNodeCache : true,
 
   _stringRepl : function(tmpl) {
-    var t = _tmplCache[tmpl] = (_tmplCache[tmpl] || Haml(tmpl));
+    var t = _tmplCache[tmpl],
+        tests = {
+          'haml' : {
+            firstChars : [ '.', '%' ],
+            tmplFn : Haml
+          },
+
+          'mustache' : {
+            firstChars : [ '{', '<' ],
+            tmplFn : function(tmpl) {
+              return dojo.partial(Mustache.render, tmpl);
+            }
+          }
+        };
+
+    if (!t) {
+      dojo.forIn(tests, function(lang, settings) {
+        if (t) { return; }
+        if (dojo.indexOf(settings.firstChars, tmpl[0]) > -1) {
+          t = _tmplCache[tmpl] = settings.tmplFn(tmpl);
+        }
+      });
+    }
+
     return t(this);
   },
 
