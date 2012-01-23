@@ -1,7 +1,7 @@
 module Mulberry
   class Env
     def self.host_os
-      case Config::CONFIG['host_os']
+      case RbConfig::CONFIG['host_os']
         when /mswin|windows/i
           :windows
         when /linux/i
