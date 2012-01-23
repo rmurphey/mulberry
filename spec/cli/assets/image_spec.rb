@@ -1,4 +1,4 @@
-require 'spec/spec_helper'
+require 'spec_helper'
 require 'cli/assets/base_shared'
 require 'cli/assets/media_asset_shared'
 
@@ -32,7 +32,7 @@ describe Mulberry::Asset::Image do
     it 'should calculate image dimensions' do
       item = @image.item
 
-      Image::IMAGE_TYPES.each do |image_type|
+      Mulberry::Asset::Image::IMAGE_TYPES.each do |image_type|
         item[image_type][:url].should be_nil
         item[image_type][:height].should == 1
         item[image_type][:width ].should == 1
@@ -46,7 +46,7 @@ describe Mulberry::Asset::Image do
       @remote_image = Factory.build :image_remote
       item = @remote_image.item
 
-      Image::IMAGE_TYPES.each do |image_type|
+      Mulberry::Asset::Image::IMAGE_TYPES.each do |image_type|
         item[image_type][:url].should match /#{@remote_image.asset_name}/
         item[image_type][:height].should == 1
         item[image_type][:width ].should == 1
@@ -56,7 +56,7 @@ describe Mulberry::Asset::Image do
 
   describe '#IMAGE_TYPES' do
     it 'should match expected types' do
-      Image::IMAGE_TYPES.collect{|c| c.to_s}.sort.should == %w(featured featuredSmall gallery original).sort
+      Mulberry::Asset::Image::IMAGE_TYPES.collect{|c| c.to_s}.sort.should == %w(featured featuredSmall gallery original).sort
     end
   end
 

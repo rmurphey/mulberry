@@ -1,10 +1,7 @@
 require 'tmpdir'
-require 'assets/video'
-
-include Mulberry::Asset
 
 FactoryGirl.define do
-  factory :video do
+  factory :video, :class => Mulberry::Asset::Video do
     asset "foo.mp4"
     parent_assets_dir Dir.mktmpdir
   end
