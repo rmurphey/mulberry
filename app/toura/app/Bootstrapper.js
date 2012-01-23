@@ -15,7 +15,6 @@ var bootstrapper = function() {
 
   // open up the database connection so we can work with it
   app.DeviceStorage.init(app.Config.get("id"));
-  // app.DeviceStorage.drop();
 
   tour = new toura.models.Tour({
     bundleDataUrl : toura.localDataUrl || ('./data/tour.js' + (app.PhoneGap.present ? '.jet' : '')),
