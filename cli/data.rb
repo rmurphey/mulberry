@@ -2,16 +2,16 @@ require 'active_support/inflector'
 
 require 'lib/toura_api'
 
-require 'cli/assets/node'
-require 'cli/assets/text'
-require 'cli/assets/image'
-require 'cli/assets/video'
 require 'cli/assets/audio'
+require 'cli/assets/background_image'
 require 'cli/assets/data'
-require 'cli/assets/location'
 require 'cli/assets/feed'
 require 'cli/assets/header_image'
-require 'cli/assets/background_image'
+require 'cli/assets/image'
+require 'cli/assets/location'
+require 'cli/assets/node'
+require 'cli/assets/text'
+require 'cli/assets/video'
 
 require 'lib/http'
 
