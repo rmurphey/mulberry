@@ -16,6 +16,11 @@ var bootstrapper = function() {
   // open up the database connection so we can work with it
   app.DeviceStorage.init(app.Config.get("id"));
 
+
+  if (app.DeviceStorage.get('tour-version') === 0) {
+    app.DeviceStorage.set('tour-verison', null);
+  }
+
   tour = new toura.models.Tour({
     bundleDataUrl : toura.localDataUrl || ('./data/tour.js' + (app.PhoneGap.present ? '.jet' : '')),
     remoteDataUrl : app.Config.get('updateUrl'),
