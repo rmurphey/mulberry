@@ -120,9 +120,9 @@ dojo.declare('toura.containers.Page', [ toura._View, toura.ui.BackgroundImage ],
       if (appBgImg) {
         appBgImg = appBgImg[this.device.type];
 
-        img = toura.app.Data.getModel(appBgImg, 'backgroundImage')[
+        img = appBgImg ? toura.app.Data.getModel(appBgImg, 'backgroundImage')[
           this.device.type === 'phone' ? 'gallery' : 'original'
-        ];
+        ] : false;
       }
     }
 
