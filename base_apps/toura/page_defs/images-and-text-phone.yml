@@ -17,6 +17,7 @@ images-and-text-phone:
         - ImageGallery
 
       - scrollable: true
+        className: caption-and-text
         components:
         - ChildNodes
         - ImageCaption

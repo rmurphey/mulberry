@@ -45,7 +45,7 @@ toura.app.DeviceStorage = (function(){
 
       var db = this._db = openDatabase(
         // short db name
-        appId,
+        appId + '-' + toura.version,
 
         // sqlite version
         "1.0",
@@ -103,7 +103,7 @@ toura.app.DeviceStorage = (function(){
       return this._db;
     },
 
-    drop : function(tableName) {
+    drop : function() {
       var queries = [];
 
       dojo.forIn(storeInSQL, function(propName, settings) {

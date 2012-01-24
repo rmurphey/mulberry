@@ -90,6 +90,11 @@ describe TouraAPP do
         html = TouraAPP::Generators.index_html :disable_back_button => true
         html.should match 'toura.features.disableBackButton = true;'
       end
+
+      it "should include a title if one is provided" do
+        html = TouraAPP::Generators.index_html({ :title => 'Overriding the Title' })
+        html.should include 'Overriding the Title'
+      end
     end
 
     describe "#data" do

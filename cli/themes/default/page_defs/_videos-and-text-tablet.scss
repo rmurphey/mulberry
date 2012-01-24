@@ -23,8 +23,12 @@
         @include portrait-column;
       }
 
-      .region.listings-container.empty {
-        -webkit-box-flex: .188889;      // 1/6 width
+      .region.listings-container {
+        margin-top: 10px;                 // to match the body text
+      
+        &.empty {
+          -webkit-box-flex: .188889;      // 1/6 width
+        }
       }
 
       .child-nodes:not(.empty) {
@@ -33,7 +37,7 @@
 
       > .region:nth-child(1) {
         .body-text:not(.empty) {
-          padding: 10px;
+          padding: 20px;
         }
 
         .body-text.video-caption {

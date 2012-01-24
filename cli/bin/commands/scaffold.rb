@@ -32,7 +32,7 @@ module Mulberry
           # this is to allow tests to run silently and without interruption
           input = 'Y'
         else
-          puts "Are you willing to send Toura anonymous usage statistics to help improve Mulberry? (Y/n)"
+          puts "Are you willing to send Toura anonymous usage statistics to help improve Mulberry? (y/N)"
           input = STDIN.gets.strip
         end
 
