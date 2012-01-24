@@ -26,7 +26,7 @@ dojo.declare('toura.containers.Page', [ toura._View, toura.ui.BackgroundImage ],
       throw "The config for toura.Page must have at least one screen defined";
     }
 
-    var bgImg = this.baseObj.pageBgImg;
+    var bgImg = this.baseObj.pageBackground;
 
     dojo.forEach(this.pageDef.screens, function(screen) {
       var scr = this.adopt(toura.containers.Screen, {
@@ -104,13 +104,5 @@ dojo.declare('toura.containers.Page', [ toura._View, toura.ui.BackgroundImage ],
 
   init : function() {
     // for capability connections
-  },
-
-  _getBackgroundImage : function() {
-    if (this.baseObj.getPageBackgroundImage) {
-      return this.baseObj.getPageBackgroundImage(this.device);
-    } else {
-      return '';
-    }
   }
 });

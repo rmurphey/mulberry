@@ -10,32 +10,30 @@ dojo.requireLocalization('toura', 'toura');
           app = function() { return appConfig; };
           return appConfig;
         },
+        device,
         appBgImg;
 
-    function getBackgroundImageFn(node) {
-      if (node && node.getBackgroundImage) {
-        return dojo.hitch(node, 'getBackgroundImage');
-      } else {
-        return function(device) {
-          if (!appBgImg) {
+    function getBackgroundImage() {
+      device = device || toura.app.Config.get('device');
 
-            appBgImg = toura.app.Config.get('app').backgroundImage;
+      if (!appBgImg) {
 
-            if (appBgImg) {
-              appBgImg = appBgImg[device.type];
+        appBgImg = toura.app.Config.get('app').backgroundImage;
 
-              appBgImg = appBgImg ? toura.app.Data.getModel(appBgImg, 'backgroundImage')[
-                device.type === 'phone' ? 'gallery' : 'original'
-              ] : '';
-            }
-          }
+        if (appBgImg) {
+          appBgImg = appBgImg[device.type];
 
-          return appBgImg;
-        };
+          appBgImg = appBgImg ? toura.app.Data.getModel(appBgImg, 'backgroundImage')[
+            device.type === 'phone' ? 'gallery' : 'original'
+          ] : '';
+        }
       }
+
+      return appBgImg;
     }
 
     function nodeRoute(route, nodeId, pageState) {
+      device = device || toura.app.Config.get('device');
       pageState = pageState || {};
 
       var nodeModel = toura.app.Data.getModel(nodeId),
@@ -56,7 +54,7 @@ dojo.requireLocalization('toura', 'toura');
         try {
           pf = toura.createPage(
             dojo.mixin(nodeModel, {
-              getPageBackgroundImage : getBackgroundImageFn(nodeModel)
+              pageBackground : nodeModel.getBackgroundImage(device) || getBackgroundImage()
             })
           );
         } catch(e) {
@@ -143,7 +141,7 @@ dojo.requireLocalization('toura', 'toura');
             pageDef : 'search',
             term : term,
             getResults : dojo.hitch(toura.app.Data, 'search'),
-            getPageBackgroundImage : getBackgroundImageFn()
+            backgroundImage : getBackgroundImage()
           });
 
           toura.app.UI.showPage(page);
@@ -159,7 +157,7 @@ dojo.requireLocalization('toura', 'toura');
               feedItem = feed.getItem(params.itemIndex),
               page = toura.createPage(dojo.mixin(feedItem, {
                 pageDef : 'feed-item',
-                getPageBackgroundImage : getBackgroundImageFn()
+                backgroundImage : getBackgroundImage()
               }));
 
           toura.app.UI.showPage(page, feedItem);
@@ -175,7 +173,7 @@ dojo.requireLocalization('toura', 'toura');
             pageDef : 'debug',
             name : 'Debug',
             query : params.query,
-            getPageBackgroundImage : getBackgroundImageFn()
+            backgroundImage : getBackgroundImage()
           });
 
           toura.app.UI.showPage(page);
@@ -193,7 +191,7 @@ dojo.requireLocalization('toura', 'toura');
             ).FAVORITES,
             pageDef : 'favorites',
             favorites : toura.app.user.Favorites.load(),
-            getPageBackgroundImage : getBackgroundImageFn()
+            backgroundImage : getBackgroundImage()
           });
 
           toura.app.UI.showPage(page);
