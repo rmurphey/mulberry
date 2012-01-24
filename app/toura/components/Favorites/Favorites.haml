@@ -7,7 +7,7 @@
 
           %a{ href : fav.model.url }
             :if fav.img
-              .img{ dojoType : 'toura.ui.BackgroundImage', imageUrl : fav.img, imageHeight : '50px', imageWidth : '67px', resizeMethod : 'cover', loadOnInit : true }
+              .img{ dojoType : 'toura.ui.BackgroundImage', imageUrl : fav.img, loadOnInit : true }
 
             :if !fav.img
               .img.default
