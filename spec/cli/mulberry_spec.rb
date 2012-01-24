@@ -5,11 +5,9 @@ describe Mulberry::App do
   before :each do
     Mulberry::App.scaffold('testapp', true)
     @app = Mulberry::App.new 'testapp'
-    @initial_dir = Dir.pwd
   end
 
   after :each do
-    Dir.chdir @initial_dir
     FileUtils.rm_rf 'testapp'
   end
 
@@ -147,7 +145,12 @@ describe Mulberry::App do
 
   describe "#device_build" do
 
+    before :each do
+      Dir.chdir @app.name
+    end
+
     after :each do
+      Dir.chdir Mulberry::Directories.root
       FakeWeb.clean_registry
     end
 

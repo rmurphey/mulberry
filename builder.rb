@@ -166,7 +166,7 @@ module Builder
         raise "No target specified"
       end
 
-      build_targets_dir = File.join(File.expand_path('..', __FILE__), 'builder', 'build_targets')
+      build_targets_dir = File.join(TouraAPP::Directories.root, 'builder', 'build_targets')
       @settings[:target_config] || Builder::Target.new(@settings[:target], build_targets_dir, logger).config
     end
 
