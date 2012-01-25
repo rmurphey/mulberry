@@ -1,6 +1,6 @@
 describe("Updateable", function() {
   var instance, Updateable, ajaxMocks, networkIsReachable,
-      config, mockjax, newerRemoteData, appMajorVersion;
+      config, mockjax, newerRemoteData, newerBundleData, appMajorVersion;
 
   beforeEach(function() {
     dojo.require('toura.models._Updateable');
@@ -42,8 +42,12 @@ describe("Updateable", function() {
 
     newerRemoteData = dojo.mixin({}, toura.data.local);
     newerRemoteData.appVersion = appMajorVersion + ".0";
-    newerRemoteData.version = toura.data.local.version + 1;
-    newerRemoteData.items = [ { id : 'new' } ];
+    newerRemoteData.version = toura.data.local.version + 2;
+    newerRemoteData.items = [ { id : 'new remote' } ];
+
+    newerBundleData = dojo.mixin({}, toura.data.local);
+    newerBundleData.version = toura.data.local.version + 1;
+    newerBundleData.items = [ { id : 'new bundle' } ];
 
     ajaxMocks = {
       'bundle' : toura.data.local,
@@ -81,6 +85,37 @@ describe("Updateable", function() {
       });
     });
 
+    describe("when the bundled data is newer than the stored data", function() {
+      it("should replace the stored data with the bundled data", function() {
+        window.localStorage.clear();
+        networkIsReachable = false;
+
+        var simulatePreviousBoot = new Updateable(config).bootstrap(),
+            flag;
+
+        simulatePreviousBoot.then(function() {
+          flag = true;
+          ajaxMocks.bundle = newerBundleData;
+        });
+
+        waitsFor(function() { return flag; });
+
+        runs(function() {
+          var u = new Updateable(config),
+              dfd = u.bootstrap(),
+              flag, bootstrapperResult;
+
+          dfd.then(function() { flag = true; });
+
+          waitsFor(function() { return flag; });
+
+          runs(function() {
+            expect(u.getItems().length).toBe(1);
+            expect(u.getItems()[0].id).toBe(newerBundleData.items[0].id);
+          });
+        });
+      });
+    });
 
     describe("when the device is not connected to a network", function() {
       beforeEach(function() {

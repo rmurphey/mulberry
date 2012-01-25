@@ -16,7 +16,6 @@ var bootstrapper = function() {
   // open up the database connection so we can work with it
   app.DeviceStorage.init(app.Config.get("id"));
 
-
   if (app.DeviceStorage.get('tour-version') === 0) {
     app.DeviceStorage.set('tour-verison', null);
   }
