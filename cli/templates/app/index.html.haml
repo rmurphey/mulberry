@@ -44,3 +44,7 @@
       :javascript
         toura.features = toura.features || {};
         toura.features.disableBackButton = true;
+
+    - if defined? drop_storage and drop_storage
+      :javascript
+        window.localStorage && window.localStorage.clear();

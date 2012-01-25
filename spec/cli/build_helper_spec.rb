@@ -4,6 +4,7 @@ require 'cli/build_helper'
 
 describe 'Mulberry build helper' do
   before :each do
+    FileUtils.rm_rf 'testapp'
     Mulberry::App.scaffold('testapp', true)
     @app = Mulberry::App.new 'testapp'
     @build_helper = Mulberry::BuildHelper.new @app

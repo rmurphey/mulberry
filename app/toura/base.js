@@ -1,6 +1,7 @@
 dojo.provide('toura.base');
 
 toura.data = toura.data || {};
+toura.version = '0.3';
 mulberry = toura;
 
 dojo.require('toura.Utilities');
