@@ -13,11 +13,10 @@ dojo.requireLocalization('toura', 'toura');
         device,
         appBgImg;
 
-    function getBackgroundImage() {
+    function appBackgroundImage() {
       device = device || toura.app.Config.get('device');
 
       if (!appBgImg) {
-
         appBgImg = toura.app.Config.get('app').backgroundImage;
 
         if (appBgImg) {
@@ -54,7 +53,7 @@ dojo.requireLocalization('toura', 'toura');
         try {
           pf = toura.createPage(
             dojo.mixin(nodeModel, {
-              pageBackground : nodeModel.getBackgroundImage(device) || getBackgroundImage()
+              pageBackground : nodeModel.getBackgroundImage(device) || appBackgroundImage()
             })
           );
         } catch(e) {
@@ -141,7 +140,7 @@ dojo.requireLocalization('toura', 'toura');
             pageDef : 'search',
             term : term,
             getResults : dojo.hitch(toura.app.Data, 'search'),
-            backgroundImage : getBackgroundImage()
+            backgroundImage : appBackgroundImage()
           });
 
           toura.app.UI.showPage(page);
@@ -157,7 +156,7 @@ dojo.requireLocalization('toura', 'toura');
               feedItem = feed.getItem(params.itemIndex),
               page = toura.createPage(dojo.mixin(feedItem, {
                 pageDef : 'feed-item',
-                backgroundImage : getBackgroundImage()
+                backgroundImage : appBackgroundImage()
               }));
 
           toura.app.UI.showPage(page, feedItem);
@@ -173,7 +172,7 @@ dojo.requireLocalization('toura', 'toura');
             pageDef : 'debug',
             name : 'Debug',
             query : params.query,
-            backgroundImage : getBackgroundImage()
+            backgroundImage : appBackgroundImage()
           });
 
           toura.app.UI.showPage(page);
@@ -191,7 +190,7 @@ dojo.requireLocalization('toura', 'toura');
             ).FAVORITES,
             pageDef : 'favorites',
             favorites : toura.app.user.Favorites.load(),
-            backgroundImage : getBackgroundImage()
+            backgroundImage : appBackgroundImage()
           });
 
           toura.app.UI.showPage(page);
