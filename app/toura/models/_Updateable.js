@@ -82,7 +82,7 @@ dojo.declare('toura.models._Updateable', [], {
           initializeRequired = (localVersion === null) || (localVersion === 0) || (localVersion < bundleVersion);
 
       dojo.when(
-        initializeRequired ? this._initializeData() : true,
+        initializeRequired ? this._initializeData(bundleData) : true,
         dojo.hitch(this, '_updateIfNecessary')
       ).then(dojo.hitch(this, '_onUpdate'));
     }));
@@ -317,25 +317,19 @@ dojo.declare('toura.models._Updateable', [], {
    *
    * @returns {Promise}
    */
-  _initializeData : function() {
+  _initializeData : function(bundleData) {
     var dfd = new dojo.Deferred();
 
-    this._getBundleData().then(
+    dojo.when(bundleData || this._getBundleData(), dojo.hitch(this, function(data) {
+      if (!data) {
+        dfd.resolve(false);
+        return;
+      }
 
-      dojo.hitch(this, function(data) {
-
-        if (!data) {
-          dfd.resolve(false);
-          return;
-        }
-
-        dojo.when(this._store(data), function() {
-          dfd.resolve(true);
-        });
-
-      })
-
-    );
+      dojo.when(this._store(data), function() {
+        dfd.resolve(true);
+      });
+    }));
 
     return dfd.promise;
   },
