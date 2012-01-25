@@ -16,7 +16,20 @@ dojo.require('vendor.mustache');
 
 (function() {
 
-var _tmplCache = {};
+var _tmplCache = {},
+    templateStringTests = {
+      'haml' : {
+        firstChars : [ '.', '%' ],
+        tmplFn : Haml
+      },
+
+      'mustache' : {
+        firstChars : [ '{', '<' ],
+        tmplFn : function(tmpl) {
+          return dojo.partial(Mustache.render, tmpl);
+        }
+      }
+    };
 
 dojo.declare('toura._View', [ dijit._Widget, dijit._Templated, toura._Nls ], {
   templateString : '%div',
@@ -38,23 +51,10 @@ dojo.declare('toura._View', [ dijit._Widget, dijit._Templated, toura._Nls ], {
   _skipNodeCache : true,
 
   _stringRepl : function(tmpl) {
-    var t = _tmplCache[tmpl],
-        tests = {
-          'haml' : {
-            firstChars : [ '.', '%' ],
-            tmplFn : Haml
-          },
-
-          'mustache' : {
-            firstChars : [ '{', '<' ],
-            tmplFn : function(tmpl) {
-              return dojo.partial(Mustache.render, tmpl);
-            }
-          }
-        };
+    var t = _tmplCache[tmpl];
 
     if (!t) {
-      dojo.forIn(tests, function(lang, settings) {
+      dojo.forIn(templateStringTests, function(lang, settings) {
         if (t) { return; }
         if (dojo.indexOf(settings.firstChars, tmpl[0]) > -1) {
           t = _tmplCache[tmpl] = settings.tmplFn(tmpl);
