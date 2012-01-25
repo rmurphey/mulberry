@@ -1,4 +1,4 @@
-describe("configurable page controller", function() {
+describe("page container", function() {
   var t, c, C;
 
   beforeEach(function() {
