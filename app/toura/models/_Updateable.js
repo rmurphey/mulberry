@@ -74,12 +74,10 @@ dojo.declare('toura.models._Updateable', [], {
         dfd = this.deferred = new dojo.Deferred();
 
     this._getBundleData().then(dojo.hitch(this, function(bundleData) {
-      var bundleVersion = bundleData.version || 0,
-
-          // if localVersion is null, then this is the first boot,
-          // so we need to initialize the data; otherwise, we can
-          // proceed with updating if necessary
-          initializeRequired = (localVersion === null) || (localVersion === 0) || (localVersion < bundleVersion);
+      var bundleVersion = bundleData.version,
+          initializeRequired = (localVersion === null) ||
+            (bundleVersion === null) ||
+            (localVersion < bundleVersion);
 
       dojo.when(
         initializeRequired ? this._initializeData(bundleData) : true,
