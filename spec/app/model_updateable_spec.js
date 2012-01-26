@@ -1,6 +1,6 @@
 describe("Updateable", function() {
   var instance, Updateable, ajaxMocks, networkIsReachable,
-      config, mockjax, newerRemoteData, newerBundleData, appMajorVersion;
+      config, mockjax, newerRemoteData, appMajorVersion;
 
   beforeEach(function() {
     dojo.require('toura.models._Updateable');
@@ -45,10 +45,6 @@ describe("Updateable", function() {
     newerRemoteData.version = toura.data.local.version + 2;
     newerRemoteData.items = [ { id : 'new remote' } ];
 
-    newerBundleData = dojo.mixin({}, toura.data.local);
-    newerBundleData.version = toura.data.local.version + 1;
-    newerBundleData.items = [ { id : 'new bundle' } ];
-
     ajaxMocks = {
       'bundle' : toura.data.local,
       'remote' : newerRemoteData,
@@ -86,6 +82,14 @@ describe("Updateable", function() {
     });
 
     describe("when the bundled data is newer than the stored data", function() {
+      var newerBundleData;
+
+      beforeEach(function() {
+        newerBundleData = dojo.mixin({}, toura.data.local);
+        newerBundleData.version = toura.data.local.version + 1;
+        newerBundleData.items = [ { id : 'new bundle' } ];
+      });
+
       it("should replace the stored data with the bundled data", function() {
         window.localStorage.clear();
         networkIsReachable = false;
@@ -103,7 +107,7 @@ describe("Updateable", function() {
         runs(function() {
           var u = new Updateable(config),
               dfd = u.bootstrap(),
-              flag, bootstrapperResult;
+              flag;
 
           dfd.then(function() { flag = true; });
 
