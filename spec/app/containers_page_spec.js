@@ -1,4 +1,4 @@
-describe("configurable page controller", function() {
+describe("page container", function() {
   var t, c, C;
 
   beforeEach(function() {
@@ -34,17 +34,26 @@ describe("configurable page controller", function() {
   });
 
   it("should pass config information to the screens", function() {
-    var spy = spyOn(toura.containers, 'Screen').andCallThrough();
+    var spy = spyOn(toura.containers, 'Screen').andCallThrough(),
+        baseObj = {
+          pageBackground : 'pageBackground'
+        };
 
     c = C({
-      baseObj : {},
+      baseObj : baseObj,
       device : devices[0],
       pageDef : {
         screens : [ 1 ]
       }
     });
 
-    expect(spy.mostRecentCall.args[0].config).toBe(1);
+    var args = spy.mostRecentCall.args[0];
+
+    expect(args.config).toBe(1);
+    expect(args.backgroundImage).toBe('pageBackground');
+    expect(args.baseObj).toBe(baseObj);
+    expect(args.device).toBe(devices[0]);
+    expect(args.page).toBe(c);
   });
 
   it("should throw an error if a node is not provided", function() {
@@ -112,7 +121,4 @@ describe("configurable page controller", function() {
 
     expect(spy).toHaveBeenCalled();
   });
-
-
-
 });

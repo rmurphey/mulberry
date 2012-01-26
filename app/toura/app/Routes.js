@@ -9,9 +9,30 @@ dojo.requireLocalization('toura', 'toura');
           var appConfig = toura.app.Config.get('app');
           app = function() { return appConfig; };
           return appConfig;
-        };
+        },
+        device,
+        appBgImg;
+
+    function appBackgroundImage() {
+      device = device || toura.app.Config.get('device');
+
+      if (!appBgImg) {
+        appBgImg = toura.app.Config.get('app').backgroundImage;
+
+        if (appBgImg) {
+          appBgImg = appBgImg[device.type];
+
+          appBgImg = appBgImg ? toura.app.Data.getModel(appBgImg, 'backgroundImage')[
+            device.type === 'phone' ? 'gallery' : 'original'
+          ] : '';
+        }
+      }
+
+      return appBgImg;
+    }
 
     function nodeRoute(route, nodeId, pageState) {
+      device = device || toura.app.Config.get('device');
       pageState = pageState || {};
 
       var nodeModel = toura.app.Data.getModel(nodeId),
@@ -30,7 +51,11 @@ dojo.requireLocalization('toura', 'toura');
         // it's not for the requested node ... in all of these
         // cases, we need the page factory to spin up a page
         try {
-          pf = toura.createPage(nodeModel);
+          pf = toura.createPage(
+            dojo.mixin(nodeModel, {
+              pageBackground : nodeModel.getBackgroundImage(device) || appBackgroundImage()
+            })
+          );
         } catch(e) {
           console.log("Toura.app.Routes: can't create a page", e, nodeModel);
 
@@ -114,7 +139,8 @@ dojo.requireLocalization('toura', 'toura');
           page = toura.createPage({
             pageDef : 'search',
             term : term,
-            getResults : dojo.hitch(toura.app.Data, 'search')
+            getResults : dojo.hitch(toura.app.Data, 'search'),
+            backgroundImage : appBackgroundImage()
           });
 
           toura.app.UI.showPage(page);
@@ -129,7 +155,8 @@ dojo.requireLocalization('toura', 'toura');
           var feed = toura.app.Data.getModel(params.feedId, 'feed'),
               feedItem = feed.getItem(params.itemIndex),
               page = toura.createPage(dojo.mixin(feedItem, {
-                pageDef : 'feed-item'
+                pageDef : 'feed-item',
+                backgroundImage : appBackgroundImage()
               }));
 
           toura.app.UI.showPage(page, feedItem);
@@ -144,7 +171,8 @@ dojo.requireLocalization('toura', 'toura');
           var page = toura.createPage({
             pageDef : 'debug',
             name : 'Debug',
-            query : params.query
+            query : params.query,
+            backgroundImage : appBackgroundImage()
           });
 
           toura.app.UI.showPage(page);
@@ -161,7 +189,8 @@ dojo.requireLocalization('toura', 'toura');
               "toura", "toura", toura.app.Config.get("locale")
             ).FAVORITES,
             pageDef : 'favorites',
-            favorites : toura.app.user.Favorites.load()
+            favorites : toura.app.user.Favorites.load(),
+            backgroundImage : appBackgroundImage()
           });
 
           toura.app.UI.showPage(page);
