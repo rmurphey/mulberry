@@ -26,7 +26,9 @@ dojo.declare('toura.ui.Scrollable', dijit._Widget, {
     }
 
     this.scroller = new iScroll(this.domNode, {
-      vScrollbar: false
+      vScrollbar: false,
+      onScrollStart : dojo.hitch(this, 'onScrollStart'),
+      onScrollEnd : dojo.hitch(this, 'onScrollEnd')
     });
 
     this.scroller.refresh();
@@ -49,6 +51,14 @@ dojo.declare('toura.ui.Scrollable', dijit._Widget, {
     if (this.scroller) {
       this.scroller.refresh();
     }
+  },
+
+  onScrollStart : function() {
+
+  },
+
+  onScrollEnd : function() {
+
   }
 });
 

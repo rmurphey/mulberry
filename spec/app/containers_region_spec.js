@@ -63,4 +63,27 @@ describe("containers region", function() {
     expect(c.domNode.querySelectorAll(getRootSelector(c)).length).toBe(3);
   });
 
+  describe("scrollability", function() {
+    beforeEach(function() {
+      c = C({ config : { scrollable : true } }).placeAt(t);
+      c._scroller.makeScroller(); // normally happens at page transition end
+    });
+
+    it("should set up a scroller if required", function() {
+      expect(c._scroller).toBeDefined();
+      expect(dojo.isFunction(c._scroller.scroller.options.onScrollStart)).toBeTruthy();
+      expect(dojo.isFunction(c._scroller.scroller.options.onScrollEnd)).toBeTruthy();
+    });
+
+    it("should announce scroll events", function() {
+      var startSpy = spyOn(c, 'onScrollStart'),
+          endSpy = spyOn(c, 'onScrollEnd');
+
+      c._scroller.scroller.options.onScrollStart();
+      c._scroller.scroller.options.onScrollEnd();
+
+      expect(startSpy).toHaveBeenCalled();
+      expect(endSpy).toHaveBeenCalled();
+    });
+  });
 });

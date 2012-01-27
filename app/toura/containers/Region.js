@@ -21,6 +21,8 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
   _setupScroller : function() {
     if (this.config.scrollable) {
       this._scroller = new toura.ui.Scrollable({}, this.pane);
+      this.connect(this._scroller, 'onScrollStart', 'onScrollStart');
+      this.connect(this._scroller, 'onScrollEnd', 'onScrollEnd');
     }
   },
 
@@ -86,7 +88,14 @@ dojo.declare('toura.containers.Region', [ toura.containers._LayoutBox ], {
     if (this._scroller) {
       this._scroller.refreshScroller();
     }
-  }
+  },
 
+  onScrollStart : function() {
+
+  },
+
+  onScrollEnd : function() {
+
+  }
 });
 
