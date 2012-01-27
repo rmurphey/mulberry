@@ -24,7 +24,6 @@ images-and-text-phone:
         components:
         - ImageCaption
         - ChildNodes
-        - ImageCaption
         - BodyText
 
     - name: detail

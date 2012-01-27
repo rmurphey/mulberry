@@ -2,7 +2,7 @@
   .screen.index {
     @include standard-screen;
 
-    .region.image-gallery {
+    .region.image-container {
       @include background-shadow;
       
       // see TODO below
