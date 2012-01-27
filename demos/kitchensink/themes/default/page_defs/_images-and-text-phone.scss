@@ -4,16 +4,6 @@
 
     .region.image-gallery {
       @include background-shadow;
-      @include flex-row-container;
-      @include fixed-flex-region;
-
-      .region.image-gallery {
-        @include fixed-flex-region;
-      }
-      
-      .component.image-gallery {
-        @include fixed-height-gallery;
-      }
       
       // see TODO below
       // border-bottom: 0;
