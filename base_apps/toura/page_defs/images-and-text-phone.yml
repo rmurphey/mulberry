@@ -13,13 +13,11 @@ images-and-text-phone:
         - PageNav
 
       - className: image-container
-        regions:
-          - className: image-gallery
-            components:
-            - ImageGallery
-          # - className: caption
-          #   components:
-          #   - ImageCaption
+        components:
+        - ImageGallery
+      # - className: caption
+      #   components:
+      #   - ImageCaption
 
       - scrollable: true
         className: caption-and-text
