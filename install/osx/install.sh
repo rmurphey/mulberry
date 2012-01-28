@@ -1,5 +1,5 @@
 # install.sh: Installation script for OSX
-PACKAGES='git chromedriver'
+PACKAGES='git chromedriver android-sdk'
 
 XCODEFILE=$(which xed)
 RVMFILE=$(which rvm)

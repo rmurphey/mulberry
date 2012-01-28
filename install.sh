@@ -28,5 +28,7 @@ echo -e "\n\nexport PATH=\$PATH:${DIR}/cli/bin" >> ~/.bash_profile
 # Set it for this console session
 export PATH=$PATH:$DIR/cli/bin
 
+echo "Configuring builder/project_templates/android/local.properties"
+android update project -p builder/project_templates/android/
 
-echo "Please open README.md for steps to install and configure Android."
+echo "Please open README.md for steps to configure Android."
