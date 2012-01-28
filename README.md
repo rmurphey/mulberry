@@ -21,6 +21,16 @@ command:
 
     `source ./install.sh`
 
+## Uninstallation
+
+Mulberry uses rvm and bundler to install all the necessary components into the
+Mulberry directory itself. To uninstall, simply `rm -rf` the mulberry directory
+then run `rvm implode` to remove rvm (unless you wish to keep it, of course).
+
+You'll also need to edit your shell profile (typically `~/.bash_profile`) to remove
+the $PATH entry that the installer added.
+
+
 # Developing Apps
 
 ## Supported Mobile Platforms
