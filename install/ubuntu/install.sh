@@ -7,6 +7,7 @@ rvm pkg install zlib
 rvm pkg install openssl
 rvm pkg install iconv
 rvm install 1.9.3
+rvm use 1.9.3
 rvm gemset create 'mulberry'
 rvm use 1.9.3@mulberry
 
