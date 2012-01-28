@@ -2,13 +2,23 @@
   .screen.index {
     @include standard-screen;
 
-    .region.image-gallery {
+    .region.image-container {
       @include background-shadow;
+      
+      // see TODO below
+      // border-bottom: 0;
+    }
+    
+    .component.image-caption {
+      // TODO: make the image caption visually associated
+      // with the image, instead of with the body text
+      // @include background-shadow;
     }
 
     .body-text:not(.empty) {
       padding: 10px;
     }
+    
   }
 
   .screen.detail {

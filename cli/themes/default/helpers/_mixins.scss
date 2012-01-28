@@ -234,19 +234,33 @@
 
 @mixin fixed-height-gallery {
   position: static;
-
-  @media (orientation: landscape) {
+  
+  // tablet portrait
+  height: 450px;
+  
+  // tablet landscape
+  @media (max-height: 850px) {
     height: 300px;
   }
-
-  @media (orientation: portrait) {
-    height: 450px;
+  
+  // phone portrait
+  @media (max-height: 600px) {
+    height: 190px;
+  }
+  
+  // phone landscape
+  @media (max-height: 350px) {
+    height: 120px;
   }
 }
 
 @mixin caption-text {
   font-size: 14px;
-  color: #555;
+  color: offset-text-color(40%);
+  
+  .phone & {
+    font-size: 13px;
+  }
 }
 
 @function offset-text-color($amount) {

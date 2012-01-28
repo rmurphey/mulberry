@@ -12,15 +12,18 @@ images-and-text-phone:
         components:
         - PageNav
 
-      - className: image-gallery
+      - className: image-container
         components:
         - ImageGallery
+      # - className: caption
+      #   components:
+      #   - ImageCaption
 
       - scrollable: true
         className: caption-and-text
         components:
-        - ChildNodes
         - ImageCaption
+        - ChildNodes
         - BodyText
 
     - name: detail

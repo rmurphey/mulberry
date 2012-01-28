@@ -47,7 +47,7 @@
       .region.child-nodes-container {
         margin-top: 10px;                 // to line up with body text
         
-        .empty {
+        &.empty {
           -webkit-box-flex: .188889;      // 1/6 width
         }
       }

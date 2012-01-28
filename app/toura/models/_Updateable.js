@@ -54,7 +54,6 @@ dojo.declare('toura.models._Updateable', [], {
    * @returns {Array} An array of items.
    */
   getItems : function() {
-    console.warn('The getItems method has not been implemented by ', this.declaredClass);
     return this._items || [];
   },
 
@@ -71,18 +70,20 @@ dojo.declare('toura.models._Updateable', [], {
    * bootstrapping process.
    */
   bootstrap : function() {
-    console.log('toura.models._Updateable::bootstrap()');
-
     var localVersion = this._getLocalVersion(),
         dfd = this.deferred = new dojo.Deferred();
 
-    dojo.when(
-      // if localVersion is null, then this is the first boot,
-      // so we need to initialize the data; otherwise, we can
-      // proceed with updating if necessary
-      localVersion === null ? this._initializeData() : true,
-      dojo.hitch(this, '_updateIfNecessary')
-    ).then(dojo.hitch(this, '_onUpdate'));
+    this._getBundleData().then(dojo.hitch(this, function(bundleData) {
+      var bundleVersion = bundleData.version,
+          initializeRequired = (localVersion === null) ||
+            (bundleVersion === null) ||
+            (localVersion < bundleVersion);
+
+      dojo.when(
+        initializeRequired ? this._initializeData(bundleData) : true,
+        dojo.hitch(this, '_updateIfNecessary')
+      ).then(dojo.hitch(this, '_onUpdate'));
+    }));
 
     return dfd.promise;
   },
@@ -298,21 +299,12 @@ dojo.declare('toura.models._Updateable', [], {
   /**
    * @private
    *
-   * This method is run once the bundled data has been loaded. Because bundled
-   * data is formatted as a regular JavaScript file, not as JSON, it generally
-   * assigns the data to a location in the toura namespace (for example, to
-   * toura.data.local). This method should be implemented by subclasses so they
-   * can specify this location once the data has been loaded; subclasses should
-   * return the data:
-   *
-   *   return toura.data.local;
-   *
+   * This method is run once the bundled data has been loaded.
    * The returned data will be used by _getBundleData to resolve its deferred.
    *
    * @returns {Object}
    */
   _processBundleData : function(data) {
-    console.warn('_processBundleData was not implemented by', this.declaredClass);
     return data;
   },
 
@@ -323,27 +315,19 @@ dojo.declare('toura.models._Updateable', [], {
    *
    * @returns {Promise}
    */
-  _initializeData : function() {
+  _initializeData : function(bundleData) {
     var dfd = new dojo.Deferred();
 
-    this._getBundleData().then(
+    dojo.when(bundleData || this._getBundleData(), dojo.hitch(this, function(data) {
+      if (!data) {
+        dfd.resolve(false);
+        return;
+      }
 
-      dojo.hitch(this, function(data) {
-
-        console.log('toura.models._Updateable::_initializeData() got', data);
-
-        if (!data) {
-          dfd.resolve(false);
-          return;
-        }
-
-        dojo.when(this._store(data), function() {
-          dfd.resolve(true);
-        });
-
-      })
-
-    );
+      dojo.when(this._store(data), function() {
+        dfd.resolve(true);
+      });
+    }));
 
     return dfd.promise;
   },
