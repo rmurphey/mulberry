@@ -216,29 +216,6 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         www = File.join(android_dir, 'assets', 'www')
         FileUtils.mkdir_p www unless File.exists? www
         FileUtils.mv(File.join(android_dir, 'phonegap.js'), www)
-
-        adb = %x{which adb}.chomp
-
-        if File.exists? adb
-          adb_dir = File.dirname adb
-          dest = File.join(android_dir, 'local.properties')
-
-          FileUtils.rm_rf(dest) if File.exists?(dest)
-
-          if adb_dir.match('platform-tools')
-            adb_dir = File.dirname adb_dir
-          end
-
-          File.open(File.join(android_dir, 'local.properties'), 'w') do |f|
-            f.write "sdk.dir=#{adb_dir}"
-          end
-        else
-          adb_dir = '/Developer/SDKs/android-sdk-mac_x86/'
-          @build.log(
-            "Using default location of #{adb_dir} for Android SDK",
-            'warning'
-          )
-        end
       end
     end
 

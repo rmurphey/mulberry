@@ -36,8 +36,8 @@ describe("_View base class", function() {
   });
 
   it("should be able to hide and show dom elements", function() {
-
     var d = dojo.create('div');
+
     v.hide(d);
     expect(dojo.hasClass(d, 'hidden')).toBeTruthy();
 
@@ -45,5 +45,35 @@ describe("_View base class", function() {
     expect(dojo.hasClass(d, 'hidden')).toBeFalsy();
   });
 
+  describe("template string replacement", function() {
+    var hamlTemplate = '.foo\n  .bar= baz',
+        mustacheTemplate = '<div class="foo"><div class="bar">{{baz}}</div></div>',
+        viewSettings = {
+          baz : 'teststring'
+        };
 
+    beforeEach(function() {
+      dojo.empty(t);
+    });
+
+    it("should properly handle a Haml template", function() {
+      var v = new toura._View(dojo.mixin(viewSettings, {
+        templateString : hamlTemplate
+      })).placeAt(t);
+
+      expect(t.innerHTML).toMatch('teststring');
+      expect(t.querySelector('.bar')).toBeTruthy();
+      expect(t.querySelector('.foo')).toBeTruthy();
+    });
+
+    it("should properly handle a Mustache template", function() {
+      var v = new toura._View(dojo.mixin(viewSettings, {
+        templateString : mustacheTemplate
+      })).placeAt(t);
+
+      expect(t.innerHTML).toMatch('teststring');
+      expect(t.querySelector('.bar')).toBeTruthy();
+      expect(t.querySelector('.foo')).toBeTruthy();
+    });
+  });
 });
