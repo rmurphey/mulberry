@@ -112,6 +112,14 @@ describe TouraAPP do
         c.should match "ios"
       end
 
+      it "should allow enabling or disabling sibling nav" do
+        c = TouraAPP::Generators.config('ios', 'phone', { 'sibling_nav' => false });
+        c.should include 'siblingNav : false'
+
+        c = TouraAPP::Generators.config('ios', 'phone', { 'sibling_nav' => true });
+        c.should include 'siblingNav : true'
+      end
+
       # TODO: how to test the actual contents of this file?
     end
   end

@@ -102,7 +102,8 @@ module TouraAPP
         'os'                  =>  os,
         'device_type'         =>  device_type,
         'debug'               =>  false,
-        'force_local'         =>  false
+        'force_local'         =>  false,
+        'sibling_nav'         =>  true
       }
 
       settings = defaults.merge(binding)
