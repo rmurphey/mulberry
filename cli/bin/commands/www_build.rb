@@ -12,13 +12,13 @@ module Mulberry
                                      projects, it's a tool for Mulberry
                                      core developers to bypass this
                                      time-consuming step when working on
-                                     other aspects of deployment.") do |v|
-            additional_options[:skip_js_build] = v
+                                     other aspects of deployment.") do |s|
+            additional_options[:skip_js_build] = s
           end
 
           opts.on("--publish-ota",   "Publish an OTA with the contents of this
-                                     build.") do |v|
-            additional_options[:publish_ota] = v
+                                     build.") do |p|
+            additional_options[:publish_ota] = p
           end
 
         end.parse!
