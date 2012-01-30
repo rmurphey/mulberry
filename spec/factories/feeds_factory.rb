@@ -1,10 +1,7 @@
 require 'tmpdir'
-require 'assets/feed'
-
-include Mulberry::Asset
 
 FactoryGirl.define do
-  factory :feed do
+  factory :feed, :class => Mulberry::Asset::Feed do
     asset 'foo.yml'
     parent_assets_dir do
       parent_dir = nil

@@ -1,3 +1,4 @@
+require 'cli/bin/commands/base'
 require 'yaml'
 require 'guid'
 

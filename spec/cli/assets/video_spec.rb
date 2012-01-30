@@ -1,4 +1,4 @@
-require 'spec/spec_helper'
+require 'spec_helper'
 require 'cli/assets/base_shared'
 require 'cli/assets/media_asset_shared'
 

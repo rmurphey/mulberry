@@ -1,11 +1,8 @@
-require 'assets/location'
 require 'yaml'
 require 'fakefs/safe'
 
-include Mulberry::Asset
-
 FactoryGirl.define do
-  factory :location do
+  factory :location, :class => Mulberry::Asset::Location do
     asset "foo.yml"
     parent_assets_dir do
       parent_dir = nil

@@ -1,9 +1,5 @@
-require 'assets/text'
-
-include Mulberry::Asset
-
 FactoryGirl.define do
-  factory :text do
+  factory :text, :class => Mulberry::Asset::Text do
     content 'foo'
     name 'foo_text'
   end

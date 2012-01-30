@@ -1,9 +1,5 @@
-require 'assets/node'
-
-include Mulberry::Asset
-
 FactoryGirl.define do
-  factory :node do
+  factory :node, :class => Mulberry::Asset::Node do
     page = {
       :page_name          =>  'fixture_node',
       :name               =>  'fixture node',

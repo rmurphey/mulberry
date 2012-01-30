@@ -1,7 +1,4 @@
 require 'tmpdir'
-require 'assets/data'
-
-include Mulberry::Asset
 
 FactoryGirl.define do
   factory :data, :class => Mulberry::Asset::Data do
