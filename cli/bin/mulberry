@@ -34,7 +34,7 @@ module Mulberry
 
         puts "Invalid command: #{action}\n\Valid commands:\n"
 
-        Mulberry::Command.constants.collect{ |c| c.underscore }.sort.each do |command|
+        Mulberry::Command.constants.collect{ |c| c.to_s.underscore }.sort.each do |command|
           puts command
         end
 

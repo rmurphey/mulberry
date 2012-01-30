@@ -259,9 +259,7 @@ module Mulberry
       })
     end
 
-    def www_build(settings = nil)
-      settings ||= {}
-
+    def www_build(settings = {})
       b = nil
 
       [ 'phone', 'tablet' ].each do |type|
