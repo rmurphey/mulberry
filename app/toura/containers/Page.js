@@ -3,6 +3,8 @@ dojo.provide('toura.containers.Page');
 dojo.require('toura._View');
 dojo.require('toura.ui.BackgroundImage');
 dojo.require('toura.containers.Screen');
+dojo.require('toura.components._base');
+dojo.require('toura.capabilities._base');
 
 dojo.declare('toura.containers.Page', [ toura._View, toura.ui.BackgroundImage ], {
   pageDef : {},
