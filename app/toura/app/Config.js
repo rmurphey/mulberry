@@ -1,15 +1,8 @@
 dojo.provide('toura.app.Config');
 
-if (!toura.app._Config) {
-  // prevent toura.app._Config from being included
-  // in the built files
-  var req = dojo.require;
-  req('toura.app.TouraConfig');
-}
-
 (function(d, undef) {
 
-var privateConfig;
+var privateConfig = {};
 
 toura.app.Config = {
   get : function(key) {
@@ -24,14 +17,13 @@ toura.app.Config = {
   },
 
   set : function(key, val) {
+    privateConfig = privateConfig || {};
     privateConfig[key] = val;
   },
 
   registerConfig : function(config) {
-    privateConfig = config;
+    privateConfig = config || {};
   }
 };
-
-toura.app.Config.registerConfig(toura.app._Config);
 
 }(dojo));

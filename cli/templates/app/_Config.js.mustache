@@ -1,0 +1,24 @@
+dojo.provide('toura._Config');
+
+toura.app.Config.registerConfig({{{base_config}}});
+
+// force all images to come from S3. this
+// is mainly used by MAP for the preview window.
+toura.forceLocal = {{force_local}};
+toura.forceStreaming = {{force_streaming}};
+
+// skips checking for newer remote version.
+// useful for speeding up non-data dev.
+toura.skipVersionCheck = {{skip_version_check}};
+
+toura.features = {
+  multiLineChildNodes : false,
+  sharing : true,
+  favorites : true,
+  fontSize : true,
+  siblingNav : {{sibling_nav}},
+  debugToolbar : {{debug}},
+  debugPage : true
+};
+
+{{postscript}}

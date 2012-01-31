@@ -8,7 +8,7 @@ js_builds/*
 app/client_tmp/*
 app/dojo-release-*
 app/toura/app/DevConfig.js
-app/toura/app/TouraConfig.js
+app/toura/_Config.js
 app/data-fixtures/media*
 app/data-fixtures/TouraConfig.js.*
 log/*.log

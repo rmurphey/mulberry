@@ -4,12 +4,13 @@ toura.data = toura.data || {};
 toura.version = '0.3';
 mulberry = toura;
 
-dojo.require('toura.Utilities');
+dojo.require('toura._Config');
 dojo.require('toura._Logging');
-
 dojo.require('toura._PageDef');
 dojo.require('toura._Store');
 dojo.require('toura._Model');
+
+dojo.require('toura.Utilities');
 
 dojo.require('toura.app._base');
 
