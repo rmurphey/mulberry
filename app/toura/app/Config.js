@@ -26,6 +26,10 @@ toura.app.Config = {
       this.set('device', val);
     }
 
+    if (val === undef) {
+      throw "No config value for " + val;
+    }
+
     return val;
   },
 

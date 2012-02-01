@@ -103,6 +103,8 @@ describe Mulberry::App do
         ].each do |dir|
           File.exists?(File.join(build_dir, dir)).should be_true
         end
+
+        File.read(File.join(build_dir, 'javascript', 'toura', '_Config.js')).should_not include 'device'
       end
     end
   end

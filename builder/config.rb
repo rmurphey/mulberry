@@ -32,10 +32,10 @@ module Builder
       })
 
       # don't provide device config info for browser builds
-      if (@build_type == 'browser') {
+      if (@build_type == 'browser')
         os = nil
         type = nil
-      }
+      end
 
       TouraAPP::Generators.config(os, type, settings)
     end
