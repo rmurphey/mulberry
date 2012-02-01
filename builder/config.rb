@@ -2,7 +2,7 @@ require "builder/task_base"
 
 module Builder
   class Config < Builder::TaskBase
-    CONFIG_FILENAME = 'TouraConfig.js'
+    CONFIG_FILENAME = '_Config.js'
 
     public
     def build
