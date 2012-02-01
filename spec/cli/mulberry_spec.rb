@@ -98,7 +98,7 @@ describe Mulberry::App do
           [ 'data', 'pagedefs.js' ],
           [ 'javascript', 'dojo', 'dojo.js' ],
           [ 'javascript', 'toura', 'base.js' ],
-          [ 'javascript', 'toura', 'app', 'TouraConfig.js' ],
+          [ 'javascript', 'toura', '_Config.js' ],
           [ 'javascript', 'client', 'base.js' ]
         ].each do |dir|
           File.exists?(File.join(build_dir, dir)).should be_true

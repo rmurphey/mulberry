@@ -64,7 +64,7 @@ module TouraAPP
     end
 
     def self.config
-      File.join(self.root, 'TouraConfig.js.mustache')
+      File.join(self.root, '_Config.js.mustache')
     end
   end
 
@@ -90,23 +90,35 @@ module TouraAPP
 
     def self.config(os, device_type, binding = {})
       tmpl = File.read(TouraAPP::Templates.config)
-
       defaults = {
         'id'                  =>  12345,
         'build_date'          =>  Time.now.to_i.to_s,
         'force_streaming'     =>  false,
         'force_local'         =>  false,
         'skip_version_check'  =>  false,
-        'local_data_url'      =>  false,
         'app_version'         =>  TouraAPP::version,
         'os'                  =>  os,
         'device_type'         =>  device_type,
         'debug'               =>  false,
         'force_local'         =>  false,
-        'sibling_nav'         =>  true
+        'sibling_nav'         =>  true,
+        'postscript'          =>  ''
       }
 
       settings = defaults.merge(binding)
+
+      settings['base_config'] = JSON.pretty_generate({
+        'id'                  =>  settings['id'],
+        'locale'              =>  settings['locale'],
+        'buildDate'           =>  settings['build_date'],
+        'appVersion'          =>  settings['app_version'],
+        'updateUrl'           =>  settings['update_url'],
+        'versionUrl'          =>  settings['version_url'],
+        'device'              =>  {
+          'type'    =>  settings['device_type'],
+          'os'      =>  settings['os']
+        }
+      })
 
       Mustache.render(tmpl, settings)
     end
