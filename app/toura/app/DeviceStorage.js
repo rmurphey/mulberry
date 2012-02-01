@@ -54,7 +54,7 @@ toura.app.DeviceStorage = (function(){
         appId + ' Database',
 
         // database size
-        { android : 5 * 1024 * 1024, ios : 1000000 }[toura.app.Config.get("device").os]
+        5 * 1024 *1024
       );
 
       if (!db) {
