@@ -20,7 +20,8 @@ dojo.declare('toura.components.ChildNodeGrid', toura._Component, {
       this['class'] = 'size-' + size;
     }
 
-    if (this.device.os !== 'android') { return ; }
+    if (this.device.os === 'ios') { return ; }
+
     if (toura.components.ChildNodeGrid.placedCSS) { return; }
 
     var tpl = dojo.cache('toura.components.ChildNodeGrid', 'child-node-grid.css.tpl'),

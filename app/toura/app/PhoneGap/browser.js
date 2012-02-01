@@ -88,7 +88,7 @@ toura.app.PhoneGap.browser = function(pg, device){
         }
       };
 
-  if (pg) {
+  if (pg && init[os]) {
     init[os]();
   }
 
@@ -110,6 +110,7 @@ toura.app.PhoneGap.browser = function(pg, device){
       if (!window.plugins.childBrowser) {
         throw new Error("Can't find childBrowser plugin");
       }
+
       return window.plugins.childBrowser;
     }
   };

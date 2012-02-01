@@ -18,9 +18,7 @@ toura.app.Config = {
     if (key === 'device' && !val) {
       val = {
         type : getDeviceType(),
-
-        // TODO: set this to "browser" in this case
-        os : 'ios'
+        os : 'web'
       };
 
       this.set('device', val);
