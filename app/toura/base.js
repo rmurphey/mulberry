@@ -4,6 +4,11 @@ toura.data = toura.data || {};
 toura.version = '0.3';
 mulberry = toura;
 
+(function(d) {
+  // prevent inclusion in built files
+  d.require('toura._Config');
+}(dojo));
+
 dojo.require('toura._Logging');
 dojo.require('toura._PageDef');
 dojo.require('toura._Store');
@@ -16,11 +21,6 @@ dojo.require('toura.app._base');
 dojo.requireLocalization('toura', 'toura');
 
 var readyFn = function() {
-  (function(d) {
-    // prevent inclusion in built files
-    d.require('toura._Config');
-  }(dojo));
-
   toura.features = toura.features || {};
 
   // bootstrapping process should start in response to /app/deviceready
