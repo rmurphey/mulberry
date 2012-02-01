@@ -37,10 +37,10 @@ beforeEach(function() {
   dojo.registerModulePath('data', '../../data-fixtures');
   dojo.registerModulePath('fixtures', '../../fixtures');
 
+  dojo.require('toura._Config');
   dojo.require('toura.Utilities');
   dojo.require('toura.app.Data');
   dojo.require('toura.app.Config');
-  dojo.require('toura._Config');
   dojo.require('dojo.cache');
   dojo.require('toura.app.Has');
 
