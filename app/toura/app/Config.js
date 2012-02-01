@@ -26,4 +26,8 @@ toura.app.Config = {
   }
 };
 
+if (toura._Config) {
+  toura.app.Config.registerConfig(toura._Config);
+}
+
 }(dojo));
