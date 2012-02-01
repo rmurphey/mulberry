@@ -357,7 +357,7 @@ module Builder
     end
 
     def position_config
-      config_dir = File.join(@www, 'javascript', 'toura', 'app')
+      config_dir = File.join(@www, 'javascript', 'toura')
 
       FileUtils.mkdir_p(config_dir) unless File.exists?(config_dir)
 

@@ -21,7 +21,7 @@ var bootstrapper = function() {
   }
 
   tour = new toura.models.Tour({
-    bundleDataUrl : toura.localDataUrl || ('./data/tour.js' + (app.PhoneGap.present ? '.jet' : '')),
+    bundleDataUrl : './data/tour.js' + (app.PhoneGap.present ? '.jet' : ''),
     remoteDataUrl : app.Config.get('updateUrl'),
     remoteVersionUrl : app.Config.get('versionUrl')
   });

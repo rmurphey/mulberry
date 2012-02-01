@@ -41,9 +41,9 @@ describe TouraAPP do
     end
 
     describe "#config" do
-      it "should return the location of the TouraConfig template" do
+      it "should return the location of the toura._Config template" do
         f = TouraAPP::Templates.config
-        f.should match 'TouraConfig'
+        f.should match '_Config'
         File.exists?(f).should be_true
       end
     end
@@ -105,9 +105,9 @@ describe TouraAPP do
     end
 
     describe "#config" do
-      it "should return a TouraConfig file" do
+      it "should return a toura._Config file" do
         c = TouraAPP::Generators.config('ios', 'phone')
-        c.should match /dojo\.provide\('toura\.app\.TouraConfig'\);/
+        c.should match /dojo\.provide\('toura\._Config'\);/
         c.should match "phone"
         c.should match "ios"
       end
@@ -119,8 +119,6 @@ describe TouraAPP do
         c = TouraAPP::Generators.config('ios', 'phone', { 'sibling_nav' => true });
         c.should include 'siblingNav : true'
       end
-
-      # TODO: how to test the actual contents of this file?
     end
   end
 end
