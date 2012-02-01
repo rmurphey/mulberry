@@ -86,23 +86,21 @@ describe Mulberry::App do
     end
 
     it "should build the files for serving as a static site" do
-      [ 'web-phone', 'web-tablet' ].each do |subdir|
-        build_dir = File.join(@app.source_dir, 'builds', subdir, 'www')
-        File.exists?(build_dir).should be_true
+      build_dir = File.join(@app.source_dir, 'builds', 'mobileweb', 'www')
+      File.exists?(build_dir).should be_true
 
-        [
-          'index.html',
-          [ 'media', 'manifest.js' ],
-          [ 'css', 'base.css' ],
-          [ 'data', 'tour.js' ],
-          [ 'data', 'pagedefs.js' ],
-          [ 'javascript', 'dojo', 'dojo.js' ],
-          [ 'javascript', 'toura', 'base.js' ],
-          [ 'javascript', 'toura', 'app', 'TouraConfig.js' ],
-          [ 'javascript', 'client', 'base.js' ]
-        ].each do |dir|
-          File.exists?(File.join(build_dir, dir)).should be_true
-        end
+      [
+        'index.html',
+        [ 'media', 'manifest.js' ],
+        [ 'css', 'base.css' ],
+        [ 'data', 'tour.js' ],
+        [ 'data', 'pagedefs.js' ],
+        [ 'javascript', 'dojo', 'dojo.js' ],
+        [ 'javascript', 'toura', 'base.js' ],
+        [ 'javascript', 'toura', 'app', 'TouraConfig.js' ],
+        [ 'javascript', 'client', 'base.js' ]
+      ].each do |dir|
+        File.exists?(File.join(build_dir, dir)).should be_true
       end
     end
   end
