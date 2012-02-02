@@ -6,13 +6,7 @@ var privateConfig = {};
 
 toura.app.Config = {
   get : function(key) {
-    var val = privateConfig[key];
-
-    if (val === undef) {
-      throw "No config value for " + val;
-    }
-
-    return val;
+    return privateConfig[key];
   },
 
   set : function(key, val) {

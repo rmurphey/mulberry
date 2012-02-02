@@ -1,25 +1,21 @@
 dojo.provide('toura.Device');
 
-(function() {
+dojo.require('toura.app.Config');
 
-var device;
+toura._loadDeviceConfig = function() {
 
-function getDeviceType() {
-  var body = dojo.body(),
-      minDim = Math.min(body.offsetWidth, body.offsetHeight);
+  function getDeviceType() {
+    var body = dojo.body(),
+        minDim = Math.min(body.offsetWidth, body.offsetHeight);
 
-  return minDim > 640 ? 'tablet' : 'phone';
-}
+    return minDim > 640 ? 'tablet' : 'phone';
+  }
 
-try {
-  device = toura.app.Config.get('device');
-} catch(e) {
-  device = {
-    os : 'browser',
-    type : getDeviceType()
+  toura.Device = toura.app.Config.get('device') || {
+    type : getDeviceType(),
+    os : 'browser'
   };
-}
 
-toura.Device = device;
+};
 
-}());
+toura._loadDeviceConfig();
