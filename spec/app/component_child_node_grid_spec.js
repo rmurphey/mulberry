@@ -16,7 +16,11 @@ describe("child node grid component", function() {
     }
 
     toura.app.UI = {
-      supportsCssBackgroundContain : function() { return true; }
+      supportsCssBackgroundContain : function() { return true; },
+      viewport : {
+        width : 100,
+        height : 100
+      }
     };
 
     if (c) { c.destroy(); }
