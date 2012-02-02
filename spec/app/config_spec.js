@@ -10,10 +10,6 @@ describe("Toura config", function() {
     });
   });
 
-  it("should throw an error when a nonexistent config setting is requested", function() {
-    expect(function() { api.get('nonexistent'); }).toThrow();
-  });
-
   it("should return the value of the requested property using the last-registered config", function() {
     expect(api.get("testing")).toBe("testing");
     expect(api.get("object")).toBe(obj);
@@ -22,13 +18,5 @@ describe("Toura config", function() {
   it("should allow setting of properties", function() {
     api.set("newValue", "newValue");
     expect(api.get("newValue")).toBe("newValue");
-  });
-
-  it("should return device info even if not set", function() {
-    api.set('device', false);
-    var device = api.get("device");
-
-    expect(device.type).toBeDefined();
-    expect(device.os).toBe('ios');
   });
 });

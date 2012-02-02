@@ -260,25 +260,20 @@ module Mulberry
     end
 
     def www_build(settings = {})
-      b = nil
+      b = Builder::Build.new({
+        :target         => 'www',
+        :tour           => self,
+        :tmp_dir        => tmp_dir,
+        :log_level      => -1,
+        :force_js_build => settings[:force_js_build] ||= true,
+        :skip_js_build  => settings[:skip_js_build]  ||= false,
+        :build_helper   => @helper,
 
-      [ 'phone', 'tablet' ].each do |type|
-        if supports_type?(type)
-          b = Builder::Build.new({
-            :target         => 'www',
-            :tour           => self,
-            :tmp_dir        => tmp_dir,
-            :log_level      => -1,
-            :force_js_build => settings[:force_js_build] ||= true,
-            :skip_js_build  => settings[:skip_js_build]  ||= false,
-            :build_helper   => @helper,
-            :device_os      => 'ios',
-            :device_type    => type
-          })
+        # TODO: we should not have to pass these in, but right now we do
+        :device_type    => 'tablet'
+      })
 
-          b.build
-        end
-      end
+      b.build
 
       builds_location = b.completed_steps[:close][:bundle][:location]
       puts "Build(s) are at #{builds_location}"

@@ -1,6 +1,7 @@
 dojo.provide('toura.app.Routes');
 
 dojo.requireLocalization('toura', 'toura');
+dojo.require('toura.Device');
 
 (function() {
   var touraRoutes = (function() {
@@ -10,12 +11,10 @@ dojo.requireLocalization('toura', 'toura');
           app = function() { return appConfig; };
           return appConfig;
         },
-        device,
+        device = toura.Device,
         appBgImg;
 
     function appBackgroundImage() {
-      device = device || toura.app.Config.get('device');
-
       if (!appBgImg) {
         appBgImg = toura.app.Config.get('app').backgroundImage;
 
@@ -32,7 +31,6 @@ dojo.requireLocalization('toura', 'toura');
     }
 
     function nodeRoute(route, nodeId, pageState) {
-      device = device || toura.app.Config.get('device');
       pageState = pageState || {};
 
       var nodeModel = toura.app.Data.getModel(nodeId),

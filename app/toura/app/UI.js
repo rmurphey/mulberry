@@ -1,5 +1,6 @@
 dojo.provide('toura.app.UI');
 
+dojo.require('toura.Device');
 dojo.require('toura.Utilities');
 dojo.require('toura.app.Config');
 dojo.require('toura.containers.Viewport');
@@ -165,6 +166,6 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
 });
 
 dojo.subscribe('/app/ready', function() {
-  toura.app.UI = new toura.app.UI(toura.app.Config.get('device'));
+  toura.app.UI = new toura.app.UI(toura.Device);
   toura.showPage = dojo.hitch(toura.app.UI, 'showPage');
 });

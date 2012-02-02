@@ -5,6 +5,7 @@ dojo.provide('toura._View');
  * The base view class, to be inherited by all views.
  */
 
+dojo.require('toura.Device');
 dojo.require('dijit._Widget');
 dojo.require('dijit._Templated');
 dojo.require('toura._Nls');
@@ -41,7 +42,7 @@ dojo.declare('toura._View', [ dijit._Widget, dijit._Templated, toura._Nls ], {
     this.inherited(arguments);
 
     if (!this.device) {
-      this.device = toura.app.Config.get('device');
+      this.device = toura.Device;
     }
 
     this.phone = this.device.type === 'phone';

@@ -5,21 +5,20 @@ module Builder
     attr_reader :location, :target
 
     def build
-      raise "Unknown device type" unless !([ 'phone', 'tablet' ].index(@target['device_type']).nil?)
-      raise "Unknown device os" unless !([ 'android', 'ios' ].index(@target['device_os']).nil?)
-
       @template_dir = File.join(Builder::Build.root, 'builder', 'project_templates')
 
       if @target['build_type'] == 'browser'
-        subdir = [ 'web', @target['device_type'] ].join('-')
-        dest = File.join(@location, subdir)
+        dest = File.join(@location, 'browser')
         FileUtils.rm_rf dest if File.exists? dest
         FileUtils.mkdir_p File.join(dest, 'www')
 
         Builder::Project::Browser.new(self, @build).build
-        @dir = subdir
+        @dir = 'browser'
         return true
       end
+
+      raise "Unknown device type" unless !([ 'phone', 'tablet' ].index(@target['device_type']).nil?)
+      raise "Unknown device os" unless !([ 'android', 'ios' ].index(@target['device_os']).nil?)
 
       case @target['device_os']
       when 'android'

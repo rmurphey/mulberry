@@ -1,6 +1,6 @@
 dojo.provide('toura.app.PageFactory');
 
-dojo.require('toura.app.Config');
+dojo.require('toura.Device');
 dojo.require('toura.containers.Page');
 
 dojo.declare('toura.app.PageFactory', null, {
@@ -43,7 +43,7 @@ dojo.declare('toura.app.PageFactory', null, {
 });
 
 dojo.subscribe('/app/ready', function() {
-  toura.app.PageFactory = new toura.app.PageFactory(toura.app.Config.get('device'));
+  toura.app.PageFactory = new toura.app.PageFactory(toura.Device);
   toura.createPage = dojo.hitch(toura.app.PageFactory, 'createPage');
 });
 

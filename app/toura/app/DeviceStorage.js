@@ -1,6 +1,6 @@
 dojo.provide('toura.app.DeviceStorage');
 
-dojo.require('toura.app.Config');
+dojo.require('toura.Device');
 
 /**
  * Provides an API for interacting with the SQLite databse

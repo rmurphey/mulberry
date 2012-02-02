@@ -4,31 +4,9 @@ dojo.provide('toura.app.Config');
 
 var privateConfig = {};
 
-function getDeviceType() {
-  var body = dojo.body(),
-      minDim = Math.min(body.offsetWidth, body.offsetHeight);
-
-  return minDim > 640 ? 'tablet' : 'phone';
-}
-
 toura.app.Config = {
   get : function(key) {
-    var val = privateConfig[key];
-
-    if (key === 'device' && !val) {
-      val = {
-        type : getDeviceType(),
-        os : 'web'
-      };
-
-      this.set('device', val);
-    }
-
-    if (val === undef) {
-      throw "No config value for " + val;
-    }
-
-    return val;
+    return privateConfig[key];
   },
 
   set : function(key, val) {

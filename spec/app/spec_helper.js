@@ -172,6 +172,7 @@ beforeEach(function() {
 
   allDevices = function(cb) {
     dojo.forEach(devices, function(d) {
+      toura.Device = d;
       toura.app.Config.set('device', d);
       cb(d);
     });
