@@ -2,7 +2,6 @@
 
 requires:
     - device_type
-    - device_os
 
 build_type: browser
 development: false
