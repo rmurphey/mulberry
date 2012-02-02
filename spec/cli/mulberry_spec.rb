@@ -86,7 +86,7 @@ describe Mulberry::App do
     end
 
     it "should build the files for serving as a static site" do
-      build_dir = File.join(@app.source_dir, 'builds', 'mobileweb', 'www')
+      build_dir = File.join(@app.source_dir, 'builds', 'browser', 'www')
       File.exists?(build_dir).should be_true
 
       [

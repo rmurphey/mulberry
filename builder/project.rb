@@ -8,12 +8,12 @@ module Builder
       @template_dir = File.join(Builder::Build.root, 'builder', 'project_templates')
 
       if @target['build_type'] == 'browser'
-        dest = File.join(@location, 'mobileweb')
+        dest = File.join(@location, 'browser')
         FileUtils.rm_rf dest if File.exists? dest
         FileUtils.mkdir_p File.join(dest, 'www')
 
         Builder::Project::Browser.new(self, @build).build
-        @dir = 'mobileweb'
+        @dir = 'browser'
         return true
       end
 
