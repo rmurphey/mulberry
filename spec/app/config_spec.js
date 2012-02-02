@@ -23,12 +23,4 @@ describe("Toura config", function() {
     api.set("newValue", "newValue");
     expect(api.get("newValue")).toBe("newValue");
   });
-
-  it("should return device info even if not set", function() {
-    api.set('device', false);
-    var device = api.get("device");
-
-    expect(device.type).toBeDefined();
-    expect(device.os).toBe('ios');
-  });
 });

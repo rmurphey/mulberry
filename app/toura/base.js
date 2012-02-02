@@ -9,6 +9,10 @@ mulberry = toura;
   d.require('toura._Config');
 }(dojo));
 
+dojo.require('toura.app.Config');
+
+dojo.require('toura.Device');
+
 dojo.require('toura._Logging');
 dojo.require('toura._PageDef');
 dojo.require('toura._Store');

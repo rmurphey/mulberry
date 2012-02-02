@@ -2,7 +2,6 @@ dojo.provide('toura.app._base');
 
 dojo.require('toura.app.PhoneGap');
 dojo.require('toura.app.xhr'); // disgusting patch for xhr content-type issue
-dojo.require('toura.app.Config');
 dojo.require('toura.app.Analytics');
 dojo.require('toura.app.DeviceStorage');
 dojo.require('toura.app.URL');

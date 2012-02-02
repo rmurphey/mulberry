@@ -1,7 +1,9 @@
 dojo.provide('toura.app.Has');
 
+dojo.require('toura.Device');
+
 toura.app.Has = function() {
-  var device = toura.app.Config.get('device');
+  var device = toura.Device;
 
   return {
     html5Player : function() {

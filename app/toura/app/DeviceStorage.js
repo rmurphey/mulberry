@@ -1,6 +1,6 @@
 dojo.provide('toura.app.DeviceStorage');
 
-dojo.require('toura.app.Config');
+dojo.require('toura.Device');
 
 /**
  * Provides an API for interacting with the SQLite databse
@@ -54,7 +54,7 @@ toura.app.DeviceStorage = (function(){
         appId + ' Database',
 
         // database size
-        { android : 5 * 1024 * 1024, ios : 1000000 }[toura.app.Config.get("device").os]
+        { android : 5 * 1024 * 1024, ios : 1000000 }[toura.Device.os]
       );
 
       if (!db) {

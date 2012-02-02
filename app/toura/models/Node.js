@@ -1,5 +1,6 @@
 dojo.provide('toura.models.Node');
 
+dojo.require('toura.Device');
 dojo.require('toura.models.SimpleNode');
 dojo.require('toura.app.URL');
 dojo.require('toura.models.Image');
@@ -27,7 +28,7 @@ dojo.declare('toura.models.Node', [], {
    */
   constructor : function(store, item) {
     var id = store.getValue(item, 'id'),
-        device = toura.app.Config.get('device');
+        device = toura.Device;
 
     if (cache[id]) {
       dojo.mixin(this, cache[id]);
