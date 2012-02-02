@@ -31,7 +31,13 @@ module Builder
         'debug' => !!@target['development']
       })
 
-      TouraAPP::Generators.config(@target['device_os'], @target['device_type'], settings)
+      # don't provide device config info for browser builds
+      if (@build_type == 'browser')
+        os = nil
+        type = nil
+      end
+
+      TouraAPP::Generators.config(os, type, settings)
     end
 
   end

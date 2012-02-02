@@ -1,5 +1,6 @@
 dojo.provide('toura.app.user.Facebook.base');
 
+dojo.require('toura.Device');
 dojo.require('toura.app.Sharing');
 dojo.require('toura.app.PhoneGap');
 
@@ -13,7 +14,7 @@ dojo.declare('toura.app.user.Facebook.base', [], {
   constructor : function() {
     var self = this;
 
-    this.device = toura.app.Config.get('device');
+    this.device = toura.Device;
 
     dojo.mixin(this, toura.app.user.Facebook[
       toura.app.PhoneGap.present ? this.device.os : 'browser'

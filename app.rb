@@ -90,6 +90,7 @@ module TouraAPP
 
     def self.config(os, device_type, binding = {})
       tmpl = File.read(TouraAPP::Templates.config)
+
       defaults = {
         'id'                  =>  12345,
         'build_date'          =>  Time.now.to_i.to_s,
@@ -97,8 +98,6 @@ module TouraAPP
         'force_local'         =>  false,
         'skip_version_check'  =>  false,
         'app_version'         =>  TouraAPP::version,
-        'os'                  =>  os,
-        'device_type'         =>  device_type,
         'debug'               =>  false,
         'force_local'         =>  false,
         'sibling_nav'         =>  true,
@@ -107,18 +106,24 @@ module TouraAPP
 
       settings = defaults.merge(binding)
 
-      settings['base_config'] = JSON.pretty_generate({
+      base_config = {
         'id'                  =>  settings['id'],
         'locale'              =>  settings['locale'],
         'buildDate'           =>  settings['build_date'],
         'appVersion'          =>  settings['app_version'],
         'updateUrl'           =>  settings['update_url'],
         'versionUrl'          =>  settings['version_url'],
-        'device'              =>  {
-          'type'    =>  settings['device_type'],
-          'os'      =>  settings['os']
+      }
+
+      unless os.nil? or device_type.nil?
+        # only set device config if values were provided
+        base_config['device'] = {
+          'type'              =>  device_type,
+          'os'                =>  os
         }
-      })
+      end
+
+      settings['base_config'] = JSON.pretty_generate(base_config)
 
       Mustache.render(tmpl, settings)
     end
