@@ -179,7 +179,7 @@ module Mulberry
 
       asset_dirs = Dir.entries File.join(base, 'assets')
 
-      [ 'audios', 'videos', 'images', 'locations' ].each do |asset_dir|
+      [ 'audios', 'videos', 'images', 'locations', 'html' ].each do |asset_dir|
         FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
       end
 

@@ -40,6 +40,7 @@ describe Mulberry::App do
         [ 'assets', 'locations' ],
         [ 'assets', 'data' ],
         [ 'assets', 'feeds' ],
+        [ 'assets', 'html' ],
         [ 'assets', 'audios', 'captions' ],
         [ 'assets', 'videos', 'captions' ],
         [ 'assets', 'images', 'captions' ],
