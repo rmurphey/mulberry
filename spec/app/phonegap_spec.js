@@ -2,14 +2,14 @@ describe("PhoneGap bridge", function() {
   var pg;
 
   beforeEach(function() {
-    dojo.require('toura.app.PhoneGap');
+    dojo.require('mulberry.app.PhoneGap');
     if (!pg) {
       dojo.publish('/app/deviceready');
-      pg = toura.app.PhoneGap;
+      pg = mulberry.app.PhoneGap;
     }
   });
 
-  describe("toura.app.PhoneGap.device", function() {
+  describe("mulberry.app.PhoneGap.device", function() {
     it("should return the device version", function() {
       var uas = [
         // Android UAs
@@ -51,19 +51,19 @@ describe("PhoneGap bridge", function() {
         { ua : ' ', v : 'unknown' }
       ];
 
-      toura.app.PhoneGap.present = false;
+      mulberry.app.PhoneGap.present = false;
 
       dojo.forEach(uas, function(item) {
-        expect(toura.app.PhoneGap.device._parseVersion(item.ua)).toBe(item.v, item.ua || 'undefined');
+        expect(mulberry.app.PhoneGap.device._parseVersion(item.ua)).toBe(item.v, item.ua || 'undefined');
       });
     });
   });
 
-  describe("toura.app.PhoneGap.accelerometer", function() {
+  describe("mulberry.app.PhoneGap.accelerometer", function() {
     var a;
 
     beforeEach(function() {
-      a = toura.app.PhoneGap.accelerometer;
+      a = mulberry.app.PhoneGap.accelerometer;
     });
 
     it("should be defined", function() {
@@ -83,11 +83,11 @@ describe("PhoneGap bridge", function() {
     });
   });
 
-  describe("toura.app.PhoneGap.geolocation", function() {
+  describe("mulberry.app.PhoneGap.geolocation", function() {
     var g;
 
     beforeEach(function() {
-      g = toura.app.PhoneGap.geolocation;
+      g = mulberry.app.PhoneGap.geolocation;
     });
 
     it("should be defined", function() {
@@ -107,11 +107,11 @@ describe("PhoneGap bridge", function() {
     });
   });
 
-  describe("toura.app.PhoneGap.camera", function() {
+  describe("mulberry.app.PhoneGap.camera", function() {
     var c;
 
     beforeEach(function() {
-      c = toura.app.PhoneGap.camera;
+      c = mulberry.app.PhoneGap.camera;
     });
 
     it("should be defined", function() {

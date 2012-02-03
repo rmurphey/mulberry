@@ -2,11 +2,11 @@ describe("store", function() {
   var s;
 
   beforeEach(function() {
-    dojo.require('toura.app.DeviceStorage');
-    dojo.require('toura._Store');
-    dojo.require('toura._Model');
+    dojo.require('mulberry.app.DeviceStorage');
+    dojo.require('mulberry._Store');
+    dojo.require('mulberry._Model');
 
-    toura.model('Bar', {
+    mulberry.model('Bar', {
       format : function() {
         this.set('newattr', true);
       },
@@ -19,12 +19,12 @@ describe("store", function() {
 
   describe("local store", function() {
     beforeEach(function() {
-      toura.app.DeviceStorage.set('foo', [
+      mulberry.app.DeviceStorage.set('foo', [
         { id : 1, text : 'foo' },
         { id : 2, text : 'bar' }
       ]);
 
-      toura.store('foo', {
+      mulberry.store('foo', {
         model : 'Bar',
         bar : 'baz'
       });
@@ -123,7 +123,7 @@ describe("store", function() {
 
     describe("model creation", function() {
       beforeEach(function() {
-        toura.store('bar', {
+        mulberry.store('bar', {
           model : 'Bar',
           doIt : function() {
             return this.process([

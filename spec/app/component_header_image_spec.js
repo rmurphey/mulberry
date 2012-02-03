@@ -4,16 +4,16 @@ describe("header image component", function() {
   beforeEach(function() {
     t = dojo.byId('test');
 
-    dojo.require('toura.components.HeaderImage');
+    dojo.require('mulberry.components.HeaderImage');
 
     C = function(config) {
       if (c) { c.destroy(); }
-      return new toura.components.HeaderImage(config || {}).placeAt(t);
+      return new mulberry.components.HeaderImage(config || {}).placeAt(t);
     };
 
     img = img || dataAPI.getModel('node-grid').phoneHeaderImage;
 
-    toura.app.UI.viewport = {
+    mulberry.app.UI.viewport = {
       width : 100,
       height : 100
     };
@@ -65,13 +65,13 @@ describe("header image component", function() {
     node.headerImage.phone.destination = 'foo';
     node.headerImage.tablet.destination = 'foo';
 
-    toura.app.PhoneGap = {
+    mulberry.app.PhoneGap = {
       browser : {
         url : function() { }
       }
     };
 
-    var spy = spyOn(toura.app.PhoneGap.browser, 'url');
+    var spy = spyOn(mulberry.app.PhoneGap.browser, 'url');
 
     allDevices(function(d) {
       c = C({ device : d, node : node });

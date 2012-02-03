@@ -146,7 +146,7 @@ module Builder
 
         :prefixes => [
           [ "dijit",        "../dijit" ],
-          [ "toura",        "../../toura" ],
+          [ "mulberry",     "../../mulberry" ],
           [ "vendor",       "../../vendor" ],
         ],
 

@@ -9,7 +9,7 @@ describe("feed model", function() {
     store = dataAPI._store;
     originalFeedItem = dataAPI.getById(f.id);
 
-    toura.app.PhoneGap = {
+    mulberry.app.PhoneGap = {
       present : false,
       network : {
         isReachable : function() {
@@ -93,7 +93,7 @@ describe("feed model", function() {
 
     f.load();
 
-    toura.app.PhoneGap.network.isReachable = function() {
+    mulberry.app.PhoneGap.network.isReachable = function() {
       var dfd = new dojo.Deferred();
       dfd.resolve(false);
       return dfd.promise;

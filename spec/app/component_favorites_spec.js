@@ -1,23 +1,23 @@
-describe("toura.components.Favorites", function() {
+describe("mulberry.components.Favorites", function() {
   var c, t, data, ds, node, favs, id = 'node-videos';
 
   function C(config) {
     if (c) { c.destroy(); }
-    return new toura.components.Favorites(config).placeAt(t);
+    return new mulberry.components.Favorites(config).placeAt(t);
   }
 
   beforeEach(function() {
-    dojo.require('toura.components.Favorites');
-    dojo.require('toura.app.user.Favorites');
+    dojo.require('mulberry.components.Favorites');
+    dojo.require('mulberry.app.user.Favorites');
 
     if (!ds) {
-      ds = toura.app.DeviceStorage;
-      ds.init(toura.app.Config.get('id'));
+      ds = mulberry.app.DeviceStorage;
+      ds.init(mulberry.app.Config.get('id'));
     }
 
     ds.set('favorites', null);
 
-    if (!favs) { favs = toura.app.user.Favorites = new toura.app.user.Favorites(); }
+    if (!favs) { favs = mulberry.app.user.Favorites = new mulberry.app.user.Favorites(); }
     favs._empty();
 
     node = dataAPI.getModel(id);

@@ -1,17 +1,17 @@
-dojo.provide('toura._Config');
+dojo.provide('mulberry._Config');
 
-toura._Config = {{{base_config}}};
+mulberry._Config = {{{base_config}}};
 
 // force all images to come from S3. this
 // is mainly used by MAP for the preview window.
-toura.forceLocal = {{force_local}};
-toura.forceStreaming = {{force_streaming}};
+mulberry.forceLocal = {{force_local}};
+mulberry.forceStreaming = {{force_streaming}};
 
 // skips checking for newer remote version.
 // useful for speeding up non-data dev.
-toura.skipVersionCheck = {{skip_version_check}};
+mulberry.skipVersionCheck = {{skip_version_check}};
 
-toura.features = {
+mulberry.features = {
   multiLineChildNodes : false,
   sharing : true,
   favorites : true,

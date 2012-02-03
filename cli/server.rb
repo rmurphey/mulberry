@@ -116,12 +116,12 @@ module Mulberry
     end
 
     # nls (i18n) files have to come from the built js
-    get '/:os/:type/javascript/toura/nls/*' do
+    get '/:os/:type/javascript/mulberry/nls/*' do
       content_type 'text/javascript'
       nls_file = mulberry_file_path(
         "js_builds",
         @js_build_name,
-        "toura",
+        "mulberry",
         "nls",
         params[:splat].first
       )
@@ -133,7 +133,7 @@ module Mulberry
       end
     end
 
-    get '/:os/:type/javascript/toura/_Config.js' do
+    get '/:os/:type/javascript/mulberry/_Config.js' do
       content_type 'text/javascript'
       device_type = params[:type] || 'phone'
       os = params[:os] || 'ios'
@@ -172,11 +172,11 @@ module Mulberry
       end
     end
 
-    get '/:os/:type/javascript/toura/app/DevConfig.js' do
+    get '/:os/:type/javascript/mulberry/app/DevConfig.js' do
       content_type 'text/javascript'
 
       dev_config = app_file_path(
-        'toura',
+        'mulberry',
         'app',
         'DevConfig.js'
       )
@@ -227,7 +227,7 @@ module Mulberry
     # Media
     #####################
     get '/:os/:type/media/manifest.js' do
-      "toura.app.manifest = {};"
+      "mulberry.app.manifest = {};"
     end
 
     get '/:os/:type/media/*' do

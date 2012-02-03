@@ -6,13 +6,13 @@ describe("body text component", function() {
   };
 
   beforeEach(function() {
-    dojo.require('toura.components.AudioCaption');
+    dojo.require('mulberry.components.AudioCaption');
 
     t = dojo.byId('test');
 
     if (c) { c.destroy(); }
 
-    C = toura.components.AudioCaption;
+    C = mulberry.components.AudioCaption;
   });
 
   it("should display the node body text", function() {

@@ -6,13 +6,13 @@ describe("image caption component", function() {
   };
 
   beforeEach(function() {
-    dojo.require('toura.components.ImageCaption');
+    dojo.require('mulberry.components.ImageCaption');
 
     t = dojo.byId('test');
 
     if (c) { c.destroy(); }
 
-    C = toura.components.ImageCaption;
+    C = mulberry.components.ImageCaption;
   });
 
   it("should display the node body text", function() {

@@ -6,13 +6,13 @@ describe("media caption component", function() {
   };
 
   beforeEach(function() {
-    dojo.require('toura.components._MediaCaption');
+    dojo.require('mulberry.components._MediaCaption');
 
     t = dojo.byId('test');
 
     if (c) { c.destroy(); }
 
-    C = toura.components._MediaCaption;
+    C = mulberry.components._MediaCaption;
   });
   
   it("should use the center class when provided very little text", function() {

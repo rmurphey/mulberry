@@ -2,14 +2,14 @@ describe("node title banner", function() {
   var t, c, C, node;
 
   beforeEach(function() {
-    dojo.require('toura.components.NodeTitleBanner');
+    dojo.require('mulberry.components.NodeTitleBanner');
 
     t = dojo.byId('test');
 
 
     C = function(config) {
       if (c) { c.destroy(); }
-      return new toura.components.NodeTitleBanner(config || {}).placeAt(t);
+      return new mulberry.components.NodeTitleBanner(config || {}).placeAt(t);
     };
 
     node = {
@@ -49,7 +49,7 @@ describe("node title banner", function() {
       );
 
       expect(widgets.filter(function(w) {
-        return w.declaredClass === 'toura.ui.BackgroundImage';
+        return w.declaredClass === 'mulberry.ui.BackgroundImage';
       }).length).toBeTruthy();
     });
   });

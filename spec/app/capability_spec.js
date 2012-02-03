@@ -2,10 +2,10 @@ describe("capabilities", function() {
   var t, c, C, page, flag, components;
 
   beforeEach(function() {
-    dojo.require('toura._Component');
-    dojo.require('toura._Capability');
+    dojo.require('mulberry._Component');
+    dojo.require('mulberry._Capability');
 
-    C = toura._Capability;
+    C = mulberry._Capability;
 
     page = {
       domNode : dojo.byId('test'),
@@ -13,25 +13,25 @@ describe("capabilities", function() {
       connect : function() {},
       getComponent : function(name) {
         if (name === 'FakeComponent') {
-          return new toura.components.FakeComponent();
+          return new mulberry.components.FakeComponent();
         }
       },
       getScreen : function() {
         return {
           getComponent : function(name) {
             if (name === 'FakeComponent') {
-              return new toura.components.FakeComponent();
+              return new mulberry.components.FakeComponent();
             }
           }
         };
       }
     };
 
-    dojo.declare('my.FakeCapability', toura._Capability, {
+    dojo.declare('my.FakeCapability', mulberry._Capability, {
       init : function() { flag = true; }
     });
 
-    dojo.declare('toura.components.FakeComponent', toura._Component, {
+    dojo.declare('mulberry.components.FakeComponent', mulberry._Component, {
       templateString : '<div></div>',
       fakeMethod : function() {
         console.log('called fake method');
@@ -61,7 +61,7 @@ describe("capabilities", function() {
   });
 
   it("should create properties from the components object", function() {
-    var component = new toura.components.FakeComponent().placeAt(dojo.byId('test')),
+    var component = new mulberry.components.FakeComponent().placeAt(dojo.byId('test')),
         c = new my.FakeCapability({
           page : page,
           requirements : { foo : 'FakeComponent' },
@@ -93,7 +93,7 @@ describe("capabilities", function() {
   it("should create connections based on the connects array", function() {
     var spy = spyOn(page, 'connect');
 
-    var component = new toura.components.FakeComponent().placeAt(dojo.byId('test')),
+    var component = new mulberry.components.FakeComponent().placeAt(dojo.byId('test')),
         c = new my.FakeCapability({
           page : page,
           requirements : { component : 'FakeComponent' },

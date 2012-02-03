@@ -6,7 +6,7 @@ describe("utilities", function() {
       };
 
   beforeEach(function() {
-    dojo.require('toura.Utilities');
+    dojo.require('mulberry.Utilities');
   });
 
   describe("dojo.forIn", function() {
@@ -43,21 +43,21 @@ describe("utilities", function() {
     });
   });
 
-  describe("toura.util.truncate", function() {
+  describe("mulberry.util.truncate", function() {
     it("should return a truncated string with HTML stripped", function() {
       var str = "<p>Lorem ipsum foo bar baz</p>";
-      var truncated = toura.util.truncate(str, 10);
+      var truncated = mulberry.util.truncate(str, 10);
       expect(truncated).toBe('Lorem ipsu &hellip;');
     });
 
     it("should not add a &hellip; if no truncation was required", function() {
       var str = "<p>Lorem ipsum foo bar baz</p>";
-      var truncated = toura.util.truncate(str, 200);
+      var truncated = mulberry.util.truncate(str, 200);
       expect(truncated).toBe('Lorem ipsum foo bar baz');
     });
   });
 
-  describe("toura.util.copyStyles", function() {
+  describe("mulberry.util.copyStyles", function() {
     it("should copy styles from one element to another", function() {
       var t = dojo.byId('test'),
         fromEl = dojo.create('div', {
@@ -69,7 +69,7 @@ describe("utilities", function() {
         }, t),
         toEl = dojo.create('div', null, t, 'last');
 
-      toura.util.copyStyles(fromEl, toEl, ['color', 'width']);
+      mulberry.util.copyStyles(fromEl, toEl, ['color', 'width']);
 
       expect(
         dojo.style(toEl, 'color')
@@ -91,14 +91,14 @@ describe("utilities", function() {
     });
   });
 
-  describe('toura.jsonp', function() {
+  describe('mulberry.jsonp', function() {
     it("should return a promise", function() {
-      var ret = toura.jsonp('http://search.twitter.com/search.json?q=toura');
+      var ret = mulberry.jsonp('http://search.twitter.com/search.json?q=mulberry');
       expect(ret.then).toBeDefined();
     });
 
     it("should resolve the promise with the returned data", function() {
-      var ret = toura.jsonp('http://search.twitter.com/search.json?q=toura'),
+      var ret = mulberry.jsonp('http://search.twitter.com/search.json?q=mulberry'),
           flag = false;
 
       runs(function() {
@@ -113,8 +113,8 @@ describe("utilities", function() {
     });
 
     it("should accept just a config object", function() {
-      var ret = toura.jsonp({
-            url : 'http://search.twitter.com/search.json?q=toura',
+      var ret = mulberry.jsonp({
+            url : 'http://search.twitter.com/search.json?q=mulberry',
             load : function() { flag = true; }
           }),
           flag = false;
@@ -127,7 +127,7 @@ describe("utilities", function() {
     });
 
     it("should accept a url and a config object", function() {
-      var ret = toura.jsonp('http://search.twitter.com/search.json?q=toura', {
+      var ret = mulberry.jsonp('http://search.twitter.com/search.json?q=mulberry', {
             load : function() { flag = true; }
           }),
           flag = false;

@@ -73,7 +73,7 @@ module TouraAPP
       str = ''
 
       page_defs.each do |page_def_name, config|
-        str << "toura.pageDef('#{page_def_name}', #{JSON.pretty_generate(config)});\n\n"
+        str << "mulberry.pageDef('#{page_def_name}', #{JSON.pretty_generate(config)});\n\n"
       end
 
       str
@@ -129,7 +129,7 @@ module TouraAPP
     end
 
     def self.data(data_object)
-      "toura.data.local = #{JSON.pretty_generate(data_object)};"
+      "mulberry.data.local = #{JSON.pretty_generate(data_object)};"
     end
   end
 end

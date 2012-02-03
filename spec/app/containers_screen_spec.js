@@ -2,11 +2,11 @@ describe("containers screen", function() {
   var c, C, t, flag;
 
   beforeEach(function() {
-    dojo.require('toura.containers.Screen');
+    dojo.require('mulberry.containers.Screen');
 
     if (c) { c.destroy(); }
     C = function(config) {
-      return new toura.containers.Screen(config || {}).placeAt(t);
+      return new mulberry.containers.Screen(config || {}).placeAt(t);
     };
 
     t = dojo.byId('test');
@@ -18,7 +18,7 @@ describe("containers screen", function() {
   });
 
   it("should create regions if they are specified", function() {
-    var spy = spyOn(toura.containers, 'Region').andCallThrough();
+    var spy = spyOn(mulberry.containers, 'Region').andCallThrough();
 
     c = C({
       config : {

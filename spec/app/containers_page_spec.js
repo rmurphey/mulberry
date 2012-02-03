@@ -2,19 +2,19 @@ describe("page container", function() {
   var t, c, C;
 
   beforeEach(function() {
-    dojo.require('toura.containers.Page');
+    dojo.require('mulberry.containers.Page');
 
     if (c) { c.destroy(); }
 
     C = function(config) {
-      return new toura.containers.Page(config || {}).placeAt(t);
+      return new mulberry.containers.Page(config || {}).placeAt(t);
     };
 
     t = dojo.byId('test');
   });
 
   it("should create a page based on a template configuration", function() {
-    var spy = spyOn(toura.containers, 'Screen').andCallThrough(),
+    var spy = spyOn(mulberry.containers, 'Screen').andCallThrough(),
         i = 0;
 
     allDevices(function(d) {
@@ -34,7 +34,7 @@ describe("page container", function() {
   });
 
   it("should pass config information to the screens", function() {
-    var spy = spyOn(toura.containers, 'Screen').andCallThrough(),
+    var spy = spyOn(mulberry.containers, 'Screen').andCallThrough(),
         baseObj = {
           pageBackground : 'pageBackground'
         };
@@ -87,9 +87,9 @@ describe("page container", function() {
   });
 
   it("should set up specified capabilities", function() {
-    dojo.declare('toura.capabilities.FakeCapability', [], {});
+    dojo.declare('mulberry.capabilities.FakeCapability', [], {});
 
-    var spy = spyOn(toura.capabilities, 'FakeCapability');
+    var spy = spyOn(mulberry.capabilities, 'FakeCapability');
 
     c = C({
       baseObj : {},
@@ -106,9 +106,9 @@ describe("page container", function() {
   });
 
   it("should work with capabilities as an array of strings", function() {
-    dojo.declare('toura.capabilities.FakeCapability', [], {});
+    dojo.declare('mulberry.capabilities.FakeCapability', [], {});
 
-    var spy = spyOn(toura.capabilities, 'FakeCapability');
+    var spy = spyOn(mulberry.capabilities, 'FakeCapability');
 
     c = C({
       baseObj : {},

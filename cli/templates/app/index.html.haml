@@ -27,23 +27,23 @@
       %script(src="javascript/vendor/jquery.js")
 
     %script(src="javascript/dojo/dojo.js")
-    %script(src="javascript/toura/_Config.js")
+    %script(src="javascript/mulberry/_Config.js")
 
-    %script(src="javascript/toura/nls/base_ROOT.js")
-    %script(src="javascript/toura/nls/base_en.js")
-    %script(src="javascript/toura/nls/base_en-us.js")
+    %script(src="javascript/mulberry/nls/base_ROOT.js")
+    %script(src="javascript/mulberry/nls/base_en.js")
+    %script(src="javascript/mulberry/nls/base_en-us.js")
     %script(src="javascript/vendor/haml.js")
-    %script(src="javascript/toura/base.js")
+    %script(src="javascript/mulberry/base.js")
     %script(src="javascript/client/base.js")
     %script(src="data/pagedefs.js")
 
     - if defined? include_dev_config and include_dev_config # dev
-      %script(src="javascript/toura/app/DevConfig.js")
+      %script(src="javascript/mulberry/app/DevConfig.js")
 
     - if defined? disable_back_button and disable_back_button
       :javascript
-        toura.features = toura.features || {};
-        toura.features.disableBackButton = true;
+        mulberry.features = mulberry.features || {};
+        mulberry.features.disableBackButton = true;
 
     - if defined? drop_storage and drop_storage
       :javascript

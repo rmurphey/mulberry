@@ -1,8 +1,8 @@
-describe("toura._PageDef", function() {
+describe("mulberry._PageDef", function() {
   var pagedef;
 
   beforeEach(function() {
-    dojo.require('toura._PageDef');
+    dojo.require('mulberry._PageDef');
     pagedef = {
       screens : [
         {
@@ -14,26 +14,26 @@ describe("toura._PageDef", function() {
     };
   });
 
-  it("should create toura.pageDefs", function() {
-    expect(toura.pageDefs).toBeDefined();
+  it("should create mulberry.pageDefs", function() {
+    expect(mulberry.pageDefs).toBeDefined();
   });
 
-  it("should expose a method for adding entries to toura.pageDefs", function() {
-    toura.pageDef('foo', pagedef);
-    expect(toura.pageDefs.foo).toBeDefined();
-    expect(toura.pageDefs.foo.screens[0].regions[0].components[0]).toBe('Foo');
-    expect(toura.pageDefs.foo instanceof toura._PageDef).toBeTruthy();
+  it("should expose a method for adding entries to mulberry.pageDefs", function() {
+    mulberry.pageDef('foo', pagedef);
+    expect(mulberry.pageDefs.foo).toBeDefined();
+    expect(mulberry.pageDefs.foo.screens[0].regions[0].components[0]).toBe('Foo');
+    expect(mulberry.pageDefs.foo instanceof mulberry._PageDef).toBeTruthy();
   });
 
   it("should throw an error if the pagedef does not include screens", function() {
     expect(function() {
-      toura.pageDef('another', 'bar');
+      mulberry.pageDef('another', 'bar');
     }).toThrow();
   });
 
   it("should throw an error if the pagedef screens do not include regions", function() {
     expect(function() {
-      toura.pageDef('another', { screens : [ 'bar' ] });
+      mulberry.pageDef('another', { screens : [ 'bar' ] });
     }).toThrow();
   });
 

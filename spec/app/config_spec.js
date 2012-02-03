@@ -2,8 +2,8 @@ describe("Toura config", function() {
   var api, obj = { foo : "bar" };
 
   beforeEach(function() {
-    dojo.require('toura.app.Config');
-    api = toura.app.Config;
+    dojo.require('mulberry.app.Config');
+    api = mulberry.app.Config;
     api.registerConfig({
       "testing" : "testing",
       "object" : obj

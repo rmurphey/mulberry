@@ -6,10 +6,10 @@ describe("search input component", function() {
 
     if (c) { c.destroy(); }
 
-    dojo.require('toura.components.SearchInput');
+    dojo.require('mulberry.components.SearchInput');
 
     C = function(config) {
-      return new toura.components.SearchInput(config || {}).placeAt(t);
+      return new mulberry.components.SearchInput(config || {}).placeAt(t);
     };
   });
 
@@ -37,7 +37,7 @@ describe("search input component", function() {
   });
 
   it("should listen for the form to be submitted if touch is not available", function() {
-    toura.app.UI.hasTouch = false;
+    mulberry.app.UI.hasTouch = false;
 
     c = C();
 
@@ -54,7 +54,7 @@ describe("search input component", function() {
   });
 
   it("should listen for the search button to be clicked if touch is available", function() {
-    toura.app.UI.hasTouch = true;
+    mulberry.app.UI.hasTouch = true;
 
     c = C();
 
@@ -71,7 +71,7 @@ describe("search input component", function() {
   it("should announce searches when the form is submitted with a term", function() {
     var submitHandler;
 
-    toura.app.UI.hasTouch = false;
+    mulberry.app.UI.hasTouch = false;
     c = C();
 
     c.set('searchTerm', term);
@@ -85,7 +85,7 @@ describe("search input component", function() {
   it("should not announce searches if the form is submitted with no term", function() {
     var submitHandler;
 
-    toura.app.UI.hasTouch = false;
+    mulberry.app.UI.hasTouch = false;
     c = C();
 
     c.set('searchTerm', '');
@@ -109,7 +109,7 @@ describe("search input component", function() {
   });
 
   it("should trim search terms before announcing them", function() {
-    toura.app.UI.hasTouch = false;
+    mulberry.app.UI.hasTouch = false;
 
     c = C();
 

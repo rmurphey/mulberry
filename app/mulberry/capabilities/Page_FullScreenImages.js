@@ -1,0 +1,37 @@
+dojo.provide('mulberry.capabilities.Page_FullScreenImages');
+
+dojo.require('mulberry._Capability');
+
+dojo.declare('mulberry.capabilities.Page_FullScreenImages', [ mulberry._Capability ], {
+  requirements : {
+    imageGallery : 'ZoomableImageGallery',
+    pageNav : 'PageNav'
+  },
+
+  connects : [
+    [ 'page', 'init', '_setup' ],
+    [ 'imageGallery', 'onHideChrome', '_hideNav' ],
+    [ 'imageGallery', 'onShowChrome', '_showNav' ]
+  ],
+
+  _setup : function(pageState) {
+    var index = 0;
+
+    if (pageState.assetId) {
+      dojo.forEach(this.baseObj.images, function(image, idx) {
+        if (image.id === pageState.assetId) { index = idx; }
+      });
+    }
+
+    this.imageGallery.set('currentImageIndex', index);
+  },
+
+  _hideNav : function() {
+    this.pageNav.hide();
+  },
+
+  _showNav : function() {
+    this.pageNav.show();
+  }
+});
+

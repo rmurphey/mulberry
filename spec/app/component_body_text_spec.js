@@ -4,13 +4,13 @@ describe("body text component", function() {
   };
 
   beforeEach(function() {
-    dojo.require('toura.components.BodyText');
+    dojo.require('mulberry.components.BodyText');
 
     t = dojo.byId('test');
 
     if (c) { c.destroy(); }
 
-    C = toura.components.BodyText;
+    C = mulberry.components.BodyText;
   });
 
   it("should display the node body text", function() {

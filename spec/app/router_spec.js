@@ -57,11 +57,11 @@ describe("router", function() {
       ];
 
   beforeEach(function() {
-    dojo.require("toura.app.Router");
-    api = api || toura.app.Router;
+    dojo.require("mulberry.app.Router");
+    api = api || mulberry.app.Router;
 
     if (!init) {
-      toura.routes(routes);
+      mulberry.routes(routes);
     }
 
     api.init();
@@ -81,14 +81,14 @@ describe("router", function() {
   });
 
   it("should expose a method for going to the home node", function() {
-    var spy = spyOn(toura.app.UI, 'set');
+    var spy = spyOn(mulberry.app.UI, 'set');
     api.home();
     expect(test).toBe('/home');
     expect(spy).toHaveBeenCalledWith('navDirection', 'back');
   });
 
   it("should expose a method for going back in the history", function() {
-    var uiSpy = spyOn(toura.app.UI, 'set');
+    var uiSpy = spyOn(mulberry.app.UI, 'set');
     var historySpy = spyOn(window.history, 'back');
     api.back();
     expect(historySpy).toHaveBeenCalled();
@@ -130,7 +130,7 @@ describe("router", function() {
   });
 
   it("should always use the last-provided default route", function() {
-    toura.route('/test', function() {
+    mulberry.route('/test', function() {
       test = '/newdefault';
     }, true);
     api.go('');

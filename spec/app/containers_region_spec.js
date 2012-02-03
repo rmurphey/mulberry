@@ -2,17 +2,17 @@ describe("containers region", function() {
   var c, C, t, flag;
 
   beforeEach(function() {
-    dojo.require('toura.containers.Region');
+    dojo.require('mulberry.containers.Region');
 
     if (c) { c.destroy(); }
 
     C = function(config) {
-      return new toura.containers.Region(config || {}).placeAt(t);
+      return new mulberry.containers.Region(config || {}).placeAt(t);
     };
 
     t = dojo.byId('test');
 
-    dojo.declare('toura.components.FakeComponent', [], {
+    dojo.declare('mulberry.components.FakeComponent', [], {
       placeAt : function() {
         flag = true;
       }
@@ -31,7 +31,7 @@ describe("containers region", function() {
   });
 
   it("should create the specified components", function() {
-    var spy = spyOn(toura.components, 'FakeComponent').andCallThrough();
+    var spy = spyOn(mulberry.components, 'FakeComponent').andCallThrough();
 
     c = C({
       config : {

@@ -6,13 +6,13 @@ describe("video caption component", function() {
   };
 
   beforeEach(function() {
-    dojo.require('toura.components.VideoCaption');
+    dojo.require('mulberry.components.VideoCaption');
 
     t = dojo.byId('test');
 
     if (c) { c.destroy(); }
 
-    C = toura.components.VideoCaption;
+    C = mulberry.components.VideoCaption;
   });
 
   it("should display the node body text", function() {

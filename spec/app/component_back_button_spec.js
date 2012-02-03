@@ -2,8 +2,8 @@ describe('back button', function() {
   var t, c, C;
 
   beforeEach(function() {
-    dojo.require('toura.components.buttons.BackButton');
-    C = toura.components.buttons.BackButton;
+    dojo.require('mulberry.components.buttons.BackButton');
+    C = mulberry.components.buttons.BackButton;
     if (c) { c.destroy(); }
     t = dojo.byId('test');
     routerMock();
@@ -17,15 +17,15 @@ describe('back button', function() {
   });
 
   it("should navigate back through the history when onClick is called", function() {
-    var spy = spyOn(toura.app.Router, 'back');
+    var spy = spyOn(mulberry.app.Router, 'back');
     c = C().placeAt(t);
     c.onClick(fakeEventObj);
     expect(spy).toHaveBeenCalled();
   });
 
   it("should not navigate back throught the history in the MAP environment", function() {
-    var spy = spyOn(toura.app.Router, 'back');
-    toura.features.disableBackButton = true;
+    var spy = spyOn(mulberry.app.Router, 'back');
+    mulberry.features.disableBackButton = true;
     c = C().placeAt(t);
     c.onClick(fakeEventObj);
     expect(spy).not.toHaveBeenCalled();

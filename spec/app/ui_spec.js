@@ -2,9 +2,9 @@ describe("user interface controller", function() {
   var ui, pg, ds;
 
   beforeEach(function() {
-    dojo.require("toura.app.UI");
-    dojo.require("toura.app.PhoneGap");
-    dojo.require("toura.app.DeviceStorage");
+    dojo.require("mulberry.app.UI");
+    dojo.require("mulberry.app.PhoneGap");
+    dojo.require("mulberry.app.DeviceStorage");
 
     if (!pg) {
       dojo.publish('/app/start');
@@ -12,11 +12,11 @@ describe("user interface controller", function() {
     }
 
     if (!ds) {
-      toura.app.DeviceStorage.init('fakeid');
+      mulberry.app.DeviceStorage.init('fakeid');
       ds = true;
     }
 
-    ui = ui || new toura.app.UI({ os : 'fake', type : 'fake' });
+    ui = ui || new mulberry.app.UI({ os : 'fake', type : 'fake' });
   });
 
   it("should set up the main container", function() {
@@ -49,7 +49,7 @@ describe("user interface controller", function() {
   });
 
   it("should allow setting the font size", function() {
-    var spy = spyOn(toura.app.DeviceStorage, 'set');
+    var spy = spyOn(mulberry.app.DeviceStorage, 'set');
 
     ui.set('fontSize', 'foo');
     expect(dojo.body().className).toMatch('foo');
@@ -62,20 +62,20 @@ describe("user interface controller", function() {
 
   describe("sibling nav", function() {
     it("should create the sibling nav if it is enabled", function() {
-      toura.features.siblingNav = true;
-      ui = new toura.app.UI(devices[0]);
+      mulberry.features.siblingNav = true;
+      ui = new mulberry.app.UI(devices[0]);
       expect(ui.siblingNav).toBeDefined();
     });
 
     it("should not create the sibling nav if it is not enabled", function() {
-      toura.features.siblingNav = false;
-      ui = new toura.app.UI(devices[0]);
+      mulberry.features.siblingNav = false;
+      ui = new mulberry.app.UI(devices[0]);
       expect(ui.siblingNav).not.toBeDefined();
     });
 
     it("should pass the node for the current page to the sibling nav", function() {
-      toura.features.siblingNav = true;
-      ui = new toura.app.UI(devices[0]);
+      mulberry.features.siblingNav = true;
+      ui = new mulberry.app.UI(devices[0]);
 
       spyOn(ui.containers.viewport, 'set');
       var spy = spyOn(ui.siblingNav, 'set');
@@ -86,15 +86,15 @@ describe("user interface controller", function() {
     });
 
     it("should allow setting the visibility of the sibling nav", function() {
-      toura.features.siblingNav = true;
-      ui = new toura.app.UI(devices[0]);
+      mulberry.features.siblingNav = true;
+      ui = new mulberry.app.UI(devices[0]);
       ui.set('siblingNavVisible', false);
       expect(ui.siblingNav.domNode.className).toMatch('hidden');
     });
 
     it("should not show the sibling nav if there are no siblings", function() {
-      toura.features.siblingNav = true;
-      ui = new toura.app.UI(devices[0]);
+      mulberry.features.siblingNav = true;
+      ui = new mulberry.app.UI(devices[0]);
       ui.set('siblingNavVisible', false);
       ui.siblingNav.siblings = false;
       ui.set('siblingNavVisible', true);
@@ -104,10 +104,10 @@ describe("user interface controller", function() {
 
   describe("feature flags", function() {
     it("should add a class to the body for enabled feature flags", function() {
-      toura.features.foo = true;
-      toura.features.bar = false;
+      mulberry.features.foo = true;
+      mulberry.features.bar = false;
 
-      ui = new toura.app.UI(devices[0]);
+      ui = new mulberry.app.UI(devices[0]);
       expect(dojo.hasClass(dojo.body(), 'feature-foo')).toBeTruthy();
       expect(dojo.hasClass(dojo.body(), 'feature-bar')).toBeFalsy();
     });

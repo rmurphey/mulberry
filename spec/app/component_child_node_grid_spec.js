@@ -2,11 +2,11 @@ describe("child node grid component", function() {
   var pg, t, C, config, nodes, c, node;
 
   beforeEach(function() {
-    dojo.require('toura.app.UI');
-    dojo.require('toura.app.Config');
-    dojo.require('toura.app.PhoneGap');
-    dojo.require('toura.components.ChildNodeGrid');
-    dojo.require('toura.ui.BackgroundImage');
+    dojo.require('mulberry.app.UI');
+    dojo.require('mulberry.app.Config');
+    dojo.require('mulberry.app.PhoneGap');
+    dojo.require('mulberry.components.ChildNodeGrid');
+    dojo.require('mulberry.ui.BackgroundImage');
 
     nodes = [];
 
@@ -15,7 +15,7 @@ describe("child node grid component", function() {
       pg = true;
     }
 
-    toura.app.UI = {
+    mulberry.app.UI = {
       supportsCssBackgroundContain : function() { return true; },
       viewport : {
         width : 100,
@@ -24,7 +24,7 @@ describe("child node grid component", function() {
     };
 
     if (c) { c.destroy(); }
-    C = toura.components.ChildNodeGrid;
+    C = mulberry.components.ChildNodeGrid;
     t = dojo.byId('test');
 
     node = {
@@ -68,11 +68,11 @@ describe("child node grid component", function() {
   describe("device-specific css", function() {
     beforeEach(function() {
       dojo.destroy(dojo.byId('component-css-child-node-grid'));
-      toura.components.ChildNodeGrid.placedCSS = false;
+      mulberry.components.ChildNodeGrid.placedCSS = false;
     });
 
     it("should add the android-specific css to the page", function() {
-      toura.app.UI = {
+      mulberry.app.UI = {
         viewport : {
           width : 100,
           height : 100
@@ -85,7 +85,7 @@ describe("child node grid component", function() {
       });
 
       expect(dojo.byId('component-css-child-node-grid')).toBeTruthy();
-      expect(toura.components.ChildNodeGrid.placedCSS).toBeTruthy();
+      expect(mulberry.components.ChildNodeGrid.placedCSS).toBeTruthy();
     });
 
     it("should not insert child node grid component css for ios", function() {
@@ -95,7 +95,7 @@ describe("child node grid component", function() {
       });
 
       expect(dojo.byId('component-css-child-node-grid')).toBeFalsy();
-      expect(toura.components.ChildNodeGrid.placedCSS).toBeFalsy();
+      expect(mulberry.components.ChildNodeGrid.placedCSS).toBeFalsy();
     });
   });
 });

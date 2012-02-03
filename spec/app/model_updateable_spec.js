@@ -3,7 +3,7 @@ describe("Updateable", function() {
       config, mockjax, newerRemoteData, appMajorVersion;
 
   beforeEach(function() {
-    dojo.require('toura.models._Updateable');
+    dojo.require('mulberry.models._Updateable');
 
     mockjax = function (args) {
       var dfd = new dojo.Deferred();
@@ -25,7 +25,7 @@ describe("Updateable", function() {
       return dfd;
     };
 
-    toura.app.PhoneGap = {
+    mulberry.app.PhoneGap = {
       network : {
         isReachable : function() {
           var dfd = new dojo.Deferred();
@@ -36,17 +36,17 @@ describe("Updateable", function() {
     };
 
     dojo.xhrGet = dojo.io.script.get = mockjax;
-    appMajorVersion = toura.app.Config.get('appVersion').split('.')[0] * 1;
+    appMajorVersion = mulberry.app.Config.get('appVersion').split('.')[0] * 1;
 
-    toura.data.local.version = 1;
+    mulberry.data.local.version = 1;
 
-    newerRemoteData = dojo.mixin({}, toura.data.local);
+    newerRemoteData = dojo.mixin({}, mulberry.data.local);
     newerRemoteData.appVersion = appMajorVersion + ".0";
-    newerRemoteData.version = toura.data.local.version + 2;
+    newerRemoteData.version = mulberry.data.local.version + 2;
     newerRemoteData.items = [ { id : 'new remote' } ];
 
     ajaxMocks = {
-      'bundle' : toura.data.local,
+      'bundle' : mulberry.data.local,
       'remote' : newerRemoteData,
       'version' : { version : newerRemoteData.version, appVersion: appMajorVersion + ".0" }
     };
@@ -63,7 +63,7 @@ describe("Updateable", function() {
 
     networkIsReachable = true;
 
-    Updateable = toura.models._Updateable;
+    Updateable = mulberry.models._Updateable;
   });
 
   describe("bootstrapping", function() {
@@ -85,8 +85,8 @@ describe("Updateable", function() {
       var newerBundleData;
 
       beforeEach(function() {
-        newerBundleData = dojo.mixin({}, toura.data.local);
-        newerBundleData.version = toura.data.local.version + 1;
+        newerBundleData = dojo.mixin({}, mulberry.data.local);
+        newerBundleData.version = mulberry.data.local.version + 1;
         newerBundleData.items = [ { id : 'new bundle' } ];
       });
 
@@ -270,7 +270,7 @@ describe("Updateable", function() {
 
       describe("and there is newer data", function() {
         beforeEach(function() {
-          ajaxMocks.version.version  = toura.data.local.version + 100;
+          ajaxMocks.version.version  = mulberry.data.local.version + 100;
         });
 
         describe("and the remote app version is the same", function() {

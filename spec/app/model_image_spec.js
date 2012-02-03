@@ -2,14 +2,14 @@ describe("image model", function() {
   var api, imageObj;
 
   beforeEach(function() {
-    dojo.require('toura.models.Image');
+    dojo.require('mulberry.models.Image');
 
     api = dataAPI;
     imageObj = api.getById('node-image_gallery').images[0];
   });
 
   it("should create an image model", function() {
-    var model = new toura.models.Image(api._store, imageObj);
+    var model = new mulberry.models.Image(api._store, imageObj);
     dojo.forEach([
       'id',
       'name',
@@ -22,7 +22,7 @@ describe("image model", function() {
   });
 
   it("should set the attributes correctly", function(){
-    var model = new toura.models.Image(api._store, imageObj);
+    var model = new mulberry.models.Image(api._store, imageObj);
   dojo.forEach([
     'featured',
     'featuredSmall',

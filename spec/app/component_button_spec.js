@@ -1,18 +1,18 @@
-describe('toura.components._Button API', function() {
+describe('mulberry.components._Button API', function() {
   var t, C, c;
 
   beforeEach(function() {
-    dojo.require('toura.components.buttons._Button');
+    dojo.require('mulberry.components.buttons._Button');
     t = dojo.byId('test');
 
     if (c) { c.destroy(); }
-    C = toura.components.buttons._Button;
+    C = mulberry.components.buttons._Button;
     routerMock();
   });
 
   it("should call the onClick method when clicked or touched", function() {
     dojo.forEach([ true, false ], function(hasTouch) {
-      toura.app.UI.hasTouch = hasTouch;
+      mulberry.app.UI.hasTouch = hasTouch;
 
       c = C().placeAt(t);
 
@@ -29,7 +29,7 @@ describe('toura.components._Button API', function() {
 
     c = C({ url : 'url' }).placeAt(t);
 
-    var spy = spyOn(toura.app.Router, 'go');
+    var spy = spyOn(mulberry.app.Router, 'go');
 
     c.onClick(fakeEventObj);
     expect(spy).toHaveBeenCalledWith('url');
@@ -47,20 +47,20 @@ describe('toura.components._Button API', function() {
   });
 
   it("should not prevent the click handler from firing during animation by default", function() {
-    toura.app.UI.hasTouch = false;
+    mulberry.app.UI.hasTouch = false;
     c = C().placeAt(t);
 
     var h = getEventHandler(c, 'click');
 
     spyOn(c, 'onClick');
 
-    toura.animating = true;
+    mulberry.animating = true;
     h(fakeEventObj);
     expect(c.onClick).toHaveBeenCalled();
   });
 
   it("should prevent the click handler from firing during animation if preventWhenAnimating is set", function() {
-    toura.app.UI.hasTouch = false;
+    mulberry.app.UI.hasTouch = false;
     c = C({ preventWhenAnimating : true }).placeAt(t);
 
     var h = getEventHandler(c, 'click');

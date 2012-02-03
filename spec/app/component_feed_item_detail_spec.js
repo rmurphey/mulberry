@@ -2,7 +2,7 @@ describe("feed item detail component", function() {
   var c, C, t, feed, feedItem;
 
   beforeEach(function() {
-    dojo.require('toura.components.FeedItemDetail');
+    dojo.require('mulberry.components.FeedItemDetail');
     dojo.require('fixtures.feedItem');
 
     t = dojo.byId('test');
@@ -15,7 +15,7 @@ describe("feed item detail component", function() {
     };
 
     C = function(config) {
-      return new toura.components.FeedItemDetail(config || {}).placeAt(t);
+      return new mulberry.components.FeedItemDetail(config || {}).placeAt(t);
     };
 
     if (c) { c.destroy(); }
@@ -52,7 +52,7 @@ describe("feed item detail component", function() {
   });
 
   it("should open the link to the original using child browser", function() {
-    toura.app.PhoneGap = {
+    mulberry.app.PhoneGap = {
       browser : {
         url : function() { }
       }
@@ -61,7 +61,7 @@ describe("feed item detail component", function() {
     c = C({ node : feedItem });
 
     var h = getEventHandler(c, 'click', c.externalLink),
-        spy = spyOn(toura.app.PhoneGap.browser, 'url');
+        spy = spyOn(mulberry.app.PhoneGap.browser, 'url');
 
     expect(h).toBeDefined();
 

@@ -4,14 +4,14 @@ describe("page header image component", function() {
   beforeEach(function() {
     t = dojo.byId('test');
 
-    dojo.require('toura.components.PageHeaderImage');
+    dojo.require('mulberry.components.PageHeaderImage');
 
     C = function(config) {
       if (c) { c.destroy(); }
-      return new toura.components.PageHeaderImage(config || {}).placeAt(t);
+      return new mulberry.components.PageHeaderImage(config || {}).placeAt(t);
     };
 
-    toura.app.UI.viewport = {
+    mulberry.app.UI.viewport = {
       width : 100,
       height : 100
     };
@@ -28,17 +28,17 @@ describe("page header image component", function() {
 
   it("should calculate the image dimensions based on the viewport", function() {
     allDevices(function(d) {
-      toura.app.UI.viewport.width = 100;
+      mulberry.app.UI.viewport.width = 100;
       c = C({ device : d, node : node });
-      expect(parseInt(dojo.attr(c.imageNode, 'width'), 10)).toBe(toura.app.UI.viewport.width);
+      expect(parseInt(dojo.attr(c.imageNode, 'width'), 10)).toBe(mulberry.app.UI.viewport.width);
 
       spyOn(c, '_calculateDimensions').andCallThrough();
 
-      toura.app.UI.viewport.width = 200;
+      mulberry.app.UI.viewport.width = 200;
       dojo.publish('/window/resize');
 
       expect(c._calculateDimensions).toHaveBeenCalled();
-      expect(parseInt(dojo.attr(c.imageNode, 'width'), 10)).toBe(toura.app.UI.viewport.width);
+      expect(parseInt(dojo.attr(c.imageNode, 'width'), 10)).toBe(mulberry.app.UI.viewport.width);
     });
   });
 });

@@ -1,12 +1,12 @@
-describe('toura.models.Tour', function() {
+describe('mulberry.models.Tour', function() {
   var t, mockjax, deviceStorageInit = false;
 
   beforeEach(function() {
-    dojo.require('toura.models.Tour');
+    dojo.require('mulberry.models.Tour');
 
     if (!deviceStorageInit) {
-      toura.app.DeviceStorage.init('fake');
-      toura.app.DeviceStorage.set('tour', [ 1, 2, 3 ]);
+      mulberry.app.DeviceStorage.init('fake');
+      mulberry.app.DeviceStorage.set('tour', [ 1, 2, 3 ]);
       deviceStorageInit = true;
     }
 
@@ -30,7 +30,7 @@ describe('toura.models.Tour', function() {
       return dfd;
     };
 
-    toura.app.PhoneGap = {
+    mulberry.app.PhoneGap = {
       network : {
         isReachable : function() {
           var dfd = new dojo.Deferred();
@@ -41,15 +41,15 @@ describe('toura.models.Tour', function() {
     };
 
     dojo.xhrGet = dojo.io.script.get = mockjax;
-    appMajorVersion = toura.app.Config.get('appVersion').split('.')[0] * 1;
+    appMajorVersion = mulberry.app.Config.get('appVersion').split('.')[0] * 1;
 
-    newerRemoteData = dojo.mixin({}, toura.data.local);
+    newerRemoteData = dojo.mixin({}, mulberry.data.local);
     newerRemoteData.appVersion = appMajorVersion + ".0";
-    newerRemoteData.version = toura.data.local.version + 1;
+    newerRemoteData.version = mulberry.data.local.version + 1;
     newerRemoteData.items = [ { id : 'new' } ];
 
     ajaxMocks = {
-      'bundle' : toura.data.local,
+      'bundle' : mulberry.data.local,
       'remote' : newerRemoteData,
       'version' : { version : newerRemoteData.version, appVersion: appMajorVersion + ".0" }
     };
@@ -60,7 +60,7 @@ describe('toura.models.Tour', function() {
       remoteVersionUrl : 'version'
     };
 
-    t = new toura.models.Tour(config);
+    t = new mulberry.models.Tour(config);
   });
 
   describe("getItems", function() {

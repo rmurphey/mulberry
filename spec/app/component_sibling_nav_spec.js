@@ -2,14 +2,14 @@ describe("sibling nav component", function() {
   var t, C, c, node;
 
   beforeEach(function() {
-    dojo.require('toura.components.SiblingNav');
+    dojo.require('mulberry.components.SiblingNav');
     t = dojo.byId('test');
     qsa = dojo.hitch(t, 'querySelectorAll');
     qs = dojo.hitch(t, 'querySelector');
 
     if (c) { c.destroy(); }
     C = function(config) {
-      return new toura.components.SiblingNav(config || {}).placeAt(t);
+      return new mulberry.components.SiblingNav(config || {}).placeAt(t);
     };
 
     node = {
@@ -19,17 +19,17 @@ describe("sibling nav component", function() {
         {
           id : 'node-122',
           name : 'prev node',
-          url : toura.app.URL.node('node-122')
+          url : mulberry.app.URL.node('node-122')
         },
         {
           id : 'node-123',
           name : 'current node',
-          url : toura.app.URL.node('node-123')
+          url : mulberry.app.URL.node('node-123')
         },
         {
           id : 'node-124',
           name : 'next node',
-          url : toura.app.URL.node('node-124')
+          url : mulberry.app.URL.node('node-124')
         }
       ]
     };
@@ -48,7 +48,7 @@ describe("sibling nav component", function() {
 
   describe("user interaction with links", function() {
     it("should listen for touchstart on the sibling list in touch environments", function() {
-      toura.app.UI.hasTouch = true;
+      mulberry.app.UI.hasTouch = true;
       c = C();
 
       var h = getEventHandler(c, 'touchstart', c.siblingList);
@@ -56,7 +56,7 @@ describe("sibling nav component", function() {
     });
 
     it("should listen for click on the sibling list in non-touch environments", function() {
-      toura.app.UI.hasTouch = false;
+      mulberry.app.UI.hasTouch = false;
       c = C();
 
       var h = getEventHandler(c, 'click', c.siblingList);
@@ -64,11 +64,11 @@ describe("sibling nav component", function() {
     });
 
     it("should announce a click on a sibling link to the router", function() {
-      toura.app.UI.hasTouch = false;
+      mulberry.app.UI.hasTouch = false;
       c = C();
 
       var h = getEventHandler(c, 'click', c.siblingList);
-      var spy = spyOn(toura.app.Router, 'go');
+      var spy = spyOn(mulberry.app.Router, 'go');
       var tpl = c.siblingTemplate;
       var tmp = dojo.create('div');
 
@@ -86,7 +86,7 @@ describe("sibling nav component", function() {
 
   describe("user interaction with buttons", function() {
     it("should listen for touchstart on buttons in touch environments", function() {
-      toura.app.UI.hasTouch = true;
+      mulberry.app.UI.hasTouch = true;
       c = C();
 
       var prevHandler = getEventHandler(c, 'touchstart', c.prevButton);
@@ -97,7 +97,7 @@ describe("sibling nav component", function() {
     });
 
     it("should listen for click on buttons in non-touch environments", function() {
-      toura.app.UI.hasTouch = false;
+      mulberry.app.UI.hasTouch = false;
       c = C();
 
       var prevHandler = getEventHandler(c, 'click', c.prevButton);
@@ -108,11 +108,11 @@ describe("sibling nav component", function() {
     });
 
     it("should announce a click on the previous button to the router with the proper url", function() {
-      toura.app.UI.hasTouch = false;
+      mulberry.app.UI.hasTouch = false;
       c = C();
       c.set('node', node);
 
-      var spy = spyOn(toura.app.Router, 'go');
+      var spy = spyOn(mulberry.app.Router, 'go');
       var prevHandler = getEventHandler(c, 'click', c.prevButton);
 
 
@@ -121,11 +121,11 @@ describe("sibling nav component", function() {
     });
 
     it("should announce a click on the next button to the router with the proper url", function() {
-      toura.app.UI.hasTouch = false;
+      mulberry.app.UI.hasTouch = false;
       c = C();
       c.set('node', node);
 
-      var spy = spyOn(toura.app.Router, 'go');
+      var spy = spyOn(mulberry.app.Router, 'go');
       var nextHandler = getEventHandler(c, 'click', c.nextButton);
 
       nextHandler();
@@ -192,11 +192,11 @@ describe("sibling nav component", function() {
     });
 
     it("should announce backwards navigation when the user clicks on the previous button", function() {
-      toura.app.UI.hasTouch = false;
+      mulberry.app.UI.hasTouch = false;
       c = C();
       c.set('node', node);
       var h = getEventHandler(c, 'click', c.prevButton);
-      var spy = spyOn(toura.app.UI, 'set');
+      var spy = spyOn(mulberry.app.UI, 'set');
       h();
       expect(spy).toHaveBeenCalledWith('navDirection', 'back');
     });
@@ -248,7 +248,7 @@ describe("sibling nav component", function() {
 
     describe("event handling", function() {
       it("should listen for user touch interaction with the handle in touch environment", function() {
-        toura.app.UI.hasTouch = true;
+        mulberry.app.UI.hasTouch = true;
         c = C();
         var spy = spyOn(c, 'toggle');
         var h = getEventHandler(c, 'touchstart', c.handleNode);
@@ -257,7 +257,7 @@ describe("sibling nav component", function() {
       });
 
       it("should listen for a click on the handle in a non-touch environment", function() {
-        toura.app.UI.hasTouch = false;
+        mulberry.app.UI.hasTouch = false;
         c = C();
         var spy = spyOn(c, 'toggle');
         var h = getEventHandler(c, 'click', c.handleNode);

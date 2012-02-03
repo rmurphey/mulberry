@@ -2,21 +2,21 @@ describe("favorites API", function() {
   var api, data, ds, node, id = 'node-image_gallery';
 
   beforeEach(function() {
-    dojo.require('toura.app.user.Favorites');
-    dojo.require('toura.app.DeviceStorage');
-    dojo.require('toura.app.Data');
+    dojo.require('mulberry.app.user.Favorites');
+    dojo.require('mulberry.app.DeviceStorage');
+    dojo.require('mulberry.app.Data');
 
-    toura.app.Config.set('app', toura.data.local);
+    mulberry.app.Config.set('app', mulberry.data.local);
 
     if (!ds) {
-      ds = toura.app.DeviceStorage;
-      ds.init(toura.app.Config.get('id'));
+      ds = mulberry.app.DeviceStorage;
+      ds.init(mulberry.app.Config.get('id'));
     }
 
     ds.set('favorites', null);
 
     if (!api) {
-      api = new toura.app.user.Favorites();
+      api = new mulberry.app.user.Favorites();
     }
 
     api._empty();
@@ -112,7 +112,7 @@ describe("favorites API", function() {
 
       // simulate refreshing data via OTA
       var idToRemove = id,
-          items = dojo.filter(toura.data.local.items, function(item) {
+          items = dojo.filter(mulberry.data.local.items, function(item) {
             return item.id[0] !== idToRemove;
           }, this),
           favs;

@@ -2,12 +2,12 @@ describe("home button", function() {
   var t, C, c;
 
   beforeEach(function() {
-    dojo.require('toura.components.buttons.HomeButton');
-    dojo.require('toura.app.URL');
+    dojo.require('mulberry.components.buttons.HomeButton');
+    dojo.require('mulberry.app.URL');
 
     t = dojo.byId('test');
     if (c) { c.destroy(); }
-    C = toura.components.buttons.HomeButton;
+    C = mulberry.components.buttons.HomeButton;
     routerMock();
   });
 
@@ -20,7 +20,7 @@ describe("home button", function() {
   it("should tell the router to go home when clicked", function() {
     var flag = false;
     c = C().placeAt(t);
-    var spy = spyOn(toura.app.Router, 'home');
+    var spy = spyOn(mulberry.app.Router, 'home');
 
     c.onClick(fakeEventObj);
     expect(spy).toHaveBeenCalled();

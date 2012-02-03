@@ -2,11 +2,11 @@ describe("delete button", function() {
   var t, C, c;
 
   beforeEach(function() {
-    dojo.require('toura.components.buttons.DeleteButton');
+    dojo.require('mulberry.components.buttons.DeleteButton');
     t = dojo.byId('test');
-    C = toura.components.buttons.DeleteButton;
+    C = mulberry.components.buttons.DeleteButton;
     if (c) { c.destroy(); }
-    toura.app.UI.hasTouch = false;
+    mulberry.app.UI.hasTouch = false;
   });
 
   it("should set up the button", function() {

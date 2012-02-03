@@ -2,13 +2,13 @@ describe("ui background image", function() {
   var instance, bgImg, t;
 
   beforeEach(function() {
-    dojo.require("toura.ui.BackgroundImage");
+    dojo.require("mulberry.ui.BackgroundImage");
     t = dojo.byId('test');
 
     if (instance) { instance.destroy(); }
 
     bgImg = function(options) {
-      return new toura.ui.BackgroundImage(options).placeAt(t);
+      return new mulberry.ui.BackgroundImage(options).placeAt(t);
     };
   });
 

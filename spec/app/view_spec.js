@@ -4,9 +4,9 @@ describe("_View base class", function() {
   beforeEach(function() {
     t = dojo.byId('test');
 
-    dojo.require('toura._View');
+    dojo.require('mulberry._View');
 
-    v = new toura._View({}).placeAt(t);
+    v = new mulberry._View({}).placeAt(t);
 
     pageControllerMocks();
   });
@@ -57,7 +57,7 @@ describe("_View base class", function() {
     });
 
     it("should properly handle a Haml template", function() {
-      var v = new toura._View(dojo.mixin(viewSettings, {
+      var v = new mulberry._View(dojo.mixin(viewSettings, {
         templateString : hamlTemplate
       })).placeAt(t);
 
@@ -67,7 +67,7 @@ describe("_View base class", function() {
     });
 
     it("should properly handle a Mustache template", function() {
-      var v = new toura._View(dojo.mixin(viewSettings, {
+      var v = new mulberry._View(dojo.mixin(viewSettings, {
         templateString : mustacheTemplate
       })).placeAt(t);
 

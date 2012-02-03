@@ -2,17 +2,17 @@ describe("containers _LayoutBox", function() {
   var c, C, t, flag;
 
   beforeEach(function() {
-    dojo.require('toura.containers._LayoutBox');
+    dojo.require('mulberry.containers._LayoutBox');
 
     if (c) { c.destroy(); }
 
     C = function(config) {
-      return new toura.containers._LayoutBox(config || {}).placeAt(t);
+      return new mulberry.containers._LayoutBox(config || {}).placeAt(t);
     };
 
     t = dojo.byId('test');
 
-    dojo.declare('toura.components.FakeComponent', [], {
+    dojo.declare('mulberry.components.FakeComponent', [], {
       placeAt : function() {
         flag = true;
       }

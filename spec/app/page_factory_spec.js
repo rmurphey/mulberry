@@ -2,10 +2,10 @@ describe("page factory", function() {
   var f;
 
   beforeEach(function() {
-    dojo.require("toura.app.PageFactory");
-    f = f || new toura.app.PageFactory({ type : 'fake', os : 'fake' });
+    dojo.require("mulberry.app.PageFactory");
+    f = f || new mulberry.app.PageFactory({ type : 'fake', os : 'fake' });
 
-    toura.pageDefs = {
+    mulberry.pageDefs = {
       "user defined template" : "success",
       "default" : "default"
     };
@@ -16,7 +16,7 @@ describe("page factory", function() {
       pageDef : 'user defined template'
     };
 
-    var spy = spyOn(toura.containers, 'Page');
+    var spy = spyOn(mulberry.containers, 'Page');
 
     f.createPage(node);
 

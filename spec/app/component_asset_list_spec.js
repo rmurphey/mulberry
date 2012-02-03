@@ -20,13 +20,13 @@ describe("asset list component", function() {
       };
 
   beforeEach(function() {
-    dojo.require('toura.components.AssetList');
-    C = toura.components.AssetList;
+    dojo.require('mulberry.components.AssetList');
+    C = mulberry.components.AssetList;
 
     t = dojo.byId('test');
     dojo.empty(t);
 
-    toura.app.UI.hasTouch = false;
+    mulberry.app.UI.hasTouch = false;
   });
 
   it("should create an asset list component", function() {
@@ -53,7 +53,7 @@ describe("asset list component", function() {
   });
 
   it("should bind selection event handlers to all assets", function() {
-    // TODO: deal with toura.app.UI.hasTouch == true;
+    // TODO: deal with mulberry.app.UI.hasTouch == true;
     var c = new C(config).placeAt(t);
 
     var eventHandlers = dojo.every(c.list.children, function(el) {
@@ -64,7 +64,7 @@ describe("asset list component", function() {
   });
 
   describe("user interaction", function() {
-    // TODO: deal with toura.app.UI.hasTouch == true;
+    // TODO: deal with mulberry.app.UI.hasTouch == true;
     var c, firstElClickHandler;
 
     beforeEach(function() {

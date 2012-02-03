@@ -2,7 +2,7 @@ describe("data API", function() {
   var source, api, node, image, audio, video;
 
   beforeEach(function() {
-    toura.app.manifest = {
+    mulberry.app.manifest = {
       images : [
         'org-27-images-172-images-gallery.jpg',
         'org-27-images-172-images-featured.jpg',
@@ -19,7 +19,7 @@ describe("data API", function() {
     });
 
     it("should return an object of the given type", function() {
-      expect(node.declaredClass).toEqual('toura.models.Node');
+      expect(node.declaredClass).toEqual('mulberry.models.Node');
     });
 
     it("should throw an error if id is not provided", function() {
@@ -35,9 +35,9 @@ describe("data API", function() {
     });
 
     it("should allow specifying a model type", function() {
-      // note that a limited number of types are defined in toura.app.Data!
-      expect(api.getModel('node-videos', 'node') instanceof toura.models.Node).toBeTruthy();
-      expect(api.getModel('image-bangs', 'backgroundImage') instanceof toura.models.BackgroundImage).toBeTruthy();
+      // note that a limited number of types are defined in mulberry.app.Data!
+      expect(api.getModel('node-videos', 'node') instanceof mulberry.models.Node).toBeTruthy();
+      expect(api.getModel('image-bangs', 'backgroundImage') instanceof mulberry.models.BackgroundImage).toBeTruthy();
     });
 
     it("should cache the results of getting a model", function() {
@@ -118,7 +118,7 @@ describe("data API", function() {
       expect(node.children).toBeDefined();
 
       expect(node.images.length).toEqual(4);
-      expect(node.images[0].declaredClass).toEqual('toura.models.Image');
+      expect(node.images[0].declaredClass).toEqual('mulberry.models.Image');
 
       expect(node.audios.length).toEqual(0);
       expect(node.videos.length).toEqual(0);

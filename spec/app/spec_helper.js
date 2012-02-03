@@ -1,7 +1,7 @@
 require('/dojo-release-1.6.0-src/dojo/dojo.js');
 require('/vendor/haml.js');
 require('/fixtures/tour.js');
-require('/toura/_Logging.js');
+require('/mulberry/_Logging.js');
 
 var dataAPI,
     nodeForController,
@@ -23,39 +23,39 @@ var dataAPI,
       { os : 'android', type : 'phone' }
     ];
 
-toura = {};
-toura.data = {};
-toura.features = toura.features || {};
+mulberry = {};
+mulberry.data = {};
+mulberry.features = mulberry.features || {};
 
 // this might need to be removed in dojo 1.7
 delete window.require;
 window.require = undefined;
 
 beforeEach(function() {
-  dojo.registerModulePath('toura', '../../toura');
+  dojo.registerModulePath('mulberry', '../../mulberry');
   dojo.registerModulePath('vendor', '../../vendor');
   dojo.registerModulePath('data', '../../data-fixtures');
   dojo.registerModulePath('fixtures', '../../fixtures');
 
-  dojo.require('toura._Config');
-  dojo.require('toura.Utilities');
-  dojo.require('toura.app.Data');
-  dojo.require('toura.app.Config');
+  dojo.require('mulberry._Config');
+  dojo.require('mulberry.Utilities');
+  dojo.require('mulberry.app.Data');
+  dojo.require('mulberry.app.Config');
   dojo.require('dojo.cache');
-  dojo.require('toura.app.Has');
+  dojo.require('mulberry.app.Has');
 
-  toura = toura || {};
-  toura.app = toura.app || {};
+  mulberry = mulberry || {};
+  mulberry.app = mulberry.app || {};
 
-  toura.app.UI = toura.app.UI || {
+  mulberry.app.UI = mulberry.app.UI || {
     hasTouch : true,
     set : function() { }
   };
 
-  toura.app.Config.set('app', toura.data.local.app);
+  mulberry.app.Config.set('app', mulberry.data.local.app);
 
-  toura.app.Has = dojo.isFunction(toura.app.Has) ? toura.app.Has() : toura.app.Has;
-  dataAPI = toura.app.Data = dataAPI || new toura.app.Data(toura.data.local.items);
+  mulberry.app.Has = dojo.isFunction(mulberry.app.Has) ? mulberry.app.Has() : mulberry.app.Has;
+  dataAPI = mulberry.app.Data = dataAPI || new mulberry.app.Data(mulberry.data.local.items);
 
   nodeForController = function(c) {
     var node,
@@ -121,14 +121,14 @@ beforeEach(function() {
   };
 
   pageControllerMocks = function() {
-    toura.app.user = toura.app.user || {};
-    toura.app.user.Facebook = toura.app.user.Twitter = {
+    mulberry.app.user = mulberry.app.user || {};
+    mulberry.app.user.Facebook = mulberry.app.user.Twitter = {
       isAuthenticated : function() {
         return true;
       }
     };
 
-    toura.app.user.Favorites = {
+    mulberry.app.user.Favorites = {
       isFavorite : function() {
         return true;
       },
@@ -137,7 +137,7 @@ beforeEach(function() {
       }
     };
 
-    toura.app.UI = {
+    mulberry.app.UI = {
       supportsCssBackgroundContain : function() { return true; },
       viewport : {
         width : 100,
@@ -148,7 +148,7 @@ beforeEach(function() {
   };
 
   routerMock = function() {
-    toura.app.Router = toura.app.Router || {
+    mulberry.app.Router = mulberry.app.Router || {
       go : function() {},
       back : function() {},
       home : function() {}
@@ -172,8 +172,8 @@ beforeEach(function() {
 
   allDevices = function(cb) {
     dojo.forEach(devices, function(d) {
-      toura.Device = d;
-      toura.app.Config.set('device', d);
+      mulberry.Device = d;
+      mulberry.app.Config.set('device', d);
       cb(d);
     });
   };
