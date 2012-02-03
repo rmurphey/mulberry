@@ -129,7 +129,7 @@ module TouraAPP
     end
 
     def self.data(data_object)
-      "mulberry.data.local = #{JSON.pretty_generate(data_object)};"
+      "toura.data.local = #{JSON.pretty_generate(data_object)};"
     end
   end
 end

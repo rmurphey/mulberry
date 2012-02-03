@@ -47,6 +47,13 @@ module Builder
         ]
       },
 
+      :mulberry => {
+        :copyrightFile  => COPYRIGHT_FILE_REL_PATH,
+        :name           => "../mulberry/base.js",
+        :resourceName   => "mulberry.base",
+        :dependencies   => [ "mulberry.base" ]
+      },
+
       :toura => {
         :copyrightFile  => COPYRIGHT_FILE_REL_PATH,
         :name           => "../toura/base.js",
@@ -146,6 +153,7 @@ module Builder
 
         :prefixes => [
           [ "dijit",        "../dijit" ],
+          [ "toura",        "../../toura" ],
           [ "mulberry",     "../../mulberry" ],
           [ "vendor",       "../../vendor" ],
         ],

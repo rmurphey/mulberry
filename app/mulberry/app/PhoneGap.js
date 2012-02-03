@@ -5,7 +5,6 @@ dojo.require('mulberry.app.PhoneGap._base');
 dojo.require('mulberry.app.PhoneGap.notification');
 dojo.require('mulberry.app.PhoneGap.device');
 dojo.require('mulberry.app.PhoneGap.network');
-dojo.require('mulberry.app.PhoneGap.analytics');
 dojo.require('mulberry.app.PhoneGap.audio');
 dojo.require('mulberry.app.PhoneGap.push');
 dojo.require('mulberry.app.PhoneGap.browser');
@@ -20,6 +19,7 @@ dojo.require('mulberry.app.PhoneGap.accelerometer');
       var device = mulberry.Device,
           phonegapPresent = mulberry.app.PhoneGap.present = window.device && window.device.phonegap;
 
+      console.log('NAME', name);
       mulberry.app.PhoneGap[name] = module(phonegapPresent, device);
       dojo.unsubscribe(s);
     });
@@ -29,7 +29,6 @@ dojo.require('mulberry.app.PhoneGap.accelerometer');
     'notification',
     'device',
     'network',
-    'analytics',
     'audio',
     'push',
     'browser',

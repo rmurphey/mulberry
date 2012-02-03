@@ -32,10 +32,6 @@ var readyFn = function() {
 
   // bootstrapping process must publish this topic
   dojo.subscribe('/app/ready', function() {
-
-    // routes should be created in response to /app/started
-    dojo.publish('/app/started');
-
     mulberry.app.Router.init();
     mulberry.app.UI.hideSplash();
   });

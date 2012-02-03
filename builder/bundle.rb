@@ -397,7 +397,7 @@ module Builder
 
       private
       def manifest
-        "toura.app.manifest = #{JSON.pretty_generate(create_dir_manifest(@dir))};"
+        "toura.manifest = #{JSON.pretty_generate(create_dir_manifest(@dir))};"
       end
 
       def create_dir_manifest(d)

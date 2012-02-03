@@ -3,8 +3,6 @@ dojo.provide('mulberry.containers.Page');
 dojo.require('mulberry._View');
 dojo.require('mulberry.ui.BackgroundImage');
 dojo.require('mulberry.containers.Screen');
-dojo.require('mulberry.components._base');
-dojo.require('mulberry.capabilities._base');
 
 dojo.declare('mulberry.containers.Page', [ mulberry._View, mulberry.ui.BackgroundImage ], {
   pageDef : {},
