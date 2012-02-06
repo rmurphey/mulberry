@@ -2,9 +2,9 @@ describe("delete button", function() {
   var t, C, c;
 
   beforeEach(function() {
-    dojo.require('mulberry.components.buttons.DeleteButton');
+    dojo.require('toura.components.buttons.DeleteButton');
     t = dojo.byId('test');
-    C = mulberry.components.buttons.DeleteButton;
+    C = toura.components.buttons.DeleteButton;
     if (c) { c.destroy(); }
     mulberry.app.UI.hasTouch = false;
   });

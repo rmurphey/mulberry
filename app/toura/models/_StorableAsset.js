@@ -31,13 +31,13 @@ dojo.declare('toura.models._StorableAsset', [], {
     if (mulberry.forceStreaming) { return true; }
     if (mulberry.forceLocal) { return false; }
 
-    if (!toura.app.manifest) {
+    if (!toura.manifest) {
       return true;
     }
 
     // first, ask the data whether the asset is streamed; if it is,
     // we assume the asset should be streamed
-    if (!toura.app.manifest || this.store.getValue(item, 'streamed')) { return true; }
+    if (!toura.manifest || this.store.getValue(item, 'streamed')) { return true; }
 
     // if the asset is marked not to stream, we need to check whether
     // we have the asset on device
@@ -47,8 +47,8 @@ dojo.declare('toura.models._StorableAsset', [], {
       this.store.getValue(item, type).filename :
       this.store.getValue(item, 'filename');
 
-    // next, we figure out where to look in toura.app.manifest
-    var lookup = toura.app.manifest[this.store.getValue(item, 'type') + 's'];
+    // next, we figure out where to look in toura.manifest
+    var lookup = toura.manifest[this.store.getValue(item, 'type') + 's'];
 
     // if the manifest doesn't have an entry for the asset type, we must stream
     if (!lookup || !dojo.isArray(lookup)) {

@@ -4,11 +4,11 @@ describe("page header image component", function() {
   beforeEach(function() {
     t = dojo.byId('test');
 
-    dojo.require('mulberry.components.PageHeaderImage');
+    dojo.require('toura.components.PageHeaderImage');
 
     C = function(config) {
       if (c) { c.destroy(); }
-      return new mulberry.components.PageHeaderImage(config || {}).placeAt(t);
+      return new toura.components.PageHeaderImage(config || {}).placeAt(t);
     };
 
     mulberry.app.UI.viewport = {

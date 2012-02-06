@@ -2,13 +2,13 @@ describe("location list", function() {
   var c, C, t, node;
 
   beforeEach(function() {
-    dojo.require('mulberry.components.LocationList');
+    dojo.require('toura.components.LocationList');
 
     t = dojo.byId('test');
 
     C = function(config) {
       if (c) { c.destroy(); }
-      return new mulberry.components.LocationList(config || {}).placeAt(t);
+      return new toura.components.LocationList(config || {}).placeAt(t);
     };
 
     node = nodeForController('LocationList');
@@ -42,7 +42,7 @@ describe("location list", function() {
 
       expect(directionsButtons.length).toBe(node.googleMapPins.length);
       expect(directionsButtons[0].href).toBe(
-        mulberry.app.URL.googleMapAddress(node.googleMapPins[0].address)
+        toura.URL.googleMapAddress(node.googleMapPins[0].address)
       );
 
       expect(directionsButtons[0].target).toBe('_blank');
@@ -64,13 +64,13 @@ describe("location list", function() {
       );
 
       expect(dojo.attr(phoneButtons[0], 'href')).toBe(
-        mulberry.app.URL.tel(node.googleMapPins[0].phoneNumber)
+        toura.URL.tel(node.googleMapPins[0].phoneNumber)
       );
     });
   });
 
   it("should render a website button for locations with website data", function() {
-    node.googleMapPins[0].website = 'http://mulberry.com';
+    node.googleMapPins[0].website = 'http://toura.com';
 
     allDevices(function(d) {
       c = C({ node : node, device : d });

@@ -4,9 +4,9 @@ describe("search results component", function() {
   beforeEach(function() {
     t = dojo.byId('test');
 
-    dojo.require('mulberry.components.SearchResults');
+    dojo.require('toura.components.SearchResults');
     C = function(config) {
-      return new mulberry.components.SearchResults(config || {}).placeAt(t);
+      return new toura.components.SearchResults(config || {}).placeAt(t);
     };
 
     dataAPI._store.fetch({

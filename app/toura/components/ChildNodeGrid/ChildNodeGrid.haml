@@ -3,7 +3,7 @@
     %li
       %a{ href : c.url }
         :if tablet
-          .image{ dojoType : 'toura.ui.BackgroundImage', imageUrl : c.featuredImage.large.url, loadOnInit: true }
+          .image{ dojoType : 'mulberry.ui.BackgroundImage', imageUrl : c.featuredImage.large.url, loadOnInit: true }
         :if phone
-          .image{ dojoType : 'toura.ui.BackgroundImage', imageUrl : c.featuredImage.small.url, loadOnInit: true }
+          .image{ dojoType : 'mulberry.ui.BackgroundImage', imageUrl : c.featuredImage.small.url, loadOnInit: true }
         %h3= c.name

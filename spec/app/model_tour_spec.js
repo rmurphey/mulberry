@@ -1,8 +1,8 @@
-describe('mulberry.models.Tour', function() {
+describe('toura.models.Tour', function() {
   var t, mockjax, deviceStorageInit = false;
 
   beforeEach(function() {
-    dojo.require('mulberry.models.Tour');
+    dojo.require('toura.models.Tour');
 
     if (!deviceStorageInit) {
       mulberry.app.DeviceStorage.init('fake');
@@ -43,13 +43,13 @@ describe('mulberry.models.Tour', function() {
     dojo.xhrGet = dojo.io.script.get = mockjax;
     appMajorVersion = mulberry.app.Config.get('appVersion').split('.')[0] * 1;
 
-    newerRemoteData = dojo.mixin({}, mulberry.data.local);
+    newerRemoteData = dojo.mixin({}, toura.data.local);
     newerRemoteData.appVersion = appMajorVersion + ".0";
-    newerRemoteData.version = mulberry.data.local.version + 1;
+    newerRemoteData.version = toura.data.local.version + 1;
     newerRemoteData.items = [ { id : 'new' } ];
 
     ajaxMocks = {
-      'bundle' : mulberry.data.local,
+      'bundle' : toura.data.local,
       'remote' : newerRemoteData,
       'version' : { version : newerRemoteData.version, appVersion: appMajorVersion + ".0" }
     };
@@ -60,7 +60,7 @@ describe('mulberry.models.Tour', function() {
       remoteVersionUrl : 'version'
     };
 
-    t = new mulberry.models.Tour(config);
+    t = new toura.models.Tour(config);
   });
 
   describe("getItems", function() {

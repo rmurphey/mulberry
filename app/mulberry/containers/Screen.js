@@ -27,13 +27,14 @@ dojo.declare('mulberry.containers.Screen', [ mulberry.containers._LayoutBox ], {
   },
 
   registerComponent : function(c) {
-    var componentName = c.declaredClass
-                          .replace('mulberry.components.', '')
-                          .replace('client.components.', 'custom.');
+    var componentParts = c.declaredClass.split('.'),
+        componentName = componentParts[componentParts.length - 1];
+
     this.components[componentName] = c;
   },
 
   getComponent : function(n) {
+    n = n.replace('custom.', '');
     return this.components[n];
   }
 });

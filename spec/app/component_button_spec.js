@@ -1,12 +1,12 @@
-describe('mulberry.components._Button API', function() {
+describe('toura.components._Button API', function() {
   var t, C, c;
 
   beforeEach(function() {
-    dojo.require('mulberry.components.buttons._Button');
+    dojo.require('toura.components.buttons._Button');
     t = dojo.byId('test');
 
     if (c) { c.destroy(); }
-    C = mulberry.components.buttons._Button;
+    C = toura.components.buttons._Button;
     routerMock();
   });
 

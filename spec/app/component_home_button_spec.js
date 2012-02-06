@@ -2,12 +2,12 @@ describe("home button", function() {
   var t, C, c;
 
   beforeEach(function() {
-    dojo.require('mulberry.components.buttons.HomeButton');
-    dojo.require('mulberry.app.URL');
+    dojo.require('toura.components.buttons.HomeButton');
+    dojo.require('toura.URL');
 
     t = dojo.byId('test');
     if (c) { c.destroy(); }
-    C = mulberry.components.buttons.HomeButton;
+    C = toura.components.buttons.HomeButton;
     routerMock();
   });
 

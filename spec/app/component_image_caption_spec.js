@@ -6,13 +6,13 @@ describe("image caption component", function() {
   };
 
   beforeEach(function() {
-    dojo.require('mulberry.components.ImageCaption');
+    dojo.require('toura.components.ImageCaption');
 
     t = dojo.byId('test');
 
     if (c) { c.destroy(); }
 
-    C = mulberry.components.ImageCaption;
+    C = toura.components.ImageCaption;
   });
 
   it("should display the node body text", function() {
@@ -43,7 +43,7 @@ describe("image caption component", function() {
     expect(t.innerText).not.toMatch(node.images[0].caption);
     expect(t.innerText).toMatch(txt2);
   });
-  
+
 });
 
 

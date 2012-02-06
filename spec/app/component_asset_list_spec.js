@@ -20,8 +20,8 @@ describe("asset list component", function() {
       };
 
   beforeEach(function() {
-    dojo.require('mulberry.components.AssetList');
-    C = mulberry.components.AssetList;
+    dojo.require('toura.components.AssetList');
+    C = toura.components.AssetList;
 
     t = dojo.byId('test');
     dojo.empty(t);

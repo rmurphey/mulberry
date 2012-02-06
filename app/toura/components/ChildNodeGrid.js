@@ -1,6 +1,7 @@
 dojo.provide('toura.components.ChildNodeGrid');
 
 dojo.require('mulberry._Component');
+dojo.require('mulberry.ui.BackgroundImage');
 
 dojo.declare('toura.components.ChildNodeGrid', mulberry._Component, {
   templateString : dojo.cache('toura.components', 'ChildNodeGrid/ChildNodeGrid.haml'),

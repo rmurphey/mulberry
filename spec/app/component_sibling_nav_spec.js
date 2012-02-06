@@ -2,14 +2,14 @@ describe("sibling nav component", function() {
   var t, C, c, node;
 
   beforeEach(function() {
-    dojo.require('mulberry.components.SiblingNav');
+    dojo.require('toura.components.SiblingNav');
     t = dojo.byId('test');
     qsa = dojo.hitch(t, 'querySelectorAll');
     qs = dojo.hitch(t, 'querySelector');
 
     if (c) { c.destroy(); }
     C = function(config) {
-      return new mulberry.components.SiblingNav(config || {}).placeAt(t);
+      return new toura.components.SiblingNav(config || {}).placeAt(t);
     };
 
     node = {
@@ -19,17 +19,17 @@ describe("sibling nav component", function() {
         {
           id : 'node-122',
           name : 'prev node',
-          url : mulberry.app.URL.node('node-122')
+          url : toura.URL.node('node-122')
         },
         {
           id : 'node-123',
           name : 'current node',
-          url : mulberry.app.URL.node('node-123')
+          url : toura.URL.node('node-123')
         },
         {
           id : 'node-124',
           name : 'next node',
-          url : mulberry.app.URL.node('node-124')
+          url : toura.URL.node('node-124')
         }
       ]
     };

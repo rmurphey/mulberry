@@ -4,11 +4,11 @@ describe("google map component", function() {
   beforeEach(function() {
     t = dojo.byId('test');
 
-    dojo.require('mulberry.components.GoogleMap');
+    dojo.require('toura.components.GoogleMap');
 
     C = function(config) {
       if (c) { c.destroy(); }
-      return new mulberry.components.GoogleMap(config).placeAt(t);
+      return new toura.components.GoogleMap(config).placeAt(t);
     };
 
     pins = pins || nodeForController('GoogleMap1').googleMapPins;

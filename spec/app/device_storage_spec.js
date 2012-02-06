@@ -1,11 +1,11 @@
-describe("mulberry database api", function() {
+describe("mulberry device storage api", function() {
   var data, rawData, db, api;
 
   beforeEach(function() {
     dojo.require("mulberry.app.DeviceStorage");
     dojo.require("dojo.cache");
 
-    data = dojo.mixin({}, mulberry.data.local);
+    data = dojo.mixin({}, toura.data.local);
 
     api = mulberry.app.DeviceStorage;
   });

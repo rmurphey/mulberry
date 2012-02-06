@@ -24,7 +24,8 @@ var dataAPI,
     ];
 
 mulberry = {};
-mulberry.data = {};
+toura = {};
+toura.data = {};
 mulberry.features = mulberry.features || {};
 
 // this might need to be removed in dojo 1.7
@@ -33,13 +34,14 @@ window.require = undefined;
 
 beforeEach(function() {
   dojo.registerModulePath('mulberry', '../../mulberry');
+  dojo.registerModulePath('toura', '../../toura');
   dojo.registerModulePath('vendor', '../../vendor');
   dojo.registerModulePath('data', '../../data-fixtures');
   dojo.registerModulePath('fixtures', '../../fixtures');
 
-  dojo.require('mulberry._Config');
+  dojo.require('toura._Config');
+  dojo.require('toura.Data');
   dojo.require('mulberry.Utilities');
-  dojo.require('mulberry.app.Data');
   dojo.require('mulberry.app.Config');
   dojo.require('dojo.cache');
   dojo.require('mulberry.app.Has');
@@ -52,10 +54,10 @@ beforeEach(function() {
     set : function() { }
   };
 
-  mulberry.app.Config.set('app', mulberry.data.local.app);
+  mulberry.app.Config.set('app', toura.data.local.app);
 
   mulberry.app.Has = dojo.isFunction(mulberry.app.Has) ? mulberry.app.Has() : mulberry.app.Has;
-  dataAPI = mulberry.app.Data = dataAPI || new mulberry.app.Data(mulberry.data.local.items);
+  dataAPI = toura.Data = dataAPI || new toura.Data(toura.data.local.items);
 
   nodeForController = function(c) {
     var node,
@@ -121,14 +123,14 @@ beforeEach(function() {
   };
 
   pageControllerMocks = function() {
-    mulberry.app.user = mulberry.app.user || {};
-    mulberry.app.user.Facebook = mulberry.app.user.Twitter = {
+    toura.user = toura.user || {};
+    toura.user.Facebook = toura.user.Twitter = {
       isAuthenticated : function() {
         return true;
       }
     };
 
-    mulberry.app.user.Favorites = {
+    toura.user.Favorites = {
       isFavorite : function() {
         return true;
       },

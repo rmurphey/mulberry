@@ -2,12 +2,12 @@ describe("feed item list component", function() {
   var c, C, node, feedItems, t;
 
   beforeEach(function() {
-    dojo.require('mulberry.components.FeedItemList');
+    dojo.require('toura.components.FeedItemList');
 
     t = dojo.byId('test');
 
     C = function(config) {
-      return new mulberry.components.FeedItemList(config || {}).placeAt(t);
+      return new toura.components.FeedItemList(config || {}).placeAt(t);
     };
 
     if (c) { c.destroy(); }
@@ -16,7 +16,7 @@ describe("feed item list component", function() {
       {
         title : 'Item 1 Title',
         body : '<p>This is the body of item 1</p>',
-        link : 'http://mulberry.com',
+        link : 'http://toura.com',
         author : 'Rebecca Murphey',
         pubDate : new Date(),
         image : false

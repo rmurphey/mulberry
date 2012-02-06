@@ -4,11 +4,11 @@ describe("column header image component", function() {
   beforeEach(function() {
     t = dojo.byId('test');
 
-    dojo.require('mulberry.components.ColumnHeaderImage');
+    dojo.require('toura.components.ColumnHeaderImage');
 
     C = function(config) {
       if (c) { c.destroy(); }
-      return new mulberry.components.ColumnHeaderImage(config || {}).placeAt(t);
+      return new toura.components.ColumnHeaderImage(config || {}).placeAt(t);
     };
 
     mulberry.app.UI.viewport = {

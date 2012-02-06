@@ -97,7 +97,7 @@ dojo.declare('mulberry.app.UI', [ dojo.Stateful ], {
 
   _navSetup : function() {
     if (!mulberry.features.siblingNav) { return; }
-    this.siblingNav = new mulberry.components.SiblingNav().placeAt(this.body, 'last');
+    this.siblingNav = new toura.components.SiblingNav().placeAt(this.body, 'last');
     this.set('siblingNavVisible', false);
   },
 

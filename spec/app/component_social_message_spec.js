@@ -6,11 +6,11 @@ describe("social message component", function() {
       maxLength = 20;
 
   beforeEach(function() {
-    dojo.require('mulberry.components.SocialMessage');
+    dojo.require('toura.components.SocialMessage');
     t = dojo.byId('test');
     C = function(config) {
       if (c) { c.destroy(); }
-      return new mulberry.components.SocialMessage(config || {}).placeAt(t);
+      return new toura.components.SocialMessage(config || {}).placeAt(t);
     };
   });
 

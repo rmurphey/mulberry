@@ -2,14 +2,14 @@ describe("node title banner", function() {
   var t, c, C, node;
 
   beforeEach(function() {
-    dojo.require('mulberry.components.NodeTitleBanner');
+    dojo.require('toura.components.NodeTitleBanner');
 
     t = dojo.byId('test');
 
 
     C = function(config) {
       if (c) { c.destroy(); }
-      return new mulberry.components.NodeTitleBanner(config || {}).placeAt(t);
+      return new toura.components.NodeTitleBanner(config || {}).placeAt(t);
     };
 
     node = {

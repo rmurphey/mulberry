@@ -14,10 +14,10 @@ describe("pin info component", function() {
     t = dojo.byId('test');
     dojo.empty(t);
 
-    dojo.require('mulberry.components.PinInfo');
+    dojo.require('toura.components.PinInfo');
 
     if (c) { c.destroy(); }
-    C = mulberry.components.PinInfo;
+    C = toura.components.PinInfo;
   });
 
   it("should display a provided pin", function() {

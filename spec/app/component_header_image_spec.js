@@ -4,11 +4,11 @@ describe("header image component", function() {
   beforeEach(function() {
     t = dojo.byId('test');
 
-    dojo.require('mulberry.components.HeaderImage');
+    dojo.require('toura.components.HeaderImage');
 
     C = function(config) {
       if (c) { c.destroy(); }
-      return new mulberry.components.HeaderImage(config || {}).placeAt(t);
+      return new toura.components.HeaderImage(config || {}).placeAt(t);
     };
 
     img = img || dataAPI.getModel('node-grid').phoneHeaderImage;

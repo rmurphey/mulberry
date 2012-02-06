@@ -6,10 +6,10 @@ describe("search input component", function() {
 
     if (c) { c.destroy(); }
 
-    dojo.require('mulberry.components.SearchInput');
+    dojo.require('toura.components.SearchInput');
 
     C = function(config) {
-      return new mulberry.components.SearchInput(config || {}).placeAt(t);
+      return new toura.components.SearchInput(config || {}).placeAt(t);
     };
   });
 

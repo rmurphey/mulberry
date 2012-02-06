@@ -2,8 +2,8 @@ describe('back button', function() {
   var t, c, C;
 
   beforeEach(function() {
-    dojo.require('mulberry.components.buttons.BackButton');
-    C = mulberry.components.buttons.BackButton;
+    dojo.require('toura.components.buttons.BackButton');
+    C = toura.components.buttons.BackButton;
     if (c) { c.destroy(); }
     t = dojo.byId('test');
     routerMock();
