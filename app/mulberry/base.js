@@ -4,11 +4,6 @@ mulberry.data = mulberry.data || {};
 mulberry.version = '0.3';
 toura = mulberry;
 
-(function(d) {
-  // prevent inclusion in built files
-  d.require('mulberry._Config');
-}(dojo));
-
 dojo.require('mulberry.app.Config');
 
 dojo.require('mulberry.Device');
