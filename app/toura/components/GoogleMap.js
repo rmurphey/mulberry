@@ -15,7 +15,7 @@ dojo.require('toura.URL');
     templateString : dojo.cache('toura.components', 'GoogleMap/GoogleMap.haml'),
 
     mapType : 'roadmap',
-    apiURL : toura.URL.protocol() + '://maps.google.com/maps/api/js?v=3.4&sensor=false&callback=',
+    apiURL : mulberry.app.URL.protocol() + '://maps.google.com/maps/api/js?v=3.4&sensor=false&callback=',
 
     prepareData : function() {
       // TODO: different behavior if the network isn't reachable?
