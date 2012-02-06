@@ -64,6 +64,12 @@ facebook_api_key:
 twitter_customer_key:
 twitter_customer_secret:
 
+# If this app contains ads, place your ad tag in
+# assets/html/ad-phone.html and assets/html/ad-tablet.html
+# and uncomment the next line
+
+#has_ads: true
+
 # You must replace these with your own app id
 # for each targeted os/device type
 app_id:
