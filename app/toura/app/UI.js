@@ -4,6 +4,7 @@ dojo.require('toura.Device');
 dojo.require('toura.Utilities');
 dojo.require('toura.app.Config');
 dojo.require('toura.containers.Viewport');
+dojo.require('toura.components.AdTag');
 dojo.require('toura.components.SiblingNav');
 dojo.require('toura.app.PhoneGap');
 dojo.require('dojo.string');
@@ -24,6 +25,7 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
     this._watchers();
     this._updateViewport();
 
+    this._adSetup();
     this._uiSetup();
     this._eventSetup();
     this._containersSetup();
@@ -99,6 +101,11 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
     if (!toura.features.siblingNav) { return; }
     this.siblingNav = new toura.components.SiblingNav().placeAt(this.body, 'last');
     this.set('siblingNavVisible', false);
+  },
+
+  _adSetup : function() {
+    if (!TouraAppConfig.hasAds) { return; }
+    this.adTag = new toura.components.AdTag().placeAt(this.body, 'last');
   },
 
   _eventSetup : function() {

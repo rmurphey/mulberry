@@ -1,0 +1,16 @@
+.component.ad-tag {
+  height:50px;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+  iframe {
+    background: #ccc;
+    border: none;
+    height: 50px;
+    margin: 0 auto;
+  }
+}
