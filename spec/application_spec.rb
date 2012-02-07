@@ -53,7 +53,7 @@ describe TouraAPP do
     describe "#page_defs" do
       it "should return a page defs JS string based on what it is provided" do
         str = TouraAPP::Generators.page_defs({ 'foo' => { 'bar' => 'baz' }})
-        str.should include "toura.pageDef('foo'"
+        str.should include "mulberry.pageDef('foo'"
         str.should include 'bar'
         str.should include 'baz'
       end
@@ -88,7 +88,7 @@ describe TouraAPP do
 
       it "should set toura.features.disableBackButton if :disable_back_button is true" do
         html = TouraAPP::Generators.index_html :disable_back_button => true
-        html.should match 'toura.features.disableBackButton = true;'
+        html.should match 'mulberry.features.disableBackButton = true;'
       end
 
       it "should include a title if one is provided" do
