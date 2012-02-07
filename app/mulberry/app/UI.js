@@ -10,7 +10,7 @@ dojo.require('dojo.string');
 
 dojo.require('dojo.Stateful');
 
-dojo.declare('mulberry.app.UI', [ dojo.Stateful ], {
+dojo.declare('mulberry.app.UI', dojo.Stateful, {
   containers : {},
   currentPage : null,
 
