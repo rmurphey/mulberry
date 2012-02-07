@@ -6,6 +6,13 @@ dojo.declare('toura.components.SiblingNav', toura._Component, {
   templateString : dojo.cache('toura.components', 'SiblingNav/SiblingNav.haml'),
   siblingTemplate : Haml(dojo.cache('toura.components', 'SiblingNav/Sibling.haml')),
 
+  adjustMarkup : function() {
+    if (TouraAppConfig.hasAds) {
+      toura.log(this);
+      dojo.addClass(this.domNode, "with-ads");
+    }
+  },
+
   setupConnections : function() {
     var evt = toura.app.UI.hasTouch ? 'touchstart' : 'click';
 

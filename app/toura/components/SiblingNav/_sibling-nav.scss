@@ -8,6 +8,10 @@
   left: 0;
   right: 0;
 
+  &.with-ads {
+    bottom: 50px;
+  }
+
   -webkit-transition: -webkit-transform 0.15s ease-in;
 
   .phone & {
