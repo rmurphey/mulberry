@@ -23,7 +23,7 @@ var createHash = function() {
     nonce.push((((1+Math.random())*0x10000)).toString(16).substring(0,3));
   }
 
-  return '#mulberry-' + nonce.join("");
+  return '#m-' + nonce.join("");
 };
 
 
