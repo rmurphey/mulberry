@@ -53,6 +53,7 @@ describe Builder::Build do
 
         [ 'iphone', 'www', 'javascript' ],
         [ 'iphone', 'www', 'javascript', 'dojo', 'dojo.js' ],
+        [ 'iphone', 'www', 'javascript', 'mulberry', 'base.js' ],
         [ 'iphone', 'www', 'javascript', 'toura', 'base.js' ],
         [ 'iphone', 'www', 'javascript', 'client', 'base.js' ],
         [ 'iphone', 'www', 'javascript', 'toura', '_Config.js' ],
@@ -120,6 +121,7 @@ describe Builder::Build do
 
         [ 'ipad', 'www', 'javascript' ],
         [ 'ipad', 'www', 'javascript', 'dojo', 'dojo.js' ],
+        [ 'ipad', 'www', 'javascript', 'mulberry', 'base.js' ],
         [ 'ipad', 'www', 'javascript', 'toura', 'base.js' ],
         [ 'ipad', 'www', 'javascript', 'client', 'base.js' ],
         [ 'ipad', 'www', 'javascript', 'toura', '_Config.js' ],
@@ -186,6 +188,7 @@ describe Builder::Build do
 
         [ 'android', 'assets', 'www', 'javascript' ],
         [ 'android', 'assets', 'www', 'javascript', 'dojo', 'dojo.js' ],
+        [ 'android', 'assets', 'www', 'javascript', 'mulberry', 'base.js' ],
         [ 'android', 'assets', 'www', 'javascript', 'toura', 'base.js' ],
         [ 'android', 'assets', 'www', 'javascript', 'client', 'base.js' ],
         [ 'android', 'assets', 'www', 'javascript', 'toura', '_Config.js' ],
