@@ -3,7 +3,7 @@ dojo.provide('mulberry.containers.Viewport');
 dojo.require('mulberry._View');
 dojo.require('mulberry.app.Config');
 
-dojo.declare('mulberry.containers.Viewport', [ mulberry._View ], {
+dojo.declare('mulberry.containers.Viewport', mulberry._View, {
   templateString : dojo.cache('mulberry.containers', 'Viewport/Viewport.haml'),
 
   direction : 'next',
