@@ -3,7 +3,7 @@ dojo.provide('mulberry.containers.Screen');
 dojo.require('mulberry.containers._LayoutBox');
 dojo.require('mulberry.containers.Region');
 
-dojo.declare('mulberry.containers.Screen', [ mulberry.containers._LayoutBox ], {
+dojo.declare('mulberry.containers.Screen', mulberry.containers._LayoutBox, {
   templateString : dojo.cache('mulberry.containers', 'Screen/Screen.haml'),
   components : {},
 

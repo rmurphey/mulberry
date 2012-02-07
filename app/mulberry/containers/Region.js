@@ -3,7 +3,7 @@ dojo.provide('mulberry.containers.Region');
 dojo.require('mulberry.containers._LayoutBox');
 dojo.require('mulberry.ui.Scrollable');
 
-dojo.declare('mulberry.containers.Region', [ mulberry.containers._LayoutBox ], {
+dojo.declare('mulberry.containers.Region', mulberry.containers._LayoutBox, {
   templateString : dojo.cache('mulberry.containers', 'Region/Region.haml'),
   config : {},
   _scroller : null,
