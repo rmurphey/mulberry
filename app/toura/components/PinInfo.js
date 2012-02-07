@@ -38,7 +38,7 @@ dojo.declare('toura.components.PinInfo', mulberry._Component, {
 
     this.set('pinName', pin.name);
     this.set('address', pin.address);
-    this.set('directionsUrl', toura.URL.googleMapAddress(pin.address));
+    this.set('directionsUrl', mulberry.app.URL.googleMapAddress(pin.address));
     this.set('phoneNumber', pin.phoneNumber);
     this.set('website', pin.website);
 
@@ -53,7 +53,7 @@ dojo.declare('toura.components.PinInfo', mulberry._Component, {
 
     this.show(this.phoneNumberContainerNode);
     this.phoneNumberNode.innerHTML = phone;
-    dojo.attr(this.phoneNumberContainerNode, 'href', toura.URL.tel(phone));
+    dojo.attr(this.phoneNumberContainerNode, 'href', mulberry.app.URL.tel(phone));
   },
 
   _setWebsiteAttr : function(website) {

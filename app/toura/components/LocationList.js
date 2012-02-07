@@ -10,8 +10,8 @@ dojo.declare('toura.components.LocationList', mulberry._Component, {
     this.locations = dojo.map(this.node.googleMapPins, function(pin) {
       var loc = dojo.mixin({}, pin);
 
-      loc.directionsUrl = pin.address && toura.URL.googleMapAddress(pin.address);
-      loc.phoneUrl = pin.phoneNumber && toura.URL.tel(pin.phoneNumber);
+      loc.directionsUrl = pin.address && mulberry.app.URL.googleMapAddress(pin.address);
+      loc.phoneUrl = pin.phoneNumber && mulberry.app.URL.tel(pin.phoneNumber);
 
       return loc;
     });

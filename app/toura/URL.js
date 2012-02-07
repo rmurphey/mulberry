@@ -54,21 +54,6 @@ toura.URL = {
     return [ 'media', dirs[type], filename ].join('/');
   },
 
-  googleMapAddress : function(address) {
-    var url = 'http://maps.google.com/maps?',
-        params = { q : address };
-
-    return url + dojo.objectToQuery(params);
-  },
-
-  protocol : function() {
-    return (/^https/).test(document.location.protocol) ? 'https' : 'http';
-  },
-
-  tel : function(tel) {
-    return 'tel:' + tel.replace(/\W/g, '');
-  },
-
   feedItem : function(feedId, itemIndex) {
     return '/feed/' + feedId + '/item/' + itemIndex;
   }
