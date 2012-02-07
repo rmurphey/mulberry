@@ -154,7 +154,8 @@ module Mulberry
           'videos',
           'images',
           'feeds',
-          'locations'
+          'locations',
+          'html'
         ],
 
         :javascript => [
