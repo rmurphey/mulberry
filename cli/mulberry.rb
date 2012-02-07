@@ -184,10 +184,6 @@ module Mulberry
         FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
       end
 
-      [ 'phone', 'tablet' ].each do |device|
-        FileUtils.touch File.join(base, 'assets', 'html', "ad-#{device}.html")
-      end
-
       [ CONFIG, SITEMAP ].each do |tmpl|
         FileUtils.cp(File.join(mulberry_base, 'templates', tmpl), base)
       end
