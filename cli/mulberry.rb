@@ -180,7 +180,11 @@ module Mulberry
       asset_dirs = Dir.entries File.join(base, 'assets')
 
       [ 'audios', 'videos', 'images', 'locations', 'html' ].each do |asset_dir|
-        FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
+        if asset_dir == 'html'
+          FileUtils.mkdir_p File.join(base, 'assets', asset_dir)
+        else
+          FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
+        end
       end
 
       [ CONFIG, SITEMAP ].each do |tmpl|
