@@ -8,7 +8,6 @@ dojo.declare('toura.components.SiblingNav', toura._Component, {
 
   adjustMarkup : function() {
     if (TouraAppConfig.hasAds) {
-      toura.log(this);
       dojo.addClass(this.domNode, "with-ads");
     }
   },
