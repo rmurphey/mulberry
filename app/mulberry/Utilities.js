@@ -20,7 +20,7 @@ mulberry.util = {
     text = text
       .replace('<\/p>',' ')
       .replace('<br>',' ')
-      .replace(mulberry.regex.stripHTML, '');
+      .replace(/(<\/.>)|(<.>)|(<[^b][^r]?[^>]*>)/g, '');
 
     oldText = text = dojo.trim(text);
 
@@ -44,10 +44,6 @@ mulberry.util = {
     });
   }
 
-};
-
-mulberry.regex = {
-  stripHTML : /(<\/.>)|(<.>)|(<[^b][^r]?[^>]*>)/g
 };
 
 mulberry.tmpl = function(str, data) {
