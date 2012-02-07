@@ -41,6 +41,8 @@ describe Mulberry::App do
         [ 'assets', 'data' ],
         [ 'assets', 'feeds' ],
         [ 'assets', 'html' ],
+        [ 'assets', 'html', 'ad-phone.html' ],
+        [ 'assets', 'html', 'ad-tablet.html'],
         [ 'assets', 'audios', 'captions' ],
         [ 'assets', 'videos', 'captions' ],
         [ 'assets', 'images', 'captions' ],
