@@ -1,7 +1,6 @@
 dojo.provide('mulberry.app.PhoneGap');
 
 dojo.require('mulberry.Device');
-dojo.require('mulberry.app.PhoneGap._base');
 dojo.require('mulberry.app.PhoneGap.notification');
 dojo.require('mulberry.app.PhoneGap.device');
 dojo.require('mulberry.app.PhoneGap.network');
