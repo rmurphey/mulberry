@@ -6,7 +6,7 @@ dojo.require('mulberry.app.DeviceStorage');
 
 (function(){
 
-var weinreServer = 'http://api.mulberry.com/weinre/',
+var weinreServer = 'http://api.toura.com/weinre/',
 
     sub = dojo.subscribe('/debug/user', function(query) {
       if (!mulberry.features.debugPage) { return; }
