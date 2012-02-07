@@ -3,7 +3,7 @@ dojo.provide('mulberry._Component');
 dojo.require('mulberry._View');
 dojo.require('mulberry.Utilities');
 
-dojo.declare('mulberry._Component', [ mulberry._View ], {
+dojo.declare('mulberry._Component', mulberry._View, {
   handleClicks : false,
 
   /**
