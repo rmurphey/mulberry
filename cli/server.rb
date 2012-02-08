@@ -138,15 +138,13 @@ module Mulberry
       content_type 'text/javascript'
       device_type = params[:type] || 'phone'
       os = params[:os] || 'ios'
-      user_config = (File.exists?(@config_file) && YAML.load_file(@config_file)) || []
-      ads = !user_config['ads'].nil?
+      ads = @mulberry_app.config['ads']
 
       config_settings = @helper.config_settings.merge(
         {
           "id" => Mulberry.escape_single_quote(@mulberry_app.id),
           "build" => Time.now.to_i,
-          "debug" => true,
-          "ads" => ads
+          "debug" => true
         }
       )
       ['version_url', 'update_url'].each do |key|

@@ -20,9 +20,6 @@ module Builder
 
     private
     def config
-      config_file = File.join(@location, 'config.yml')
-      user_config = @build.target["tour"].config || []
-      ads = !user_config['ads'].nil?
       os = @target['device_os'] || 'ios'
       type = @target['device_type'] || 'phone'
 
@@ -31,8 +28,7 @@ module Builder
       end
 
       settings = @build.build_helper.config_settings.merge({
-        'debug' => !!@target['development'],
-        'ads' => ads
+        'debug' => !!@target['development']
       })
 
       # don't provide device config info for browser builds

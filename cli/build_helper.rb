@@ -42,7 +42,8 @@ module Mulberry
     def config_settings
       add_ota_to_config_settings({
         'id' => Mulberry.escape_single_quote(@config['name']),
-        'sibling_nav' => false
+        'sibling_nav' => false,
+        'ads' => @config['ads']
       })
     end
 
