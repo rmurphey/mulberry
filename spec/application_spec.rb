@@ -105,9 +105,9 @@ describe TouraAPP do
     end
 
     describe "#config" do
-      it "should return a toura._Config file" do
+      it "should return a toura.AppConfig file" do
         c = TouraAPP::Generators.config('ios', 'phone')
-        c.should match /dojo\.provide\('toura\._Config'\);/
+        c.should match "mulberry._Config"
         c.should match "phone"
         c.should match "ios"
       end
