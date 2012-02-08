@@ -64,12 +64,13 @@ facebook_api_key:
 twitter_customer_key:
 twitter_customer_secret:
 
-# If this app contains ads, put the ad URLs
-# you can specify per-device URLs here
+# If this app contains ads, you can specify per-device URLs here.
+# The URLs should point to tour ad tag code on a remote server.
+# Whatever code is at the ad URLs will be loaded into an iframe.
 
 #ads:
-#  phone:
-#  tablet:
+#  phone: http://my-phone-ad-url.com
+#  tablet: http://my-tablet-ad-url.com
 
 
 # You must replace these with your own app id
