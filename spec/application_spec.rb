@@ -119,6 +119,15 @@ describe TouraAPP do
         c = TouraAPP::Generators.config('ios', 'phone', { 'sibling_nav' => true });
         c.should include 'siblingNav : true'
       end
+
+      it "should allow enabling or disabling ads" do
+        c = TouraAPP::Generators.config('ios', 'phone', { 'ads' => false });
+        c.should include 'ads : false'
+
+        c = TouraAPP::Generators.config('ios', 'phone', { 'ads' => true });
+        c.should include 'ads : true'
+      end
+
     end
   end
 end
