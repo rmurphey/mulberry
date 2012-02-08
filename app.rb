@@ -103,7 +103,7 @@ module TouraAPP
         'sibling_nav'         =>  true,
         'postscript'          =>  '',
         'locale'              =>  'en-us',
-        'ads'                 =>  false,
+        'ads'                 =>  false
       }
 
       settings = defaults.merge(binding)
