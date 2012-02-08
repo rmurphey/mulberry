@@ -1,6 +1,5 @@
 dojo.provide('toura.components.AudioList');
 
-dojo.require('mulberry._Component');
 dojo.require('toura.components.AssetList');
 
 dojo.declare('toura.components.AudioList', toura.components.AssetList, {
