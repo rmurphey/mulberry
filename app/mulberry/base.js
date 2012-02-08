@@ -1,7 +1,6 @@
 dojo.provide('mulberry.base');
 
 $m = mulberry;
-mulberry.data = mulberry.data || {};
 mulberry.version = '0.3';
 
 dojo.require('mulberry.app.Config');

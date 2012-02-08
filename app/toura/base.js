@@ -10,3 +10,6 @@ dojo.require('toura.Sharing');
 dojo.require('toura.URL');
 dojo.require('toura.capabilities._base');
 dojo.require('toura.components._base');
+
+toura.data = toura.data || {};
+
