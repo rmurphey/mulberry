@@ -3,6 +3,12 @@ dojo.provide('mulberry.containers.Region');
 dojo.require('mulberry.containers._LayoutBox');
 dojo.require('mulberry.ui.Scrollable');
 
+(function() {
+
+mulberry.components = mulberry.components || {};
+
+var componentNamespaces = [ mulberry.components ];
+
 dojo.declare('mulberry.containers.Region', mulberry.containers._LayoutBox, {
   templateString : dojo.cache('mulberry.containers', 'Region/Region.haml'),
   config : {},
@@ -43,10 +49,19 @@ dojo.declare('mulberry.containers.Region', mulberry.containers._LayoutBox, {
 
     if (this.config.components && this.config.components.length) {
       dojo.forEach(this.config.components, function(componentName) {
+        var klass;
 
-        var klass = componentName.match(/^custom\./) ?
-                    client.components[componentName.replace(/^custom\./, '')] :
-                    mulberry.components[componentName];
+        if (componentName.match(/^custom\./)) {
+          klass = client.components[componentName.replace(/^custom\./, '')];
+        } else {
+          dojo.forEach(componentNamespaces, function(ns) {
+            klass = ns[componentName];
+          });
+        }
+
+        if (!klass) {
+          console.error('No matching class found for', componentName);
+        }
 
         var c = this.adopt(klass, {
           baseObj : this.baseObj,
@@ -99,3 +114,8 @@ dojo.declare('mulberry.containers.Region', mulberry.containers._LayoutBox, {
   }
 });
 
+mulberry.registerComponentNamespace = function(ns) {
+  componentNamespaces.push(ns);
+};
+
+}());

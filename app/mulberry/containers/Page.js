@@ -4,6 +4,12 @@ dojo.require('mulberry._View');
 dojo.require('mulberry.ui.BackgroundImage');
 dojo.require('mulberry.containers.Screen');
 
+(function() {
+
+mulberry.capabilities = mulberry.capabilities || {};
+
+var capabilitiesNamespaces = [ mulberry.capabilities ];
+
 dojo.declare('mulberry.containers.Page', [ mulberry._View, mulberry.ui.BackgroundImage ], {
   pageDef : {},
   templateString : dojo.cache('mulberry.containers', 'Page/Page.haml'),
@@ -40,14 +46,19 @@ dojo.declare('mulberry.containers.Page', [ mulberry._View, mulberry.ui.Backgroun
 
     this.capabilities = dojo.map(this.pageDef.capabilities || [], function(config) {
       var C = dojo.isObject(config) ? config.name : config,
-          components = config.components;
+          components = config.components,
+          capability;
 
-      if (!mulberry.capabilities[C]) {
-        console.warn('No capability', C, 'defined -- did you remember to require it in mulberry.capabilities._base?');
+      dojo.forEach(capabilitiesNamespaces, function(ns) {
+        capability = ns[C];
+      });
+
+      if (!capability) {
+        console.warn('No capability', C, 'defined in these namespaces', capabilitiesNamespaces.join(', '));
         return null;
       }
 
-      return new mulberry.capabilities[C]({
+      return new capability({
         page : this,
         baseObj : this.baseObj,
         components : components
@@ -104,3 +115,9 @@ dojo.declare('mulberry.containers.Page', [ mulberry._View, mulberry.ui.Backgroun
     // for capability connections
   }
 });
+
+mulberry.registerCapabilityNamespace = function(ns) {
+  capabilitiesNamespaces.push(ns);
+};
+
+}());

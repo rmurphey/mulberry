@@ -13,3 +13,5 @@ dojo.require('toura.components._base');
 
 toura.data = toura.data || {};
 
+mulberry.registerComponentNamespace(toura.components);
+mulberry.registerCapabilityNamespace(toura.capabilities);
