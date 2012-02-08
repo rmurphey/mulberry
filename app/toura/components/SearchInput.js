@@ -49,8 +49,8 @@ dojo.declare('toura.components.SearchInput', mulberry._Component, {
     e.stopPropagation();
     var q = this.queryInput.value;
 
-    if (/^toura:./.test(q)) {
-      console.log('found toura:');
+    if (/^mulberry:./.test(q)) {
+      console.log('found mulberry:');
       dojo.publish('/debug/user', [ q ]);
       return;
     }
