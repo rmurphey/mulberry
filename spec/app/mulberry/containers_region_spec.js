@@ -63,6 +63,24 @@ describe("containers region", function() {
     expect(c.domNode.querySelectorAll(getRootSelector(c)).length).toBe(3);
   });
 
+  it("should allow registering other namespaces for components", function() {
+    dojo.declare('another.namespace.MyComponent', null, {
+      placeAt : function() {
+        flag = true;
+      }
+    });
+
+    mulberry.registerComponentNamespace(another.namespace);
+
+    c = C({
+      config : {
+        components : [ 'MyComponent' ]
+      }
+    });
+
+    expect(flag).toBeTruthy();
+  });
+
   describe("scrollability", function() {
     beforeEach(function() {
       c = C({ config : { scrollable : true } }).placeAt(t);

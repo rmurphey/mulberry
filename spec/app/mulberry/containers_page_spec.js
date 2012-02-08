@@ -121,4 +121,23 @@ describe("page container", function() {
 
     expect(spy).toHaveBeenCalled();
   });
+
+  it("should allow registering other namespaces for capabilities", function() {
+    dojo.declare('another.namespace.MyCapability', [], {});
+    mulberry.registerCapabilityNamespace(another.namespace);
+
+    var spy = spyOn(another.namespace, 'MyCapability');
+
+    c = C({
+      baseObj : {},
+      device : devices[0],
+      pageDef : {
+        screens : [ 1 ],
+        capabilities : [ 'MyCapability' ]
+      }
+    });
+
+    expect(spy).toHaveBeenCalled();
+  });
+
 });
