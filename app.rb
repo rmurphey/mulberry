@@ -101,7 +101,8 @@ module TouraAPP
         'debug'               =>  false,
         'force_local'         =>  false,
         'sibling_nav'         =>  true,
-        'postscript'          =>  ''
+        'postscript'          =>  '',
+        'locale'              =>  'en-us'
       }
 
       settings = defaults.merge(binding)
