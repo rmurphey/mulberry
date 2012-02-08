@@ -130,7 +130,6 @@ else
 	brew install android-sdk
 fi
 
-:q
 if [[ $(cat ~/Documents/PhoneGapLib/VERSION ) =~ '1.3.0' ]]
 then
 	echo "PhoneGap 1.3.0 is installed."
