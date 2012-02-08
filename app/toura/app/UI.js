@@ -104,12 +104,11 @@ dojo.declare('toura.app.UI', [ dojo.Stateful ], {
 
   _adSetup : function() {
     if (!toura.features.ads) { return; }
-    dojo.addClass(this.body,"has-ads");
     toura.app.PhoneGap.network.isReachable()
       .then(
         dojo.hitch(this, function(isReachable) {
           if (!isReachable) { return; }
-          this.adTag = new toura.components.AdTag().placeAt(this.body, 'last');
+          new toura.components.AdTag().placeAt(this.body, 'last');
       })
     );
   },
