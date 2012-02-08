@@ -64,7 +64,7 @@ module TouraAPP
     end
 
     def self.config
-      File.join(self.root, '_Config.js.mustache')
+      File.join(self.root, 'AppConfig.js.mustache')
     end
   end
 

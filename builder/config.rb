@@ -2,7 +2,7 @@ require "builder/task_base"
 
 module Builder
   class Config < Builder::TaskBase
-    CONFIG_FILENAME = '_Config.js'
+    CONFIG_FILENAME = 'AppConfig.js'
 
     public
     def build

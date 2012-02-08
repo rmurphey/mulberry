@@ -4,13 +4,7 @@ toura.data = toura.data || {};
 toura.version = '0.3';
 mulberry = toura;
 
-(function(d) {
-  // prevent inclusion in built files
-  d.require('toura._Config');
-}(dojo));
-
 dojo.require('toura.app.Config');
-
 dojo.require('toura.Device');
 
 dojo.require('toura._Logging');
