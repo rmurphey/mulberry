@@ -56,7 +56,7 @@ describe Builder::Build do
         [ 'iphone', 'www', 'javascript', 'mulberry', 'base.js' ],
         [ 'iphone', 'www', 'javascript', 'toura', 'base.js' ],
         [ 'iphone', 'www', 'javascript', 'client', 'base.js' ],
-        [ 'iphone', 'www', 'javascript', 'toura', '_Config.js' ],
+        [ 'iphone', 'www', 'javascript', 'toura', 'AppConfig.js' ],
         [ 'iphone', 'www', 'javascript', 'vendor', 'haml.js' ]
       ].each do |path|
         File.exists?(File.join(@bundle[:location], path)).should be_true
@@ -124,7 +124,7 @@ describe Builder::Build do
         [ 'ipad', 'www', 'javascript', 'mulberry', 'base.js' ],
         [ 'ipad', 'www', 'javascript', 'toura', 'base.js' ],
         [ 'ipad', 'www', 'javascript', 'client', 'base.js' ],
-        [ 'ipad', 'www', 'javascript', 'toura', '_Config.js' ],
+        [ 'ipad', 'www', 'javascript', 'toura', 'AppConfig.js' ],
         [ 'ipad', 'www', 'javascript', 'vendor', 'haml.js' ]
       ].each do |path|
         File.exists?(File.join(@bundle[:location], path)).should be_true
@@ -191,7 +191,7 @@ describe Builder::Build do
         [ 'android', 'assets', 'www', 'javascript', 'mulberry', 'base.js' ],
         [ 'android', 'assets', 'www', 'javascript', 'toura', 'base.js' ],
         [ 'android', 'assets', 'www', 'javascript', 'client', 'base.js' ],
-        [ 'android', 'assets', 'www', 'javascript', 'toura', '_Config.js' ],
+        [ 'android', 'assets', 'www', 'javascript', 'toura', 'AppConfig.js' ],
         [ 'android', 'assets', 'www', 'javascript', 'vendor', 'haml.js' ]
       ].each do |path|
         File.exists?(File.join(@bundle[:location], path)).should be_true
