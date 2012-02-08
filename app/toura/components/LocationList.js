@@ -1,6 +1,7 @@
 dojo.provide('toura.components.LocationList');
 
 dojo.require('mulberry._Component');
+dojo.require('mulberry.app.URL');
 dojo.require('toura.URL');
 
 dojo.declare('toura.components.LocationList', mulberry._Component, {

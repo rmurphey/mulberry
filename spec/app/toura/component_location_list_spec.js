@@ -42,7 +42,7 @@ describe("location list", function() {
 
       expect(directionsButtons.length).toBe(node.googleMapPins.length);
       expect(directionsButtons[0].href).toBe(
-        toura.URL.googleMapAddress(node.googleMapPins[0].address)
+        mulberry.app.URL.googleMapAddress(node.googleMapPins[0].address)
       );
 
       expect(directionsButtons[0].target).toBe('_blank');
@@ -64,7 +64,7 @@ describe("location list", function() {
       );
 
       expect(dojo.attr(phoneButtons[0], 'href')).toBe(
-        toura.URL.tel(node.googleMapPins[0].phoneNumber)
+        mulberry.app.URL.tel(node.googleMapPins[0].phoneNumber)
       );
     });
   });

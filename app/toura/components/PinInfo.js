@@ -3,6 +3,7 @@ dojo.provide('toura.components.PinInfo');
 dojo.require('mulberry._Component');
 dojo.require('toura.components.PinCaption');
 dojo.require('mulberry.ui.Scrollable');
+dojo.require('mulberry.app.URL');
 dojo.require('toura.URL');
 
 dojo.declare('toura.components.PinInfo', mulberry._Component, {

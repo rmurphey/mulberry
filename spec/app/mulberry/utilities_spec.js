@@ -102,7 +102,7 @@ describe("utilities", function() {
           flag = false;
 
       runs(function() {
-        ret.then(function(data) { flag = data; });
+        ret.then(function() { flag = true; }, function() { flag = true; });
       });
 
       waits(500);
