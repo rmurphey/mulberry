@@ -19,7 +19,6 @@ module Mulberry
       @iframe_template = 'iframe.html'.to_sym
       @source_dir = @mulberry_app.source_dir
       @js_build_name = 'dev'
-      @config_file = File.join(@source_dir, 'config.yml')
     end
 
     private
