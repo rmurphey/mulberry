@@ -43,7 +43,7 @@ describe TouraAPP do
     describe "#config" do
       it "should return the location of the toura._Config template" do
         f = TouraAPP::Templates.config
-        f.should match '_Config'
+        f.should match 'AppConfig'
         File.exists?(f).should be_true
       end
     end
