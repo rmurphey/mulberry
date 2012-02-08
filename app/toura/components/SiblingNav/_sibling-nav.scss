@@ -8,6 +8,9 @@
   left: 0;
   right: 0;
 
+  .feature-ads & {
+    bottom: 50px;
+  }
 
   -webkit-transition: -webkit-transform 0.15s ease-in;
 
@@ -78,8 +81,3 @@
   }
 }
 
-.feature-ads {
-  .component.sibling-nav {
-    bottom: 50px;
-  }
-}
