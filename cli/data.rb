@@ -43,7 +43,6 @@ module Mulberry
       @item_ids   = []
 
       process_api_keys
-      process_ad_support
       read_sitemap
     end
 
@@ -105,15 +104,6 @@ module Mulberry
         camel_key = api_key[0].to_s.underscore.camelize(:lower)
         @config[camel_key] = api_key[1]
         @config.delete api_key[0]
-      end
-    end
-
-    def process_ad_support
-      ad_support = @config['has_ads'] || false
-
-      if ad_support
-        @config['hasAds'] = true
-        @config.delete 'has_ads'
       end
     end
 

@@ -19,6 +19,7 @@ module Mulberry
       @iframe_template = 'iframe.html'.to_sym
       @source_dir = @mulberry_app.source_dir
       @js_build_name = 'dev'
+      @config_file = File.join(@source_dir, 'config.yml')
     end
 
     private
@@ -137,12 +138,15 @@ module Mulberry
       content_type 'text/javascript'
       device_type = params[:type] || 'phone'
       os = params[:os] || 'ios'
+      user_config = (File.exists?(@config_file) && YAML.load_file(@config_file)) || []
+      ads = !user_config['ads'].nil?
 
       config_settings = @helper.config_settings.merge(
         {
           "id" => Mulberry.escape_single_quote(@mulberry_app.id),
           "build" => Time.now.to_i,
-          "debug" => true
+          "debug" => true,
+          "ads" => ads
         }
       )
       ['version_url', 'update_url'].each do |key|
