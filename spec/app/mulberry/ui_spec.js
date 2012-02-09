@@ -7,6 +7,7 @@ describe("user interface controller", function() {
     dojo.require("mulberry.app.DeviceStorage");
 
     if (!pg) {
+      dojo.publish('/app/deviceready');
       dojo.publish('/app/start');
       pg = true;
     }
@@ -99,6 +100,20 @@ describe("user interface controller", function() {
       ui.siblingNav.siblings = false;
       ui.set('siblingNavVisible', true);
       expect(ui.siblingNav.domNode.className).toMatch('hidden');
+    });
+  });
+
+  describe("ad tag", function() {
+    it("should create the ad container if it is enabled", function() {
+      toura.features.ads = true;
+      ui = new toura.app.UI(devices[0]);
+      expect(document.querySelector('.component.ad-tag')).toBeDefined();
+    });
+
+    it("should not create the ad container if it is not enabled", function() {
+      toura.features.ads = false;
+      ui = new toura.app.UI(devices[0]);
+      expect(document.querySelector('.component.ad-tag')).toBeFalsy();
     });
   });
 

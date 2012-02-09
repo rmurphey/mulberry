@@ -281,4 +281,17 @@ describe Mulberry::Data do
 
   end
 
+  describe 'ads' do
+    it 'should allow setting remote ad urls' do
+      app = Mulberry::App.new(@source_dir)
+      app.config['ads'] = {
+        'phone' => 'foo',
+        'tablet' => 'bar'
+      }
+      data = (Mulberry::Data.new app).generate
+      data[:app]['ads']['phone'].should == 'foo'
+      data[:app]['ads']['tablet'].should == 'bar'
+    end
+  end
+
 end

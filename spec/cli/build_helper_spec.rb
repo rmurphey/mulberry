@@ -63,6 +63,12 @@ describe 'Mulberry build helper' do
       lambda { @build_helper.config_settings }.should raise_error Builder::ConfigurationError
     end
 
+    it 'should allow ads to be enabled' do
+      ad_config = @app.config['ads'] = {
+        'phone' => 'foo'
+      }
+      @build_helper.config_settings['ads'].should be_true
+    end
   end
 
 end

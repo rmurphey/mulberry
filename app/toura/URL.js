@@ -48,6 +48,7 @@ toura.URL = {
           'image' : 'images',
           'video' : 'videos',
           'audio' : 'audios',
+          'html'  : 'html',
           'videoPoster' : 'videos/poster'
         };
 

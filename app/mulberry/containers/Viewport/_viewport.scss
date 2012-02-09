@@ -27,11 +27,6 @@
   &.slide-right {
     -webkit-animation-name: slide-right;
   }
-
-  .sibling-nav-visible & {
-    -webkit-box-sizing: border-box;
-    border-bottom: 18px solid transparent;
-  }
 }
 
 @-webkit-keyframes slide-left {
