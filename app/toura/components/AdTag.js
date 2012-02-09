@@ -8,13 +8,17 @@ dojo.declare('toura.components.AdTag', toura._Component, {
   prep : function() {
   },
 
-  startup : function() {
+  adjustMarkup : function() {
     var adConfig = toura.app.Config.get("app").ads,
         src = adConfig[this.device.type];
 
-    if (src) {
-      dojo.attr(this.adFrame,"src",src);
-    } else {
+    dojo.attr(this.adFrame,"src",src);
+  },
+
+  startup : function() {
+    var src = toura.app.Config.get("app").ads[this.device.type];
+
+    if (!src) {
       this.destroy();
     }
   }
