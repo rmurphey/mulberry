@@ -137,7 +137,6 @@ module Mulberry
       content_type 'text/javascript'
       device_type = params[:type] || 'phone'
       os = params[:os] || 'ios'
-      ads = @mulberry_app.config['ads']
 
       config_settings = @helper.config_settings.merge(
         {
