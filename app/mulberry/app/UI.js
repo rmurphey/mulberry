@@ -4,6 +4,7 @@ dojo.require('mulberry.Device');
 dojo.require('mulberry.Utilities');
 dojo.require('mulberry.app.Config');
 dojo.require('mulberry.containers.Viewport');
+dojo.require('mulberry.containers.Persistent');
 dojo.require('toura.components.SiblingNav');
 dojo.require('mulberry.app.PhoneGap');
 dojo.require('dojo.string');
@@ -31,7 +32,7 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
   },
 
   addPersistentComponent : function(klass, opts) {
-    var pc = this.containers.persistentComponents;
+    var pc = this.containers.persistent;
     return pc.adopt(klass, opts || {}).placeAt(pc.domNode, 'last');
   },
 
@@ -99,7 +100,7 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
 
   _containersSetup : function() {
     this.containers.viewport = new mulberry.containers.Viewport().placeAt(this.body, 'first');
-    this.containers.persistentComponents = new mulberry._View({ 'class' : 'persistent-component' }).placeAt(this.body, 'last');
+    this.containers.persistent = new mulberry.containers.Persistent().placeAt(this.body, 'last');
   },
 
   _navSetup : function() {
