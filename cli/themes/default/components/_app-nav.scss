@@ -17,14 +17,6 @@
     }
   }
 
-  .phone.feature-ads & {
-    margin-bottom: $phone-ad-height;
-  }
-
-  .tablet.feature-ads & {
-    margin-bottom: $tablet-ad-height + 20 !important;
-  }
-
   ol {
     padding: 10px;
     display: -webkit-box;
