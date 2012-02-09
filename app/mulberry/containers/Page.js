@@ -50,11 +50,16 @@ dojo.declare('mulberry.containers.Page', [ mulberry._View, mulberry.ui.Backgroun
           capability;
 
       dojo.forEach(capabilitiesNamespaces, function(ns) {
-        capability = ns[C];
+        capability = ns[C] || capability;
       });
 
       if (!capability) {
-        console.warn('No capability', C, 'defined in these namespaces', capabilitiesNamespaces.join(', '));
+        console.warn('No capability', C, 'defined in these namespaces:');
+
+        dojo.forEach(capabilitiesNamespaces, function(ns) {
+          console.log('-- namespace', ns);
+        }, this);
+
         return null;
       }
 
