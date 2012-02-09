@@ -20,13 +20,19 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
     this.hasTouch = 'ontouchstart' in window;
     this.touchMoveDebounce = device.os === 'android' ? 200 : 0;
 
+    this._containersSetup();
     this._navSetup();
+
     this._watchers();
     this._updateViewport();
 
     this._uiSetup();
     this._eventSetup();
-    this._containersSetup();
+  },
+
+  addPersistentComponent : function(klass, opts) {
+    var pc = this.containers.persistentComponents;
+    return pc.adopt(klass, opts || {}).placeAt(pc.domNode, 'last');
   },
 
   _watchers : function() {
@@ -93,11 +99,12 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
 
   _containersSetup : function() {
     this.containers.viewport = new mulberry.containers.Viewport().placeAt(this.body, 'first');
+    this.containers.persistentComponents = new mulberry._View({ 'class' : 'persistent-component' }).placeAt(this.body, 'last');
   },
 
   _navSetup : function() {
     if (!mulberry.features.siblingNav) { return; }
-    this.siblingNav = new toura.components.SiblingNav().placeAt(this.body, 'last');
+    this.siblingNav = this.addPersistentComponent(toura.components.SiblingNav);
     this.set('siblingNavVisible', false);
   },
 

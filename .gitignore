@@ -7,7 +7,7 @@ demos/*/tmp
 js_builds/*
 app/client_tmp/*
 app/dojo-release-*
-app/toura/app/DevConfig.js
+app/mulberry/app/DevConfig.js
 app/toura/_Config.js
 app/toura/AppConfig.js
 app/data-fixtures/media*

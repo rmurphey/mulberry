@@ -21,3 +21,9 @@
 
 
 @import 'components/Debug/debug';
+
+.persistent-component {
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+}
