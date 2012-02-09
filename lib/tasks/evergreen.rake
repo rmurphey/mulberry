@@ -25,7 +25,7 @@ namespace :evergreen  do
       raise "Dojo downloaded and built; you'll need to re-run the rake task for it to work. Sorry."
     end
 
-    File.open(File.join(TouraAPP::Directories.javascript, 'toura', '_Config.js'), 'w') do |f|
+    File.open(File.join(TouraAPP::Directories.javascript, 'toura', 'AppConfig.js'), 'w') do |f|
       f.write TouraAPP::Generators.config('ios', 'phone')
     end
   end
