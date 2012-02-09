@@ -4,6 +4,7 @@ require 'evergreen'
 namespace :evergreen  do
   desc "Run jasmine specs via evergreen"
   task :run => :generate_stuff do
+    puts "running tests"
     Kernel.exit(1) unless Evergreen::Cli.execute(["run"])
   end
 
@@ -16,15 +17,18 @@ namespace :evergreen  do
     # generate a tour.js from kitchensink
     app = Mulberry::App.new(File.join(TouraAPP::Directories.root, "demos", "kitchensink"))
 
+    puts "generating tour fixture"
     File.open(File.join(TouraAPP::Directories.root, "app", "fixtures", "tour.js"), "w") do |f|
       f.write TouraAPP::Generators.data(Mulberry::Data.new(app).generate)
     end
 
+    puts "checking for dojo"
     if !File.exists?(TouraAPP::Directories.dojo)
       Rake::Task['builder:app_dev'].execute
       raise "Dojo downloaded and built; you'll need to re-run the rake task for it to work. Sorry."
     end
 
+    puts "creating app config"
     File.open(File.join(TouraAPP::Directories.javascript, 'toura', 'AppConfig.js'), 'w') do |f|
       f.write TouraAPP::Generators.config('ios', 'phone')
     end
