@@ -15,7 +15,9 @@ describe("ad tag component", function() {
 
     if (c) { c.destroy(); }
     C = function(config) {
-      return new toura.components.AdTag(config || {}).placeAt(t);
+      var c = new toura.components.AdTag(config || {}).placeAt(t);
+      c.startup();
+      return c;
     };
   });
 
@@ -29,6 +31,20 @@ describe("ad tag component", function() {
     allDevices(function(d) {
       c = C({ device : d });
       expect(qs("iframe").getAttribute("src")).toEqual(adCfg.ads[d.type]);
+      dojo.empty(t);
+    });
+  });
+
+  it("should remove itself from the DOM if there is no ad url for the device type", function() {
+    allDevices(function(d) {
+      adCfg = d.type === 'phone' ?
+        { ads : { tablet : 'foo' } } :
+        { ads : { phone : 'foo' } };
+
+      toura.app.Config.set("app", adCfg);
+
+      c = C({ device : d });
+      expect(document.querySelector('.component.ad-tag')).toBeFalsy();
       dojo.empty(t);
     });
   });
