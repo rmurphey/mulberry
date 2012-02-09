@@ -4,8 +4,12 @@
   @include chrome-gradient;
   @include box-shadow(1px, 0);
 
-  .feature-ads & {
-    bottom: $ad-height;
+  .phone.feature-ads & {
+    bottom: $phone-ad-height;
+  }
+
+  .tablet.feature-ads & {
+    bottom: $tablet-ad-height;
   }
 
   color: $chrome-text-color;
