@@ -1,19 +1,2 @@
-$ad-height: 50px;
-
 .component.ad-tag {
-  background: #000;
-  height: $ad-height;
-  position: absolute;
-  text-align: center;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-
-  iframe {
-    background: #ccc;
-    border: none;
-    height: $ad-height;
-    margin: 0 auto;
-  }
 }

@@ -4,6 +4,10 @@
   @include chrome-gradient;
   @include box-shadow(1px, 0);
 
+  .feature-ads & {
+    bottom: $ad-height;
+  }
+
   color: $chrome-text-color;
 
   .handle {

@@ -17,6 +17,10 @@
     }
   }
 
+  .feature-ads & {
+    margin-bottom: $ad-height;
+  }
+
   ol {
     padding: 10px;
     display: -webkit-box;

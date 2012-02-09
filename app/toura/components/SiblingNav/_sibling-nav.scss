@@ -8,10 +8,6 @@
   left: 0;
   right: 0;
 
-  .feature-ads & {
-    bottom: $ad-height;
-  }
-
   -webkit-transition: -webkit-transform 0.15s ease-in;
 
   .phone & {
