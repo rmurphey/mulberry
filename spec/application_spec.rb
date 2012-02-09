@@ -105,11 +105,11 @@ describe TouraAPP do
     end
 
     describe "#config" do
-      it "should return a toura._Config file" do
+      it "should return a toura.AppConfig file" do
         c = TouraAPP::Generators.config('ios', 'phone')
-        c.should match /dojo\.provide\('toura\._Config'\);/
-        c.should match "phone"
-        c.should match "ios"
+        c.should include "toura._Config"
+        c.should include "phone"
+        c.should include "ios"
       end
 
       it "should allow enabling or disabling sibling nav" do
