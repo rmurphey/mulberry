@@ -162,7 +162,7 @@ dojo.require('mulberry.Device');
       }
     ];
 
-    if (mulberry.features.debugPage) {
+    if (toura.features.debugPage) {
       routes.push({
         route : '/debug/:query',
         handler : function(params, route) {
@@ -178,7 +178,7 @@ dojo.require('mulberry.Device');
       });
     }
 
-    if (mulberry.features.favorites) {
+    if (toura.features.favorites) {
       routes.push({
         route : '/favorites',
         handler : function() {

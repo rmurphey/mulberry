@@ -15,3 +15,18 @@ toura.data = toura.data || {};
 
 mulberry.registerComponentNamespace(toura.components);
 mulberry.registerCapabilityNamespace(toura.capabilities);
+
+(function() {
+
+dojo.subscribe('/app/deviceready', function() {
+  var b = dojo.body();
+
+  dojo.forIn(toura.features, function(feature, enabled) {
+    if (enabled) {
+      dojo.addClass(b, 'feature-' + feature);
+    }
+  });
+
+  mulberry.components.Debug.registerFeatureObject(toura.features);
+});
+}());

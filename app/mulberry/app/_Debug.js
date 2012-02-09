@@ -9,7 +9,6 @@ dojo.require('mulberry.app.DeviceStorage');
 var weinreServer = 'http://api.toura.com/weinre/',
 
     sub = dojo.subscribe('/debug/user', function(query) {
-      if (!mulberry.features.debugPage) { return; }
       if (!confirm('Click OK if you want to enter debug mode.')) { return; }
 
       mulberry.app.Router.go('/debug/' + query);

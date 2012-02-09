@@ -3,11 +3,13 @@
  * It should be maintained locally and never checked into the repo.
  */
 
+toura.features = toura.features || {};
 mulberry.features = mulberry.features || {};
-mulberry.features.debugToolbar = true; // The makes resetting the DB and using weinre easier
-mulberry.features.debugPage = true; // Type 'mulberry:<anything> in search will provide debugging info
-mulberry.features.siblingNav = true; // Allows navigation between sibling nodes
-mulberry.features.sharing = true; // Enables sharing features
-mulberry.features.favorites = true; // Allows users to favorite nodes
-mulberry.features.fontSize = true; // Allows users to change font size
 
+toura.features.debugPage = true; // Type 'mulberry:<anything> in search will provide debugging info
+toura.features.siblingNav = true; // Allows navigation between sibling nodes
+toura.features.sharing = true; // Enables sharing features
+toura.features.favorites = true; // Allows users to favorite nodes
+toura.features.fontSize = true; // Allows users to change font size
+
+mulberry.features.debugToolbar = true; // The makes resetting the DB and using weinre easier

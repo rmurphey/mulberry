@@ -19,8 +19,6 @@ dojo.require('mulberry.app._base');
 dojo.requireLocalization('mulberry', 'mulberry');
 
 var readyFn = function() {
-  mulberry.features = mulberry.features || {};
-
   // bootstrapping process should start in response to /app/deviceready
   dojo.publish('/app/deviceready');
 
