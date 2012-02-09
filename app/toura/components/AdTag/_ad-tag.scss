@@ -1,6 +1,6 @@
 .component.ad-tag {
   background: #000;
-  height:50px;
+  height: $ad-height;
   position: absolute;
   text-align: center;
   bottom: 0;
@@ -11,7 +11,7 @@
   iframe {
     background: #ccc;
     border: none;
-    height: 50px;
+    height: $ad-height;
     margin: 0 auto;
   }
 }
