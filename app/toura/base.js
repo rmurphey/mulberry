@@ -1,6 +1,7 @@
 dojo.provide('toura.base');
 
 dojo.require('toura.xhr');
+dojo.require('toura.UI');
 dojo.require('toura.Analytics');
 dojo.require('toura.Bootstrapper');
 dojo.require('toura.Data');
@@ -15,18 +16,4 @@ toura.data = toura.data || {};
 
 mulberry.registerComponentNamespace(toura.components);
 mulberry.registerCapabilityNamespace(toura.capabilities);
-
-(function() {
-
-dojo.subscribe('/app/deviceready', function() {
-  var b = dojo.body();
-
-  dojo.forIn(toura.features, function(feature, enabled) {
-    if (enabled) {
-      dojo.addClass(b, 'feature-' + feature);
-    }
-  });
-
-  mulberry.components.Debug.registerFeatureObject(toura.features);
-});
-}());
+mulberry.components.Debug.registerFeatureObject(toura.features);
