@@ -11,7 +11,7 @@ describe("ad tag component", function() {
         tablet : 'bar'
       }
     };
-    toura.app.Config.set("app", adCfg);
+    mulberry.app.Config.set("app", adCfg);
 
     if (c) { c.destroy(); }
     C = function(config) {
@@ -27,7 +27,7 @@ describe("ad tag component", function() {
     expect(c.adFrame).toBeDefined();
   });
 
-  it("should set the src of the iframe from toura.app.Config", function() {
+  it("should set the src of the iframe from the app's config object", function() {
     allDevices(function(d) {
       c = C({ device : d });
       expect(qs("iframe").getAttribute("src")).toEqual(adCfg.ads[d.type]);
@@ -41,7 +41,7 @@ describe("ad tag component", function() {
         { ads : { tablet : 'foo' } } :
         { ads : { phone : 'foo' } };
 
-      toura.app.Config.set("app", adCfg);
+      mulberry.app.Config.set("app", adCfg);
 
       c = C({ device : d });
       expect(document.querySelector('.component.ad-tag')).toBeFalsy();
