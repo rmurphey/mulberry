@@ -2,6 +2,7 @@ require('/dojo-release-1.6.0-src/dojo/dojo.js');
 require('/vendor/haml.js');
 require('/fixtures/tour.js');
 require('/toura/_Logging.js');
+require('/toura/AppConfig.js');
 
 var dataAPI,
     nodeForController,
@@ -37,7 +38,6 @@ beforeEach(function() {
   dojo.registerModulePath('data', '../../data-fixtures');
   dojo.registerModulePath('fixtures', '../../fixtures');
 
-  dojo.require('toura._Config');
   dojo.require('toura.Utilities');
   dojo.require('toura.app.Data');
   dojo.require('toura.app.Config');

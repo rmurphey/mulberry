@@ -64,7 +64,7 @@ module TouraAPP
     end
 
     def self.config
-      File.join(self.root, '_Config.js.mustache')
+      File.join(self.root, 'AppConfig.js.mustache')
     end
   end
 
@@ -102,7 +102,8 @@ module TouraAPP
         'force_local'         =>  false,
         'sibling_nav'         =>  true,
         'postscript'          =>  '',
-        'locale'              =>  'en-us'
+        'locale'              =>  'en-us',
+        'ads'                 =>  false
       }
 
       settings = defaults.merge(binding)

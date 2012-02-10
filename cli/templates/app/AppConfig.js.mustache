@@ -1,5 +1,6 @@
-dojo.provide('toura._Config');
+dojo.provide('toura.AppConfig');
 
+toura = window.toura || {};
 toura._Config = {{{base_config}}};
 
 // force all images to come from S3. this
@@ -18,6 +19,7 @@ toura.features = {
   fontSize : true,
   siblingNav : {{sibling_nav}},
   debugToolbar : {{debug}},
+  ads : {{ads}},
   debugPage : true
 };
 

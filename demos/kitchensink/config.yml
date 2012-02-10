@@ -32,14 +32,12 @@ theme:
 
 os:
   # Specify the operating systems to target
-  - ios
   - android
 
 type:
   # Specify the form factors to target;
   # note that Android currently only supports phones
   - phone
-  - tablet
 
 # Dojo is included by default, but if you want access
 # to jQuery functionality, set this to true

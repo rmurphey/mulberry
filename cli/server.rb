@@ -133,7 +133,7 @@ module Mulberry
       end
     end
 
-    get '/:os/:type/javascript/toura/_Config.js' do
+    get '/:os/:type/javascript/toura/AppConfig.js' do
       content_type 'text/javascript'
       device_type = params[:type] || 'phone'
       os = params[:os] || 'ios'

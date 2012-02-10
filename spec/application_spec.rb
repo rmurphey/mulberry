@@ -43,7 +43,7 @@ describe TouraAPP do
     describe "#config" do
       it "should return the location of the toura._Config template" do
         f = TouraAPP::Templates.config
-        f.should match '_Config'
+        f.should match 'AppConfig'
         File.exists?(f).should be_true
       end
     end
@@ -105,11 +105,11 @@ describe TouraAPP do
     end
 
     describe "#config" do
-      it "should return a toura._Config file" do
+      it "should return a toura.AppConfig file" do
         c = TouraAPP::Generators.config('ios', 'phone')
-        c.should match /dojo\.provide\('toura\._Config'\);/
-        c.should match "phone"
-        c.should match "ios"
+        c.should include "toura._Config"
+        c.should include "phone"
+        c.should include "ios"
       end
 
       it "should allow enabling or disabling sibling nav" do
@@ -119,6 +119,15 @@ describe TouraAPP do
         c = TouraAPP::Generators.config('ios', 'phone', { 'sibling_nav' => true });
         c.should include 'siblingNav : true'
       end
+
+      it "should allow enabling or disabling ads" do
+        c = TouraAPP::Generators.config('ios', 'phone', { 'ads' => false });
+        c.should include 'ads : false'
+
+        c = TouraAPP::Generators.config('ios', 'phone', { 'ads' => true });
+        c.should include 'ads : true'
+      end
+
     end
   end
 end
