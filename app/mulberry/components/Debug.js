@@ -2,6 +2,10 @@ dojo.provide('mulberry.components.Debug');
 
 dojo.require('mulberry._Component');
 
+(function() {
+
+var featureObj = {};
+
 dojo.declare('mulberry.components.Debug', mulberry._Component, {
   templateString : dojo.cache('mulberry.components', 'Debug/Debug.haml'),
 
@@ -39,7 +43,7 @@ dojo.declare('mulberry.components.Debug', mulberry._Component, {
 
     html.push(header('Features'));
 
-    dojo.forIn(mulberry.features, function(k, v) {
+    dojo.forIn(featureObj, function(k, v) {
       html.push(tpl(k, v ? 'true' : 'false'));
     });
 
@@ -63,3 +67,8 @@ dojo.declare('mulberry.components.Debug', mulberry._Component, {
   }
 });
 
+mulberry.components.Debug.registerFeatureObject = function(obj) {
+  dojo.mixin(featureObj, obj);
+};
+
+}());

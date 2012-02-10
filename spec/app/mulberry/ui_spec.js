@@ -62,19 +62,19 @@ describe("user interface controller", function() {
 
   describe("sibling nav", function() {
     it("should create the sibling nav if it is enabled", function() {
-      mulberry.features.siblingNav = true;
+      toura.features.siblingNav = true;
       ui = new mulberry.app.UI(devices[0]);
       expect(ui.siblingNav).toBeDefined();
     });
 
     it("should not create the sibling nav if it is not enabled", function() {
-      mulberry.features.siblingNav = false;
+      toura.features.siblingNav = false;
       ui = new mulberry.app.UI(devices[0]);
       expect(ui.siblingNav).not.toBeDefined();
     });
 
     it("should pass the node for the current page to the sibling nav", function() {
-      mulberry.features.siblingNav = true;
+      toura.features.siblingNav = true;
       ui = new mulberry.app.UI(devices[0]);
 
       spyOn(ui.containers.viewport, 'set');
@@ -86,14 +86,14 @@ describe("user interface controller", function() {
     });
 
     it("should allow setting the visibility of the sibling nav", function() {
-      mulberry.features.siblingNav = true;
+      toura.features.siblingNav = true;
       ui = new mulberry.app.UI(devices[0]);
       ui.set('siblingNavVisible', false);
       expect(ui.siblingNav.domNode.className).toMatch('hidden');
     });
 
     it("should not show the sibling nav if there are no siblings", function() {
-      mulberry.features.siblingNav = true;
+      toura.features.siblingNav = true;
       ui = new mulberry.app.UI(devices[0]);
       ui.set('siblingNavVisible', false);
       ui.siblingNav.siblings = false;
@@ -101,16 +101,4 @@ describe("user interface controller", function() {
       expect(ui.siblingNav.domNode.className).toMatch('hidden');
     });
   });
-
-  describe("feature flags", function() {
-    it("should add a class to the body for enabled feature flags", function() {
-      mulberry.features.foo = true;
-      mulberry.features.bar = false;
-
-      ui = new mulberry.app.UI(devices[0]);
-      expect(dojo.hasClass(dojo.body(), 'feature-foo')).toBeTruthy();
-      expect(dojo.hasClass(dojo.body(), 'feature-bar')).toBeFalsy();
-    });
-  });
-
 });

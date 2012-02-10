@@ -8,7 +8,7 @@ dojo.declare('toura.components.buttons.BackButton', toura.components.buttons._Bu
   onClick : function(e) {
     e.preventDefault();
 
-    if (mulberry.features.disableBackButton) { return; }
+    if (toura.features.disableBackButton) { return; }
     mulberry.app.Router.back();
   },
 

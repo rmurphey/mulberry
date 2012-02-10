@@ -83,19 +83,10 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
 
     this.set('fontSize', mulberry.app.DeviceStorage.get('fontSize'));
 
-    if (mulberry.features.multiLineChildNodes) {
-      dojo.addClass(b, 'multi-line-child-nodes');
-    }
-
     if (mulberry.isMAP) {
       dojo.addClass(b, 'layout-MAP');
     }
 
-    dojo.forIn(mulberry.features, function(feature, enabled) {
-      if (enabled) {
-        dojo.addClass(b, 'feature-' + feature);
-      }
-    });
   },
 
   _containersSetup : function() {
@@ -104,7 +95,7 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
   },
 
   _navSetup : function() {
-    if (!mulberry.features.siblingNav) { return; }
+    if (!toura.features.siblingNav) { return; }
     this.siblingNav = this.addPersistentComponent(toura.components.SiblingNav);
     this.set('siblingNavVisible', false);
   },

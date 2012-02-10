@@ -275,7 +275,7 @@ dojo.declare('toura.user._TwitterAPI', null, {
 //>>excludeStart('production', kwArgs.releaseName === 'production');
 (function(){
   if (window.device && window.device.phonegap) { return; }
-  if (!mulberry.features.socialInBrowser) { return; }
+  if (!toura.features.socialInBrowser) { return; }
 
   var key = mulberry.app.Config.get('app').twitter_anywhere_key;
 

@@ -2,7 +2,7 @@ dojo.provide('toura.user.Facebook.browser');
 
 toura.user.Facebook.browser = {
   init : function(appId) {
-    if (!mulberry.features.socialInBrowser) { return; }
+    if (!toura.features.socialInBrowser) { return; }
 
     window.fbAsyncInit = function() {
       FB.init({ appId : appId });

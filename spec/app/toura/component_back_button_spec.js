@@ -25,7 +25,7 @@ describe('back button', function() {
 
   it("should not navigate back throught the history in the MAP environment", function() {
     var spy = spyOn(mulberry.app.Router, 'back');
-    mulberry.features.disableBackButton = true;
+    toura.features.disableBackButton = true;
     c = C().placeAt(t);
     c.onClick(fakeEventObj);
     expect(spy).not.toHaveBeenCalled();

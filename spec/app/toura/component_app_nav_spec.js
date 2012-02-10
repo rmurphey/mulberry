@@ -93,7 +93,7 @@ describe("app nav component", function() {
     });
 
     it("should not show the favorites button if favorites are disabled", function() {
-      mulberry.features.favorites = false;
+      toura.features.favorites = false;
       var comp = new toura.components.AppNav().placeAt(t);
 
       expect(t.querySelectorAll('.component.app-nav').length).toBe(1);

@@ -16,6 +16,6 @@ dojo.declare('toura.components.buttons.FavoritesButton', toura.components.button
 
 dojo.mixin(toura.components.buttons.FavoritesButton, {
   isAvailable : function() {
-    return mulberry.features.favorites;
+    return toura.features.favorites;
   }
 });
