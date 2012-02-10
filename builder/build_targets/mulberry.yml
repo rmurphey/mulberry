@@ -16,6 +16,7 @@ build:
     javascript:
       - dojo
       - toura
+      - mulberry
       - client
     css: true
     html: true
