@@ -106,14 +106,42 @@ describe("user interface controller", function() {
   describe("ad tag", function() {
     it("should create the ad container if it is enabled", function() {
       toura.features.ads = true;
-      ui = new toura.app.UI(devices[0]);
+      ui = new mulberry.app.UI(devices[0]);
       expect(document.querySelector('.component.ad-tag')).toBeDefined();
     });
 
     it("should not create the ad container if it is not enabled", function() {
       toura.features.ads = false;
-      ui = new toura.app.UI(devices[0]);
+      ui = new mulberry.app.UI(devices[0]);
       expect(document.querySelector('.component.ad-tag')).toBeFalsy();
+    });
+  });
+
+  describe("persistent components", function() {
+    var componentAddedFlag;
+    beforeEach(function() {
+      componentAddedFlag = false;
+
+      dojo.require('mulberry._Component');
+
+      dojo.declare('my.Component', mulberry._Component, {
+        templateString : '.my-persistent-component',
+        postCreate : function() {
+          componentAddedFlag = true;
+        }
+      });
+      ui = new mulberry.app.UI(devices[0]);
+    });
+
+    it("should create a persistent component container", function() {
+      expect(ui.containers.persistent).toBeDefined();
+      expect(ui.containers.persistent.domNode).toBeDefined();
+    });
+
+    it("should add persistent components to the page", function() {
+      ui.addPersistentComponent(my.Component);
+      expect(componentAddedFlag).toBeTruthy();
+      expect(document.querySelector('.my-persistent-component')).toBeTruthy();
     });
   });
 });
