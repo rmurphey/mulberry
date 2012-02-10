@@ -300,15 +300,15 @@ module Builder
         return
       end
 
-      js_dir = File.join(@www, 'javascript')
-      toura_dir = File.join(js_dir, 'mulberry')
-      mulberry_dir = File.join(js_dir, 'toura')
-      dojo_dir = File.join(js_dir, 'dojo')
-      vendor_dir = File.join(js_dir, 'vendor')
-      nls_dir = File.join(js_dir, 'toura', 'nls')
+      js_dir          = File.join(@www, 'javascript')
+      mulberry_dir    = File.join(js_dir, 'mulberry')
+      toura_dir       = File.join(js_dir, 'toura')
+      dojo_dir        = File.join(js_dir, 'dojo')
+      vendor_dir      = File.join(js_dir, 'vendor')
+      nls_dir         = File.join(js_dir, 'toura', 'nls')
 
-      client_dir = File.join(js_dir, 'client')
-      client_base = File.join(built, 'client', 'base.js')
+      client_dir      = File.join(js_dir, 'client')
+      client_base     = File.join(built, 'client', 'base.js')
 
       [ js_dir, toura_dir, mulberry_dir, dojo_dir, vendor_dir, nls_dir, client_dir ].each do |d|
         FileUtils.mkdir_p(d) unless File.exists? d
