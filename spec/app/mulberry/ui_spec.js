@@ -119,6 +119,7 @@ describe("user interface controller", function() {
 
   describe("persistent components", function() {
     var componentAddedFlag;
+
     beforeEach(function() {
       componentAddedFlag = false;
 
@@ -141,7 +142,7 @@ describe("user interface controller", function() {
     it("should add persistent components to the page", function() {
       ui.addPersistentComponent(my.Component);
       expect(componentAddedFlag).toBeTruthy();
-      expect(document.querySelector('.my-persistent-component')).toBeTruthy();
+      expect(ui.containers.persistent.domNode.querySelector('.my-persistent-component')).toBeTruthy();
     });
   });
 });
