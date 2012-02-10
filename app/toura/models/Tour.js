@@ -45,9 +45,7 @@ dojo.declare('toura.models.Tour', toura.models._Updateable, {
 
   _onDataReady : function() {
     var appConfig = mulberry.app.DeviceStorage.get('app');
-
     mulberry.app.Config.set('app', appConfig);
-    window.TouraAppConfig = appConfig;
   }
 });
 
