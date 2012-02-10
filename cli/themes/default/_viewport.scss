@@ -1,0 +1,24 @@
+.viewport {
+  -webkit-box-sizing: border-box;
+  border-bottom: 0 solid transparent;
+
+  .sibling-nav-visible & {
+    border-bottom: 18px solid transparent;
+  }
+
+  .phone.feature-ads & {
+    border-bottom-width: $phone-ad-height;
+  }
+
+  .phone.sibling-nav-visible.feature-ads & {
+    border-bottom-width: $phone-ad-height + 18px;
+  }
+
+  .tablet.feature-ads & {
+    border-bottom-width: $tablet-ad-height;
+  }
+
+  .tablet.sibling-nav-visible.feature-ads & {
+    border-bottom-width: $tablet-ad-height + 18px;
+  }
+}

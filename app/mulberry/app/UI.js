@@ -24,6 +24,7 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
     this._watchers();
     this._updateViewport();
 
+    this._adSetup();
     this._uiSetup();
     this._eventSetup();
     this._containersSetup();
@@ -90,6 +91,17 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
     if (!toura.features.siblingNav) { return; }
     this.siblingNav = new toura.components.SiblingNav().placeAt(this.body, 'last');
     this.set('siblingNavVisible', false);
+  },
+
+  _adSetup : function() {
+    if (!toura.features.ads) { return; }
+    toura.app.PhoneGap.network.isReachable()
+      .then(
+        dojo.hitch(this, function(isReachable) {
+          if (!isReachable) { return; }
+          new toura.components.AdTag().placeAt(this.body, 'last');
+      })
+    );
   },
 
   _eventSetup : function() {
