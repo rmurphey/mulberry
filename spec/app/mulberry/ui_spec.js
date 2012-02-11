@@ -105,14 +105,14 @@ describe("user interface controller", function() {
 
   describe("ad tag", function() {
     it("should create the ad container if it is enabled", function() {
-      toura.features.ads = true;
-      ui = new toura.app.UI(devices[0]);
+      mulberry.features.ads = true;
+      ui = new mulberry.app.UI(devices[0]);
       expect(document.querySelector('.component.ad-tag')).toBeDefined();
     });
 
     it("should not create the ad container if it is not enabled", function() {
-      toura.features.ads = false;
-      ui = new toura.app.UI(devices[0]);
+      mulberry.features.ads = false;
+      ui = new mulberry.app.UI(devices[0]);
       expect(document.querySelector('.component.ad-tag')).toBeFalsy();
     });
   });
