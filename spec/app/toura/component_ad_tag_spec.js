@@ -27,7 +27,7 @@ describe("ad tag component", function() {
     expect(c.adFrame).toBeDefined();
   });
 
-  it("should set the src of the iframe from toura.app.Config", function() {
+  it("should set the src of the iframe from mulberry.app.Config", function() {
     allDevices(function(d) {
       c = C({ device : d });
       expect(qs("iframe").getAttribute("src")).toEqual(adCfg.ads[d.type]);
@@ -48,4 +48,14 @@ describe("ad tag component", function() {
       dojo.empty(t);
     });
   });
+
+  it("should refresh itself at the end of page transitions", function() {
+    allDevices(function(d) {
+      c = C({ device : d });
+      c.set('adConfig', 'new_url');
+      dojo.publish('/page/transition/end');
+      expect(qs('iframe').getAttribute('src')).toEqual('new_url');
+    });
+  });
+
 });
