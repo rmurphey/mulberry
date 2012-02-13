@@ -14,6 +14,7 @@ gather:
 build:
     javascript:
       - dojo
+      - client
       - toura
       - mulberry
     css: true
