@@ -305,7 +305,7 @@ module Builder
       toura_dir       = File.join(js_dir, 'toura')
       dojo_dir        = File.join(js_dir, 'dojo')
       vendor_dir      = File.join(js_dir, 'vendor')
-      nls_dir         = File.join(js_dir, 'toura', 'nls')
+      nls_dir         = File.join(js_dir, 'mulberry', 'nls')
 
       client_dir      = File.join(js_dir, 'client')
       client_base     = File.join(built, 'client', 'base.js')
