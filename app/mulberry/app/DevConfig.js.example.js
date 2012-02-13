@@ -11,5 +11,6 @@ toura.features.siblingNav = true; // Allows navigation between sibling nodes
 toura.features.sharing = true; // Enables sharing features
 toura.features.favorites = true; // Allows users to favorite nodes
 toura.features.fontSize = true; // Allows users to change font size
+toura.features.ads = false; // Allows users to enable ads
 
 mulberry.features.debugToolbar = true; // The makes resetting the DB and using weinre easier
