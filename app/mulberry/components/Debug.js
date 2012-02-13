@@ -67,7 +67,7 @@ dojo.declare('mulberry.components.Debug', mulberry._Component, {
   }
 });
 
-mulberry.components.Debug.registerFeatureObject = function(obj) {
+mulberry.components.Debug.registerFeaturesObject = function(obj) {
   dojo.mixin(featureObj, obj);
 };
 
