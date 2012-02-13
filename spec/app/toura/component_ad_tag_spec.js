@@ -11,7 +11,7 @@ describe("ad tag component", function() {
         tablet : 'bar'
       }
     };
-    toura.app.Config.set("app", adCfg);
+    mulberry.app.Config.set("app", adCfg);
 
     if (c) { c.destroy(); }
     C = function(config) {
@@ -41,7 +41,7 @@ describe("ad tag component", function() {
         { ads : { tablet : 'foo' } } :
         { ads : { phone : 'foo' } };
 
-      toura.app.Config.set("app", adCfg);
+      mulberry.app.Config.set("app", adCfg);
 
       c = C({ device : d });
       expect(document.querySelector('.component.ad-tag')).toBeFalsy();
