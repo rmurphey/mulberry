@@ -134,10 +134,11 @@ module Mulberry
 
     end
 
-    def self.scaffold(app_name, silent = false)
+    def self.scaffold(app_name, silent = false, options = {})
       raise "You must provide an app name" unless app_name
 
       mulberry_base = File.dirname(__FILE__)
+      is_toura_app = !options[:empty_app]
 
       base = File.expand_path(app_name)
 
@@ -147,7 +148,16 @@ module Mulberry
 
       FileUtils.mkdir_p base
 
-      dirs = {
+      base_dirs = {
+        :javascript => [
+          'components',
+          'stores',
+          'models',
+          'capabilities'
+        ]
+      }
+
+      toura_dirs = {
         :assets => [
           'data',
           'audios',
@@ -158,40 +168,44 @@ module Mulberry
           'html'
         ],
 
-        :javascript => [
-          'components',
-          'stores',
-          'models',
-          'capabilities'
-        ],
-
-        :page_defs => [],
-        :pages => []
+        :pages => [],
+        :page_defs => []
       }
 
-      dirs.each do |dir, subdirs|
+      base_dirs.each do |dir, subdirs|
         dir = File.join(base, dir.to_s)
         FileUtils.mkdir dir
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
 
-      Mulberry::CodeCreator.new('base', base, 'base')
-      Mulberry::CodeCreator.new('routes', base, 'routes')
+      toura_dirs.each do |dir, subdirs|
+        dir = File.join(base, dir.to_s)
+        FileUtils.mkdir dir
+        subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
+      end if is_toura_app
 
-      asset_dirs = Dir.entries File.join(base, 'assets')
-
-      [ 'audios', 'videos', 'images', 'locations' ].each do |asset_dir|
-        FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
+      if is_toura_app
+        Mulberry::CodeCreator.new('base-toura', base, 'base')
+        Mulberry::CodeCreator.new('routes-toura', base, 'routes')
+      else
+        Mulberry::CodeCreator.new('base', base, 'base')
+        Mulberry::CodeCreator.new('routes', base, 'routes')
       end
 
-      [ CONFIG, SITEMAP ].each do |tmpl|
-        FileUtils.cp(File.join(mulberry_base, 'templates', tmpl), base)
+      if is_toura_app
+        asset_dirs = Dir.entries File.join(base, 'assets')
+
+        [ 'audios', 'videos', 'images', 'locations' ].each do |asset_dir|
+          FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
+        end
+
+        FileUtils.cp(File.join(mulberry_base, 'templates', SITEMAP), base)
       end
 
-      original_config = File.read File.join(base, 'config.yml')
+      original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
       original_config.gsub!(/^name:.?$/, "name: #{app_name}")
 
-      File.open(File.join(base, 'config.yml'), 'w') do |f|
+      File.open(File.join(base, CONFIG), 'w') do |f|
         f.write original_config
       end
 
@@ -200,6 +214,13 @@ module Mulberry
           File.join(mulberry_base, 'templates', 'pages', page),
           File.join(base, 'pages')
         )
+      end if is_toura_app
+
+      if !is_toura_app
+        Mulberry::CodeCreator.new('component', base, 'StarterComponent')
+        File.open(File.join(base, 'javascript', 'components', 'StarterComponent', 'StarterComponent.haml'), 'w') do |f|
+          f.write "%div it works!"
+        end
       end
 
       FileUtils.cp_r(File.join(mulberry_base, 'themes'), base)

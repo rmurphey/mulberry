@@ -17,12 +17,16 @@ module Mulberry
           opts.on("-r", "--reporting_enabled", "Automatically enables reporting. Default: #{@options[:reporting_enabled]}") do |r|
             @options[:reporting_enabled] = r
           end
+
+          opts.on("-e", "--empty_app", "Indicate you want an 'empty' app with no Toura-specific functionality") do |e|
+            @options[:empty_app] = !!e
+          end
         end.parse!
 
         raise "You must specify an app name" unless dir
 
         @dir = dir.gsub(File.join(Dir.pwd, ""), "")
-        Mulberry::App.scaffold(@dir)
+        Mulberry::App.scaffold(@dir, false, @options)
 
         reporting_opt_in if Mulberry::FEATURES[:reporting]
       end
@@ -46,7 +50,8 @@ module Mulberry
         File.open(File.join(dir, '.mulberry'), 'w') do |f|
           y = {
             'report_url'      =>  URI.join(TouraApi::URL, '/mulberry_command_logs').to_s,
-            'guid'            =>  Guid.new.to_s
+            'guid'            =>  Guid.new.to_s,
+            'empty'           =>  @options[:empty_app]
           }.to_yaml
 
           f.write y

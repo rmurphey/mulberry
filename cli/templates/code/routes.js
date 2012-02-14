@@ -10,3 +10,32 @@ dojo.provide('client.routes');
  *    mulberry create route '/foo/:bar'
  *
  */
+mulberry.routes([
+  {
+    route : '/home',
+    handler : function(params) {
+      mulberry.showPage(mulberry.createPage({
+        pageDef : 'home'
+      }));
+    },
+    isDefault : true
+  }
+]);
+
+mulberry.pageDef('home', {
+  capabilities : [ ],
+  screens : [
+    {
+      name : 'main',
+      regions : [
+        {
+          className : 'region-1',
+          components : [
+            'StarterComponent'
+          ],
+          scrollable : true
+        }
+      ]
+    }
+  ]
+});
