@@ -10,12 +10,10 @@ dojo.declare('toura.components.AdTag', mulberry._Component, {
 
     if (appConfig) {
       this.adConfig = appConfig.ads && appConfig.ads[this.device.type];
-      this._refresh();
+      if (this.adConfig) {
+        this.refresh();
+      }
     }
-  },
-
-  setupSubscriptions : function() {
-    this.subscribe('/page/transition/end', '_refresh');
   },
 
   startup : function() {
@@ -24,11 +22,11 @@ dojo.declare('toura.components.AdTag', mulberry._Component, {
     }
   },
 
-  _setAdConfigAttr : function(val) {
-    this.adConfig = val;
-  },
+  refresh : function() {
+    var adConfig = this.adConfig + (
+          this.adConfig.match('!') ?  '&' : '?'
+        ) + '_touracachebust=' + Math.random();
 
-  _refresh : function() {
-    dojo.attr(this.adFrame, "src", this.adConfig);
+    dojo.attr(this.adFrame, "src", adConfig);
   }
 });
