@@ -172,7 +172,6 @@ describe Builder::Build do
 
         [ 'android', 'build.xml' ],
         [ 'android', 'AndroidManifest.xml' ],
-        [ 'android', 'local.properties' ],
 
         [ 'android', 'assets', 'www' ],
         [ 'android', 'assets', 'www', 'index.html' ],
