@@ -10,7 +10,7 @@ module Builder
       @report = { :location => @location, :files => [ DATA_FILENAME ] }
       json = JSON.pretty_generate(@build.build_helper.data)
       File.open(@destination, 'w') do |f|
-        f.write TouraAPP::Generators.data(@build.build_helper.data)
+        f.write Mulberry::Framework::Generators.data(@build.build_helper.data)
       end
       if @build.ota_enabled? || @build.settings[:publish_ota]
         @report[:tour_json_location] = File.join(@location, "tour.json")
