@@ -27,7 +27,7 @@ describe("ad tag component", function() {
     expect(c.adFrame).toBeDefined();
   });
 
-  it("should set the src of the iframe from mulberry.app.Config", function() {
+  it("should set the src of the iframe from the app's config object", function() {
     allDevices(function(d) {
       c = C({ device : d });
       expect(qs("iframe").getAttribute("src")).toEqual(adCfg.ads[d.type]);
@@ -49,12 +49,16 @@ describe("ad tag component", function() {
     });
   });
 
-  it("should refresh itself at the end of page transitions", function() {
+  it("should allow refreshing", function() {
     allDevices(function(d) {
       c = C({ device : d });
-      c.set('adConfig', 'new_url');
-      dojo.publish('/page/transition/end');
-      expect(qs('iframe').getAttribute('src')).toEqual('new_url');
+
+      var oldSrc = c.adFrame.src;
+
+      waits(1000);
+      c.refresh();
+
+      expect(c.adFrame.src).not.toBe(oldSrc);
     });
   });
 

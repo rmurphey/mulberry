@@ -61,59 +61,32 @@ describe("user interface controller", function() {
     expect(spy.callCount).toBe(2);
   });
 
-  describe("sibling nav", function() {
-    it("should create the sibling nav if it is enabled", function() {
-      toura.features.siblingNav = true;
+  describe("persistent components", function() {
+    var componentAddedFlag;
+
+    beforeEach(function() {
+      componentAddedFlag = false;
+
+      dojo.require('mulberry._Component');
+
+      dojo.declare('my.Component', mulberry._Component, {
+        templateString : '.my-persistent-component',
+        postCreate : function() {
+          componentAddedFlag = true;
+        }
+      });
       ui = new mulberry.app.UI(devices[0]);
-      expect(ui.siblingNav).toBeDefined();
     });
 
-    it("should not create the sibling nav if it is not enabled", function() {
-      toura.features.siblingNav = false;
-      ui = new mulberry.app.UI(devices[0]);
-      expect(ui.siblingNav).not.toBeDefined();
+    it("should create a persistent component container", function() {
+      expect(ui.containers.persistent).toBeDefined();
+      expect(ui.containers.persistent.domNode).toBeDefined();
     });
 
-    it("should pass the node for the current page to the sibling nav", function() {
-      toura.features.siblingNav = true;
-      ui = new mulberry.app.UI(devices[0]);
-
-      spyOn(ui.containers.viewport, 'set');
-      var spy = spyOn(ui.siblingNav, 'set');
-
-      ui.showPage('foo', 'bar');
-
-      expect(spy).toHaveBeenCalledWith('node', 'bar');
-    });
-
-    it("should allow setting the visibility of the sibling nav", function() {
-      toura.features.siblingNav = true;
-      ui = new mulberry.app.UI(devices[0]);
-      ui.set('siblingNavVisible', false);
-      expect(ui.siblingNav.domNode.className).toMatch('hidden');
-    });
-
-    it("should not show the sibling nav if there are no siblings", function() {
-      toura.features.siblingNav = true;
-      ui = new mulberry.app.UI(devices[0]);
-      ui.set('siblingNavVisible', false);
-      ui.siblingNav.siblings = false;
-      ui.set('siblingNavVisible', true);
-      expect(ui.siblingNav.domNode.className).toMatch('hidden');
-    });
-  });
-
-  describe("ad tag", function() {
-    it("should create the ad container if it is enabled", function() {
-      mulberry.features.ads = true;
-      ui = new mulberry.app.UI(devices[0]);
-      expect(document.querySelector('.component.ad-tag')).toBeDefined();
-    });
-
-    it("should not create the ad container if it is not enabled", function() {
-      mulberry.features.ads = false;
-      ui = new mulberry.app.UI(devices[0]);
-      expect(document.querySelector('.component.ad-tag')).toBeFalsy();
+    it("should add persistent components to the page", function() {
+      ui.addPersistentComponent(my.Component);
+      expect(componentAddedFlag).toBeTruthy();
+      expect(ui.containers.persistent.domNode.querySelector('.my-persistent-component')).toBeTruthy();
     });
   });
 });
