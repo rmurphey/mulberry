@@ -9,6 +9,7 @@ describe Mulberry::App do
 
   after :each do
     FileUtils.rm_rf 'testapp'
+    FileUtils.rm_rf 'test_empty_app'
   end
 
   describe "::get_app_dir" do
@@ -28,7 +29,7 @@ describe Mulberry::App do
       File.exists?('testapp').should be_true
     end
 
-    it "should create the correct files and directories for the app" do
+    it "should create the correct files and directories for a toura app" do
       [
         'config.yml',
         'sitemap.yml',
@@ -54,6 +55,34 @@ describe Mulberry::App do
         [ 'javascript', 'base.js' ]
       ].each do |f|
         File.exists?(File.join('testapp', f)).should be_true
+      end
+    end
+
+    it "should create the correct files and directories for an 'empty' app" do
+      Mulberry::App.scaffold('test_empty_app', true, :empty_app => true)
+      @app = Mulberry::App.new 'test_empty_app'
+
+      [
+        'config.yml',
+        [ 'javascript', 'components' ],
+        [ 'javascript', 'components', 'StarterComponent.js' ],
+        [ 'javascript', 'stores' ],
+        [ 'javascript', 'models' ],
+        [ 'javascript', 'capabilities' ],
+        [ 'javascript', 'base.js' ],
+        [ 'javascript', 'routes.js' ],
+        'themes'
+      ].each do |f|
+        File.exists?(File.join('test_empty_app', f)).should be_true
+      end
+
+      [
+        'sitemap.yml',
+        'pages',
+        'assets',
+        'page_defs'
+      ].each do |f|
+        File.exists?(File.join('test_empty_app', f)).should be_false
       end
     end
 
