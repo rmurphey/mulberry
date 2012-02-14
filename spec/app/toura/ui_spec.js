@@ -25,7 +25,6 @@ describe("toura ui", function() {
 
     createUI = function() {
       var ui = new toura.UI();
-      dojo.publish('/ui/ready');
       return ui;
     }
   });

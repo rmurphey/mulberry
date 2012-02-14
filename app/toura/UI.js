@@ -9,21 +9,14 @@ dojo.require('toura.components.AdTag');
 
 dojo.declare('toura.UI', dojo.Stateful, {
   constructor : function() {
-    var s = dojo.subscribe('/ui/ready', dojo.hitch(this, function() {
-      dojo.unsubscribe(s);
-      this.body = dojo.body();
-      this._init();
-    }));
+    this.body = dojo.body();
 
-    this.watch('siblingNavVisible', dojo.hitch(this, '_onSiblingNavVisible'));
-  },
-
-  _init : function() {
     this._setupFeatureClasses();
     this._setupSiblingNav();
     this._setupAdTag();
 
     dojo.connect(m.app.UI, 'showPage', this, '_onShowPage');
+    this.watch('siblingNavVisible', dojo.hitch(this, '_onSiblingNavVisible'));
   },
 
   _onShowPage : function(page, node) {
@@ -41,6 +34,7 @@ dojo.declare('toura.UI', dojo.Stateful, {
 
   _setupSiblingNav : function() {
     if (!toura.features.siblingNav) { return; }
+    console.log('>>>>>>> setting up sibling nav');
     this.siblingNav = m.app.UI.addPersistentComponent(toura.components.SiblingNav);
     this.set('siblingNavVisible', false);
   },
@@ -66,7 +60,7 @@ dojo.declare('toura.UI', dojo.Stateful, {
   }
 });
 
-dojo.subscribe('/app/ready', function() {
+dojo.subscribe('/ui/ready', function() {
   toura.UI = new toura.UI();
 });
 
