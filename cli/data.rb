@@ -52,7 +52,7 @@ module Mulberry
       result = {
         :items       =>  @items,
         :app         =>  @config,
-        :appVersion  =>  TouraAPP.version
+        :appVersion  =>  Mulberry::Framework.version
 
       }
       if (include_version)
