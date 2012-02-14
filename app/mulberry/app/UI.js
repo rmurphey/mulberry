@@ -5,7 +5,6 @@ dojo.require('mulberry.Utilities');
 dojo.require('mulberry.app.Config');
 dojo.require('mulberry.containers.Viewport');
 dojo.require('mulberry.containers.Persistent');
-dojo.require('toura.components.SiblingNav');
 dojo.require('mulberry.app.PhoneGap');
 dojo.require('dojo.string');
 
@@ -22,12 +21,10 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
     this.touchMoveDebounce = device.os === 'android' ? 200 : 0;
 
     this._containersSetup();
-    this._navSetup();
 
     this._watchers();
     this._updateViewport();
 
-    this._adSetup();
     this._uiSetup();
     this._eventSetup();
   },
@@ -49,17 +46,6 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
 
       navDirection : function(k, old, dir) {
         this.containers.viewport.set('navDirection', dir);
-      },
-
-      siblingNavVisible : function(k, old, visible) {
-        if (!this.siblingNav) { return; }
-
-        if (!this.siblingNav.siblings) {
-          this.siblingNav.hide();
-          return;
-        }
-
-        this.siblingNav[ visible ? 'show' : 'hide' ]();
       }
     };
 
@@ -87,29 +73,11 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
     if (mulberry.isMAP) {
       dojo.addClass(b, 'layout-MAP');
     }
-
   },
 
   _containersSetup : function() {
     this.containers.viewport = new mulberry.containers.Viewport().placeAt(this.body, 'first');
     this.containers.persistent = new mulberry.containers.Persistent().placeAt(this.body, 'last');
-  },
-
-  _navSetup : function() {
-    if (!toura.features.siblingNav) { return; }
-    this.siblingNav = this.addPersistentComponent(toura.components.SiblingNav);
-    this.set('siblingNavVisible', false);
-  },
-
-  _adSetup : function() {
-    if (!toura.features.ads) { return; }
-    mulberry.app.PhoneGap.network.isReachable()
-      .then(
-        dojo.hitch(this, function(isReachable) {
-          if (!isReachable) { return; }
-          new toura.components.AdTag().placeAt(this.body, 'last');
-      })
-    );
   },
 
   _eventSetup : function() {
@@ -164,10 +132,6 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
 
     this.containers.viewport.set('content', page);
     this.currentPage = page;
-
-    if (!this.siblingNav) { return; }
-    this.set('siblingNavVisible', true);
-    this.siblingNav.set('node', node);
   },
 
   hideSplash : function() {
@@ -178,5 +142,6 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
 
 dojo.subscribe('/app/ready', function() {
   mulberry.app.UI = new mulberry.app.UI(mulberry.Device);
+  dojo.publish('/ui/ready');
   mulberry.showPage = dojo.hitch(mulberry.app.UI, 'showPage');
 });
