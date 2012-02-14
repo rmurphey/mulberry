@@ -12,6 +12,10 @@ body {
 
 .page {
   background-color: $app-background-color;
+
+  .screen {
+    @include standard-screen;
+  }
 }
 
 @import 'viewport';

@@ -16,4 +16,4 @@ toura.data = toura.data || {};
 
 mulberry.registerComponentNamespace(toura.components);
 mulberry.registerCapabilityNamespace(toura.capabilities);
-mulberry.components.Debug.registerFeatureObject(toura.features);
+mulberry.components.Debug.registerFeaturesObject(toura.features);
