@@ -225,6 +225,14 @@ module Mulberry
 
       FileUtils.cp_r(File.join(mulberry_base, 'themes'), base)
 
+      if !is_toura_app
+        theme_base = File.join(base, 'themes', 'default', 'base.scss')
+        contents = File.read(theme_base)
+        File.open(theme_base, 'w') do |f|
+          f.write contents.split('// toura only').first
+        end
+      end
+
       puts "Scaffolded an app at #{base}" unless silent
     end
 
