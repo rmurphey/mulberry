@@ -35,7 +35,7 @@ module Mulberry
     end
 
     def self.app_file_path(*args)
-      File.join(TouraAPP::Directories.app, *args)
+      File.join(Mulberry::Framework::Directories.app, *args)
     end
 
     def app_file_path(*args)
@@ -50,7 +50,7 @@ module Mulberry
 
     set :raise_errors => true
     set :root, app_file_path('.')
-    set :views, TouraAPP::Templates.root
+    set :views, Mulberry::Framework::Templates.root
     set :host, 'localhost'
 
     #####################
@@ -151,7 +151,7 @@ module Mulberry
           config_settings[key] = ota_url.sub(/http:\/\/[^\/]+/, url.match(/http:\/\/[^\/]+/)[0])
         end
       end
-      TouraAPP::Generators.config os, device_type, config_settings
+      Mulberry::Framework::Generators.config os, device_type, config_settings
     end
 
     get '*ota_service*' do
@@ -214,9 +214,9 @@ module Mulberry
         case params[:splat].first
         when 'tour.js'
           ota_enabled = @helper.build ? @helper.build.ota_enabled? : false
-          TouraAPP::Generators.data(Mulberry::Data.new(@mulberry_app).generate(ota_enabled))
+          Mulberry::Framework::Generators.data(Mulberry::Data.new(@mulberry_app).generate(ota_enabled))
         when 'pagedefs.js'
-          TouraAPP::Generators.page_defs(@helper.page_defs)
+          Mulberry::Framework::Generators.page_defs(@helper.page_defs)
         end
       rescue RuntimeError => e
         puts "ERROR: #{e.to_s}"

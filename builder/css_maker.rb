@@ -11,7 +11,7 @@ module Builder
         raise "CSSMaker requires a theme_dir"
       end
 
-      app_dir = settings.has_key?(:app_dir) ? settings[:app_dir] : TouraAPP::Directories.javascript
+      app_dir = settings.has_key?(:app_dir) ? settings[:app_dir] : Mulberry::Framework::Directories.javascript
       app_base = File.join(app_dir, @@css_filename)
 
       theme_dir = settings[:theme_dir]

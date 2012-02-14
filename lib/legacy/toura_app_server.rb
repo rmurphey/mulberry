@@ -28,7 +28,7 @@ class TouraAPPServer < Sinatra::Base
   end
 
   def custom_dir(tour_id)
-    TouraAPP::Directories.client_customizations(tour_id)
+    Mulberry::Framework::Directories.client_customizations(tour_id)
   end
 
   #####################
@@ -69,7 +69,7 @@ class TouraAPPServer < Sinatra::Base
 
     if !File.exists? vars_path
       vars_path = File.join(
-        TouraAPP::Directories.data_fixtures,
+        Mulberry::Framework::Directories.data_fixtures,
         'client_customizations',
         'vars.scss'
       )
@@ -136,7 +136,7 @@ class TouraAPPServer < Sinatra::Base
   get '/:os/:device_type/tours/:tour_id/javascript/toura/app/TouraConfig.js' do
     content_type 'text/javascript'
 
-    TouraAPP::Generators.config params[:os], params[:device_type], {
+    Mulberry::Framework::Generators.config params[:os], params[:device_type], {
       "id"                  =>  params[:tour_id],
       "build"               =>  Time.now.to_i,
       "force_streaming"     =>  false,
@@ -157,7 +157,7 @@ class TouraAPPServer < Sinatra::Base
   #####################
   get '/:os/:device_type/tours/:tour_id/data/templates.js' do
     content_type "text/javascript"
-    "toura.templates = #{JSON.pretty_generate(TouraAPP::Generators.page_templates)};"
+    "toura.templates = #{JSON.pretty_generate(Mulberry::Framework::Generators.page_templates)};"
   end
 
   get '/:os/:device_type/tours/:tour_id/data/*' do

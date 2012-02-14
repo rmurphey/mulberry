@@ -10,13 +10,13 @@ module Builder
     PROFILE_FILE = "toura.profile.js"
 
     BUILDSCRIPTS_DIR = File.join(
-      TouraAPP::Directories.dojo,
+      Mulberry::Framework::Directories.dojo,
       "util",
       "buildscripts"
     )
 
     COPYRIGHT_FILE = File.join(
-      TouraAPP::Directories.profiles,
+      Mulberry::Framework::Directories.profiles,
       "copyright.txt"
     )
 
@@ -110,15 +110,15 @@ module Builder
 
     private
     def get_dojo
-      dojo = "http://download.dojotoolkit.org/release-#{TouraAPP.dojo_version}/dojo-release-#{TouraAPP.dojo_version}-src.tar.gz"
-      dest = TouraAPP::Directories.dojo
+      dojo = "http://download.dojotoolkit.org/release-#{Mulberry::Framework.dojo_version}/dojo-release-#{Mulberry::Framework.dojo_version}-src.tar.gz"
+      dest = Mulberry::Framework::Directories.dojo
 
       unless File.exists?(dest)
-        Dir.chdir TouraAPP::Directories.javascript
+        Dir.chdir Mulberry::Framework::Directories.javascript
 
         # Download specified Dojo version and extract it to the js dir
         @build.log("Downloading and extracting Dojo. JavaScript goodness is a few minutes away.", 'info')
-        dojo_installed = system %{curl --insecure -o - #{dojo} | tar -C #{TouraAPP::Directories.javascript} -xzf -}
+        dojo_installed = system %{curl --insecure -o - #{dojo} | tar -C #{Mulberry::Framework::Directories.javascript} -xzf -}
         raise "Fatal error: Failed to install Dojo." unless dojo_installed
       end
 
@@ -130,7 +130,7 @@ module Builder
       # version and replace it with the unminified version after the dojo
       # build is complete
       bad_haml    = File.join(@location, @target['build_type'], 'vendor', 'haml.js')
-      good_haml   = File.join(TouraAPP::Directories.javascript, 'vendor', 'haml.js')
+      good_haml   = File.join(Mulberry::Framework::Directories.javascript, 'vendor', 'haml.js')
 
       FileUtils.rm_rf bad_haml
       FileUtils.cp(good_haml, bad_haml)
@@ -166,7 +166,7 @@ module Builder
         custom_js_source = @build.build_helper.custom_js_source
 
         if custom_js_source
-          @client_dir = File.join(TouraAPP::Directories.javascript, 'client_tmp')
+          @client_dir = File.join(Mulberry::Framework::Directories.javascript, 'client_tmp')
           FileUtils.rm_rf @client_dir if File.exists? @client_dir
           FileUtils.cp_r(custom_js_source, @client_dir)
           profile[:prefixes] << [ 'client', '../../client_tmp' ]
@@ -178,7 +178,7 @@ module Builder
     end
 
     def build_version
-      "toura-#{@build_type}-#{TouraAPP.version}"
+      "toura-#{@build_type}-#{Mulberry::Framework.version}"
     end
 
     def prep_dir
