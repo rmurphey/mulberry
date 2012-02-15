@@ -111,7 +111,7 @@ mulberry.app.DeviceStorage = (function(){
       });
 
       window.localStorage.clear();
-      return this._sql(queries);
+      return this._sql && this._sql(queries);
     },
 
     set : function(k, v) {

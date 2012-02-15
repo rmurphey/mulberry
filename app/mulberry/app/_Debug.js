@@ -69,11 +69,17 @@ dojo.declare('mulberry.app._Debug.Tools', mulberry._Component, {
   actions : [
     {
       name : 'Reset DB',
-      method : '_resetDB'
+      method : '_resetDB',
+      isAvailable : function() {
+        return !!mulberry.app.DeviceStorage._db;
+      }
     },
     {
       name : 'weinre',
-      method : '_weinre'
+      method : '_weinre',
+      isAvailable : function() {
+        return true;
+      }
     }
   ],
 
@@ -84,6 +90,7 @@ dojo.declare('mulberry.app._Debug.Tools', mulberry._Component, {
 
   _makeActions : function() {
     dojo.forEach(this.actions, function(action) {
+      if (!action.isAvailable()) { return; }
       var n = dojo.create('div', {
         className : 'button',
         innerHTML : action.name
