@@ -20,6 +20,9 @@ dojo.require('mulberry.app._base');
 dojo.requireLocalization('mulberry', 'mulberry');
 
 var readyFn = function() {
+  // open up the database connection so we can work with it
+  mulberry.app.DeviceStorage.init(mulberry.app.Config.get("id") || 'mulberry');
+
   // bootstrapping process should start in response to /app/deviceready
   dojo.publish('/app/deviceready');
 
