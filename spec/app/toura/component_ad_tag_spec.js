@@ -27,7 +27,7 @@ describe("ad tag component", function() {
     expect(c.adFrame).toBeDefined();
   });
 
-  it("should set the src of the iframe from toura.app.Config", function() {
+  it("should set the src of the iframe from the app's config object", function() {
     allDevices(function(d) {
       c = C({ device : d });
       expect(qs("iframe").getAttribute("src")).toEqual(adCfg.ads[d.type]);
