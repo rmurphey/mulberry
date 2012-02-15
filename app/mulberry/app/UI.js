@@ -94,7 +94,7 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
   },
 
   _adSetup : function() {
-    if (!mulberry.features.ads) { return; }
+    if (!toura.features.ads) { return; }
     mulberry.app.PhoneGap.network.isReachable()
       .then(
         dojo.hitch(this, function(isReachable) {
