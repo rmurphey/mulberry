@@ -8,7 +8,7 @@ describe Builder::Build do
   before(:all) do
     Mulberry::App.scaffold('testapp', true)
     @app = Mulberry::App.new 'testapp'
-    @page_defs = Dir.glob(File.join(TouraAPP::Directories.page_defs, '*.yml')).map do |page_def|
+    @page_defs = Dir.glob(File.join(Mulberry::Framework::Directories.page_defs, '*.yml')).map do |page_def|
       YAML.load_file(page_def).keys.first
     end
   end

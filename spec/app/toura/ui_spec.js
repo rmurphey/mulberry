@@ -24,9 +24,8 @@ describe("toura ui", function() {
     dojo.require('toura.UI');
 
     createUI = function() {
-      var ui = new toura.UI();
-      return ui;
-    }
+      return new toura.UI();
+    };
   });
 
   it("should add classes for feature flags to the body", function() {
@@ -45,7 +44,6 @@ describe("toura ui", function() {
 
   describe("sibling nav", function() {
     it("should create the sibling nav if it is enabled", function() {
-      console.log('should create');
       toura.features.siblingNav = true;
       var spy = spyOn(mulberry.app.UI, 'addPersistentComponent').andCallThrough();
       ui = createUI();

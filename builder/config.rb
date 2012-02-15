@@ -37,7 +37,7 @@ module Builder
         type = nil
       end
 
-      TouraAPP::Generators.config(os, type, settings)
+      Mulberry::Framework::Generators.config(os, type, settings)
     end
 
   end

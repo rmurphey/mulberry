@@ -31,7 +31,7 @@ module Builder
     def page_defs
       page_defs = {}
 
-      Dir.glob(File.join(TouraAPP::Directories.page_defs, '*.yml')).each do |t|
+      Dir.glob(File.join(Mulberry::Framework::Directories.page_defs, '*.yml')).each do |t|
         d = YAML.load_file(t)
         page_defs.merge!(d) if d
       end
