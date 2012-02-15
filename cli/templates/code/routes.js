@@ -16,7 +16,7 @@ mulberry.pageDef('home', {
   capabilities : [ ],
   screens : [
     {
-      name : 'main',
+      name : 'index',
       regions : [
         {
           className : 'region-1',
