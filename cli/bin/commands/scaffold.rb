@@ -47,6 +47,8 @@ module Mulberry
       end
 
       def self.create_dot_mulberry_file(dir)
+        @options ||= {}
+
         File.open(File.join(dir, '.mulberry'), 'w') do |f|
           y = {
             'report_url'      =>  URI.join(TouraApi::URL, '/mulberry_command_logs').to_s,

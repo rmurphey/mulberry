@@ -178,21 +178,23 @@ module Mulberry
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
 
-      toura_dirs.each do |dir, subdirs|
-        dir = File.join(base, dir.to_s)
-        FileUtils.mkdir dir
-        subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
-      end if is_toura_app
+      FileUtils.cp_r(File.join(mulberry_base, 'themes'), base)
 
-      if is_toura_app
-        Mulberry::CodeCreator.new('base-toura', base, 'base')
-        Mulberry::CodeCreator.new('routes-toura', base, 'routes')
-      else
-        Mulberry::CodeCreator.new('base', base, 'base')
-        Mulberry::CodeCreator.new('routes', base, 'routes')
+      original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
+      File.open(File.join(base, CONFIG), 'w') do |f|
+        f.write original_config.gsub(/^name:.?$/, "name: #{app_name}")
       end
 
       if is_toura_app
+        toura_dirs.each do |dir, subdirs|
+          dir = File.join(base, dir.to_s)
+          FileUtils.mkdir dir
+          subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
+        end
+
+        Mulberry::CodeCreator.new('base-toura', base, 'base')
+        Mulberry::CodeCreator.new('routes-toura', base, 'routes')
+
         asset_dirs = Dir.entries File.join(base, 'assets')
 
         [ 'audios', 'videos', 'images', 'locations' ].each do |asset_dir|
@@ -200,36 +202,29 @@ module Mulberry
         end
 
         FileUtils.cp(File.join(mulberry_base, 'templates', SITEMAP), base)
-      end
 
-      original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
-      original_config.gsub!(/^name:.?$/, "name: #{app_name}")
-
-      File.open(File.join(base, CONFIG), 'w') do |f|
-        f.write original_config
-      end
-
-      [ 'home.md', 'about.md' ].each do |page|
-        FileUtils.cp(
-          File.join(mulberry_base, 'templates', 'pages', page),
-          File.join(base, 'pages')
-        )
-      end if is_toura_app
-
-      if !is_toura_app
-        Mulberry::CodeCreator.new('component', base, 'StarterComponent')
-        File.open(File.join(base, 'javascript', 'components', 'StarterComponent', 'StarterComponent.haml'), 'w') do |f|
-          f.write "%div it works!"
+        [ 'home.md', 'about.md' ].each do |page|
+          FileUtils.cp(
+            File.join(mulberry_base, 'templates', 'pages', page),
+            File.join(base, 'pages')
+          )
         end
-      end
-
-      FileUtils.cp_r(File.join(mulberry_base, 'themes'), base)
-
-      if !is_toura_app
+      else
         theme_base = File.join(base, 'themes', 'default', 'base.scss')
         contents = File.read(theme_base)
+
         File.open(theme_base, 'w') do |f|
           f.write contents.split('// toura only').first
+        end
+
+        Mulberry::CodeCreator.new('base', base, 'base')
+        Mulberry::CodeCreator.new('routes', base, 'routes')
+        Mulberry::CodeCreator.new('component', base, 'StarterComponent')
+
+        puts "got here"
+
+        File.open(File.join(base, 'javascript', 'components', 'StarterComponent', 'StarterComponent.haml'), 'w') do |f|
+          f.write "%div it works!"
         end
       end
 
