@@ -24,6 +24,20 @@ describe Mulberry::CodeCreator do
     }.should raise_error
   end
 
+  describe "base js creation" do
+    before :each do
+      @base_file = File.join(@source_dir, 'javascript', 'base.js')
+    end
+
+    it "should create the file" do
+      File.exists?(@base_file).should be_true
+    end
+
+    it "should require toura.base" do
+      File.read(@base_file).should include 'toura.base'
+    end
+  end
+
   describe "component creation" do
     before :each do
       Mulberry::CodeCreator.new('component', @source_dir, 'FooBarBaz')

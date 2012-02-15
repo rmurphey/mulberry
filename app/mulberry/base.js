@@ -11,6 +11,7 @@ dojo.require('mulberry._Logging');
 dojo.require('mulberry._PageDef');
 dojo.require('mulberry._Store');
 dojo.require('mulberry._Model');
+dojo.require('mulberry._Capability');
 
 dojo.require('mulberry.Utilities');
 

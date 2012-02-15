@@ -106,7 +106,7 @@ module Mulberry
 
     def page_defs
       app_page_defs_dir = File.join(@source_dir, 'page_defs')
-      base_page_defs_dir = TouraAPP::Directories.page_defs
+      base_page_defs_dir = Mulberry::Framework::Directories.page_defs
 
       page_defs = {}
 

@@ -20,7 +20,7 @@ module Builder
 
     private
     def page_defs
-      TouraAPP::Generators.page_defs(@build.build_helper.page_defs);
+      Mulberry::Framework::Generators.page_defs(@build.build_helper.page_defs);
     end
   end
 end
