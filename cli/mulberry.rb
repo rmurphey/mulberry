@@ -220,12 +220,6 @@ module Mulberry
         Mulberry::CodeCreator.new('base', base, 'base')
         Mulberry::CodeCreator.new('routes', base, 'routes')
         Mulberry::CodeCreator.new('component', base, 'StarterComponent')
-
-        puts "got here"
-
-        File.open(File.join(base, 'javascript', 'components', 'StarterComponent', 'StarterComponent.haml'), 'w') do |f|
-          f.write "%div it works!"
-        end
       end
 
       puts "Scaffolded an app at #{base}" unless silent
