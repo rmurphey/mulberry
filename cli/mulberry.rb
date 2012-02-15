@@ -148,38 +148,24 @@ module Mulberry
 
       FileUtils.mkdir_p base
 
-      base_dirs = {
+      # make the dirs shared by toura and "empty" apps
+      {
         :javascript => [
           'components',
           'stores',
           'models',
           'capabilities'
         ]
-      }
-
-      toura_dirs = {
-        :assets => [
-          'data',
-          'audios',
-          'videos',
-          'images',
-          'feeds',
-          'locations',
-          'html'
-        ],
-
-        :pages => [],
-        :page_defs => []
-      }
-
-      base_dirs.each do |dir, subdirs|
+      }.each do |dir, subdirs|
         dir = File.join(base, dir.to_s)
         FileUtils.mkdir dir
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
 
+      # copy over the toura themes dir
       FileUtils.cp_r(File.join(mulberry_base, 'themes'), base)
 
+      # create the config.yml
       original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
       File.open(File.join(base, CONFIG), 'w') do |f|
         f.write original_config.gsub(/^name:.?$/, "name: #{app_name}")
@@ -187,7 +173,20 @@ module Mulberry
 
       if is_toura_app
         # make the toura-specific dirs
-        toura_dirs.each do |dir, subdirs|
+        {
+          :assets => [
+            'data',
+            'audios',
+            'videos',
+            'images',
+            'feeds',
+            'locations',
+            'html'
+          ],
+
+          :pages => [],
+          :page_defs => []
+        }.each do |dir, subdirs|
           dir = File.join(base, dir.to_s)
           FileUtils.mkdir dir
           subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
