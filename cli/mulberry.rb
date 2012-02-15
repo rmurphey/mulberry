@@ -186,23 +186,26 @@ module Mulberry
       end
 
       if is_toura_app
+        # make the toura-specific dirs
         toura_dirs.each do |dir, subdirs|
           dir = File.join(base, dir.to_s)
           FileUtils.mkdir dir
           subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
         end
 
+        # make the toura-specific base.js and routes.js
         Mulberry::CodeCreator.new('base-toura', base, 'base')
         Mulberry::CodeCreator.new('routes-toura', base, 'routes')
 
-        asset_dirs = Dir.entries File.join(base, 'assets')
-
+        # create the asset dirs
         [ 'audios', 'videos', 'images', 'locations' ].each do |asset_dir|
           FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
         end
 
+        # create the sitemap
         FileUtils.cp(File.join(mulberry_base, 'templates', SITEMAP), base)
 
+        # create the home and about pages
         [ 'home.md', 'about.md' ].each do |page|
           FileUtils.cp(
             File.join(mulberry_base, 'templates', 'pages', page),
@@ -210,6 +213,7 @@ module Mulberry
           )
         end
       else
+        # remove toura-specific stuff from the base.scss file
         theme_base = File.join(base, 'themes', 'default', 'base.scss')
         contents = File.read(theme_base)
 
@@ -217,6 +221,7 @@ module Mulberry
           f.write contents.split('// toura only').first
         end
 
+        # create the "empty" base.js, routes.js, and a starter component
         Mulberry::CodeCreator.new('base', base, 'base')
         Mulberry::CodeCreator.new('routes', base, 'routes')
         Mulberry::CodeCreator.new('component', base, 'StarterComponent')
