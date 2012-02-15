@@ -18,7 +18,7 @@ module Mulberry
             @options[:reporting_enabled] = r
           end
 
-          opts.on("-e", "--empty_app", "Indicate you want an 'empty' app with no Toura-specific functionality") do |e|
+          opts.on("-e", "--empty", "Indicate you want an 'empty' app with no Toura-specific functionality") do |e|
             @options[:empty_app] = !!e
           end
         end.parse!
