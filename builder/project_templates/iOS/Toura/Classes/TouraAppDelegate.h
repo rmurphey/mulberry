@@ -22,5 +22,7 @@
 @property (copy)  NSString *invokeString;
 @property (nonatomic, retain) NSDictionary *launchNotification;
 
+- (BOOL)doesRequest:(NSURLRequest *)request comeFromWebView:(UIWebView *)webView;
+
 @end
 
