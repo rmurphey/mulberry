@@ -210,7 +210,7 @@
       text-overflow: ellipsis;
 
       // TODO: Kludge for Wiley. Make this a parameter exported from MAP
-      .multi-line-child-nodes & {
+      .feature-multiLineChildNodes & {
         overflow: visible;
         white-space: normal;
       }
@@ -234,20 +234,20 @@
 
 @mixin fixed-height-gallery {
   position: static;
-  
+
   // tablet portrait
   height: 450px;
-  
+
   // tablet landscape
   @media (max-height: 850px) {
     height: 300px;
   }
-  
+
   // phone portrait
   @media (max-height: 600px) {
     height: 190px;
   }
-  
+
   // phone landscape
   @media (max-height: 350px) {
     height: 120px;
@@ -257,7 +257,7 @@
 @mixin caption-text {
   font-size: 14px;
   color: offset-text-color(40%);
-  
+
   .phone & {
     font-size: 13px;
   }
