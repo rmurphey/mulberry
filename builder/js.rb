@@ -41,9 +41,7 @@ module Builder
           "dijit._Widget",
           "dijit._Templated",
           "dojo.i18n",
-          "dojo.string",
-          "dojo.data.ItemFileReadStore",
-          "toura._Nls"
+          "dojo.string"
         ]
       },
 
