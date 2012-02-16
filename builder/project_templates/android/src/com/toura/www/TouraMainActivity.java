@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
+import java.net.URL;
+
 
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -13,6 +15,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.net.Uri;
+import android.text.TextUtils;
 
 import com.flurry.android.FlurryAgent;
 import com.phonegap.DroidGap;
@@ -49,6 +53,29 @@ public class TouraMainActivity extends DroidGap {
     ws.setSupportZoom(false);
     ws.setBuiltInZoomControls(false);
     IntentReceiver.setTouraMainActivity(this);
+
+    super.appView.setWebViewClient(new DroidGap.GapViewClient(this) {
+      @Override
+      public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        try {
+          URL urlObj = new URL(url);
+          if( TextUtils.equals(urlObj.getHost(),"192.168.1.34") ) {
+            //Allow the WebView in your application to do its thing
+            return false;
+          } else {
+            //Pass it to the system, doesn't match your domain
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+            //Tell the WebView you took care of it.
+            return true;
+          }
+        }
+        catch (Exception e) {
+          e.printStackTrace();
+        }
+        return false;
+      }
+    });
   }
 
   /*
