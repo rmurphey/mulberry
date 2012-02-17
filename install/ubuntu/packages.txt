@@ -1,0 +1,12 @@
+The following are required for installation:
+
+1. gcc
+2. Ruby 1.9.3 (although other rubies ought to work)
+3. Rubygems / Bundler
+4. PhoneGap/Cordova
+5. Placement of the Mulberry executable in your $PATH
+
+The installation script will attempt to install Ruby via rvm. It will
+also add the Mulberry executable to your .bash_profile.
+
+Do you wish to proceed with the installation of rvm, ruby, and other packages (Y/n)?
