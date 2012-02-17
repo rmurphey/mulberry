@@ -1,0 +1,27 @@
+.component.ad-tag {
+  background: $ad-background-color;
+  text-align: center;
+  width: 100%;
+
+  .phone & {
+    height: $phone-ad-height;
+
+    iframe {
+      height: $phone-ad-height;
+      height: $phone-ad-width;
+    }
+  }
+
+  .tablet & {
+    height: $tablet-ad-height;
+
+    iframe {
+      height: $tablet-ad-height;
+      height: $tablet-ad-width;
+    }
+  }
+
+  iframe {
+    border: none;
+  }
+}

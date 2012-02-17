@@ -16,6 +16,8 @@
 	<true/>
 	<key>ShowSplashScreenSpinner</key>
 	<true/>
+	<key>OpenAllWhitelistURLsInWebView</key>
+	<true/>
 	<key>ExternalHosts</key>
 	<array>
 		<string>*</string>

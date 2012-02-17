@@ -127,17 +127,49 @@ void uncaughtExceptionHandler(NSException *);
  */
 - (void)webView:(UIWebView *)theWebView didFailLoadWithError:(NSError *)error
 {
-	return [ super webView:theWebView didFailLoadWithError:error ];
+  if ([error code] != NSURLErrorCancelled){
+    return [ super webView:theWebView didFailLoadWithError:error ];
+  }
 }
 
 /**
- * Start Loading Request
- * This is where most of the magic happens... We take the request(s) and process the response.
- * From here we can re direct links and other protocalls to different internal methods.
+ * Overriding in __App__Delegate.m
+ * if this is viable, find a nicer API and merge into PhoneGap/Callback/Cordova edge
+ *
+ * programmatic iframe creations open in main webview
+ * user interactions open in Safari
  */
+
 - (BOOL)webView:(UIWebView *)theWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-	return [ super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType ];
+    BOOL superValue = [ super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType ];
+    BOOL inIframe = ![self doesRequest:request comeFromWebView:theWebView];
+    BOOL fromUserInteraction = (navigationType == UIWebViewNavigationTypeLinkClicked || navigationType == UIWebViewNavigationTypeFormSubmitted);
+
+    NSURL *url = [request URL];
+
+    NSLog(@"url is %@", url);
+    NSLog(@"inIframe is %@", (inIframe ? @"true" : @"false"));
+    NSLog(@"request.mainDocumentURL = %@", [request.mainDocumentURL absoluteString]);
+    NSLog(@"webview.request.mainDocumentURL = %@", [theWebView.request.mainDocumentURL absoluteString]);
+
+    // if in iframe and has user interaction
+    if (inIframe && fromUserInteraction) {
+        [[UIApplication sharedApplication] openURL:url];
+        return NO;
+    }
+
+    // otherwise, fall back to super
+    return superValue;
+}
+
+- (BOOL)doesRequest:(NSURLRequest *)request comeFromWebView:(UIWebView *)webView
+{
+    // sees if the mainDocumentURL of the request matches that of the webView
+    // if not, is probably from an iFrame
+    return ([[request.mainDocumentURL absoluteString]
+            compare:[webView.request.mainDocumentURL absoluteString]]
+            == 0);
 }
 
 - (BOOL)execute:(InvokedUrlCommand*)command
