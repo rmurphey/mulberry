@@ -6,19 +6,19 @@
     border-bottom: 18px solid transparent;
   }
 
-  .phone.feature-ads & {
+  .phone.has-ads & {
     border-bottom-width: $phone-ad-height;
   }
 
-  .phone.sibling-nav-visible.feature-ads & {
+  .phone.sibling-nav-visible.has-ads & {
     border-bottom-width: $phone-ad-height + 18px;
   }
 
-  .tablet.feature-ads & {
+  .tablet.has-ads & {
     border-bottom-width: $tablet-ad-height;
   }
 
-  .tablet.sibling-nav-visible.feature-ads & {
+  .tablet.sibling-nav-visible.has-ads & {
     border-bottom-width: $tablet-ad-height + 18px;
   }
 }

@@ -28,6 +28,11 @@ describe("ad tag component", function() {
     expect(c.adFrame).toBeDefined();
   });
 
+  it("should add a class to the body indicating the presence of ads", function() {
+    c = C();
+    expect(dojo.hasClass(dojo.body(), 'has-ads')).toBeTruthy();
+  });
+
   it("should set the src of the iframe from the app's config object", function() {
     allDevices(function(d) {
       c = C({ device : d });
