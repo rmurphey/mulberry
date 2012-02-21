@@ -93,18 +93,24 @@ module Mulberry
         tmpl = File.read(Mulberry::Framework::Templates.config)
 
         defaults = {
-          'id'                  =>  12345,
-          'build_date'          =>  Time.now.to_i.to_s,
-          'force_streaming'     =>  false,
-          'force_local'         =>  false,
-          'skip_version_check'  =>  false,
-          'app_version'         =>  Mulberry::Framework::version,
-          'debug'               =>  false,
-          'force_local'         =>  false,
-          'sibling_nav'         =>  true,
-          'postscript'          =>  '',
-          'locale'              =>  'en-us',
-          'ads'                 =>  false
+          'id'                      =>  12345,
+          'build_date'              =>  Time.now.to_i.to_s,
+          'force_streaming'         =>  false,
+          'force_local'             =>  false,
+          'skip_version_check'      =>  false,
+          'app_version'             =>  Mulberry::Framework::version,
+          'debug'                   =>  false,
+          'force_local'             =>  false,
+          'postscript'              =>  '',
+          'locale'                  =>  'en-us',
+
+          'ads'                     =>  false,
+          'sibling_nav'             =>  true,
+          'sharing'                 =>  true,
+          'favorites'               =>  true,
+          'font_size'               =>  true,
+          'multi_line_child_nodes'  =>  false,
+          'debug_page'              =>  true
         }
 
         settings = defaults.merge(binding)
