@@ -49,6 +49,7 @@ dojo.declare('toura.UI', dojo.Stateful, {
     mulberry.app.PhoneGap.network.isReachable()
       .then(dojo.hitch(this, function(isReachable) {
         if (!isReachable) { return; }
+        dojo.addClass(dojo.body(), 'has-ads');
         this.adTag = m.app.UI.addPersistentComponent(toura.components.AdTag, {}, 'last');
       }));
   },

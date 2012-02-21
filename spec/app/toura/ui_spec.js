@@ -95,6 +95,10 @@ describe("toura ui", function() {
 
       ui = createUI();
       expect(spy.mostRecentCall.args[0]).toBe(toura.components.AdTag);
+      expect(dojo.hasClass(dojo.body(), 'has-ads')).toBeTruthy();
+
+      // cleanup
+      dojo.removeClass(dojo.body(), 'has-ads');
     });
 
     it("should not create the ad container if it is not enabled", function() {
