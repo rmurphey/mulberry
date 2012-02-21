@@ -1,0 +1,14 @@
+The following are required for installation:
+
+1. XCode (for gcc and other unix tools)
+2. Ruby 1.9.3 (although other rubies ought to work)
+3. Rubygems / Bundler
+4. Android SDK
+5. PhoneGap/Cordova
+6. Placement of the Mulberry executable in your $PATH
+
+The installation script will attempt to install Ruby via rvm and the Android
+SDK via Homebrew. It will also add the Mulberry executable to your
+.bash_profile.
+
+Do you wish to proceed with the installation of rvm, ruby, and homebrew/packages (Y/n)?

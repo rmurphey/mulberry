@@ -4,13 +4,15 @@ require 'pathname'
 module Mulberry
   class CodeCreator
     DIRNAMES = {
-      'component'   =>  'components',
-      'capability'  =>  'capabilities',
-      'store'       =>  'stores',
-      'model'       =>  'models',
-      'base'        =>  '.',
-      'routes'      =>  '.',
-      'route'       =>  '.'
+      'component'     =>  'components',
+      'capability'    =>  'capabilities',
+      'store'         =>  'stores',
+      'model'         =>  'models',
+      'base'          =>  '.',
+      'base-toura'    =>  '.',
+      'routes'        =>  '.',
+      'routes-toura'  =>  '.',
+      'route'         =>  '.'
     }
 
     def initialize(code_type, destination_dir, filename)
@@ -49,7 +51,7 @@ module Mulberry
         # add the dependency
         File.open(File.join(@js_dir, 'base.js'), 'a') do |f|
           f.write "dojo.require('#{js_dependency_path}');\n"
-        end unless @code_type == 'base'
+        end unless @code_type == 'base' || @code_type == 'base-toura'
 
         # write the basic file for the requested code
         File.open(File.join(@code_dir, "#{@filename}.js"), 'w') do |f|

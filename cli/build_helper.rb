@@ -110,11 +110,13 @@ module Mulberry
 
       page_defs = {}
 
-      [ app_page_defs_dir, base_page_defs_dir ].each do |dir|
-        Dir.glob(File.join(dir, '*.yml')).each do |page_def|
-          d = YAML.load_file(page_def)
-          page_defs.merge!(d) if d
-        end unless !File.exists?(dir)
+      if File.exists? app_page_defs_dir
+        [ app_page_defs_dir, base_page_defs_dir ].each do |dir|
+          Dir.glob(File.join(dir, '*.yml')).each do |page_def|
+            d = YAML.load_file(page_def)
+            page_defs.merge!(d) if d
+          end unless !File.exists?(dir)
+        end
       end
 
       page_defs

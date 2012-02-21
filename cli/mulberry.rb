@@ -134,10 +134,11 @@ module Mulberry
 
     end
 
-    def self.scaffold(app_name, silent = false)
+    def self.scaffold(app_name, silent = false, options = {})
       raise "You must provide an app name" unless app_name
 
       mulberry_base = File.dirname(__FILE__)
+      is_toura_app = !options[:empty_app]
 
       base = File.expand_path(app_name)
 
@@ -147,62 +148,83 @@ module Mulberry
 
       FileUtils.mkdir_p base
 
-      dirs = {
-        :assets => [
-          'data',
-          'audios',
-          'videos',
-          'images',
-          'feeds',
-          'locations',
-          'html'
-        ],
-
+      # make the dirs shared by toura and "empty" apps
+      {
         :javascript => [
           'components',
           'stores',
           'models',
           'capabilities'
-        ],
-
-        :page_defs => [],
-        :pages => []
-      }
-
-      dirs.each do |dir, subdirs|
+        ]
+      }.each do |dir, subdirs|
         dir = File.join(base, dir.to_s)
         FileUtils.mkdir dir
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
 
-      Mulberry::CodeCreator.new('base', base, 'base')
-      Mulberry::CodeCreator.new('routes', base, 'routes')
-
-      asset_dirs = Dir.entries File.join(base, 'assets')
-
-      [ 'audios', 'videos', 'images', 'locations' ].each do |asset_dir|
-        FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
-      end
-
-      [ CONFIG, SITEMAP ].each do |tmpl|
-        FileUtils.cp(File.join(mulberry_base, 'templates', tmpl), base)
-      end
-
-      original_config = File.read File.join(base, 'config.yml')
-      original_config.gsub!(/^name:.?$/, "name: #{app_name}")
-
-      File.open(File.join(base, 'config.yml'), 'w') do |f|
-        f.write original_config
-      end
-
-      [ 'home.md', 'about.md' ].each do |page|
-        FileUtils.cp(
-          File.join(mulberry_base, 'templates', 'pages', page),
-          File.join(base, 'pages')
-        )
-      end
-
+      # copy over the toura themes dir
       FileUtils.cp_r(File.join(mulberry_base, 'themes'), base)
+
+      # create the config.yml
+      original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
+      File.open(File.join(base, CONFIG), 'w') do |f|
+        f.write original_config.gsub(/^name:.?$/, "name: #{app_name}")
+      end
+
+      if is_toura_app
+        # make the toura-specific dirs
+        {
+          :assets => [
+            'data',
+            'audios',
+            'videos',
+            'images',
+            'feeds',
+            'locations',
+            'html'
+          ],
+
+          :pages => [],
+          :page_defs => []
+        }.each do |dir, subdirs|
+          dir = File.join(base, dir.to_s)
+          FileUtils.mkdir dir
+          subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
+        end
+
+        # make the toura-specific base.js and routes.js
+        Mulberry::CodeCreator.new('base-toura', base, 'base')
+        Mulberry::CodeCreator.new('routes-toura', base, 'routes')
+
+        # create the asset dirs
+        [ 'audios', 'videos', 'images', 'locations' ].each do |asset_dir|
+          FileUtils.mkdir_p File.join(base, 'assets', asset_dir, 'captions')
+        end
+
+        # create the sitemap
+        FileUtils.cp(File.join(mulberry_base, 'templates', SITEMAP), base)
+
+        # create the home and about pages
+        [ 'home.md', 'about.md' ].each do |page|
+          FileUtils.cp(
+            File.join(mulberry_base, 'templates', 'pages', page),
+            File.join(base, 'pages')
+          )
+        end
+      else
+        # remove toura-specific stuff from the base.scss file
+        theme_base = File.join(base, 'themes', 'default', 'base.scss')
+        contents = File.read(theme_base)
+
+        File.open(theme_base, 'w') do |f|
+          f.write contents.split('// toura only').first
+        end
+
+        # create the "empty" base.js, routes.js, and a starter component
+        Mulberry::CodeCreator.new('base', base, 'base')
+        Mulberry::CodeCreator.new('routes', base, 'routes')
+        Mulberry::CodeCreator.new('component', base, 'StarterComponent')
+      end
 
       puts "Scaffolded an app at #{base}" unless silent
     end

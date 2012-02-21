@@ -1,16 +1,31 @@
+function prompt_to_continue() {
+
+	cat install/$1/packages.txt
+	read run_installer
+
+	if [[ $run_installer == 'n' || $run_installer == 'N' ]]
+	then
+		echo -e "\n"
+		echo "WARNING: You are choosing a manual installation. Proceed at your own risk!"
+		echo "Read 'install/${1}/install.sh' to determine the steps for manual installation."
+		exit 1
+	fi
+}
+
 case "$(uname)" in
-	Darwin)
-      . install/osx/install.sh
-      ;;
+  Darwin)
+		prompt_to_continue 'osx'
+		. install/osx/install.sh
+  ;;
 
-    CYGWIN*)
-      . install/windows/install.sh
-      ;;
+	CYGWIN*)
+		. install/windows/install.sh
+	;;
 
-    Linux|*)
-	  echo "Linux is not yet supported; please open install/ubuntu/README.md for more information."
-      # TODO: . install/ubuntu/install.sh
-      ;;
+  Linux|*)
+		prompt_to_continue 'ubuntu'
+    . install/ubuntu/install.sh
+	;;
 esac
 
 
