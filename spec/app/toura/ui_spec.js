@@ -48,7 +48,7 @@ describe("toura ui", function() {
       var spy = spyOn(mulberry.app.UI, 'addPersistentComponent').andCallThrough();
       ui = createUI();
       expect(ui.siblingNav).toBeDefined();
-      expect(spy).toHaveBeenCalledWith(toura.components.SiblingNav);
+      expect(spy.mostRecentCall.args[0]).toBe(toura.components.SiblingNav);
     });
 
     it("should not create the sibling nav if it is not enabled", function() {
@@ -94,7 +94,7 @@ describe("toura ui", function() {
       var spy = spyOn(mulberry.app.UI, 'addPersistentComponent');
 
       ui = createUI();
-      expect(spy).toHaveBeenCalledWith(toura.components.AdTag);
+      expect(spy.mostRecentCall.args[0]).toBe(toura.components.AdTag);
     });
 
     it("should not create the ad container if it is not enabled", function() {
