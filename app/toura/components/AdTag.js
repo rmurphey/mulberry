@@ -20,13 +20,5 @@ dojo.declare('toura.components.AdTag', mulberry._Component, {
     if (!this.adConfig) {
       this.destroy();
     }
-  },
-
-  refresh : function() {
-    var adConfig = this.adConfig + (
-          this.adConfig.match('!') ?  '&' : '?'
-        ) + '_touracachebust=' + Math.random();
-
-    dojo.attr(this.adFrame, "src", adConfig);
   }
 });

@@ -49,13 +49,4 @@ describe("ad tag component", function() {
       dojo.empty(t);
     });
   });
-
-  it("should allow refreshing", function() {
-    allDevices(function(d) {
-      c = C({ device : d });
-      var oldSrc = c.adFrame.src;
-      c.refresh();
-      expect(c.adFrame.src).not.toBe(oldSrc);
-    });
-  });
 });
