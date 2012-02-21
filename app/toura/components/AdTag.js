@@ -10,8 +10,9 @@ dojo.declare('toura.components.AdTag', mulberry._Component, {
 
     if (appConfig) {
       this.adConfig = appConfig.ads && appConfig.ads[this.device.type];
+
       if (this.adConfig) {
-        this.refresh();
+        dojo.attr(this.adFrame, "src", this.adConfig);
       }
     }
   },
