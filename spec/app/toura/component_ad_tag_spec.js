@@ -11,6 +11,7 @@ describe("ad tag component", function() {
         tablet : 'bar'
       }
     };
+
     mulberry.app.Config.set("app", adCfg);
 
     if (c) { c.destroy(); }
@@ -30,7 +31,7 @@ describe("ad tag component", function() {
   it("should set the src of the iframe from the app's config object", function() {
     allDevices(function(d) {
       c = C({ device : d });
-      expect(qs("iframe").getAttribute("src")).toEqual(adCfg.ads[d.type]);
+      expect(qs("iframe").getAttribute("src")).toMatch(adCfg.ads[d.type]);
       dojo.empty(t);
     });
   });
