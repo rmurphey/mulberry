@@ -5,6 +5,7 @@
 //  Created by Gregory Jastrab on 1/5/11.
 //  Copyright Toura, LLC. 2011. All rights reserved.
 //
+#include <sys/xattr.h>
 
 #import "TouraAppDelegate.h"
 #ifdef PHONEGAP_FRAMEWORK
@@ -35,13 +36,34 @@ void uncaughtExceptionHandler(NSException *);
     return [super init];
 }
 
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
+{
+    const char* filePath = [[URL path] fileSystemRepresentation];
+    
+    const char* attrName = "com.apple.MobileBackup";
+    u_int8_t attrValue = 1;
+    
+    int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
+    return result == 0;
+}
+
+- (NSString *)applicationLibraryDirectory {
+    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject];
+}
+
+
 /**
  * This is main kick off after the app inits, the views and Settings are setup here.
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	//NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-
+    // Because of http://stackoverflow.com/questions/8092256/backing-up-prevent-from-the-app-in-icloud
+    // we need to mark the SQLite db as "DO NOT BACKUP"
+    NSString* webkitPath = [[self applicationLibraryDirectory] stringByAppendingPathComponent:@"Webkit"];
+    NSURL* webkitUrl = [NSURL fileURLWithPath:webkitPath];
+    
+    [self addSkipBackupAttributeToItemAtURL:webkitUrl];
+    
     NSBundle* mainBundle = [NSBundle mainBundle];
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 
