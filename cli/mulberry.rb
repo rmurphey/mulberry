@@ -167,6 +167,12 @@ module Mulberry
         File.join(base, 'javascript')
       )
 
+      # copy over the resources
+      FileUtils.cp_r(
+        File.join(Mulberry::Framework::Directories.javascript, 'toura', 'resources'),
+        File.join(base, 'javascript')
+      )
+
       # create the config.yml
       original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
       File.open(File.join(base, CONFIG), 'w') do |f|
