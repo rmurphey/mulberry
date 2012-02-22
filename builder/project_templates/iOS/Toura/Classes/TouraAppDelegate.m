@@ -39,10 +39,10 @@ void uncaughtExceptionHandler(NSException *);
 - (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
 {
     const char* filePath = [[URL path] fileSystemRepresentation];
-    
+
     const char* attrName = "com.apple.MobileBackup";
     u_int8_t attrValue = 1;
-    
+
     int result = setxattr(filePath, attrName, &attrValue, sizeof(attrValue), 0, 0);
     return result == 0;
 }
@@ -57,13 +57,12 @@ void uncaughtExceptionHandler(NSException *);
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Because of http://stackoverflow.com/questions/8092256/backing-up-prevent-from-the-app-in-icloud
-    // we need to mark the SQLite db as "DO NOT BACKUP"
+    // Because iOS5.0.1 moved WebKit SQLite DB into the Library dir we need to mark the SQLite db as "DO NOT BACKUP"
     NSString* webkitPath = [[self applicationLibraryDirectory] stringByAppendingPathComponent:@"Webkit"];
     NSURL* webkitUrl = [NSURL fileURLWithPath:webkitPath];
-    
+
     [self addSkipBackupAttributeToItemAtURL:webkitUrl];
-    
+
     NSBundle* mainBundle = [NSBundle mainBundle];
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 
