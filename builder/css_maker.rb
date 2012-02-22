@@ -15,7 +15,7 @@ module Builder
       app_base = File.join(app_dir, @@css_filename)
 
       css_dir = settings[:css_dir]
-      theme_base = File.join(css_dir, @@css_filename)
+      scss_base = File.join(css_dir, @@css_filename)
 
       sass_settings = {
         :syntax => :scss,
@@ -26,7 +26,7 @@ module Builder
         :load_paths => [ app_dir, css_dir ]
       }
 
-      data = load_dependencies(settings, app_base, theme_base)
+      data = load_dependencies(settings, app_base, scss_base)
       create_engine(data, sass_settings)
     end
 
