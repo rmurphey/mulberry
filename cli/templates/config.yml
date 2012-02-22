@@ -25,11 +25,6 @@
 # Enter your application name here (required!)
 name:
 
-# Presently there is only one theme, the default theme. We need to document how
-# to create additional themes.
-theme:
-  name: default
-
 os:
   # Specify the operating systems to target
   - ios

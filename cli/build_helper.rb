@@ -89,8 +89,9 @@ module Mulberry
       true
     end
 
+    # TODO: resources are now within the 'styles' dir
     def css_resources(location, report)
-      resources_dir = File.join(@source_dir, 'themes', theme_name, 'resources')
+      resources_dir = File.join(@source_dir, 'themes', 'foo', 'resources')
 
       if File.exists? resources_dir
         FileUtils.cp_r(resources_dir, location)
@@ -163,10 +164,6 @@ module Mulberry
     private
     def padded_id
       project_settings[:id].gsub(/\W/, '');
-    end
-
-    def theme_name
-      @config['theme']['name'] || 'default'
     end
 
     def add_ota_to_config_settings(settings)

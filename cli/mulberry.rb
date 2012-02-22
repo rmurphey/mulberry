@@ -102,7 +102,6 @@ module Mulberry
       raise ConfigError, "You must provide a name for your app" unless @config['name']
 
       @name             = @config['name']
-      @theme            = @config['theme']['name']
 
       @helper           = Mulberry::BuildHelper.new(self)
 
