@@ -161,8 +161,11 @@ module Mulberry
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
 
-      # copy over the toura themes dir
-      FileUtils.cp_r(File.join(mulberry_base, 'themes'), base)
+      # copy over the base.scss file
+      FileUtils.cp(
+        File.join(Mulberry::Framework::Directories.javascript, 'base.scss'),
+        File.join(base, 'javascript')
+      )
 
       # create the config.yml
       original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
