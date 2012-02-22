@@ -84,7 +84,8 @@ module Mulberry
 
     get '/:os/:type/css/resources/*' do
       send_file File.join(
-        @helper.theme_dir,
+        @source_dir,
+        'javascript',
         'resources',
         params[:splat].first
       )

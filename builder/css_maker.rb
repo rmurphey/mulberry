@@ -7,15 +7,15 @@ module Builder
     @@css_filename = 'base.scss'
 
     def initialize(settings)
-      if !settings[:theme_dir]
-        raise "CSSMaker requires a theme_dir"
+      if !settings[:css_dir]
+        raise "CSSMaker requires a css_dir"
       end
 
       app_dir = settings.has_key?(:app_dir) ? settings[:app_dir] : Mulberry::Framework::Directories.javascript
       app_base = File.join(app_dir, @@css_filename)
 
-      theme_dir = settings[:theme_dir]
-      theme_base = File.join(theme_dir, @@css_filename)
+      css_dir = settings[:css_dir]
+      theme_base = File.join(css_dir, @@css_filename)
 
       sass_settings = {
         :syntax => :scss,
@@ -23,7 +23,7 @@ module Builder
         :line_numbers => true,
         :full_exception => false,
         :quiet => false,
-        :load_paths => [ app_dir, theme_dir ]
+        :load_paths => [ app_dir, css_dir ]
       }
 
       data = load_dependencies(settings, app_base, theme_base)
