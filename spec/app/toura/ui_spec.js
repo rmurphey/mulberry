@@ -95,6 +95,10 @@ describe("toura ui", function() {
 
       ui = createUI();
       expect(spy.mostRecentCall.args[0]).toBe(toura.components.AdTag);
+      expect(dojo.hasClass(dojo.body(), 'has-ads')).toBeTruthy();
+
+      // cleanup
+      dojo.removeClass(dojo.body(), 'has-ads');
     });
 
     it("should not create the ad container if it is not enabled", function() {
@@ -104,6 +108,29 @@ describe("toura ui", function() {
       ui = createUI();
       expect(spy).not.toHaveBeenCalled();
     });
-  });
 
+    it("should disable ads when network is unavailable", function(){
+      var b = dojo.body();
+      toura.features.ads = true;
+
+      mulberry.app.PhoneGap.network.isReachable = function() {
+        var dfd = new dojo.Deferred();
+        dfd.resolve(true);
+        return dfd.promise;
+      };
+
+      ui = createUI();
+      expect(dojo.hasClass(b, 'has-ads')).toBeTruthy();
+
+      mulberry.app.PhoneGap.network.isReachable = function() {
+        var dfd = new dojo.Deferred();
+        dfd.resolve(false);
+        return dfd.promise;
+      };
+
+      ui = createUI();
+      expect(dojo.hasClass(b, 'has-ads')).toBeFalsy();
+      expect(document.querySelector('.component.ad-tag')).toBeFalsy();
+    });
+  });
 });

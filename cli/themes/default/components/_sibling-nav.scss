@@ -4,11 +4,11 @@
   @include chrome-gradient;
   @include box-shadow(1px, 0);
 
-  .phone.feature-ads & {
+  .phone.has-ads & {
     bottom: $phone-ad-height;
   }
 
-  .tablet.feature-ads & {
+  .tablet.has-ads & {
     bottom: $tablet-ad-height;
   }
 
