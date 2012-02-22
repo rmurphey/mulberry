@@ -115,6 +115,15 @@ describe("toura ui", function() {
 
       mulberry.app.PhoneGap.network.isReachable = function() {
         var dfd = new dojo.Deferred();
+        dfd.resolve(true);
+        return dfd.promise;
+      };
+
+      ui = createUI();
+      expect(dojo.hasClass(b, 'has-ads')).toBeTruthy();
+
+      mulberry.app.PhoneGap.network.isReachable = function() {
+        var dfd = new dojo.Deferred();
         dfd.resolve(false);
         return dfd.promise;
       };
