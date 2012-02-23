@@ -96,7 +96,7 @@ dojo.require('dojo.hash');
      */
     home : function() {
       mulberry.app.UI.set('navDirection', 'back');
-      this.go('/home');
+      this.go(this.defaultRoute.origRoute);
     },
 
     /**
@@ -113,8 +113,6 @@ dojo.require('dojo.hash');
 
       mulberry.logSection('Handling ' + hash);
 
-      console.log(this.currentRoute);
-
       var route = this.currentRoute = this._lookupRoute(hash),
           params,
           proceed = true;
@@ -123,7 +121,6 @@ dojo.require('dojo.hash');
 
       if (!route) {
         console.log('No route found for hash ' + hash);
-        console.log(this.currentRoute);
         this.go(this.defaultRoute.origRoute, true);
         return;
       }
