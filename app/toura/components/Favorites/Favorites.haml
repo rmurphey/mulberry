@@ -7,7 +7,7 @@
 
           %a{ href : fav.model.url }
             :if fav.img
-              .img{ dojoType : 'mulberry.ui.BackgroundImage', imageUrl : fav.img, loadOnInit : true }
+              .img{ dojoType : 'mulberry.ui.BackgroundImage', src : fav.img, loadOnInit : true }
 
             :if !fav.img
               .img.default

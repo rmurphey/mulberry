@@ -5,7 +5,7 @@
     %ol{ dojoAttachPoint : 'imageList' }
       :each img in images
         %li.image
-          .wrapper{ dojoType : 'mulberry.ui.BackgroundImage', imageUrl : img.url }
+          .wrapper{ dojoType : 'mulberry.ui.BackgroundImage', src : img.url }
 
     .image-nav.next{ dojoAttachPoint : 'nextButton' }
 

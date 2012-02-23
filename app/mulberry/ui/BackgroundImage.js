@@ -4,7 +4,7 @@ dojo.require('dijit._Widget');
 
 dojo.declare('mulberry.ui.BackgroundImage', dijit._Widget, {
   // These attributes must be present on the dom element
-  imageUrl : '',
+  src : '',
 
   isLoaded : false,
   loadOnInit : false,
@@ -21,7 +21,7 @@ dojo.declare('mulberry.ui.BackgroundImage', dijit._Widget, {
     if (this.isLoaded) { return; }
 
     dojo.style(this.domNode, {
-      'backgroundImage': 'url(' + this.imageUrl + ')',
+      'backgroundImage': 'url(' + this.src + ')',
       'backgroundRepeat': 'no-repeat'
     });
 
@@ -35,8 +35,7 @@ dojo.declare('mulberry.ui.BackgroundImage', dijit._Widget, {
 
   _setBackgroundImageAttr : function(imageProps) {
     if (!imageProps) { return; }
-
-   this.imageUrl = imageProps.url;
+    this.src = imageProps.url;
   }
 
 });

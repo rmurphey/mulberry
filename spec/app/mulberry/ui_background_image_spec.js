@@ -14,7 +14,7 @@ describe("ui background image", function() {
 
   it("should not set the background image on the element if loadOnInit isn't set", function() {
     instance = bgImg({
-      imageUrl : 'http://example.com/foo.jpg'
+      src : 'http://example.com/foo.jpg'
     });
 
     expect(
@@ -25,7 +25,7 @@ describe("ui background image", function() {
 
   it("should set the background image on the element if loadOnInit is true", function() {
     instance = bgImg({
-      imageUrl : 'http://example.com/foo.jpg',
+      src : 'http://example.com/foo.jpg',
       loadOnInit : true
     });
 
@@ -36,7 +36,7 @@ describe("ui background image", function() {
 
   it("should unload the image if you tell it to", function(){
     instance = bgImg({
-      imageUrl : 'http://example.com/foo.jpg',
+      src : 'http://example.com/foo.jpg',
       loadOnInit : true
     });
 
