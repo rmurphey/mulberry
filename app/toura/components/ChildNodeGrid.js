@@ -6,6 +6,7 @@ dojo.require('mulberry.ui.BackgroundImage');
 dojo.declare('toura.components.ChildNodeGrid', mulberry._Component, {
   templateString : dojo.cache('toura.components', 'ChildNodeGrid/ChildNodeGrid.haml'),
   widgetsInTemplate : true,
+  handleClicks : true,
 
   prepareData : function() {
     this.node.populateChildren();
