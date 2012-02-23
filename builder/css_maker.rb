@@ -11,10 +11,11 @@ module Builder
         raise "CSSMaker requires a css_dir"
       end
 
+      # This directory contains the basic styles needed by the framework to work
       app_dir = settings.has_key?(:app_dir) ? settings[:app_dir] : Mulberry::Framework::Directories.javascript
-      app_base = File.join(app_dir, @@css_filename)
-
+      # This is the directory within the mulberry app where user-created styles go
       css_dir = settings[:css_dir]
+
       scss_base = File.join(css_dir, @@css_filename)
 
       sass_settings = {
@@ -26,7 +27,7 @@ module Builder
         :load_paths => [ app_dir, css_dir ]
       }
 
-      data = load_dependencies(settings, app_base, scss_base)
+      data = load_dependencies(settings, scss_base)
       create_engine(data, sass_settings)
     end
 
@@ -35,18 +36,16 @@ module Builder
     end
 
     private
-    def load_dependencies(settings, app_base, theme_base)
+    def load_dependencies(settings, scss_base)
       scss_data = ''
 
-      scss_data << File.read(app_base)
-
-      theme_base_contents = File.read(theme_base)
+      scss_base_contents = File.read(scss_base)
 
       settings[:overrides].each do |k, v|
-        theme_base_contents.gsub!("@import '#{k.to_s}';", v)
+        scss_base_contents.gsub!("@import '#{k.to_s}';", v)
       end if settings[:overrides]
 
-      scss_data << theme_base_contents
+      scss_data << scss_base_contents
 
       if settings[:postscript]
         scss_data << settings[:postscript]
