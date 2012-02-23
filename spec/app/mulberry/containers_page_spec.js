@@ -140,4 +140,32 @@ describe("page container", function() {
     expect(spy).toHaveBeenCalled();
   });
 
+  describe("class names", function() {
+    it("should add the appropriate class names", function() {
+      c = C({
+        baseObj : {
+          id : 'mypage'
+        },
+        pageDefName : 'mypagedef',
+        pageDef : {
+          screens : [ 1 ]
+        }
+      });
+
+      dojo.forEach([ 'page', 'page-mypage', 'mypagedef' ], function(klass) {
+        expect(dojo.hasClass(c.domNode, klass)).toBeTruthy();
+      });
+    });
+
+    it("should not add the page- classname if there is no base object id", function() {
+      c = C({
+        baseObj : { },
+        pageDef : {
+          screens : [ 1 ]
+        }
+      });
+
+      expect(c.domNode.className).not.toMatch('page-');
+    });
+  });
 });
