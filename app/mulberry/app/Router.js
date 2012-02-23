@@ -51,8 +51,7 @@ dojo.require('dojo.hash');
       var hash = window.location.hash.toString(),
           loc = hash.replace('#','') || this.defaultRoute.origRoute;
 
-      this.go(loc);
-
+      this.go(loc, true);
 
       if (this._hasHistoryState) {
         d.connect(window, 'onpopstate', this, function() {
@@ -74,12 +73,11 @@ dojo.require('dojo.hash');
 
       if (this._hasHistoryState) {
         history[ replace ? 'replaceState' : 'pushState' ](state, null, '#' + hash);
-        // history[replace ? 'replaceState' : 'pushState'](null, null, '#' + hash);
-        this._handleHash(hash);
       } else {
         window.location.hash = hash;
-        this._handleHash(hash);
       }
+
+      this._handleHash(hash);
     },
 
     /**
@@ -108,13 +106,14 @@ dojo.require('dojo.hash');
      */
     _handleHash : function(hash) {
       if (hash === this._currentHash) {
-        console.log('>>> hash is a dupe, ignoring: ' + hash);
         return;
       }
 
       this._currentHash = hash;
 
       mulberry.logSection('Handling ' + hash);
+
+      console.log(this.currentRoute);
 
       var route = this.currentRoute = this._lookupRoute(hash),
           params,
@@ -124,7 +123,8 @@ dojo.require('dojo.hash');
 
       if (!route) {
         console.log('No route found for hash ' + hash);
-        this.go(this.defaultRoute.origRoute);
+        console.log(this.currentRoute);
+        this.go(this.defaultRoute.origRoute, true);
         return;
       }
 
