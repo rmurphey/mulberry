@@ -137,7 +137,7 @@ module Mulberry
     def self.scaffold(app_name, silent = false, options = {})
       raise "You must provide an app name" unless app_name
 
-      mulberry_base = File.dirname(__FILE__)
+      mulberry_base = Mulberry::Framework::Directories.cli
       is_toura_app = !options[:empty_app]
 
       base = File.expand_path(app_name)

@@ -5,12 +5,16 @@ namespace :evergreen  do
   desc "Run jasmine specs via evergreen"
   task :run => :generate_stuff do
     puts "running tests"
-    Kernel.exit(1) unless Evergreen::Cli.execute(["run"])
+
+    Evergreen.root = Mulberry::Framework::Directories.root
+    result         = Evergreen::Runner.new.run
+
+    Kernel.exit(1) unless result
   end
 
   desc "Run jasmine specs server via evergreen"
   task :serve => :generate_stuff do
-    Evergreen::Cli.execute(["serve"])
+    Evergreen::Server.new.serve
   end
 
   task :generate_stuff do
@@ -18,7 +22,10 @@ namespace :evergreen  do
     app = Mulberry::App.new(File.join(Mulberry::Framework::Directories.root, "demos", "kitchensink"))
 
     puts "generating tour fixture"
-    File.open(File.join(Mulberry::Framework::Directories.root, "app", "fixtures", "tour.js"), "w") do |f|
+    fixtures_dir = File.join(Mulberry::Framework::Directories.root, "app", "fixtures")
+    FileUtils.mkdir_p fixtures_dir
+
+    File.open(File.join(fixtures_dir, "tour.js"), "w") do |f|
       f.write Mulberry::Framework::Generators.data(Mulberry::Data.new(app).generate)
     end
 

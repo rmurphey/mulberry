@@ -1,7 +1,7 @@
 task :spec do
   $: << '.'
-  dirs = Dir[File.join(Dir.pwd, 'spec/*')].select{ |d| !d.match('integration') }.sort.join(' ')
-  puts "Current dir = #{Dir.pwd}"
+  dirs = Dir[File.join(Mulberry::Framework::Directories.root, 'spec/*')].select{ |d| !d.match('integration') }.sort.join(' ')
+  puts "Current dir = #{Mulberry::Framework::Directories.root}"
   puts "Executing `rspec --color --format doc #{dirs}`..."
   system %{rspec --color --format doc #{dirs}}
 end

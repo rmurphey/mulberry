@@ -19,7 +19,7 @@ module Mulberry
       end
 
       def self.app
-        File.join(@root, 'app')
+        File.join(self.root, 'app')
       end
 
       def self.javascript
@@ -50,8 +50,16 @@ module Mulberry
         File.join(self.javascript, "dojo-release-#{Mulberry::Framework.dojo_version}-src")
       end
 
+      def self.cli
+        File.join(self.root, 'cli')
+      end
+
       def self.themes
-        File.join(@root, 'cli', 'themes')
+        File.join(self.cli, 'themes')
+      end
+
+      def self.project_templates
+        File.join(self.root, 'builder', 'project_templates')
       end
     end
 

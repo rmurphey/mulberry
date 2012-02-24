@@ -5,3 +5,5 @@ rvm:
   - ree
 script:
   - 'bundle exec rake travis'
+env:
+  - DISPLAY=':99.0' # for xvfb & jasmine/evergreen
