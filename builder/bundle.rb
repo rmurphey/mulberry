@@ -302,7 +302,6 @@ module Builder
 
       js_dir          = File.join(@www, 'javascript')
       mulberry_dir    = File.join(js_dir, 'mulberry')
-      toura_dir       = File.join(js_dir, 'toura')
       dojo_dir        = File.join(js_dir, 'dojo')
       vendor_dir      = File.join(js_dir, 'vendor')
       nls_dir         = File.join(js_dir, 'mulberry', 'nls')
@@ -310,7 +309,7 @@ module Builder
       client_dir      = File.join(js_dir, 'client')
       client_base     = File.join(built, 'client', 'base.js')
 
-      [ js_dir, toura_dir, mulberry_dir, dojo_dir, vendor_dir, nls_dir, client_dir ].each do |d|
+      [ js_dir, mulberry_dir, dojo_dir, vendor_dir, nls_dir, client_dir ].each do |d|
         FileUtils.mkdir_p(d) unless File.exists? d
       end
 
@@ -320,21 +319,11 @@ module Builder
       )
 
       FileUtils.cp_r(
-        File.join(built, 'toura', 'base.js'),
-        toura_dir
-      )
-
-      FileUtils.cp_r(
         File.join(built, 'mulberry', 'base.js'),
         mulberry_dir
       )
 
       if @target['development']
-        FileUtils.cp_r(
-          File.join(built, 'toura', 'base.js.uncompressed.js'),
-          toura_dir
-        )
-
         FileUtils.cp_r(
           File.join(built, 'mulberry', 'base.js.uncompressed.js'),
           mulberry_dir
@@ -354,7 +343,7 @@ module Builder
       end
 
       FileUtils.cp_r(
-        File.join(built, 'toura', 'nls', '.'),
+        File.join(built, 'mulberry', 'nls', '.'),
         nls_dir
       )
 

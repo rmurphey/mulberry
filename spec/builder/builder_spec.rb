@@ -108,7 +108,7 @@ describe Builder::Build do
         :target_config => {
           'build_type' => 'fake',
           'build' => {
-            'javascript' => [ 'dojo', 'toura' ]
+            'javascript' => [ 'dojo', 'mulberry' ]
           }
         }
       }))
@@ -122,7 +122,7 @@ describe Builder::Build do
       js[:build_contents].should_not be_nil
 
       File.exists?(File.join(js[:location], 'dojo', 'dojo.js')).should_not be_nil
-      File.exists?(File.join(js[:location], 'toura', 'base.js')).should_not be_nil
+      File.exists?(File.join(js[:location], 'mulberry', 'base.js')).should_not be_nil
 
       haml = File.join(js[:location], 'vendor', 'haml.js')
       File.exists?(haml).should_not be_nil
