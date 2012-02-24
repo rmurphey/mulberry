@@ -41,10 +41,11 @@ module Mulberry
 
     def config_settings
       add_ota_to_config_settings({
-        'id'            => Mulberry.escape_single_quote(@config['name']),
-        'sibling_nav'   => false,
-        'ads'           => !!@config['ads'],
-        'sharing'       => !is_browser_build?
+        'id'                => Mulberry.escape_single_quote(@config['name']),
+        'sibling_nav'       => false,
+        'ads'               => !!@config['ads'],
+        'sharing'           => !is_browser_build?,
+        'force_streaming'   => is_browser_build?
       })
     end
 
