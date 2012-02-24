@@ -167,11 +167,7 @@ module Mulberry
         File.join(base, 'javascript')
       )
 
-      # copy over the resources
-      FileUtils.cp_r(
-        File.join(Mulberry::Framework::Directories.javascript, 'toura', 'resources'),
-        File.join(base, 'javascript')
-      )
+
 
       # create the config.yml
       original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
@@ -219,19 +215,35 @@ module Mulberry
             File.join(base, 'pages')
           )
         end
+
+        # copy over the _toura.scss file
+        FileUtils.cp(
+          File.join(Mulberry::Framework::Directories.javascript, '_toura.scss'),
+          File.join(base, 'javascript')
+        )
+
+        ## add import for toura stuff
+        File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'toura';")}
+
+        # copy over the resources
+        FileUtils.cp_r(
+          File.join(Mulberry::Framework::Directories.javascript, 'toura', 'resources'),
+          File.join(base, 'javascript')
+        )
       else
-        # remove toura-specific stuff from the base.scss file
-        theme_base = File.join(base, 'themes', 'default', 'base.scss')
-        contents = File.read(theme_base)
-
-        File.open(theme_base, 'w') do |f|
-          f.write contents.split('// toura only').first
-        end
-
         # create the "empty" base.js, routes.js, and a starter component
         Mulberry::CodeCreator.new('base', base, 'base')
         Mulberry::CodeCreator.new('routes', base, 'routes')
         Mulberry::CodeCreator.new('component', base, 'StarterComponent')
+
+        FileUtils.cp(
+          File.join(Mulberry::Framework::Directories.javascript, '_scaffold.scss'),
+          File.join(base, 'javascript')
+        )
+
+        ## add import for scaffold.scss
+        File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'scaffold';")}
+
       end
 
       puts "Scaffolded an app at #{base}" unless silent

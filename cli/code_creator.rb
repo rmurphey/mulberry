@@ -98,9 +98,7 @@ module Mulberry
       end
 
       # add the import statement to the theme css file
-      themes_dir = File.join(@destination_dir, 'themes', Mulberry::App.new(@destination_dir).theme)
-
-      FileUtils.mkdir_p themes_dir unless File.exists? themes_dir
+      themes_dir = File.join(@destination_dir, 'javascript')
 
       File.open(File.join(themes_dir, theme_cssfile), 'a') do |f|
         pathstring = Pathname.new("#{@code_dir}/#{@filename}/#{@filename.underscore.dasherize.downcase}").relative_path_from(Pathname.new(themes_dir))
