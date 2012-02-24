@@ -91,12 +91,27 @@ module Builder
 
       dojo_build
       unminify_haml
+      concat_vendor_files
 
       if @client_dir
         FileUtils.rm_rf @client_dir
       end
 
       true
+    end
+
+    def concat_vendor_files
+      build_location  = report[:location]
+      dojo_dir        = File.join(build_location, 'dojo')
+      vendor_dir      = File.join(build_location, 'vendor')
+
+      File.open(File.join(dojo_dir, 'dojo.js'), 'a') do |dojo_file|
+        dojo_file.write File.read(File.join(vendor_dir, 'haml.js'))
+
+        if @build.build_helper.project_settings[:jquery]
+          dojo_file.write File.read(File.join(vendor_dir, 'jquery.js'))
+        end
+      end
     end
 
     def report

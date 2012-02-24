@@ -303,13 +303,12 @@ module Builder
       js_dir          = File.join(@www, 'javascript')
       mulberry_dir    = File.join(js_dir, 'mulberry')
       dojo_dir        = File.join(js_dir, 'dojo')
-      vendor_dir      = File.join(js_dir, 'vendor')
       nls_dir         = File.join(js_dir, 'mulberry', 'nls')
 
       client_dir      = File.join(js_dir, 'client')
       client_base     = File.join(built, 'client', 'base.js')
 
-      [ js_dir, mulberry_dir, dojo_dir, vendor_dir, nls_dir, client_dir ].each do |d|
+      [ js_dir, mulberry_dir, dojo_dir, nls_dir, client_dir ].each do |d|
         FileUtils.mkdir_p(d) unless File.exists? d
       end
 
@@ -327,18 +326,6 @@ module Builder
         FileUtils.cp_r(
           File.join(built, 'mulberry', 'base.js.uncompressed.js'),
           mulberry_dir
-        )
-      end
-
-      FileUtils.cp_r(
-        File.join(built, 'vendor', 'haml.js'),
-        vendor_dir
-      )
-
-      if @build.build_helper.project_settings[:jquery]
-        FileUtils.cp_r(
-          File.join(built, 'vendor', 'jquery.js'),
-          vendor_dir
         )
       end
 

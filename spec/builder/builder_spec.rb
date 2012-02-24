@@ -124,10 +124,9 @@ describe Builder::Build do
       File.exists?(File.join(js[:location], 'dojo', 'dojo.js')).should_not be_nil
       File.exists?(File.join(js[:location], 'mulberry', 'base.js')).should_not be_nil
 
-      haml = File.join(js[:location], 'vendor', 'haml.js')
-      File.exists?(haml).should_not be_nil
-      contents = File.read haml
-      contents.should_not match 'dojo._hasResource'
+      dojo_file = File.join(js[:location], 'dojo', 'dojo.js')
+      contents = File.read dojo_file
+      contents.should include 'Haml'
 
       b.cleanup
     end

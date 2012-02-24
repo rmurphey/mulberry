@@ -145,12 +145,6 @@ module Mulberry
       end
     end
 
-    def html_vars
-      {
-        :include_jquery     => @config['jQuery'] || @config['jquery'],
-      }
-    end
-
     def app_id(device_os, device_type)
       @config['app_id'][device_os][device_type]
     end
