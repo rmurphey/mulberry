@@ -108,7 +108,7 @@ module Builder
       File.open(File.join(dojo_dir, 'dojo.js'), 'a') do |dojo_file|
         dojo_file.write File.read(File.join(vendor_dir, 'haml.js'))
 
-        if @build.build_helper.project_settings[:jquery]
+        if @build.build_helper && @build.build_helper.project_settings[:jquery]
           dojo_file.write File.read(File.join(vendor_dir, 'jquery.js'))
         end
       end
