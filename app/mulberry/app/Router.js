@@ -120,7 +120,6 @@ dojo.require('dojo.hash');
       hash = hash.replace('#','');
 
       if (!route) {
-        console.log('No route found for hash ' + hash);
         this.go(this.defaultRoute.origRoute, true);
         return;
       }
