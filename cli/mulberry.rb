@@ -225,6 +225,11 @@ module Mulberry
           File.join(base, 'javascript')
         )
 
+        FileUtils.cp(
+          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_settings-toura-components.scss'),
+          File.join(base, 'javascript')
+        )
+
         ## add import for toura stuff
         File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'toura';")}
 
