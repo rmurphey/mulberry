@@ -167,8 +167,6 @@ module Mulberry
         File.join(base, 'javascript')
       )
 
-
-
       # create the config.yml
       original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
       File.open(File.join(base, CONFIG), 'w') do |f|
@@ -218,7 +216,12 @@ module Mulberry
 
         # copy over the _toura.scss file
         FileUtils.cp(
-          File.join(Mulberry::Framework::Directories.javascript, '_toura.scss'),
+          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_toura.scss'),
+          File.join(base, 'javascript')
+        )
+
+        FileUtils.cp(
+          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_settings.scss'),
           File.join(base, 'javascript')
         )
 
@@ -230,14 +233,22 @@ module Mulberry
           File.join(Mulberry::Framework::Directories.javascript, 'toura', 'resources'),
           File.join(base, 'javascript')
         )
+
       else
         # create the "empty" base.js, routes.js, and a starter component
         Mulberry::CodeCreator.new('base', base, 'base')
         Mulberry::CodeCreator.new('routes', base, 'routes')
         Mulberry::CodeCreator.new('component', base, 'StarterComponent')
 
+        # copy _settings.scss into app
         FileUtils.cp(
-          File.join(Mulberry::Framework::Directories.javascript, '_scaffold.scss'),
+          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_settings.scss'),
+          File.join(base, 'javascript')
+        )
+
+        # copy scaffold.scss into app
+        FileUtils.cp(
+          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_scaffold.scss'),
           File.join(base, 'javascript')
         )
 
