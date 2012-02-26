@@ -243,6 +243,8 @@ module Mulberry
         # create the "empty" base.js, routes.js, and a starter component
         Mulberry::CodeCreator.new('base', base, 'base')
         Mulberry::CodeCreator.new('routes', base, 'routes')
+        ## add import for scaffold.scss now so it's included before starter-component
+        File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'scaffold';\n")}
         Mulberry::CodeCreator.new('component', base, 'StarterComponent')
 
         # copy _settings.scss into app
@@ -256,10 +258,6 @@ module Mulberry
           File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_scaffold.scss'),
           File.join(base, 'javascript')
         )
-
-        ## add import for scaffold.scss
-        File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'scaffold';")}
-
       end
 
       puts "Scaffolded an app at #{base}" unless silent
