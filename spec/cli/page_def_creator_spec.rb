@@ -67,11 +67,10 @@ describe Mulberry::PageDefCreator do
     app = Mulberry::App.new(@source_dir)
     app.should_not be_nil
 
-    theme = app.theme
-    theme_page_def_dir = File.join(@source_dir, 'themes', theme, 'page_defs')
+    page_def_dir = File.join(@source_dir, 'javascript', 'styles', 'page_defs')
 
-    scss_filename = File.join(theme_page_def_dir, "_#{name}.scss")
-    theme_page_def_base_filename = File.join(theme_page_def_dir, '_base.scss')
+    scss_filename = File.join(page_def_dir, "_#{name}.scss")
+    page_def_base_filename = File.join(page_def_dir, '_base.scss')
 
     page_def_scss = File.read(scss_filename)
 
@@ -80,6 +79,6 @@ describe Mulberry::PageDefCreator do
     page_def_scss.should_not include '{{page_def_name}}'
     page_def_scss.should     include name
 
-    File.read(theme_page_def_base_filename).should include "@import '#{name}';"
+    File.read(page_def_base_filename).should include "@import '#{name}';"
   end
 end
