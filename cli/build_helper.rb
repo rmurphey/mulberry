@@ -89,9 +89,8 @@ module Mulberry
       true
     end
 
-    # TODO: resources are now within the 'styles' dir
     def css_resources(location, report)
-      resources_dir = File.join(@source_dir, 'themes', 'foo', 'resources')
+      resources_dir = File.join(css_dir, 'resources')
 
       if File.exists? resources_dir
         FileUtils.cp_r(resources_dir, location)
