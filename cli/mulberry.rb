@@ -161,6 +161,10 @@ module Mulberry
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
 
+      FileUtils.cp_r(File.join( Mulberry::Framework::Directories.root, 'stylesheets', 'styles'),
+        File.join(base, 'javascript')
+      )
+
       # copy over the base.scss file
       FileUtils.cp(
         File.join(Mulberry::Framework::Directories.javascript, 'base.scss'),
