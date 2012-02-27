@@ -52,7 +52,7 @@ describe Mulberry::Command::Create do
       end
 
       it "should run the command from any dir" do
-        Dir.chdir 'themes'
+        Dir.chdir 'javascript'
         Mulberry::Command::Create.new([command[0].to_s, @filename])
         Dir.chdir '..'
         File.exists?(File.join(@locations[command[0]])).should be_true
