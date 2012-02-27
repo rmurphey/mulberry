@@ -46,13 +46,17 @@ describe Mulberry::App do
         [ 'assets', 'videos', 'captions' ],
         [ 'assets', 'images', 'captions' ],
         [ 'assets', 'locations', 'captions' ],
-        'themes',
         'page_defs',
         [ 'javascript', 'components' ],
         [ 'javascript', 'stores' ],
         [ 'javascript', 'models' ],
         [ 'javascript', 'capabilities' ],
-        [ 'javascript', 'base.js' ]
+        [ 'javascript', 'base.js' ],
+        [ 'javascript', 'base.scss' ],
+        [ 'javascript', 'styles' ],
+        [ 'javascript', 'styles', '_base.scss' ],
+        [ 'javascript', 'styles', 'page_defs' ],
+        [ 'javascript', 'styles', 'page_defs', '_base.scss' ]
       ].each do |f|
         File.exists?(File.join('testapp', f)).should be_true
       end
@@ -71,7 +75,10 @@ describe Mulberry::App do
         [ 'javascript', 'capabilities' ],
         [ 'javascript', 'base.js' ],
         [ 'javascript', 'routes.js' ],
-        'themes'
+        [ 'javascript', 'styles' ],
+        [ 'javascript', 'styles', '_base.scss' ],
+        [ 'javascript', 'styles', 'page_defs' ],
+        [ 'javascript', 'styles', 'page_defs', '_base.scss' ]
       ].each do |f|
         File.exists?(File.join('test_empty_app', f)).should be_true
       end
