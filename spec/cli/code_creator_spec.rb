@@ -73,8 +73,8 @@ describe Mulberry::CodeCreator do
     end
 
     it "should import the component style in the base.scss" do
-       scss = File.join(@source_dir, 'themes', 'default', 'base.scss')
-       File.read(scss).should include '@import \'../../javascript/components/FooBarBaz/foo-bar-baz\';'
+       scss = File.join(@source_dir, 'javascript', 'base.scss')
+       File.read(scss).should include '@import \'components/FooBarBaz/foo-bar-baz\';'
     end
 
     it "should include the component styling in the compiled css" do
@@ -84,13 +84,7 @@ describe Mulberry::CodeCreator do
 
       File.open(s, 'w'){ |f| f.write(file_contents) }
 
-      css_maker = Builder::CSSMaker.new :theme_dir => File.join(@source_dir, 'themes', 'default'),
-                                        :vars => {
-                                          'background-color' => '#FFFFFF',
-                                          'font-scheme'      => 'dark',
-                                          'child-nav-color'  => '#FFFFFF',
-                                          'link-color'       => '#FFFFFF'
-                                        }
+      css_maker = Builder::CSSMaker.new :css_dir => File.join(@source_dir, 'javascript')
 
       css_maker.render.should include '.component.foo-bar-baz'
     end
