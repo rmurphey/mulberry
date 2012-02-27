@@ -50,9 +50,6 @@ module Mulberry
         File.join(self.javascript, "dojo-release-#{Mulberry::Framework.dojo_version}-src")
       end
 
-      def self.themes
-        File.join(@root, 'cli', 'themes')
-      end
     end
 
     class Templates
