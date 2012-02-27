@@ -1,9 +1,12 @@
 @import 'settings';
 
+@import 'mulberry';
+@import 'toura';
+
 body {
   color: #000003;
 }
 
-#theme {
+#app-instance {
   color: red;
 }
