@@ -73,7 +73,7 @@ dojo.declare('toura.models._Updateable', null, {
     var localVersion = this._getLocalVersion(),
         dfd = this.deferred = new dojo.Deferred();
 
-    this._getBundleData().then(dojo.hitch(this, function(bundleData) {
+    this.getBundleData().then(dojo.hitch(this, function(bundleData) {
       var bundleVersion = bundleData.version,
           initializeRequired = (localVersion === null) ||
             (bundleVersion === null) ||
@@ -207,7 +207,6 @@ dojo.declare('toura.models._Updateable', null, {
     var dfd = new dojo.Deferred();
 
     if (mulberry.skipVersionCheck || !this.remoteVersionUrl) {
-      console.log('No remote version URL -- skipping remote version check');
       dfd.resolve(null);
     } else {
       mulberry.app.PhoneGap.network.isReachable()
@@ -255,7 +254,6 @@ dojo.declare('toura.models._Updateable', null, {
     var dfd = new dojo.Deferred();
 
     if (!this.remoteDataUrl) {
-      console.log('No remote data URL -- skipping remote data check');
       dfd.resolve(false);
     } else {
       mulberry.app.PhoneGap.network.isReachable()
@@ -276,36 +274,20 @@ dojo.declare('toura.models._Updateable', null, {
    * @private
    * @returns {Object} The bundled data
    */
-  _getBundleData : function() {
+  getBundleData : function() {
     var dfd = new dojo.Deferred();
 
     if (!this.bundleDataUrl) {
       dfd.resolve();
+      return dfd.promise;
     }
 
     dojo.io.script.get({
       url : this.bundleDataUrl,
       preventCache : true
-    }).then(
-      dojo.hitch(this, function(bundleData) {
-        dfd.resolve(this._processBundleData(bundleData));
-      }),
-      function() { dfd.reject('Could not load local bundle data'); }
-    );
+    }).then(dfd.resolve, dfd.reject);
 
     return dfd.promise;
-  },
-
-  /**
-   * @private
-   *
-   * This method is run once the bundled data has been loaded.
-   * The returned data will be used by _getBundleData to resolve its deferred.
-   *
-   * @returns {Object}
-   */
-  _processBundleData : function(data) {
-    return data;
   },
 
   /**
@@ -318,7 +300,7 @@ dojo.declare('toura.models._Updateable', null, {
   _initializeData : function(bundleData) {
     var dfd = new dojo.Deferred();
 
-    dojo.when(bundleData || this._getBundleData(), dojo.hitch(this, function(data) {
+    dojo.when(bundleData || this.getBundleData(), dojo.hitch(this, function(data) {
       if (!data) {
         dfd.resolve(false);
         return;

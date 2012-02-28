@@ -55,10 +55,7 @@ describe("Updateable", function() {
       bundleDataUrl : 'bundle',
       remoteDataUrl : 'remote',
       remoteVersionUrl : 'version',
-      storageKey : 'key',
-      _processBundleData : function(data) {
-        return data;
-      }
+      storageKey : 'key'
     };
 
     networkIsReachable = true;
