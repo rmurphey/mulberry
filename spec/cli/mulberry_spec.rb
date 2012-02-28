@@ -121,7 +121,6 @@ describe Mulberry::App do
 
       [
         'index.html',
-        [ 'media', 'manifest.js' ],
         [ 'css', 'base.css' ],
         [ 'data', 'tour.js' ],
         [ 'data', 'pagedefs.js' ],
