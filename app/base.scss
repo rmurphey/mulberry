@@ -1,11 +1,12 @@
-// Needed if you're using the Toura theme mixins
+// Needed if you're using the Toura theme mixins. If you're not using the theme
+// mixins, it's safe to delete the file.
 @import 'styles/settings';
 
-// The core framework
+// The core framework. If you remove this, things will break.
 @import 'mulberry';
 
-// Remove this if you don't want Toura theme mixins
+// Theme mixins. You can remove this import if you're not using them.
 @import 'themes/toura';
 
-// Put your global and page_def styles here
+// Put your global and page_def styles here.
 @import 'styles/base';
