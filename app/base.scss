@@ -1,4 +1,11 @@
+// Needed if you're using the Toura theme mixins
 @import 'settings';
 
+// The core framework
 @import 'mulberry';
+
+// Remove this if you don't want Toura theme mixins
 @import 'themes/toura';
+
+// Put your global and page_def styles here
+@import 'styles/base';
