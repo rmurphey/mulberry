@@ -77,7 +77,7 @@ module Mulberry
     end
 
     def create_component_files
-      theme_cssfile = "base.scss"
+      cssfile = "base.scss"
 
       # create the resource dir for the component
       component_resource_dir = File.join(@code_dir, @filename)
@@ -97,11 +97,11 @@ module Mulberry
         f.write scss_template.gsub('{{name}}', @filename).gsub('{{dashname}}', @filename.underscore.dasherize.downcase)
       end
 
-      # add the import statement to the theme css file
-      themes_dir = File.join(@destination_dir, 'javascript')
+      # add the import statement to the app base css file
+      css_dir = File.join(@destination_dir, 'javascript')
 
-      File.open(File.join(themes_dir, theme_cssfile), 'a') do |f|
-        pathstring = Pathname.new("#{@code_dir}/#{@filename}/#{@filename.underscore.dasherize.downcase}").relative_path_from(Pathname.new(themes_dir))
+      File.open(File.join(css_dir, cssfile), 'a') do |f|
+        pathstring = Pathname.new("#{@code_dir}/#{@filename}/#{@filename.underscore.dasherize.downcase}").relative_path_from(Pathname.new(css_dir))
         f.write "@import '#{pathstring}';\n"
       end
 
