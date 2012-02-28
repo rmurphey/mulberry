@@ -18,7 +18,7 @@ describe Mulberry::Framework do
     it "should point to important directories" do
       root = Mulberry::Framework::Directories.root
 
-      [ :javascript, :page_defs, :data_fixtures, :build_root, :dojo, :profiles ].each do |d|
+      [ :javascript, :page_defs, :data_fixtures, :build_root, :dojo, :profiles, :project_templates ].each do |d|
         dir = Mulberry::Framework::Directories.send(d.to_s)
         dir.should match root
       end
@@ -112,22 +112,25 @@ describe Mulberry::Framework do
         c.should include "ios"
       end
 
-      it "should allow enabling or disabling sibling nav" do
-        c = Mulberry::Framework::Generators.config('ios', 'phone', { 'sibling_nav' => false });
-        c.should include 'siblingNav : false'
+      it "should allow enabling or disabling feature flags" do
+        [
+          'siblingNav',
+          'ads',
+          'sharing',
+          'favorites',
+          'fontSize',
+          'multiLineChildNodes',
+          'debugPage'
+        ].each do |feature|
+          [ true, false ].each do |val|
+            c = Mulberry::Framework::Generators.config('ios', 'phone', {
+              feature.underscore => val
+            })
 
-        c = Mulberry::Framework::Generators.config('ios', 'phone', { 'sibling_nav' => true });
-        c.should include 'siblingNav : true'
+            c.should include "#{feature} : #{val.to_s}"
+          end
+        end
       end
-
-      it "should allow enabling or disabling ads" do
-        c = Mulberry::Framework::Generators.config('ios', 'phone', { 'ads' => false });
-        c.should include 'ads : false'
-
-        c = Mulberry::Framework::Generators.config('ios', 'phone', { 'ads' => true });
-        c.should include 'ads : true'
-      end
-
     end
   end
 end

@@ -73,7 +73,7 @@ urban_airship:
      c2dm_sender: c2dmsender@mail.com
 
 ads:
-  phone: http://mwhenry.com/ad.html
+  phone:  http://mwhenry.com/ad.html
   tablet: http://mwhenry.com/ad.html
 
 # Enter your flurry api keys here

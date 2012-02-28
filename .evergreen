@@ -6,7 +6,8 @@ end
 Capybara.server_boot_timeout = 50
 
 Evergreen.configure do |config|
-  config.driver = :selenium
+  config.root       = Mulberry::Framework::Directories.root
+  config.driver     = :selenium
   config.public_dir = 'app'
-  config.spec_dir = 'spec/app'
+  config.spec_dir   = 'spec/app'
 end

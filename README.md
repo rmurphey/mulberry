@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/Toura/mulberry.png?branch=master)](http://travis-ci.org/Toura/mulberry)
+
 # Getting Started
 
 Mulberry is supported on:

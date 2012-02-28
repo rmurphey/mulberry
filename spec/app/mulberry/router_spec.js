@@ -2,10 +2,6 @@ describe("router", function() {
   var test, api, init,
       routes = [
         {
-          route : '/home',
-          handler : function() { test = '/home'; }
-        },
-        {
           route : '/test',
           handler : function() {
             console.log('TEST ROUTE');
@@ -80,10 +76,10 @@ describe("router", function() {
     expect(test).toBe('basic');
   });
 
-  it("should expose a method for going to the home node", function() {
+  it("should expose a method for going to the default home node", function() {
     var spy = spyOn(mulberry.app.UI, 'set');
     api.home();
-    expect(test).toBe('/home');
+    expect(test).toBe('/test');
     expect(spy).toHaveBeenCalledWith('navDirection', 'back');
   });
 

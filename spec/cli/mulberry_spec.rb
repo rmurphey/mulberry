@@ -140,6 +140,11 @@ describe Mulberry::App do
         File.exists?(File.join(build_dir, dir)).should be_true
       end
     end
+
+    it "should disable sharing" do
+      config = File.read(File.join(@app.source_dir, 'builds', 'browser', 'www', 'javascript', 'toura', 'AppConfig.js'))
+      config.should include 'sharing : false'
+    end
   end
 
   describe "#data" do

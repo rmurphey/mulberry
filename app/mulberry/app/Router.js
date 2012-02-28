@@ -51,15 +51,15 @@ dojo.require('dojo.hash');
       var hash = window.location.hash.toString(),
           loc = hash.replace('#','') || this.defaultRoute.origRoute;
 
-      this.go(loc);
-
-      d.subscribe('/dojo/hashchange', this, '_handleHash');
+      this.go(loc, true);
 
       if (this._hasHistoryState) {
         d.connect(window, 'onpopstate', this, function() {
           var hash = window.location.hash.replace('#','');
           this._handleHash(hash);
         });
+      } else {
+        d.subscribe('/dojo/hashchange', this, '_handleHash');
       }
     },
 
@@ -73,12 +73,11 @@ dojo.require('dojo.hash');
 
       if (this._hasHistoryState) {
         history[ replace ? 'replaceState' : 'pushState' ](state, null, '#' + hash);
-        // history[replace ? 'replaceState' : 'pushState'](null, null, '#' + hash);
-        this._handleHash(hash);
       } else {
         window.location.hash = hash;
-        this._handleHash(hash);
       }
+
+      this._handleHash(hash);
     },
 
     /**
@@ -97,7 +96,7 @@ dojo.require('dojo.hash');
      */
     home : function() {
       mulberry.app.UI.set('navDirection', 'back');
-      this.go('/home');
+      this.go(this.defaultRoute.origRoute);
     },
 
     /**
@@ -107,7 +106,6 @@ dojo.require('dojo.hash');
      */
     _handleHash : function(hash) {
       if (hash === this._currentHash) {
-        console.log('>>> hash is a dupe, ignoring: ' + hash);
         return;
       }
 
@@ -122,8 +120,7 @@ dojo.require('dojo.hash');
       hash = hash.replace('#','');
 
       if (!route) {
-        console.log('No route found for hash ' + hash);
-        this.go(this.defaultRoute.origRoute);
+        this.go(this.defaultRoute.origRoute, true);
         return;
       }
 

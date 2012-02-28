@@ -49,5 +49,9 @@ module Builder
       # id's in iOS must be at least 2 characters :/
       "%02d" % project_settings[:id]
     end
+
+    def is_browser_build?
+      build && build.target['build_type'] == 'browser'
+    end
   end
 end

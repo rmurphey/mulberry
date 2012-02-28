@@ -74,8 +74,13 @@ dojo.declare('mulberry.containers.Page', [ mulberry._View, mulberry.ui.Backgroun
       this.screens.detail.hide();
     }
 
-    this.addClass('page-' + this.baseObj.id);
-    this.addClass(this.pageDefName);
+    if (this.baseObj.id) {
+      this.addClass('page-' + this.baseObj.id);
+    }
+
+    if (this.pageDefName) {
+      this.addClass(this.pageDefName);
+    }
   },
 
   showScreen : function (screenName) {
