@@ -126,7 +126,7 @@ describe Mulberry::App do
         [ 'data', 'tour.js' ],
         [ 'data', 'pagedefs.js' ],
         [ 'javascript', 'dojo', 'dojo.js' ],
-        [ 'javascript', 'toura', 'base.js' ],
+        [ 'javascript', 'mulberry', 'base.js' ],
         [ 'javascript', 'toura', 'AppConfig.js' ],
         [ 'javascript', 'client', 'base.js' ]
       ].each do |dir|
