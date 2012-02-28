@@ -26,7 +26,7 @@ else
 fi
 
 # pwd is the path you are currently sitting in,
-# so we need to send the full path to mulberry.rbg
+# so we need to send the full path to mulberry.rb
 # and then send in any args (e.g. mulberry create page)
 # $* will be `create page`
 ruby $MULBERRY_PATH/mulberry.rb $*
