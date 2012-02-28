@@ -56,6 +56,7 @@ dojo.declare('toura.UI', dojo.Stateful, {
           dojo.addClass(dojo.body(), 'has-ads');
         }
         this.adTag = m.app.UI.addPersistentComponent(toura.components.AdTag, {}, 'last');
+        this.adTag.startup();
       }));
   },
 

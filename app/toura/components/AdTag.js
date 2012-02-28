@@ -13,9 +13,13 @@ dojo.declare('toura.components.AdTag', mulberry._Component, {
 
       if (this.adConfig) {
         dojo.attr(this.adFrame, "src", this.adConfig);
-      } else {
-        this.destroy();
       }
+    }
+  },
+
+  startup : function() {
+    if (!this.adConfig) {
+      this.destroy();
     }
   }
 });
