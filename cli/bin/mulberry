@@ -1,46 +1,32 @@
-#!/usr/bin/env ruby
-$: << File.expand_path('../..', __FILE__)
-$: << File.expand_path('../../..', __FILE__)
+#!/usr/bin/env bash
 
-require 'mulberry'
-require 'optparse'
+MULBERRY_BIN=$(which mulberry)
 
-Dir[File.dirname(__FILE__) + '/commands/*.rb'].each {|file| require file }
+# strip off the trailing /mulberry
+MULBERRY_PATH=${MULBERRY_BIN/%\/mulberry/''}
 
-module Mulberry
-  class CLI
-    def run(args)
+# Try running rvm to see if it's installed
+OUT=$(rvm -v)
 
-      if !args[0]
-        puts "mulberry must be called with an action."
-        return
-      end
+# if not installed $? will report something other than 0
+if [[ $? == '0' ]]
+then
+	# RVM is installed
 
-      action = args.shift
+	# Per rvm docs, load the rvm env (just in case it is not in user's profile)
+	[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-      if action.match /^-{0,2}(version|v)$/
-        puts "Mulberry v#{Mulberry::version}"
-        return
-      end
+	# Get the path to rvm environment shell script
+	RVM_ENV="$(rvm env --path -- 1.9.3@mulberry)"
 
-      begin
+	# Magic happens here, load up rvm, ruby, & gemset
+	source $RVM_ENV
+else
+	echo "RVM is not installed. This is not guaranteed to work..."
+fi
 
-        Mulberry::Command.class_eval(action.camelize).new(args)
-
-      rescue NameError => ex
-
-        # Re-raise anything that's unexpected
-        raise ex unless ex.message.include? "uninitialized constant Mulberry::Command::"
-
-        puts "Invalid command: #{action}\n\Valid commands:\n"
-
-        Mulberry::Command.constants.collect{ |c| c.to_s.underscore }.sort.each do |command|
-          puts command
-        end
-
-      end # begin/rescue
-    end # run
-  end # cli
-end # mulberry
-
-Mulberry::CLI.new.run(ARGV)
+# pwd is the path you are currently sitting in,
+# so we need to send the full path to mulberry.rb
+# and then send in any args (e.g. mulberry create page)
+# $* will be `create page`
+ruby $MULBERRY_PATH/mulberry.rb $*
