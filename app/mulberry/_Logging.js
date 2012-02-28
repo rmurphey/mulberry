@@ -28,7 +28,7 @@ d.mixin(mulberry,{
     var msg = [].slice.call(arguments),
         timeNow = new Date().getTime();
 
-    msg.unshift(timeNow - lastLogTime);
+    console.log(timeNow - lastLogTime);
 
     if (w.device) {
       console.log('\n\n ' + msg.join(' ') + '\n\n');
