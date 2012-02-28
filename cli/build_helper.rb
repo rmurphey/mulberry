@@ -130,7 +130,7 @@ module Mulberry
     end
 
     def css_dir
-      File.join(@source_dir, 'javascript')
+      File.join(@source_dir, 'app')
     end
 
     def create_css

@@ -121,7 +121,7 @@ module Mulberry
       is_toura_app = !options[:empty_app]
 
       base = File.expand_path(app_name)
-      base_app_dir = File.join(base, 'javascript')
+      base_app_dir = File.join(base, 'app')
 
       if File.exists? base
         raise "Can't create #{base} -- it already exists"
@@ -131,7 +131,7 @@ module Mulberry
 
       # make the dirs shared by toura and "empty" apps
       {
-        :javascript => [
+        :app => [
           'components',
           'stores',
           'models',
@@ -227,7 +227,7 @@ module Mulberry
         Mulberry::CodeCreator.new('base', base, 'base')
         Mulberry::CodeCreator.new('routes', base, 'routes')
         ## add import for scaffold.scss now so it's included before starter-component
-        File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'styles/scaffold';\n")}
+        File.open(File.join(base_app_dir, 'base.scss'), 'a') { |f| f.puts("\n@import 'styles/scaffold';\n")}
         Mulberry::CodeCreator.new('component', base, 'StarterComponent')
 
         # copy over the settings and scaffold css

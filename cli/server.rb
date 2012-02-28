@@ -85,7 +85,7 @@ module Mulberry
     get '/:os/:type/css/resources/*' do
       send_file File.join(
         @source_dir,
-        'javascript',
+        'app',
         'resources',
         params[:splat].first
       )
@@ -193,7 +193,7 @@ module Mulberry
       content_type 'text/javascript'
       send_file File.join(
         @source_dir,
-        'javascript',
+        'app',
         params[:splat].first
       )
     end

@@ -47,19 +47,19 @@ describe Mulberry::App do
         [ 'assets', 'images', 'captions' ],
         [ 'assets', 'locations', 'captions' ],
         'page_defs',
-        [ 'javascript', 'components' ],
-        [ 'javascript', 'stores' ],
-        [ 'javascript', 'models' ],
-        [ 'javascript', 'capabilities' ],
-        [ 'javascript', 'base.js' ],
-        [ 'javascript', 'base.scss' ],
-        [ 'javascript', 'styles' ],
-        [ 'javascript', '_toura.scss' ],
-        [ 'javascript', 'styles', '_base.scss' ],
-        [ 'javascript', 'styles', '_settings.scss' ],
-        [ 'javascript', 'styles', '_settings-toura-components.scss' ],
-        [ 'javascript', 'styles', 'page_defs' ],
-        [ 'javascript', 'styles', 'page_defs', '_base.scss' ]
+        [ 'app', 'components' ],
+        [ 'app', 'stores' ],
+        [ 'app', 'models' ],
+        [ 'app', 'capabilities' ],
+        [ 'app', 'base.js' ],
+        [ 'app', 'base.scss' ],
+        [ 'app', 'styles' ],
+        [ 'app', '_toura.scss' ],
+        [ 'app', 'styles', '_base.scss' ],
+        [ 'app', 'styles', '_settings.scss' ],
+        [ 'app', 'styles', '_settings-toura-components.scss' ],
+        [ 'app', 'styles', 'page_defs' ],
+        [ 'app', 'styles', 'page_defs', '_base.scss' ]
       ].each do |f|
         File.exists?(File.join('testapp', f)).should be_true
       end
@@ -71,19 +71,19 @@ describe Mulberry::App do
 
       [
         'config.yml',
-        [ 'javascript', 'components' ],
-        [ 'javascript', 'components', 'StarterComponent.js' ],
-        [ 'javascript', 'stores' ],
-        [ 'javascript', 'models' ],
-        [ 'javascript', 'capabilities' ],
-        [ 'javascript', 'base.js' ],
-        [ 'javascript', 'routes.js' ],
-        [ 'javascript', 'styles' ],
-        [ 'javascript', 'styles', '_base.scss' ],
-        [ 'javascript', 'styles', '_settings.scss' ],
-        [ 'javascript', 'styles', '_scaffold.scss' ],
-        [ 'javascript', 'styles', 'page_defs' ],
-        [ 'javascript', 'styles', 'page_defs', '_base.scss' ]
+        [ 'app', 'components' ],
+        [ 'app', 'components', 'StarterComponent.js' ],
+        [ 'app', 'stores' ],
+        [ 'app', 'models' ],
+        [ 'app', 'capabilities' ],
+        [ 'app', 'base.js' ],
+        [ 'app', 'routes.js' ],
+        [ 'app', 'styles' ],
+        [ 'app', 'styles', '_base.scss' ],
+        [ 'app', 'styles', '_settings.scss' ],
+        [ 'app', 'styles', '_scaffold.scss' ],
+        [ 'app', 'styles', 'page_defs' ],
+        [ 'app', 'styles', 'page_defs', '_base.scss' ]
       ].each do |f|
         File.exists?(File.join('test_empty_app', f)).should be_true
       end
