@@ -1,46 +1,20 @@
-#!/usr/bin/env ruby
-$: << File.expand_path('../..', __FILE__)
-$: << File.expand_path('../../..', __FILE__)
+#!/usr/bin/env bash
 
-require 'mulberry'
-require 'optparse'
+MULBERRY_BIN=$(which mulberry)
+MULBERRY_PATH=${MULBERRY_BIN/%\/mulberry/''}   # strip off the trailing /mulberry
 
-Dir[File.dirname(__FILE__) + '/commands/*.rb'].each {|file| require file }
+OUT=$(rvm -v)
 
-module Mulberry
-  class CLI
-    def run(args)
+if [[ $? == '0' ]]
+then
 
-      if !args[0]
-        puts "mulberry must be called with an action."
-        return
-      end
+	[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-      action = args.shift
+	RVM_ENV="$(rvm env --path -- 1.9.3@mulberry)"
 
-      if action.match /^-{0,2}(version|v)$/
-        puts "Mulberry v#{Mulberry::version}"
-        return
-      end
+	source $RVM_ENV
+else
+	echo "RVM is not installed. This is not guaranteed to work..."
+fi
 
-      begin
-
-        Mulberry::Command.class_eval(action.camelize).new(args)
-
-      rescue NameError => ex
-
-        # Re-raise anything that's unexpected
-        raise ex unless ex.message.include? "uninitialized constant Mulberry::Command::"
-
-        puts "Invalid command: #{action}\n\Valid commands:\n"
-
-        Mulberry::Command.constants.collect{ |c| c.to_s.underscore }.sort.each do |command|
-          puts command
-        end
-
-      end # begin/rescue
-    end # run
-  end # cli
-end # mulberry
-
-Mulberry::CLI.new.run(ARGV)
+ruby $MULBERRY_PATH/mulberry.rb $*
