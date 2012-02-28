@@ -206,12 +206,12 @@ module Mulberry
 
         FileUtils.cp(
           File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_settings.scss'),
-          File.join(base, 'javascript')
+          File.join(base, 'javascript', 'styles')
         )
 
         FileUtils.cp(
           File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_settings-toura-components.scss'),
-          File.join(base, 'javascript')
+          File.join(base, 'javascript', 'styles')
         )
 
         ## add import for toura stuff
@@ -228,19 +228,19 @@ module Mulberry
         Mulberry::CodeCreator.new('base', base, 'base')
         Mulberry::CodeCreator.new('routes', base, 'routes')
         ## add import for scaffold.scss now so it's included before starter-component
-        File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'scaffold';\n")}
+        File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'styles/scaffold';\n")}
         Mulberry::CodeCreator.new('component', base, 'StarterComponent')
 
         # copy _settings.scss into app
         FileUtils.cp(
           File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_settings.scss'),
-          File.join(base, 'javascript')
+          File.join(base, 'javascript', 'styles')
         )
 
         # copy scaffold.scss into app
         FileUtils.cp(
           File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_scaffold.scss'),
-          File.join(base, 'javascript')
+          File.join(base, 'javascript', 'styles')
         )
       end
 
