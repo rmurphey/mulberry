@@ -4,7 +4,6 @@ require "builder"
 describe Builder::CSSMaker do
   before :each do
     @settings = {
-      :framework_dir => File.join(FIXTURES_DIR, 'css', 'framework'),
       :css_dir => File.join(FIXTURES_DIR, 'css', 'mulberry-app-instance')
     }
   end
@@ -28,17 +27,8 @@ describe Builder::CSSMaker do
     it "should properly render the css" do
       css = Builder::CSSMaker.new(@settings).render
 
-      # test that the mulberry framework css was loaded
-      css.should include '#mulberry-framework'
-
-      # test that the toura css was loaded
-      css.should include '#toura'
-
       # test that the app css was loaded
       css.should include '#app-instance'
-
-      #test that we loaded files from the provided load paths
-      css.should include '#toura-imported'
     end
 
     it "should render the css with overrides" do

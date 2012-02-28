@@ -12,7 +12,8 @@ module Builder
       end
 
       # This directory contains the basic styles needed by the framework to work
-      framework_dir = settings.has_key?(:framework_dir) ? settings[:framework_dir] : Mulberry::Framework::Directories.javascript
+      framework_dir = Mulberry::Framework::Directories.javascript
+
       # This is the directory within the mulberry app where user-created styles go
       css_dir = settings[:css_dir]
 
