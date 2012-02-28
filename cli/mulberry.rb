@@ -121,6 +121,7 @@ module Mulberry
       is_toura_app = !options[:empty_app]
 
       base = File.expand_path(app_name)
+      base_app_dir = File.join(base, 'javascript')
 
       if File.exists? base
         raise "Can't create #{base} -- it already exists"
@@ -143,13 +144,13 @@ module Mulberry
       end
 
       FileUtils.cp_r(File.join(tpl_base, 'code', 'styles'),
-        File.join(base, 'javascript')
+        base_app_dir
       )
 
       # copy over the base.scss file
       FileUtils.cp(
         File.join(Mulberry::Framework::Directories.javascript, 'base.scss'),
-        File.join(base, 'javascript')
+        base_app_dir
       )
 
       # create the config.yml
@@ -199,31 +200,28 @@ module Mulberry
           )
         end
 
-        # copy over the _toura.scss file
+        # copy over the toura css
         FileUtils.cp(
           File.join(tpl_base, 'code', '_toura.scss'),
-          File.join(base, 'javascript')
+          base_app_dir
         )
 
-        FileUtils.cp(
-          File.join(tpl_base, 'code', '_settings.scss'),
-          File.join(base, 'javascript', 'styles')
-        )
-
-        FileUtils.cp(
-          File.join(tpl_base, 'code', '_settings-toura-components.scss'),
-          File.join(base, 'javascript', 'styles')
-        )
+        # copy over the settings css
+        %w(_settings.scss _settings-toura-components.scss).each do |f|
+          FileUtils.cp(
+            File.join(tpl_base, 'code', f),
+            File.join(base_app_dir, 'styles')
+          )
+        end
 
         ## add import for toura stuff
-        File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'toura';")}
+        File.open(File.join(base_app_dir, 'base.scss'), 'a') { |f| f.puts("\n@import 'toura';")}
 
         # copy over the resources
         FileUtils.cp_r(
           File.join(Mulberry::Framework::Directories.javascript, 'toura', 'resources'),
-          File.join(base, 'javascript')
+          base_app_dir
         )
-
       else
         # create the "empty" base.js, routes.js, and a starter component
         Mulberry::CodeCreator.new('base', base, 'base')
@@ -232,17 +230,13 @@ module Mulberry
         File.open(File.join(base, 'javascript', 'base.scss'), 'a') { |f| f.puts("\n@import 'styles/scaffold';\n")}
         Mulberry::CodeCreator.new('component', base, 'StarterComponent')
 
-        # copy _settings.scss into app
-        FileUtils.cp(
-          File.join(tpl_base, 'code', '_settings.scss'),
-          File.join(base, 'javascript', 'styles')
-        )
-
-        # copy scaffold.scss into app
-        FileUtils.cp(
-          File.join(tpl_base, 'code', '_scaffold.scss'),
-          File.join(base, 'javascript', 'styles')
-        )
+        # copy over the settings and scaffold css
+        %w(_settings.scss _scaffold.scss).each do |f|
+          FileUtils.cp(
+            File.join(tpl_base, 'code', f),
+            File.join(base_app_dir, 'styles')
+          )
+        end
       end
 
       puts "Scaffolded an app at #{base}" unless silent

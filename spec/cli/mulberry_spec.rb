@@ -54,7 +54,10 @@ describe Mulberry::App do
         [ 'javascript', 'base.js' ],
         [ 'javascript', 'base.scss' ],
         [ 'javascript', 'styles' ],
+        [ 'javascript', '_toura.scss' ],
         [ 'javascript', 'styles', '_base.scss' ],
+        [ 'javascript', 'styles', '_settings.scss' ],
+        [ 'javascript', 'styles', '_settings-toura-components.scss' ],
         [ 'javascript', 'styles', 'page_defs' ],
         [ 'javascript', 'styles', 'page_defs', '_base.scss' ]
       ].each do |f|
@@ -77,6 +80,8 @@ describe Mulberry::App do
         [ 'javascript', 'routes.js' ],
         [ 'javascript', 'styles' ],
         [ 'javascript', 'styles', '_base.scss' ],
+        [ 'javascript', 'styles', '_settings.scss' ],
+        [ 'javascript', 'styles', '_scaffold.scss' ],
         [ 'javascript', 'styles', 'page_defs' ],
         [ 'javascript', 'styles', 'page_defs', '_base.scss' ]
       ].each do |f|
