@@ -53,13 +53,13 @@ dojo.require('dojo.hash');
 
       this.go(loc, true);
 
+      d.subscribe('/dojo/hashchange', this, '_handleHash');
+
       if (this._hasHistoryState) {
         d.connect(window, 'onpopstate', this, function() {
           var hash = window.location.hash.replace('#','');
           this._handleHash(hash);
         });
-      } else {
-        d.subscribe('/dojo/hashchange', this, '_handleHash');
       }
     },
 

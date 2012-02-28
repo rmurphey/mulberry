@@ -48,12 +48,15 @@ dojo.declare('toura.UI', dojo.Stateful, {
     if (!toura.features.ads) { return; }
     mulberry.app.PhoneGap.network.isReachable()
       .then(dojo.hitch(this, function(isReachable) {
+        var deviceType = dojo.hasClass(dojo.body(), "phone") ? "phone" : "tablet";
         if (!isReachable) {
           dojo.removeClass(dojo.body(), 'has-ads');
           return;
+        } else if (mulberry.app.Config.get('app').ads[deviceType]) {
+          dojo.addClass(dojo.body(), 'has-ads');
         }
-        dojo.addClass(dojo.body(), 'has-ads');
         this.adTag = m.app.UI.addPersistentComponent(toura.components.AdTag, {}, 'last');
+        this.adTag.startup();
       }));
   },
 
