@@ -10,6 +10,7 @@ dojo.declare('toura.Manifest', null, {
   },
 
   _load : function() {
+    if (toura.forceStreaming) { return; }
     return this.manifest || dojo.io.script.get({ url : this.url });
   },
 
