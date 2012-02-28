@@ -141,7 +141,7 @@ module Mulberry
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
 
-      FileUtils.cp_r(File.join( Mulberry::Framework::Directories.root, 'stylesheets', 'styles'),
+      FileUtils.cp_r(File.join(mulberry_base, 'templates', 'code', 'styles'),
         File.join(base, 'javascript')
       )
 
@@ -200,17 +200,17 @@ module Mulberry
 
         # copy over the _toura.scss file
         FileUtils.cp(
-          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_toura.scss'),
+          File.join(mulberry_base, 'templates', 'code', '_toura.scss'),
           File.join(base, 'javascript')
         )
 
         FileUtils.cp(
-          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_settings.scss'),
+          File.join(mulberry_base, 'templates', 'code', '_settings.scss'),
           File.join(base, 'javascript', 'styles')
         )
 
         FileUtils.cp(
-          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_settings-toura-components.scss'),
+          File.join(mulberry_base, 'templates', 'code', '_settings-toura-components.scss'),
           File.join(base, 'javascript', 'styles')
         )
 
@@ -233,13 +233,13 @@ module Mulberry
 
         # copy _settings.scss into app
         FileUtils.cp(
-          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_settings.scss'),
+          File.join(mulberry_base, 'templates', 'code', '_settings.scss'),
           File.join(base, 'javascript', 'styles')
         )
 
         # copy scaffold.scss into app
         FileUtils.cp(
-          File.join(Mulberry::Framework::Directories.root, 'stylesheets', '_scaffold.scss'),
+          File.join(mulberry_base, 'templates', 'code', '_scaffold.scss'),
           File.join(base, 'javascript', 'styles')
         )
       end
