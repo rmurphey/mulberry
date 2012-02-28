@@ -1,20 +1,32 @@
 #!/usr/bin/env bash
 
 MULBERRY_BIN=$(which mulberry)
-MULBERRY_PATH=${MULBERRY_BIN/%\/mulberry/''}   # strip off the trailing /mulberry
 
+# strip off the trailing /mulberry
+MULBERRY_PATH=${MULBERRY_BIN/%\/mulberry/''}
+
+# Try running rvm to see if it's installed
 OUT=$(rvm -v)
 
+# if not installed $? will report something other than 0
 if [[ $? == '0' ]]
 then
+	# RVM is installed
 
+	# Per rvm docs, load the rvm env (just in case it is not in user's profile)
 	[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
+	# Get the path to rvm environment shell script
 	RVM_ENV="$(rvm env --path -- 1.9.3@mulberry)"
 
+	# Magic happens here, load up rvm, ruby, & gemset
 	source $RVM_ENV
 else
 	echo "RVM is not installed. This is not guaranteed to work..."
 fi
 
+# pwd is the path you are currently sitting in,
+# so we need to send the full path to mulberry.rbg
+# and then send in any args (e.g. mulberry create page)
+# $* will be `create page`
 ruby $MULBERRY_PATH/mulberry.rb $*
