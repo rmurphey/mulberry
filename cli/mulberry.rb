@@ -117,6 +117,7 @@ module Mulberry
       raise "You must provide an app name" unless app_name
 
       mulberry_base = Mulberry::Framework::Directories.cli
+      tpl_base = Mulberry::Framework::Directories.templates
       is_toura_app = !options[:empty_app]
 
       base = File.expand_path(app_name)
@@ -141,7 +142,7 @@ module Mulberry
         subdirs.each { |d| FileUtils.mkdir File.join(dir, d) }
       end
 
-      FileUtils.cp_r(File.join(mulberry_base, 'templates', 'code', 'styles'),
+      FileUtils.cp_r(File.join(tpl_base, 'code', 'styles'),
         File.join(base, 'javascript')
       )
 
@@ -152,7 +153,7 @@ module Mulberry
       )
 
       # create the config.yml
-      original_config = File.read File.join(mulberry_base, 'templates', CONFIG)
+      original_config = File.read File.join(tpl_base, CONFIG)
       File.open(File.join(base, CONFIG), 'w') do |f|
         f.write original_config.gsub(/^name:.?$/, "name: #{app_name}")
       end
@@ -188,29 +189,29 @@ module Mulberry
         end
 
         # create the sitemap
-        FileUtils.cp(File.join(mulberry_base, 'templates', SITEMAP), base)
+        FileUtils.cp(File.join(tpl_base, SITEMAP), base)
 
         # create the home and about pages
         [ 'home.md', 'about.md' ].each do |page|
           FileUtils.cp(
-            File.join(mulberry_base, 'templates', 'pages', page),
+            File.join(tpl_base, 'pages', page),
             File.join(base, 'pages')
           )
         end
 
         # copy over the _toura.scss file
         FileUtils.cp(
-          File.join(mulberry_base, 'templates', 'code', '_toura.scss'),
+          File.join(tpl_base, 'code', '_toura.scss'),
           File.join(base, 'javascript')
         )
 
         FileUtils.cp(
-          File.join(mulberry_base, 'templates', 'code', '_settings.scss'),
+          File.join(tpl_base, 'code', '_settings.scss'),
           File.join(base, 'javascript', 'styles')
         )
 
         FileUtils.cp(
-          File.join(mulberry_base, 'templates', 'code', '_settings-toura-components.scss'),
+          File.join(tpl_base, 'code', '_settings-toura-components.scss'),
           File.join(base, 'javascript', 'styles')
         )
 
@@ -233,13 +234,13 @@ module Mulberry
 
         # copy _settings.scss into app
         FileUtils.cp(
-          File.join(mulberry_base, 'templates', 'code', '_settings.scss'),
+          File.join(tpl_base, 'code', '_settings.scss'),
           File.join(base, 'javascript', 'styles')
         )
 
         # copy scaffold.scss into app
         FileUtils.cp(
-          File.join(mulberry_base, 'templates', 'code', '_scaffold.scss'),
+          File.join(tpl_base, 'code', '_scaffold.scss'),
           File.join(base, 'javascript', 'styles')
         )
       end

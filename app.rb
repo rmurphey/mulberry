@@ -50,12 +50,16 @@ module Mulberry
         File.join(self.javascript, "dojo-release-#{Mulberry::Framework.dojo_version}-src")
       end
 
+      def self.project_templates
+        File.join(self.root, 'builder', 'project_templates')
+      end
+
       def self.cli
         File.join(self.root, 'cli')
       end
 
-      def self.project_templates
-        File.join(self.root, 'builder', 'project_templates')
+      def self.templates
+        File.join(self.cli, 'templates')
       end
     end
 
