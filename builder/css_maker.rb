@@ -42,7 +42,6 @@ module Builder
 
       app_scss_base_contents = File.read(app_scss_base)
 
-      # TODO: this is probably broken in MAP
       settings[:overrides].each do |k, v|
         app_scss_base_contents.gsub!("@import '#{k.to_s}';", v)
       end if settings[:overrides]
