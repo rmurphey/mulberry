@@ -66,7 +66,8 @@ module Mulberry
         :include_jquery     => @mulberry_app.config['jQuery'] || @mulberry_app.config['jquery'],
         :include_dev_config => true,
         :device_type        => params[:type] || 'phone',
-        :device_os          => params[:os] || 'ios'
+        :device_os          => params[:os] || 'ios',
+        :data_filename      => 'data/tour.js'
       }
     end
 

@@ -4,17 +4,18 @@ dojo.provide('mulberry._Logging');
 
 var lastSection,
     sep = '=====',
-    lastTime;
+    lastSectionTime,
+    lastLogTime = new Date().getTime();
 
 //>>excludeStart('production', kwArgs.releaseName == 'production');
 function getTimeElapsed(ts) {
   var str = '';
 
-  if (!lastTime) {
-    lastTime = ts;
+  if (!lastSectionTime) {
+    lastSectionTime = ts;
   } else {
-    str = ' (' + (ts - lastTime) + 'ms since last log) ';
-    lastTime = ts;
+    str = ' (' + (ts - lastSectionTime) + 'ms since last log) ';
+    lastSectionTime = ts;
   }
 
   return str;
@@ -24,13 +25,18 @@ function getTimeElapsed(ts) {
 d.mixin(mulberry,{
   log : function() {
     //>>excludeStart('production', kwArgs.releaseName == 'production');
-    var msg = [].slice.call(arguments);
+    var msg = [].slice.call(arguments),
+        timeNow = new Date().getTime();
+
+    console.log(timeNow - lastLogTime);
 
     if (w.device) {
-      console.log('\n\n ' + new Date().getTime() + ' ' + msg.join(' ') + '\n\n');
+      console.log('\n\n ' + msg.join(' ') + '\n\n');
     } else {
       c.log.apply(c, msg);
     }
+
+    lastLogTime = timeNow;
     //>>excludeEnd('production');
   },
 
