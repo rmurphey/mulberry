@@ -76,7 +76,7 @@ describe Builder::Build do
 
     it "should properly include the data file" do
       html = File.read(File.join(@bundle[:location], 'iphone', 'www', 'index.html'))
-      html.should include 'tour.js'
+      html.should include 'tour.js.jet'
     end
 
     after do
@@ -148,7 +148,7 @@ describe Builder::Build do
 
     it "should properly include the data file" do
       html = File.read(File.join(@bundle[:location], 'ipad', 'www', 'index.html'))
-      html.should include 'tour.js'
+      html.should include 'tour.js.jet'
     end
 
     after do
