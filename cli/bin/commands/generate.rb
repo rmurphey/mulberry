@@ -45,7 +45,7 @@ module Mulberry
           # assume all non-custom components exist
           true
         else
-          File.exists?(File.join(@dir, 'javascript', 'components', "#{component_basename(component)}.js"))
+          File.exists?(File.join(@dir, 'app', 'components', "#{component_basename(component)}.js"))
         end
       end
 

@@ -68,7 +68,7 @@ describe Mulberry::Command::Generate do
         File.join(@app_name, 'page_defs')
       )
 
-      FileUtils.touch File.join(@app_name, 'javascript', 'components', 'AlreadyExists.js')
+      FileUtils.touch File.join(@app_name, 'app', 'components', 'AlreadyExists.js')
 
       Dir.chdir @app_name
       Mulberry::Command::Generate.new
@@ -77,7 +77,7 @@ describe Mulberry::Command::Generate do
     it "should create nonexistent components" do
       [ 'NonexistentComponent', 'ComponentInSubregion' ].each do |c|
         puts "Checking for #{c}"
-        created_component = File.join('javascript', 'components', "#{c}.js")
+        created_component = File.join('app', 'components', "#{c}.js")
 
         File.exists?(created_component).should be_true
         File.read(created_component).should include 'mulberry.component'
@@ -86,13 +86,13 @@ describe Mulberry::Command::Generate do
     end
 
     it "should not re-create an already existing component" do
-      existing = File.join('javascript', 'components', 'AlreadyExists.js')
+      existing = File.join('app', 'components', 'AlreadyExists.js')
       File.exists?(existing).should be_true
       File.read(existing).should_not include 'mulberry.component'
     end
 
     it "should not create non-custom components" do
-      File.exists?(File.join('javascript', 'components', 'BuiltInComponent.js')).should_not be_true
+      File.exists?(File.join('app', 'components', 'BuiltInComponent.js')).should_not be_true
     end
   end
 
