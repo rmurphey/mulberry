@@ -94,6 +94,13 @@ describe("toura ui", function() {
       var spy = spyOn(mulberry.app.UI, 'addPersistentComponent');
 
       ui = createUI();
+
+      mulberry.app.UI.currentPage = {
+        baseObj : { isHomeNode : false }
+      };
+
+      mulberry.app.UI.showPage();
+
       expect(spy.mostRecentCall.args[0]).toBe(toura.components.AdTag);
       expect(dojo.hasClass(dojo.body(), 'has-ads')).toBeTruthy();
 
@@ -109,9 +116,27 @@ describe("toura ui", function() {
       expect(spy).not.toHaveBeenCalled();
     });
 
+    it("should not create the ad container on the home node", function() {
+      toura.features.ads = true;
+      ui = createUI();
+
+      mulberry.app.UI.currentPage = {
+        baseObj : { isHomeNode : true }
+      };
+
+      mulberry.app.UI.showPage();
+
+      expect(dojo.hasClass(dojo.body(), 'has-ads')).toBeFalsy();
+      expect(document.querySelector('.component.ad-tag')).toBeFalsy();
+    });
+
     it("should disable ads when network is unavailable", function(){
       var b = dojo.body();
       toura.features.ads = true;
+
+      mulberry.app.UI.currentPage = {
+        baseObj : { isHomeNode : false }
+      };
 
       mulberry.app.PhoneGap.network.isReachable = function() {
         var dfd = new dojo.Deferred();
@@ -120,6 +145,8 @@ describe("toura ui", function() {
       };
 
       ui = createUI();
+      mulberry.app.UI.showPage();
+
       expect(dojo.hasClass(b, 'has-ads')).toBeTruthy();
 
       mulberry.app.PhoneGap.network.isReachable = function() {
@@ -129,6 +156,8 @@ describe("toura ui", function() {
       };
 
       ui = createUI();
+      mulberry.app.UI.showPage();
+
       expect(dojo.hasClass(b, 'has-ads')).toBeFalsy();
       expect(document.querySelector('.component.ad-tag')).toBeFalsy();
     });
