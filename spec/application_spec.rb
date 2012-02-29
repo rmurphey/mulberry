@@ -95,6 +95,11 @@ describe Mulberry::Framework do
         html = Mulberry::Framework::Generators.index_html({ :title => 'Overriding the Title' })
         html.should include 'Overriding the Title'
       end
+
+      it "should include a data file if a data filename is provided" do
+        html = Mulberry::Framework::Generators.index_html({ :data_filename => 'data/tour.js' })
+        html.should include 'data/tour.js'
+      end
     end
 
     describe "#data" do

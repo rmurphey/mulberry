@@ -34,13 +34,15 @@ module Builder
     end
 
     def template_vars
-      is_browser = %w{browser MAP}.include? @target['build_type']
+      browser = %w{browser MAP}.include? @target['build_type']
 
       vars = {
         :device_type          =>  @target['device_type'] || nil,
-        :include_phonegap     =>  !is_browser,
-        :body_onload          =>  is_browser ? 'readyFn()' : ''
+        :include_phonegap     =>  !browser,
+        :body_onload          =>  browser ? 'readyFn()' : '',
       }
+
+      vars[:data_filename] = "data/tour.js#{browser ? '' : '.jet'}"
 
       if @build.build_helper.respond_to? 'html_vars'
         vars.merge! @build.build_helper.html_vars

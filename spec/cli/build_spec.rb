@@ -74,6 +74,11 @@ describe Builder::Build do
       end
     end
 
+    it "should properly include the data file" do
+      html = File.read(File.join(@bundle[:location], 'iphone', 'www', 'index.html'))
+      html.should include 'tour.js.jet'
+    end
+
     after do
       @b.cleanup
     end
@@ -139,6 +144,11 @@ describe Builder::Build do
       @page_defs.each do |page_def|
         page_defs.should include page_def
       end
+    end
+
+    it "should properly include the data file" do
+      html = File.read(File.join(@bundle[:location], 'ipad', 'www', 'index.html'))
+      html.should include 'tour.js.jet'
     end
 
     after do
@@ -211,6 +221,11 @@ describe Builder::Build do
       manifest = File.read(File.join(@bundle[:location], 'android', 'AndroidManifest.xml'))
       manifest.should include 'android:versionName="1.0"'
       manifest.should include 'com.toura.app2_fake'
+    end
+
+    it "should properly include the data file" do
+      html = File.read(File.join(@bundle[:location], 'android', 'assets', 'www', 'index.html'))
+      html.should include 'tour.js.jet'
     end
 
     after do
