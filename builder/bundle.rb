@@ -33,7 +33,7 @@ module Builder
       position_js unless !@javascript
       position_config unless !@config
       position_data unless !@data
-      position_assets unless !@assets
+      position_assets if @assets && @assets[:dir]
       position_page_defs unless !@page_defs
       position_www_icons unless !@www_icons
 
@@ -83,8 +83,6 @@ module Builder
     end
 
     def position_assets
-      raise "No directory for assets" unless @assets[:dir]
-
       assets_dir = File.join(@www, 'media')
       FileUtils.mkdir_p(assets_dir) unless File.exists?(assets_dir)
 
