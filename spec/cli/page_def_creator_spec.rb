@@ -51,7 +51,7 @@ describe Mulberry::PageDefCreator do
 
     Mulberry::PageDefCreator.new('page_def', @source_dir, name)
 
-    capability_file          = File.join(@source_dir, 'javascript', 'capabilities', 'PageFooBar.js')
+    capability_file          = File.join(@source_dir, 'app', 'capabilities', 'PageFooBar.js')
     capability_file_contents = File.read(capability_file)
 
     File.exists?(capability_file).should be_true
@@ -67,7 +67,7 @@ describe Mulberry::PageDefCreator do
     app = Mulberry::App.new(@source_dir)
     app.should_not be_nil
 
-    page_def_dir = File.join(@source_dir, 'javascript', 'styles', 'page_defs')
+    page_def_dir = File.join(@source_dir, 'app', 'styles', 'page_defs')
 
     scss_filename = File.join(page_def_dir, "_#{name}.scss")
     page_def_base_filename = File.join(page_def_dir, '_base.scss')
