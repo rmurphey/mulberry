@@ -33,7 +33,7 @@ module Mulberry
     end
 
     def create_page_def_scss
-      page_def_scss_dir = File.join(@destination_dir, 'javascript', 'styles','page_defs')
+      page_def_scss_dir = File.join(@destination_dir, 'app', 'styles','page_defs')
 
       scss_filename = File.join(page_def_scss_dir, "_#{@filename}.scss")
       theme_page_def_base_filename = File.join(page_def_scss_dir, '_base.scss')
