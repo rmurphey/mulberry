@@ -42,7 +42,7 @@ module Builder
         :body_onload          =>  browser ? 'readyFn()' : '',
       }
 
-      vars[:data_filename] = "data/tour.js#{@target['device_os'] == 'android' ? '.jet' : ''}"
+      vars[:data_filename] = "data/tour.js#{browser ? '' : '.jet'}"
 
       if @build.build_helper.respond_to? 'html_vars'
         vars.merge! @build.build_helper.html_vars
