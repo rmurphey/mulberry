@@ -5,7 +5,7 @@ module Mulberry
     class Generate < Mulberry::Command::Base
       def initialize(args = [])
 
-        @dir = Mulberry.get_app_dir args[0]
+        @dir = Mulberry.get_root_dir args[0]
         @created_pages = false
 
         sitemap = YAML.load_file(File.join(@dir, Mulberry::SITEMAP))

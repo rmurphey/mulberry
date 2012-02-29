@@ -37,7 +37,7 @@ module Mulberry
       end
 
       def initialize(args)
-        dir          = Mulberry.get_app_dir
+        dir          = Mulberry.get_root_dir
         content_type = args.shift.to_sym
         filenames    = args
         commands     = Mulberry::Command::Create.commands

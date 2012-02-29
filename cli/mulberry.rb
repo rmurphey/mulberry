@@ -59,7 +59,7 @@ module Mulberry
     VERSION
   end
 
-  def self.get_app_dir(dir = nil)
+  def self.get_root_dir(dir = nil)
     dir ||= Dir.pwd
     dir = File.expand_path(dir)
 

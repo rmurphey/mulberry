@@ -12,14 +12,14 @@ describe Mulberry::App do
     FileUtils.rm_rf 'test_empty_app'
   end
 
-  describe "::get_app_dir" do
+  describe "::get_root_dir" do
     it "should find a mulberry directory" do
-      Mulberry.get_app_dir('testapp').should match 'testapp'
+      Mulberry.get_root_dir('testapp').should match 'testapp'
     end
 
     it "should error out if not in a mulberry directory" do
       Dir.mkdir 'foobar'
-      lambda { Mulberry.get_app_dir('foobar') }.should raise_error
+      lambda { Mulberry.get_root_dir('foobar') }.should raise_error
       Dir.rmdir 'foobar'
     end
   end
