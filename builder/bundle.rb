@@ -28,14 +28,14 @@ module Builder
 
       FileUtils.mkdir_p @www unless File.exists? @www
 
-      position_html unless !@html
-      position_css unless !@css
-      position_js unless !@javascript
-      position_config unless !@config
-      position_data unless !@data
+      position_html if @html
+      position_css if @css
+      position_js if @javascript
+      position_config if @config
+      position_data if @data
       position_assets if @assets && @assets[:dir]
-      position_page_defs unless !@page_defs
-      position_www_icons unless !@www_icons
+      position_page_defs if @page_defs
+      position_www_icons if @www_icons
 
       # TODO: separate these. this is dumb, but i copied it
       # directly from build rake for now
