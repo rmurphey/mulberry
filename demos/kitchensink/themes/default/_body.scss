@@ -1,0 +1,19 @@
+.component.sibling-nav {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+
+  .phone.has-ads & {
+    bottom: $phone-ad-height;
+  }
+
+  .tablet.has-ads & {
+    bottom: $tablet-ad-height;
+  }
+}
+
+.component.ad-tag {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+}

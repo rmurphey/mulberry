@@ -4,14 +4,6 @@
   @include chrome-gradient;
   @include box-shadow(1px, 0);
 
-  .phone.has-ads & {
-    bottom: $phone-ad-height;
-  }
-
-  .tablet.has-ads & {
-    bottom: $tablet-ad-height;
-  }
-
   color: $chrome-text-color;
 
   .handle {
