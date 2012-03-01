@@ -4,7 +4,6 @@ dojo.require('mulberry.Device');
 dojo.require('mulberry.Utilities');
 dojo.require('mulberry.app.Config');
 dojo.require('mulberry.containers.Viewport');
-dojo.require('mulberry.containers.Persistent');
 dojo.require('mulberry.app.PhoneGap');
 dojo.require('dojo.string');
 
