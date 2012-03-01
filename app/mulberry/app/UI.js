@@ -103,18 +103,6 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
       mulberry.app.Router.go('/search');
       e.preventDefault();
     });
-
-    if (this.siblingNav) {
-      dojo.connect(this.siblingNav, 'show', this, function() {
-        dojo.addClass(this.body, 'sibling-nav-visible');
-        dojo.publish('/window/resize');
-      });
-
-      dojo.connect(this.siblingNav, 'hide', this, function() {
-        dojo.removeClass(this.body, 'sibling-nav-visible');
-        dojo.publish('/window/resize');
-      });
-    }
   },
 
   showPage : function(page, node) {
