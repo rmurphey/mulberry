@@ -78,15 +78,10 @@ describe("user interface controller", function() {
       ui = new mulberry.app.UI(devices[0]);
     });
 
-    it("should create a persistent component container", function() {
-      expect(ui.containers.persistent).toBeDefined();
-      expect(ui.containers.persistent.domNode).toBeDefined();
-    });
-
     it("should add persistent components to the page", function() {
       ui.addPersistentComponent(my.Component);
       expect(componentAddedFlag).toBeTruthy();
-      expect(ui.containers.persistent.domNode.querySelector('.my-persistent-component')).toBeTruthy();
+      expect(dojo.body().querySelector('.my-persistent-component')).toBeTruthy();
     });
   });
 });
