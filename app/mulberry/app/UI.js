@@ -30,8 +30,9 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
   },
 
   addPersistentComponent : function(klass, opts, position) {
-    var pc = this.containers.persistent;
-    return pc.adopt(klass, opts || {}).placeAt(dojo.body(), position);
+    c = new klass(opts);
+    dojo.place(c.domNode, dojo.body(), position);
+    return c;
   },
 
   _watchers : function() {
@@ -77,7 +78,6 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
 
   _containersSetup : function() {
     this.containers.viewport = new mulberry.containers.Viewport().placeAt(this.body, 'first');
-    this.containers.persistent = new mulberry.containers.Persistent().placeAt(this.body, 'last');
   },
 
   _eventSetup : function() {
