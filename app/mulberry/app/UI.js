@@ -31,7 +31,7 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
 
   addPersistentComponent : function(klass, opts, position) {
     c = new klass(opts);
-    dojo.place(c.domNode, dojo.body(), position);
+    c.placeAt(dojo.body(), position);
     return c;
   },
 
