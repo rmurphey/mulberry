@@ -28,14 +28,14 @@ module Builder
 
       FileUtils.mkdir_p @www unless File.exists? @www
 
-      position_html unless !@html
-      position_css unless !@css
-      position_js unless !@javascript
-      position_config unless !@config
-      position_data unless !@data
-      position_assets unless !@assets
-      position_page_defs unless !@page_defs
-      position_www_icons unless !@www_icons
+      position_html if @html
+      position_css if @css
+      position_js if @javascript
+      position_config if @config
+      position_data if @data
+      position_assets if @assets && @assets[:dir]
+      position_page_defs if @page_defs
+      position_www_icons if @www_icons
 
       # TODO: separate these. this is dumb, but i copied it
       # directly from build rake for now
@@ -83,8 +83,6 @@ module Builder
     end
 
     def position_assets
-      raise "No directory for assets" unless @assets[:dir]
-
       assets_dir = File.join(@www, 'media')
       FileUtils.mkdir_p(assets_dir) unless File.exists?(assets_dir)
 

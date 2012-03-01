@@ -9,6 +9,7 @@ development: false
 gather:
     data: true
     page_defs: true
+    assets: true
 
 build:
     javascript:

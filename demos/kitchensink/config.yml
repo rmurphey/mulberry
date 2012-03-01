@@ -30,8 +30,8 @@ name: mulberry's kitchensink
 
 os:
   # Specify the operating systems to target
-  - ios
   - android
+  - ios
 
 type:
   # Specify the form factors to target;
@@ -44,7 +44,7 @@ type:
 jquery: true
 
 # enter your facebook api key here in order to enable facebook features
-facebook_api_key:
+facebook_api_key: 311842555540517
 
 # your twitter api key must be authorized for xauth for twitter features
 # to work. see https://dev.twitter.com/docs/oauth/xauth

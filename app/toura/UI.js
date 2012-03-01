@@ -13,7 +13,6 @@ dojo.declare('toura.UI', dojo.Stateful, {
 
     this._setupFeatureClasses();
     this._setupSiblingNav();
-    this._setupAdTag();
 
     dojo.connect(m.app.UI, 'showPage', this, '_onShowPage');
     this.watch('siblingNavVisible', dojo.hitch(this, '_onSiblingNavVisible'));
@@ -25,10 +24,7 @@ dojo.declare('toura.UI', dojo.Stateful, {
       this.siblingNav.set('node', node);
     }
 
-    if (this.adTag) {
-      this.adTag.destroy();
-      this._setupAdTag();
-    }
+    this._setupAdTag();
   },
 
   _setupFeatureClasses : function() {
@@ -46,15 +42,28 @@ dojo.declare('toura.UI', dojo.Stateful, {
 
   _setupAdTag : function() {
     if (!toura.features.ads) { return; }
+
+    var isHomeNode = m.app.UI.currentPage && m.app.UI.currentPage.baseObj.isHomeNode,
+        b = dojo.body();
+
+    if (this.adTag) {
+      this.adTag.destroy();
+    }
+
+    if (isHomeNode) {
+      dojo.removeClass(b, 'has-ads');
+      return;
+    }
+
     mulberry.app.PhoneGap.network.isReachable()
       .then(dojo.hitch(this, function(isReachable) {
-        var deviceType = dojo.hasClass(dojo.body(), "phone") ? "phone" : "tablet";
         if (!isReachable) {
-          dojo.removeClass(dojo.body(), 'has-ads');
+          dojo.removeClass(b, 'has-ads');
           return;
-        } else if (mulberry.app.Config.get('app').ads[deviceType]) {
-          dojo.addClass(dojo.body(), 'has-ads');
+        } else if (mulberry.app.Config.get('app').ads[m.Device.type]) {
+          dojo.addClass(b, 'has-ads');
         }
+
         this.adTag = m.app.UI.addPersistentComponent(toura.components.AdTag, {}, 'last');
         this.adTag.startup();
       }));

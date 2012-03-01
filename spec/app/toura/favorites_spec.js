@@ -34,7 +34,6 @@ describe("favorites API", function() {
       expect(fav.id).toBe(id);
       expect(fav.name).toBe(node.name);
       expect(fav.added).toBeDefined();
-      expect(fav.displayDate).toBeDefined();
       expect(fav.model).toBeDefined();
     });
 
