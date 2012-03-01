@@ -73,6 +73,10 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
     if (mulberry.isMAP) {
       dojo.addClass(b, 'layout-MAP');
     }
+
+    //>>excludeStart('production', kwArgs.production);
+    if (mulberry.features && mulberry.features.debugToolbar) { mulberry.app._Debug(); }
+    //>>excludeEnd('production');
   },
 
   _containersSetup : function() {

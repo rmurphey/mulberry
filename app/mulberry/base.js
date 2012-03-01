@@ -32,9 +32,6 @@ var readyFn = function() {
     mulberry.app.UI.hideSplash();
   });
 
-  //>>excludeStart('production', kwArgs.production);
-  if (mulberry.features && mulberry.features.debugToolbar) { mulberry.app._Debug(); }
-  //>>excludeEnd('production');
 };
 
 document.addEventListener("deviceready", function() {
