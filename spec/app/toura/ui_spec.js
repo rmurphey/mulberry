@@ -92,6 +92,14 @@ describe("toura ui", function() {
       expect(ui.siblingNav.domNode.className).toMatch('hidden');
       expect(dojo.hasClass(dojo.body(), 'sibling-nav-visible')).toBeFalsy();
     });
+
+    it("should not show the sibling nav if there are ads", function() {
+      toura.features.siblingNav = true;
+      toura.features.ads = true;
+      ui = createUI();
+
+      expect(dojo.hasClass(dojo.body(), 'sibling-nav-visible')).toBeFalsy();
+    });
   });
 
   describe("ad tag", function() {
