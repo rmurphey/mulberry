@@ -146,5 +146,3 @@ else
 
 	open /Volumes/PhoneGap-1.3.0/PhoneGap-1.3.0.pkg
 fi
-
-brew install closure-compiler

@@ -112,7 +112,7 @@ module Builder
         file = File.join(build_location, path)
 
         if File.exists? file
-          %x{closure --js #{file} --js_output_file #{tmp}}
+          %x{java -jar #{File.join(Mulberry::Framework::Directories.root, 'vendor', 'compiler.jar')} --js #{file} --js_output_file #{tmp}}
           if File.exists? tmp
             FileUtils.rm_rf file
             FileUtils.mv tmp, file
@@ -183,7 +183,7 @@ module Builder
         :webkitMobile =>    WEBKIT[@build_type.to_sym],
 
         :action =>          "clean,release",
-        :optimize =>        "shrinksafe",
+        :optimize =>        "none",
         :localeList =>      "en-us",
 
         :prefixes => [
