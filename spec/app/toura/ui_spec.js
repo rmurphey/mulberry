@@ -96,9 +96,12 @@ describe("toura ui", function() {
     it("should not show the sibling nav if there are ads", function() {
       toura.features.siblingNav = true;
       toura.features.ads = true;
+      var spy = spyOn(mulberry.app.UI, 'addPersistentComponent').andCallThrough();
+
       ui = createUI();
 
-      expect(dojo.hasClass(dojo.body(), 'sibling-nav-visible')).toBeFalsy();
+      expect(ui.siblingNav).not.toBeDefined();
+      expect(spy).not.toHaveBeenCalled();
     });
   });
 
