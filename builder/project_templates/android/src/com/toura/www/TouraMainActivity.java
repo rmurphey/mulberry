@@ -56,24 +56,13 @@ public class TouraMainActivity extends DroidGap {
 
     super.appView.setWebViewClient(new DroidGap.GapViewClient(this) {
       @Override
-      public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        try {
-          URL urlObj = new URL(url);
-          if( TextUtils.equals(urlObj.getHost(),"192.168.1.34") ) {
-            //Allow the WebView in your application to do its thing
-            return false;
-          } else {
-            //Pass it to the system, doesn't match your domain
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
-            //Tell the WebView you took care of it.
-            return true;
+      public void onLoadResource (WebView view, String url) {
+        if (url.contains("toura")) {
+          if(view.getHitTestResult().getType() > 0){
+            view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            view.stopLoading();
           }
         }
-        catch (Exception e) {
-          e.printStackTrace();
-        }
-        return false;
       }
     });
   }
