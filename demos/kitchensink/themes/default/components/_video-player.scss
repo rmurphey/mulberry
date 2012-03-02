@@ -10,6 +10,11 @@
   }
 
   .fake-video {
+    display: none;
+  }
+
+  .android & .fake-video,
+  .ios & .fake-video {
     $inner-color: lighten($chrome-color, 75%);
     $mid-color: lighten($chrome-color, 65%);
     $outer-color: lighten($chrome-color, 50%);
