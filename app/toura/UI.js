@@ -35,7 +35,8 @@ dojo.declare('toura.UI', dojo.Stateful, {
   },
 
   _setupSiblingNav : function() {
-    if (!toura.features.siblingNav) { return; }
+    if (!toura.features.siblingNav || toura.features.ads) { return; }
+
     this.siblingNav = m.app.UI.addPersistentComponent(toura.components.SiblingNav, {}, 'first');
     this.set('siblingNavVisible', false);
 
