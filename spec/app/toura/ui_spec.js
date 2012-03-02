@@ -122,6 +122,19 @@ describe("toura ui", function() {
       expect(spy).not.toHaveBeenCalled();
     });
 
+    it("should pass the device-specific config to the ad component", function() {
+      var spy = spyOn(mulberry.app.UI, 'addPersistentComponent'),
+          appConfig = mulberry.app.Config.get('app');
+
+      allDevices(function(d) {
+        toura.features.ads = true;
+        ui = createUI();
+
+        mulberry.app.UI.showPage();
+        expect(spy.mostRecentCall.args[1].adConfig).toBe(appConfig.ads[d.type]);
+      });
+    });
+
     it("should not create the ad container on the home node", function() {
       toura.features.ads = true;
       ui = createUI();

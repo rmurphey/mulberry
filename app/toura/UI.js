@@ -70,12 +70,21 @@ dojo.declare('toura.UI', dojo.Stateful, {
         if (!isReachable) {
           dojo.removeClass(b, 'has-ads');
           return;
-        } else if (mulberry.app.Config.get('app').ads[m.Device.type]) {
-          dojo.addClass(b, 'has-ads');
         }
 
-        this.adTag = m.app.UI.addPersistentComponent(toura.components.AdTag, {}, 'last');
-        this.adTag.startup();
+        var appConfig = mulberry.app.Config.get('app');
+
+        if (appConfig.ads && appConfig.ads[m.Device.type]) {
+          dojo.addClass(b, 'has-ads');
+
+          this.adTag = m.app.UI.addPersistentComponent(
+            toura.components.AdTag,
+            { adConfig : appConfig.ads[m.Device.type] },
+            'last'
+          );
+
+          this.adTag.startup();
+        }
       }));
   },
 
