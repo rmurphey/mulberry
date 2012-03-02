@@ -35,9 +35,20 @@ dojo.declare('toura.UI', dojo.Stateful, {
   },
 
   _setupSiblingNav : function() {
-    if (!toura.features.siblingNav) { return; }
+    if (!toura.features.siblingNav || toura.features.ads) { return; }
+
     this.siblingNav = m.app.UI.addPersistentComponent(toura.components.SiblingNav, {}, 'first');
     this.set('siblingNavVisible', false);
+
+    dojo.connect(this.siblingNav, 'show', this, function() {
+      dojo.addClass(this.body, 'sibling-nav-visible');
+      dojo.publish('/window/resize');
+    });
+
+    dojo.connect(this.siblingNav, 'hide', this, function() {
+      dojo.removeClass(this.body, 'sibling-nav-visible');
+      dojo.publish('/window/resize');
+    });
   },
 
   _setupAdTag : function() {

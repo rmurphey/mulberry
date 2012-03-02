@@ -4,7 +4,6 @@ dojo.require('mulberry.Device');
 dojo.require('mulberry.Utilities');
 dojo.require('mulberry.app.Config');
 dojo.require('mulberry.containers.Viewport');
-dojo.require('mulberry.containers.Persistent');
 dojo.require('mulberry.app.PhoneGap');
 dojo.require('dojo.string');
 
@@ -30,8 +29,9 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
   },
 
   addPersistentComponent : function(klass, opts, position) {
-    var pc = this.containers.persistent;
-    return pc.adopt(klass, opts || {}).placeAt(pc.domNode, position);
+    var c = new klass(opts);
+    c.placeAt(this.body, position);
+    return c;
   },
 
   _watchers : function() {
@@ -81,7 +81,6 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
 
   _containersSetup : function() {
     this.containers.viewport = new mulberry.containers.Viewport().placeAt(this.body, 'first');
-    this.containers.persistent = new mulberry.containers.Persistent().placeAt(this.body, 'last');
   },
 
   _eventSetup : function() {
@@ -108,18 +107,6 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
       mulberry.app.Router.go('/search');
       e.preventDefault();
     });
-
-    if (this.siblingNav) {
-      dojo.connect(this.siblingNav, 'show', this, function() {
-        dojo.addClass(this.body, 'sibling-nav-visible');
-        dojo.publish('/window/resize');
-      });
-
-      dojo.connect(this.siblingNav, 'hide', this, function() {
-        dojo.removeClass(this.body, 'sibling-nav-visible');
-        dojo.publish('/window/resize');
-      });
-    }
   },
 
   showPage : function(page, node) {

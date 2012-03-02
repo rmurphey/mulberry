@@ -30,6 +30,10 @@
       .body-text:not(.empty) {
         padding: 10px;
       }
+
+      .component.audio-caption {
+        @include caption-text;
+      }
     }
 
     .component.audio-list:not(.empty) {

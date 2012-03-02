@@ -74,7 +74,12 @@ describe("toura ui", function() {
       toura.features.siblingNav = true;
       ui = createUI();
       ui.set('siblingNavVisible', false);
-      expect(ui.siblingNav.domNode.className).toMatch('hidden');
+      expect(ui.siblingNav.hasClass('hidden')).toBeTruthy();
+      expect(dojo.hasClass(dojo.body(), 'sibling-nav-visible')).toBeFalsy();
+
+      ui.siblingNav.show();
+      expect(ui.siblingNav.hasClass('hidden')).toBeFalsy();
+      expect(dojo.hasClass(dojo.body(), 'sibling-nav-visible')).toBeTruthy();
     });
 
     it("should not show the sibling nav if there are no siblings", function() {
@@ -85,6 +90,18 @@ describe("toura ui", function() {
       ui.siblingNav.siblings = false;
       ui.set('siblingNavVisible', true);
       expect(ui.siblingNav.domNode.className).toMatch('hidden');
+      expect(dojo.hasClass(dojo.body(), 'sibling-nav-visible')).toBeFalsy();
+    });
+
+    it("should not show the sibling nav if there are ads", function() {
+      toura.features.siblingNav = true;
+      toura.features.ads = true;
+      var spy = spyOn(mulberry.app.UI, 'addPersistentComponent').andCallThrough();
+
+      ui = createUI();
+
+      expect(ui.siblingNav).not.toBeDefined();
+      expect(spy).not.toHaveBeenCalled();
     });
   });
 

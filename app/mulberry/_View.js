@@ -210,6 +210,10 @@ dojo.declare('mulberry._View', [ dijit._Widget, dijit._Templated, mulberry._Nls 
     dojo.removeClass(this.domNode, className);
   },
 
+  hasClass : function(className) {
+    return dojo.hasClass(this.domNode, className);
+  },
+
   /**
    * @public
    * Shows the view if it's hidden.   It removes the `hidden` class from the
