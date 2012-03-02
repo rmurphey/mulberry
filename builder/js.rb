@@ -92,12 +92,34 @@ module Builder
       dojo_build
       unminify_haml
       concat_vendor_files
+      minify_with_closure
 
       if @client_dir
         FileUtils.rm_rf @client_dir
       end
 
       true
+    end
+
+    def minify_with_closure
+      build_location = report[:location]
+      tmp = File.join(build_location, 'tmp.js')
+
+      [
+        [ 'mulberry', 'base.js' ],
+        [ 'client', 'base.js' ]
+      ].each do |path|
+        file = File.join(build_location, path)
+
+        if File.exists? file
+          %x{closure --js #{file} --js_output_file #{tmp}}
+          if File.exists? tmp
+            FileUtils.rm_rf file
+            FileUtils.mv tmp, file
+          end
+        end
+
+      end
     end
 
     def concat_vendor_files
