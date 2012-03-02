@@ -91,8 +91,8 @@ module Builder
 
       dojo_build
       unminify_haml
-      concat_vendor_files
       minify_with_closure
+      concat_vendor_files
 
       if @client_dir
         FileUtils.rm_rf @client_dir
@@ -106,6 +106,7 @@ module Builder
       tmp = File.join(build_location, 'tmp.js')
 
       [
+        [ 'dojo', 'base.js' ],
         [ 'mulberry', 'base.js' ],
         [ 'client', 'base.js' ]
       ].each do |path|
