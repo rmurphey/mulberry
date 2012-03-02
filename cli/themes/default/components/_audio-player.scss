@@ -1,23 +1,18 @@
 .component.audio-player {
-
-  .android & {
-    padding-top: 7px;
-  }
-
-  .ios & {
-    text-align:center;
-    padding-top: 10px;
-  }
+  text-align: center;
 
   audio {
     width: 60%;
-    padding-top: 8px;
+    padding-top: 12px;
+
+    // iOS displays <audio> much higher than it should
+    .ios & {
+      padding-top: 16px;
+    }
   }
 
-  &.hidden {
-    display: none;
-  }
 
+  // Android native only <audio> doesn't work within PhoneGap
   form {
     width: 60px;
     margin: 0 auto;
