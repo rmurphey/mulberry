@@ -35,7 +35,13 @@ mulberry.app.DeviceStorage = (function(){
     init : function(appId) {
       this.appId = appId;
 
-      if ('localStorage' in window && 'openDatabase' in window) {
+      if (!('openDatabase' in window)) {
+        this._sql = function() {
+          var dfd = new dojo.Deferred();
+          dfd.resolve();
+          return dfd.promise;
+        };
+      } else {
 
         var db = this._db = openDatabase(
           // short db name
@@ -92,17 +98,10 @@ mulberry.app.DeviceStorage = (function(){
 
           return dfd;
         };
-
-        // don't let database be initialized again
-        return this._db;
-
-      } else {
-        this._sql = function() {
-          var dfd = new dojo.Deferred();
-          dfd.resolve();
-          return dfd.promise;
-        };
       }
+
+      // don't let database be initialized again
+      return this._db;
     },
 
     drop : function() {
