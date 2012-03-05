@@ -17,4 +17,7 @@
     }
   }
 
+  & video[src^=undefined] {
+    display: none;
+  }
 }
