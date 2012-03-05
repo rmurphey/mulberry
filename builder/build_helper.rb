@@ -51,7 +51,7 @@ module Builder
     end
 
     def is_browser_build?
-      is_browser = build && %w{browser MAP}.include?(build.target['build_type'])
+      is_browser = !!build && %w{browser MAP}.include?(build.target['build_type'])
     end
   end
 end
