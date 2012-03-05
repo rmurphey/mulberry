@@ -18,10 +18,10 @@
 @mixin background-shadow($side:bottom) {
   border-#{$side}: 1px solid;
   @if ($font-scheme == dark) {
-    background-color: transparentize(#000, .95);
-    border-#{$side}-color: darken($app-background-color, 17%);
+    background-color: transparentize(#000, .85);
+    border-#{$side}-color: darken($app-background-color, 27%);
   } @else {
-    background-color: transparentize(#fff, .95);
+    background-color: transparentize(#fff, .9);
     border-#{$side}-color: lighten($app-background-color, 17%);
   }
 }

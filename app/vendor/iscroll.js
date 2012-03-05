@@ -287,7 +287,7 @@ iScroll.prototype = {
      * https://github.com/cubiq/iscroll/pull/38/files
      * fixes an issue where clicks on form elements are swallowed
      */
-    if ({ 'SELECT' : 1, 'INPUT' : 1, 'BUTTON' : 1, 'TEXTAREA' : 1 }[e.target.tagname]) { return true; }
+    if ({ 'SELECT' : 1, 'INPUT' : 1, 'BUTTON' : 1, 'TEXTAREA' : 1 }[e.target.tagName]) { return true; }
 
 		e.preventDefault();
 

@@ -35,69 +35,70 @@ mulberry.app.DeviceStorage = (function(){
     init : function(appId) {
       this.appId = appId;
 
-      if (!window.localStorage) {
-        throw new Error('Local storage interface is not defined. Cannot create database. Aborting.');
-      }
+      if (!('openDatabase' in window)) {
+        this._sql = function() {
+          var dfd = new dojo.Deferred();
+          dfd.resolve();
+          return dfd.promise;
+        };
+      } else {
 
-      if (!window.openDatabase) {
-        throw new Error('SQLite database interface is not defined. Cannot create database. Aborting.');
-      }
+        var db = this._db = openDatabase(
+          // short db name
+          appId + '-' + mulberry.version,
 
-      var db = this._db = openDatabase(
-        // short db name
-        appId + '-' + mulberry.version,
+          // sqlite version
+          "1.0",
 
-        // sqlite version
-        "1.0",
+          // long db name
+          appId + ' Database',
 
-        // long db name
-        appId + ' Database',
+          // database size
+          5 * 1024 *1024
+        );
 
-        // database size
-        5 * 1024 *1024
-      );
+        if (!db) {
+          console.log('No database. This will end badly.');
+        }
 
-      if (!db) {
-        console.log('No database. This will end badly.');
-      }
+        this._sql = function(queries, formatter) {
+          var dfd = new dojo.Deferred(),
+              len;
 
-      this._sql = function(queries, formatter) {
-        var dfd = new dojo.Deferred(),
-            len;
+          queries = dojo.isArray(queries) ? queries : [ queries ];
+          len = queries.length;
 
-        queries = dojo.isArray(queries) ? queries : [ queries ];
-        len = queries.length;
+          db.transaction(function(t) {
 
-        db.transaction(function(t) {
+            dojo.forEach(queries, function(q, i) {
+              var last = i + 1 === len,
+                  cb, eb, params = [];
 
-          dojo.forEach(queries, function(q, i) {
-            var last = i + 1 === len,
-                cb, eb, params = [];
+              if (last) {
+                cb = dojo.isFunction(formatter) ?
+                      function(t, data) {
+                        dfd.callback(formatter(data));
+                      } :
+                      dfd.callback;
 
-            if (last) {
-              cb = dojo.isFunction(formatter) ?
-                    function(t, data) {
-                      dfd.callback(formatter(data));
-                    } :
-                    dfd.callback;
+                eb = dfd.errback;
+              } else {
+                cb = eb = function() {};
+              }
 
-              eb = dfd.errback;
-            } else {
-              cb = eb = function() {};
-            }
+              if (dojo.isArray(q)) {
+                params = q[1];
+                q = q[0];
+              }
 
-            if (dojo.isArray(q)) {
-              params = q[1];
-              q = q[0];
-            }
+              t.executeSql(q, params, cb, eb);
+            });
 
-            t.executeSql(q, params, cb, eb);
           });
 
-        });
-
-        return dfd;
-      };
+          return dfd;
+        };
+      }
 
       // don't let database be initialized again
       return this._db;

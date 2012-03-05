@@ -5,18 +5,13 @@ describe("ad tag component", function() {
     dojo.require('toura.components.AdTag');
     t = dojo.byId('test');
     qs = dojo.hitch(t, 'querySelector');
-    adCfg = {
-      ads : {
-        phone : 'foo',
-        tablet : 'bar'
-      }
-    };
+    adCfg = { adConfig : 'foo' };
 
     mulberry.app.Config.set("app", adCfg);
 
     if (c) { c.destroy(); }
     C = function(config) {
-      var c = new toura.components.AdTag(config || {}).placeAt(t);
+      var c = new toura.components.AdTag(config || adCfg).placeAt(t);
       c.startup();
       return c;
     };
@@ -28,25 +23,15 @@ describe("ad tag component", function() {
     expect(c.adFrame).toBeDefined();
   });
 
-  it("should set the src of the iframe from the app's config object", function() {
-    allDevices(function(d) {
-      c = C({ device : d });
-      expect(qs("iframe").getAttribute("src")).toMatch(adCfg.ads[d.type]);
-      dojo.empty(t);
-    });
+  it("should set the src of the iframe using the provided config", function() {
+    c = C();
+    expect(qs("iframe").getAttribute("src")).toMatch(adCfg.adConfig);
+    dojo.empty(t);
   });
 
-  it("should remove itself from the DOM if there is no ad url for the device type", function() {
-    allDevices(function(d) {
-      adCfg = d.type === 'phone' ?
-        { ads : { tablet : 'foo' } } :
-        { ads : { phone : 'foo' } };
-
-      mulberry.app.Config.set("app", adCfg);
-
-      c = C({ device : d });
-      expect(document.querySelector('.component.ad-tag')).toBeFalsy();
-      dojo.empty(t);
-    });
+  it("should remove itself from the DOM if there is no adConfig provided", function() {
+    c = C({});
+    expect(document.querySelector('.component.ad-tag')).toBeFalsy();
+    dojo.empty(t);
   });
 });
