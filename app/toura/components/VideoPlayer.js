@@ -28,9 +28,14 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
     this.medias = this.node.videos || [];
     this.inherited(arguments);
 
-    if (this.useHtml5Player && this.media.poster) {
+    if (this.useHtml5Player && this.media && this.media.poster) {
       this.playerSettings = dojo.mixin(this.playerSettings, {
         poster : this.media.poster
+      });
+    } else {
+      this.media = this.media || {};
+      this.playerSettings = dojo.mixin(this.playerSettings, {
+        poster : ""
       });
     }
   },
