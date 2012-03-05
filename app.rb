@@ -111,7 +111,6 @@ module Mulberry
           'force_local'             =>  false,
           'postscript'              =>  '',
           'locale'                  =>  'en-us',
-
           'ads'                     =>  false,
           'sibling_nav'             =>  true,
           'sharing'                 =>  true,
