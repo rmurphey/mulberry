@@ -1,6 +1,5 @@
 require 'cli/assets/media_asset'
 require 'image_size'
-require 'open-uri' # For remote images
 
 module Mulberry
   module Asset
@@ -28,11 +27,14 @@ module Mulberry
           }
           item_data[image_type][:url] = @url if @url
 
-          begin
-            open(@url || @asset_file, 'rb') do |fh|
-              item_data[image_type][:width], item_data[image_type][:height] = ::ImageSize.new(fh.read).get_size
+          if !item_data[:streamed]
+            begin
+              File.open(@asset_file, 'rb') do |fh|
+                item_data[image_type][:width], item_data[image_type][:height] = ::ImageSize.new(fh.read).get_size
+              end
+            rescue Exception => e
+              puts e
             end
-          rescue
           end
         end
 
