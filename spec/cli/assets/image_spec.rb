@@ -29,9 +29,14 @@ describe Mulberry::Asset::Image do
     end
 
     it 'should calculate image dimensions' do
+      item = @image.item
+
+      Mulberry::Asset::Image::IMAGE_TYPES.each do |image_type|
+        item[image_type][:url].should be_nil
+        item[image_type][:height].should == 1
+        item[image_type][:width ].should == 1
       end
     end
-
   end
 
   describe '#item streaming' do
