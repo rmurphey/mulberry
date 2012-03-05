@@ -26,7 +26,7 @@ module Mulberry
         @dir          = dirname(parent_assets_dir)
         @asset_file   = File.join(@dir, @filename)
         if (!File.exists?(@asset_file) && @url.nil?)
-          puts "No file at #{@dir}/#{@filename}"
+          puts "No file at #{@asset_file}"
         end
       end
 
