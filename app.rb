@@ -22,10 +22,6 @@ module Mulberry
         File.join(self.root, 'app')
       end
 
-      def self.javascript
-        self.app
-      end
-
       def self.page_defs
         File.join(self.root, 'base_apps', 'toura', 'page_defs')
       end
@@ -47,7 +43,7 @@ module Mulberry
       end
 
       def self.dojo
-        File.join(self.javascript, "dojo-release-#{Mulberry::Framework.dojo_version}-src")
+        File.join(self.app, "dojo-release-#{Mulberry::Framework.dojo_version}-src")
       end
 
       def self.project_templates

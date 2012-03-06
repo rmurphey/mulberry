@@ -149,7 +149,7 @@ module Mulberry
 
       # copy over the base.scss file
       FileUtils.cp(
-        File.join(Mulberry::Framework::Directories.javascript, 'base.scss'),
+        File.join(Mulberry::Framework::Directories.app, 'base.scss'),
         base_app_dir
       )
 
@@ -219,7 +219,7 @@ module Mulberry
 
         # copy over the resources
         FileUtils.cp_r(
-          File.join(Mulberry::Framework::Directories.javascript, 'toura', 'resources'),
+          File.join(Mulberry::Framework::Directories.app, 'toura', 'resources'),
           base_app_dir
         )
       else
