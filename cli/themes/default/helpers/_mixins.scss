@@ -43,6 +43,15 @@
   padding: 2px 15px 0 15px;
   margin: 5px;
 
+  &:active {
+    background-image: -webkit-gradient(
+      linear, 0% 0%, 0% 100%,
+      from($narrow-button-color),
+      to(darken($narrow-button-color, 24%))
+    );
+    border: 1px solid darken($narrow-button-color, 26%);
+  }
+
   &.highlight {
     background-image: -webkit-gradient(
       linear,
@@ -51,6 +60,15 @@
       from(lighten($narrow-button-highlight-color, 12%)),
       to(darken($narrow-button-highlight-color, 12%))
     );
+
+    &:active {
+      background-image: -webkit-gradient(
+        linear, 0% 0%, 0% 100%,
+        from($narrow-button-highlight-color),
+        to(darken($narrow-button-highlight-color, 24%))
+      );
+      border: 1px solid darken($narrow-button-highlight-color, 26%);
+    }
   }
 }
 
@@ -71,6 +89,15 @@
   line-height: 2em;
   padding: 2px 15px 0 15px;
   margin: 5px 0;
+
+  &:active {
+    background-image: -webkit-gradient(
+      linear, 0% 0%, 0% 100%,
+      from($wide-button-color),
+      to(darken($wide-button-color, 20.5%))
+    );
+    border: 1px solid darken($wide-button-color, 20.5%);
+  }
 }
 
 @mixin wide-icon-button($image-url) {
@@ -96,6 +123,7 @@
         from($wide-button-color),
         to(darken($wide-button-color, 20.5%))
       );
+    border: 1px solid darken($wide-button-color, 20.5%);
   }
 
   .label {
