@@ -65,12 +65,13 @@ dojo.declare('toura.components._ImageScroller', toura.components._ImageGallery, 
   },
 
   _setCurrentImageIndexAttr : function(imageIndex) {
+    var childNodes = this.indicator.childNodes;
     this.inherited(arguments);
-    dojo.forEach(this.indicator.childNodes, function(child) {
+    dojo.forEach(childNodes, function(child) {
       dojo.removeClass(child, 'active');
     });
-    if (this.indicator.childNodes[imageIndex]) {
-      dojo.addClass(this.indicator.childNodes[imageIndex], 'active');
+    if (childNodes[imageIndex]) {
+      dojo.addClass(childNodes[imageIndex], 'active');
     }
   },
 
