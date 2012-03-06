@@ -184,7 +184,7 @@ module Builder
         :webkitMobile =>    WEBKIT[@build_type.to_sym],
 
         :action =>          "clean,release",
-        :optimize =>        "none",
+        :layerOptimize =>   "comments",
         :localeList =>      "en-us",
 
         :prefixes => [
