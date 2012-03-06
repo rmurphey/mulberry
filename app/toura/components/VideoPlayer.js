@@ -25,16 +25,16 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
   },
 
   prepareData : function() {
+    var poster = '';
+
     this.medias = this.node.videos || [];
     this.inherited(arguments);
+    poster = this.media.poster || '';
 
-    if (this.useHtml5Player && this.media && this.media.poster) {
+    if (this.useHtml5Player && poster) {
       this.playerSettings = dojo.mixin(this.playerSettings, {
-        poster : this.media.poster
+        poster : poster
       });
-    } else {
-      this.media = this.media || {};
-      this.media.poster = "";
     }
   },
 
