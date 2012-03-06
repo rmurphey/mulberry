@@ -34,9 +34,7 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
       });
     } else {
       this.media = this.media || {};
-      this.playerSettings = dojo.mixin(this.playerSettings, {
-        poster : ""
-      });
+      this.media.poster = "";
     }
   },
 
