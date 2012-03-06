@@ -23,10 +23,10 @@ module Mulberry
 
         end.parse!
 
-        dir = Mulberry.get_app_dir args[0]
-        report dir
+        super
+        report @dir
 
-        app = Mulberry::App.new(dir)
+        app = Mulberry::App.new(@dir)
         app.www_build additional_options
       end
     end
