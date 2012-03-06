@@ -23,7 +23,7 @@ module Mulberry
 
         end.parse!
 
-        dir = Mulberry.get_app_dir args[0]
+        super
         report dir
 
         app = Mulberry::App.new(dir)

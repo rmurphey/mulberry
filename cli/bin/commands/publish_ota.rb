@@ -18,10 +18,11 @@ module Mulberry
           end
         end.parse!
 
-        dir = Mulberry.get_app_dir args[0]
-        report dir
+        super
+
+        report @dir
         begin
-          app = Mulberry::App.new(dir).send(app_method, *app_method_args)
+          app = Mulberry::App.new(@dir).send(app_method, *app_method_args)
         rescue Mulberry::Http::Exception
           puts "Error: #{$!}"
         end

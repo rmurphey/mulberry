@@ -18,11 +18,11 @@ module Mulberry
           end
         end.parse!
 
-        dir = Mulberry.get_app_dir args[0]
-        app = Mulberry::App.new(dir)
+        super
+        app = Mulberry::App.new(@dir)
 
         app.device_build( options.merge(additional_options) )
-        report dir
+        report @dir
       end
     end
   end

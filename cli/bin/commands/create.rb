@@ -37,12 +37,13 @@ module Mulberry
       end
 
       def initialize(args)
-        dir          = Mulberry.get_app_dir
+        super
+
         content_type = args.shift.to_sym
         filenames    = args
         commands     = Mulberry::Command::Create.commands
 
-        report dir, content_type
+        report @dir, content_type
 
         raise "You must specify a file to create." unless filenames.length > 0
 
@@ -52,7 +53,7 @@ module Mulberry
         command = commands[content_type]
 
         filenames.each { |f| raise "The name of a #{content_type.to_s} may not include spaces." if f.match(/\s/) }
-        filenames.each { |f| (command[:creator] || default_creator).new(content_type.to_s, dir, f) }
+        filenames.each { |f| (command[:creator] || default_creator).new(content_type.to_s, @dir, f) }
       end
     end
   end
