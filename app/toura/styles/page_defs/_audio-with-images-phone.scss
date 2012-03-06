@@ -8,7 +8,6 @@
 
     .region.audio-gallery {
       @include fixed-flex-region;
-      height: 40px;
 
       @if ($font-scheme == dark) {
         background-color: darken($app-background-color, 17%);

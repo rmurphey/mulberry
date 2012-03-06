@@ -4,6 +4,7 @@ module Mulberry
   module Command
     class Serve < Mulberry::Command::Base
       def initialize(args, additional_options = {})
+        super
         default_port = 3001
         options = { :port => default_port }
 
@@ -19,11 +20,9 @@ module Mulberry
           end
         end.parse!
 
-        dir = Mulberry.get_root_dir args[0]
-
         begin
-          app = Mulberry::App.new(dir)
-          report dir
+          app = Mulberry::App.new(@dir)
+          report @dir
           app.serve(options) unless additional_options[:running_under_test]
         rescue ConfigError => ce
           puts "Configuration error: #{ce}"
