@@ -24,9 +24,9 @@ module Mulberry
         end.parse!
 
         super
-        report dir
+        report @dir
 
-        app = Mulberry::App.new(dir)
+        app = Mulberry::App.new(@dir)
         app.www_build additional_options
       end
     end
