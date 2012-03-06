@@ -91,6 +91,7 @@ module Builder
 
       dojo_build
       unminify_haml
+      minify_with_closure
       concat_vendor_files
 
       if @client_dir
@@ -98,6 +99,28 @@ module Builder
       end
 
       true
+    end
+
+    def minify_with_closure
+      build_location = report[:location]
+      tmp = File.join(build_location, 'tmp.js')
+
+      [
+        [ 'dojo', 'base.js' ],
+        [ 'mulberry', 'base.js' ],
+        [ 'client', 'base.js' ]
+      ].each do |path|
+        file = File.join(build_location, path)
+
+        if File.exists? file
+          %x{java -jar #{File.join(Mulberry::Framework::Directories.root, 'vendor', 'compiler.jar')} --js #{file} --js_output_file #{tmp}}
+          if File.exists? tmp
+            FileUtils.rm_rf file
+            FileUtils.mv tmp, file
+          end
+        end
+
+      end
     end
 
     def concat_vendor_files
@@ -161,7 +184,7 @@ module Builder
         :webkitMobile =>    WEBKIT[@build_type.to_sym],
 
         :action =>          "clean,release",
-        :optimize =>        "shrinksafe",
+        :layerOptimize =>   "comments",
         :localeList =>      "en-us",
 
         :prefixes => [

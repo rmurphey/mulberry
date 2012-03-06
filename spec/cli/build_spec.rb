@@ -13,6 +13,29 @@ describe Builder::Build do
     end
   end
 
+  describe "all builds" do
+    before :all do
+      @b = Builder::Build.new({
+        :build_helper => Mulberry::BuildHelper.new(@app),
+        :device_type => 'phone',
+        :device_os => 'ios',
+        :target => 'device_production'
+      })
+
+      @b.build
+      @bundle = @b.completed_steps[:close][:bundle]
+    end
+
+    it "should minify the javascript files" do
+      base_dir = File.join(@bundle[:location], 'iphone', 'www', 'javascript')
+      mulberry = File.read(File.join(base_dir, 'mulberry', 'base.js'))
+      mulberry.should include 'dojo._hasResource'
+
+      client = File.read(File.join(base_dir, 'client', 'base.js'))
+      client.should include 'dojo._hasResource'
+    end
+  end
+
   describe "iphone build" do
     before :all do
       @b = Builder::Build.new({
