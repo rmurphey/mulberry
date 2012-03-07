@@ -19,7 +19,7 @@ describe("video player component", function() {
 
   beforeEach(function() {
     dojo.require('toura.components.VideoPlayer');
-    dojo.require('mulberry.ui.BackgroundImage');
+
     C = toura.components.VideoPlayer;
 
     t = dojo.byId('test');

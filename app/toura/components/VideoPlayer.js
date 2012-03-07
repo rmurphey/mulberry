@@ -1,6 +1,7 @@
 dojo.provide('toura.components.VideoPlayer');
 
 dojo.require('toura.components._MediaPlayer');
+dojo.require('mulberry.ui.BackgroundImage');
 /*
  * Implements a video player which provides an acceptable interface accross all
  * supported environments.
