@@ -57,7 +57,12 @@ public class TouraMainActivity extends DroidGap {
     super.appView.setWebViewClient(new DroidGap.GapViewClient(this) {
       @Override
       public void onLoadResource (WebView view, String url) {
-        if (url.contains("touraAdLink")) {
+        if (
+            !url.contains("http://127.0.0.1") &&
+            !url.contains("file://") &&
+            !url.contains("mwhenry.com") &&
+            !url.contains("s3.amazonaws.com")
+            ) {
           view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
           view.stopLoading();
         }
