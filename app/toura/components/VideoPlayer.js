@@ -1,6 +1,7 @@
 dojo.provide('toura.components.VideoPlayer');
 
 dojo.require('toura.components._MediaPlayer');
+dojo.require('mulberry.ui.BackgroundImage');
 /*
  * Implements a video player which provides an acceptable interface accross all
  * supported environments.
@@ -25,18 +26,24 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
   },
 
   prepareData : function() {
+    var poster = '';
+
     this.medias = this.node.videos || [];
     this.inherited(arguments);
+    poster = this.media.poster || '';
 
-    if (this.useHtml5Player && this.media.poster) {
+    if (this.useHtml5Player && poster) {
       this.playerSettings = dojo.mixin(this.playerSettings, {
-        poster : this.media.poster
+        poster : poster
       });
     }
   },
 
   startup : function() {
     this.inherited(arguments);
+    if (this.node.videos.length === 0) {
+      this.destroy();
+    }
 
     if (this.media.poster) {
       this.videoPlaceholder.loadImage();

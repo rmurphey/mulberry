@@ -17,7 +17,9 @@ dojo.declare('toura.components._ImageScroller', toura.components._ImageGallery, 
 
   startup : function() {
     this.inherited(arguments);
-    this._setupImageScroller();
+    if (this.useScroller) {
+      this._setupImageScroller();
+    }
   },
 
   _setupImageScroller : function() {
@@ -65,12 +67,12 @@ dojo.declare('toura.components._ImageScroller', toura.components._ImageGallery, 
   },
 
   _setCurrentImageIndexAttr : function(imageIndex) {
+    var childNodes = this.indicator.childNodes;
     this.inherited(arguments);
-
-    dojo.forEach(this.indicator.childNodes, function(child) {
+    dojo.forEach(childNodes, function(child) {
       dojo.removeClass(child, 'active');
     });
-    dojo.addClass(this.indicator.childNodes[imageIndex], 'active');
+    dojo.addClass(childNodes[imageIndex], 'active');
   },
 
   postCreate : function() {

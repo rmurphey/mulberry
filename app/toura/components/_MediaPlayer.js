@@ -19,7 +19,7 @@ dojo.declare('toura.components._MediaPlayer', mulberry._Component, {
       return media;
     }, this);
 
-    this.media = this.medias[0] || null;
+    this.media = this.medias[0] || {};
     this.useHtml5Player = mulberry.app.Has.html5Player();
   },
 
