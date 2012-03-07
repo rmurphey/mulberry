@@ -1,12 +1,12 @@
-/*!
-FOR TESTING: These are all the variables that MAP should export
+// Needed if you're using the Toura theme mixins. If you're not using the theme
+// mixins, it's safe to delete the file.
+@import 'styles/settings';
 
-user_font_scheme: \#{$user_font_scheme}
-user_link_color: \#{$user_link_color}
-user_background_color: \#{$user_background_color}
-user_child_nav_color: \#{$user_child_nav_color}
-*/
+// The core framework. If you remove this, things will break.
+@import 'mulberry';
 
-@import 'mulberry/base';
-@import 'toura/components/base';
+// Theme mixins. You can remove this import if you're not using them.
+@import 'themes/toura';
 
+// Put your global and page_def styles here.
+@import 'styles/base';

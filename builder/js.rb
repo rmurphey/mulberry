@@ -150,11 +150,11 @@ module Builder
       dest = Mulberry::Framework::Directories.dojo
 
       unless File.exists?(dest)
-        Dir.chdir Mulberry::Framework::Directories.javascript
+        Dir.chdir Mulberry::Framework::Directories.app
 
         # Download specified Dojo version and extract it to the js dir
         @build.log("Downloading and extracting Dojo. JavaScript goodness is a few minutes away.", 'info')
-        dojo_installed = system %{curl --insecure -o - #{dojo} | tar -C #{Mulberry::Framework::Directories.javascript} -xzf -}
+        dojo_installed = system %{curl --insecure -o - #{dojo} | tar -C #{Mulberry::Framework::Directories.app} -xzf -}
         raise "Fatal error: Failed to install Dojo." unless dojo_installed
       end
 
@@ -166,7 +166,7 @@ module Builder
       # version and replace it with the unminified version after the dojo
       # build is complete
       bad_haml    = File.join(@location, @target['build_type'], 'vendor', 'haml.js')
-      good_haml   = File.join(Mulberry::Framework::Directories.javascript, 'vendor', 'haml.js')
+      good_haml   = File.join(Mulberry::Framework::Directories.app, 'vendor', 'haml.js')
 
       FileUtils.rm_rf bad_haml
       FileUtils.cp(good_haml, bad_haml)
@@ -202,7 +202,7 @@ module Builder
         custom_js_source = @build.build_helper.custom_js_source
 
         if custom_js_source
-          @client_dir = File.join(Mulberry::Framework::Directories.javascript, 'client_tmp')
+          @client_dir = File.join(Mulberry::Framework::Directories.app, 'client_tmp')
           FileUtils.rm_rf @client_dir if File.exists? @client_dir
           FileUtils.cp_r(custom_js_source, @client_dir)
           profile[:prefixes] << [ 'client', '../../client_tmp' ]

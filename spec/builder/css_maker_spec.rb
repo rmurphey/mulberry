@@ -4,20 +4,19 @@ require "builder"
 describe Builder::CSSMaker do
   before :each do
     @settings = {
-      :app_dir => File.join(FIXTURES_DIR, 'css', 'javascript'),
-      :theme_dir => File.join(FIXTURES_DIR, 'css', 'theme')
+      :css_dir => File.join(FIXTURES_DIR, 'css', 'mulberry-app-instance')
     }
   end
 
-  it "should raise an error if no theme path is provided" do
-    @settings.delete(:theme_dir)
+  it "should raise an error if no css path is provided" do
+    @settings.delete(:css_dir)
     lambda {
       Builder::CSSMaker.new(@settings)
     }.should raise_error
   end
 
-  it "should throw an error if there is no file at the provided in the theme directory" do
-    @settings[:theme_dir] = 'fake'
+  it "should throw an error if there is no file at the provided in the css directory" do
+    @settings[:css_dir] = 'fake'
 
     lambda {
       Builder::CSSMaker.new(@settings)
@@ -28,18 +27,12 @@ describe Builder::CSSMaker do
     it "should properly render the css" do
       css = Builder::CSSMaker.new(@settings).render
 
-      # test that the toura css was loaded
-      css.should include '#toura'
-
-      # test that the theme css was loaded
-      css.should include '#theme'
-
-      #test that we loaded files from the provided load paths
-      css.should include '#toura-imported'
+      # test that the app css was loaded
+      css.should include '#app-instance'
     end
 
     it "should render the css with overrides" do
-      override = File.read(File.join(FIXTURES_DIR, 'css', 'settings.scss'))
+      override = File.read(File.join(FIXTURES_DIR, 'css', 'overrides', 'settings.scss'))
 
       css = Builder::CSSMaker.new(@settings.merge({
         :overrides => { :settings => override }

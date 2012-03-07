@@ -19,7 +19,7 @@ task :jshint do
   found_errors = false
 
   files = (
-    Dir[File.join(Mulberry::Framework::Directories.javascript, 'toura', '**', '*.js')] +
+    Dir[File.join(Mulberry::Framework::Directories.app, 'toura', '**', '*.js')] +
     Dir[File.join(Mulberry::Framework::Directories.root, 'spec', 'app', '**', '*.js')]
   ).flatten
 

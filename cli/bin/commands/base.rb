@@ -6,7 +6,7 @@ module Mulberry
   module Command
     class Base
       def initialize(args, additional_options={})
-        @dir = Mulberry.get_app_dir args[0]
+        @dir = Mulberry.get_root_dir args[0]
       end
 
       def report(app_dir, sub_command=nil)

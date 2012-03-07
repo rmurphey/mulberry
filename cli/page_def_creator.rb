@@ -33,11 +33,10 @@ module Mulberry
     end
 
     def create_page_def_scss
-      theme = Mulberry::App.new(@destination_dir).theme
-      theme_page_def_dir = File.join(@destination_dir, 'themes', theme, 'page_defs')
+      page_def_scss_dir = File.join(@destination_dir, 'app', 'styles','page_defs')
 
-      scss_filename = File.join(theme_page_def_dir, "_#{@filename}.scss")
-      theme_page_def_base_filename = File.join(theme_page_def_dir, '_base.scss')
+      scss_filename = File.join(page_def_scss_dir, "_#{@filename}.scss")
+      theme_page_def_base_filename = File.join(page_def_scss_dir, '_base.scss')
 
       page_def_scss_tpl = File.read(File.join(Mulberry::Directories.templates, 'code', 'page_def.scss'))
 

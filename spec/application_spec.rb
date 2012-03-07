@@ -18,7 +18,7 @@ describe Mulberry::Framework do
     it "should point to important directories" do
       root = Mulberry::Framework::Directories.root
 
-      [ :javascript, :page_defs, :data_fixtures, :build_root, :dojo, :profiles, :themes, :project_templates ].each do |d|
+      [ :app, :page_defs, :data_fixtures, :build_root, :dojo, :profiles, :project_templates ].each do |d|
         dir = Mulberry::Framework::Directories.send(d.to_s)
         dir.should match root
       end

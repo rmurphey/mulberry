@@ -36,7 +36,7 @@ namespace :evergreen  do
     end
 
     puts "creating app config"
-    File.open(File.join(Mulberry::Framework::Directories.javascript, 'toura', 'AppConfig.js'), 'w') do |f|
+    File.open(File.join(Mulberry::Framework::Directories.app, 'toura', 'AppConfig.js'), 'w') do |f|
       f.write Mulberry::Framework::Generators.config('ios', 'phone')
     end
   end

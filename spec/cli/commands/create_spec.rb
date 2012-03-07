@@ -31,11 +31,11 @@ describe Mulberry::Command::Create do
         :feed => [ 'assets', 'feeds', "#{@filename}.yml" ],
         :data => [ 'assets', 'data', "#{@filename}.yml" ],
         :location => [ 'assets', 'locations', "#{@filename}.yml" ],
-        :component => [ 'javascript', 'components', "#{@filename}.js" ],
-        :capability => [ 'javascript', 'capabilities', "#{@filename}.js" ],
-        :store => [ 'javascript', 'stores', "#{@filename}.js" ],
-        :model => [ 'javascript', 'models', "#{@filename}.js" ],
-        :route => [ 'javascript', 'routes.js' ],
+        :component => [ 'app', 'components', "#{@filename}.js" ],
+        :capability => [ 'app', 'capabilities', "#{@filename}.js" ],
+        :store => [ 'app', 'stores', "#{@filename}.js" ],
+        :model => [ 'app', 'models', "#{@filename}.js" ],
+        :route => [ 'app', 'routes.js' ],
         :page_def => [ 'page_defs', "#{@filename}.yml" ],
       }
     end
@@ -52,7 +52,7 @@ describe Mulberry::Command::Create do
       end
 
       it "should run the command from any dir" do
-        Dir.chdir 'themes'
+        Dir.chdir 'app'
         Mulberry::Command::Create.new([command[0].to_s, @filename])
         Dir.chdir '..'
         File.exists?(File.join(@locations[command[0]])).should be_true

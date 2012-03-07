@@ -1,0 +1,14 @@
+body {
+  color: $text-color;
+  font-family: $base-font;
+}
+
+.page {
+  .screen {
+    @include flex-row-container;
+
+    .region.page-nav {
+      @include fixed-flex-region;
+    }
+  }
+}

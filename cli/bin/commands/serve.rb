@@ -20,7 +20,6 @@ module Mulberry
           end
         end.parse!
 
-
         begin
           app = Mulberry::App.new(@dir)
           report @dir

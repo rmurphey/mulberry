@@ -92,7 +92,7 @@ module Mulberry
     end
 
     def css_resources(location, report)
-      resources_dir = File.join(@source_dir, 'themes', theme_name, 'resources')
+      resources_dir = File.join(css_dir, 'resources')
 
       if File.exists? resources_dir
         FileUtils.cp_r(resources_dir, location)
@@ -129,17 +129,14 @@ module Mulberry
       true
     end
 
-    def theme_dir
-      root_dir = @config['theme'].has_key?('root_dir') ?
-        @config['theme']['root_dir'] : File.join(@source_dir, 'themes')
-
-      File.join(root_dir, theme_name)
+    def css_dir
+      File.join(@source_dir, 'app')
     end
 
     def create_css
       begin
         Builder::CSSMaker.new(
-          :theme_dir => theme_dir
+          :css_dir => css_dir
         ).render
       rescue Sass::SyntaxError => err
         puts "SASS ERROR on line #{err.sass_line} of #{err.sass_filename}:\n #{err.to_s}"
@@ -151,7 +148,7 @@ module Mulberry
     end
 
     def custom_js_source
-      dir = File.join(@source_dir, 'javascript')
+      dir = File.join(@source_dir, 'app')
       File.exists?(dir) ? dir : false
     end
 
@@ -162,10 +159,6 @@ module Mulberry
     private
     def padded_id
       project_settings[:id].gsub(/\W/, '');
-    end
-
-    def theme_name
-      @config['theme']['name'] || 'default'
     end
 
     def add_ota_to_config_settings(settings)
