@@ -25,7 +25,7 @@ import com.toura.www.push.IntentReceiver;
 public class TouraMainActivity extends DroidGap {
   private boolean isInForeground;
 
-  public WebView getAppView() {
+   public WebView getAppView() {
     return appView;
   }
 
@@ -57,11 +57,9 @@ public class TouraMainActivity extends DroidGap {
     super.appView.setWebViewClient(new DroidGap.GapViewClient(this) {
       @Override
       public void onLoadResource (WebView view, String url) {
-        if (url.contains("toura")) {
-          if(view.getHitTestResult().getType() > 0){
-            view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-            view.stopLoading();
-          }
+        if (url.contains("touraAdLink")) {
+          view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+          view.stopLoading();
         }
       }
     });
