@@ -25,7 +25,7 @@ import com.toura.www.push.IntentReceiver;
 public class TouraMainActivity extends DroidGap {
   private boolean isInForeground;
 
-   public WebView getAppView() {
+  public WebView getAppView() {
     return appView;
   }
 
@@ -53,7 +53,7 @@ public class TouraMainActivity extends DroidGap {
     ws.setSupportZoom(false);
     ws.setBuiltInZoomControls(false);
     IntentReceiver.setTouraMainActivity(this);
-    
+
     Resources resources = this.getResources();
     AssetManager assetManager = resources.getAssets();
 
@@ -64,10 +64,10 @@ public class TouraMainActivity extends DroidGap {
         boolean ads = Boolean.parseBoolean(properties.getProperty("ads"));
 
         if (ads) {
-          super.appView.setWebViewClient(new DroidGap.GapViewClient(this) {    
+          super.appView.setWebViewClient(new DroidGap.GapViewClient(this) {
             @Override
             public void onLoadResource (WebView view, String url) {
-        
+
               if (
                   !url.contains("http://127.0.0.1") &&
                   !url.contains("file://") &&
@@ -76,16 +76,16 @@ public class TouraMainActivity extends DroidGap {
                   ) {
                       view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                       view.stopLoading();
-          
+
                 /* TODO: figure out a way to achieve this using childbrowser instead of kicking out to
-                   Android's browser. Something like: 
+                   Android's browser. Something like:
                    com.phonegap.plugins.childBrowser.ChildBrowser cb = new com.phonegap.plugins.childBrowser.ChildBrowser();
                    cb.showWebPage(url, true); */
               }
             }
           });
         }
-        
+
     } catch (IOException e) {
         Log.d("Toura", "Failed to open property file");
         e.printStackTrace();
