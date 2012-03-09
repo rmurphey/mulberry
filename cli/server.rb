@@ -67,7 +67,8 @@ module Mulberry
         :include_dev_config => true,
         :device_type        => params[:type] || 'phone',
         :device_os          => params[:os] || 'ios',
-        :data_filename      => 'data/tour.js'
+        :data_filename      => 'data/tour.js',
+        :title              => @helper.project_settings[:name] || 'Mulberry'
       }
     end
 
