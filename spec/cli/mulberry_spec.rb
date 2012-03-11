@@ -57,7 +57,6 @@ describe Mulberry::App do
         [ 'app', '_toura.scss' ],
         [ 'app', 'styles', '_base.scss' ],
         [ 'app', 'styles', '_settings.scss' ],
-        [ 'app', 'styles', '_settings-toura-components.scss' ],
         [ 'app', 'styles', 'page_defs' ],
         [ 'app', 'styles', 'page_defs', '_base.scss' ]
       ].each do |f|
