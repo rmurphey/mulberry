@@ -12,7 +12,7 @@ dojo.declare('toura.components._ImageScroller', toura.components._ImageGallery, 
 
   postMixInProperties : function() {
     this.inherited(arguments);
-    this.useScroller = this.images.length > 1;
+    this.useScroller = this.images.length > 0;
   },
 
   startup : function() {
