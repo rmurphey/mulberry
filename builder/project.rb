@@ -177,6 +177,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
 
         text = File.read(touraconfig_file)
         text.gsub!("${flurryApiKey}", flurry_api_key)
+        text.gsub!("${ads}", @build.build_helper.config_settings['ads'].to_s)
 
         File.open(touraconfig_file, "w") do |file|
           file.puts text
