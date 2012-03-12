@@ -206,12 +206,11 @@ module Mulberry
           base_app_dir
         )
 
-        # copy over the settings css
-        %w(_settings.scss _settings-toura-components.scss).each do |f|
-          FileUtils.cp(
-            File.join(tpl_base, 'code', f),
-            File.join(base_app_dir, 'styles')
-          )
+        # combine the settings files and copy them over
+        File.open(File.join(base_app_dir, 'styles', '_settings.scss'), 'a') do |fw|
+          %w(_settings.scss _settings-toura-components.scss).each do |fr|
+            fw.write File.read(File.join(tpl_base, 'code', fr))
+          end
         end
 
         ## add import for toura stuff
