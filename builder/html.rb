@@ -44,6 +44,10 @@ module Builder
 
       vars[:data_filename] = "data/tour.js#{browser ? '' : '.jet'}"
 
+      if @build.build_helper.respond_to? 'project_settings'
+        vars[:title] = @build.build_helper.project_settings[:name]
+      end
+
       if @build.build_helper.respond_to? 'html_vars'
         vars.merge! @build.build_helper.html_vars
       end

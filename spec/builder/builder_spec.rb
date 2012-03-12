@@ -3,6 +3,17 @@ require "builder"
 require 'fakeweb'
 
 describe Builder::Build do
+  class FakeBuildHelper
+    def build=(b) end
+    def before_steps() [] end
+    def after_steps() [] end
+    def data() {"foo" => "bar"} end
+    def ota_enabled?() true end
+    def project_settings
+      { :name => 'Fake Build' }
+    end
+  end
+
   before(:each) do
     @config = { :skip_js_build => true }
   end
@@ -132,7 +143,10 @@ describe Builder::Build do
     end
 
     it "should build html if html is specified" do
+      helper = FakeBuildHelper.new
+
       b = Builder::Build.new(@config.merge({
+        :build_helper => helper,
         :target_config => {
           'build_type' => 'device',
           'build' => {
@@ -151,6 +165,7 @@ describe Builder::Build do
       index_html = File.read(File.join(html[:location], 'index.html'))
       index_html.should match 'phonegap'
       index_html.should_not match 'readyFn'
+      index_html.should match "<title>#{helper.project_settings[:name]}</title>"
 
       b.cleanup
     end
@@ -195,14 +210,6 @@ describe Builder::Build do
   end
 
   describe "ota" do
-
-    class FakeBuildHelper
-      def build=(b) end
-      def before_steps() [] end
-      def after_steps() [] end
-      def data() {"foo" => "bar"} end
-      def ota_enabled?() true end
-    end
 
     after :each do
       FakeWeb.clean_registry
