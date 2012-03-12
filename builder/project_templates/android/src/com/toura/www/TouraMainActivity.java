@@ -71,7 +71,6 @@ public class TouraMainActivity extends DroidGap {
               if (
                   !url.contains("http://127.0.0.1") &&
                   !url.contains("file://") &&
-                  !url.contains("mwhenry.com") &&
                   !url.contains("s3.amazonaws.com")
                   ) {
                       view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
