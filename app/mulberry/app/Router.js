@@ -34,6 +34,8 @@ dojo.require('dojo.hash');
 
     _cache : {},
     _currentHash : null,
+    _stack : [],
+    _stackIndex : 0,
 
     // yay feature detection!
     _hasHistoryState : !!(history.pushState && history.replaceState),
@@ -86,7 +88,6 @@ dojo.require('dojo.hash');
      * the browser history.
      */
     back : function() {
-      mulberry.app.UI.set('navDirection', 'back');
       history.back();
     },
 
@@ -107,6 +108,17 @@ dojo.require('dojo.hash');
     _handleHash : function(hash) {
       if (hash === this._currentHash) {
         return;
+      }
+
+      if (this._stack[this._stack.length - 2] === hash) {
+        // we're trying to navigate to the previous page, so we should
+        // clean up the history stack, and then set our nav direction to back
+        this._stack.pop();
+        mulberry.app.UI.set('navDirection', 'back');
+      } else {
+        // we're just doing normal navigation; add to the history stack
+        // and then proceed
+        this._stack.push(hash);
       }
 
       this._currentHash = hash;
