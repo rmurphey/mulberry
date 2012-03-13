@@ -15,7 +15,7 @@ describe("image gallery component", function() {
     config = {
               node : {
                 url : "foo",
-                images : 
+                images :
                 [
                   {
                     "image" : {
@@ -39,7 +39,7 @@ describe("image gallery component", function() {
                       "url" : "bar"
                     }
                   }
-                ]    
+                ]
               }
             };
     c = new C(config).placeAt(t);
@@ -52,7 +52,7 @@ describe("image gallery component", function() {
     config = {
               node : {
                 url : "foo",
-                images : 
+                images :
                 [
                   {
                     "image" : {
@@ -65,7 +65,7 @@ describe("image gallery component", function() {
                       "url" : "foo"
                     }
                   }
-                ]    
+                ]
               }
             };
     c = new C(config).placeAt(t);
