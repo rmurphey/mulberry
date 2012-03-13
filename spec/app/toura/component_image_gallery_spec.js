@@ -48,7 +48,7 @@ describe("image gallery component", function() {
 
     expect(t.querySelector(getRootSelector(c))).toBeTruthy();
     expect(wrapper.style.cssText).toContain("overflow");
-    expect(t.querySelector('li.image')).toBeTruthy;
+    expect(t.querySelector('li.image')).toBeTruthy();
   });
 
   it("should create a non-scrolling image gallery when only one image is present", function() {
@@ -77,7 +77,7 @@ describe("image gallery component", function() {
 
     expect(t.querySelector(getRootSelector(c))).toBeTruthy();
     expect(wrapper.style.cssText).not.toContain("overflow");
-    expect(t.querySelector('li.image')).toBeTruthy;
+    expect(t.querySelector('li.image')).toBeTruthy();
   });
 
   it("should not set up any images when no images are present on the node", function() {
@@ -89,6 +89,6 @@ describe("image gallery component", function() {
             };
     c = new C(config).placeAt(t);
     c.startup();
-    expect(t.querySelector('li.image')).toBeFalsy;
+    expect(t.querySelector('li.image')).toBeFalsy();
   });
 });
