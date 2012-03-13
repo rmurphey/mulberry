@@ -45,6 +45,8 @@ describe("image gallery component", function() {
     c = new C(config).placeAt(t);
     c.startup();
     wrapper = t.querySelector('.wrapper');
+
+    expect(t.querySelector(getRootSelector(c))).toBeTruthy();
     expect(wrapper.style.cssText).toContain("overflow");
     expect(t.querySelector('li.image')).toBeTruthy;
   });
@@ -72,6 +74,8 @@ describe("image gallery component", function() {
     c = new C(config).placeAt(t);
     c.startup();
     wrapper = t.querySelector('.wrapper');
+
+    expect(t.querySelector(getRootSelector(c))).toBeTruthy();
     expect(wrapper.style.cssText).not.toContain("overflow");
     expect(t.querySelector('li.image')).toBeTruthy;
   });
