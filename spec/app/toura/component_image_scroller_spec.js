@@ -3,7 +3,7 @@ describe("image scroller component", function() {
 
   beforeEach(function() {
     dojo.require('toura.components._ImageScroller');
-    mulberry.app.UI.viewport = { height: 50, width: 300 };
+    mulberry.app.UI.viewport = { height: 0, width: 0 };
     C = toura.components._ImageScroller;
     t = dojo.byId('test');
     dojo.empty(t);
