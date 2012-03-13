@@ -48,7 +48,7 @@ describe("image gallery component", function() {
     expect(wrapper.style.cssText).toContain("overflow");
   });
 
-  it("should not create a scrolling image gallery when only one image is present", function() {
+  it("should create a non-scrolling image gallery when only one image is present", function() {
     config = {
               node : {
                 url : "foo",
