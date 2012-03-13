@@ -12,20 +12,18 @@ describe("image scroller component", function() {
     c.scrollerNode = t;
     c.query = function(){
       return dojo.query(t);
-    }
+    };
   });
 
   it("should use a scroller when at least one image is present", function() {
-    c.images = [
-        {
-          "image" : {
-            "_reference" : "image-bangs"
-          },
-          "caption" : {
-            "_reference" : "text-asset-bangs"
-          }
-        }
-      ];
+    c.images = [{
+                  "image" : {
+                    "_reference" : "image-bangs"
+                  },
+                  "caption" : {
+                    "_reference" : "text-asset-bangs"
+                  }
+                }];
     c.postMixInProperties();
     expect(c.useScroller).toBeTruthy();
   });
