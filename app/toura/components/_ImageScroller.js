@@ -74,7 +74,9 @@ dojo.declare('toura.components._ImageScroller', toura.components._ImageGallery, 
     dojo.forEach(childNodes, function(child) {
       dojo.removeClass(child, 'active');
     });
-    dojo.addClass(childNodes[imageIndex], 'active');
+    if (childNodes.length > 0) {
+      dojo.addClass(childNodes[imageIndex], 'active');
+    }
   },
 
   postCreate : function() {
