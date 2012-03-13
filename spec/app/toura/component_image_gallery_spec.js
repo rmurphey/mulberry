@@ -12,7 +12,6 @@ describe("image gallery component", function() {
   });
 
   it("should create a scrolling image gallery when more than one image is present", function() {
-    var wrapper;
     config = {
               node : {
                 url : "foo",
