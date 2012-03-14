@@ -22,32 +22,35 @@ var bootstrapper = function() {
     remoteVersionUrl : app.Config.get('versionUrl')
   });
 
-  dojo.subscribe('/page/transition/end', function() {
-    // how long has it been since we last checked for an update?
-    var lastChecked = tour.lastChecked,
-        now = new Date().getTime(),
-        since = now - lastChecked,
-        maxTime = 1000 * 60 * 60 * (mulberry.otaInterval || 8), // 8 hours
-        outdated = since > maxTime;
+  if (mulberry.Device.os !== 'browser') {
+    // only do midstream OTAs on devices
+    dojo.subscribe('/page/transition/end', function() {
+      // how long has it been since we last checked for an update?
+      var lastChecked = tour.lastChecked,
+          now = new Date().getTime(),
+          since = now - lastChecked,
+          maxTime = 1000 * 60 * 60 * (mulberry.otaInterval || 8), // 8 hours
+          outdated = since > maxTime;
 
-    if (!outdated) { return; }
+      if (!outdated) { return; }
 
-    tour.bootstrap().then(function(gotUpdate) {
-      if (!gotUpdate) { return; }
+      tour.bootstrap().then(function(gotUpdate) {
+        if (!gotUpdate) { return; }
 
-      dojo.when(tour.getItems(), function(data) {
-        toura.Data.loadData(data);
+        dojo.when(tour.getItems(), function(data) {
+          toura.Data.loadData(data);
 
-        mulberry.app.PhoneGap.notification.alert(
-          dojo.i18n.getLocalization(
-            "mulberry", "mulberry", mulberry.app.Config.get("locale")
-          ).OTA_UPDATE_NOTICE
-        );
+          mulberry.app.PhoneGap.notification.alert(
+            dojo.i18n.getLocalization(
+              "mulberry", "mulberry", mulberry.app.Config.get("locale")
+            ).OTA_UPDATE_NOTICE
+          );
 
-        mulberry.app.Router.home();
+          mulberry.app.Router.home();
+        });
       });
     });
-  });
+  }
 
   tour.bootstrap().then(function() {
     dfd.resolve(tour);
