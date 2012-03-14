@@ -73,7 +73,7 @@ describe("feed model", function() {
         expect(item.author).toBeDefined();
         expect(item.image).toBeDefined();
       });
-    })
+    });
   });
 
   it("should resolve the load method's promise with an empty array if there is no data", function() {
