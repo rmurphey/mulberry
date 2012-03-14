@@ -84,11 +84,17 @@ describe("router", function() {
   });
 
   it("should expose a method for going back in the history", function() {
-    var uiSpy = spyOn(mulberry.app.UI, 'set');
     var historySpy = spyOn(window.history, 'back');
     api.back();
     expect(historySpy).toHaveBeenCalled();
-    expect(uiSpy).toHaveBeenCalledWith('navDirection', 'back');
+  });
+
+  it("should set the nav direction to back when going back", function() {
+    var spy = spyOn(mulberry.app.UI, 'set');
+    api.go('/test');
+    api.go('/test2');
+    api.go('/test');
+    expect(spy).toHaveBeenCalledWith('navDirection', 'back');
   });
 
   it("should route the request to the appropriate route with the parameters", function() {
