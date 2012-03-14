@@ -187,7 +187,12 @@ dojo.declare('toura.models.FeedItem', null, {
     });
 
     if (dojo.isObject(this.body)) {
-      this.body = this.body.content || null;
+      if (dojo.isArray(this.body)) {
+        // Some Atom feeds are stuctured this way
+        this.body = this.body[1] || null;
+      } else {
+        this.body = this.body.content || null;
+      }
     }
 
     if (dojo.isObject(this.link)) {
