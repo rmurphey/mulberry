@@ -110,7 +110,9 @@ dojo.require('dojo.hash');
         return;
       }
 
-      if (this._stack[this._stack.length - 2] === hash) {
+      var previousPage = this._stack[this._stack.length - 2];
+
+      if (previousPage && previousPage.hash === hash) {
         // we're trying to navigate to the previous page, so we should
         // clean up the history stack, and then set our nav direction to back
         this._stack.pop();
@@ -118,7 +120,7 @@ dojo.require('dojo.hash');
       } else {
         // we're just doing normal navigation; add to the history stack
         // and then proceed
-        this._stack.push(hash);
+        this._stack.push({ hash : hash });
       }
 
       this._currentHash = hash;
