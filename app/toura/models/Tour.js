@@ -22,18 +22,28 @@ dojo.declare('toura.models.Tour', toura.models._Updateable, {
     return dfd.promise;
   },
 
-  _store : function(data) {
+  _store : function(data, newRemoteData) {
     this.inherited(arguments);
 
-    var dfd = new dojo.Deferred();
+    var dfd = new dojo.Deferred(),
+        storeOnDevice;
 
     if (data.app) {
       mulberry.app.DeviceStorage.set('app', data.app);
     }
 
     if (data.items) {
-      mulberry.app.DeviceStorage.set('tour', data.items)
-        .then(function() { dfd.resolve(true); });
+      storeOnDevice = mulberry.app.DeviceStorage.set('tour', data.items);
+
+      if (newRemoteData) {
+        // if what we're storing is new remote data, then we should
+        // wait until it's stored before we resolve the deferred
+        storeOnDevice.then(function() { dfd.resolve(true); });
+      } else {
+        // if it's not new remote data, we don't need to wait until it's
+        // stored; we can just proceed immediately.
+        dfd.resolve(true);
+      }
     }
 
     return dfd.promise;
