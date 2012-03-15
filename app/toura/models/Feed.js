@@ -185,11 +185,11 @@ dojo.declare('toura.models.FeedItem', null, {
       id : feed.id + '-' + item.index
     });
 
-    if (dojo.isObject(this.link)) {
+    if (this.link && dojo.isObject(this.link)) {
       this.link = this.link.content || null;
     }
 
-    if (dojo.isObject(this.title)) {
+    if (this.title && dojo.isObject(this.title)) {
       this.title = this.title.content || null;
     }
 
