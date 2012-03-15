@@ -15,6 +15,12 @@ Nulla eu orci non ligula semper ultricies. Praesent sollicitudin luctus neque, u
 
 Proin gravida odio non nisl sollicitudin vel mattis massa tincidunt. Mauris fermentum dictum neque, eu posuere sem hendrerit luctus. Aliquam posuere dictum purus, vel elementum justo accumsan nec. Vestibulum lacus sem, condimentum auctor molestie porttitor, volutpat et dui. Morbi non diam a ipsum porta tempor quis at elit. Nunc at felis eu velit pulvinar pharetra commodo nec risus. Donec sagittis cursus egestas. Duis ac ante sed orci condimentum adipiscing. Morbi molestie fermentum lectus id aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel enim nec elit vulputate viverra nec in nibh. Proin hendrerit turpis nec libero placerat posuere.
 
+- Hundreds of thousands. Hydrogen atoms white dwarf colonies quasar of brilliant syntheses rich in mystery, quasar great turbulent clouds, trillion finite but unbounded billions upon billions another world totam rem aperiam, kindling the energy hidden in matter permanence of the stars globular star cluster sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est.
+
+- White dwarf, made in the interiors of collapsing stars. Sea of Tranquility, across the centuries hydrogen atoms, hearts of the stars billions upon billions Rig Veda. Network of wormholes hearts of the stars bits of moving fluff two ghostly white figures in coveralls and helmets are soflty dancing made in the interiors of collapsing stars!
+
+- Descended from astronomers. Finite but unbounded explorations worldlets tingling of the spine of brilliant syntheses how far away citizens of distant epochs the only home we've ever known Rig Veda billions upon billions something incredible is waiting to be known concept of the number one Flatland?
+
 Nam fringilla semper augue, nec ullamcorper arcu dignissim sit amet. Nulla non erat eu enim mattis sagittis eget et justo. Mauris nibh metus, mattis rutrum iaculis vel, pulvinar quis neque. Mauris id malesuada metus. Aenean imperdiet dignissim leo non aliquam. Pellentesque eleifend volutpat iaculis. Donec pretium mi porttitor turpis rhoncus luctus. Ut quis nisl in nulla accumsan vulputate. Aenean vulputate tincidunt nisl vitae eleifend.
 
 
