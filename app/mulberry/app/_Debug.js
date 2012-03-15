@@ -26,16 +26,13 @@ var createHash = function() {
 };
 
 
-mulberry.app._Debug = function() {
-  var tools = new mulberry.app._Debug.Tools().placeAt(dojo.body(), 'first'),
-      msg = new mulberry.app._Debug.Message().placeAt(dojo.body(), 'first'),
-      tpl = 'Debug &#64; {url} code: {hash}';
+mulberry.app._Debug = function(el) {
+  var tools = new mulberry.app._Debug.Tools().placeAt(el, 'first'),
+      msg = new mulberry.app._Debug.Message().placeAt(el, 'first'),
+      tpl = 'Debug &#64; {url} code: {hash}'.replace('{url}', weinreServer);
 
   dojo.connect(tools, 'onWeinre', function(hash) {
-    msg.set(
-      'content',
-      tpl.split('{url}').join(weinreServer).split('{hash}').join(hash.slice(1))
-    );
+    msg.set('content', tpl.replace('{hash}', hash.slice(1)));
   });
 };
 
