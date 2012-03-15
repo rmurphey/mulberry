@@ -75,7 +75,7 @@ dojo.declare('mulberry.app.UI', dojo.Stateful, {
     }
 
     //>>excludeStart('production', kwArgs.production);
-    if (mulberry.features && mulberry.features.debugToolbar) { mulberry.app._Debug(); }
+    if (mulberry.features && mulberry.features.debugToolbar) { mulberry.app._Debug(b); }
     //>>excludeEnd('production');
   },
 
