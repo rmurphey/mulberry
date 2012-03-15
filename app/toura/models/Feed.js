@@ -177,7 +177,6 @@ dojo.declare('toura.models.FeedItem', null, {
 
     dojo.mixin(this, {
       title : item.title || '',
-      body : item.description || '',
       url : toura.URL.feedItem(feed.id, item.index),
       link : item.link,
       pubDate : item.pubDate,
@@ -185,15 +184,6 @@ dojo.declare('toura.models.FeedItem', null, {
       feedName : feed.name,
       id : feed.id + '-' + item.index
     });
-
-    if (dojo.isObject(this.body)) {
-      if (dojo.isArray(this.body)) {
-        // Some Atom feeds are stuctured this way
-        this.body = this.body[1] || null;
-      } else {
-        this.body = this.body.content || null;
-      }
-    }
 
     if (dojo.isObject(this.link)) {
       this.link = this.link.content || null;
@@ -203,8 +193,21 @@ dojo.declare('toura.models.FeedItem', null, {
       this.title = this.title.content || null;
     }
 
+    this.body = this._getBody(item);
     this.image = this._getImage(item);
     this.author = this._getAuthor(item);
+  },
+
+  _getBody : function(item) {
+    var description = item.description;
+
+    if (dojo.isObject(description)) {
+      if (dojo.isArray(description)) {
+        return description[1] ? description[1] : "";
+      }
+    }
+
+    return description ? description : "";
   },
 
   _getImage : function(item) {
