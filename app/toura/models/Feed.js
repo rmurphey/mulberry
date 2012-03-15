@@ -233,6 +233,10 @@ dojo.declare('toura.models.FeedItem', null, {
   _getAuthor : function(item) {
     var author = item.author;
 
+    if (item.creator) {
+      return item.creator;
+    }
+
     if (author && author.displayName) {
       return author.displayName;
     }
