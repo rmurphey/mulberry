@@ -34,6 +34,12 @@ describe Builder::Build do
       client = File.read(File.join(base_dir, 'client', 'base.js'))
       client.should include 'dojo._hasResource'
     end
+
+    it "should bundle the i18n files with mulberry base.js" do
+      base_dir = File.join(@bundle[:location], 'iphone', 'www', 'javascript')
+      mulberry = File.read(File.join(base_dir, 'mulberry', 'base.js'))
+      mulberry.should include 'mulberry.nls.base_ROOT'
+    end
   end
 
   describe "iphone build" do
@@ -77,7 +83,6 @@ describe Builder::Build do
         [ 'iphone', 'www', 'javascript' ],
         [ 'iphone', 'www', 'javascript', 'dojo', 'dojo.js' ],
         [ 'iphone', 'www', 'javascript', 'mulberry', 'base.js' ],
-        [ 'iphone', 'www', 'javascript', 'mulberry', 'nls', 'base_en-us.js' ],
         [ 'iphone', 'www', 'javascript', 'client', 'base.js' ],
         [ 'iphone', 'www', 'javascript', 'toura', 'AppConfig.js' ]
       ].each do |path|
@@ -149,7 +154,6 @@ describe Builder::Build do
         [ 'ipad', 'www', 'javascript' ],
         [ 'ipad', 'www', 'javascript', 'dojo', 'dojo.js' ],
         [ 'ipad', 'www', 'javascript', 'mulberry', 'base.js' ],
-        [ 'ipad', 'www', 'javascript', 'mulberry', 'nls', 'base_en-us.js' ],
         [ 'ipad', 'www', 'javascript', 'client', 'base.js' ],
         [ 'ipad', 'www', 'javascript', 'toura', 'AppConfig.js' ]
       ].each do |path|
@@ -220,7 +224,6 @@ describe Builder::Build do
         [ 'android', 'assets', 'www', 'javascript' ],
         [ 'android', 'assets', 'www', 'javascript', 'dojo', 'dojo.js' ],
         [ 'android', 'assets', 'www', 'javascript', 'mulberry', 'base.js' ],
-        [ 'android', 'assets', 'www', 'javascript', 'mulberry', 'nls', 'base_en-us.js' ],
         [ 'android', 'assets', 'www', 'javascript', 'client', 'base.js' ],
         [ 'android', 'assets', 'www', 'javascript', 'toura', 'AppConfig.js' ]
       ].each do |path|

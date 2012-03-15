@@ -301,12 +301,11 @@ module Builder
       js_dir          = File.join(@www, 'javascript')
       mulberry_dir    = File.join(js_dir, 'mulberry')
       dojo_dir        = File.join(js_dir, 'dojo')
-      nls_dir         = File.join(js_dir, 'mulberry', 'nls')
 
       client_dir      = File.join(js_dir, 'client')
       client_base     = File.join(built, 'client', 'base.js')
 
-      [ js_dir, mulberry_dir, dojo_dir, nls_dir, client_dir ].each do |d|
+      [ js_dir, mulberry_dir, dojo_dir, client_dir ].each do |d|
         FileUtils.mkdir_p(d) unless File.exists? d
       end
 
@@ -326,11 +325,6 @@ module Builder
           mulberry_dir
         )
       end
-
-      FileUtils.cp_r(
-        File.join(built, 'mulberry', 'nls', '.'),
-        nls_dir
-      )
 
       if File.exists? client_base
         FileUtils.cp_r(client_base, client_dir)
