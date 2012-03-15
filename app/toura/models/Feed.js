@@ -211,7 +211,17 @@ dojo.declare('toura.models.FeedItem', null, {
   },
 
   _getImage : function(item) {
-    var enc = item.enclosure || item.content;
+    var enc;
+
+    if (item.thumbnail && dojo.isArray(item.thumbnail)) {
+      enc = item.thumbnail[1];
+    } else {
+      enc = item.enclosure || item.content;
+    }
+
+    if (!dojo.isObject(enc) && enc.match(/(jpeg|jpg|png)/i)) {
+      return { url : enc };
+    }
 
     if (enc && enc.type && enc.type.match(/(jpeg|png)/i)) {
       return { url : enc.url };
