@@ -11,15 +11,7 @@ var analytics = (function(pg, device) {
       appName;
 
   return {
-    log : (function() {
-      function getAppName() {
-        appName = appName || mulberry.app.Config.get('app').name.replace(/[^a-zA-Z]/g, '');
-        return appName;
-      }
-
-      return function(evt, params) { /* TODO: Add GoogleAnalytics */ };
-
-    }())
+    log : function() { /* noop pending Google Analytics integration */ }
   };
 }(mulberry.app.PhoneGap.present, mulberry.Device));
 
