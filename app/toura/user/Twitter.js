@@ -27,7 +27,10 @@ dojo.declare('toura.user.Twitter', null, {
   },
 
   setUserInfo : function(u) {
-    console.log('toura.user.Twitter::setUserInfo()');
+    if (user) {
+      return true;
+    }
+
     if (u.username && u.password) {
       user = u;
       return true;
@@ -53,10 +56,6 @@ dojo.declare('toura.user.Twitter', null, {
     console.log('toura.user.Twitter::postMessage()');
 
     if (!msg) { return; }
-
-    if (mulberry.silenceSharing) {
-      console.log('sharing silenced; twitter message would have been', msg);
-    }
 
     var dfd = new dojo.Deferred();
 
