@@ -17,9 +17,7 @@ var analytics = (function(pg, device) {
         return appName;
       }
 
-      return function(evt, params) {
-          /* TODO: Add GoogleAnalytics */
-        };
+      return function(evt, params) { /* TODO: Add GoogleAnalytics */ };
 
     }())
   };
