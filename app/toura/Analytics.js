@@ -6,14 +6,7 @@ dojo.provide('toura.Analytics');
  */
 (function(){
 
-var analytics = (function(pg, device) {
-  var os = device.os,
-      appName;
-
-  return {
-    log : function() { /* noop pending Google Analytics integration */ }
-  };
-}(mulberry.app.PhoneGap.present, mulberry.Device));
+var analytics = { log : function() { /* noop pending Google Analytics integration */ } };
 
 dojo.declare('toura.Analytics', null, {
   /**
