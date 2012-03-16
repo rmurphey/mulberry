@@ -202,7 +202,7 @@ dojo.declare('toura.models.FeedItem', null, {
     var description = item.description;
 
     if (dojo.isArray(description)) {
-      return description[1] ? description[1] : "";
+      return description[1] || "";
     }
 
     return description || "";
