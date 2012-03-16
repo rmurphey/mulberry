@@ -201,10 +201,8 @@ dojo.declare('toura.models.FeedItem', null, {
   _getBody : function(item) {
     var description = item.description;
 
-    if (dojo.isObject(description)) {
-      if (dojo.isArray(description)) {
-        return description[1] ? description[1] : "";
-      }
+    if (dojo.isArray(description)) {
+      return description[1] ? description[1] : "";
     }
 
     return description ? description : "";
