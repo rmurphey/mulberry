@@ -36,11 +36,7 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
       })
     ), this.content);
 
-    if (!this.item.link) {
-      dojo.addClass(this.externalLink, 'hidden');
-    } else {
-      dojo.removeClass(this.externalLink, 'hidden');
-    }
+    dojo[this.item.link ? 'removeClass' : 'addClass'](this.externalLink, 'hidden');
 
     dojo.attr(this.externalLink, 'href', this.item.link);
 
