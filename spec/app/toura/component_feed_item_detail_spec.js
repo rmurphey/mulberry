@@ -61,6 +61,18 @@ describe("feed item detail component", function() {
     expect(link).toBeTruthy();
     expect(link).toBe(c.externalLink);
     expect(dojo.trim(link.innerHTML)).toBeTruthy();
+    expect(link.style.display).toBe("block");
+  });
+
+  it("should hide the link to the original feed item if there is no url", function() {
+    feedItem.link = null;
+    c = C({ node : feedItem });
+
+    var link = t.querySelector('a[href="' + feedItem.link + '"]');
+
+    expect(link).toBeTruthy();
+    expect(link).toBe(c.externalLink);
+    expect(link.style.display).toBe("none");
   });
 
   it("should open the link to the original using child browser", function() {
