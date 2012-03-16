@@ -26,8 +26,6 @@
 @synthesize invokeString;
 @synthesize launchNotification;
 
-void uncaughtExceptionHandler(NSException *);
-
 - (id) init
 {
 	/** If you need to do any extra app-specific initialization, you can do it here
@@ -62,17 +60,6 @@ void uncaughtExceptionHandler(NSException *);
     NSURL* webkitUrl = [NSURL fileURLWithPath:webkitPath];
 
     [self addSkipBackupAttributeToItemAtURL:webkitUrl];
-
-    NSBundle* mainBundle = [NSBundle mainBundle];
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-
-    // Flurry docs lie and say this defaults to false.
-    // worse, it crashes the app in ios 5 sim when it tries to do this.
-    // may want to re-enable when this issue is fixed.
-    [ FlurryAnalytics setSessionReportsOnPauseEnabled:false ];
-
-    NSString* flurryApiKey = [mainBundle objectForInfoDictionaryKey:@"FlurryApiKey"];
-    [ FlurryAnalytics startSession:flurryApiKey ];
 
     // ******** NOTE: modified the following block from the default app delegate as it assumes
     // your app will never receive push notifications
@@ -274,14 +261,6 @@ void uncaughtExceptionHandler(NSException *);
 	}
 
 	return plist;
-}
-
-/**
- * Uncaught exception handler
- * Use Flurry to do some exception logging for us.
- */
-void uncaughtExceptionHandler(NSException *exception) {
-    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 @end

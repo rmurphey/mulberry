@@ -17,7 +17,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.text.TextUtils;
 
-import com.flurry.android.FlurryAgent;
 import com.phonegap.DroidGap;
 import com.toura.www.push.IntentReceiver;
 
@@ -52,48 +51,6 @@ public class TouraMainActivity extends DroidGap {
     ws.setSupportZoom(false);
     ws.setBuiltInZoomControls(false);
     IntentReceiver.setTouraMainActivity(this);
-  }
-
-  /*
-   * onStart added for Flurry
-   */
-  @Override
-  public void onStart() {
-    super.onStart();
-    Resources resources = this.getResources();
-    AssetManager assetManager = resources.getAssets();
-    InputStream inputStream = null;
-    try {
-        inputStream = assetManager.open("touraconfig.properties");
-        Properties properties = new Properties();
-        properties.load(inputStream);
-        FlurryAgent.onStartSession(this, properties.getProperty("flurryApiKey"));
-    } catch (IOException e) {
-        System.err.println("Failed to open touraconfig.properties file");
-        e.printStackTrace();
-    } finally {
-      if (inputStream != null) {
-        try {
-          inputStream.close();
-        } catch (IOException e) {}
-      }
-    }
-  }
-
-  /*
-   * onStop added for Flurry
-   */
-  @Override
-  public void onStop() {
-    super.onStop();
-    FlurryAgent.onEndSession(this);
-  }
-
-  /*
-   * Log something with flurry
-   */
-  public void logEvent(String eventId,  Map<String, String> parameters) {
-    FlurryAgent.logEvent( eventId, parameters);
   }
 
   public boolean isInForeground() {

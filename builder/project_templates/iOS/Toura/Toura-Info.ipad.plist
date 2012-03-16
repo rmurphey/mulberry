@@ -51,8 +51,6 @@
 	<string>UIStatusBarStyleBlackTranslucent</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
-	<key>FlurryApiKey</key>
-	<string>${FlurryApiKey}</string>
 	<key>UIPrerenderedIcon</key>
 	<false/>
 </dict>

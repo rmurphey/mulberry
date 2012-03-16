@@ -169,14 +169,8 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         assets_dir = File.join(android_dir, 'assets')
 
         touraconfig_file = File.join(assets_dir, 'touraconfig.properties')
-        if project_settings[:flurry_config]
-          flurry_api_key = project_settings[:flurry_config]['android']['api_key']
-        else
-          flurry_api_key = 'NO_FLURRY_KEY_AVAILABLE' # must be non-blank value
-        end
 
         text = File.read(touraconfig_file)
-        text.gsub!("${flurryApiKey}", flurry_api_key)
         text.gsub!("${ads}", @build.build_helper.config_settings['ads'].to_s)
 
         File.open(touraconfig_file, "w") do |file|
@@ -247,11 +241,6 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         )
 
         plist_file = File.join(project_toura_dir, 'Toura-Info.plist')
-        if project_settings[:flurry_config]
-          flurry_api_key = project_settings[:flurry_config]['ios']['api_key']
-        else
-          flurry_api_key = 'NO_FLURRY_KEY_AVAILABLE' # must be non-blank value
-        end
         product_name = project_settings[:name] || "The App With No Name"
 
         text = File.read(plist_file)
@@ -259,8 +248,7 @@ see http://developer.android.com/guide/publishing/app-signing.html for instructi
         [
           ["${PRODUCT_NAME}",   "#{product_name}"],
           ["com.toura.app2",    app_id],
-          ["${BUNDLE_VERSION}", project_settings[:published_version]],
-          ["${FlurryApiKey}",   flurry_api_key]
+          ["${BUNDLE_VERSION}", project_settings[:published_version]]
         ].each { |config| text.gsub!(config[0], config[1]) }
 
         File.open(plist_file, "w") do |file|

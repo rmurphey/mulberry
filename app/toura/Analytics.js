@@ -2,38 +2,13 @@ dojo.provide('toura.Analytics');
 
 /**
  * listens for the broadcast of application events
- * and tracks them in Flurry analytics as appropriate.
+ * and tracks them in analytics as appropriate.
  */
 (function(){
 
-var analytics = (function(pg, device) {
-  var os = device.os,
-      appName;
-
-  return {
-    log : (function() {
-      function getAppName() {
-        appName = appName || mulberry.app.Config.get('app').name.replace(/[^a-zA-Z]/g, '');
-        return appName;
-      }
-
-      return pg ?
-        function(evt, params) {
-          console.log('mulberry.app.PhoneGap::logAnalyticsEvent()');
-          PhoneGap.exec(
-            function() {},
-            function(error) { mulberry.log("Could not log flurry event.  Error: " + error); },
-            'FlurryCommand', 'logEvent', [evt, params]
-          );
-        }
-        :
-        function(evt, params) {
-          console.log('mulberry.app.PhoneGap::logAnalyticsEvent()');
-        };
-
-    }())
-  };
-}(mulberry.app.PhoneGap.present, mulberry.Device));
+var analytics = {
+  log : function() { /* noop pending Google Analytics integration */ }
+};
 
 dojo.declare('toura.Analytics', null, {
   /**

@@ -12,7 +12,6 @@
 #else
     #import "PhoneGapDelegate.h"
 #endif
-#import "FlurryAnalytics.h"
 
 @interface TouraAppDelegate : PhoneGapDelegate {
     NSString *invokeString;
