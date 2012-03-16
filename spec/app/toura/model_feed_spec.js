@@ -43,7 +43,7 @@ describe("feed model", function() {
   });
 
   /* TODO: This is removed pending better integration with Travis-CI */
-  xit("should resolve the load method's promise with an array of feed items", function() {
+  it("should resolve the load method's promise with an array of feed items", function() {
     var items,
         feeds = ["http://rss.cnn.com/rss/cnn_topstories.rss", "http://www.nbcchicago.com/blogs/ward-room/?rss=y"];
 
@@ -54,7 +54,7 @@ describe("feed model", function() {
         items = data;
       });
 
-      waitsFor(function() { return items; }, 1000);
+      waitsFor(function() { return items; }, 2000);
 
       runs(function() {
         expect(items.length).toBeTruthy();
