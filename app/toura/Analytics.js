@@ -2,7 +2,7 @@ dojo.provide('toura.Analytics');
 
 /**
  * listens for the broadcast of application events
- * and tracks them in Flurry analytics as appropriate.
+ * and tracks them in analytics as appropriate.
  */
 (function(){
 
@@ -17,18 +17,8 @@ var analytics = (function(pg, device) {
         return appName;
       }
 
-      return pg ?
-        function(evt, params) {
-          console.log('mulberry.app.PhoneGap::logAnalyticsEvent()');
-          PhoneGap.exec(
-            function() {},
-            function(error) { mulberry.log("Could not log flurry event.  Error: " + error); },
-            'FlurryCommand', 'logEvent', [evt, params]
-          );
-        }
-        :
-        function(evt, params) {
-          console.log('mulberry.app.PhoneGap::logAnalyticsEvent()');
+      return function(evt, params) {
+          /* TODO: Add GoogleAnalytics */
         };
 
     }())

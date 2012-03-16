@@ -89,13 +89,6 @@ urban_airship:
      transport: c2dm
      c2dm_sender: c2dmsender@mail.com
 
-# Enter your flurry api keys here
-flurry:
- ios:
-   api_key: flurry_ios_api_key
- android:
-   api_key: flurry_android_api_key
-
 # Enter the app store version here
 published_version: '1.0'
 
