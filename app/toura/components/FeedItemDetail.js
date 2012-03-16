@@ -36,6 +36,12 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
       })
     ), this.content);
 
+    if (!this.item.link) {
+      dojo.style(this.externalLink, { display: "none" });
+    } else {
+      dojo.style(this.externalLink, { display: "block" });
+    }
+
     dojo.attr(this.externalLink, 'href', this.item.link);
 
     this._setupLinks();
