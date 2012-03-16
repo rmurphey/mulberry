@@ -189,7 +189,7 @@ dojo.declare('toura.models.FeedItem', null, {
       this.link = this.link.content || null;
     }
 
-    if (this.title && dojo.isObject(this.title)) {
+    if (dojo.isObject(this.title)) {
       this.title = this.title.content || null;
     }
 
