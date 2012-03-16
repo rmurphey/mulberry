@@ -48,7 +48,7 @@ describe("feed model", function() {
         feeds = ["http://rss.cnn.com/rss/cnn_topstories.rss", "http://www.nbcchicago.com/blogs/ward-room/?rss=y"];
 
     dojo.forEach(feeds, function(feed) {
-      f.feedUrl = feed;
+      f.feedURL = feed;
 
       f.load().then(function(data) {
         items = data;
