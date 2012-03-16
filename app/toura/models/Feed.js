@@ -205,7 +205,7 @@ dojo.declare('toura.models.FeedItem', null, {
       return description[1] ? description[1] : "";
     }
 
-    return description ? description : "";
+    return description || "";
   },
 
   _getImage : function(item) {
