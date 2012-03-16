@@ -6,7 +6,9 @@ dojo.provide('toura.Analytics');
  */
 (function(){
 
-var analytics = { log : function() { /* noop pending Google Analytics integration */ } };
+var analytics = {
+  log : function() { /* noop pending Google Analytics integration */ }
+};
 
 dojo.declare('toura.Analytics', null, {
   /**
