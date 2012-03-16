@@ -61,7 +61,7 @@ describe("feed item detail component", function() {
     expect(link).toBeTruthy();
     expect(link).toBe(c.externalLink);
     expect(dojo.trim(link.innerHTML)).toBeTruthy();
-    expect(link.style.display).toBe("block");
+    expect(dojo.hasClass(link, "hidden")).toBeFalsy;
   });
 
   it("should hide the link to the original feed item if there is no url", function() {
@@ -72,7 +72,7 @@ describe("feed item detail component", function() {
 
     expect(link).toBeTruthy();
     expect(link).toBe(c.externalLink);
-    expect(link.style.display).toBe("none");
+    expect(dojo.hasClass(link, "hidden")).toBeTruthy;
   });
 
   it("should open the link to the original using child browser", function() {
