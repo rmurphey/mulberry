@@ -26,8 +26,6 @@
 @synthesize invokeString;
 @synthesize launchNotification;
 
-void uncaughtExceptionHandler(NSException *);
-
 - (id) init
 {
 	/** If you need to do any extra app-specific initialization, you can do it here
@@ -63,10 +61,7 @@ void uncaughtExceptionHandler(NSException *);
 
     [self addSkipBackupAttributeToItemAtURL:webkitUrl];
 
-    NSBundle* mainBundle = [NSBundle mainBundle];
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-
-     // ******** NOTE: modified the following block from the default app delegate as it assumes
+    // ******** NOTE: modified the following block from the default app delegate as it assumes
     // your app will never receive push notifications
 
     //	NSArray *keyArray = [launchOptions allKeys];

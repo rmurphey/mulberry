@@ -445,10 +445,6 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Toura/Toura-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Toura/FlurryAnalytics\"",
-				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -483,10 +479,6 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Toura/Toura-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Toura/FlurryAnalytics\"",
-				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
