@@ -54,7 +54,7 @@ describe("feed model", function() {
         items = data;
       });
 
-      waitsFor(function() { return items; }, 2000);
+      waitsFor(function() { return items; }, 3000);
 
       runs(function() {
         expect(items.length).toBeTruthy();
