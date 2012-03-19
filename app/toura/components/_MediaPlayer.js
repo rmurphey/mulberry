@@ -11,7 +11,7 @@ dojo.declare('toura.components._MediaPlayer', mulberry._Component, {
   prepareData : function() {
     this.inherited(arguments);
     this.mediasCache = {};
-
+    
     this.medias = dojo.map(this.medias || [], function(media) {
       this.mediasCache[media.id] = media = dojo.mixin(media, {
         assetUrl : [ this.baseUrl, media.id ].join('/')
@@ -38,6 +38,7 @@ dojo.declare('toura.components._MediaPlayer', mulberry._Component, {
   play : function(mediaId) {
     this.set('mediaId', mediaId);
     this._play(this.media);
+    
   },
 
   _play : function(media) {
@@ -67,6 +68,10 @@ dojo.declare('toura.components._MediaPlayer', mulberry._Component, {
     if (this.player) {
       this.player.src = media.url;
     }
+  },
+  
+  _setMediaAttr : function(media) {
+    this.media = media;
   },
 
   _setupPlayer : function() {
