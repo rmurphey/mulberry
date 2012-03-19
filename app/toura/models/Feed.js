@@ -197,7 +197,7 @@ dojo.declare('toura.models.FeedItem', null, {
     if (dojo.isObject(this.title)) {
       this.title = this.title.content || null;
     }
-    
+
     this.media = this._getMedia(item);
 
     this.image = this._getImage(item);
@@ -206,11 +206,11 @@ dojo.declare('toura.models.FeedItem', null, {
 
   _getImage : function(item) {
     var enc = item.enclosure || item.content;
-    
+
     if (enc && enc.type && enc.type.match(/(jpeg|png)/i)) {
       return { url : enc.url };
     }
-    
+
     // media feed case
     if (this.media && item.thumbnail) {
         return { url: item.thumbnail.url };6
@@ -228,14 +228,14 @@ dojo.declare('toura.models.FeedItem', null, {
 
     return '';
   },
-  
+
   _getMedia : function(item) {
     var media = item.content;
-    
+
     if (media && media.url && media.type) {
       return media;
     }
-    
+
     return '';
   }
 });

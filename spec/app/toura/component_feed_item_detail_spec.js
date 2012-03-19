@@ -28,11 +28,11 @@ describe("feed item detail component", function() {
         return feedItem;
       }
     };
-    
+
     videoFeedItem = dojo.clone(feedItem);
     videoFeedItem.title = 'Video Feed Item Fixture';
     videoFeedItem.media = feedMedia;
-    
+
     videoFeed = {
       getItem : function() {
         return videoFeedItem;
@@ -105,17 +105,17 @@ describe("feed item detail component", function() {
     h(fakeEventObj);
     expect(spy).toHaveBeenCalledWith(feedItem.link);
   });
-  
+
   it("should hide the video player if there's no video", function() {
     c = C({ node : feedItem });
     expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeTruthy();
   });
-  
+
   it("should show the video player if there is a video", function() {
     c = C({ node : videoFeedItem });
     expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeFalsy();
   });
-  
+
   it("should hide and show the video player based on the feed item", function() {
     c = C({ node : feedItem });
     expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeTruthy();
@@ -124,17 +124,17 @@ describe("feed item detail component", function() {
     c.set('item', feedItem);
     expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeTruthy();
   });
-  
+
   it("should display the correct video", function() {
     c = C({ node : videoFeedItem });
-    
+
     c.videoPlayer._setupPlayer();
-    
+
     // would be nice to do a waitsFor, but unclear which function it should
     // be waiting for (_setMediaAttr would be the obvious choice, but does
     // not work)
     waits(200);
-    
+
     runs( function() {
       expect(t.querySelector('.component.video-player video').getAttribute('src')).toEqual(feedMedia.url);
     });

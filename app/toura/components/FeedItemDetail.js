@@ -8,7 +8,7 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
   templateString : dojo.cache('toura.components', 'FeedItemDetail/FeedItemDetail.haml'),
   widgetsInTemplate: true,
   itemTemplate : Haml(dojo.cache('toura.components', 'FeedItemDetail/Item.haml')),
-  
+
   mediaHandlers : {
     'video/mp4' : function(item) {
       this.videoPlayer.show();
@@ -20,7 +20,7 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
       this.item.image = false;
     }
   },
-  
+
   prepareData : function() {
     this.item = this.node;
   },
@@ -40,7 +40,7 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
     if (feedItem.type !== 'feedItem') { return; }
 
     this.item = feedItem;
-    
+
     if (this.item.media && this.item.media.type) {
       dojo.hitch(this, this.mediaHandlers[this.item.media.type])(this.item);
     } else {
@@ -48,7 +48,7 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
     }
 
     dojo.empty(this.content);
-    
+
     dojo.place(this.itemTemplate(
       dojo.delegate(this.item, {
         pubDate : dojo.date.locale.format(this.item.pubDate),

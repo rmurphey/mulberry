@@ -27,7 +27,7 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
 
   prepareData : function() {
     var poster = '';
-    
+
     this.node = this.node || {}
     this.medias = this.node.videos || [];
     this.inherited(arguments);
@@ -38,7 +38,7 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
         poster : poster
       });
     }
-    
+
     // to ensure graceful failure
     this.media = this.media || { 'poster' : '' };
   },
@@ -79,15 +79,15 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
 
   _setMediaIdAttr : function(mediaId) {
     this.inherited(arguments);
-    
+
     if (this.media && this.media.poster) {
       this.set('poster', this.media.poster);
     }
   },
-  
+
   _setMediaAttr : function(media) {
     this.inherited(arguments);
-    
+
     if (this.media && this.media.poster) {
       this.set('poster', this.media.poster);
     }
@@ -103,10 +103,10 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
       this.player.poster = poster || '';
     }
   },
-  
+
   _setupPlayer : function() {
     var player = this.inherited(arguments);
-    
+
     // make sure there's a poster
     if (this.media && this.media.poster) {
       this.set('poster', this.media.poster);
