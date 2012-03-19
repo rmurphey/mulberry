@@ -38,6 +38,10 @@
     font-family: Georgia, serif;
     font-weight: bold;
 
+    &.hidden {
+      display: none;
+    }
+
     &:after {
       content: '»';
       padding-left: 5px;

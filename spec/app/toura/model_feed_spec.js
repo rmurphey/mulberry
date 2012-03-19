@@ -43,33 +43,38 @@ describe("feed model", function() {
   });
 
   /* TODO: This is removed pending better integration with Travis-CI */
-  xit("should resolve the load method's promise with an array of feed items", function() {
-    var items;
+  it("should resolve the load method's promise with an array of feed items", function() {
+    var items,
+        feeds = ["http://rss.cnn.com/rss/cnn_topstories.rss", "http://www.nbcchicago.com/blogs/ward-room/?rss=y"];
 
-    f.load().then(function(data) {
-      items = data;
-    });
+    dojo.forEach(feeds, function(feed) {
+      f.feedURL = feed;
 
-    waitsFor(function() { return items; }, 1000);
+      f.load().then(function(data) {
+        items = data;
+      });
 
-    runs(function() {
-      expect(items.length).toBeTruthy();
-      expect(f.items).toBeDefined();
+      waitsFor(function() { return items; }, 3000);
 
-      var item = f.items[0];
-      expect(item.type).toBe('feedItem');
-      expect(item.title).toBeDefined();
-      expect(item.url).toBeDefined();
-      expect(item.link).toBeDefined();
-      expect(item.pubDate).toBeDefined();
-      expect(item.name).toBeDefined();
-      expect(item.feedName).toBeDefined();
-      expect(item.id).toBeDefined();
-      expect(item.author).toBeDefined();
-      expect(item.image).toBeDefined();
+      runs(function() {
+        expect(items.length).toBeTruthy();
+        expect(f.items).toBeDefined();
+
+        var item = f.items[0];
+        expect(item.type).toBe('feedItem');
+        expect(item.body).toBeDefined();
+        expect(item.title).toBeDefined();
+        expect(item.url).toBeDefined();
+        expect(item.link).toBeDefined();
+        expect(item.pubDate).toBeDefined();
+        expect(item.name).toBeDefined();
+        expect(item.feedName).toBeDefined();
+        expect(item.id).toBeDefined();
+        expect(item.author).toBeDefined();
+        expect(item.image).toBeDefined();
+      });
     });
   });
-
 
   it("should resolve the load method's promise with an empty array if there is no data", function() {
     var items;

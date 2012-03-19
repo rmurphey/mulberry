@@ -177,7 +177,6 @@ dojo.declare('toura.models.FeedItem', null, {
 
     dojo.mixin(this, {
       title : item.title || '',
-      body : item.description || '',
       url : toura.URL.feedItem(feed.id, item.index),
       link : item.link,
       pubDate : item.pubDate,
@@ -186,11 +185,7 @@ dojo.declare('toura.models.FeedItem', null, {
       id : feed.id + '-' + item.index
     });
 
-    if (dojo.isObject(this.body)) {
-      this.body = this.body.content || null;
-    }
-
-    if (dojo.isObject(this.link)) {
+    if (this.link && dojo.isObject(this.link)) {
       this.link = this.link.content || null;
     }
 
@@ -198,12 +193,33 @@ dojo.declare('toura.models.FeedItem', null, {
       this.title = this.title.content || null;
     }
 
+    this.body = this._getBody(item);
     this.image = this._getImage(item);
     this.author = this._getAuthor(item);
   },
 
+  _getBody : function(item) {
+    var description = item.description;
+
+    if (dojo.isArray(description)) {
+      return description[1] || "";
+    }
+
+    return description || "";
+  },
+
   _getImage : function(item) {
-    var enc = item.enclosure || item.content;
+    var enc;
+
+    if (item.thumbnail && dojo.isArray(item.thumbnail)) {
+      enc = item.thumbnail[1];
+    } else {
+      enc = item.enclosure || item.content;
+    }
+
+    if (!dojo.isObject(enc) && enc.match(/(jpeg|jpg|png)/i)) {
+      return { url : enc };
+    }
 
     if (enc && enc.type && enc.type.match(/(jpeg|png)/i)) {
       return { url : enc.url };
@@ -214,6 +230,10 @@ dojo.declare('toura.models.FeedItem', null, {
 
   _getAuthor : function(item) {
     var author = item.author;
+
+    if (item.creator) {
+      return item.creator;
+    }
 
     if (author && author.displayName) {
       return author.displayName;

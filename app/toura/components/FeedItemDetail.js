@@ -36,6 +36,8 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
       })
     ), this.content);
 
+    dojo[this.item.link ? 'removeClass' : 'addClass'](this.externalLink, 'hidden');
+
     dojo.attr(this.externalLink, 'href', this.item.link);
 
     this._setupLinks();
