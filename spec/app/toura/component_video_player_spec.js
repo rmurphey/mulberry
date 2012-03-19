@@ -38,8 +38,9 @@ describe("video player component", function() {
     var c = new C(config).placeAt(t);
 
     c.startup();
-    c.set('media', feed_media);
+    c.set('media', {url: 'foo'});
     c._setupPlayer();
+    c.set('media', feed_media);
     
     waits(250);
     

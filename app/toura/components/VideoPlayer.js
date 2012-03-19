@@ -27,7 +27,8 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
 
   prepareData : function() {
     var poster = '';
-
+    
+    this.node = this.node || {}
     this.medias = this.node.videos || [];
     this.inherited(arguments);
     poster = this.media.poster || '';

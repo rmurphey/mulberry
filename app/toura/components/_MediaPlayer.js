@@ -58,20 +58,22 @@ dojo.declare('toura.components._MediaPlayer', mulberry._Component, {
   _setMediaIdAttr : function(mediaId) {
     var media = this.media = this.mediasCache[mediaId];
 
+    dojo.hitch(this, this._setMediaAttr)(media);
+  },
+  
+  _setMediaAttr : function(media) {
+    this.media = media;
+    
     if (this.useHtml5Player && !this.player) {
       this._queuedMedia = media;
       return;
     }
 
     this._queuedMedia = null;
-
+    
     if (this.player) {
       this.player.src = media.url;
     }
-  },
-  
-  _setMediaAttr : function(media) {
-    this.media = media;
   },
 
   _setupPlayer : function() {
