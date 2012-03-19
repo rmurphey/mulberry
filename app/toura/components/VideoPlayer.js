@@ -86,6 +86,12 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
 
     this.set('poster', this.media.poster);
   },
+  
+  _setMediaAttr : function(media) {
+    this.inherited(arguments);
+    
+    this.set('poster', this.media.poster);
+  }
 
   _setPosterAttr : function(poster) {
     if (!this.useHtml5Player) {

@@ -58,6 +58,10 @@
       margin: 0 auto;
     }
   }
+  
+  .component.video-player {
+    position: static;
+  }
 }
 
 @media (orientation:landscape) {
