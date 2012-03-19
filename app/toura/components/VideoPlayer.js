@@ -91,7 +91,7 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
     this.inherited(arguments);
     
     this.set('poster', this.media.poster);
-  }
+  },
 
   _setPosterAttr : function(poster) {
     if (!this.useHtml5Player) {
@@ -101,6 +101,15 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
 
     if (this.player) {
       this.player.poster = poster || '';
+    }
+  },
+  
+  _setupPlayer : function() {
+    this.inherited(arguments);
+    
+    // make sure there's a poster
+    if (this.media && this.media.poster) {
+      this.set('poster', this.media.poster);
     }
   }
 });

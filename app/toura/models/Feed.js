@@ -197,18 +197,23 @@ dojo.declare('toura.models.FeedItem', null, {
     if (dojo.isObject(this.title)) {
       this.title = this.title.content || null;
     }
+    
+    this.media = this._getMedia(item);
 
     this.image = this._getImage(item);
     this.author = this._getAuthor(item);
-    
-    this.media = this._getMedia(item);
   },
 
   _getImage : function(item) {
     var enc = item.enclosure || item.content;
-
+    
     if (enc && enc.type && enc.type.match(/(jpeg|png)/i)) {
       return { url : enc.url };
+    }
+    
+    // media feed case
+    if (this.media && item.thumbnail) {
+        return { url: item.thumbnail.url };6
     }
 
     return '';

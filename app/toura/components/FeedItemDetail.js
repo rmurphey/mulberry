@@ -10,9 +10,10 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
   itemTemplate : Haml(dojo.cache('toura.components', 'FeedItemDetail/Item.haml')),
   
   mediaHandlers : {
-    'video/mp4' : function(media) {
+    'video/mp4' : function(item) {
       this.videoPlayer.set('media', {
-        'url' : media.url
+        'url' : item.media.url,
+        'poster' : item.image.url
       });
     }
   },
@@ -47,7 +48,7 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
     ), this.content);
     
     if (this.item.media && this.item.media.type) {
-      dojo.hitch(this, this.mediaHandlers[this.item.media.type])(this.item.media);
+      dojo.hitch(this, this.mediaHandlers[this.item.media.type])(this.item);
     } else {
       this.videoPlayer.hide();
     }
