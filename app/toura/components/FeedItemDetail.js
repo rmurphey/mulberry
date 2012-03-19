@@ -11,6 +11,7 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
   
   mediaHandlers : {
     'video/mp4' : function(item) {
+      this.videoPlayer.show();
       this.videoPlayer.set('media', {
         'url' : item.media.url,
         'poster' : item.image.url
