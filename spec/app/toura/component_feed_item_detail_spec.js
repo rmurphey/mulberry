@@ -1,5 +1,8 @@
 describe("feed item detail component", function() {
-  var c, C, t, feed, feedItem;
+  var c, C, t, feed, feedItem, videoFeed, videoFeedItem, feedMedia = {
+    type : 'video/mp4',
+    url : 'http://av.vimeo.com/01780/039/24113681.web?token=1331829715_b4a96dbd1013cbcb9d316abbce7fbc0e'
+  };
 
   beforeEach(function() {
     dojo.require('toura.components.FeedItemDetail');
@@ -25,6 +28,16 @@ describe("feed item detail component", function() {
         return feedItem;
       }
     };
+    
+    videoFeedItem = dojo.clone(feedItem);
+    videoFeedItem.title = 'Video Feed Item Fixture';
+    videoFeedItem.media = feedMedia;
+    
+    videoFeed = {
+      getItem : function() {
+        return videoFeedItem;
+      }
+    }
 
     C = function(config) {
       return new toura.components.FeedItemDetail(config || {}).placeAt(t);
@@ -91,6 +104,40 @@ describe("feed item detail component", function() {
 
     h(fakeEventObj);
     expect(spy).toHaveBeenCalledWith(feedItem.link);
+  });
+  
+  it("should hide the video player if there's no video", function() {
+    c = C({ node : feedItem });
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeTruthy();
+  });
+  
+  it("should show the video player if there is a video", function() {
+    c = C({ node : videoFeedItem });
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeFalsy();
+  });
+  
+  it("should hide and show the video player based on the feed item", function() {
+    c = C({ node : feedItem });
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeTruthy();
+    c.set('item', videoFeedItem);
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeFalsy();
+    c.set('item', feedItem);
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeTruthy();
+  });
+  
+  it("should display the correct video", function() {
+    c = C({ node : videoFeedItem });
+    
+    c.videoPlayer._setupPlayer();
+    
+    // would be nice to do a waitsFor, but unclear which function it should
+    // be waiting for (_setMediaAttr would be the obvious choice, but does
+    // not work)
+    waits(200);
+    
+    runs( function() {
+      expect(t.querySelector('.component.video-player video').getAttribute('src')).toEqual(feedMedia.url);
+    });
   });
 });
 
