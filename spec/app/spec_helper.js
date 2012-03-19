@@ -12,6 +12,7 @@ var dataAPI,
     pageControllerMocks,
     routerMock,
     allDevices,
+    capabilityTestSetup,
 
     fakeEventObj = {
       preventDefault : function() {},
@@ -45,6 +46,7 @@ beforeEach(function() {
   dojo.require('mulberry.app.Config');
   dojo.require('dojo.cache');
   dojo.require('mulberry.app.Has');
+  dojo.require('mulberry.containers.Region');
 
   mulberry = mulberry || {};
   mulberry.app = mulberry.app || {};
@@ -55,9 +57,10 @@ beforeEach(function() {
   };
 
   mulberry.app.Config.set('app', toura.data.local.app);
-
+  
   mulberry.app.Has = dojo.isFunction(mulberry.app.Has) ? mulberry.app.Has() : mulberry.app.Has;
   dataAPI = toura.Data = dataAPI || new toura.Data(toura.data.local.items);
+
 
   nodeForController = function(c) {
     var node,
@@ -76,6 +79,17 @@ beforeEach(function() {
     }
 
     return node;
+  };
+  
+  capabilityTestSetup = function() {
+    dojo.require('mulberry.containers.Page');
+    dojo.require('mulberry.containers.Region');
+    
+    toura.capabilities = toura.capabilities || {};
+    toura.components = toura.components || {};
+    
+    mulberry.registerCapabilityNamespace(toura.capabilities);
+    mulberry.registerComponentNamespace(toura.components);
   };
 
   isWidgetRegistered = function(widgetName) {
