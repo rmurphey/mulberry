@@ -15,6 +15,8 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
         'url' : item.media.url,
         'poster' : item.image.url
       });
+      // don't show an image in the main display
+      this.item.image = false;
     }
   },
   
@@ -37,21 +39,21 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
     if (feedItem.type !== 'feedItem') { return; }
 
     this.item = feedItem;
-
-    dojo.empty(this.content);
-
-    dojo.place(this.itemTemplate(
-      dojo.delegate(this.item, {
-        pubDate : dojo.date.locale.format(this.item.pubDate),
-        i18n_viewOriginal : this.i18n_viewOriginal
-      })
-    ), this.content);
     
     if (this.item.media && this.item.media.type) {
       dojo.hitch(this, this.mediaHandlers[this.item.media.type])(this.item);
     } else {
       this.videoPlayer.hide();
     }
+
+    dojo.empty(this.content);
+    
+    dojo.place(this.itemTemplate(
+      dojo.delegate(this.item, {
+        pubDate : dojo.date.locale.format(this.item.pubDate),
+        i18n_viewOriginal : this.i18n_viewOriginal
+      })
+    ), this.content);
 
     dojo[this.item.link ? 'removeClass' : 'addClass'](this.externalLink, 'hidden');
 
