@@ -40,11 +40,7 @@ dojo.declare('toura.components.VideoPlayer', toura.components._MediaPlayer, {
     }
     
     // to ensure graceful failure
-    if (!this.media) {
-      this.media = {
-        'poster': ''
-      }
-    }
+    this.media = this.media || { 'poster' : '' };
   },
 
   startup : function() {
