@@ -58,7 +58,7 @@ dojo.declare('toura.components._MediaPlayer', mulberry._Component, {
   _setMediaIdAttr : function(mediaId) {
     var media = this.media = this.mediasCache[mediaId];
 
-    dojo.hitch(this, this._setMediaAttr)(media);
+    this.set('media', media);
   },
 
   _setMediaAttr : function(media) {

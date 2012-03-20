@@ -229,7 +229,7 @@ dojo.declare('toura.models.FeedItem', null, {
 
     // media feed case
     if (this.media && item.thumbnail) {
-        return { url: item.thumbnail.url };
+      return { url: item.thumbnail.url };
     }
 
     return '';
