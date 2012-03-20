@@ -37,7 +37,7 @@ describe("feed item detail component", function() {
       getItem : function() {
         return videoFeedItem;
       }
-    }
+    };
 
     C = function(config) {
       return new toura.components.FeedItemDetail(config || {}).placeAt(t);
