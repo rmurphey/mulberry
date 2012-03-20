@@ -74,3 +74,37 @@ def capture_io_streams(*streams)
   end
   result.string
 end
+
+class FakeBuildHelper
+  def build=(b) end
+  def before_steps() [] end
+  def after_steps() [] end
+  def data() {"foo" => "bar"} end
+  def ota_enabled?() true end
+
+  def icons(a, b) true end
+  def load_screens(a, b) true end
+  def assets(a, b) true end
+  def css(a, b) true end
+  def css_resources(a, b) true end
+
+  def page_defs
+    {}
+  end
+
+  def project_settings
+    {
+      :name => 'Fake Build',
+      :config_dir => 'nonexistent'
+    }
+  end
+
+  def config_settings
+    { }
+  end
+
+  def app_id(os, type)
+    'fake-id'
+  end
+end
+
