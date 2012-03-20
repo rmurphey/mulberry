@@ -46,7 +46,6 @@ beforeEach(function() {
   dojo.require('mulberry.app.Config');
   dojo.require('dojo.cache');
   dojo.require('mulberry.app.Has');
-  dojo.require('mulberry.containers.Region');
 
   mulberry = mulberry || {};
   mulberry.app = mulberry.app || {};
