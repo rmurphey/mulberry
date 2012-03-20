@@ -8,7 +8,7 @@ describe("feed model", function() {
     f.throttle = -1;
     store = dataAPI._store;
     originalFeedItem = dataAPI.getById(f.id);
-
+    
     mulberry.app.PhoneGap = {
       present : false,
       network : {
@@ -119,5 +119,51 @@ describe("feed model", function() {
       expect(resolved).toBeTruthy();
       expect(items.length).toBeDefined();
     });
+  });
+  
+  it('should read the media attribute off an MRSS feed', function() {
+    var videoFeedItem,
+        mediaType = 'video/mp4',
+        mediaUrl = "http://release.theplatform.com/release/content.mp4?pid=n49nIyLbpuGzkWqaaNioX_v_eistztjf&UserName=Unknown&Portal=Toura%20-%20POC%20-%20LowQualityDownload&Metafile=false",
+        videoFeedItemFixture = {
+          content : {
+            bitrate : '163',
+            duration : '108',
+            fileSize : '2218863',
+            height : '224',
+            identifier : "http://mps.theplatform.com/data/Release/2212718327",
+            profile : 'Mobile Standard',
+            type : mediaType,
+            url : mediaUrl,
+            width: "400"
+          },
+          description : "We're in for a mostly sunny and windy day, with more record warmth on the way!  High of 83 this afternoon.",
+          guid : {
+            content : "http://mps.theplatform.com/data/Content/2212717472",
+            isPermalink : "false"
+          },
+          index : 0,
+          modified : "Tue, 20 Mar 2012 13:15:52 GMT",
+          player : {
+            height : "204",
+            url : "http://release.theplatform.com/content.select?pid=n49nIyLbpuGzkWqaaNioX_v_eistztjf&UserName=Unknown&Portal=Toura%20-%20POC%20-%20LowQualityDownload",
+            width : "272"
+          },
+          pubDate : "Tue, 20 Mar 2012 13:11:38 GMT",
+          restriction: {
+            content : "all",
+            relationship : "allow",
+            type : "country"
+          },
+          thumbnail : {
+            url : "http://media.NBCChicago.com/assets/video/NBCU_LM_Prod_-_WMAQ/17/177/Copyofsunny.jpg"
+          },
+          title : "NBC 5 WEATHER VIDEO MAR 20 MORNING"
+        };
+    
+    videoFeedItem = toura.models.FeedItem(videoFeedItemFixture, { id : 'hi' });
+    
+    expect(videoFeedItem.media.url).toEqual(mediaUrl);
+    expect(videoFeedItem.media.type).toEqual(mediaType);
   });
 });
