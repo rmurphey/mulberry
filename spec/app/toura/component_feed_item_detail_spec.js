@@ -126,14 +126,19 @@ describe("feed item detail component", function() {
   });
 
   it("should display the correct video", function() {
+    var videoLoadStart = false;
+    
     c = C({ node : videoFeedItem });
 
     c.videoPlayer._setupPlayer();
-
-    // would be nice to do a waitsFor, but unclear which function it should
-    // be waiting for (_setMediaAttr would be the obvious choice, but does
-    // not work)
-    waits(200);
+    
+    dojo.connect(c.videoPlayer.player, 'loadstart', this, function() {
+      videoLoadStart = true;
+    });
+    
+    waitsFor(function() {
+      return videoLoadStart;
+    }, "Player never loaded", 1000);
 
     runs( function() {
       expect(t.querySelector('.component.video-player video').getAttribute('src')).toEqual(feedMedia.url);
