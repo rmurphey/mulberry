@@ -10,12 +10,15 @@ feed-list-tablet:
       components:
       - PageNav
 
-    - regions:
-      - backgroundImage: true
+    - className: main-content
+      regions:
+      - className: feed-item-list-container
+        backgroundImage: true
         scrollable: true
         components:
         - ColumnHeaderImage
         - FeedItemList
-      - scrollable: true
+      - className: feed-item-detail-container
+        scrollable: true
         components:
         - FeedItemDetail
