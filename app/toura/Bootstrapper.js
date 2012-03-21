@@ -14,7 +14,7 @@ var bootstrapper = function() {
       tour;
 
   if (app.DeviceStorage.get('tour-version') === 0) {
-    app.DeviceStorage.set('tour-verison', null);
+    app.DeviceStorage.set('tour-version', null);
   }
 
   tour = new toura.models.Tour({

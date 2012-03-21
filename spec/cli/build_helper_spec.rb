@@ -14,6 +14,21 @@ describe 'Mulberry build helper' do
     FileUtils.rm_rf 'testapp'
   end
 
+  describe 'html_vars' do
+    it "should include google analytics info if present" do
+      config = File.join('testapp', 'config.yml')
+      config_contents = File.read config
+      File.open(config, 'w') do |f|
+        f.write config_contents.gsub('google_analytics:', 'google_analytics: googleanalytics')
+      end
+
+      @app = Mulberry::App.new 'testapp'
+      @build_helper = Mulberry::BuildHelper.new @app
+
+      @build_helper.html_vars[:google_analytics].should == 'googleanalytics'
+    end
+  end
+
   describe 'config settings' do
 
     it 'should not output version_url and update_url with ota disabled' do
