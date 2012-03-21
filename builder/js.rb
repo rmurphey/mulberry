@@ -93,6 +93,7 @@ module Builder
       unminify_haml
       minify_with_closure
       concat_vendor_files
+      concat_i18n_files
 
       if @client_dir
         FileUtils.rm_rf @client_dir
@@ -120,6 +121,24 @@ module Builder
           end
         end
 
+      end
+    end
+
+    def concat_i18n_files
+      build_location  = report[:location]
+      mulberry_dir    = File.join(build_location, 'mulberry')
+      i18n_dir        = File.join(mulberry_dir, 'nls')
+      mulberry_file   = File.join(mulberry_dir, 'base.js')
+      mulberry_orig   = File.read(mulberry_file)
+
+      return unless File.exists? i18n_dir
+
+      File.open(mulberry_file, 'w') do |dest|
+        %w{ base_ROOT.js base_en.js base_en-us.js }.each do |f|
+          dest.write File.read(File.join(i18n_dir, f))
+        end
+
+        dest.write mulberry_orig
       end
     end
 
