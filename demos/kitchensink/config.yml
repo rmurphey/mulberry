@@ -75,11 +75,3 @@ urban_airship:
 ads:
   phone:  http://mwhenry.com/ad.html
   tablet: http://mwhenry.com/ad.html
-
-# Enter your flurry api keys here
-flurry:
- ios:
-   api_key: flurry_ios_api_key
- android:
-   api_key: flurry_ios_api_key
-

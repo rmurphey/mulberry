@@ -31,8 +31,6 @@ dojo.declare('mulberry.app.PageFactory', null, {
       throw ('mulberry.app.PageFactory: The page definition "' + pageDefName + '" does not exist.');
     }
 
-    mulberry.log('Creating ' + pageDefName);
-
     return new mulberry.containers.Page({
       baseObj: obj,
       device: this.device,

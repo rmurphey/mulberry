@@ -48,8 +48,6 @@
 		<string>PGCapture</string>
 		<key>com.phonegap.splashscreen</key>
 		<string>PGSplashScreen</string>
-		<key>FlurryCommand</key>
-		<string>FlurryCommand</string>
 		<key>PushNotification</key>
 		<string>PushNotification</string>
 		<key>ChildBrowserCommand</key>

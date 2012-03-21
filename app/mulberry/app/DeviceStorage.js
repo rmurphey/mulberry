@@ -6,6 +6,10 @@ dojo.require('mulberry.Device');
  * Provides an API for interacting with the SQLite databse
  */
 mulberry.app.DeviceStorage = (function(){
+  /**
+   * TODO: this should be factored out of mulberry core, and moved to the toura
+   * namespace.
+   */
   var storeInSQL = {
     'tour' : {
       tableName : 'items',
@@ -96,7 +100,7 @@ mulberry.app.DeviceStorage = (function(){
 
           });
 
-          return dfd;
+          return dfd.promise;
         };
       }
 

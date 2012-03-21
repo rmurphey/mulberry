@@ -31,7 +31,6 @@
 		648E763A145A0781004AD965 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 648E7639145A0781004AD965 /* Default.png */; };
 		648E763E145A0782004AD965 /* Capture.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 648E763D145A0782004AD965 /* Capture.bundle */; };
 		648E7640145A0782004AD965 /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 648E763F145A0782004AD965 /* PhoneGap.plist */; };
-		648E7655145A07C8004AD965 /* FlurryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 648E7652145A07C8004AD965 /* FlurryCommand.m */; };
 		648E7656145A07C8004AD965 /* TouraAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 648E7654145A07C8004AD965 /* TouraAppDelegate.m */; };
 		648E7660145A07DA004AD965 /* ChildBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 648E7657145A07DA004AD965 /* ChildBrowser.bundle */; };
 		648E7661145A07DA004AD965 /* ChildBrowserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 648E7659145A07DA004AD965 /* ChildBrowserCommand.m */; };
@@ -40,7 +39,6 @@
 		648E7664145A07DA004AD965 /* PushNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 648E765F145A07DA004AD965 /* PushNotification.m */; };
 		648E766B145A0808004AD965 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 648E766A145A0808004AD965 /* www */; };
 		648E766D145A082D004AD965 /* UrbanAirship.plist in Resources */ = {isa = PBXBuildFile; fileRef = 648E766C145A082D004AD965 /* UrbanAirship.plist */; };
-		64F2D8DF14882C5E002E119B /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F2D8DE14882C5E002E119B /* libFlurryAnalytics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,8 +70,6 @@
 		648E763D145A0782004AD965 /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Capture.bundle; path = Resources/Capture.bundle; sourceTree = "<group>"; };
 		648E763F145A0782004AD965 /* PhoneGap.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PhoneGap.plist; sourceTree = "<group>"; };
 		648E7646145A0782004AD965 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
-		648E7651145A07C8004AD965 /* FlurryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryCommand.h; path = Classes/FlurryCommand.h; sourceTree = "<group>"; };
-		648E7652145A07C8004AD965 /* FlurryCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlurryCommand.m; path = Classes/FlurryCommand.m; sourceTree = "<group>"; };
 		648E7653145A07C8004AD965 /* TouraAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouraAppDelegate.h; path = Classes/TouraAppDelegate.h; sourceTree = "<group>"; };
 		648E7654145A07C8004AD965 /* TouraAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouraAppDelegate.m; path = Classes/TouraAppDelegate.m; sourceTree = "<group>"; };
 		648E7657145A07DA004AD965 /* ChildBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ChildBrowser.bundle; path = Plugins/ChildBrowser.bundle; sourceTree = "<group>"; };
@@ -86,8 +82,6 @@
 		648E765F145A07DA004AD965 /* PushNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotification.m; sourceTree = "<group>"; };
 		648E766A145A0808004AD965 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		648E766C145A082D004AD965 /* UrbanAirship.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UrbanAirship.plist; sourceTree = "<group>"; };
-		64F2D8DD14882C5E002E119B /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
-		64F2D8DE14882C5E002E119B /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +103,6 @@
 				648E761A145A0781004AD965 /* MobileCoreServices.framework in Frameworks */,
 				648E761C145A0781004AD965 /* CoreMedia.framework in Frameworks */,
 				648E7627145A0781004AD965 /* PhoneGap.framework in Frameworks */,
-				64F2D8DF14882C5E002E119B /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +157,6 @@
 		648E761D145A0781004AD965 /* Toura */ = {
 			isa = PBXGroup;
 			children = (
-				64F2D8DC14882C5E002E119B /* FlurryAnalytics */,
 				648E7626145A0781004AD965 /* PhoneGap.framework */,
 				648E7628145A0781004AD965 /* Resources */,
 				648E7641145A0782004AD965 /* Classes */,
@@ -228,8 +220,6 @@
 		648E7641145A0782004AD965 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				648E7651145A07C8004AD965 /* FlurryCommand.h */,
-				648E7652145A07C8004AD965 /* FlurryCommand.m */,
 				648E7653145A07C8004AD965 /* TouraAppDelegate.h */,
 				648E7654145A07C8004AD965 /* TouraAppDelegate.m */,
 			);
@@ -259,15 +249,6 @@
 			);
 			name = push;
 			path = Plugins/push;
-			sourceTree = "<group>";
-		};
-		64F2D8DC14882C5E002E119B /* FlurryAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				64F2D8DD14882C5E002E119B /* FlurryAnalytics.h */,
-				64F2D8DE14882C5E002E119B /* libFlurryAnalytics.a */,
-			);
-			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +345,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				648E7624145A0781004AD965 /* main.m in Sources */,
-				648E7655145A07C8004AD965 /* FlurryCommand.m in Sources */,
 				648E7656145A07C8004AD965 /* TouraAppDelegate.m in Sources */,
 				648E7661145A07DA004AD965 /* ChildBrowserCommand.m in Sources */,
 				648E7662145A07DA004AD965 /* ChildBrowserViewController.m in Sources */,
@@ -456,10 +436,6 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Toura/Toura-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Toura/FlurryAnalytics\"",
-				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -489,10 +465,6 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Toura/Toura-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Toura/FlurryAnalytics\"",
-				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,

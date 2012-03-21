@@ -1,5 +1,8 @@
 describe("feed item detail component", function() {
-  var c, C, t, feed, feedItem;
+  var c, C, t, feed, feedItem, videoFeed, videoFeedItem, feedMedia = {
+    type : 'video/mp4',
+    url : 'http://av.vimeo.com/01780/039/24113681.web?token=1331829715_b4a96dbd1013cbcb9d316abbce7fbc0e'
+  };
 
   beforeEach(function() {
     dojo.require('toura.components.FeedItemDetail');
@@ -23,6 +26,16 @@ describe("feed item detail component", function() {
     feed = {
       getItem : function() {
         return feedItem;
+      }
+    };
+
+    videoFeedItem = dojo.clone(feedItem);
+    videoFeedItem.title = 'Video Feed Item Fixture';
+    videoFeedItem.media = feedMedia;
+
+    videoFeed = {
+      getItem : function() {
+        return videoFeedItem;
       }
     };
 
@@ -61,6 +74,18 @@ describe("feed item detail component", function() {
     expect(link).toBeTruthy();
     expect(link).toBe(c.externalLink);
     expect(dojo.trim(link.innerHTML)).toBeTruthy();
+    expect(dojo.hasClass(link, "hidden")).toBeFalsy();
+  });
+
+  it("should hide the link to the original feed item if there is no url", function() {
+    feedItem.link = null;
+    c = C({ node : feedItem });
+
+    var link = t.querySelector('a[href="' + feedItem.link + '"]');
+
+    expect(link).toBeTruthy();
+    expect(link).toBe(c.externalLink);
+    expect(dojo.hasClass(link, "hidden")).toBeTruthy();
   });
 
   it("should open the link to the original using child browser", function() {
@@ -79,6 +104,45 @@ describe("feed item detail component", function() {
 
     h(fakeEventObj);
     expect(spy).toHaveBeenCalledWith(feedItem.link);
+  });
+
+  it("should hide the video player if there's no video", function() {
+    c = C({ node : feedItem });
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeTruthy();
+  });
+
+  it("should show the video player if there is a video", function() {
+    c = C({ node : videoFeedItem });
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeFalsy();
+  });
+
+  it("should hide and show the video player based on the feed item", function() {
+    c = C({ node : feedItem });
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeTruthy();
+    c.set('item', videoFeedItem);
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeFalsy();
+    c.set('item', feedItem);
+    expect(dojo.hasClass(t.querySelector('.component.video-player'), 'hidden')).toBeTruthy();
+  });
+
+  it("should display the correct video", function() {
+    var videoLoadStart = false;
+    
+    c = C({ node : videoFeedItem });
+
+    c.videoPlayer._setupPlayer();
+    
+    dojo.connect(c.videoPlayer.player, 'loadstart', this, function() {
+      videoLoadStart = true;
+    });
+    
+    waitsFor(function() {
+      return videoLoadStart;
+    }, "Player never loaded", 1000);
+
+    runs( function() {
+      expect(t.querySelector('.component.video-player video').getAttribute('src')).toEqual(feedMedia.url);
+    });
   });
 });
 
