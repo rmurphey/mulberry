@@ -1,13 +1,14 @@
+@mixin video-dimensions($scale: 1) {
+  width: 480px * $scale;
+  height: 320px * $scale;
+}
+
 .component.video-player {
   // center the player verically and horizontally
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
 
-  @mixin dimensions($scale: 1) {
-    width: 480px * $scale;
-    height: 320px * $scale;
-  }
 
   .fake-video {
     display: none;
@@ -41,16 +42,19 @@
   .ios &:not(.disabled) .fake-video {
     display: none;
   }
-
+  
+  
+  // TODO: cleverer/more dynamic solution to resizing the
+  //       video player based on container size
   .phone & {
     video,
     .fake-video {
       @media (orientation: portrait) {
-        @include dimensions(.65);
+        @include video-dimensions(.65);
       }
 
       @media (orientation: landscape) {
-        @include dimensions(.4);
+        @include video-dimensions(.4);
       }
     }
   }
@@ -59,11 +63,11 @@
     video,
     .fake-video {
       @media (orientation: portrait) {
-        @include dimensions(1.2);
+        @include video-dimensions(1.2);
       }
 
       @media (orientation: landscape) {
-        @include dimensions(.9);
+        @include video-dimensions(.9);
       }
     }
   }

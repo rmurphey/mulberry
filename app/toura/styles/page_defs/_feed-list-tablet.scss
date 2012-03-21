@@ -2,16 +2,28 @@
   .screen.index {
     @include standard-screen;
 
-    > .region:nth-child(2) {
+    > .region.main-content {
       @include flex-column-container;
 
-      > .region:first-child {
+      > .region.feed-item-list-container {
         width: 320px;
         @include fixed-flex-region;
       }
 
-      > .region:last-child {
+      > .region.feed-item-detail-container {
         @include box-shadow(-2px, 0);
+        
+        video,
+        .fake-video {
+          @media (orientation: portrait) {
+            @include video-dimensions(.7);
+          }
+
+          @media (orientation: landscape) {
+            @include video-dimensions(.9);
+          }
+        }
+        
       }
     }
   }
