@@ -1,7 +1,5 @@
 dojo.provide('toura.Manifest');
 
-dojo.require('dojo.io.script');
-
 dojo.declare('toura.Manifest', null, {
   constructor :  function() {
     dojo.when(this._load(), dojo.hitch(this, '_parse'));
@@ -28,7 +26,6 @@ dojo.declare('toura.Manifest', null, {
           this._parseDir(base[dirname], contents);
         }, this);
       }
-
     }, this);
   }
 });

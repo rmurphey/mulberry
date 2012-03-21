@@ -38,8 +38,9 @@ module Builder
 
       vars = {
         :device_type          =>  @target['device_type'] || nil,
-        :include_phonegap     =>  !browser,
         :body_onload          =>  browser ? 'readyFn()' : '',
+        :include_phonegap     =>  !browser,
+        :include_manifest     =>  !browser
       }
 
       vars[:data_filename] = "data/tour.js#{browser ? '' : '.jet'}"
