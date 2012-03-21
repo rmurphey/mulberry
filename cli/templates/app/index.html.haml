@@ -35,9 +35,11 @@
     %script(src="javascript/mulberry/base.js")
     %script(src="javascript/client/base.js")
     %script(src="data/pagedefs.js")
+    %script(src="media/manifest.js")
 
     - if defined? data_filename and data_filename
       %script(src="#{data_filename}")
+
 
     - if defined? include_dev_config and include_dev_config # dev
       %script(src="javascript/mulberry/app/DevConfig.js")
