@@ -43,7 +43,7 @@
     }
 
     &:after {
-      content: '»';
+      content: '\00bb';
       padding-left: 5px;
     }
   }
@@ -58,7 +58,7 @@
       margin: 0 auto;
     }
   }
-  
+
   .component.video-player {
     position: static;
   }
