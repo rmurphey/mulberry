@@ -16,79 +16,100 @@ describe Builder::Build do
     @mulberry_helper = Mulberry::BuildHelper.new @app
   end
 
-  describe "build step" do
-    it "should kick off js build if javascript layers are specified" do
-      b = Builder::Build.new(@config.merge({
-        :skip_js_build => false,
-        :target_config => {
-          'build_type' => 'fake',
-          'build' => {
-            'javascript' => [ 'dojo', 'mulberry' ]
-          }
+  it "should create js files if javascript step is specified" do
+    b = Builder::Build.new(@config.merge({
+      :skip_js_build => false,
+      :target_config => {
+        'build_type' => 'fake',
+        'build' => {
+          'javascript' => [ 'dojo', 'mulberry' ]
         }
-      }))
+      }
+    }))
 
-      b.build
+    b.build
 
-      js = b.completed_steps[:build][:javascript]
+    js = b.completed_steps[:build][:javascript]
 
-      js.should_not be_nil
-      js[:location].should_not be_nil
-      js[:build_contents].should_not be_nil
+    js.should_not be_nil
+    js[:location].should_not be_nil
+    js[:build_contents].should_not be_nil
 
-      File.exists?(File.join(js[:location], 'dojo', 'dojo.js')).should_not be_nil
-      File.exists?(File.join(js[:location], 'mulberry', 'base.js')).should_not be_nil
+    File.exists?(File.join(js[:location], 'dojo', 'dojo.js')).should_not be_nil
+    File.exists?(File.join(js[:location], 'mulberry', 'base.js')).should_not be_nil
 
-      dojo_file = File.join(js[:location], 'dojo', 'dojo.js')
-      contents = File.read dojo_file
-      contents.should include 'Haml'
+    dojo_file = File.join(js[:location], 'dojo', 'dojo.js')
+    contents = File.read dojo_file
+    contents.should include 'Haml'
 
-      b.cleanup
+    b.cleanup
+  end
+
+  it "should build html if html is specified" do
+    b = Builder::Build.new(@config.merge({
+      :build_helper => @fake_helper,
+      :target_config => {
+        'build_type' => 'device',
+        'build' => {
+          'html' => true
+        }
+      }
+    }))
+
+    b.build
+
+    html = b.completed_steps[:build][:html]
+    html.should_not be_nil
+    html[:location].should_not be_nil
+    html[:files].should_not be_nil
+
+    index_html = File.read(File.join(html[:location], 'index.html'))
+    index_html.should match 'phonegap'
+    index_html.should_not match 'readyFn'
+    index_html.should match "<title>#{@fake_helper.project_settings[:name]}</title>"
+
+    b.cleanup
+  end
+
+  it "should not include phonegap in the html if it is a browser build" do
+    b = Builder::Build.new(@config.merge({
+      :target_config => {
+        'build_type' => 'browser',
+        'build' => {
+          'html' => true
+        }
+      }
+    }))
+
+    b.build
+
+    html = b.completed_steps[:build][:html]
+    index_html = File.read(File.join(html[:location], 'index.html'))
+    index_html.should_not include 'phonegap'
+  end
+
+  it "should include google analytics code if specified" do
+    class GABuildHelper < FakeBuildHelper
+      def config_settings
+        { :google_analytics => 'googleanalytics' }
+      end
     end
 
-    it "should build html if html is specified" do
-      b = Builder::Build.new(@config.merge({
-        :build_helper => @fake_helper,
-        :target_config => {
-          'build_type' => 'device',
-          'build' => {
-            'html' => true
-          }
+    b = Builder::Build.new(@config.merge({
+      :target_config => {
+        'build_type' => 'browser',
+        'build' => {
+          'html' => true
         }
-      }))
+      },
+      :build_helper => GABuildHelper.new
+    }))
 
-      b.build
+    b.build
 
-      html = b.completed_steps[:build][:html]
-      html.should_not be_nil
-      html[:location].should_not be_nil
-      html[:files].should_not be_nil
-
-      index_html = File.read(File.join(html[:location], 'index.html'))
-      index_html.should match 'phonegap'
-      index_html.should_not match 'readyFn'
-      index_html.should match "<title>#{@fake_helper.project_settings[:name]}</title>"
-
-      b.cleanup
-    end
-
-    it "should not include phonegap in the html if it is a browser build" do
-      b = Builder::Build.new(@config.merge({
-        :target_config => {
-          'build_type' => 'browser',
-          'build' => {
-            'html' => true
-          }
-        }
-      }))
-
-      b.build
-
-      html = b.completed_steps[:build][:html]
-      index_html = File.read(File.join(html[:location], 'index.html'))
-      index_html.should_not match 'phonegap'
-    end
-
+    html = b.completed_steps[:build][:html]
+    index_html = File.read(File.join(html[:location], 'index.html'))
+    index_html.should include 'googleanalytics'
   end
 
   describe "device builds" do
