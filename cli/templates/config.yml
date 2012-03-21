@@ -40,6 +40,10 @@ type:
 # to jQuery functionality, set this to true
 jquery: true
 
+# Include your Google Analytics ID here if you'd like it to be
+# included.
+google_analytics:
+
 # Add api keys for services your app will consume here.
 # The property for the key must end in "api_key"
 # e.g.
