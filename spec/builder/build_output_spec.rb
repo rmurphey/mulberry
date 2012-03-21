@@ -90,7 +90,7 @@ describe Builder::Build do
 
   it "should include google analytics code if specified" do
     class GABuildHelper < FakeBuildHelper
-      def config_settings
+      def html_vars
         { :google_analytics => 'googleanalytics' }
       end
     end
@@ -110,6 +110,8 @@ describe Builder::Build do
     html = b.completed_steps[:build][:html]
     index_html = File.read(File.join(html[:location], 'index.html'))
     index_html.should include 'googleanalytics'
+    index_html.should include 'google-analytics.com'
+    index_html.should include '_gaq.push'
   end
 
   describe "device builds" do
