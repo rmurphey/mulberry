@@ -1,19 +1,11 @@
 require 'spec_helper'
-require "builder"
+require 'builder'
 require 'fakeweb'
 
-describe Builder::Build do
-  class FakeBuildHelper
-    def build=(b) end
-    def before_steps() [] end
-    def after_steps() [] end
-    def data() {"foo" => "bar"} end
-    def ota_enabled?() true end
-    def project_settings
-      { :name => 'Fake Build' }
-    end
-  end
+# This file is for testing general builder behavior. Tests for
+# Mulberry-specific build behavior shoudl go in spec/cli/build_spec.rb
 
+describe Builder::Build do
   before(:each) do
     @config = { :skip_js_build => true }
   end
@@ -74,35 +66,6 @@ describe Builder::Build do
       }.should raise_error
     end
 
-    it "should not raise an error if requirements are met" do
-      lambda {
-        b = Builder::Build.new(@config.merge({
-          :target_config => {
-            'requires' => [
-              'thing'
-            ],
-            'build_type' => 'fake'
-          },
-          :thing => true
-        }))
-
-        b.cleanup
-      }.should_not raise_error
-    end
-
-    it "should not raise an error if there are no requirements" do
-      lambda {
-        b = Builder::Build.new(@config.merge({
-          :target_config => {
-            'requires' => [],
-            'build_type' => 'fake'
-          }
-        }))
-
-        b.cleanup
-      }.should_not raise_error
-    end
-
     it "should raise an error if no build_type be specified" do
       lambda {
         Builder::Build.new(@config.merge({
@@ -110,83 +73,6 @@ describe Builder::Build do
         }))
       }.should raise_error
     end
-  end
-
-  describe "build step" do
-    it "should kick off js build if javascript layers are specified" do
-      b = Builder::Build.new(@config.merge({
-        :skip_js_build => false,
-        :target_config => {
-          'build_type' => 'fake',
-          'build' => {
-            'javascript' => [ 'dojo', 'mulberry' ]
-          }
-        }
-      }))
-
-      b.build
-
-      js = b.completed_steps[:build][:javascript]
-
-      js.should_not be_nil
-      js[:location].should_not be_nil
-      js[:build_contents].should_not be_nil
-
-      File.exists?(File.join(js[:location], 'dojo', 'dojo.js')).should_not be_nil
-      File.exists?(File.join(js[:location], 'mulberry', 'base.js')).should_not be_nil
-
-      dojo_file = File.join(js[:location], 'dojo', 'dojo.js')
-      contents = File.read dojo_file
-      contents.should include 'Haml'
-
-      b.cleanup
-    end
-
-    it "should build html if html is specified" do
-      helper = FakeBuildHelper.new
-
-      b = Builder::Build.new(@config.merge({
-        :build_helper => helper,
-        :target_config => {
-          'build_type' => 'device',
-          'build' => {
-            'html' => true
-          }
-        }
-      }))
-
-      b.build
-
-      html = b.completed_steps[:build][:html]
-      html.should_not be_nil
-      html[:location].should_not be_nil
-      html[:files].should_not be_nil
-
-      index_html = File.read(File.join(html[:location], 'index.html'))
-      index_html.should match 'phonegap'
-      index_html.should_not match 'readyFn'
-      index_html.should match "<title>#{helper.project_settings[:name]}</title>"
-
-      b.cleanup
-    end
-
-    it "should not include phonegap in the html if it is a browser build" do
-      b = Builder::Build.new(@config.merge({
-        :target_config => {
-          'build_type' => 'browser',
-          'build' => {
-            'html' => true
-          }
-        }
-      }))
-
-      b.build
-
-      html = b.completed_steps[:build][:html]
-      index_html = File.read(File.join(html[:location], 'index.html'))
-      index_html.should_not match 'phonegap'
-    end
-
   end
 
   describe "closing" do

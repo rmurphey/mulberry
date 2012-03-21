@@ -155,6 +155,10 @@ module Mulberry
       @config['ota'] and @config['ota']['enabled']
     end
 
+    def html_vars
+      { :google_analytics => @config['google_analytics'] }
+    end
+
     private
     def padded_id
       project_settings[:id].gsub(/\W/, '');
