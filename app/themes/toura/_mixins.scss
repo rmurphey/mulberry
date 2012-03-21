@@ -320,3 +320,9 @@
     @include fixed-flex-region;
   }
 }
+
+@mixin video-dimensions($scale: 1) {
+  width: 480px * $scale;
+  height: 320px * $scale;
+}
+

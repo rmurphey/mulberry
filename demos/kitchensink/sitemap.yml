@@ -11,6 +11,7 @@
   - fullscreen_images
   - feed_list
   - atom_feed
+  - media_feed
   - locations
   - location_map
   - node_gallery:

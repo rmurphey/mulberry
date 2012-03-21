@@ -43,7 +43,7 @@
     }
 
     &:after {
-      content: '»';
+      content: '\00bb';
       padding-left: 5px;
     }
   }
@@ -57,6 +57,10 @@
       height: 250px;
       margin: 0 auto;
     }
+  }
+
+  .component.video-player {
+    position: static;
   }
 }
 
