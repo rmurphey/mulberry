@@ -115,7 +115,7 @@ dojo.declare('toura.models.Node', null, {
       'google-map-pin' : 'googleMapPins',
       'image' : 'images',
       'video' : 'videos',
-      'audio' : 'audios',
+      'audio' : 'audios'
     };
 
     if (!lookup[type]) {
