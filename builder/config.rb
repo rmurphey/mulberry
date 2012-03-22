@@ -22,14 +22,20 @@ module Builder
     def config
       os = @target['device_os'] || 'ios'
       type = @target['device_type'] || 'phone'
-      env = @target['development'] ? 'development' : 'production'
+      env = 'production'
+      debug = false
+
+      if @target['development']
+        env = 'development'
+        debug = true
+      end
 
       if @target['device_os'].nil? || @target['device_type'].nil?
         @build.log("Using default device types", 'warning')
       end
 
       settings = @build.build_helper.config_settings.merge({
-        'debug' => !!@target['development'],
+        'debug' => debug,
         'environment' => env
       })
 
