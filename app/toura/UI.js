@@ -7,11 +7,11 @@ dojo.require('toura.components.AdTag');
 
 (function(m) {
 
-var appConfig = mulberry.app.Config.get('app');
 
 dojo.declare('toura.UI', dojo.Stateful, {
   constructor : function() {
     this.body = dojo.body();
+    this.appConfig = mulberry.app.Config.get('app');
 
     this._setupFeatureClasses();
     this._setupSiblingNav();
@@ -38,7 +38,7 @@ dojo.declare('toura.UI', dojo.Stateful, {
 
   _setupSiblingNav : function() {
     if (!toura.features.siblingNav) { return; }
-    if (toura.features.ads && appConfig.ads && appConfig.ads[m.Device.type]) { return; }
+    if (toura.features.ads && this.appConfig.ads && this.appConfig.ads[m.Device.type]) { return; }
 
     this.siblingNav = m.app.UI.addPersistentComponent(toura.components.SiblingNav, {}, 'first');
     this.set('siblingNavVisible', false);
@@ -76,12 +76,12 @@ dojo.declare('toura.UI', dojo.Stateful, {
           return;
         }
 
-        if (appConfig.ads && appConfig.ads[m.Device.type]) {
+        if (this.appConfig.ads && this.appConfig.ads[m.Device.type]) {
           dojo.addClass(b, 'has-ads');
 
           this.adTag = m.app.UI.addPersistentComponent(
             toura.components.AdTag,
-            { adConfig : appConfig.ads[m.Device.type] },
+            { adConfig : this.appConfig.ads[m.Device.type] },
             'last'
           );
 
