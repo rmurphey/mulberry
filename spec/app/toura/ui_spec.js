@@ -94,18 +94,55 @@ describe("toura ui", function() {
     });
 
     it("should not show the sibling nav if there are ads", function() {
+      var oldConfig = mulberry.app.Config.get('app');
+
+      mulberry.app.Config.set('app', dojo.mixin(oldConfig, { ads : {
+        phone : 'phone',
+        tablet : 'tablet'
+      } }));
+
       toura.features.siblingNav = true;
       toura.features.ads = true;
+
       var spy = spyOn(mulberry.app.UI, 'addPersistentComponent').andCallThrough();
 
       ui = createUI();
 
       expect(ui.siblingNav).not.toBeDefined();
       expect(spy).not.toHaveBeenCalled();
+
+      mulberry.app.Config.set('app', oldConfig);
+    });
+
+    it("should show the sibling nav if there are no ads, even if toura.features.ads is true", function() {
+      var oldConfig = mulberry.app.Config.get('app');
+
+      mulberry.app.Config.set('app', dojo.mixin(oldConfig, { ads : {
+      } }));
+
+      toura.features.siblingNav = true;
+      toura.features.ads = true;
+
+      var spy = spyOn(mulberry.app.UI, 'addPersistentComponent').andCallThrough();
+
+      ui = createUI();
+
+      expect(ui.siblingNav).toBeDefined();
+      expect(spy).toHaveBeenCalled();
+
+      mulberry.app.Config.set('app', oldConfig);
     });
   });
 
   describe("ad tag", function() {
+    beforeEach(function() {
+      var oldConfig = mulberry.app.Config.get('app');
+      mulberry.app.Config.set('app', dojo.mixin(oldConfig, { ads : {
+        phone : 'phone',
+        tablet : 'tablet'
+      } }));
+    });
+
     it("should create the ad container if it is enabled", function() {
       toura.features.ads = true;
       var spy = spyOn(mulberry.app.UI, 'addPersistentComponent');

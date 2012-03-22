@@ -7,6 +7,8 @@ dojo.require('toura.components.AdTag');
 
 (function(m) {
 
+var appConfig = mulberry.app.Config.get('app');
+
 dojo.declare('toura.UI', dojo.Stateful, {
   constructor : function() {
     this.body = dojo.body();
@@ -35,7 +37,8 @@ dojo.declare('toura.UI', dojo.Stateful, {
   },
 
   _setupSiblingNav : function() {
-    if (!toura.features.siblingNav || toura.features.ads) { return; }
+    if (!toura.features.siblingNav) { return; }
+    if (toura.features.ads && appConfig.ads && appConfig.ads[m.Device.type]) { return; }
 
     this.siblingNav = m.app.UI.addPersistentComponent(toura.components.SiblingNav, {}, 'first');
     this.set('siblingNavVisible', false);
@@ -72,8 +75,6 @@ dojo.declare('toura.UI', dojo.Stateful, {
           dojo.removeClass(b, 'has-ads');
           return;
         }
-
-        var appConfig = mulberry.app.Config.get('app');
 
         if (appConfig.ads && appConfig.ads[m.Device.type]) {
           dojo.addClass(b, 'has-ads');
