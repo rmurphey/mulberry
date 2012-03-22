@@ -71,8 +71,6 @@ dojo.declare('toura.models.Node', null, {
 
       data : getAssets('dataAssets', toura.models.Data),
 
-      staticMapImages : getAssets('imageMapImages', toura.models.Image),
-
       googleMapPins : getAssets('googleMapPins', toura.models.GoogleMapPin),
 
       feeds : getAssets('feeds', toura.models.Feed),
@@ -118,7 +116,6 @@ dojo.declare('toura.models.Node', null, {
       'image' : 'images',
       'video' : 'videos',
       'audio' : 'audios',
-      'static-map-image' : 'staticMapImages'
     };
 
     if (!lookup[type]) {
