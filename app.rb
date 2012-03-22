@@ -113,7 +113,8 @@ module Mulberry
           'favorites'               =>  true,
           'font_size'               =>  true,
           'multi_line_child_nodes'  =>  false,
-          'debug_page'              =>  true
+          'debug_page'              =>  true,
+          'environment'             =>  'production'
         }
 
         settings = defaults.merge(binding)
