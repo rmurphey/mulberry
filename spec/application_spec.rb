@@ -136,6 +136,18 @@ describe Mulberry::Framework do
           end
         end
       end
+
+      it "should indicate a production environment by default" do
+        c = Mulberry::Framework::Generators.config('ios', 'phone')
+        c.should include "mulberry.environment = 'production';"
+      end
+
+      it "should allow specifying a different environment" do
+        c = Mulberry::Framework::Generators.config('ios', 'phone', {
+          'environment' => 'customenv'
+        })
+        c.should include "mulberry.environment = 'customenv';"
+      end
     end
   end
 end
