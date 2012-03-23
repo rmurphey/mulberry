@@ -218,7 +218,9 @@ dojo.declare('toura.models.FeedItem', null, {
     } else {
       enc = item.enclosure || item.content;
     }
-
+    
+    if (!enc) { return ''; }
+    
     if (!dojo.isObject(enc) && enc.match(/(jpeg|jpg|png)/i)) {
       return { url : enc };
     }
