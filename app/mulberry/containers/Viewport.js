@@ -63,5 +63,6 @@ dojo.declare('mulberry.containers.Viewport', mulberry._View, {
     this._cleanupOldPage();
     mulberry.animating = false;
     dojo.publish('/page/transition/end');
+    dojo.style(this.domNode, { width : mulberry.app.UI.viewport.width + 'px' });
   }
 });
