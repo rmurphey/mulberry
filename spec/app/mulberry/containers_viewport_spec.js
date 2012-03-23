@@ -37,11 +37,4 @@ describe("viewport container", function() {
     expect(t.querySelector('.viewport .fake-component')).toBeTruthy();
   });
 
-  describe("animation", function() {
-    it("should ensure that its width is the width of the viewport on animation end", function() {
-      dojo.style(c.domNode, { width : '500px' });
-      c.set('content', new mulberry._Component());
-      expect(c.domNode.style.width).toBe(mulberry.app.UI.viewport.width + 'px');
-    });
-  });
 });
