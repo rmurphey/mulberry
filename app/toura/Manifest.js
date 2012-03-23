@@ -1,28 +1,20 @@
 dojo.provide('toura.Manifest');
 
-dojo.require('dojo.io.script');
-
 dojo.declare('toura.Manifest', null, {
-  url : './media/manifest.js',
-
   constructor :  function() {
     dojo.when(this._load(), dojo.hitch(this, '_parse'));
   },
 
   _load : function() {
     if (toura.forceStreaming) { return; }
-    return this.manifest || dojo.io.script.get({ url : this.url });
+    return toura.manifest;
   },
 
   _parse : function() {
-    if (!toura.manifest) {
-      toura.manifest = {};
-      return;
-    }
-
     var manifest = {};
-    this._parseDir(manifest, toura.manifest.dirs);
-    toura.manifest = manifest;
+    toura.manifest = toura.manifest || {};
+    this._parseDir(manifest, toura.manifest.dirs || {});
+    this.manifest = toura.manifest = manifest;
   },
 
   _parseDir : function(base, obj) {
@@ -34,7 +26,6 @@ dojo.declare('toura.Manifest', null, {
           this._parseDir(base[dirname], contents);
         }, this);
       }
-
     }, this);
   }
 });

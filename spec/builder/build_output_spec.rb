@@ -45,73 +45,93 @@ describe Builder::Build do
     b.cleanup
   end
 
-  it "should build html if html is specified" do
-    b = Builder::Build.new(@config.merge({
-      :build_helper => @fake_helper,
-      :target_config => {
-        'build_type' => 'device',
-        'build' => {
-          'html' => true
+  describe "html" do
+    def config(type = 'device')
+      @config.merge({
+        :build_helper => @fake_helper,
+        :target_config => {
+          'build_type' => type,
+          'build' => { 'html' => true }
         }
-      }
-    }))
-
-    b.build
-
-    html = b.completed_steps[:build][:html]
-    html.should_not be_nil
-    html[:location].should_not be_nil
-    html[:files].should_not be_nil
-
-    index_html = File.read(File.join(html[:location], 'index.html'))
-    index_html.should match 'phonegap'
-    index_html.should_not match 'readyFn'
-    index_html.should match "<title>#{@fake_helper.project_settings[:name]}</title>"
-
-    b.cleanup
-  end
-
-  it "should not include phonegap in the html if it is a browser build" do
-    b = Builder::Build.new(@config.merge({
-      :target_config => {
-        'build_type' => 'browser',
-        'build' => {
-          'html' => true
-        }
-      }
-    }))
-
-    b.build
-
-    html = b.completed_steps[:build][:html]
-    index_html = File.read(File.join(html[:location], 'index.html'))
-    index_html.should_not include 'phonegap'
-  end
-
-  it "should include google analytics code if specified" do
-    class GABuildHelper < FakeBuildHelper
-      def html_vars
-        { :google_analytics => 'googleanalytics' }
-      end
+      })
     end
 
-    b = Builder::Build.new(@config.merge({
-      :target_config => {
-        'build_type' => 'browser',
-        'build' => {
-          'html' => true
-        }
-      },
-      :build_helper => GABuildHelper.new
-    }))
+    def html_contents(build)
+      html = build.completed_steps[:build][:html]
+      File.read(File.join(html[:location], 'index.html'))
+    end
 
-    b.build
+    it "should build html if html is specified" do
+      b = Builder::Build.new(config)
+      b.build
 
-    html = b.completed_steps[:build][:html]
-    index_html = File.read(File.join(html[:location], 'index.html'))
-    index_html.should include 'googleanalytics'
-    index_html.should include 'google-analytics.com'
-    index_html.should include '_gaq.push'
+      html = b.completed_steps[:build][:html]
+      html.should_not be_nil
+      html[:location].should_not be_nil
+      html[:files].should_not be_nil
+
+      b.cleanup
+    end
+
+    it "should include phonegap for device builds" do
+      b = Builder::Build.new(config)
+      b.build
+      html_contents(b).should include 'phonegap'
+      b.cleanup
+    end
+
+    it "should not include the readyFn" do
+      b = Builder::Build.new(config)
+      b.build
+      html_contents(b).should_not include 'readyFn'
+      b.cleanup
+    end
+
+    it "should include the app title" do
+      b = Builder::Build.new(config)
+      b.build
+      html_contents(b).should include "<title>#{@fake_helper.project_settings[:name]}</title>"
+      b.cleanup
+    end
+
+    it "should not include phonegap in the html if it is a browser build" do
+      b = Builder::Build.new(config 'browser')
+      b.build
+      html_contents(b).should_not include 'phonegap'
+      b.cleanup
+    end
+
+    it "should include google analytics code if specified" do
+      class GABuildHelper < FakeBuildHelper
+        def html_vars
+          { :google_analytics => 'googleanalytics' }
+        end
+      end
+
+      b = Builder::Build.new(config('browser').merge({
+        :build_helper => GABuildHelper.new
+      }))
+
+      b.build
+
+      html_contents(b).should include 'googleanalytics'
+      html_contents(b).should include 'google-analytics.com'
+      html_contents(b).should include '_gaq.push'
+
+      b.cleanup
+    end
+
+    it "should include the manifest for device builds" do
+      b = Builder::Build.new(config('device'))
+      b.build
+      html_contents(b).should include 'manifest.js'
+    end
+
+    it "should not include the manifest for browser builds" do
+      b = Builder::Build.new(config('browser'))
+      b.build
+      html_contents(b).should_not include 'manifest.js'
+    end
   end
 
   describe "device builds" do

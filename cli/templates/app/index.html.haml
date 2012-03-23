@@ -6,6 +6,8 @@
 - device_type ||= 'phone'
 - body_onload ||= ''
 - title ||= 'Mulberry'
+- include_manifest ||= false
+
 %html(lang="en" class="no-js")
   %head
     %meta(charset="utf-8")
@@ -32,6 +34,9 @@
     %script(src="javascript/mulberry/base.js")
     %script(src="javascript/client/base.js")
     %script(src="data/pagedefs.js")
+
+    - if include_manifest
+      %script(src="media/manifest.js")
 
     - if defined? data_filename and data_filename
       %script(src="#{data_filename}")
