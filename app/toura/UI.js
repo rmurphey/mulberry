@@ -7,6 +7,8 @@ dojo.require('toura.components.AdTag');
 
 (function(m) {
 
+var adsClass = 'has-ads',
+    siblingNavClass = 'sibling-nav-visible';
 
 dojo.declare('toura.UI', dojo.Stateful, {
   constructor : function() {
@@ -40,44 +42,47 @@ dojo.declare('toura.UI', dojo.Stateful, {
     if (!toura.features.siblingNav) { return; }
     if (toura.features.ads && this.appConfig.ads && this.appConfig.ads[m.Device.type]) { return; }
 
+    var currentPage = m.app.UI.currentPage;
+
     this.siblingNav = m.app.UI.addPersistentComponent(toura.components.SiblingNav, {}, 'first');
     this.set('siblingNavVisible', false);
 
     dojo.connect(this.siblingNav, 'show', this, function() {
-      dojo.addClass(this.body, 'sibling-nav-visible');
-      dojo.publish('/window/resize');
+      if (currentPage) {
+        currentPage.addClass(siblingNavClass);
+        dojo.publish('/window/resize');
+      }
     });
 
     dojo.connect(this.siblingNav, 'hide', this, function() {
-      dojo.removeClass(this.body, 'sibling-nav-visible');
-      dojo.publish('/window/resize');
+      if (currentPage) {
+        currentPage.removeClass(siblingNavClass);
+        dojo.publish('/window/resize');
+      }
     });
   },
 
   _setupAdTag : function() {
     if (!toura.features.ads) { return; }
 
-    var isHomeNode = m.app.UI.currentPage && m.app.UI.currentPage.baseObj.isHomeNode,
+    var currentPage = m.app.UI.currentPage,
+        isHomeNode = currentPage && currentPage.baseObj.isHomeNode,
         b = dojo.body();
 
     if (this.adTag) {
       this.adTag.destroy();
     }
 
-    if (isHomeNode) {
-      dojo.removeClass(b, 'has-ads');
-      return;
-    }
+    if (isHomeNode) { return; }
 
     mulberry.app.PhoneGap.network.isReachable()
       .then(dojo.hitch(this, function(isReachable) {
-        if (!isReachable) {
-          dojo.removeClass(b, 'has-ads');
-          return;
-        }
+        if (!isReachable) { return; }
 
         if (this.appConfig.ads && this.appConfig.ads[m.Device.type]) {
-          dojo.addClass(b, 'has-ads');
+          if (currentPage) {
+            currentPage.addClass(adsClass);
+          }
 
           this.adTag = m.app.UI.addPersistentComponent(
             toura.components.AdTag,
