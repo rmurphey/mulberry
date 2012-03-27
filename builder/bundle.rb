@@ -123,13 +123,13 @@ module Builder
 
         # sample the icons to the appropriate sizes
         # iPad needs the 2x icon, too, otherwise Apple complains.
-        system %{convert #{File.join(@icons[:location], 'app_icon_phone.png')} -sample 57x57! \
+        system %{convert #{File.join(@icons[:location], 'app_icon_phone.png')} -scale 57x57! \
           #{File.join(project_icons_dir, 'icon.png')}
         }
 
         icon_2x_path = File.join(project_icons_dir, 'icon@2x.png')
         if is_phone
-          system %{convert #{File.join(@icons[:location], 'app_icon_phone.png')} -sample 114x114! \
+          system %{convert #{File.join(@icons[:location], 'app_icon_phone.png')} -scale 114x114! \
             #{icon_2x_path}
           }
         else
@@ -141,7 +141,7 @@ module Builder
         if is_phone
           FileUtils.remove_file icon_72_path
         else
-          system %{convert #{File.join(@icons[:location], 'app_icon_tablet.png')} -sample 72x72! \
+          system %{convert #{File.join(@icons[:location], 'app_icon_tablet.png')} -scale 72x72! \
             #{icon_72_path}
           }
         end
@@ -157,7 +157,7 @@ module Builder
         if File.exists? portrait_image
           if is_phone
             # Force a downsample
-            system %{convert #{portrait_image} -sample 320x480! \
+            system %{convert #{portrait_image} -scale 320x480! \
               #{File.join(project_splash_dir, 'Default.png')}
             }
 
@@ -213,11 +213,11 @@ module Builder
         end
 
         %w(hdpi ldpi mdpi).each do |resolution|
-          system %{convert #{File.join(@icons[:location], 'app_icon_phone.png')} -sample #{icon_size.call resolution}! \
+          system %{convert #{File.join(@icons[:location], 'app_icon_phone.png')} -scale #{icon_size.call resolution}! \
             #{File.join(@project_dir, 'res', "drawable-#{resolution}", 'icon.png')}
           }
 
-          system %{convert #{ File.join(@load_screens[:location], 'phone_portrait.png') } -sample #{screen_size.call resolution}! \
+          system %{convert #{ File.join(@load_screens[:location], 'phone_portrait.png') } -scale #{screen_size.call resolution}! \
             #{File.join(@project_dir, 'res', "drawable-#{resolution}", 'splash.png')}
           }
         end
