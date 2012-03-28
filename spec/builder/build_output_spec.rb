@@ -134,6 +134,28 @@ describe Builder::Build do
     end
   end
 
+  describe "config" do
+    describe "browser builds" do
+      before :all do
+        b = Builder::Build.new(@config.merge({
+          :build_helper   =>  @mulberry_helper,
+          :target_config  =>  {
+            'build_type'  =>  'browser',
+            'build'       =>  { 'config' => true }
+          }
+        }))
+
+        b.build
+        config = b.completed_steps[:build][:config]
+        @config_contents = File.read(File.join(config[:location], 'AppConfig.js'))
+      end
+
+      it "should set skipVersionCheck to true" do
+        @config_contents.should include 'toura.skipVersionCheck = true;'
+      end
+    end
+  end
+
   describe "device builds" do
     describe "iphone build" do
       before :all do
