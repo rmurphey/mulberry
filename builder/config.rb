@@ -22,6 +22,7 @@ module Builder
     def config
       os = @target['device_os'] || 'ios'
       type = @target['device_type'] || 'phone'
+      browser = %w{browser MAP}.include? @target['build_type']
       env = 'production'
       debug = false
 
@@ -35,8 +36,9 @@ module Builder
       end
 
       settings = @build.build_helper.config_settings.merge({
-        'debug' => debug,
-        'environment' => env
+        'debug'               => debug,
+        'environment'         => env,
+        'skip_version_check'  => browser
       })
 
       # don't provide device config info for browser builds
