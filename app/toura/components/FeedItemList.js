@@ -18,6 +18,12 @@ dojo.declare('toura.components.FeedItemList', mulberry._Component, {
     if (this.feed) {
       this.connect(this.refreshButton, 'click', '_loadFeed');
     }
+
+    this.connect(this.feedItemList, 'touchmove', function() {
+      this.moved = true;
+    });
+
+    this.connect(this.feedItemList, mulberry.app.UI.hasTouch ? 'touchend' : 'click', '_onSelect');
   },
 
   startup : function() {
@@ -32,8 +38,6 @@ dojo.declare('toura.components.FeedItemList', mulberry._Component, {
       dojo.hitch(this, '_populate'),
       dojo.hitch(this, '_handleNoNetwork')
     );
-
-    this.connect(this.feedItemList, 'click', '_onSelect');
   },
 
   _populate : function(items) {
@@ -69,6 +73,11 @@ dojo.declare('toura.components.FeedItemList', mulberry._Component, {
   },
 
   _onSelect : function(e) {
+    if (this.moved) {
+      this.moved = false;
+      return;
+    }
+
     e.preventDefault();
 
     var t = e.target, index;
