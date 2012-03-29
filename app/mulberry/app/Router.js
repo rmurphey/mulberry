@@ -88,6 +88,7 @@ dojo.require('dojo.hash');
      * the browser history.
      */
     back : function() {
+      mulberry.app.UI.set('navDirection', 'back');
       history.back();
     },
 

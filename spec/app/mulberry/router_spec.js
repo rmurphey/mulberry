@@ -97,6 +97,14 @@ describe("router", function() {
     expect(spy).toHaveBeenCalledWith('navDirection', 'back');
   });
 
+  it("should set the nav direction to back when the back method is called", function() {
+    var spy = spyOn(mulberry.app.UI, 'set');
+    api.go('/test');
+    api.go('/test2');
+    api.back();
+    expect(spy).toHaveBeenCalledWith('navDirection', 'back');
+  });
+
   it("should route the request to the appropriate route with the parameters", function() {
     var redir = function(loc) {
       api.go(loc);
