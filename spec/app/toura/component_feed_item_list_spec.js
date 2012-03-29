@@ -108,11 +108,13 @@ describe("feed item list component", function() {
   });
 
   it("should announce when a user selects an item", function() {
+    mulberry.app.UI.hasTouch = true;
+
     c = C({ node : node });
     c.startup();
 
     var spy = spyOn(c, 'onSelect'),
-        handler = getEventHandler(c, 'click', c.feedItemList);
+        handler = getEventHandler(c, 'touchend', c.feedItemList);
 
     handler({
       preventDefault : function() { },
@@ -122,4 +124,23 @@ describe("feed item list component", function() {
     expect(spy).toHaveBeenCalledWith(c.feed.id, '0');
   });
 
+  it("should not announce a selection if the list has been moved", function() {
+    mulberry.app.UI.hasTouch = true;
+
+    c = C({ node : node });
+    c.startup();
+
+    var spy = spyOn(c, 'onSelect'),
+        touchmoveHandler = getEventHandler(c, 'touchmove', c.feedItemList),
+        touchendHandler = getEventHandler(c, 'touchend', c.feedItemList);
+
+    touchmoveHandler();
+
+    touchendHandler({
+      preventDefault : function() { },
+      target : c.feedItemList.querySelector('li > *')
+    });
+
+    expect(spy).not.toHaveBeenCalled();
+  });
 });
