@@ -152,7 +152,14 @@ dojo.require('mulberry.Device');
         handler : function(params) {
           var feed = toura.Data.getModel(params.feedId, 'feed'),
               feedItem = feed.getItem(params.itemIndex),
-              page = mulberry.createPage(dojo.mixin(feedItem, {
+              page;
+
+          if (!feedItem) {
+            mulberry.app.Router.home();
+            return;
+          }
+
+          page = mulberry.createPage(dojo.mixin(feedItem, {
                 pageDef : 'feed-item',
                 backgroundImage : appBackgroundImage()
               }));

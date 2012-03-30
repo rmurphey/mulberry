@@ -88,7 +88,9 @@ dojo.declare('toura.models.Feed', null, {
   getItem : function(itemIndex) {
     this._get();
     var item = this.items[itemIndex];
-    item.siblings = this.items;
+    if (item) {
+      item.siblings = this.items;
+    }
     return item;
   },
 
@@ -218,9 +220,9 @@ dojo.declare('toura.models.FeedItem', null, {
     } else {
       enc = item.enclosure || item.content;
     }
-    
+
     if (!enc) { return ''; }
-    
+
     if (!dojo.isObject(enc) && enc.match(/(jpeg|jpg|png)/i)) {
       return { url : enc };
     }
