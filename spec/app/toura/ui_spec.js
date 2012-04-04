@@ -1,7 +1,9 @@
 describe("toura ui", function() {
-  var ui, createUI;
+  var ui, createUI, currentPageClass;
 
   beforeEach(function() {
+    currentPageClass = [];
+
     mulberry.app.PhoneGap = {
       present : true,
       network : {
@@ -14,6 +16,24 @@ describe("toura ui", function() {
     };
 
     mulberry.app.UI = {
+      currentPage : {
+        addClass : function(c) {
+          currentPageClass.push(c);
+        },
+        removeClass : function(c) {
+          currentPageClass = dojo.filter(currentPageClass, function(k) {
+            return k !== c;
+          });
+        },
+        hasClass : function(c) {
+          return dojo.some(currentPageClass, function(k) {
+            return k === c;
+          });
+        },
+        baseObj : {
+          isHomeNode : false
+        }
+      },
       showPage : function() { },
       set : function() { },
       addPersistentComponent : function(C) {
@@ -75,11 +95,11 @@ describe("toura ui", function() {
       ui = createUI();
       ui.set('siblingNavVisible', false);
       expect(ui.siblingNav.hasClass('hidden')).toBeTruthy();
-      expect(dojo.hasClass(dojo.body(), 'sibling-nav-visible')).toBeFalsy();
+      expect(mulberry.app.UI.currentPage.hasClass('sibling-nav-visible')).toBeFalsy();
 
       ui.siblingNav.show();
       expect(ui.siblingNav.hasClass('hidden')).toBeFalsy();
-      expect(dojo.hasClass(dojo.body(), 'sibling-nav-visible')).toBeTruthy();
+      expect(mulberry.app.UI.currentPage.hasClass('sibling-nav-visible')).toBeTruthy();
     });
 
     it("should not show the sibling nav if there are no siblings", function() {
@@ -149,17 +169,10 @@ describe("toura ui", function() {
 
       ui = createUI();
 
-      mulberry.app.UI.currentPage = {
-        baseObj : { isHomeNode : false }
-      };
-
       mulberry.app.UI.showPage();
 
       expect(spy.mostRecentCall.args[0]).toBe(toura.components.AdTag);
-      expect(dojo.hasClass(dojo.body(), 'has-ads')).toBeTruthy();
-
-      // cleanup
-      dojo.removeClass(dojo.body(), 'has-ads');
+      expect(mulberry.app.UI.currentPage.hasClass('has-ads')).toBeTruthy();
     });
 
     it("should not create the ad container if it is not enabled", function() {
@@ -201,10 +214,6 @@ describe("toura ui", function() {
       var b = dojo.body();
       toura.features.ads = true;
 
-      mulberry.app.UI.currentPage = {
-        baseObj : { isHomeNode : false }
-      };
-
       mulberry.app.PhoneGap.network.isReachable = function() {
         var dfd = new dojo.Deferred();
         dfd.resolve(true);
@@ -214,7 +223,9 @@ describe("toura ui", function() {
       ui = createUI();
       mulberry.app.UI.showPage();
 
-      expect(dojo.hasClass(b, 'has-ads')).toBeTruthy();
+      expect(mulberry.app.UI.currentPage.hasClass('has-ads')).toBeTruthy();
+
+      currentPageClass = [];
 
       mulberry.app.PhoneGap.network.isReachable = function() {
         var dfd = new dojo.Deferred();
@@ -225,7 +236,7 @@ describe("toura ui", function() {
       ui = createUI();
       mulberry.app.UI.showPage();
 
-      expect(dojo.hasClass(b, 'has-ads')).toBeFalsy();
+      expect(mulberry.app.UI.currentPage.hasClass('has-ads')).toBeFalsy();
       expect(document.querySelector('.component.ad-tag')).toBeFalsy();
     });
   });
