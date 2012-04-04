@@ -19,7 +19,7 @@ dojo.require('mulberry.app.DeviceStorage');
  * @property {Number} updated
  */
 dojo.declare('toura.models.Feed', null, {
-  throttle : 5 * 60 * 1000, // 5 minutes
+  throttle : 5 * 1000, // 5 seconds
 
   /**
    * @constructor
