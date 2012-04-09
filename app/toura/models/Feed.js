@@ -101,13 +101,10 @@ dojo.declare('toura.models.Feed', null, {
     this.lastChecked = new Date().getTime();
 
     console.log('data', data);
-    if (data && data.query && data.query.results && data.query.results.item) {
-      this.items = dojo.map(data.query.results.item, function(item, index) {
-        item.index = index;
-        return new toura.models.FeedItem(item, this);
-      }, this);
+    if (data && data.items) {
+      this.items = data.items;
 
-      this.updated = new dojo.date.stamp.fromISOString(data.query.created);
+//      this.updated = new dojo.date.stamp.fromISOString(data.updated);
     } else {
       console.warn('There were no results for feed', this.id, data);
       this.items = [];
