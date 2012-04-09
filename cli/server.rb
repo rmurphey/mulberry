@@ -242,6 +242,18 @@ module Mulberry
       )
     end
 
+    get '/:os/:type/feed-proxy/*' do
+      file_path = File.join(
+        @source_dir,
+        "assets",
+        "feed-proxy",
+        params[:splat].first
+      )
+
+      contents = File.open(file_path, 'r').read
+      params['callback'] + '(' + contents + ');'
+    end
+
     #####################
     # Resources
     #####################

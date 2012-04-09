@@ -58,11 +58,9 @@ dojo.declare('toura.models.Feed', null, {
    * reachable and no attempt was made to load the feed items.
    */
   load : function() {
-    var fn = mulberry.app.PhoneGap.present ?
-        dojo.hitch(dojo, 'xhrGet') :
-        dojo.hitch(dojo.io.script, 'get'),
-
+    var fn = dojo.hitch(dojo.io.script, 'get'),
         dfd = new dojo.Deferred();
+    console.log('Feed#load');
 
     if (new Date().getTime() - this.lastChecked < this.throttle) {
       dfd.resolve(this._get());
@@ -74,7 +72,12 @@ dojo.declare('toura.models.Feed', null, {
             return;
           }
 
-          fn(this._createArgs(dfd));
+          fn({
+            url : this.feedUrl,
+            callbackParamName : 'callback',
+            load : dojo.hitch(this, '_onLoad', dfd),
+            error : dojo.hitch(this, '_onError', dfd)
+          });
         }));
     }
 
@@ -97,6 +100,7 @@ dojo.declare('toura.models.Feed', null, {
   _onLoad : function(dfd, data) {
     this.lastChecked = new Date().getTime();
 
+    console.log('data', data);
     if (data && data.query && data.query.results && data.query.results.item) {
       this.items = dojo.map(data.query.results.item, function(item, index) {
         item.index = index;
@@ -115,6 +119,7 @@ dojo.declare('toura.models.Feed', null, {
   },
 
   _onError : function(dfd) {
+    console.log('error', dfd);
     dfd.resolve(this._get() || []);
   },
 
@@ -137,21 +142,11 @@ dojo.declare('toura.models.Feed', null, {
 
   _createArgs : function(dfd) {
     var req = {
-      url : 'http://query.yahooapis.com/v1/public/yql',
-      content : {
-        q : "select * from feed where url='{{feed}}' limit 15".replace('{{feed}}', this.feedUrl),
-        format : 'json'
-      },
-      preventCache : true,
+      url : this.feedUrl,
+      callbackParamName : 'callback',
       load : dojo.hitch(this, '_onLoad', dfd),
       error : dojo.hitch(this, '_onError', dfd)
     };
-
-    if (!mulberry.app.PhoneGap.present) {
-      req.callbackParamName = 'callback';
-    } else {
-      req.handleAs = 'json';
-    }
 
     return req;
   }

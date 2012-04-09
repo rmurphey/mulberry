@@ -8,7 +8,7 @@ describe("feed model", function() {
     f.throttle = -1;
     store = dataAPI._store;
     originalFeedItem = dataAPI.getById(f.id);
-    
+
     mulberry.app.PhoneGap = {
       present : false,
       network : {
@@ -45,7 +45,8 @@ describe("feed model", function() {
   /* TODO: This is removed pending better integration with Travis-CI */
   it("should resolve the load method's promise with an array of feed items", function() {
     var items,
-        feeds = ["http://rss.cnn.com/rss/cnn_topstories.rss", "http://www.nbcchicago.com/blogs/ward-room/?rss=y"];
+        feeds = ["http://localhost:3001/ios/phone/feed-proxy/techcrunch.json"];
+    console.log('feeds', feeds);
 
     dojo.forEach(feeds, function(feed) {
       f.feedURL = feed;
@@ -120,7 +121,7 @@ describe("feed model", function() {
       expect(items.length).toBeDefined();
     });
   });
-  
+
   it('should read the media attribute off an MRSS feed', function() {
     var videoFeedItem,
         mediaType = 'video/mp4',
@@ -160,9 +161,9 @@ describe("feed model", function() {
           },
           title : "NBC 5 WEATHER VIDEO MAR 20 MORNING"
         };
-    
+
     videoFeedItem = toura.models.FeedItem(videoFeedItemFixture, { id : 'hi' });
-    
+
     expect(videoFeedItem.media.url).toEqual(mediaUrl);
     expect(videoFeedItem.media.type).toEqual(mediaType);
   });
