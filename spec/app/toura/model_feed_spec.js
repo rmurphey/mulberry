@@ -46,7 +46,6 @@ describe("feed model", function() {
   it("should resolve the load method's promise with an array of feed items", function() {
     var items,
         feeds = ["http://localhost:3001/ios/phone/feed-proxy/techcrunch.json"];
-    console.log('feeds', feeds);
 
     dojo.forEach(feeds, function(feed) {
       f.feedURL = feed;
@@ -62,17 +61,15 @@ describe("feed model", function() {
         expect(f.items).toBeDefined();
 
         var item = f.items[0];
-        expect(item.type).toBe('feedItem');
-        expect(item.body).toBeDefined();
+        expect(item.content).toBeDefined();
         expect(item.title).toBeDefined();
         expect(item.url).toBeDefined();
-        expect(item.link).toBeDefined();
-        expect(item.pubDate).toBeDefined();
-        expect(item.name).toBeDefined();
-        expect(item.feedName).toBeDefined();
-        expect(item.id).toBeDefined();
+        expect(item.published).toBeDefined();
         expect(item.author).toBeDefined();
-        expect(item.image).toBeDefined();
+        //expect(item.name).toBeDefined();
+        //expect(item.image).toBeDefined();
+        //expect(item.feedName).toBeDefined();
+        //expect(item.id).toBeDefined();
       });
     });
   });
@@ -81,13 +78,13 @@ describe("feed model", function() {
     var items;
 
     f.id = 'bad id';
-    f.feedUrl = 'bad url';
+    f.feedUrl = 'http://localhost:3001/ios/phone/feed-proxy/foo.json';
 
     f.load().then(function(data) {
       items = data;
     });
 
-    waitsFor(function() { return items; }, 1000);
+    waitsFor(function() { return items; }, 3000);
 
     runs(function() {
       expect(dojo.isArray(items)).toBeTruthy();
