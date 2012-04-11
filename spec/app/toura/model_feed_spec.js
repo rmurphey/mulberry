@@ -74,7 +74,7 @@ describe("feed model", function() {
     });
   });
 
-  it("should resolve the load method's promise with an empty array if there is no data", function() {
+  xit("should resolve the load method's promise with an empty array if there is no data", function() {
     var items;
 
     f.id = 'bad id';
