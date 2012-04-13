@@ -100,11 +100,13 @@ dojo.declare('toura.models.Feed', null, {
   _onLoad : function(dfd, data) {
     this.lastChecked = new Date().getTime();
 
-    console.log('data', data);
     if (data && data.items) {
-      this.items = data.items;
+      this.items = dojo.map(data.items, function(item, index) {
+        item.index = index;
+        return new toura.models.FeedItem(item, this);
+      }, this);
 
-//      this.updated = new dojo.date.stamp.fromISOString(data.updated);
+//      this.lastModified = new dojo.date.stamp.fromISOString(data.lastModified);
     } else {
       console.warn('There were no results for feed', this.id, data);
       this.items = [];
@@ -116,7 +118,6 @@ dojo.declare('toura.models.Feed', null, {
   },
 
   _onError : function(dfd) {
-    console.log('error', dfd);
     dfd.resolve(this._get() || []);
   },
 
@@ -173,9 +174,10 @@ dojo.declare('toura.models.FeedItem', null, {
       title : item.title || '',
       url : toura.URL.feedItem(feed.id, item.index),
       link : item.link,
-      pubDate : item.pubDate,
-      name : item.title,
+      published : item.published,
       feedName : feed.name,
+      content : item.content,
+      author : item.author,
       id : feed.id + '-' + item.index
     });
 
@@ -187,11 +189,11 @@ dojo.declare('toura.models.FeedItem', null, {
       this.title = this.title.content || null;
     }
 
-    this.media = this._getMedia(item);
-
-    this.body = this._getBody(item);
-    this.image = this._getImage(item);
-    this.author = this._getAuthor(item);
+//    this.media = this._getMedia(item);
+//
+//    this.body = this._getBody(item);
+//    this.image = this._getImage(item);
+//    this.author = this._getAuthor(item);
   },
 
   _getBody : function(item) {

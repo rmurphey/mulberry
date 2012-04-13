@@ -45,7 +45,7 @@ describe("feed model", function() {
   /* TODO: This is removed pending better integration with Travis-CI */
   it("should resolve the load method's promise with an array of feed items", function() {
     var items,
-        feeds = ["http://localhost:3001/ios/phone/feed-proxy/techcrunch.json"];
+        feeds = ["http://localhost:3001/ios/phone/feed-proxy/americanpublicmedia.json"];
 
     dojo.forEach(feeds, function(feed) {
       f.feedURL = feed;
@@ -61,19 +61,20 @@ describe("feed model", function() {
         expect(f.items).toBeDefined();
 
         var item = f.items[0];
+        console.log('item', item);
         expect(item.content).toBeDefined();
         expect(item.title).toBeDefined();
         expect(item.url).toBeDefined();
         expect(item.published).toBeDefined();
         expect(item.author).toBeDefined();
-        //expect(item.name).toBeDefined();
+        expect(item.feedName).toBeDefined();
+        expect(item.id).toBeDefined();
         //expect(item.image).toBeDefined();
-        //expect(item.feedName).toBeDefined();
-        //expect(item.id).toBeDefined();
       });
     });
   });
 
+  // TODO: Not sure why this fails
   xit("should resolve the load method's promise with an empty array if there is no data", function() {
     var items;
 
@@ -119,7 +120,8 @@ describe("feed model", function() {
     });
   });
 
-  it('should read the media attribute off an MRSS feed', function() {
+  // should be handled by feed proxy
+  xit('should read the media attribute off an MRSS feed', function() {
     var videoFeedItem,
         mediaType = 'video/mp4',
         mediaUrl = "http://release.theplatform.com/release/content.mp4?pid=n49nIyLbpuGzkWqaaNioX_v_eistztjf&UserName=Unknown&Portal=Toura%20-%20POC%20-%20LowQualityDownload&Metafile=false",
