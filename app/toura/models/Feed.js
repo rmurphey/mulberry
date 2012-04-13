@@ -106,7 +106,6 @@ dojo.declare('toura.models.Feed', null, {
         return new toura.models.FeedItem(item, this);
       }, this);
 
-//      this.lastModified = new dojo.date.stamp.fromISOString(data.lastModified);
     } else {
       console.warn('There were no results for feed', this.id, data);
       this.items = [];
@@ -171,14 +170,16 @@ dojo.declare('toura.models.FeedItem', null, {
     this.type = 'feedItem';
 
     dojo.mixin(this, {
-      title : item.title || '',
-      url : toura.URL.feedItem(feed.id, item.index),
-      link : item.link,
-      published : item.published,
-      feedName : feed.name,
-      content : item.content,
       author : item.author,
-      id : feed.id + '-' + item.index
+      body : item.body || '',
+      content : item.content,
+      feedName : feed.name,
+      id : feed.id + '-' + item.index,
+      image : item.image || '',
+      link : item.link,
+      published : new dojo.date.stamp.fromISOString(item.published),
+      title : item.title || '',
+      url : toura.URL.feedItem(feed.id, item.index)
     });
 
     if (this.link && dojo.isObject(this.link)) {
@@ -188,74 +189,69 @@ dojo.declare('toura.models.FeedItem', null, {
     if (dojo.isObject(this.title)) {
       this.title = this.title.content || null;
     }
-
-//    this.media = this._getMedia(item);
-//
-//    this.body = this._getBody(item);
-//    this.image = this._getImage(item);
-//    this.author = this._getAuthor(item);
-  },
-
-  _getBody : function(item) {
-    var description = item.description;
-
-    if (dojo.isArray(description)) {
-      return description[1] || "";
-    }
-
-    return description || "";
-  },
-
-  _getImage : function(item) {
-    var enc;
-
-    if (item.thumbnail && dojo.isArray(item.thumbnail)) {
-      enc = item.thumbnail[1];
-    } else {
-      enc = item.enclosure || item.content;
-    }
-
-    if (!enc) { return ''; }
-
-    if (!dojo.isObject(enc) && enc.match(/(jpeg|jpg|png)/i)) {
-      return { url : enc };
-    }
-
-    if (enc && enc.type && enc.type.match(/(jpeg|png)/i)) {
-      return { url : enc.url };
-    }
-
-    // media feed case
-    if (this.media && item.thumbnail) {
-      return { url: item.thumbnail.url };
-    }
-
-    return '';
-  },
-
-  _getAuthor : function(item) {
-    var author = item.author;
-
-    if (item.creator) {
-      return item.creator;
-    }
-
-    if (author && author.displayName) {
-      return author.displayName;
-    }
-
-    return '';
-  },
-
-  _getMedia : function(item) {
-    var media = item.content;
-
-    if (media && media.url && media.type) {
-      return media;
-    }
-
-    return '';
   }
+
+// TODO: recreate logic in feed proxy
+//  _getBody : function(item) {
+//    var description = item.description;
+//
+//    if (dojo.isArray(description)) {
+//      return description[1] || "";
+//    }
+//
+//    return description || "";
+//  },
+//
+//  _getImage : function(item) {
+//    var enc;
+//
+//    if (item.thumbnail && dojo.isArray(item.thumbnail)) {
+//      enc = item.thumbnail[1];
+//    } else {
+//      enc = item.enclosure || item.content;
+//    }
+//
+//    if (!enc) { return ''; }
+//
+//    if (!dojo.isObject(enc) && enc.match(/(jpeg|jpg|png)/i)) {
+//      return { url : enc };
+//    }
+//
+//    if (enc && enc.type && enc.type.match(/(jpeg|png)/i)) {
+//      return { url : enc.url };
+//    }
+//
+//    // media feed case
+//    if (this.media && item.thumbnail) {
+//      return { url: item.thumbnail.url };
+//    }
+//
+//    return '';
+//  },
+
+//  _getAuthor : function(item) {
+//    var author = item.author;
+//
+//    if (item.creator) {
+//      return item.creator;
+//    }
+//
+//    if (author && author.displayName) {
+//      return author.displayName;
+//    }
+//
+//    return '';
+//  },
+//
+//  _getMedia : function(item) {
+//    var media = item.content;
+//
+//    if (media && media.url && media.type) {
+//      return media;
+//    }
+//
+//    return '';
+//  }
 });
 
 }());

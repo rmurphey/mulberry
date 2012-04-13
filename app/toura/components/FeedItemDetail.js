@@ -40,6 +40,7 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
     if (feedItem.type !== 'feedItem') { return; }
 
     this.item = feedItem;
+    console.log('feedItem', feedItem);
 
     if (this.item.media && this.item.media.type) {
       dojo.hitch(this, this.mediaHandlers[this.item.media.type])(this.item);
