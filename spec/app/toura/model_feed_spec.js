@@ -42,13 +42,13 @@ describe("feed model", function() {
     expect(f.load().then).toBeDefined();
   });
 
-  /* TODO: This is removed pending better integration with Travis-CI */
   it("should resolve the load method's promise with an array of feed items", function() {
     var items,
         feeds = ["http://localhost:3001/ios/phone/feed-proxy/americanpublicmedia.json"];
 
     dojo.forEach(feeds, function(feed) {
-      f.feedURL = feed;
+      f.feedUrl = feed;
+      console.log(f.feedUrl)
 
       f.load().then(function(data) {
         items = data;
