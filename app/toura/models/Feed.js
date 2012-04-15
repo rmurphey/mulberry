@@ -152,15 +152,15 @@ dojo.declare('toura.models.Feed', null, {
 /**
  * @class
  *
- * @property {String} title
- * @property {String} name
- * @property {String} body
- * @property {String} link
- * @property {String} pubDate
- * @property {Object} image
  * @property {String} author
- * @property {String} id
+ * @property {String} content
  * @property {String} feedName
+ * @property {String} id
+ * @property {String} image
+ * @property {String} pubDate
+ * @property {String} summary
+ * @property {String} title
+ * @property {String} url
  */
 dojo.declare('toura.models.FeedItem', null, {
   /**
@@ -175,7 +175,7 @@ dojo.declare('toura.models.FeedItem', null, {
       feedName : feed.name,
       id : feed.id + '-' + item.index,
       image : item.image || '',
-      link : item.link,
+      link : item.url,
       pubDate : new dojo.date.stamp.fromISOString(item.published),
       summary : item.summary,
       title : item.title || '',
