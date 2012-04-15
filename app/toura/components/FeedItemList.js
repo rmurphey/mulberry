@@ -52,7 +52,8 @@ dojo.declare('toura.components.FeedItemList', mulberry._Component, {
     this.populateElement(this.feedItemList, dojo.hitch(this, function(item, idx) {
       item.displayText = mulberry.util.truncate(item.content, 200);
       item.index = idx;
-//      item.published = dojo.date.locale.format(item.published);
+      console.log('item.published', item.pubDate);
+      item.pubDate = dojo.date.locale.format(item.pubDate);
       return this.itemTemplate(item);
     }), items);
 

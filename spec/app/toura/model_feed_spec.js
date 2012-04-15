@@ -2,6 +2,8 @@ describe("feed model", function() {
   var f, node, store;
 
   beforeEach(function() {
+    dojo.require('dojo.date.locale');
+
     node = nodeForController('FeedList');
     f = node.feeds[0];
     f.feedURL = "http://rss.cnn.com/rss/cnn_topstories.rss";
@@ -48,7 +50,6 @@ describe("feed model", function() {
 
     dojo.forEach(feeds, function(feed) {
       f.feedUrl = feed;
-      console.log(f.feedUrl)
 
       f.load().then(function(data) {
         items = data;
@@ -61,15 +62,14 @@ describe("feed model", function() {
         expect(f.items).toBeDefined();
 
         var item = f.items[0];
-        console.log('item', item);
         expect(item.content).toBeDefined();
         expect(item.title).toBeDefined();
         expect(item.url).toBeDefined();
-        expect(item.published).toBeDefined();
+        expect(item.pubDate).toBeDefined();
         expect(item.author).toBeDefined();
         expect(item.feedName).toBeDefined();
         expect(item.id).toBeDefined();
-        //expect(item.image).toBeDefined();
+        expect(item.image).toBeDefined();
       });
     });
   });
