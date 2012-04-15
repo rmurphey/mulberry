@@ -171,24 +171,26 @@ dojo.declare('toura.models.FeedItem', null, {
 
     dojo.mixin(this, {
       author : item.author,
-      body : item.body || '',
       content : item.content,
       feedName : feed.name,
       id : feed.id + '-' + item.index,
-      image : item.image || '',
+      image : item.image,
       link : item.link,
       published : new dojo.date.stamp.fromISOString(item.published),
+      summary : item.summary,
       title : item.title || '',
       url : toura.URL.feedItem(feed.id, item.index)
     });
 
-    if (this.link && dojo.isObject(this.link)) {
-      this.link = this.link.content || null;
-    }
 
-    if (dojo.isObject(this.title)) {
-      this.title = this.title.content || null;
-    }
+// TODO: recreate logic in feed proxy
+//    if (this.link && dojo.isObject(this.link)) {
+//      this.link = this.link.content || null;
+//    }
+//
+//    if (dojo.isObject(this.title)) {
+//      this.title = this.title.content || null;
+//    }
   }
 
 // TODO: recreate logic in feed proxy
