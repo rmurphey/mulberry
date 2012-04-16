@@ -1,0 +1,22 @@
+wiley-book-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: page-nav
+      components:
+      - PageNav
+
+    - className: text-container
+      scrollable: true
+      components:
+      - BodyText
+
+    - className: book-display
+      components:
+      - ImageGallery
+      - ImageCaption
+      
+    - className: child-nodes
+      components:
+      - ChildNodes
