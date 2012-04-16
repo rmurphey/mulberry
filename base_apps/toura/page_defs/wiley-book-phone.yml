@@ -13,9 +13,13 @@ wiley-book-phone:
       - BodyText
 
     - className: book-display
-      components:
-      - ImageGallery
-      - ImageCaption
+      regions:
+      - className: book-image
+        components:
+        - ImageGallery
+      - className: book-caption
+        components:
+        - ImageCaption
       
     - className: child-nodes
       components:
