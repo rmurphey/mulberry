@@ -1,6 +1,5 @@
 .page.wiley-book-phone {
   .region.text-container {
-    -webkit-box-flex: 4;
     padding-bottom: 20px;
     border-bottom: 1px solid #999;
     margin-bottom: 10px;
@@ -12,6 +11,8 @@
   
   .region.book-display {
     @include flex-column-container;
+    @include fixed-flex-region;
+    min-height: 150px;
     
     .region.book-image {
       width: 50%;
@@ -19,6 +20,7 @@
   }
   
   .region.book-caption {
+    @include fixed-flex-region;
     a {
       @include list-component-link;
       @include child-node-link;

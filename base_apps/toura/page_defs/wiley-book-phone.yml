@@ -7,20 +7,22 @@ wiley-book-phone:
       components:
       - PageNav
 
-    - className: text-container
+    - className: content-container
       scrollable: true
-      components:
-      - BodyText
-
-    - className: book-display
       regions:
-      - className: book-image
+      - className: text-container
         components:
-        - ImageGallery
-      - className: book-caption
-        components:
-        - ImageCaption
+        - BodyText
+
+      - className: book-display
+        regions:
+        - className: book-image
+          components:
+          - ImageGallery
+        - className: book-caption
+          components:
+          - ImageCaption
       
-    - className: child-nodes
-      components:
-      - ChildNodes
+      - className: child-nodes
+        components:
+        - ChildNodes
