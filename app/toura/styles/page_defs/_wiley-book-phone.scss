@@ -1,10 +1,21 @@
 .page.wiley-book-phone {
   .region.text-container {
     -webkit-box-flex: 2;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #999;
+    margin-bottom: 10px;
+    
+    .component.body-text {
+      padding: 10px;
+    }
   }
   
   .region.book-display {
     @include flex-column-container;
+    
+    .region.book-image {
+      width: 50%;
+    }
   }
   
   .region.book-caption {
