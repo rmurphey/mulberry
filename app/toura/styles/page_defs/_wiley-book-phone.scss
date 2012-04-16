@@ -1,0 +1,9 @@
+.page.wiley-book-phone {
+  .region.text-container {
+    -webkit-box-flex: 2;
+  }
+  
+  .region.book-display {
+    @include flex-column-container;
+  }
+}
