@@ -33,6 +33,7 @@
     - grid_child_five
     - grid_child_six
   - default_template
-  - wiley-test
+  - wiley-test:
+    - about
 - about:
     - subpage
