@@ -1,4 +1,6 @@
 - home:
+  - wiley-test:
+    - about
   - audio_list:
     - single_image_gallery
     - generic_child_page
@@ -33,7 +35,5 @@
     - grid_child_five
     - grid_child_six
   - default_template
-  - wiley-test:
-    - about
 - about:
     - subpage
