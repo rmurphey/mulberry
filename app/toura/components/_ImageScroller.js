@@ -58,11 +58,11 @@ dojo.declare('toura.components._ImageScroller', toura.components._ImageGallery, 
   },
 
   _setWidth : function() {
-    var pageWidth = mulberry.app.UI.viewport.width,
-        scrollerWidth = this.images.length * pageWidth;
+    var regionWidth = this.region.width(),
+        scrollerWidth = this.images.length * regionWidth;
 
     this.scrollerNode.style.width = scrollerWidth + 'px';
-    this.query('.image').style('width', pageWidth + 'px');
+    this.query('.image').style('width', regionWidth + 'px');
     if (!this.scrollerHandle) { return; }
     this.scrollerHandle.refresh();
     this.scrollToIndex(this.currentImageIndex);
