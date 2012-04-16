@@ -120,7 +120,11 @@ module Mulberry
 
       frontmatter, content = File.read(page_file).split('---').delete_if { |p| p.empty? }
       content ||= ''
-      config = YAML.load(frontmatter)
+      begin
+        config = YAML.load(frontmatter)
+      rescue SyntaxError => e
+        raise "Error reading #{page_name}.md: " + e.message
+      end
 
       node_props = {
         :node_name          =>  page_name,
