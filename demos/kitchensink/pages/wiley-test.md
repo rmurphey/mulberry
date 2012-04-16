@@ -2,7 +2,7 @@
 title: "Javascript: The Good Parts"
 page_def:
   phone: wiley-book-phone
-  tablet: default
+  tablet: wiley-book-tablet
 images:
   - goodparts.jpg
 ---

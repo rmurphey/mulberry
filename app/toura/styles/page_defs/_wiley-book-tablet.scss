@@ -1,0 +1,33 @@
+.page.wiley-book-tablet {
+  .region.content-container {
+    @include flex-column-container;
+    
+    .region.book-display {
+      @include fixed-flex-region;
+      width: 300px;
+    }
+    
+    .region.book-image {
+      @include fixed-flex-region;
+      height: 200px;
+    }
+    
+    .component.image-caption {
+      padding: 10px;
+      text-align: left;
+      
+      a {
+        @include list-component-link;
+        @include child-node-link;
+      }
+    }
+  }
+  
+  .region.book-context {
+    
+    .component.body-text {
+      padding: 10px;
+    }
+  }
+  
+}
