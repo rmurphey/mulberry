@@ -224,28 +224,44 @@
   }
 }
 
+@mixin list-component-link {
+  line-height: 1.6em;
+  display: block;
+  margin: 0 0 1px 0;
+  font-weight: bold;
+  color: $text-color;
+  background-color: transparentize($child-nav-color, .5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  // TODO: Kludge for Wiley. Make this a parameter exported from MAP
+  .feature-multiLineChildNodes & {
+    overflow: visible;
+    white-space: normal;
+  }
+
+  @if ($child-node-text-shadow == true) {
+    text-shadow: 1px 1px 0 rgba(0,0,0, .2);
+  }
+}
+
+@mixin child-node-link {
+  padding: 6px 50px 6px 10px;
+  -webkit-box-sizing: padding-box;
+
+  background: {
+    image: url('resources/icons/#{$font-scheme}/chevron.png');
+    repeat: no-repeat;
+    position: 98% center;
+    size: 8px 20px;
+  }
+}
+
 @mixin list-component {
   li {
     a {
-      line-height: 1.6em;
-      display: block;
-      margin: 0 0 1px 0;
-      font-weight: bold;
-      color: $text-color;
-      background-color: transparentize($child-nav-color, .5);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      // TODO: Kludge for Wiley. Make this a parameter exported from MAP
-      .feature-multiLineChildNodes & {
-        overflow: visible;
-        white-space: normal;
-      }
-
-      @if ($child-node-text-shadow == true) {
-        text-shadow: 1px 1px 0 rgba(0,0,0, .2);
-      }
+      @include list-component-link;
     }
   }
 

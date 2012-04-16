@@ -6,4 +6,11 @@
   .region.book-display {
     @include flex-column-container;
   }
+  
+  .region.book-caption {
+    a {
+      @include list-component-link;
+      @include child-node-link;
+    }
+  }
 }
