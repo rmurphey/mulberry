@@ -1,0 +1,17 @@
+---
+title: "About Javascript: The Good Parts"
+page_def:
+  phone: default
+  tablet: default
+---
+Considered the JavaScript expert by many people in the development community, author Douglas Crockford identifies the abundance of good ideas that make JavaScript an outstanding object-oriented programming language-ideas such as functions, loose typing, dynamic objects, and an expressive object literal notation. Unfortunately, these good ideas are mixed in with bad and downright awful ideas, like a programming model based on global variables. 
+
+When Java applets failed, JavaScript became the language of the Web by default, making its popularity almost completely independent of its qualities as a programming language. In JavaScript: The Good Parts, Crockford finally digs through the steaming pile of good intentions and blunders to give you a detailed look at all the genuinely elegant parts of JavaScript.
+
+**Douglas Crockford** is a Senior JavaScript Architect at Yahoo!, well known for introducing and maintaining the JSON (JavaScript Object Notation) format. He's a regular speaker at conferences on advanced JavaScript topics, and serves on the ECMAScript committee.
+
+Further dummy copy: Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam. Not a sunrise but a galaxyrise permanence of the stars. Explorations, across the centuries emerged into consciousness Apollonius of Perga extraplanetary a mote of dust suspended in a sunbeam, are creatures of the cosmos, brain is the seed of intelligence, prime number explorations courage of our questions. Consciousness a still more glorious dawn awaits. Quasar with pretty stories for which there's little good evidence astonishment worldlets a mote of dust suspended in a sunbeam Rig Veda hearts of the stars, emerged into consciousness rings of Uranus, ship of the imagination! With pretty stories for which there's little good evidence billions upon billions, Cambrian explosion descended from astronomers. Hundreds of thousands tingling of the spine?
+
+Cosmic ocean. Finite but unbounded a very small stage in a vast cosmic arena finite but unbounded qui dolorem ipsum quia dolor sit amet, are creatures of the cosmos a still more glorious dawn awaits brain is the seed of intelligence across the centuries! A mote of dust suspended in a sunbeam network of wormholes, globular star cluster, Sea of Tranquility corpus callosum Euclid ship of the imagination tingling of the spine. Euclid. Birth at the edge of forever. Realm of the galaxies astonishment decipherment a mote of dust suspended in a sunbeam explorations rogue across the centuries rich in heavy atoms, a mote of dust suspended in a sunbeam.
+
+Qui dolorem ipsum quia dolor sit amet trillion! The only home we've ever known muse about. Concept of the number one cosmic fugue cosmic ocean. Billions upon billions descended from astronomers across the centuries emerged into consciousness of brilliant syntheses dispassionate extraterrestrial observer a very small stage in a vast cosmic arena? Venture cosmic ocean venture Flatland inconspicuous motes of rock and gas at the edge of forever. Vangelis. Trillion a mote of dust suspended in a sunbeam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
