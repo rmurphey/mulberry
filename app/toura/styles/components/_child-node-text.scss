@@ -1,0 +1,6 @@
+.component.child-node-text {
+  .child-node-body-text {
+    @extend .component.body-text;
+  }
+  
+}

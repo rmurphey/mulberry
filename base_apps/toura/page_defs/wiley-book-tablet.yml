@@ -22,4 +22,4 @@ wiley-book-tablet:
         scrollable: true
         components:
         - BodyText
-        - ChildNodes
+        - ChildNodeText

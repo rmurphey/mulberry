@@ -9,16 +9,20 @@
     
     .region.book-image {
       @include fixed-flex-region;
-      height: 200px;
+      height: 400px;
     }
     
     .component.image-caption {
-      padding: 10px;
+      p {
+        padding: 10px;
+      }
+      
       text-align: left;
       
       a {
         @include list-component-link;
         @include child-node-link;
+        margin: 0 -10px;
       }
     }
   }
