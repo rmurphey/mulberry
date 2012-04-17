@@ -1,10 +1,10 @@
 .page.wiley-book-phone {
   .region.text-container {
-    border-bottom: 1px solid #999;
-    margin-bottom: 10px;
     
     .component.body-text {
-      padding: 10px;
+      margin: 10px;
+      border-bottom: 1px solid #999;
+      padding-bottom: 10px;
     }
   }
   
@@ -15,6 +15,10 @@
     
     .region.book-image {
       width: 50%;
+      
+      .component.image-gallery {
+        padding: 0 0 10px;
+      }
     }
   }
   
