@@ -14,6 +14,8 @@ dojo.declare('toura.components.AdTag', mulberry._Component, {
   startup : function() {
     if (!this.adConfig) {
       this.destroy();
+    } else {
+      dojo.publish('/content/update');
     }
   }
 });
