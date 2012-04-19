@@ -176,7 +176,7 @@ dojo.declare('toura.models.FeedItem', null, {
       id : feed.id + '-' + item.index,
       image : item.image || '',
       link : item.url,
-      pubDate : new dojo.date.stamp.fromISOString(item.published),
+      pubDate : new dojo.date.stamp.fromISOString(item.pubDate),
       summary : item.summary,
       title : item.title || '',
       url : toura.URL.feedItem(feed.id, item.index)
