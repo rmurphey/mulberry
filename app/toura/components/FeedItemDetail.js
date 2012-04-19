@@ -13,11 +13,15 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
     'video/mp4' : function(item) {
       this.videoPlayer.show();
       this.videoPlayer.set('media', {
-        'url' : item.media.url,
-        'poster' : item.image.url
+        'url' : item.video.url,
+        'poster' : item.video.thumbnail
       });
       // don't show an image in the main display
       this.item.image = false;
+    },
+    'application/x-mpegURL' : function(item) {
+      // TODO
+      return false;
     }
   },
 
@@ -42,8 +46,8 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
     this.item = feedItem;
     console.log('feedItem', feedItem);
 
-    if (this.item.media && this.item.media.type) {
-      dojo.hitch(this, this.mediaHandlers[this.item.media.type])(this.item);
+    if (this.item.video && this.item.video.type) {
+      dojo.hitch(this, this.mediaHandlers[this.item.video.type])(this.item);
     } else {
       this.videoPlayer.hide();
     }

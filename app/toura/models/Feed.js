@@ -179,81 +179,10 @@ dojo.declare('toura.models.FeedItem', null, {
       pubDate : new dojo.date.stamp.fromISOString(item.pubDate),
       summary : item.summary,
       title : item.title || '',
-      url : toura.URL.feedItem(feed.id, item.index)
+      url : toura.URL.feedItem(feed.id, item.index),
+      video : item.video
     });
-
-
-// TODO: recreate logic in feed proxy
-//    if (this.link && dojo.isObject(this.link)) {
-//      this.link = this.link.content || null;
-//    }
-//
-//    if (dojo.isObject(this.title)) {
-//      this.title = this.title.content || null;
-//    }
   }
-
-// TODO: recreate logic in feed proxy
-//  _getBody : function(item) {
-//    var description = item.description;
-//
-//    if (dojo.isArray(description)) {
-//      return description[1] || "";
-//    }
-//
-//    return description || "";
-//  },
-//
-//  _getImage : function(item) {
-//    var enc;
-//
-//    if (item.thumbnail && dojo.isArray(item.thumbnail)) {
-//      enc = item.thumbnail[1];
-//    } else {
-//      enc = item.enclosure || item.content;
-//    }
-//
-//    if (!enc) { return ''; }
-//
-//    if (!dojo.isObject(enc) && enc.match(/(jpeg|jpg|png)/i)) {
-//      return { url : enc };
-//    }
-//
-//    if (enc && enc.type && enc.type.match(/(jpeg|png)/i)) {
-//      return { url : enc.url };
-//    }
-//
-//    // media feed case
-//    if (this.media && item.thumbnail) {
-//      return { url: item.thumbnail.url };
-//    }
-//
-//    return '';
-//  },
-
-//  _getAuthor : function(item) {
-//    var author = item.author;
-//
-//    if (item.creator) {
-//      return item.creator;
-//    }
-//
-//    if (author && author.displayName) {
-//      return author.displayName;
-//    }
-//
-//    return '';
-//  },
-//
-//  _getMedia : function(item) {
-//    var media = item.content;
-//
-//    if (media && media.url && media.type) {
-//      return media;
-//    }
-//
-//    return '';
-//  }
 });
 
 }());
