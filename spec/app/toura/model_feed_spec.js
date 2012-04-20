@@ -46,7 +46,7 @@ describe("feed model", function() {
 
   it("should resolve the load method's promise with an array of feed items", function() {
     var items,
-        feeds = ["http://localhost:3001/ios/phone/feed-proxy/americanpublicmedia.json"];
+        feeds = ["http://techcrunch.com/feed"];
 
     dojo.forEach(feeds, function(feed) {
       f.feedUrl = feed;
