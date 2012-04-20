@@ -19,9 +19,15 @@ dojo.declare('toura.components.FeedItemDetail', mulberry._Component, {
       // don't show an image in the main display
       this.item.image = false;
     },
-    'application/x-mpegURL' : function(item) {
-      // TODO
-      return false;
+    'application/x-mpegurl' : function(item) {
+      // TODO: determine if there's anything different we need to do here
+      this.videoPlayer.show();
+      this.videoPlayer.set('media', {
+        'url' : item.video.url,
+        'poster' : item.video.thumbnail
+      });
+      // don't show an image in the main display
+      this.item.image = false;
     }
   },
 
