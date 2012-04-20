@@ -187,6 +187,7 @@ dojo.declare('toura.models.FeedItem', null, {
       video : item.video
     });
   }
+
 });
 
 }());
