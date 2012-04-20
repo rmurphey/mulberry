@@ -60,7 +60,6 @@ dojo.declare('toura.models.Feed', null, {
   load : function() {
     var fn = dojo.hitch(dojo.io.script, 'get'),
         dfd = new dojo.Deferred();
-    console.log('Feed#load');
 
     if (new Date().getTime() - this.lastChecked < this.throttle) {
       dfd.resolve(this._get());
@@ -73,7 +72,7 @@ dojo.declare('toura.models.Feed', null, {
           }
 
           fn({
-            url : this.feedUrl,
+            url : this._createFeedUrl(this.feedUrl),
             callbackParamName : 'callback',
             load : dojo.hitch(this, '_onLoad', dfd),
             error : dojo.hitch(this, '_onError', dfd)
@@ -139,13 +138,18 @@ dojo.declare('toura.models.Feed', null, {
 
   _createArgs : function(dfd) {
     var req = {
-      url : this.feedUrl,
+      url : this._createFeedUrl(this.feedUrl),
       callbackParamName : 'callback',
       load : dojo.hitch(this, '_onLoad', dfd),
       error : dojo.hitch(this, '_onError', dfd)
     };
 
     return req;
+  },
+
+  _createFeedUrl : function(url){
+    var escapedURI = encodeURIComponent(url);
+    return mulberry.feedProxyUrl + "/feed?url=" + escapedURI;
   }
 });
 
@@ -175,7 +179,7 @@ dojo.declare('toura.models.FeedItem', null, {
       feedName : feed.name,
       id : feed.id + '-' + item.index,
       image : item.image || '',
-      link : item.url,
+      link : item.link,
       pubDate : new dojo.date.stamp.fromISOString(item.pubDate),
       summary : item.summary,
       title : item.title || '',
