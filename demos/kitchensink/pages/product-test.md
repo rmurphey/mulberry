@@ -1,8 +1,8 @@
 ---
 title: "Javascript: The Good Parts"
 page_def:
-  phone: wiley-book-phone
-  tablet: wiley-book-tablet
+  phone: product-phone
+  tablet: product-tablet
 images:
   - goodparts.jpg
 ---
