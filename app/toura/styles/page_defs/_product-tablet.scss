@@ -22,8 +22,7 @@
       a {
         @include list-component-link;
         @include child-node-link;
-        margin: 0 -10px;
-        margin-top: 1px;
+        margin: 1px -10px 0;
         
         &:first-of-type {
           margin-top: 5px;
@@ -33,10 +32,8 @@
   }
   
   .region.book-context {
-    
     .component.body-text {
       padding: 10px;
     }
   }
-  
 }
