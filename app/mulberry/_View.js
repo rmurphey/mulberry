@@ -282,6 +282,14 @@ dojo.declare('mulberry._View', [ dijit._Widget, dijit._Templated, mulberry._Nls 
   disable : function() {
     this.addClass('disabled');
     this.isDisabled = true;
+  },
+  
+  width: function() {
+    return dojo.position(this.domNode).w;
+  },
+  
+  height: function() {
+    return dojo.position(this.domNode).h;
   }
 
 });
