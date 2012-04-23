@@ -1,10 +1,13 @@
 describe("image gallery component", function() {
-  var t, c, C, config, wrapper;
+  var t, c, C, R, config, wrapper;
 
   beforeEach(function() {
     dojo.require('toura.components.ImageGallery');
     mulberry.app.UI.viewport = { height: 0, width: 0 };
-
+    
+    // we don't actually create a region, so we fake the property
+    // that ImageGallery needs
+    R = { width: function() { return 0; } };
     C = toura.components.ImageGallery;
     t = dojo.byId('test');
 
@@ -42,7 +45,9 @@ describe("image gallery component", function() {
                 ]
               }
             };
+        
     c = new C(config).placeAt(t);
+    c.region = R;
     c.startup();
     wrapper = t.querySelector('.wrapper');
 
@@ -72,6 +77,7 @@ describe("image gallery component", function() {
               }
             };
     c = new C(config).placeAt(t);
+    c.region = R;
     c.startup();
     wrapper = t.querySelector('.wrapper');
 
@@ -88,6 +94,7 @@ describe("image gallery component", function() {
               }
             };
     c = new C(config).placeAt(t);
+    c.region = R;
     c.startup();
     expect(t.querySelector('li.image')).toBeFalsy();
   });
