@@ -1,8 +1,8 @@
 ---
 title: Home
 page_def:
-  phone: home-phone
-  tablet: home-tablet
+  phone: home-grid
+  tablet: home-grid
 background_image: bangs.jpg
 ---
 

@@ -1,0 +1,9 @@
+.page.home-grid {
+  .region.nav {
+    @include fixed-flex-region;
+    
+    .tablet & {
+      margin: 0 auto 20px;
+    }
+  }
+}
