@@ -1,4 +1,5 @@
 .component.child-node-text {
+  margin: 0 10px 10px;
   .child-node-body-text {
     @include body-text;
   }
