@@ -6,7 +6,7 @@ require 'mustache'
 module Mulberry
   module Framework
     def self.version
-      '4.1.0'
+      '4.1.1'
     end
 
     def self.dojo_version
