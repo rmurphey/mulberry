@@ -1,0 +1,17 @@
+home-grid:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: page-header
+      components:
+      - PageHeaderImage
+    - className: grid
+      scrollable: true
+      components:
+      - BodyText
+      - ChildNodeGrid
+    - className: nav
+      components:
+      - AppNav
+    

@@ -1,0 +1,21 @@
+.page.home-grid {
+  .region.page-header {
+    @include fixed-flex-region;
+  }
+  
+  .component.body-text {
+    margin: 10px 10px 0;
+    
+    .tablet & {
+      margin: 20px 20px 0;
+    }
+  }
+  
+  .region.nav {
+    @include fixed-flex-region;
+    
+    .tablet & {
+      margin: 0 auto 20px;
+    }
+  }
+}

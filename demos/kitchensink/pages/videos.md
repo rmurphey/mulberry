@@ -4,6 +4,8 @@ page_def:
   phone: videos-and-text-phone
   tablet: videos-and-text-tablet
 
+featured_image: cooper_beach.jpg
+
 videos:
   - baby_owls.mp4
   - schnauzer_puppy.mp4
