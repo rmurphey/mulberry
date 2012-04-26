@@ -31,13 +31,13 @@ name: mulberry's kitchensink
 os:
   # Specify the operating systems to target
   - android
-  - ios
+  #- ios
 
 type:
   # Specify the form factors to target;
   # note that Android currently only supports phones
   - phone
-  - tablet
+  #- tablet
 
 # Dojo is included by default, but if you want access
 # to jQuery functionality, set this to true
@@ -73,5 +73,5 @@ urban_airship:
      c2dm_sender: c2dmsender@mail.com
 
 ads:
-  phone:  http://toura.com/ad/ad.php
+  phone:  http://example.com/ad.html
   tablet: http://toura.com/ad/ad.php
