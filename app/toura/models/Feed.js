@@ -75,7 +75,8 @@ dojo.declare('toura.models.Feed', null, {
             url : this._createFeedUrl(this.feedUrl),
             callbackParamName : 'callback',
             load : dojo.hitch(this, '_onLoad', dfd),
-            error : dojo.hitch(this, '_onError', dfd)
+            error : dojo.hitch(this, '_onError', dfd),
+            timeout : 2000
           });
         }));
     }
