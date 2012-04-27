@@ -224,28 +224,44 @@
   }
 }
 
+@mixin list-component-link {
+  line-height: 1.6em;
+  display: block;
+  margin: 0 0 1px 0;
+  font-weight: bold;
+  color: $text-color;
+  background-color: transparentize($child-nav-color, .5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  // TODO: Kludge for Wiley. Make this a parameter exported from MAP
+  .feature-multiLineChildNodes & {
+    overflow: visible;
+    white-space: normal;
+  }
+
+  @if ($child-node-text-shadow == true) {
+    text-shadow: 1px 1px 0 rgba(0,0,0, .2);
+  }
+}
+
+@mixin child-node-link {
+  padding: 6px 50px 6px 10px;
+  -webkit-box-sizing: padding-box;
+
+  background: {
+    image: url('resources/icons/#{$font-scheme}/chevron.png');
+    repeat: no-repeat;
+    position: 98% center;
+    size: 8px 20px;
+  }
+}
+
 @mixin list-component {
   li {
     a {
-      line-height: 1.6em;
-      display: block;
-      margin: 0 0 1px 0;
-      font-weight: bold;
-      color: $text-color;
-      background-color: transparentize($child-nav-color, .5);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      // TODO: Kludge for Wiley. Make this a parameter exported from MAP
-      .feature-multiLineChildNodes & {
-        overflow: visible;
-        white-space: normal;
-      }
-
-      @if ($child-node-text-shadow == true) {
-        text-shadow: 1px 1px 0 rgba(0,0,0, .2);
-      }
+      @include list-component-link;
     }
   }
 
@@ -326,3 +342,77 @@
   height: 320px * $scale;
 }
 
+
+@mixin body-text {
+  @include resizable-font;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @include resizable-font;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: normal;
+  }
+
+  h3 {
+    font-size: 19px;
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  h5 {
+    font-size: 13px;
+  }
+
+  h6 {
+    font-size: 11px;
+    font-weight: normal;
+  }
+
+  p {
+    margin: 0 0 .9em 0;
+  }
+
+  blockquote {
+    @extend p;
+    margin: 0 40px;
+  }
+
+  ol, ul {
+    padding-bottom: 1em;
+  }
+
+  ol li {
+    list-style-type: decimal;
+  }
+
+  ul li {
+    list-style-type: disc;
+  }
+
+  li {
+    position: static;
+    margin-left: 10px;
+    display: list-item;
+    list-style-position: inside;
+    padding-bottom: 0.5em;
+    text-indent: -15px;
+    padding-left: 20px;
+  }
+
+  a {
+    color: $link-color;
+  }
+}

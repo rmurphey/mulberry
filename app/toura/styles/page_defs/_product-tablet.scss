@@ -1,0 +1,45 @@
+.page.product-tablet {
+  .region.content-container {
+    @include flex-column-container;
+    
+    .region.book-display {
+      @include fixed-flex-region;
+      width: 300px;
+    }
+    
+    .region.book-image {
+      @include fixed-flex-region;
+      height: 400px;
+    }
+    
+    .component.image-caption {
+      p {
+        padding: 10px;
+      }
+      
+      text-align: left;
+      
+      li {
+        list-style: none;
+        padding: 0;
+        margin: 0 10px 0 0;
+        text-indent: 0;
+
+        a {
+          @include list-component-link;
+          @include child-node-link;
+        }
+
+        &:first-of-type {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+  
+  .region.book-context {
+    .component.body-text {
+      padding: 10px;
+    }
+  }
+}

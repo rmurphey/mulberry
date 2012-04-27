@@ -1,4 +1,6 @@
 - home:
+  - product-test:
+    - product-about-copy
   - audio_list:
     - single_image_gallery
     - generic_child_page

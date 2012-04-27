@@ -1,0 +1,5 @@
+%ul.component.child-node-text
+  :each c in children
+    %li
+      %h3.child-node-title =c.name
+      .child-node-body-text =c.bodyText[0].body

@@ -1,0 +1,25 @@
+product-tablet:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: page-nav
+      components:
+      - PageNav
+
+    - className: content-container
+      regions:
+      - className: book-display
+        scrollable: true
+        regions:
+        - className: book-image
+          components:
+          - ImageGallery
+        - components:
+          - ImageCaption
+      
+      - className: book-context
+        scrollable: true
+        components:
+        - BodyText
+        - ChildNodeText

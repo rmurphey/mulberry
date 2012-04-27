@@ -1,0 +1,28 @@
+product-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: page-nav
+      components:
+      - PageNav
+
+    - className: content-container
+      scrollable: true
+      regions:
+      - className: text-container
+        components:
+        - BodyText
+
+      - className: book-display
+        regions:
+        - className: book-image
+          components:
+          - ImageGallery
+        - className: book-caption
+          components:
+          - ImageCaption
+      
+      - className: child-nodes
+        components:
+        - ChildNodes

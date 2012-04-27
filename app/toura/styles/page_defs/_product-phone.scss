@@ -1,0 +1,38 @@
+.page.product-phone {
+  .region.text-container {
+    .component.body-text {
+      margin: 10px;
+      border-bottom: 1px solid $border-color;
+      padding-bottom: 10px;
+    }
+  }
+  
+  .region.book-display {
+    @include flex-column-container;
+    @include fixed-flex-region;
+    min-height: 150px;
+    
+    .region.book-image {
+      width: 50%;
+      
+      .component.image-gallery {
+        padding: 0 0 10px;
+      }
+    }
+  }
+  
+  .region.book-caption {
+    @include fixed-flex-region;
+    li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-indent: 0;
+      
+      a {
+        @include list-component-link;
+        @include child-node-link;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.component.child-node-text {
+  padding: 0 10px 10px;
+  
+  h3.child-node-title {
+    padding: .5em 0;
+    border-top: 1px solid $border-color;
+  }
+  
+  .child-node-body-text {
+    @include body-text;
+  }
+}
