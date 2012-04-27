@@ -75,9 +75,10 @@ describe("feed model", function() {
   });
 
   // TODO: Not sure why this fails
-  xit("should resolve the load method's promise with an empty array if there is no data", function() {
+  it("should resolve the load method's promise with an empty array if there is no data", function() {
     var items;
 
+    mulberry.feedProxyUrl = "http://localhost:3009";
     f.id = 'bad id';
     f.feedUrl = 'http://localhost:3001/ios/phone/feed-proxy/foo.json';
 
@@ -85,7 +86,7 @@ describe("feed model", function() {
       items = data;
     });
 
-    waitsFor(function() { return items; }, 3000);
+    waitsFor(function() { return items; }, 2000);
 
     runs(function() {
       expect(dojo.isArray(items)).toBeTruthy();
