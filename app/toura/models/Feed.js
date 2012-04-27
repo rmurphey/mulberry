@@ -116,7 +116,7 @@ dojo.declare('toura.models.Feed', null, {
   },
 
   _onError : function(dfd) {
-    dfd.resolve(this._get() || []);
+    dfd.resolve([]);
   },
 
   _store : function() {
@@ -134,17 +134,6 @@ dojo.declare('toura.models.Feed', null, {
     );
 
     return this.items;
-  },
-
-  _createArgs : function(dfd) {
-    var req = {
-      url : this._createFeedUrl(this.feedUrl),
-      callbackParamName : 'callback',
-      load : dojo.hitch(this, '_onLoad', dfd),
-      error : dojo.hitch(this, '_onError', dfd)
-    };
-
-    return req;
   },
 
   _createFeedUrl : function(url){
