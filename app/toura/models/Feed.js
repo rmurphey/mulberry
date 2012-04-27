@@ -117,6 +117,7 @@ dojo.declare('toura.models.Feed', null, {
   },
 
   _onError : function(dfd) {
+    console.warn('Unable to fetch remote feed');
     dfd.resolve([]);
   },
 
