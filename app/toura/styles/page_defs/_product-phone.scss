@@ -35,4 +35,16 @@
       }
     }
   }
+  
+  .screen.detail {
+    .region.header {
+      @include fixed-flex-region;
+    }
+    
+    .component.caption {
+      ul a {
+        display: none;
+      }
+    }
+  }
 }
