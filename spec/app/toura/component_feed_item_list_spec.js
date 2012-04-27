@@ -15,7 +15,7 @@ describe("feed item list component", function() {
     feedItems = [
       {
         title : 'Item 1 Title',
-        body : '<p>This is the body of item 1</p>',
+        content : '<p>This is the body of item 1</p>',
         link : 'http://toura.com',
         author : 'Rebecca Murphey',
         pubDate : new Date(),
@@ -23,11 +23,11 @@ describe("feed item list component", function() {
       },
       {
         title : 'Item 2 Title',
-        body : 'This is the body of item 2',
+        content : 'This is the body of item 2',
         link : 'http://google.com',
         author : false,
         pubDate : new Date(),
-        image : { url : 'http://24.media.tumblr.com/tumblr_lmx6fb2nH51qlyu3ro1_500.png' }
+        image : 'http://24.media.tumblr.com/tumblr_lmx6fb2nH51qlyu3ro1_500.png'
       }
     ];
 

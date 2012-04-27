@@ -50,7 +50,7 @@ dojo.declare('toura.components.FeedItemList', mulberry._Component, {
     }
 
     this.populateElement(this.feedItemList, dojo.hitch(this, function(item, idx) {
-      item.displayText = mulberry.util.truncate(item.body, 200);
+      item.displayText = mulberry.util.truncate(item.content, 200);
       item.index = idx;
       item.pubDate = dojo.date.locale.format(item.pubDate);
       return this.itemTemplate(item);
