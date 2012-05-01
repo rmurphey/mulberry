@@ -34,6 +34,9 @@
       text-align: center;
       font-weight: normal;
       padding: 5px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -67,7 +70,7 @@
 
   .phone & > .top {
     h1 {
-      display: -webkit-box;
+      display: block;
       -webkit-box-orient: vertical;
     }
 

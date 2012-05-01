@@ -1,10 +1,8 @@
 ---
-title: Feed List
+title: The longest Feed List ever conceived. Well technically it's the longest feed list title. Made even longer for Tablets.
 page_def:
   phone: feed-list-phone
   tablet: feed-list-tablet
-
-header_image: bangs.jpg
 
 feeds:
   - techcrunch.yml
